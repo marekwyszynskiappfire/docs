@@ -1,324 +1,131 @@
-# AI Tools Implementation in QA Engineering at Appfire
+# Using AI for test case creation (QA Engineering at Appfire)
 
-## Overview
-
-This document outlines the implementation strategy, tools, and best practices for integrating AI-powered solutions into QA Engineering workflows at Appfire. The goal is to enhance testing efficiency, improve test coverage, and accelerate the software delivery pipeline while maintaining high quality standards. The first step of the process is to enable the creation of Test Cases.
+*Workflow, prompts, review, and tooling—outline. Expand sections as the playbook matures.*
 
 ---
 
-## Table of Contents
+## Table of contents
 
-1. [Objectives](#objectives)
-2. [AI Tools and Technologies](#ai-tools-and-technologies)
-3. [Implementation Areas](#implementation-areas)
-4. [Integration with Existing QA Processes](#integration-with-existing-qa-processes)
-5. [Best Practices](#best-practices)
-6. [Metrics and Success Criteria](#metrics-and-success-criteria)
-7. [Challenges and Mitigations](#challenges-and-mitigations)
-8. [Roadmap](#roadmap)
-
----
-
-## Objectives
-
-- **Increase Test Automation Coverage**: Leverage AI to generate and maintain automated tests
-- **Reduce Manual Testing Effort**: Automate repetitive testing tasks through intelligent tooling
-- **Improve Bug Detection**: Use AI for early defect identification and predictive analysis
-- **Enhance Test Case Quality**: Generate comprehensive test cases using AI-powered analysis
-- **Accelerate Release Cycles**: Optimize testing processes to support faster deployments
+1. [Purpose and scope](#purpose-and-scope)
+2. [Principles](#principles)
+3. [Inputs AI needs](#inputs-ai-needs)
+4. [End-to-end workflow](#end-to-end-workflow)
+5. [Prompting patterns](#prompting-patterns)
+6. [Tooling map](#tooling-map)
+7. [Worked examples](#worked-examples)
+8. [Review criteria](#review-criteria)
+9. [Anti-patterns](#anti-patterns)
+10. [Metrics](#metrics)
+11. [FAQ and troubleshooting](#faq-and-troubleshooting)
+12. [Appendix](#appendix)
 
 ---
 
-## AI Tools and Technologies
+## Purpose and scope
 
-### Code Assistants
-
-| Tool | Purpose | Integration Points |
-|------|---------|-------------------|
-| GitHub Copilot | Code completion, test generation | IDE integration |
-| Cursor AI | Intelligent code editing, refactoring | Development workflow |
-| Claude / ChatGPT | Test case generation, documentation | API integration |
-
-### Test Automation AI
-
-| Tool | Purpose | Use Case |
-|------|---------|----------|
-| Testim | AI-powered test maintenance | UI test automation |
-| Mabl | Intelligent test creation | End-to-end testing |
-| Applitools | Visual AI testing | UI regression testing |
-| Katalon | Smart test generation | Cross-platform testing |
-
-### Analysis and Monitoring
-
-| Tool | Purpose | Application |
-|------|---------|-------------|
-| AI-based log analyzers | Anomaly detection | Production monitoring |
-| Predictive analytics | Risk assessment | Release planning |
-| ML models | Test prioritization | CI/CD optimization |
+- Audience: QA, QA leads, feature teams collaborating on coverage.
+- Definition of “test case” for this document: *(TBD—manual, scripted, BDD, Zephyr/Jira fields, etc.)*
+- Out of scope: *(TBD—e.g. full automation strategy; link to other docs.)*
 
 ---
 
-## Implementation Areas
+## Principles
 
-### 1. Test Case Generation
-
-**Approach:**
-- Use AI to analyze requirements, user stories, and acceptance criteria
-- Generate comprehensive test cases covering edge cases and boundary conditions
-- Create both positive and negative test scenarios
-
-**Tools:** Claude API, GitHub Copilot, Custom ML models
-
-**Workflow:**
-1. Feed requirements documentation to AI
-2. Generate initial test case drafts
-3. QA review and refinement
-4. Integration into test management system
-
-### 2. Automated Test Script Creation
-
-**Approach:**
-- AI-assisted generation of test scripts from test cases
-- Automatic selector generation and maintenance
-- Self-healing test capabilities
-
-**Supported Frameworks:**
-- Selenium / WebDriver
-- Playwright
-- Cypress
-- Appium (mobile)
-
-### 3. Visual Regression Testing
-
-**Approach:**
-- AI-powered visual comparison for UI changes
-- Intelligent baseline management
-- False positive reduction through ML
-
-**Implementation:**
-- Integrate Applitools or Percy into CI/CD pipeline
-- Configure visual checkpoints in existing test suites
-- Establish baseline approval workflows
-
-### 4. Bug Detection and Analysis
-
-**Approach:**
-- Predictive bug detection using historical data
-- Automated root cause analysis
-- Intelligent test failure classification
-
-**Capabilities:**
-- Pattern recognition in failure logs
-- Automatic bug report generation
-- Duplicate detection for reported issues
-
-### 5. Test Data Generation
-
-**Approach:**
-- AI-generated synthetic test data
-- Privacy-compliant data masking
-- Edge case data scenarios
-
-**Considerations:**
-- GDPR and data privacy compliance
-- Realistic data distribution
-- Cross-system data consistency
-
-### 6. API Testing Enhancement
-
-**Approach:**
-- Automatic API contract validation
-- Intelligent payload generation
-- Performance anomaly detection
-
-**Tools:**
-- Postman with AI features
-- Custom API testing frameworks
-- OpenAPI/Swagger integration
+- Human-in-the-loop: AI produces drafts; humans approve and own quality.
+- Quality over volume; traceability to requirements and risks.
+- Data and privacy: what may and may not go into external tools. *(TBD—link to policy.)*
 
 ---
 
-## Integration with Existing QA Processes
+## Inputs AI needs
 
-### CI/CD Pipeline Integration
-
-```
-┌─────────────┐    ┌──────────────┐    ┌─────────────┐    ┌──────────────┐
-│   Commit    │───►│  AI Test     │───►│  Execute    │───►│   AI-Powered │
-│   Trigger   │    │  Selection   │    │  Tests      │    │   Analysis   │
-└─────────────┘    └──────────────┘    └─────────────┘    └──────────────┘
-                          │                    │                   │
-                          ▼                    ▼                   ▼
-                   ┌──────────────┐    ┌─────────────┐    ┌──────────────┐
-                   │  Risk-Based  │    │  Self-Heal  │    │   Insights   │
-                   │  Prioritize  │    │  Failures   │    │   & Reports  │
-                   └──────────────┘    └─────────────┘    └──────────────┘
-```
-
-### Test Management Integration
-
-- Sync AI-generated test cases with Jira/Zephyr
-- Automated test result reporting
-- Traceability matrix maintenance
-
-### Development Workflow
-
-- Pre-commit AI test validation
-- Code review AI assistance
-- Developer self-service testing tools
+- Strong sources: user stories, acceptance criteria, designs, APIs, existing tests.
+- How to package context for the model: copy-paste, exports, ticket links, file attachments.
+- Minimum context checklist before prompting. *(TBD)*
 
 ---
 
-## Best Practices
+## End-to-end workflow
 
-### 1. Human-in-the-Loop
-
-- Always review AI-generated test cases before approval
-- Maintain human oversight for critical test scenarios
-- Use AI as an assistant, not a replacement
-
-### 2. Quality Over Quantity
-
-- Focus on meaningful test coverage, not just more tests
-- Prioritize AI suggestions based on risk assessment
-- Regular cleanup of redundant AI-generated tests
-
-### 3. Continuous Learning
-
-- Feed test results back to AI models for improvement
-- Track AI accuracy and adjust configurations
-- Share learnings across QA teams
-
-### 4. Security and Privacy
-
-- Never expose sensitive data to external AI services
-- Use on-premise solutions for confidential testing
-- Implement proper data anonymization
-
-### 5. Documentation
-
-- Document AI tool configurations and customizations
-- Maintain runbooks for AI-assisted processes
-- Track AI model versions and changes
+1. Gather inputs (requirements, constraints, environments).
+2. Generate drafts by layer: happy path, negative, edge cases, data variations, non-functional where relevant.
+3. QA review using [review criteria](#review-criteria).
+4. Publish to test management and link to requirements. *(TBD—tool names/fields.)*
+5. Maintain when requirements change (diff-driven refresh prompts). *(TBD)*
 
 ---
 
-## Metrics and Success Criteria
+## Prompting patterns
 
-### Efficiency Metrics
-
-| Metric | Baseline | Target | Measurement Method |
-|--------|----------|--------|-------------------|
-| Test creation time | X hours | -50% | Time tracking |
-| Test maintenance effort | X hours/sprint | -40% | Sprint retrospectives |
-| Manual test execution | X% | -60% | Test reports |
-
-### Quality Metrics
-
-| Metric | Baseline | Target | Measurement Method |
-|--------|----------|--------|-------------------|
-| Defect detection rate | X% | +30% | Bug tracking |
-| False positive rate | X% | <5% | Test analysis |
-| Production escapes | X/release | -50% | Incident tracking |
-
-### Coverage Metrics
-
-| Metric | Baseline | Target | Measurement Method |
-|--------|----------|--------|-------------------|
-| Test coverage | X% | +25% | Coverage tools |
-| Edge case coverage | X% | +40% | Test case analysis |
-| API test coverage | X% | 95% | API mapping |
+- Base template: “From this requirement, produce …” *(TBD—paste template.)*
+- Variants: exploratory ideas, regression gaps, boundary/pairwise hints.
+- Output formats: steps + expected results, Given/When/Then, data tables. *(TBD)*
 
 ---
 
-## Challenges and Mitigations
+## Tooling map
 
-| Challenge | Mitigation Strategy |
-|-----------|---------------------|
-| AI hallucinations in test generation | Mandatory human review process |
-| Tool learning curve | Phased rollout with training programs |
-| Integration complexity | Start with isolated pilots |
-| Cost management | ROI tracking and usage monitoring |
-| Resistance to change | Demonstrate value through quick wins |
-| Data privacy concerns | On-premise solutions for sensitive data |
+| Tool / channel | Role in test case creation |
+|----------------|----------------------------|
+| *(TBD)*        | *(TBD)*                    |
 
 ---
 
-## Roadmap
+## Worked examples
 
-### Phase 1: Foundation (Current)
-- [ ] Evaluate and select AI tools
-- [ ] Pilot with single product team
-- [ ] Establish baseline metrics
-- [ ] Create initial documentation
-
-### Phase 2: Expansion
-- [ ] Roll out to additional teams
-- [ ] Integrate with CI/CD pipelines
-- [ ] Implement AI-powered test selection
-- [ ] Deploy visual regression testing
-
-### Phase 3: Optimization
-- [ ] Custom model training on Appfire data
-- [ ] Advanced predictive analytics
-- [ ] Full automation of test maintenance
-- [ ] Cross-product AI testing capabilities
-
-### Phase 4: Innovation
-- [ ] Autonomous testing capabilities
-- [ ] AI-driven test strategy recommendations
-- [ ] Continuous learning systems
-- [ ] Industry-leading AI QA practices
+- **Example A:** Story + AC → draft cases. *(TBD)*
+- **Example B:** API spec → cases. *(TBD)*
+- **Example C:** UI change → cases (including regression angles). *(TBD)*
 
 ---
 
-## Getting Started
+## Review criteria
 
-### Prerequisites
+- Traceability to requirement / risk.
+- Clarity, atomic steps, unambiguous expected results.
+- Independence, suitable priority/severity, realistic data and environment notes.
 
-1. Access to approved AI tools (see Tool Request Process)
-2. Completion of AI usage training
-3. Understanding of data handling guidelines
+---
 
-### Quick Start
+## Anti-patterns
 
-1. Review this document and related policies
-2. Request tool access through IT
-3. Join the #qa-ai-tools Slack channel
-4. Attend onboarding session
-5. Start with guided tutorials
+- Pasting secrets or customer-identifiable data into unapproved tools.
+- Bulk-importing unreviewed AI output.
+- Duplicating existing coverage without consolidation.
+- Vague expected results or missing negative paths.
 
-### Support and Resources
+---
 
-- **Documentation:** [Internal Wiki Link]
-- **Training:** [LMS Course Link]
-- **Support Channel:** #qa-ai-tools
-- **AI Champions:** [Contact List]
+## Metrics
+
+- Time to first useful draft; time in human review.
+- Defects found from AI-assisted cases vs baseline (if measured). *(TBD—keep minimal.)*
+
+---
+
+## FAQ and troubleshooting
+
+- Hallucinated steps or wrong product area—how to tighten prompts. *(TBD)*
+- Wrong format for test tool—how to constrain output. *(TBD)*
 
 ---
 
 ## Appendix
 
-### A. Glossary
+### Glossary
 
-- **AI (Artificial Intelligence):** Technology that enables machines to simulate human intelligence
-- **ML (Machine Learning):** Subset of AI that learns from data
-- **LLM (Large Language Model):** AI models trained on vast text data
-- **Self-healing tests:** Tests that automatically adapt to UI changes
+- *(TBD)*
 
-### B. Related Documents
+### Related documents
 
-- QA Process Guidelines
-- Data Privacy Policy
-- AI Usage Policy
-- Tool Procurement Process
+- AI usage policy, data handling, test process guidelines. *(TBD—links.)*
 
-### C. Version History
+### Version history
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | 2026-03-23 | QA Engineering | Initial document |
+| Version | Date       | Author        | Changes                    |
+|---------|------------|---------------|----------------------------|
+| 2.0     | *(TBD)*    | QA Engineering | Restructured as AI test-case playbook outline. |
 
 ---
 
-*This document is maintained by the QA Engineering team at Appfire. For questions or suggestions, please contact the QA leadership team.*
+*Maintained by QA Engineering at Appfire. Questions: QA leadership.*
