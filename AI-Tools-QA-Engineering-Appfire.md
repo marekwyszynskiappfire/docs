@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the implementation strategy, tools, and best practices for integrating AI-powered solutions into QA Engineering workflows at Appfire. The goal is to enhance testing efficiency, improve test coverage, and accelerate the software delivery pipeline while maintaining high quality standards.
+This document outlines the implementation strategy, tools, and best practices for integrating AI-powered solutions into QA Engineering workflows at Appfire. The goal is to enhance testing efficiency, improve test coverage, and accelerate the software delivery pipeline while maintaining high quality standards. The first step of the process is to enable the creation of Test Cases.
 
 ---
 
