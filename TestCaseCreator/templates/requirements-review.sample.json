@@ -1,0 +1,16 @@
+{
+  "run_id": "sample-requirements-review-001",
+  "reviewed_at": "2026-06-17T12:00:00Z",
+  "scope": {
+    "type": "story",
+    "value": "PROJ-456"
+  },
+  "requirement_keys": ["PROJ-456"],
+  "findings": [],
+  "gate": {
+    "status": "PASS",
+    "critical_unresolved_count": 0,
+    "blocks_test_generation": false
+  },
+  "schema_version": "1.0"
+}
