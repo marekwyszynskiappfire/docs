@@ -1,31 +1,37 @@
 # Requesting QA work
 
 **Audience:** anyone who needs something from the QA team
-**Maintained by:** the QA Team · **Contact:** Marek Wyszyński, with the whole QA team as deputies · **Version:** 2.0 · **Last reviewed:** 2026-09-22
+**Maintained by:** the QA Team · **Contact:** Marek Wyszyński, with the whole QA team as deputies · **Version:** 2.1 (draft for review) · **Last reviewed:** 2026-09-22
 
 ---
 
 ## In one paragraph
 
-All QA work is requested through the **QA Portal**. Your request is read at the next daily triage meeting — 10:00 CET every working day — and you always get a comment telling you where it stands. QA does not promise a completion date up front; you get an estimate when an engineer picks the ticket up. Requests that arrive any other way are redirected back to the portal.
+All QA work is requested through the **QA Portal**. Your request is read at the next daily triage meeting — 10:00 CET every working day — and you always get a comment telling you where it stands. There is no published completion time, but once an engineer picks your ticket up you are given a **delivery date**. Requests that arrive any other way are redirected back to the portal.
 
-**[QA Portal — submit a request](LINK-TBC)** `[LINK TBC]` · **[All QA tickets — Jira filter](LINK-TBC)** `[LINK TBC]`
+**[QA Portal — submit a request](LINK-TBC)** `[LINK TBC]` · **[QA work — Jira project](LINK-TBC)** `[LINK TBC]`
 
 ---
 
-## The quarterly cycle — the most useful thing on this page
+## The quarterly cycle — for features, initiatives and epics
 
-**Every epic should be defined and in Jira at the start of the quarter.** Not when you need testing. At the start.
+**If you are asking QA to test a new feature, initiative or epic, it should be defined and in Jira at the start of the quarter.** Not when you need testing. At the start.
 
-This is not a request to plan further ahead for its own sake. QA does specific work with those epics before anyone asks for anything:
+This is not planning for its own sake. QA does specific work with those epics before anyone asks for anything:
 
 - runs them through the requirement review tooling and sends you back the gaps
 - prepares test scenarios for the features they describe
 - creates automation placeholders so the automation is not starting from zero when the work arrives
 
-An epic that arrives at quarter start gets tested by a team that has already read it. One that arrives the week you need it gets tested by a team seeing it for the first time, in whatever gap exists between releases — and there may not be one.
+**Submitting early does not make your work finish sooner.** It makes it better prepared, and for a large epic it is what makes the request feasible at all. That is the honest version, and it is why the ask is worth honouring.
 
-**Submitting early does not make your work finish sooner.** It makes it possible, and it makes it better prepared. That is the honest version, and it is why the ask is worth honouring.
+### Mid-quarter requests are normal
+
+**The quarterly cycle is about preparation, not eligibility.** Everything else — test design, migration testing, performance work, documentation testing — arrives mid-quarter as ordinary business and is triaged like anything else. You are not doing something wrong by submitting in week seven.
+
+**There is one case QA will push back on:** a **large epic arriving mid-quarter with an ETA of about a week**. Not because it arrived late, but because the preparation it depends on — requirement review, test scenarios, automation placeholders — cannot be compressed into that lead time.
+
+Pushing back means QA tells you **what it can deliver and by when**, and the conversation is about moving the date or reducing the scope. It is a conversation, not a refusal.
 
 ---
 
@@ -80,6 +86,8 @@ A request missing this information is returned to you, and the clock stops until
 
 > **A note on environments.** This applies when your request targets an existing shared environment such as AAN, develop or preprod. Where testing needs a purpose-built instance, QA builds it — you do not need to prepare anything. QA does not, however, create instances for other people to use; if you need your own, the self-service instructions are in Confluence.
 
+> **A note on "Needed by…".** Check where the release freezes fall before you pick a date. QA works no portal requests for about a week around each release, every two weeks — a date inside a freeze is a date QA cannot meet. **[Quarterly release schedule](LINK-TBC)** `[LINK TBC]`
+
 ---
 
 ## What happens after you submit
@@ -88,7 +96,7 @@ A request missing this information is returned to you, and the clock stops until
 
 Every new request is read at the **daily QA triage, 10:00 CET**. Submit just after one finishes and yours is read the next working day — that is the outer bound of the commitment.
 
-> **Whose working day.** The whole QA team works in **CET**, so the clock runs on CET working days. Submit at 15:00 CET on Friday and your request is read on Monday morning. The team's **public holidays** also move it — see the [holiday calendar](LINK-TBC) `[LINK TBC]`.
+> **Whose working day.** The whole QA team works in **CET**, so the clock runs on CET working days, and the team's public holidays move it. Submit at 15:00 CET on Friday and your request is read on Monday morning.
 
 You will get a comment saying one of three things:
 
@@ -96,17 +104,38 @@ You will get a comment saying one of three things:
 |--------------|---------------|
 | **Picked up** | An engineer has taken the ticket and is working on it |
 | **More information needed** | Exactly what is missing. The clock stops until you reply |
-| **On hold** | The ticket is accepted but not started, with the reason and the point in time it is waiting for |
+| **On hold** | Accepted but not being worked, with the reason given. **The clock is paused** |
 
-There is no fourth state, and **every held ticket is looked at again every working day**. A waiting ticket is never a forgotten one.
+**Every held ticket is reviewed again every working day.** A waiting ticket is never a forgotten one.
 
-Two things put a ticket on hold, and the comment will say which: the **work cannot start yet** — an epic submitted at quarter start for a feature that ships in week eight — or the team is **at capacity** and something has to wait.
+### Why a ticket goes On hold
+
+Three reasons, and the comment will always say which:
+
+| Reason | What it means |
+|--------|---------------|
+| **The work cannot start yet** | An epic submitted at quarter start for a feature that ships in week eight. This is the commonest case, and it is the system working |
+| **No free slot** | Each engineer works two tickets at a time. When all slots are taken, new work waits |
+| **Blocked on someone else** | Waiting on a fix, an environment, or a feature flag being switched on |
+
+**On hold is also the status used when work already in progress becomes blocked.** The ticket returns to the queue at its existing priority and the assignee comes off it — so if you see your ticket lose its assignee, that is what happened, and it may well be picked up by a different engineer when the blocker clears. QA does not hold a slot idle waiting for another team.
+
+### Holds do not last forever
+
+**At four weeks, QA comes back to you.** If the work is progressing and simply is not ready — the normal case for an epic submitted at quarter start — the hold continues. If there has been **no progress on the engineering side**, QA contacts you and then **closes the ticket**.
+
+That closure is not a refusal. It is an accurate statement that the work is not ready to be tested, and you resubmit when it is. A "no" at four weeks costs everyone far less than one at twelve.
 
 ### When you get a date
 
-When an engineer picks the ticket up, they estimate it and tell you. **Not before.** QA commits to reading and responding to your request quickly; it does not commit to a completion date it cannot yet know.
+When an engineer picks the ticket up, **QA gives you a completion time in business days and a delivery date** — for example, *"10 business days, delivered by 6 October"*. Not before, because until someone has read the work there is nothing to base it on.
 
-If the estimate turns out not to fit your date, QA will say so on the ticket and start a conversation — the team does that, not the individual engineer, and the estimate will tell you whether it spans a release freeze.
+**That is elapsed time, not effort.** It already accounts for the engineer's other ticket and for any release freeze in the window. Two things are worth knowing so the number is not a surprise:
+
+- Each engineer runs **two tickets at a time** and spends **half their week** on portal and release work. So a ticket in progress receives roughly a day and a quarter a week — **work in progress is not work being worked on continuously**.
+- Three days of effort is therefore around two and a half weeks of calendar time, and longer if a freeze lands in it.
+
+The estimate comes **from the QA team**, not from one engineer negotiating alone. If it does not fit your date, QA says so on the ticket and starts the conversation.
 
 ### How your request is ordered
 
@@ -129,15 +158,26 @@ Neither is QA's opinion, both are checkable, and **supplying what is missing res
 
 ---
 
+## What you are competing with
+
+Your request is not only queued against other people's requests. The same slots are taken by work QA raises for itself:
+
+- **Regression after initiative delivery**, driven by the release schedule and the dates in epics
+- **BugCrowd security findings**, whose volume is externally driven and outside anyone's control
+
+So a queue that looks short from the portal may still be full. **All of it is visible** — everything the QA team handles, including automation, training preparation and release activity, is tracked in the **[QA work Jira project](LINK-TBC)** `[LINK TBC]`. If you are told there is no free slot, you can check.
+
+---
+
 ## The release rhythm
 
-A release happens roughly **every two weeks** — five or six a quarter. For about a week around each one, QA takes on **no portal requests**; the team is testing the release, verifying fixes and running CI work. Automation continues throughout.
+A release happens roughly **every two weeks**. For about a week around each one, QA takes on **no portal requests**; the team is testing the release and verifying fixes. Automation continues throughout.
 
 **The queue moves between freezes.** That is the single most useful thing to understand about timing, and it is the real reason the quarterly cycle matters.
 
 You can still submit during a freeze. Your ticket is triaged as normal and you will be told when it is likely to be picked up. To see where a freeze falls, use the **[quarterly release schedule](LINK-TBC)** `[LINK TBC]`; for live status, **[`#bp-status-release-feature`](LINK-TBC)** `[LINK TBC]`.
 
-**There is a ceiling.** Four engineers work two tickets each, so more than **eight new tickets in a week** means the ones above that number are automatically put on hold, with a reason. Demand above capacity is made visible rather than absorbed quietly.
+The capacity behind all of this is set out on **[Service levels and measures](04%20-%20Service%20levels%20and%20measures.md)**.
 
 ---
 
@@ -164,9 +204,10 @@ If QA finds bugs, they are raised as **separate, linked issues**. The portal tic
 | Reproduce a bug for you | A conversation is fine. A reproduction effort is not QA work |
 | Answer "how should this work?" | Product Owner or Product Manager |
 | Create a QA instance for you | Self-service instructions in Confluence |
+| Troubleshoot CI, or take CI-related requests | DevOps. QA triggers release builds and nothing else |
 | Investigate a production incident | Support assesses, Engineering owns L3. QA verifies when asked — see below |
 
-**On being redirected:** this is not personal, and the engineer redirecting you is not making a judgement call. It is a team rule with no exceptions, because a rule with exceptions requires every engineer to estimate your work before declining it — which is the negotiation the rule exists to avoid.
+**On being redirected:** this is not personal, and the engineer redirecting you is not making a judgement call. It is a team rule with no exceptions, because a rule with exceptions requires every engineer to estimate your work before declining it — which is the negotiation the rule exists to avoid. If you think the rule is wrong, there is an escalation path at the bottom of this page.
 
 Asking a QA engineer a question is not "work" and never was. Anything that needs an environment, a test run, or produces a result you will act on goes through the portal.
 
@@ -174,12 +215,14 @@ Asking a QA engineer a question is not "work" and never was. Anything that needs
 
 QA is not a first responder. **Support** assesses the issue from the customer's report; **Engineering** provides L3 support; if QA verification is needed, **Support or Engineering — usually Engineering — requests it through the QA Portal**, like any other work.
 
-*Absolutely Critical* means the system is down and unusable, or there has been a major data loss incident. QA **verifies**. It does not investigate, reproduce, triage or own the resolution.
+*Absolutely Critical* means the system is down and unusable, or there has been a major data loss incident. **This is an incident condition, not the Jira severity field** — a bug marked Critical in Jira is not automatically this. QA **verifies**. It does not investigate, reproduce, triage or own the resolution.
 
 ---
 
-## Who to talk to
+## Who to talk to, and how to change this
 
-**Marek Wyszyński** is the first point of contact for anything about this process, including disagreements with it — though most questions get passed to whichever engineer can best answer them, which is usually faster.
+**Marek Wyszyński** is the first point of contact, with the QA team as deputies — most questions get passed to whichever engineer can answer fastest.
 
-These pages are reviewed monthly at the QA Team Retrospective.
+**If something cannot be resolved with QA**, it goes to the **Senior QA Manager**, and then to the **SW Director for BigPicture**.
+
+**If you think a rule on this page is wrong**, submit it through the QA Portal. It is read at triage like anything else, and changes are made at the monthly QA Team Retrospective and published with a new version number.

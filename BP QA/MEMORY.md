@@ -199,6 +199,30 @@ How the remaining findings were handled in the rewrite:
 | X2 | An early submission is **put on hold until the work can start**, shown by a **Jira status and a comment**. Reuses the existing hold mechanism (reason + point in time) | Consequence: the hold list becomes the team's **forward book**, not an exception list — so P12's review cadence matters more, and the two kinds of hold (*not yet startable* vs *parked for capacity*) need distinguishing. **Default carried forward**: page 1 should say early submission buys preparation, not speed |
 | X1 | **No exception to portal-only.** Critical production issues run **Support → Engineering (L3) → QA**, and QA assistance is requested **strictly through the QA Portal**. QA is third in line, not first responder. Reclassify on page 5 from *QA-raised* to *requestable in an incident context by Engineering or Support*. **"From now on" = a change** needing Support and Engineering agreement (feeds P1) |
 
+## Third review — complete, pages at v2.1 (2026-09-22)
+
+Full re-grill of all six pages as a published set, in `page-review-round-3.md`. Question: **where does the argument start when this is published?** Found 7 defects (C1–C7), 10 discussion generators (D1–D10), 7 editorial fixes being applied without asking (E1–E7).
+
+| # | Decision | Notes |
+|---|----------|-------|
+| C1 | **The hold mechanism is slot-based: a ticket is held when no WIP slot is free.** Eight per week stays as the **published planning figure**, not as the trigger | Was the original intent; the arrival-counting phrasing was the drafter's. Automatically correct during freezes, while scheduled work runs, and when long tickets still occupy slots — none needs a special case. Also verifiable by the requester against the Jira filter |
+| D2 | **The quarter-start expectation covers only feature/initiative/epic testing.** Everything else is normal mid-quarter business. Within that scope, **a large epic arriving mid-quarter with an ETA of ~a week is pushed back** — because the preparation cannot be compressed, not because it arrived late | Pages scope the ask explicitly so other categories stop looking non-compliant. Pushback written as a conversation about date or scope, not a refusal — reuses the page 3 rule that QA raises it on the ticket, as a team |
+| D5+D6 | **Drop both the reorganisation backstory and "the team will not grow beyond four".** The sentence becomes *"The team is four engineers, and the model is built for that size — it does not assume growth"* | Fixed on README, pages 2, 3 and the page 4 capacity table. "The lever is scope, not headcount" survives and does not depend on either framing. Out-of-scope list keeps the consequence, drops the history — it is what four engineers cannot cover. Reorg context stays here in MEMORY only |
+| D9 | **Do not publish the ~50–55 requests/quarter throughput figure yet.** It assumes a fixed ticket size that has not been measured. **Revisit at end of year** | Refinement applied: 8/week and 2.0 FTE are both already published, so ~1.25 engineer-days/ticket is derivable by anyone. Page 4 therefore **acknowledges the unmeasured ticket-size assumption and names end of year as the checkpoint**, while publishing no quarterly total |
+| D4 | **Holds get a four-week review horizon.** Where there is **no progress on the engineering side**, QA contacts the requester and **closes the ticket** | Written as **two outcomes** so it does not collide with the quarterly forward book: a planned wait with a known date **continues**; a hold with no progress and no date is **closed after contacting the requester**. Closure is not a refusal — resubmit when engineering is ready. Comes back as a **new request**, not a reopen (the one-week reopen window covers "this does not answer my question") |
+| D7 | **Reframe page 2's "What QA needs from other functions".** Heading becomes **what QA depends on**; columns become **what QA relies on** / **what happens without it** | Mechanics, not obligation and penalty. Content identical. **DoD sign-off row cut** — the epic not closing is the SDLC working normally, not a QA consequence, and it made the table look padded |
+| D8 | **Escalation continues past QA:** ticket → daily triage → Marek Wyszyński → **Senior QA Manager** → **SW Director for BigPicture** | Published as **roles, not names**. Underwrites the absolute rules elsewhere (no out-of-portal work, no exceptions by size, QA does not argue the severity label) — an absolute rule with a published appeal route reads as a team position rather than stubbornness |
+| C4+C5 | **No waiver. The team does not release with blockers, period.** The round-two "known regression may ship under a recorded waiver" edge case is **overturned** | Removes the contradiction outright — no grantor to name. Pages 2 and 3 collapse to one position: a below-threshold RUM result and a bug of severity ≥ Medium both stop the release, no exception path. **"Not assessable"** survives as the only nuance (no defined threshold is never a pass). C5's absolute **stays and is also attributed** to the existing severity rules — citing organisational policy is harder to argue with than asserting QA's own |
+| C7 | **CI work is out of scope.** QA only **triggers the software builds as part of a release** — no troubleshooting, no CI requests. **Overturns the round-two "1 FTE per release for CI"** | Release cost resolves to ~2 days release testing + ~2 days fix verification ≈ **10 engineer-days, one week of the portal-and-release half**, derived rather than asserted. **Boundary that must be stated:** QA still investigates its **own failing automated tests** (its test code, automation half); the **CI platform** — agents, pipelines, build infra — is DevOps. Without it, pages 2 and 5 look self-contradictory. Page 2 out-of-scope list gains CI troubleshooting; page 5 marks CI platform work Stopped |
+| C2 | **Daily review of held tickets, full stop.** Twice-weekly hedge deleted from page 3 | |
+| C3 | **A blocked ticket is put On hold** — the status the team has, and it **pauses the SLA clock** | Simpler than the finding assumed: no fourth state. Page 1 keeps three outcomes, gains *blocked on someone else* as a hold reason and explains why the assignee comes off |
+| C6 | **Training and enablement is requestable any time**, and is **scheduled rather than queued** — planned into the next cycle | |
+| D3 | **A dedicated Jira project holds everything the QA team handles** — portal counterparts, automation, BugCrowd, training prep, release activity | Strongest answer in the round. Converts *"we are full"* from an assertion into something a requester can **verify**, which is what makes the C1 slot rule credible |
+| D10 | **Change proposals go through the QA Portal.** Read at triage, changed at the monthly review, published with a new version | |
+| D1 | **An estimate is a completion time in elapsed business days plus a delivery date** (e.g. "10 business days, delivered by 6 October"), given **by the QA team**, not an effort figure | Closes the highest-frequency trigger in the set. Page 1 also gains the WIP arithmetic openly — 2 tickets at a time, 1.25 engineer-days each per week — so a 10-day estimate on 3 days of work reads as mechanics rather than padding. Page 4's "no completion promise" needs tightening: no completion **SLA** up front, but a **date per ticket** once picked up |
+
+---
+
 **Second-round Q&A complete, pages corrected (2026-09-22).** All three contradictions, all 24 findings and all 8 assumptions answered, and all six pages rewritten to match. Pages are now **v2.0, draft for review**.
 
 What the rewrite changed, beyond applying each answer:
@@ -211,6 +235,13 @@ What the rewrite changed, beyond applying each answer:
 - **A2 reworded from "being wound down" to stopped.** Page 6 carries a TBC to sanity-check A5 (Azure DevOps availability) against the live portal.
 - **Page 5 gained a "Scheduled" classification** for enablement work, which consumes capacity without taking a WIP slot.
 - **Page 6 is marked as being written by the QA team**; pages 1–5 publish without it.
+
+**Added by the third review**
+- Set up the **QA work Jira project** holding everything the team handles — the visibility mechanism several capacity claims now rest on
+- Confirm the **On hold** status pauses the SLA clock in the portal configuration
+- Confirm the **one-week reopen window** is configured
+- Agree the **CI boundary** with DevOps and Engineering: QA triggers release builds only; CI platform work and CI requests go to DevOps
+- Measure **average ticket size** from go-live; revisit the eight-per-week assumption **at end of year**
 
 **Not started**
 - Publishing to Confluence

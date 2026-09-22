@@ -1,7 +1,7 @@
 # Using the QA Portal
 
 **Audience:** requesters — a walkthrough of the form itself
-**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 0.2 (draft skeleton) · **Last reviewed:** 2026-09-22
+**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 0.3 (draft skeleton) · **Last reviewed:** 2026-09-22
 
 > **This page is being written by the QA team from the live portal.** What follows is a skeleton: the process decisions are settled and the structure is correct, but the screenshots and exact field list must be captured from the form itself. Marked `[TBC]` where confirmation is needed.
 >
@@ -99,7 +99,9 @@ A request missing these is returned, and the clock stops until you answer. It is
 
 `[TBC: screenshot of a submitted ticket showing the triage comment]`
 
-Your request is read at the **next daily triage meeting, 10:00 CET** — so the next business day at the latest if you submit just after one. You will get a comment saying the ticket is picked up, that information is missing, or that it is on hold until a stated point, with the reason. The full description of what happens next is on [Requesting QA work](01%20-%20Requesting%20QA%20work.md).
+Your request is read at the **next daily triage meeting, 10:00 CET** — so the next business day at the latest if you submit just after one. You will get a comment saying the ticket is picked up, that information is missing, or that it is **On hold** with the reason. On hold pauses the clock; held tickets are reviewed daily, and at four weeks QA comes back to you.
+
+Once an engineer picks the ticket up, QA gives you **a completion time in business days and a delivery date**. That is elapsed time, not effort — it already accounts for the engineer's other ticket and any release freeze in the window. The full description is on [Requesting QA work](01%20-%20Requesting%20QA%20work.md).
 
 When the ticket is closed, you can **reopen it for one week** if the result does not answer your question.
 
@@ -107,9 +109,9 @@ When the ticket is closed, you can **reopen it for one week** if the result does
 
 ## Tracking your request
 
-**[All QA tickets — Jira filter](LINK-TBC)** `[LINK TBC]`
+**[QA work — Jira project](LINK-TBC)** `[LINK TBC]`
 
-Use it to see where your ticket sits and what else is in the queue. During a release, check **[`#bp-status-release-feature`](LINK-TBC)** `[LINK TBC]` — while a release is running, other work waits.
+Everything the QA team handles is there — portal counterparts, automation, BugCrowd findings, training preparation and release activity. Use it to see where your ticket sits and what it is competing with, which is not only other people's requests. During a release, check **[`#bp-status-release-feature`](LINK-TBC)** `[LINK TBC]` — while a release is running, other work waits.
 
 ---
 
@@ -123,5 +125,6 @@ Use it to see where your ticket sits and what else is in the queue. During a rel
 | Confirm field names | Particularly whether "Needed by…" is labelled exactly that |
 | Confirm Azure DevOps testing is live | If the transition is not complete, say *"available from [date]"* rather than listing it as requestable |
 | Confirm the reopen window is configured | One week, per the agreed process |
-| Portal URL, Jira filter URL, Slack channel link | Also needed by pages 1 and 4 |
+| Confirm the **On hold** status pauses the SLA clock | Pages 1, 3 and 4 rely on this |
+| Portal URL, QA work project URL, Slack channel link | Also needed by pages 1 and 4 |
 | Attachment behaviour | Types and limits |

@@ -1,14 +1,14 @@
 # How the QA team works
 
 **Audience:** the QA team and managers
-**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 2.0 · **Last reviewed:** 2026-09-22
+**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 2.1 (draft for review) · **Last reviewed:** 2026-09-22
 **Reviewed with:** Product Management `[date TBC]` · Engineering `[date TBC]` · Support `[date TBC]`
 
 ---
 
 ## The operating principle
 
-Following the team's reorganisation, **four QA engineers** remain with BigPicture, and the team will not grow beyond that. Everything here is the operating model built for that size — not a preference about how QA should work.
+**The team is four engineers, and the model is built for that size.** It does not assume growth.
 
 Four people cannot divide the product into owned areas, so the team is **generalist by necessity**: any engineer can pick up any request, and nobody owns a domain.
 
@@ -33,49 +33,45 @@ The team runs on a quarterly cycle and a fortnightly one at the same time. Neith
 
 ### Quarterly — intake and preparation
 
-Every epic should be **defined and delivered to QA as Jira items at the start of the quarter**. QA then:
+**Epics, initiatives and new features** should be defined and delivered to QA as Jira items at the start of the quarter. QA then:
 
 1. feeds them through the requirement review tooling
 2. reviews the output and sends the gaps back to the authors
 3. prepares test scenarios
 4. creates automation placeholders
 
-By the time a request arrives, the team has read the epic, knows what is missing, and has somewhere for the automation to go. This is what "submit early" actually buys, and it is why the ask is worth making.
+By the time a request arrives, the team has read the epic, knows what is missing, and has somewhere for the automation to go.
+
+**This is about preparation, not eligibility.** Other categories arrive mid-quarter as ordinary business. The one case the team pushes back on is a **large epic arriving mid-quarter with an ETA of about a week** — the preparation cannot be compressed into that lead time, so QA says what it can deliver and by when, and the conversation is about the date or the scope.
 
 ### Fortnightly — the release cycle
 
-A release roughly **every two weeks**, five or six a quarter, following the **[quarterly release schedule](LINK-TBC)** `[LINK TBC]`.
+A release roughly **every two weeks**, following the **[quarterly release schedule](LINK-TBC)** `[LINK TBC]`.
 
-For about a week around each release, QA is occupied with:
-
-| Activity | Effort |
-|----------|--------|
+| Per release | |
+|-------------|---|
 | Release testing | ~2 days |
 | Verification of fixes | ~2 days — **actively being reduced** |
-| CI-related work | ~1 FTE per release, spread across the four engineers |
+| Triggering the release builds on CI | minor, inside the above |
+| **Team capacity consumed** | **about one week of the portal-and-release half** |
 
 **During a freeze, no portal requests are worked. Automation continues.** That distinction matters: the automation half of the team's time is protected even here.
 
 Portal work therefore happens **between freezes**, and that is the single most useful thing for a requester to understand about timing.
 
+> **CI is not QA work.** The only CI activity in a release is triggering the builds. Troubleshooting the pipeline, fixing agents and handling CI requests are DevOps. QA does keep its **own failing automated tests** — that is QA's test code, and it sits in the automation half.
+
 ---
 
 ## Capacity
 
-| | |
-|---|---|
-| QA Engineers | **4 — and this will not grow** |
-| Split of effort | **2.5 business days per engineer per week** on portal and release work; **2.5 on automation** |
-| Effective portal capacity | **2.0 FTE — release work comes out of this half** |
-| WIP limit | **2 tickets per engineer** |
-| Ceiling on work in progress | **8 tickets** |
-| Inflow ceiling | **8 new tickets per week.** Above that, the excess is **automatically put on hold** |
+The figures are on **[Service levels and measures](04%20-%20Service%20levels%20and%20measures.md)**, which is the source of truth for every number in this collection. What matters operationally:
 
-The WIP limit exists because every engineer also automates test cases as part of daily work. The ceiling is a hard limit, not a guideline.
+- Each engineer splits the week **half portal and release work, half automation**.
+- **Two tickets at a time** per engineer, because everyone also automates test cases daily.
+- **When no slot is free, new work goes On hold.** That is the whole mechanism — no counting, and it is automatically right during freezes and while scheduled work is running.
 
-**The automatic hold is the mechanism that protects all of this.** Past eight new tickets in a week, the rest are held with a reason. It needs no judgement, no negotiation and no meeting, and it makes demand above capacity a visible number rather than an argument QA has to win.
-
-**The eight slots are not always all available.** While scheduled work — training, enablement — is running, fewer engineers can pull, and that is declared at triage. A release freeze reduces available slots to zero.
+**The slot rule is what protects everything else.** It needs no judgement, no negotiation and no meeting, and it makes demand above capacity a visible number rather than an argument QA has to win.
 
 ---
 
@@ -91,8 +87,6 @@ At triage the team:
 4. **reviews every held ticket**
 5. comments on every triaged ticket
 
-Holds are reviewed **daily** today; this may move to twice weekly if ticket volume makes daily impractical.
-
 ### Every triaged ticket gets a comment
 
 One of three, always:
@@ -101,11 +95,20 @@ One of three, always:
 |---------|--------------|
 | **Picked up** | An engineer has taken it |
 | **Incomplete** | Exactly what information is missing. The clock stops |
-| **On hold** | Parked until a stated point, **with the reason given** |
+| **On hold** | The reason, and what it is waiting for. **The clock is paused** |
 
-Two things cause a hold, and the comment distinguishes them: the **work cannot start yet**, or the team is **at capacity**. The first is now the common case, since epics arrive at quarter start for features that ship later — the hold list is the team's forward book, not a pile of problems.
+Three things cause a hold: the **work cannot start yet**, **no slot is free**, or the ticket is **blocked on someone else**. The first is the commonest, since epics arrive at quarter start for features that ship later — the hold list is the team's forward book, not a pile of problems.
 
 **There is never silence from QA.** Triage runs even during a release, when the only outcome may be adding comments to waiting tickets.
+
+### The four-week horizon
+
+Held tickets are reviewed daily, but a hold is not open-ended. **At four weeks QA goes back to the requester:**
+
+- if the work is **progressing and simply not ready**, the hold continues — this is the forward book working as designed
+- if there has been **no progress on the engineering side**, QA contacts the requester and **closes the ticket**
+
+Closure is not a refusal; the work is resubmitted when it is ready. This keeps the hold list an honest number rather than somewhere requests accumulate, and a "no" at four weeks costs far less than one at twelve.
 
 ---
 
@@ -116,7 +119,7 @@ Two things cause a hold, and the comment distinguishes them: the **work cannot s
 - Queue items have **no assignee until pulled**.
 - Engineers take the **highest-priority** ticket they have capacity for.
 - **Two tickets maximum** in progress per engineer.
-- **A blocked ticket frees the slot.** It returns to the queue keeping its priority, and whoever has capacity picks it up when the answer arrives. QA does not hold capacity hostage to other teams' response times.
+- **A blocked ticket goes On hold, which frees the slot.** The assignee comes off, the ticket keeps its priority, and whoever has capacity picks it up when the blocker clears. QA does not hold capacity idle waiting on other teams' response times.
 
 ### Priority
 
@@ -130,37 +133,41 @@ The standard Jira scale. Every request arrives at **Medium**; requesters cannot 
 
 Neither demotion reason is QA's judgement: one is checked by the requirement review tooling against a published standard, the other is a documented attribute of the epic. Both are **recorded as a ticket comment naming what is missing**, and **supplying it restores priority**.
 
+### Estimates
+
+An engineer estimates the work **when they pick it up**, and QA gives the requester **a completion time in business days and a delivery date** — for example, *"10 business days, delivered by 6 October"*.
+
+**The estimate is elapsed time, not effort.** It accounts for the engineer's other ticket and for any release freeze in the window. With two tickets in progress and half a week on portal work, a ticket in progress receives roughly a day and a quarter a week, so three days of effort is around two and a half weeks of calendar time. The pages say this openly, because the alternative is discovering it on every ticket.
+
+The estimate is given **by the team**, never by an individual engineer negotiating alone.
+
 ### When QA cannot meet what a requester expected
 
 One rule, covering every case:
 
 > QA says so **on the ticket** and opens a conversation, **as a team** — never leaving an individual engineer to negotiate alone.
 
-That applies when nobody picks up a ticket with a tight deadline, when the ceiling forces something to be parked, and when an engineer's estimate does not fit the date. In the last case the estimate should also say whether it **spans a release freeze**.
+That applies when nobody picks up a ticket with a tight deadline, when the queue is full and something has to wait, when an estimate does not fit the requester's date, and when a large epic arrives mid-quarter with too little lead time.
 
 Where two requesters genuinely conflict and triage cannot settle it, QA convenes an **ad-hoc session with the managers involved — together, not separately** — and records the outcome on both tickets.
 
 ### The clock
 
-The response clock runs on **CET working days**, and the team's public holidays move it. When a ticket is returned for missing information, **the clock stops** and resumes when the requester responds.
-
-Completion is not on a clock at all — see [Service levels and measures](04%20-%20Service%20levels%20and%20measures.md).
+The response clock runs on **CET working days**, and the team's public holidays move it. It **stops** when a ticket is returned for missing information, and **pauses while a ticket is On hold**.
 
 ---
 
 ## Automation
 
-Half of every engineer's week — **2.5 business days** — and it is protected, including through release freezes.
+Half of every engineer's week and it is protected, including through release freezes.
 
-**The commitment: at least one test case automated per engineer per day**, which is **2 to 3 test cases created or fixed each week per engineer**, or roughly 8 to 12 across the team. All of it is tracked in Jira.
+**The commitment: at least one test case automated per automation day**, which comes to **2 to 3 test cases created or fixed each week per engineer**. All of it is tracked in Jira.
 
 This is not reserved time with no output. The test cases it produces are what makes generalist working possible, and the automation placeholders created at quarter start are what stop each new feature starting from zero.
 
 ---
 
 ## Delivering and closing
-
-An engineer estimates the work **when they pick it up**, and communicates the estimate then.
 
 At completion, QA:
 
@@ -178,7 +185,7 @@ There is no delivery-report template and no testing-report template. A comment p
 
 QA files the bugs **it finds**. QA does not file bugs on behalf of Engineering, Product Management or Support, does not verify routine fixes, and does not reproduce bugs on request.
 
-QA does raise **BugCrowd** tickets, which consume WIP slots like any other work. Volume is externally driven and outside anyone's control.
+QA does raise **BugCrowd** tickets, which consume slots like any other work. Volume is externally driven and outside anyone's control.
 
 ---
 
@@ -206,7 +213,7 @@ Release work is **not portal intake**. It happens because a release is happening
 ### It pre-empts portal work
 
 - **One Release ticket** in the portal represents the effort.
-- The detail lives in **linked Jira tickets, visible to everyone**.
+- The detail lives in **linked Jira tickets**, visible in the **[QA work Jira project](LINK-TBC)** `[LINK TBC]`.
 - Release status is communicated in **[`#bp-status-release-feature`](LINK-TBC)** `[LINK TBC]`; dates are on the **[quarterly release schedule](LINK-TBC)** `[LINK TBC]`.
 - Triage still runs daily, and waiting tickets still get comments.
 - **Automation continues.**
@@ -215,7 +222,7 @@ Release work is **not portal intake**. It happens because a release is happening
 
 **Test Regression (TR) and Sanity cycles** — run as part of the release, led by QA.
 
-**Release blocker testing** — a release blocker is a bug of severity ≥ Medium raised **during Release Testing**. No bug of severity ≥ Medium is released. Severity follows the existing written rules: **[Severity rules](LINK-TBC)** `[LINK TBC]`.
+**Release blocker testing** — a release blocker is a bug of severity ≥ Medium raised **during Release Testing**. Severity follows the **[existing written rules](LINK-TBC)** `[LINK TBC]`, which are owned outside QA and define what blocks a release. **A release does not go out with a blocker open, and there is no waiver.**
 
 ### The RUM performance gate
 
@@ -227,16 +234,13 @@ Before a release, QA reviews the RUM event dashboards to judge whether performan
 | **Product Management + Engineering** | Defining the performance thresholds |
 | **QA** | Reviewing the data against those thresholds before release |
 
-**The gate blocks.** Within thresholds, the release proceeds. Below threshold:
+**The gate blocks, with no exception.** Within thresholds, the release proceeds. Below threshold:
 
 1. QA raises a ticket to Engineering, naming the affected module and events.
 2. Engineering owns the fix.
-3. QA re-reviews afterwards.
+3. QA re-reviews afterwards, and the release waits.
 
-Two edge cases are settled:
-
-- A module with **no defined threshold** is recorded as **"not assessable"** — never as a pass.
-- A **known regression may ship under a recorded waiver**, with the escalation ticket left open.
+One edge case: a module with **no defined threshold** is recorded as **"not assessable"** — never as a pass.
 
 QA reviews the data. QA does not own the tooling and does not set the thresholds. This is the same shape as the production-issue rule and the DoD boundary: **QA assesses against criteria owned by others, and reports.**
 
@@ -256,6 +260,8 @@ This protects every number these pages publish. Out-of-band work consumes the sa
 
 ## Ownership of these pages
 
-Maintained by the **QA Team**. Reviewed **monthly at the Team Retrospective**. First point of contact: **Marek Wyszyński**, with the whole four-person team acting as deputies — most questions are passed to whichever engineer can best answer them. When a decision is needed and the named contact is unavailable, **daily triage decides and the decision stands**.
+Maintained by the **QA Team**. Reviewed **monthly at the Team Retrospective**. First point of contact: **Marek Wyszyński**, with the whole team acting as deputies. When a decision is needed and the named contact is unavailable, **daily triage decides and the decision stands**.
 
-Each page carries a version and a last-reviewed date. If a decision here is overtaken, change it at the retrospective rather than letting practice and page drift apart.
+**Escalation beyond QA:** the **Senior QA Manager**, then the **SW Director for BigPicture**.
+
+**Proposing a change:** submit it through the QA Portal. Changes are made at the monthly review and published with a new version number.

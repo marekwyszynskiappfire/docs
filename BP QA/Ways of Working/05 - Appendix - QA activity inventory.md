@@ -1,7 +1,7 @@
 # Appendix: QA activity inventory
 
 **Audience:** QA internal
-**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 2.0 · **Last reviewed:** 2026-09-22
+**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 2.1 (draft for review) · **Last reviewed:** 2026-09-22
 
 ---
 
@@ -62,10 +62,14 @@ This is the **2.5 days per engineer per week** reserved for automation, protecte
 | Fixing automated test cases | **Internal** |
 | Automation placeholders prepared at quarter start | **Internal** — part of the quarterly preparation cycle |
 | Environment, repo and tool configuration for automation | **Internal** |
-| Verifying failed E2E runs; fixing steps and image data | **Internal** |
+| Verifying failed E2E runs; fixing steps and image data | **Internal** — QA's own test code |
 | Data generation and generation scripts | **Internal** |
+| CI platform work — agents, pipelines, build infrastructure | **Stopped** — DevOps |
+| Triggering the release builds on CI | **Release** — the only CI activity QA performs |
 
 The documented test cases produced here are what makes the generalist model work — they are the team's knowledge base, not a by-product.
+
+> **The CI boundary.** QA fixes its **own failing automated tests** — that is QA's test code and it belongs here. The **CI platform** — agents, pipelines, build infrastructure — is DevOps, and CI requests are not portal requests. The distinction is ownership of the code, not of the tool. Without it, *"CI is out of scope"* and *"QA investigates failing automations"* look like a contradiction.
 
 ---
 
@@ -77,7 +81,7 @@ The documented test cases produced here are what makes the generalist model work
 | Environment preparation for tests, TR, sanity, PM demos, local automation | **Internal** |
 | Instance parameter tuning | **Internal** |
 | Image instance updates; monitoring active user counts | **Internal** |
-| Raising DevOps requests — broken jobs, instance extensions, missing project fields | **Internal** |
+| Raising DevOps requests — broken jobs, instance extensions, missing project fields | **Internal** — raising the request, not doing the work |
 | Creating instances **for other teams** | **Stopped** — self-service instructions in Confluence |
 
 Environment effort is real cost inside the 2.0 FTE. It is never quoted separately to a requester; it is part of whatever the work is.
@@ -143,17 +147,18 @@ The boundary that matters: **answering a question is not work; producing a resul
 | Activity | Classification |
 |----------|----------------|
 | Meetings | **Internal** |
-| Investigating failing automations | **Internal** |
+| Investigating failing automations | **Internal** — QA's own test code, not the CI platform |
 | Leading releases, TR and sanity cycles | **Release** |
 | Daily triage, 10:00 CET, including the daily review of held tickets | **Internal** — runs every working day, including during releases |
+| The four-week hold review — returning to the requester | **Internal** |
 | Monthly review of these pages at the Team Retrospective | **Internal** |
 
 ---
 
 ## Reading this page as a capacity statement
 
-Most of this inventory is **Internal** — absorbed, unrequested, and invisible in the portal queue. That is the honest picture: the portal shows part of the team's time, and the queue is not the same thing as the workload.
+Most of this inventory is **Internal** — absorbed, unrequested, and invisible in the **portal** queue. That is the honest picture: the portal shows part of the team's time, and the queue is not the same thing as the workload.
 
-Anyone reasoning about QA capacity from ticket counts alone will underestimate it. [Service levels and measures](04%20-%20Service%20levels%20and%20measures.md) has the capacity model that accounts for the rest.
+It is not invisible everywhere, though. All of it is tracked in the **[QA work Jira project](LINK-TBC)** `[LINK TBC]`, which is what lets anyone reasoning about QA capacity see the whole picture rather than the portal slice of it. [Service levels and measures](04%20-%20Service%20levels%20and%20measures.md) has the capacity model.
 
 The **Stopped** rows are worth reading as a set. They are the cost of running QA at four engineers, and they are the entries most likely to be discovered by someone being refused rather than by someone reading this page.

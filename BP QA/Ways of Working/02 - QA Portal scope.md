@@ -1,7 +1,7 @@
 # QA Portal scope
 
 **Audience:** requesters, managers, and the functions QA depends on
-**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 2.0 · **Last reviewed:** 2026-09-22
+**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 2.1 (draft for review) · **Last reviewed:** 2026-09-22
 **Reviewed with:** Product Management `[date TBC]` · Engineering `[date TBC]` · Support `[date TBC]`
 
 ---
@@ -22,7 +22,7 @@ Everything below is an application of that rule. Where a new kind of request is 
 
 ## Everything QA does is a portal ticket
 
-Including the work QA raises for itself. The portal is not an inbox for other teams — it is where all of the team's work is visible, whoever put it there.
+Including the work QA raises for itself. The portal is not an inbox for other teams — it is where all of the team's requestable work is visible, whoever put it there.
 
 | Who raises it | Examples |
 |---------------|----------|
@@ -30,7 +30,9 @@ Including the work QA raises for itself. The portal is not an inbox for other te
 | **QA** | Regression after initiative delivery; BugCrowd findings |
 | **Engineering or Support** | Verification during an absolutely Critical production incident |
 
-One exception in form, not in principle: **release work** is represented by a single Release ticket, with the detail in linked Jira issues visible to everyone. And **scheduled work** — training, enablement — is tracked in Jira outside the queue, because a multi-week commitment does not behave like a ticket.
+Two exceptions in form, not in principle: **release work** is represented by a single Release ticket, with the detail in linked Jira issues; and **scheduled work** — training, enablement — is tracked outside the queue, because a multi-week commitment does not behave like a ticket.
+
+**All of it, including both exceptions, is visible in the [QA work Jira project](LINK-TBC)** `[LINK TBC]` — automation, BugCrowd, training preparation, release activity and portal counterparts in one place.
 
 ### Requestable by anyone
 
@@ -45,7 +47,7 @@ One exception in form, not in principle: **release work** is represented by a si
 | **Azure DevOps testing** | Integration testing |
 | **Event Manager testing** | Sanity and regression testing for Event Manager |
 | **Documentation testing** | Testing of documentation |
-| **Training and enablement** | Courses and training for developers and others — **scheduled, not queued** (see below) |
+| **Training and enablement** | Courses and training for developers and others. **Request it any time** — it is scheduled rather than queued, so it is planned into the next cycle rather than picked up from the queue |
 
 ### Raised by QA
 
@@ -60,7 +62,7 @@ Release blocker testing, the **RUM review**, **Test Regression** and **Sanity** 
 
 ### Scheduled work
 
-Training and enablement is agreed at **quarter start** and tracked in Jira **outside the queue** — a three-week course does not occupy a WIP slot. It does consume capacity, so while it runs the team has fewer engineers available to pull tickets, and that is declared at triage.
+Training and enablement can be requested at any time, and is normally agreed at **quarter start**. It is tracked **outside the queue** — a three-week course does not occupy a WIP slot. It does consume capacity, so while it runs the team has fewer engineers available to pull tickets, and that is declared at triage.
 
 ---
 
@@ -70,9 +72,9 @@ The rule excludes reactive work by default. Three things are in anyway, each wit
 
 ### Release-critical testing
 
-A **release blocker** is a bug of **severity ≥ Medium raised during the Release Testing activity**. Severity alone does not make something a blocker — the activity it came from does. No bug of severity ≥ Medium is ever released.
+A **release blocker** is a bug of **severity ≥ Medium raised during the Release Testing activity**. Severity alone does not make something a blocker — the activity it came from does.
 
-Severity is assigned under rules that already exist and are not restated here. **[Severity rules](LINK-TBC)** `[LINK TBC]`
+Severity is assigned under **[rules that already exist](LINK-TBC)** `[LINK TBC]` and are owned outside QA. Those rules define what blocks a release, and **a release does not go out with a blocker open. There is no waiver.**
 
 ### Security — BugCrowd
 
@@ -82,7 +84,7 @@ BugCrowd findings stay with the QA team, and QA raises the resulting portal tick
 
 QA does **not** handle production issues, with one exception: **absolutely Critical** issues where QA verification is needed.
 
-**Absolutely Critical** means the **system is down and cannot be used**, or there has been a **major data loss incident**. Support assesses this from the customer's report; QA does not argue the label.
+**Absolutely Critical** means the **system is down and cannot be used**, or there has been a **major data loss incident**. This is an **incident condition, not the Jira severity field** — a bug marked Critical in Jira is not automatically this. Support assesses it from the customer's report; QA does not argue the label.
 
 **The path is ordered, and QA is third in line:**
 
@@ -100,6 +102,7 @@ QA does **not** handle production issues, with one exception: **absolutely Criti
 |-------------------|---------------|
 | Support tickets | Support |
 | DevOps and infrastructure requests | DevOps |
+| **CI troubleshooting and CI-related requests** | DevOps. QA triggers release builds and does nothing else on CI |
 | Filing bugs on behalf of Engineering, Product Management or Support | The person who found it files it |
 | Routine bug verification | The feature team |
 | Reproducing a bug for a developer | The developer. A conversation is fine; a reproduction effort is not QA work |
@@ -111,11 +114,13 @@ QA does **not** handle production issues, with one exception: **absolutely Criti
 
 **This list is not a statement of preference. It is the cost of running QA at four engineers, itemised.**
 
-Following the team's reorganisation, four QA engineers remain with BigPicture. The operating model on these pages is built for that size, and this list is what had to stop for the rest of it to work. Each entry is work that either ceases or is absorbed by another team, and the page says which. It is meant to be reviewed item by item — see [Service levels and measures](04%20-%20Service%20levels%20and%20measures.md) for the capacity it buys.
+It is what had to stop for the rest of the model to work. Each entry is work that either ceases or is absorbed by another team, and the page says which. It is meant to be reviewed item by item — see [Service levels and measures](04%20-%20Service%20levels%20and%20measures.md) for the capacity it buys.
 
-### Two of these need explaining
+### Three of these need explaining
 
 **Bugs.** The line is *on whose behalf*, not whether bugs get filed. QA files every bug it finds, and keeps doing so. QA does not file bugs for other people, does not verify routine fixes, and does not reproduce bugs on request — that stays with the feature team that made the change.
+
+**CI.** QA's only CI activity is **triggering the software builds as part of a release**. Broken agents, pipeline configuration and build infrastructure are DevOps work, and CI requests are not portal requests. **The one thing QA does keep is its own failing automated tests** — that is QA's test code, and fixing it is part of the automation half of the week. The distinction is ownership of the code, not of the tool.
 
 **Observability.** These assets were **built and maintained jointly with Engineering**, and Engineering **continues as sole owner**. QA is withdrawing from shared ownership rather than handing over something unfamiliar. Kibana, DataStudio, Grafana dashboards, BigQuery maintenance and RUM rollout all sit with Engineering, along with any new work. There is little maintenance involved and practically no development.
 
@@ -133,33 +138,33 @@ QA does **not run an instance-creation service** for other teams. If you need an
 
 ---
 
-## What QA needs from other functions
+## What QA depends on
 
-These pages assume work from three functions. Each is listed here so the expectation is in one place rather than scattered through pages written for other audiences.
+The model on these pages relies on work done by three other functions. It is collected here so the dependencies are in one place rather than scattered through pages written for other audiences.
 
 ### Product Management
 
-| Owes QA | If it is missing |
-|---------|------------------|
+| QA relies on | What happens without it |
+|--------------|-------------------------|
 | **Every epic defined and in Jira at the start of the quarter** | QA cannot prepare test scenarios or automation placeholders, and the work arrives cold |
 | **Clear acceptance criteria**, as part of Definition of Ready | The epic is incomplete against the SDLC definition, and requests against it are deprioritised |
 | **A target shipping date in the epic** | QA cannot plan regression, and has no documented basis for prioritising the work |
 | **Performance thresholds for RUM**, jointly with Engineering | The module is recorded **not assessable** at the release gate — never as a pass |
-| **Definition of Done sign-off** | The epic does not close. QA supplies test results and nothing beyond them |
 
 ### Engineering
 
-| Owes QA | If it is missing |
-|---------|------------------|
+| QA relies on | What happens without it |
+|--------------|-------------------------|
 | **Performance thresholds for RUM**, jointly with Product Management, and the RUM Events portal | As above — the gate cannot be assessed |
 | **Fixing regressions** found at the release gate | The gate blocks and the release does not proceed |
-| **Ownership of the observability assets**, including any new work | Assets go unmaintained; QA does not pick them back up |
+| **Ownership of the observability assets**, including any new work | These sit with Engineering; QA has withdrawn and does not pick them back up |
+| **Ownership of CI** beyond release build triggering | CI issues have no owner in QA and are routed to DevOps |
 | **Requesting incident assistance through the QA Portal** | The work is invisible to the queue and to the capacity model |
 
 ### Support
 
-| Owes QA | If it is missing |
-|---------|------------------|
+| QA relies on | What happens without it |
+|--------------|-------------------------|
 | **Assessing incident severity** from the customer report | QA has no basis for the Critical carve-out and would have to judge it, which it will not do |
 | **Routing through Engineering L3 first**, then the QA Portal if verification is needed | Work arrives outside the portal and is redirected, costing time during an incident |
 
@@ -191,3 +196,5 @@ These are **epic-level standards shared with Engineering**, not QA Portal rules,
 > The scope rule is here: [QA Portal scope]. If you think this is wrong, comment on the ticket or talk to Marek Wyszyński.
 
 The link matters. A redirect that cites a published rule is a team decision; one that does not is one engineer's opinion.
+
+**If you think the rule itself is wrong,** submit it through the QA Portal. Changes are made at the monthly QA Team Retrospective and published with a new version. If it cannot be resolved with QA, it goes to the **Senior QA Manager** and then the **SW Director for BigPicture**.
