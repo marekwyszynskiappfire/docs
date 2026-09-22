@@ -3,6 +3,8 @@
 > Source: [Process Vision - Sticky Notes](https://appfireteam.atlassian.net/wiki/spaces/~7120202c1c597e249542f89ace1bdf6605ba70/whiteboard/99900981543)  
 > Related: [QA Portal Workshop Outcomes](https://appfireteam.atlassian.net/wiki/spaces/~7120202c1c597e249542f89ace1bdf6605ba70/pages/99901308933/QA+Portal+Workshop+Outcomes)
 
+> **Superseded.** This draft has been rewritten as six audience-specific pages in [`Ways of Working/`](Ways%20of%20Working/README.md). Several statements below were contradictory and were resolved during review — see `review-report.md` for what changed and why. This file is kept as the record of what the whiteboard originally said.
+
 This document captures the agreed vision for how QA work is requested, triaged, and delivered through the QA Portal. It defines what belongs in the portal, what does not, what information requesters must provide, and how the team operates day to day.
 
 ---
