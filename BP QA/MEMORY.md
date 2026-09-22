@@ -2,7 +2,88 @@
 
 Persistent state for this workstream. Read this first when starting a new conversation or context window; it should contain everything needed to resume without re-reading the whole history.
 
-**Last updated:** 2026-09-21
+**Last updated:** 2026-09-22 · **Pages at v2.1**, three review rounds complete
+
+---
+
+# ⚠️ Open uncertainties and ambiguities
+
+**Read this section before changing anything in `Ways of Working/`.** Three grilling rounds settled the model, but the following are either unconfirmed, unverified, or deliberately unresolved. They are ordered by how much damage they would do if wrong.
+
+## A. Interpretations written into the pages as fact but never explicitly confirmed
+
+These were inferred while applying answers. Each is defensible and each was flagged to the user at the time, but none was confirmed in words. **They currently read as settled fact in published-ready pages.**
+
+| # | What the pages assert | Why it is uncertain | Blast radius if wrong |
+|---|----------------------|---------------------|----------------------|
+| **U1** | A release costs **~10 engineer-days**, derived from ~2 days release testing + ~2 days fix verification, read as **elapsed days with the team working in parallel** | The source statement was *"testing takes about two days, verification maybe another two"*. If those are **per-engineer** rather than elapsed, the release consumes far more than a week and the whole capacity model shifts | **High.** "About a week per release" justifies roughly half the quarter being closed to requesters. It is the single most load-bearing derived number in the set |
+| **U2** | The four-week hold horizon has **two outcomes** — a planned wait with a known date **continues**, a hold with no engineering progress is **closed** | The user only specified the closure branch. The "continues" branch was added because a blanket four-week closure would destroy the quarterly forward book, which is clearly not the intent — but it was not asked | **High.** Get it wrong in the other direction and every epic submitted at quarter start gets auto-closed in week four |
+| **U3** | QA keeps **its own failing automated tests**; the **CI platform** (agents, pipelines, build infra) is DevOps | The user said only *"CI-related work is out of scope… just triggering the builds"*. The carve-out for QA's own test code was added because pages 2 and 5 would otherwise contradict each other | **Medium-high.** If QA's failing E2E runs are also out of scope, the automation half of the week loses a large recurring activity |
+| **U4** | **"Push back"** on a large mid-quarter epic means QA states what it can deliver and opens a conversation about date or scope — **not a refusal** | Flagged explicitly when recorded; never confirmed. The user's phrasing (*"we will push back on those tickets"*) could mean an outright decline | **Medium.** Changes whether page 1 describes a negotiation or a rejection, which is the difference in tone PMs will react to |
+| **U5** | A ticket closed at the four-week horizon comes back as a **new request**, not a reopen | Inferred from the one-week reopen window covering *"this does not answer my question"* | **Low-medium.** Mostly affects portal configuration and requester expectations |
+| **U6** | The severity absolute is **both asserted and attributed** — the pages cite the existing severity rules *and* state that no release ships with a blocker | The user said *"We do not release with blockers. period."* The attribution framing was the reviewer's addition, intended to strengthen rather than soften | **Low.** But if the severity rules do not actually say this, QA is citing a document that does not support the claim |
+| **U7** | The estimate is given **by the QA team**, not by the individual engineer | The user wrote *"a delivery date from the QA Team"*, read as team-not-individual. Consistent with the existing page 3 rule, so probably right | **Low** |
+| **U8** | Support ticket review has **stopped**, not "is being wound down" | The assumption was confirmed; the wording change to the harder form was the reviewer's | **Low**, but it is one of three activities people will discover by being refused |
+
+## B. Facts to verify against reality before publishing
+
+Nothing here is a decision — it is all checkable, and all of it is currently asserted in the pages.
+
+| # | To verify |
+|---|-----------|
+| **V1** | The **QA work Jira project does not exist yet.** Pages 1, 2, 4, 5, 6 and the README all point to it, and several capacity claims depend on it being visible. This is the largest gap between what the pages describe and what exists |
+| **V2** | **On hold pauses the SLA clock.** The user stated it does; confirm in the portal configuration, because pages 1, 3 and 4 all rely on it |
+| **V3** | The **one-week reopen window** is actually configured |
+| **V4** | **Azure DevOps testing is genuinely available now** (assumption A5). The original draft said "soon, currently handled by one person". If the transition is incomplete, the pages should say *"available from [date]"* |
+| **V5** | The **QA Portal is a Jira Service Management project** — assumed while drafting |
+| **V6** | **5 to 6 releases per quarter at about a week each** really does mean roughly half the quarter is closed to portal work. Stated as "roughly half"; arithmetic gives 5–6 of ~13 weeks |
+| **V7** | The **average ticket size of ~1.25 engineer-days** implied by eight per week. Named on page 4 as the weakest number in the set. **Measured from go-live, revisited at end of year** |
+
+## C. Unresolved, and nobody has agreed to it yet
+
+| # | Open |
+|---|------|
+| **O1** | **No function has actually agreed to any of this.** Pages 2 and 3 carry `Reviewed with: [date TBC]` for Product Management, Engineering and Support. The incident route, the observability ownership and the CI boundary all require someone else to accept work |
+| **O2** | **"Every epic in Jira at quarter start" is the largest external dependency in the collection**, and Product Management has not signed up to it. The quarterly cycle is the spine of the model and rests entirely on this |
+| **O3** | **Product Management has no dedicated page** (declined in round two). Their only content is the *what QA depends on* section on page 2, which has never been tested with a PM |
+| **O4** | **Page 6 is unwritten** — the user is preparing it from the live portal. Pages 1–5 publish first |
+| **O5** | **Six `[LINK TBC]` placeholders** remain: QA work project, QA Portal, SDLC epic definition, quarterly release schedule, severity rules, Slack channel |
+| **O6** | **No comms plan.** Walkthroughs and Q&A sessions are agreed in principle (round two, P1) but not scheduled |
+| **O7** | **Escalation uses roles, not names.** Senior QA Manager and SW Director for BigPicture are unnamed in the pages — deliberate, but someone must confirm those roles will accept the routing |
+
+## D. Gaps nobody has raised yet — candidates for a fourth round
+
+Found while applying the third round; not yet put to the user.
+
+| # | Gap |
+|---|-----|
+| **G1** | **BugCrowd volume is unbounded and consumes slots.** In a bad month it could take most of the queue. There is no cap, no policy, and no stated behaviour when it crowds out requester work |
+| **G2** | **Scheduled work has no capacity limit.** Training and enablement is "declared at triage" but nothing says how much of the team can be committed to it at once |
+| **G3** | **A reopened ticket has no defined priority or WIP behaviour.** Does it return at its original priority, or to the back of the queue? |
+| **G4** | **Absolutely Critical verification displaces committed work**, and nothing says the displaced requester is told. The pages promise no silence, so this is a live inconsistency |
+| **G5** | **A requester who disagrees with a priority demotion** has no arbitration route. Supplying the missing information restores priority, but there is no path for "the tooling is wrong" |
+| **G6** | **Public holidays move the clock**, but the holiday calendar reference was removed (E6) and nothing replaced it. Requesters outside CET have no way to know when the team is off |
+
+## E. Decisions overturned across rounds — do not reinstate
+
+| Overturned | Was | Now |
+|---|---|---|
+| **RUM waiver** | Round 2: a known regression may ship under a recorded waiver | Round 3: **no waiver.** The gate blocks absolutely |
+| **CI effort** | Round 2: "the entire CI related work is 1 FTE per release" | Round 3: **CI is out of scope.** Only release build triggering remains |
+| **Inflow ceiling mechanism** | v2.0 drafting: more than 8 new tickets a week, hold the excess | Round 3: **slot-based.** Held when no WIP slot is free; 8/week is a planning figure only |
+| **"The team will not grow beyond four"** | v2.0: published as permanent policy | Round 3: **planning basis only** — *"the model is built for that size and does not assume growth"* |
+| **Reorganisation backstory** | v2.0: on the README and pages 2 and 3 | Round 3: **removed from all pages.** Retained here in MEMORY only |
+| **Completion commitment** | v2.0: "no completion promise" | Round 3: **no published SLA, but a date per ticket** once picked up. Different claims, previously blurred |
+
+## F. Deliberate tensions — correct as written, and they will still be challenged
+
+Not problems. Recorded so a future session does not "fix" them.
+
+- **No published completion SLA.** Intentional until intake is measured. The quarterly cycle is the substitute.
+- **No exceptions to the out-of-portal rule**, regardless of task size. An absolute rule so individual engineers can apply it without estimating first.
+- **Fixed team size.** The answer to insufficient capacity is scope reduction, never headcount.
+- **Generalist model.** Depth is knowingly traded for flow at four engineers.
+- **The out-of-scope list framed as a bill.** Meant to be challenged item by item, not accepted.
 
 ---
 
@@ -31,7 +112,8 @@ The whiteboard is the source of truth for what the team *said*; `WoW.md` is a st
 | `Ways of Working/` | **The rewritten pages.** Six pages plus an index. This is the deliverable |
 | `WoW.md` | The original draft, rendered from the whiteboard. **Superseded** by `Ways of Working/`; kept as the record of what the whiteboard said |
 | `personas.md` | **Seven** review personas: Tomasz Nowak (SW Engineer), Priya Raman (QA Engineer), Daniel Okonkwo (SW Engineering Manager), Elena Rossi (QA Manager), Anna Kowalska (Senior QA Manager), Sarah Whitfield (Director of SW Engineering), Inês Duarte (Product Manager). Expanded from two on 2026-09-21; Anna keeps her name so existing *Lens: Anna* findings still read correctly |
-| `page-review-questions.md` | **Second review**, of the drafted pages rather than `WoW.md`. 3 contradictions, 6 blocking, 11 important, 7 worth settling, 8 assumptions to confirm |
+| `page-review-questions.md` | **Second review**, of the drafted pages rather than `WoW.md`. 3 contradictions, 6 blocking, 11 important, 7 worth settling, 8 assumptions to confirm. **All answered** |
+| `page-review-round-3.md` | **Third review**, of the whole collection as a published set — asking where the argument starts rather than whether the model is right. 7 defects, 10 discussion generators, 7 editorial fixes. **All answered and applied** |
 | `review-report.md` | Findings against the draft: 8 Critical, 9 Major, 7 Minor, plus what works and a proposed Confluence page structure |
 | `open-questions.md` | The grilling tracker. Round 1 asked; Rounds 2 and 3 mapped but blocked |
 | `MEMORY.md` | This file |
