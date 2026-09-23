@@ -10,6 +10,8 @@ Persistent state for this workstream. Read this first when starting a new conver
 
 **Read this section before changing anything in `Ways of Working/`.** Three grilling rounds settled the model, but the following are either unconfirmed, unverified, or deliberately unresolved. They are ordered by how much damage they would do if wrong.
 
+> **Round four is in progress and supersedes parts of this section.** See *Fourth review* below. Already affected: **U1 confirmed** (a release consumes the whole portal-and-release half, but the freeze is **3–5 working days**, not a week); **V2 reframed** (there is a real time-to-resolution SLA driven by the Urgency field, so page 4's "no published completion time" is wrong); **U6 reopened** (go/no-go sits with Product Management and Engineering, so QA's release absolutes cannot stand as written); **G6 still open**.
+
 ## A. Interpretations written into the pages as fact but never explicitly confirmed
 
 These were inferred while applying answers. Each is defensible and each was flagged to the user at the time, but none was confirmed in words. **They currently read as settled fact in published-ready pages.**
@@ -280,6 +282,86 @@ How the remaining findings were handled in the rewrite:
 | X3 | **"24 business hours" means 24 hours of elapsed business time** — triage at the next daily meeting, **next business day at the latest**. The commitment was always the strong one; the phrase is what misleads | Rewrite as "read at the next daily triage meeting, 10:00 CET every working day — at the latest the next business day". P13 (whose business day) still open |
 | X2 | An early submission is **put on hold until the work can start**, shown by a **Jira status and a comment**. Reuses the existing hold mechanism (reason + point in time) | Consequence: the hold list becomes the team's **forward book**, not an exception list — so P12's review cadence matters more, and the two kinds of hold (*not yet startable* vs *parked for capacity*) need distinguishing. **Default carried forward**: page 1 should say early submission buys preparation, not speed |
 | X1 | **No exception to portal-only.** Critical production issues run **Support → Engineering (L3) → QA**, and QA assistance is requested **strictly through the QA Portal**. QA is third in line, not first responder. Reclassify on page 5 from *QA-raised* to *requestable in an incident context by Engineering or Support*. **"From now on" = a change** needing Support and Engineering agreement (feeds P1) |
+
+## Fourth review — in progress (2026-09-23)
+
+Personas-led re-read of the whole collection, asked one question at a time. **Pages not yet edited** — everything below is decided and waiting to be applied. The round found three things the earlier rounds could not: the portal's real field names and behaviour, the canary stage, and a live SLA nobody had documented.
+
+### The three discoveries that change the pages most
+
+| Discovery | Why it matters |
+|-----------|----------------|
+| **The field is `Urgency`**, mandatory, values 48 hours / a week / two weeks / a month — **and it drives a time-to-resolution SLA**. Values cannot be changed; the form is shared company-wide | Page 4's *"A published completion time: **None**"* is **false**. JSM shows the countdown to the requester, so a requester can read "2 days remaining" on a page that says QA publishes no completion time. `Needed by…` does not exist and must be renamed throughout |
+| **A canary stage exists.** QA triggers the canary, reviews RUM after ~2 days, then tells DevOps to proceed with worldwide rollout | Appears nowhere in the collection. Explains why the freeze is longer than the work. Raised, then partly resolved, the question of who owns go/no-go |
+| **The freeze is 3–5 working days, not "about a week"** | Pages understate QA's own availability. Quarter share drops from *"roughly half"* to **about a third** |
+
+### Decisions — round four
+
+| # | Question | Decision |
+|---|----------|----------|
+| Q1 | Is the date field required? | **`Urgency` is mandatory in the form.** Page 6's *"empty is worse than approximate"* describes an impossible case and is deleted |
+| Q1a | What rations the 48-hour option? | **Superseded by Q6b** — the ration is triage's override, not a published caveat |
+| Q1b | No bucket longer than a month vs. the quarterly forward book | **`Planned release date`** carries the real horizon; one-month Urgency is still selected. Urgency values cannot be changed |
+| Q1c | Ticket date vs. epic target date | **They must be the same date.** Duplication accepted across tickets |
+| Q1d | Which types require `Planned release date`? | **Feature-related only** — feature testing, test automation for a feature, performance testing, shift-left review. Not mandatory in the form (shared across projects), so **QA enforces it at triage and returns the ticket if empty** |
+| Q1e | Keeping the two dates in step | **Obligation: both** — the requester updates when the date moves, and the four-week hold review is the backstop. **Mismatch: the later date wins**. Asymmetric by design: a release pulled forward does not speed the ticket up until the requester updates it |
+| Q2 | Does *not assessable* block the release? | **No.** It commonly just means the module saw no canary traffic. Record the two causes separately — **no threshold defined** (PM/Eng work outstanding) vs. **no canary traffic** (normal) |
+| Q2a | Document the canary stage? | **Yes, on page 3**, in the release description |
+| Q3 | Where does the portal half go during canary soak? | **All of it goes to release activities** — environment preparation, testing, Jira maintenance, releasing software, e2e runs and analysis, stakeholder communication. **Tickets arriving during a release are accepted and put On hold**; the portal is not closed to submission. ⇒ *"a release is running"* is a **fourth hold reason**, missing from page 1's table and page 3's "three things cause a hold" |
+| Q4 | How much to itemise? | **Activity list, no day-by-day breakdown.** Fix verification demoted from *"the clearest available lever"* to one of several |
+| Q4a | Freeze length | **3–5 working days.** Publish the range, **plan on five**, correct the quarter share to **about a third** |
+| Q5 | What drives the variance | Issues found, fix verification cycles, re-releases to test environments, e2e failures and analysis time. **Publish the causes** |
+| Q5a | Is e2e failure analysis release work or automation? | **Release work** during a freeze. Broken test cases are **not fixed during the freeze**; work items are raised to fix them later ⇒ a recurring release-driven input to the automation half, worth naming |
+| Q5b | Does the automation commitment hold in freeze weeks? | **Time yes, output no** — *"until more of the release-related work is automated"*, which becomes a **second named reduction lever** on page 4 |
+| Q6 | What clock does On hold pause? | **A real SLA exists**, defined by `Urgency`, overridable at triage. Hold time does not count toward it |
+| Q6a | What does the SLA measure? | **Time to resolution.** Against 1.25 engineer-days per ticket per week the buckets buy ≈ **0.5 / 1.25 / 2.5 / 5 engineer-days**. *A week* equals the assumed average ticket exactly, so ~half of one-week tickets breach by construction; 48 hours is unmeetable beyond a glance. Holds are what make it survivable — effectively it measures **time from workable to resolution** |
+| Q6b | Estimate at pickup exceeds the SLA | **Triage overrides `Urgency` to match reality.** ⇒ an override changes the requester's commitment, so it is **stated on the ticket with a reason** — a fourth triage outcome. Page 1's *"you cannot set priority"* gains a companion: you set Urgency, QA may correct it |
+| Q6c | If QA sets its own target, what can't it adjust? | **Publish all three** alongside attainment: submission-to-resolution **including** hold time; **override rate and direction**; submission-to-pickup |
+| Q7 | What counts as Release Testing? | **The whole freeze window** — start of release testing through worldwide rollout, **whoever finds the bug**. Anything ≥ Medium in that window counts |
+| Q8 | Who owns go/no-go? | **Product Management and Engineering. QA only recommends.** Reconciles the collection: *QA assesses, others decide* is now true in all four places — DoD, production severity, RUM thresholds, the release itself |
+| Q9 | Then what happens to the absolutes? | **Name the grantor.** QA recommends no-go on an open blocker or a RUM breach; the release proceeds only if PM and Engineering **explicitly decide otherwise, recorded against the release**. **Overturns round three's "no waiver"** — that decision rested on there being no grantor to name, and there is one. Q7's wording changes from *blocks* to *triggers a QA no-go recommendation*. If the severity rules genuinely say no release ships with a blocker, cite them, so an override is PM/Eng overriding their own organisation's policy rather than overriding QA |
+| Q10 | Change proposals vs. the scope rule | **The portal will not take them.** Changes start by contacting the **Manager of the BP QA Team**. Instruction comes off the README and pages 1, 2, 3, 4. Write in that process feedback is one of the few things that *can* be raised informally — it needs no environment and produces no actionable result, so it sits on the right side of the line the pages already draw |
+| Q11 | The named contact's role | **Drop personal names entirely.** *Marek Wyszyński* → **Manager of the BP QA Team** everywhere, including as measurement owner and appeal route. Escalation becomes three roles: **Manager of the BP QA Team → Senior QA Manager → SW Director for BigPicture**. Names stay in the working files only. Add a link to the team space so a reader can find the current holder without a name in the text |
+| Q12 | Is 8 tickets/week right, now the freeze is 3–5 days? | **Keep 8.** Rationale accepted: requests arriving during a freeze are almost all release-related, and new work is parked. Demand and capacity are then both measured over the same 7.5–9.7 non-freeze weeks (≈60–78 tickets/quarter) and the figure holds. **But name the assumption** the way page 4 already names the 1.25, and **add "inflow during freeze weeks" to the measurement list** — if arrivals continue at the normal rate, quarterly demand is ~104 against 60–78 of capacity |
+| Q13 | Shift-left classified twice, costed neither | **All epic-related requests go through the tooling whenever they arrive.** Quarter start is strongly advocated, not required |
+| Q13a | Does anything happen before a request exists? | **No — entirely request-driven.** *"We do not accept any work coming from outside that didn't come through the portal."* ⇒ pages 1, 3 and README **drop "before anyone asks for anything"**; page 5's *quarterly intake* row moves **Internal → Portal — requestable**; the costing gap closes. **Casualty:** page 4's *"what replaces it is a planning cycle"* paragraph is now wrong twice over (no pre-request preparation, and an SLA does exist) — rewrite, don't patch |
+| Q14 | A ticket blocks mid-flight | Two SLA-pausing statuses exist: **On Hold** and **Awaiting info from Requestor** — the second is new and appears nowhere in the pages. **The date is pushed out if necessary**, not voided. Page 1's outcome table and the glossary must name the **real statuses**, since those are what requesters see |
+| Q14a | Handover when coming off a blocked ticket | **Required**, as part of the hold comment. The one case where the generalist model's "knowledge lives in artifacts" claim is false by default |
+| Q15 | A return nobody ever answers | **Same horizon as holds** — reminder at two weeks, closed at four, resubmit when ready. Closes the gap parked since round one (Q7b). Matters more now: *Awaiting info from Requestor* stops the SLA, so an untouched ticket stays green indefinitely. Volume driver: **Planned release date** is mandatory in practice but not in the form |
+| Q16 | BugCrowd and scheduled work are uncapped | **Ceilings on both** |
+| Q16a | The numbers | **One engineer on scheduled work at a time; two of eight slots for BugCrowd.** Both are **escalation triggers, not hard stops** — a security finding cannot be refused, but crossing the line produces a conversation and comments on affected tickets. Publish the real historical BugCrowd volume alongside if available |
+| Q17 | Telling a displaced requester | **Always inform** — slippages, problems, missed dates, all through the portal. Guaranteed cadence is daily triage, so at most one working day. **Also change the status** so a QA-caused delay does not burn the requester's SLA and then double-count as both a miss and an override |
+| Q18 | Disputing a priority demotion | **On the ticket, settled at triage; escalates to the Manager of the BP QA Team.** Where the planned release date is the issue, the fix is to correct the date — QA follows the field. ⚠️ Page 3's *"both **should** check against the SDLC definition"* must become a statement of fact before publication; a demotion rule is only as defensible as the standard behind it |
+| Q19 | Reopened-ticket behaviour | **Original engineer by default, may be redirected at triage.** Takes a slot, keeps original priority and Urgency, gets a new date, goes On hold if no slot is free. Page 1 states plainly that the reopen window is a right to reopen, **not a promise of speed** |
+| Q20 | Triage quorum, tie-break, holidays | **Quorum of two.** Below that, new requests still get their comment but priority decisions wait a day. **Disagreement goes to the Manager of the BP QA Team; if he is away the decision waits** rather than one engineer making it alone. **Link the team holiday calendar from page 1** — closes G6, and it now moves an SLA rather than just an expectation |
+
+| Q21 | Framing the service | **QA as a Service (QAaaS), stated explicitly.** **Staffing is out of scope** — dedicated QA engineers, embedded testers and reserved capacity are **automatically rejected** by the team, with no negotiation and no escalation into a capacity discussion. Rationale published: at four engineers, one allocated permanently to a team is a quarter of the organisation's QA capacity removed from everyone else. Appears on the README, page 1 (*Things QA will not do*), page 2 (scope rule + out-of-scope list), page 3, page 4 (*the lever is scope*), page 5 (**Stopped/never**) and page 6 |
+
+### Round four — closed
+
+Frontier empty. All twenty-one questions and their follow-ups answered. **Gaps G1–G6 from the round-three leftovers are all now closed** (G1/G2 by Q16a, G3 by Q19, G4 by Q17, G5 by Q18, G6 by Q20).
+
+### Applied — pages at v3.0 (2026-09-23)
+
+**All seven files rewritten.** Page 6 went to v0.4 (still a skeleton awaiting screenshots). Page 4 was rebuilt rather than edited, around the existence of a real time-to-resolution SLA.
+
+Swept across the whole set: `Needed by…` → **Urgency** · all **personal names removed** (→ *Manager of the BP QA Team*) · **Planned release date** added · **canary stage** added · freeze corrected to **3–5 working days** and the quarter share to **about a third** · *a release is running* added as a **fourth hold reason** · *Urgency corrected* added as a **fourth triage outcome** · real Jira statuses named (**On Hold**, **Awaiting info from Requestor**) · the pre-request preparation claim removed · **QAaaS and the staffing refusal** added.
+
+Verified by grep: no surviving `Needed by`, personal names, `no waiver`, `roughly half`, or *"published completion time: None"*. The two remaining *"about a week"* matches are an epic's ETA, not the freeze.
+
+### Open after round four
+
+| # | Open |
+|---|------|
+| **O1** | Still **no function has agreed to any of this.** Pages 2 and 3 carry `Reviewed with: [date TBC]`. The go/no-go framing is new and needs PM and Engineering to confirm it |
+| **O8** | **How many modules have a defined RUM threshold?** If few, the gate is decorative on day one. Flagged on the README as a pre-publication check |
+| **O9** | Page 3 asserts the `requirements-review` skill and `templates/requirement_standard.md` **do** check against the SDLC definition. Round three said *"should"*. **Verify or fix the tooling** — the demotion rule is only as defensible as the standard behind it |
+| **O10** | The **real historical BugCrowd volume**, to publish alongside the two-slot ceiling |
+| **O5** | Link placeholders, now eight: QA work project · QA Portal · SDLC epic definition · quarterly release schedule · severity rules · Slack channel · **team holiday calendar** · **team space listing role holders** |
+| **O6** | **No comms plan.** Walkthroughs and Q&A agreed in principle, not scheduled |
+| **O11** | Portal facts to confirm: the **Urgency SLA configuration** and which statuses pause it · the exact label of **Planned release date** · the one-week reopen window · Azure DevOps testing live |
+
+---
 
 ## Third review — complete, pages at v2.1 (2026-09-22)
 

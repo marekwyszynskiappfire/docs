@@ -1,7 +1,7 @@
 # QA Portal scope
 
 **Audience:** requesters, managers, and the functions QA depends on
-**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 2.1 (draft for review) · **Last reviewed:** 2026-09-22
+**Maintained by:** the QA Team · **Contact:** the Manager of the BP QA Team · **Version:** 3.0 (draft for review) · **Last reviewed:** 2026-09-23
 **Reviewed with:** Product Management `[date TBC]` · Engineering `[date TBC]` · Support `[date TBC]`
 
 ---
@@ -10,13 +10,23 @@
 
 > The QA Portal covers **testing the product, and maintaining the assets used to test it**.
 >
-> It does not cover infrastructure and tooling operations, customer support, or decisions about how the product should behave.
+> It does not cover infrastructure and tooling operations, customer support, decisions about how the product should behave, or **the supply of people**.
 >
 > Reactive work enters the portal only under three exceptions: **release-critical testing**, **security findings**, and **verification of absolutely Critical production issues**.
 
-Everything below is an application of that rule. Where a new kind of request is not listed, apply the rule rather than assuming it is excluded — and tell QA, so the list can be extended.
+Everything below is an application of that rule. Where a new kind of request is not listed, apply the rule rather than assuming it is excluded — and tell the Manager of the BP QA Team, so the list can be extended.
 
 **Why a rule and not just a list:** a list of in-scope items is out of date the moment something new appears, and every gap becomes an argument. The rule settles the cases nobody has thought of yet.
+
+---
+
+## QA as a Service
+
+**QA is requested, not allocated.** The team delivers testing as a service to the whole product: work comes in through one queue, and any engineer may pick up any request.
+
+**Staffing is out of scope and the refusal is automatic.** Requests for a dedicated QA engineer, an embedded tester, or QA capacity reserved for a team, a squad or a project are declined by the team without negotiation and without escalation into a capacity discussion. There is no mechanism to reserve a person, and creating one would dismantle the queue that makes the rest of this page work.
+
+This is not a statement about willingness. Four engineers cover the whole product; one of them assigned permanently to a single team is a quarter of the organisation's entire QA capacity removed from everyone else.
 
 ---
 
@@ -53,16 +63,18 @@ Two exceptions in form, not in principle: **release work** is represented by a s
 
 | Category | Trigger |
 |----------|---------|
-| **Regression after initiative delivery** | The **quarterly release schedule** for full regression; the **target date in the epic** for feature-level regression |
-| **BugCrowd findings** | Standing intake from the external security platform. Volume is outside anyone's control |
+| **Regression after initiative delivery** | The **quarterly release schedule** for full regression; the **planned release date** for feature-level regression |
+| **BugCrowd findings** | Standing intake from the external security platform. Volume is externally driven, and capped at **two of the eight slots** before triage escalates |
 
 ### Release-process work — not requestable
 
-Release blocker testing, the **RUM review**, **Test Regression** and **Sanity** happen because a release is happening. You cannot request them, and while they run no portal requests are worked. They are described on **[How the QA team works](03%20-%20How%20the%20QA%20team%20works.md)**.
+Release blocker testing, the **canary release and RUM review**, **Test Regression** and **Sanity** happen because a release is happening. You cannot request them, and while they run no new portal requests are picked up. They are described on **[How the QA team works](03%20-%20How%20the%20QA%20team%20works.md)**.
 
 ### Scheduled work
 
 Training and enablement can be requested at any time, and is normally agreed at **quarter start**. It is tracked **outside the queue** — a three-week course does not occupy a WIP slot. It does consume capacity, so while it runs the team has fewer engineers available to pull tickets, and that is declared at triage.
+
+**At most one engineer is committed to scheduled work at a time.** More than that needs the Senior QA Manager, because two of four engineers is half the team's pull capacity.
 
 ---
 
@@ -72,13 +84,15 @@ The rule excludes reactive work by default. Three things are in anyway, each wit
 
 ### Release-critical testing
 
-A **release blocker** is a bug of **severity ≥ Medium raised during the Release Testing activity**. Severity alone does not make something a blocker — the activity it came from does.
+**Release Testing means the whole freeze window** — from the start of release testing through to the worldwide rollout, including the canary period. A bug of **severity ≥ Medium found anywhere in that window, by anyone**, counts as a release blocker.
 
-Severity is assigned under **[rules that already exist](LINK-TBC)** `[LINK TBC]` and are owned outside QA. Those rules define what blocks a release, and **a release does not go out with a blocker open. There is no waiver.**
+The window is what defines it, not who found it. A Critical bug reported by Support during the canary counts exactly as much as one QA found during regression.
+
+Severity is assigned under **[rules that already exist](LINK-TBC)** `[LINK TBC]` and are owned outside QA. **QA recommends no-go while a blocker is open.** The decision itself belongs to Product Management and Engineering — see *The release decision* below.
 
 ### Security — BugCrowd
 
-BugCrowd findings stay with the QA team, and QA raises the resulting portal tickets. This is reactive work, and it is in scope deliberately.
+BugCrowd findings stay with the QA team, and QA raises the resulting portal tickets. This is reactive work, and it is in scope deliberately. Volume is outside anyone's control, which is why it has a stated ceiling rather than an assumption of low load.
 
 ### Production issues — verification only
 
@@ -96,10 +110,26 @@ QA does **not** handle production issues, with one exception: **absolutely Criti
 
 ---
 
+## The release decision
+
+**QA does not decide whether a release ships.** Go/no-go sits with **Product Management and Engineering**.
+
+| Who | What they do |
+|-----|--------------|
+| **QA** | Runs release testing, triggers the canary, reviews RUM against thresholds, verifies fixes, and **makes a recommendation** |
+| **Product Management and Engineering** | **Decide.** Including whether to proceed against a QA no-go |
+
+**QA recommends no-go** when a release blocker is open, or when RUM shows a performance regression against a defined threshold. A release proceeding over that recommendation is a decision Product Management and Engineering take **explicitly, and it is recorded against the release**.
+
+This is the same shape as everything else on this page: **QA assesses against criteria owned by others, and reports.** It holds the trigger, not the discretion.
+
+---
+
 ## Out of scope — and why that list is the price
 
 | Not in the portal | Where it goes |
 |-------------------|---------------|
+| **Dedicated or embedded QA engineers; reserved QA capacity** | **Nowhere. Declined automatically** |
 | Support tickets | Support |
 | DevOps and infrastructure requests | DevOps |
 | **CI troubleshooting and CI-related requests** | DevOps. QA triggers release builds and does nothing else on CI |
@@ -111,6 +141,7 @@ QA does **not** handle production issues, with one exception: **absolutely Criti
 | Business and product questions — "how should this work?" | Product Owner or Product Manager |
 | Vague environment reports — "something is broken on develop, please check" | Not actionable. Needs a reproducible report against a named environment |
 | Kibana, DataStudio, Grafana, dashboards and reporting assets | Engineering |
+| Proposals to change these ways of working | The Manager of the BP QA Team, directly. Not a portal request |
 
 **This list is not a statement of preference. It is the cost of running QA at four engineers, itemised.**
 
@@ -120,13 +151,13 @@ It is what had to stop for the rest of the model to work. Each entry is work tha
 
 **Bugs.** The line is *on whose behalf*, not whether bugs get filed. QA files every bug it finds, and keeps doing so. QA does not file bugs for other people, does not verify routine fixes, and does not reproduce bugs on request — that stays with the feature team that made the change.
 
-**CI.** QA's only CI activity is **triggering the software builds as part of a release**. Broken agents, pipeline configuration and build infrastructure are DevOps work, and CI requests are not portal requests. **The one thing QA does keep is its own failing automated tests** — that is QA's test code, and fixing it is part of the automation half of the week. The distinction is ownership of the code, not of the tool.
+**CI.** QA's only CI activity is **triggering the software builds as part of a release**. Broken agents, pipeline configuration and build infrastructure are DevOps work, and CI requests are not portal requests. **The one thing QA does keep is its own failing automated tests** — that is QA's test code. Note the release exception: analysing failing e2e runs *during a release* is release work, not automation work, and broken test cases found then are fixed afterwards rather than during the freeze.
 
-**Observability.** These assets were **built and maintained jointly with Engineering**, and Engineering **continues as sole owner**. QA is withdrawing from shared ownership rather than handing over something unfamiliar. Kibana, DataStudio, Grafana dashboards, BigQuery maintenance and RUM rollout all sit with Engineering, along with any new work. There is little maintenance involved and practically no development.
+**Observability.** These assets were **built and maintained jointly with Engineering**, and Engineering **continues as sole owner**. QA is withdrawing from shared ownership rather than handing over something unfamiliar. Kibana, DataStudio, Grafana dashboards, BigQuery maintenance and RUM rollout all sit with Engineering, along with any new work.
 
 QA will provide **training or documentation** on these if Engineering needs it — requested through the portal like anything else, which is the clearest example of what the enablement category is for.
 
-**The one exception is the RUM review.** QA still reviews RUM event dashboards before a release to judge whether performance has regressed. That is a release-process activity, not a portal request, and it is described on [How the QA team works](03%20-%20How%20the%20QA%20team%20works.md).
+**The one exception is the RUM review.** QA still reviews RUM event dashboards after the canary release to judge whether performance has regressed. That is a release-process activity, not a portal request, and it is described on [How the QA team works](03%20-%20How%20the%20QA%20team%20works.md).
 
 ---
 
@@ -146,20 +177,22 @@ The model on these pages relies on work done by three other functions. It is col
 
 | QA relies on | What happens without it |
 |--------------|-------------------------|
-| **Every epic defined and in Jira at the start of the quarter** | QA cannot prepare test scenarios or automation placeholders, and the work arrives cold |
+| **Epic-related work submitted through the portal as early in the quarter as possible** | The preparation QA does before testing — requirement review, test scenarios, automation placeholders — is compressed or skipped, and the work arrives cold |
 | **Clear acceptance criteria**, as part of Definition of Ready | The epic is incomplete against the SDLC definition, and requests against it are deprioritised |
-| **A target shipping date in the epic** | QA cannot plan regression, and has no documented basis for prioritising the work |
+| **A target shipping date in the epic, kept current and matching the request** | QA cannot plan regression, and has no documented basis for prioritising the work. Where the two disagree, QA works to the later date |
 | **Performance thresholds for RUM**, jointly with Engineering | The module is recorded **not assessable** at the release gate — never as a pass |
+| **The go/no-go decision**, jointly with Engineering | QA has a recommendation and nobody to give it to |
 
 ### Engineering
 
 | QA relies on | What happens without it |
 |--------------|-------------------------|
 | **Performance thresholds for RUM**, jointly with Product Management, and the RUM Events portal | As above — the gate cannot be assessed |
-| **Fixing regressions** found at the release gate | The gate blocks and the release does not proceed |
+| **Fixing regressions** found during the release window | QA recommends no-go and the release waits on a decision |
 | **Ownership of the observability assets**, including any new work | These sit with Engineering; QA has withdrawn and does not pick them back up |
 | **Ownership of CI** beyond release build triggering | CI issues have no owner in QA and are routed to DevOps |
 | **Requesting incident assistance through the QA Portal** | The work is invisible to the queue and to the capacity model |
+| **The go/no-go decision**, jointly with Product Management | As above |
 
 ### Support
 
@@ -193,8 +226,8 @@ These are **epic-level standards shared with Engineering**, not QA Portal rules,
 
 > This request falls outside QA Portal scope. Redirected to [DevOps / Product Owner / Product Manager / Support].
 >
-> The scope rule is here: [QA Portal scope]. If you think this is wrong, comment on the ticket or talk to Marek Wyszyński.
+> The scope rule is here: [QA Portal scope]. If you think this is wrong, comment on the ticket or contact the Manager of the BP QA Team.
 
 The link matters. A redirect that cites a published rule is a team decision; one that does not is one engineer's opinion.
 
-**If you think the rule itself is wrong,** submit it through the QA Portal. Changes are made at the monthly QA Team Retrospective and published with a new version. If it cannot be resolved with QA, it goes to the **Senior QA Manager** and then the **SW Director for BigPicture**.
+**If you think the rule itself is wrong,** contact the Manager of the BP QA Team. Change proposals do not go through the portal. Changes are made at the monthly QA Team Retrospective and published with a new version. If it cannot be resolved with QA, it goes to the **Senior QA Manager** and then the **SW Director for BigPicture**.

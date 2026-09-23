@@ -1,7 +1,7 @@
 # Using the QA Portal
 
 **Audience:** requesters — a walkthrough of the form itself
-**Maintained by:** the QA Team · **Contact:** Marek Wyszyński · **Version:** 0.3 (draft skeleton) · **Last reviewed:** 2026-09-22
+**Maintained by:** the QA Team · **Contact:** the Manager of the BP QA Team · **Version:** 0.4 (draft skeleton) · **Last reviewed:** 2026-09-23
 
 > **This page is being written by the QA team from the live portal.** What follows is a skeleton: the process decisions are settled and the structure is correct, but the screenshots and exact field list must be captured from the form itself. Marked `[TBC]` where confirmation is needed.
 >
@@ -13,7 +13,7 @@
 
 Portal mechanics and ways of working change at different rates. A field gets renamed, a form gets reorganised, someone adds a dropdown — none of which changes how the team operates. Keeping the walkthrough separate means the process pages do not go stale every time the form is edited.
 
-If the form and this page disagree, **the form is right and this page is out of date**. Tell Marek Wyszyński.
+If the form and this page disagree, **the form is right and this page is out of date**. Tell the Manager of the BP QA Team.
 
 ---
 
@@ -48,30 +48,46 @@ Pick the type that matches your work. It determines which fields you are asked f
 
 Not sure? Submit the closest match and say so in the description. Triage will reclassify it. **Guessing wrong is not a problem; not submitting is.**
 
+**Two things the portal does not take:** requests for a dedicated or embedded QA engineer, which are declined automatically, and proposals to change QA's ways of working, which go directly to the Manager of the BP QA Team.
+
 `[TBC: screenshot of the request type picker]`
 
 ---
 
 ## The fields
 
-### "Needed by…"
+### Urgency
 
-**The most important field on the form.** It is the main determinant of how your request is ordered against everything else at Medium priority.
+**Mandatory, and the most important field on the form.** Four values: **48 hours**, **a week**, **two weeks**, **a month**.
+
+It does two things. It sets a **resolution target**, and it is the main determinant of how your request is ordered against everything else at Medium priority. You will see the countdown on your ticket.
 
 Some guidance on using it well:
 
-- **Give the real date.** Not a safety margin, not "as soon as possible". An early date on work that is not actually urgent is checked against the target shipping date in the epic, and if the feature is not shipping soon the priority is **lowered**.
-- **A date does not create capacity.** If the work is not feasible in the time available, triage will say so and discuss it with you rather than silently miss it.
-- **Check where the release freezes fall.** QA works no portal requests for about a week around each release, every two weeks. A date inside a freeze is a date QA cannot meet. **[Quarterly release schedule](LINK-TBC)** `[LINK TBC]`
-- **Empty is worse than approximate.** A request with no date sits below every request that has one.
+- **Know what each value buys.** A ticket in progress receives about 1.25 engineer-days a week, so *a week* is roughly one and a quarter days of actual work and *48 hours* is about half a day. The full table is on [Service levels and measures](04%20-%20Service%20levels%20and%20measures.md).
+- **QA will correct it if it does not fit.** Choosing 48 hours for a two-week job produces a comment explaining what is actually possible, not a two-day delivery. The correction is made by the team and recorded on the ticket.
+- **Urgency does not create capacity.** If the work is not feasible in the time available, triage says so and discusses it with you rather than silently missing it.
+- **Check where the release freezes fall.** QA picks up no new requests for three to five working days around each release. **[Quarterly release schedule](LINK-TBC)** `[LINK TBC]`
 
-`[TBC: screenshot of the Needed by field]`
+`[TBC: screenshot of the Urgency field]`
+
+### Planned release date
+
+**Required by QA on feature-related requests** — feature testing, test automation for a feature, performance testing and shift-left requirement review.
+
+The form does not enforce it, because the form is shared across the company and other projects have no such need. **QA enforces it at triage**, and a feature-related request without it is returned.
+
+- **It must match the target date in the epic.** If the plan moves, update both.
+- **Where the two disagree, QA works to the later date.** So a release pulled forward will not speed your ticket up until you update it.
+- It is also what the priority-demotion check reads. A feature that is not shipping soon is deprioritised, and correcting the date is the remedy.
+
+`[TBC: confirm the exact field name and whether it appears on all request types]`
 
 ### Priority
 
 You will see a priority field. **Leave it alone** — everything is submitted at Medium and QA sets priority at triage.
 
-This is deliberate. A priority field that requesters can raise stops distinguishing anything within a quarter. Urgency is communicated through "Needed by…" and through the conversation on the ticket.
+This is deliberate. A priority field that requesters can raise stops distinguishing anything within a quarter. Urgency is where you express timing.
 
 ### Description and context
 
@@ -85,7 +101,7 @@ The required information depends on request type, and the full list is on **[Req
 - manual, automated, or both
 - what you want to learn, and what counts as success
 
-A request missing these is returned, and the clock stops until you answer. It is faster to fill them in now.
+A request missing these is returned — the ticket moves to **Awaiting info from Requestor** and the clock stops until you answer. It is faster to fill them in now.
 
 `[TBC: screenshot of the description fields for feature testing]`
 
@@ -99,11 +115,13 @@ A request missing these is returned, and the clock stops until you answer. It is
 
 `[TBC: screenshot of a submitted ticket showing the triage comment]`
 
-Your request is read at the **next daily triage meeting, 10:00 CET** — so the next business day at the latest if you submit just after one. You will get a comment saying the ticket is picked up, that information is missing, or that it is **On hold** with the reason. On hold pauses the clock; held tickets are reviewed daily, and at four weeks QA comes back to you.
+Your request is read at the **next daily triage meeting, 10:00 CET** — so the next business day at the latest if you submit just after one. You will get a comment saying one of four things: the ticket is **picked up**, your **Urgency has been corrected** and why, information is missing and the ticket is **Awaiting info from Requestor**, or it is **On Hold** with the reason.
 
-Once an engineer picks the ticket up, QA gives you **a completion time in business days and a delivery date**. That is elapsed time, not effort — it already accounts for the engineer's other ticket and any release freeze in the window. The full description is on [Requesting QA work](01%20-%20Requesting%20QA%20work.md).
+Both On Hold and Awaiting info from Requestor **pause the clock**. Both are reviewed daily, and at four weeks QA comes back to you — and closes the ticket if there has been no progress.
 
-When the ticket is closed, you can **reopen it for one week** if the result does not answer your question.
+Once an engineer picks the ticket up, QA gives you **a completion time in business days and a delivery date**. That is elapsed time, not effort. If anything slips, you are told on the ticket.
+
+When the ticket is closed, you can **reopen it for one week** if the result does not answer your question. It goes back to the engineer who did the work where possible and gets a new date — it is a right to reopen, not a promise of speed.
 
 ---
 
@@ -111,7 +129,7 @@ When the ticket is closed, you can **reopen it for one week** if the result does
 
 **[QA work — Jira project](LINK-TBC)** `[LINK TBC]`
 
-Everything the QA team handles is there — portal counterparts, automation, BugCrowd findings, training preparation and release activity. Use it to see where your ticket sits and what it is competing with, which is not only other people's requests. During a release, check **[`#bp-status-release-feature`](LINK-TBC)** `[LINK TBC]` — while a release is running, other work waits.
+Everything the QA team handles is there — portal counterparts, automation, BugCrowd findings, training preparation and release activity. Use it to see where your ticket sits and what it is competing with, which is not only other people's requests. During a release, check **[`#bp-status-release-feature`](LINK-TBC)** `[LINK TBC]` — while a release is running, new requests are parked.
 
 ---
 
@@ -119,12 +137,12 @@ Everything the QA team handles is there — portal counterparts, automation, Bug
 
 | Outstanding | Notes |
 |-------------|-------|
-| Screenshots throughout | Landing page, type picker, Needed by, description fields, a triaged ticket |
+| Screenshots throughout | Landing page, type picker, Urgency, Planned release date, description fields, a triaged ticket |
 | Confirm the exact request types on the live form | The table above is derived from the agreed scope, not read off the portal |
 | Confirm the portal is a Jira Service Management project | Assumed while drafting |
-| Confirm field names | Particularly whether "Needed by…" is labelled exactly that |
+| Confirm the exact label of the **Planned release date** field | Referred to as both "planned release timeline" and "planned release date" during drafting |
+| Confirm the **Urgency** SLA configuration | Which statuses pause it, and whether the countdown is visible to the requester |
 | Confirm Azure DevOps testing is live | If the transition is not complete, say *"available from [date]"* rather than listing it as requestable |
 | Confirm the reopen window is configured | One week, per the agreed process |
-| Confirm the **On hold** status pauses the SLA clock | Pages 1, 3 and 4 rely on this |
-| Portal URL, QA work project URL, Slack channel link | Also needed by pages 1 and 4 |
+| Portal URL, QA work project URL, Slack channel link, holiday calendar | Also needed by pages 1 and 4 |
 | Attachment behaviour | Types and limits |
