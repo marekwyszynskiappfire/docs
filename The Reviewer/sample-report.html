@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Requirement Review — DEMO-4522 (Story)</title>
+<style>
+  :root {
+    --emerald: #10b981; --emerald-bg: #ecfdf5; --emerald-text: #047857;
+    --amber: #f59e0b; --amber-bg: #fffbeb; --amber-text: #92400e;
+    --rose: #f43f5e; --rose-bg: #fff1f2; --rose-text: #be123c;
+    --blue: #3b82f6; --blue-bg: #eff6ff; --blue-text: #1e40af;
+    --slate: #64748b; --slate-bg: #f8fafc; --slate-text: #334155;
+    --ink: #0f172a; --line: #e2e8f0; --paper: #ffffff; --muted: #64748b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 0; background: #f1f5f9; color: var(--ink);
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 28px 20px 80px; }
+  code, .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.92em; }
+  .header-card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 20px 24px; margin-bottom: 14px; }
+  .header-top h1 { font-size: 20px; margin: 0; }
+  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--slate-bg); color: var(--slate-text); margin-left: 8px; font-weight: 600; letter-spacing: .02em; vertical-align: middle; }
+  .header-meta { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .header-meta a { color: #0369a1; text-decoration: none; }
+  .summary-line { font-size: 14px; margin-top: 12px; }
+  .readiness-strip { border-radius: 12px; padding: 16px 20px; margin: 14px 0; border: 1px solid; }
+  .readiness-strip.ok { background: var(--emerald-bg); border-color: #a7f3d0; color: var(--emerald-text); }
+  .readiness-strip.warn { background: var(--amber-bg); border-color: #fde68a; color: var(--amber-text); }
+  .readiness-strip.blocked { background: var(--rose-bg); border-color: #fecdd3; color: var(--rose-text); }
+  .readiness-strip .r-kicker { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; opacity: .75; margin-bottom: 2px; }
+  .readiness-strip .r-label { font-size: 17px; font-weight: 800; }
+  .readiness-strip .r-sub { font-size: 13px; margin-top: 4px; opacity: .9; }
+  .gate-line { font-size: 13px; margin: -6px 0 14px 4px; color: var(--slate-text); }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0 22px; }
+  .kpi { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .kpi-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .kpi-value { font-size: 16px; font-weight: 700; margin-top: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .kpi-note { font-size: 11px; color: #94a3b8; font-weight: 400; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot.emerald { background: var(--emerald); } .dot.amber { background: var(--amber); } .dot.rose { background: var(--rose); } .dot.slate { background: var(--slate); }
+  details { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; }
+  details > summary { cursor: pointer; padding: 13px 18px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary .count { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 6px; }
+  details > summary .chev { font-size: 12px; color: #94a3b8; }
+  .section-body { padding: 4px 18px 18px; }
+  .tier-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #94a3b8; margin: 22px 2px 6px; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 6px; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); border-bottom: 1px solid var(--line); padding: 6px 8px; }
+  td { border-bottom: 1px solid #f1f5f9; padding: 8px 8px; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .sev { font-weight: 700; white-space: nowrap; }
+  .sev.CRITICAL { color: #fff; background: var(--rose); padding: 1px 7px; border-radius: 5px; }
+  .sev.HIGH { color: var(--rose-text); } .sev.MEDIUM { color: var(--amber-text); } .sev.LOW { color: var(--slate-text); }
+  .ref { font-family: monospace; font-size: 12px; background: var(--slate-bg); padding: 1px 6px; border-radius: 6px; }
+  .fid { font-family: monospace; font-size: 12px; white-space: nowrap; }
+  .owner { display: inline-block; font-size: 10.5px; padding: 1px 8px; border-radius: 999px; font-weight: 700; white-space: nowrap; }
+  .owner.PM { background: #e0e7ff; color: #3730a3; } .owner.UX { background: #fae8ff; color: #86198f; }
+  .owner.EM { background: #dbeafe; color: #1e40af; } .owner.Security { background: var(--rose-bg); color: var(--rose-text); }
+  .owner.PO { background: #ccfbf1; color: #0f766e; } .owner.QA { background: var(--slate-bg); color: var(--slate-text); }
+  .status-pill { display: inline-block; font-size: 10.5px; padding: 1px 8px; border-radius: 999px; font-weight: 700; white-space: nowrap; }
+  .status-pill.analyzed, .status-pill.done { background: var(--emerald-bg); color: var(--emerald-text); }
+  .status-pill.na, .status-pill.open, .status-pill.canceled { background: var(--slate-bg); color: var(--slate-text); }
+  .status-pill.unavailable, .status-pill.wfr { background: var(--amber-bg); color: var(--amber-text); }
+  .status-pill.failed { background: var(--rose-bg); color: var(--rose-text); }
+  .status-pill.inprogress { background: var(--blue-bg); color: var(--blue-text); }
+  .fact { margin: 0 0 8px; padding-left: 16px; position: relative; font-size: 13.5px; }
+  .fact::before { content: "•"; position: absolute; left: 0; color: #cbd5e1; }
+  .src { color: var(--muted); font-size: 12px; font-style: italic; }
+  .empty-state { color: #94a3b8; font-style: italic; font-size: 13px; padding: 8px 0; margin: 0; }
+  .q-topic { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: #0369a1; margin: 16px 0 6px; }
+  .q-card { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; background: #fafbfc; }
+  .q-title { font-weight: 700; font-size: 14px; }
+  .q-meta { font-size: 12.5px; color: var(--muted); margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 3px 14px; }
+  .prio { display: inline-block; font-size: 10.5px; padding: 1px 7px; border-radius: 999px; font-weight: 700; }
+  .prio.High { background: var(--rose-bg); color: var(--rose-text); }
+  .prio.Medium { background: var(--amber-bg); color: var(--amber-text); }
+  .prio.Optional { background: var(--slate-bg); color: var(--slate-text); }
+  .decision-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; align-items: center; }
+  .decision-row .fid { margin-right: 4px; color: var(--muted); }
+  .decision-row button { font-size: 12px; padding: 5px 11px; border-radius: 7px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
+  .decision-row button.active-accept { background: var(--emerald-bg); border-color: var(--emerald); color: var(--emerald-text); }
+  .decision-row button.active-reject { background: var(--rose-bg); border-color: var(--rose); color: var(--rose-text); }
+  .decision-row button.active-discuss { background: var(--amber-bg); border-color: var(--amber); color: var(--amber-text); }
+  .decision-row input[type=text] { flex: 1; min-width: 140px; font-size: 12px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; }
+  .mix-bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin: 10px 0 8px; border: 1px solid var(--line); }
+  .mix-seg.done { background: var(--emerald); } .mix-seg.inprogress { background: var(--blue); }
+  .mix-seg.open { background: #cbd5e1; } .mix-seg.wfr { background: var(--amber); } .mix-seg.canceled { background: #94a3b8; }
+  .mix-legend { display: flex; gap: 16px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; }
+  .mix-legend .lg { display: flex; align-items: center; gap: 5px; }
+  .mix-legend .sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .sw.done { background: var(--emerald); } .sw.inprogress { background: var(--blue); } .sw.open { background: #cbd5e1; }
+  .sw.wfr { background: var(--amber); } .sw.canceled { background: #94a3b8; }
+  .batch-block { border: 1px solid #bae6fd; border-radius: 14px; padding: 18px 20px; background: #f0f9ff; margin: 18px 0; }
+  .batch-block h3, .tc-handoff h3 { margin: 0 0 6px; font-size: 15px; }
+  .batch-block p { font-size: 13px; margin: 6px 0; color: #0c4a6e; }
+  .batch-keys { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+  .batch-keys .k { font-family: monospace; font-size: 12px; background: #fff; border: 1px solid #bae6fd; border-radius: 6px; padding: 3px 9px; }
+  .batch-cmds { font-family: monospace; font-size: 12px; background: #fff; border: 1px solid #bae6fd; border-radius: 8px; padding: 10px 12px; margin-top: 8px; }
+  .batch-cmds div { margin-bottom: 3px; }
+  .tc-handoff { border: 1px solid #99f6e4; border-radius: 14px; padding: 18px 20px; background: #f0fdfa; margin-top: 18px; }
+  .tc-handoff p { font-size: 13px; margin: 6px 0; color: #134e4a; }
+  .tc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .tc-opt { border-radius: 10px; padding: 10px 12px; font-size: 12px; }
+  .tc-opt.a { background: var(--amber-bg); border: 1px solid #fde68a; }
+  .tc-opt.b { background: var(--emerald-bg); border: 1px solid #a7f3d0; }
+  .tc-opt .lbl { font-weight: 700; margin-bottom: 3px; }
+  .export-bar { position: sticky; bottom: 0; background: rgba(241,245,249,.92); backdrop-filter: blur(6px); padding: 14px 0 4px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); }
+  .export-bar .status { font-size: 12.5px; color: var(--muted); }
+  .export-bar button { background: var(--ink); color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .footer-note { text-align: center; color: #94a3b8; font-size: 11.5px; margin-top: 22px; }
+  @media print { .export-bar, .decision-row { display: none !important; } details { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header-card">
+  <div class="header-top"><h1><span class="mono">DEMO-4522</span> — Bulk CSV export for OKR custom fields <span class="badge">Story</span></h1></div>
+  <div class="header-meta">Initial scan — 2026-09-28 · In Progress · <a href="https://example.atlassian.net/browse/DEMO-4522">View in Jira ↗</a> · schema 1.1 · run_id 2026-09-28-0031</div>
+  <div class="summary-line"><strong>4 findings</strong> — 0 Critical, 2 High, 1 Medium, 1 Low · <strong>3 open questions</strong> — 2 High, 1 Medium</div>
+</div>
+<div class="readiness-strip warn">
+  <div class="r-kicker">Readiness for test planning</div>
+  <div class="r-label">⚠ Needs clarification before test design</div>
+  <div class="r-sub">2 High findings (RR-DEMO-4522-01, RR-DEMO-4522-02) and 2 open High questions (Q1, Q2) stand between this story and test design. This supports shift-left preparation — it does not approve or reject the story.</div>
+</div>
+<div class="gate-line">Test case drafting can start; the findings below should travel with it.</div>
+<div class="kpis">
+  <div class="kpi"><div class="kpi-label">Testability</div><div class="kpi-value"><span class="dot amber"></span>Medium</div></div>
+  <div class="kpi"><div class="kpi-label">Test scope confidence</div><div class="kpi-value"><span class="dot amber"></span>Medium</div></div>
+  <div class="kpi"><div class="kpi-label">Risk</div><div class="kpi-value"><span class="dot amber"></span>Medium <span class="kpi-note">— data integrity</span></div></div>
+  <div class="kpi"><div class="kpi-label">Automation candidate</div><div class="kpi-value"><span class="dot amber"></span>TBD</div></div>
+</div>
+<div class="tier-label">Why — findings, questions, risk</div>
+<details open id="sec-findings"><summary><span>Testability findings <span class="count">(4)</span></span><span class="chev">▾</span></summary><div class="section-body"><table><thead><tr><th>ID</th><th>Sev</th><th>Ref</th><th>Finding</th><th>Testing impact</th><th>Owner</th></tr></thead><tbody><tr><td class="fid">RR-DEMO-4522-01</td><td class="sev HIGH">High</td><td><span class="ref">A3</span></td><td>AC says export must complete &quot;in a reasonable time&quot; — no threshold stated.</td><td>Cannot define a pass/fail latency assertion.</td><td><span class="owner PM">PM</span></td></tr><tr><td class="fid">RR-DEMO-4522-02</td><td class="sev HIGH">High</td><td><span class="ref">B4</span></td><td>Failure AC exists (&quot;show an error&quot;) but not what the message says or whether retry is possible.</td><td>Cannot write the negative-path assertion or a retry test.</td><td><span class="owner PM">PM</span></td></tr><tr><td class="fid">RR-DEMO-4522-03</td><td class="sev MEDIUM">Medium</td><td><span class="ref">B5</span></td><td>No statement of which roles can trigger a bulk export (all users? admins only?).</td><td>Permission-boundary tests cannot be scoped yet.</td><td><span class="owner PM">PM</span></td></tr><tr><td class="fid">RR-DEMO-4522-04</td><td class="sev LOW">Low</td><td><span class="ref">B9</span></td><td>No accessibility note for the export progress indicator.</td><td>Low impact on initial scope; worth a follow-up question only.</td><td><span class="owner UX">UX</span></td></tr></tbody></table><div class="decision-row" data-id="RR-DEMO-4522-01"><span class="fid">RR-DEMO-4522-01</span><button onclick='setDecision("RR-DEMO-4522-01","accept",this)'>Accept</button><button onclick='setDecision("RR-DEMO-4522-01","reject",this)'>Reject</button><button onclick='setDecision("RR-DEMO-4522-01","discuss",this)'>Needs discussion</button><input type="text" placeholder="Optional comment on RR-DEMO-4522-01…" oninput='setComment("RR-DEMO-4522-01", this.value)'></div><div class="decision-row" data-id="RR-DEMO-4522-02"><span class="fid">RR-DEMO-4522-02</span><button onclick='setDecision("RR-DEMO-4522-02","accept",this)'>Accept</button><button onclick='setDecision("RR-DEMO-4522-02","reject",this)'>Reject</button><button onclick='setDecision("RR-DEMO-4522-02","discuss",this)'>Needs discussion</button><input type="text" placeholder="Optional comment on RR-DEMO-4522-02…" oninput='setComment("RR-DEMO-4522-02", this.value)'></div></div></details><details open id="sec-questions"><summary><span>Clarification questions <span class="count">(3)</span></span><span class="chev">▾</span></summary><div class="section-body"><div class="q-topic">Behavior</div><div class="q-card"><div class="q-title">Q1. What does &quot;reasonable time&quot; mean for the export, in seconds or a row-count-scaled budget?</div><div class="q-meta"><div><strong>Context:</strong> AC-02 uses the phrase with no number.</div><div><strong>Priority:</strong> <span class="prio High">High</span></div><div><strong>Source:</strong> AC field, AC-02</div><div><strong>Unblocks:</strong> RR-DEMO-4522-01</div><div><strong>Owner:</strong> <span class="owner PM">PM</span></div></div><div class="decision-row" data-id="Q1"><span class="fid">Q1</span><button onclick='setDecision("Q1","accept",this)'>Accept</button><button onclick='setDecision("Q1","reject",this)'>Reject</button><button onclick='setDecision("Q1","discuss",this)'>Needs discussion</button><input type="text" placeholder="Optional comment on Q1…" oninput='setComment("Q1", this.value)'></div></div><div class="q-topic">Edge cases</div><div class="q-card"><div class="q-title">Q2. If a field mapping errors mid-export, does the partial file download anyway, or is it withheld entirely — and can the user retry?</div><div class="q-meta"><div><strong>Context:</strong> Failure behaviour and retry are undefined.</div><div><strong>Priority:</strong> <span class="prio High">High</span></div><div><strong>Source:</strong> Gap analysis</div><div><strong>Unblocks:</strong> RR-DEMO-4522-02</div><div><strong>Owner:</strong> <span class="owner EM">EM</span></div></div><div class="decision-row" data-id="Q2"><span class="fid">Q2</span><button onclick='setDecision("Q2","accept",this)'>Accept</button><button onclick='setDecision("Q2","reject",this)'>Reject</button><button onclick='setDecision("Q2","discuss",this)'>Needs discussion</button><input type="text" placeholder="Optional comment on Q2…" oninput='setComment("Q2", this.value)'></div></div><div class="q-topic">Permissions</div><div class="q-card"><div class="q-title">Q3. Is bulk export available to all authenticated users, or restricted to Admins?</div><div class="q-meta"><div><strong>Context:</strong> No role stated anywhere in analyzed sources.</div><div><strong>Priority:</strong> <span class="prio Medium">Medium</span></div><div><strong>Source:</strong> Gap analysis</div><div><strong>Unblocks:</strong> RR-DEMO-4522-03</div><div><strong>Owner:</strong> <span class="owner PM">PM</span></div></div></div></div></details><details open id="sec-risks"><summary><span>Known risks &amp; suggested testing focus <span class="count">(2 + 3)</span></span><span class="chev">▾</span></summary><div class="section-body"><div class="tier-label" style="margin-top:0;">Known or suspected risks</div><p class="fact">Bulk export touches the same field-mapping service as the single-record export — regression surface if mapping logic is shared. <span class="src">(Source: Description, &quot;reuses the existing field mapper&quot;)</span></p><p class="fact">Exported CSV may contain values from custom fields with restricted visibility — data integrity/permissions risk if the export doesn&#x27;t re-check field-level permissions per row. <span class="src">(Source: Gap analysis — no statement either way)</span></p><div class="tier-label">Suggested testing focus</div><p class="fact">Verify export completion time once a numeric budget is confirmed. <em>(waits on: Q1)</em></p><p class="fact">Verify the failure message text and retry behaviour once defined. <em>(waits on: Q2)</em></p><p class="fact">Verify field-level permission enforcement on every exported row, regardless of who triggers the export. <em>(waits on: Q3)</em></p></div></details>
+
+<div class="tier-label">Reference &amp; audit detail</div>
+<details id="sec-datasources"><summary><span>Data sources <span class="count">(7 analyzed · 0 unavailable or failed)</span></span><span class="chev">▸</span></summary><div class="section-body"><table><thead><tr><th>Source</th><th>Status</th><th>Detail</th></tr></thead><tbody><tr><td>Target issue (DEMO-4522)</td><td><span class="status-pill analyzed">Analyzed</span></td><td>Key, summary, description, status, labels</td></tr><tr><td>Acceptance criteria field</td><td><span class="status-pill analyzed">Analyzed</span></td><td>2 AC bullets read</td></tr><tr><td>Comments</td><td><span class="status-pill analyzed">Analyzed</span></td><td>2 comments, no new facts beyond description</td></tr><tr><td>Parent Epic (DEMO-4500)</td><td><span class="status-pill analyzed">Analyzed</span></td><td>Summary + description excerpt</td></tr><tr><td>Sibling stories</td><td><span class="status-pill analyzed">Analyzed</span></td><td>0 siblings returned by JQL</td></tr><tr><td>Issue links</td><td><span class="status-pill analyzed">Analyzed</span></td><td>None present</td></tr><tr><td>Confluence</td><td><span class="status-pill na">Not applicable</span></td><td>No linked page found</td></tr><tr><td>Spreadsheet</td><td><span class="status-pill na">Not applicable</span></td><td>None referenced or pasted</td></tr><tr><td>Screenshots</td><td><span class="status-pill na">Not applicable</span></td><td>None attached</td></tr><tr><td>Figma node 118:4402</td><td><span class="status-pill analyzed">Analyzed</span></td><td>1 node fetched via get_design_context</td></tr></tbody></table><p class="fact" style="margin-top:10px;">No sources were unavailable or failed in this run.</p></div></details><details id="sec-facts"><summary><span>Information identified <span class="count">(5)</span></span><span class="chev">▸</span></summary><div class="section-body"><p class="fact">Feature adds a &quot;Bulk export&quot; action on the OKR custom-fields list view. <span class="src">(Source: Description)</span></p><p class="fact">Export format is CSV, generated server-side. <span class="src">(Source: Description)</span></p><p class="fact">Reuses the existing field-mapping service used by the single-record export. <span class="src">(Source: Description)</span></p><p class="fact">AC-01: &quot;User can select which custom fields to include before exporting.&quot; <span class="src">(Source: AC field)</span></p><p class="fact">AC-02: &quot;Export completes in a reasonable time and downloads automatically.&quot; <span class="src">(Source: AC field)</span></p></div></details><details id="sec-figma"><summary><span>Design observations (Figma) <span class="count">(1)</span></span><span class="chev">▸</span></summary><div class="section-body"><p class="src">Design reference only — not verified on build.</p><p class="fact">Button labelled &quot;Export selected fields&quot;. <span class="src">(Source: Figma — figma.com/design/abc123/OKR-fields, node 118:4402)</span></p></div></details><details id="sec-notstated"><summary><span>Not stated in story <span class="count">(3)</span></span><span class="chev">▸</span></summary><div class="section-body"><p class="fact">Numeric or scaled time budget for &quot;reasonable time.&quot;</p><p class="fact">Which roles may trigger a bulk export.</p><p class="fact">Whether a partially-failed export downloads a partial file or nothing.</p></div></details><details id="sec-epic"><summary><span>Epic context <span class="count">(2)</span></span><span class="chev">▸</span></summary><div class="section-body"><p class="fact">DEMO-4500 — &quot;OKR custom fields, phase 2&quot; — In Progress. <span class="src">(Source: Epic description)</span></p><p class="fact">Epic goal: &quot;let teams get their custom-field data out of the product for reporting.&quot; No factual inconsistency found between epic and story text. <span class="src">(Source: Epic description)</span></p></div></details><details id="sec-checklist"><summary><span>QA readiness checklist (preliminary) <span class="count">(4)</span></span><span class="chev">▸</span></summary><div class="section-body"><table><thead><tr><th>#</th><th>Check</th><th>Source</th><th>Owner</th><th>Done</th></tr></thead><tbody><tr><td>1</td><td>Field selection UI includes/excludes fields correctly before export</td><td>AC-01</td><td>QA</td><td>☐</td></tr><tr><td>2</td><td>Export completes within the confirmed time budget</td><td>Pending Q1</td><td>QA</td><td>☐</td></tr><tr><td>3</td><td>Failure shows the confirmed message and retry path</td><td>Pending Q2</td><td>QA</td><td>☐</td></tr><tr><td>4</td><td>Field-level permission is enforced per row in the exported CSV</td><td>Pending Q3 / RR-DEMO-4522-03</td><td>QA</td><td>☐</td></tr></tbody></table></div></details>
+<div class="tier-label">Recommended next action</div>
+<p class="fact">Ask the PM Q1 and the EM Q2, then rescan DEMO-4522. The Creator can start now on AC-01 if the team prefers to draft in parallel.</p>
+<div class="tc-handoff"><h3>Next step — draft test cases</h3><p>Handoff to <strong>The Creator</strong> (this report does not contain test cases).</p><p><strong>Readiness:</strong> Needs clarification before test design. <strong>Open items:</strong> RR-DEMO-4522-01, RR-DEMO-4522-02, Q1, Q2.</p><p>Test case drafting can start; the findings below should travel with it.</p><div class="tc-options"><div class="tc-opt a"><div class="lbl">Option A — now</div>Run The Creator today → preliminary draft; open items above travel with it as assumptions to confirm before Xray import.</div><div class="tc-opt b"><div class="lbl">Option B — after rescan</div>Resolve the High questions first, rescan, then run The Creator → fewer assumptions.</div></div></div>
+<div class="export-bar"><div class="status" id="decision-status">0 of 4 items decided</div>
+<button onclick="exportDecisions()">Export decisions (.json)</button></div>
+<p class="footer-note">Generated by The Reviewer · read-only on Jira · this report supports shift-left preparation — it does not approve or reject the requirement · run_id 2026-09-28-0031</p>
+</div>
+<script>
+  const decisions = {};
+  const TOTAL_ITEMS = 4;
+  function setDecision(id, action, btn) {
+    decisions[id] = decisions[id] || {};
+    decisions[id].action = action;
+    btn.closest('.decision-row').querySelectorAll('button').forEach(b => b.classList.remove('active-accept', 'active-reject', 'active-discuss'));
+    btn.classList.add('active-' + action);
+    updateStatus();
+  }
+  function setComment(id, value) { decisions[id] = decisions[id] || {}; decisions[id].comment = value; }
+  function updateStatus() {
+    const decided = Object.keys(decisions).filter(k => decisions[k].action).length;
+    document.getElementById('decision-status').textContent = decided + ' of ' + TOTAL_ITEMS + ' items decided';
+  }
+  function exportDecisions() {
+    const payload = { run_id: "2026-09-28-0031", jira_key: "DEMO-4522", schema_version: "1.1", exported_at: new Date().toISOString(), decisions: decisions };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = "DEMO-4522-review-decisions.json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+h3. Requirement Review — DEMO-4500
+
+_Based on the current content, here is a collaborative review to support early alignment._
+
+----
+*Testability:* Medium    *Test scope confidence:* Medium
+*Risk level:* Medium — integration dependency    *Readiness for test planning:* Needs clarification before test design
+*Automation candidate:* TBD
+
+*Data reviewed:* Target issue (DEMO-4500), Child inventory + content, Comments, Issue links, Confluence PRD, Figma (epic's own link)
+
+h4. Top findings (testing impact)
+* High — Epic description states the goal but gives no testable completion criterion — no cohort, rollout scope, or exit criterion for "phase 2" being done: Cannot define an epic-level acceptance test independent of child-level tests.
+* Medium — DEMO-4536 (bulk import — the reverse of DEMO-4522's export) is Waiting for Release while DEMO-4522 is still In Progress — the export→import round trip has no window where it can be tested end-to-end yet: An epic-level end-to-end pass must wait for both children; flag this dependency before scheduling one.
+* Low — DEMO-4531's description covers an export destination/trigger that may overlap DEMO-4529 ("Scheduled / recurring export") — but DEMO-4529 has no description (`content_source: title_only`), so the overlap is named from its title only, not established as a fact: Low impact now; worth asking for a description on DEMO-4529 before both are picked up in the same sprint.
+
+h4. Clarification questions
+*Definition of done*
+# What does "phase 2 complete" mean — all customers, or a staged rollout behind a feature flag? _— for PO_
+*PRD authority*
+# The linked Confluence PRD says export defaults to CSV; DEMO-4531 assumes XLSX is also in scope for phase 2 — which document is authoritative? _— for PO_
+*Design authority*
+# The epic's Figma link has no node-id; a root metadata scan shortlisted two frames matching the epic title — "Export flow (v1, deprecated)" and "Export flow (v2, current)". Which is canonical? _— for UX_
+----
+_This review supports shift-left preparation — it does not approve or reject the requirement._

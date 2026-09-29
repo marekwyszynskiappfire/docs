@@ -1,0 +1,33 @@
+h3. Requirement Review — ONE-354099
+
+_Based on the current content, here is a collaborative review to support early alignment._
+
+----
+*Testability:* Low    *Test scope confidence:* Low
+*Risk level:* High — data integrity, regression surface    *Readiness for test planning:* Needs clarification before scope can be tested
+*Automation candidate:* TBD
+
+*Data reviewed:* Target issue (ONE-354099), Acceptance criteria field, Comments on ONE-354099, Child inventory + content, Issue links and subtasks, Confluence: PRD - [2026/H2] Spreadsheet-like navigation in BigPicture (page 99074146305), Confluence: Embers 2026 Q4 planning (page 99820732524)
+
+h4. Top findings (testing impact)
+* High — The interaction model for undoing more than one operation is left open between Options A, B and C in the epic's own Questions section, while the Definition of done already assumes multi-change undo: Cannot define the multi-undo flow, its selection rules or its UI to test until one option is chosen.
+* High — Definition of done item "User can revert last X changes" leaves X undefined; the Questions section says only "we can investigate technical feasibility 5 or 10": No pass/fail assertion on the undo-count limit is possible until X is set.
+* High — Whether older changes stay revertible when the most recent one cannot be undone is raised as open, with only a "mild suggestion" and no decision: Negative-path tests for the undo history after a failed undo cannot be scoped.
+* High — No out-of-scope note exists although the change touches shared systems (field editing, bulk actions, scheduling, structure), and the "some exceptions" datatypes are never listed: Cannot build the field/datatype coverage matrix or know which fields should refuse undo.
+* High — The linked PRD names this epic "Undo/redo support for more fields", but the epic's scope and Definition of done mention undo only; redo is neither in nor out of scope: Whether a whole redo test surface exists is unknown, so the epic's test scope cannot be bounded.
+
+h4. Clarification questions
+*Definition of done*
+# Which multi-undo model ships — Option A (most recent only), Option B (a list, reverting from the most recent down with no skips) or Option C (chainable/non-chainable)? And, for that option, what is X in "User can revert last X changes", and is the 8-hour time limit confirmed? _— for PO_
+*PRD authority*
+# The PRD lists this epic as "Undo/redo support for more fields", but the epic mentions only undo. Is redo in scope? And which fields or datatypes are the "some exceptions" that stay out of scope? _— for PO_
+*Design authority*
+# Will a design reference be produced for the undo error messages and any multi-undo list, and before which phase? _— for UX_
+*Rollout*
+# How will the new backend undo be released — behind a feature flag (name, default, who flips it), staged, or to everyone at once? _— for PO_
+*Scope*
+# Which child items will carry phases 1–4, and will they exist before the planned start on 2026-10-26? _— for PO_
+*Edge cases*
+# If the most recent change can't be undone, can older changes still be undone? And when undoing a bulk action where only some items were changed by someone else, is the whole undo refused, applied partially, or reported per item? _— for EM_
+----
+_This review supports shift-left preparation — it does not approve or reject the requirement._

@@ -1,0 +1,16 @@
+h3. Requirement Review (summary) — ONE-354099
+
+*Readiness for test planning:* Needs clarification before scope can be tested
+
+h4. Priority clarification needed
+*Definition of done*
+# Which multi-undo model ships — Option A (most recent only), Option B (a list, reverting from the most recent down with no skips) or Option C (chainable/non-chainable)? And, for that option, what is X in "User can revert last X changes", and is the 8-hour time limit confirmed? _— for PO_
+*PRD authority*
+# The PRD lists this epic as "Undo/redo support for more fields", but the epic mentions only undo. Is redo in scope? And which fields or datatypes are the "some exceptions" that stay out of scope? _— for PO_
+*Design authority*
+# Will a design reference be produced for the undo error messages and any multi-undo list, and before which phase? _— for UX_
+*Scope*
+# Which child items will carry phases 1–4, and will they exist before the planned start on 2026-10-26? _— for PO_
+*Edge cases*
+# If the most recent change can't be undone, can older changes still be undone? And when undoing a bulk action where only some items were changed by someone else, is the whole undo refused, applied partially, or reported per item? _— for EM_
+----

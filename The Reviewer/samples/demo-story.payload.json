@@ -1,0 +1,134 @@
+{
+  "payload_version": "1.1",
+  "schema_version": "1.1",
+  "run_id": "2026-09-28-0031",
+  "generated_at": "2026-09-28T00:31:00+02:00",
+  "scan_label": "Initial scan",
+  "host": "cursor",
+  "product": { "id": "demo", "name": "Demo product" },
+  "scope": { "type": "story", "value": "DEMO-4522", "issue_type": "Story", "is_epic_batch": false },
+  "requirement_keys": ["DEMO-4522"],
+  "requirement_fingerprint": "demo0000story4522",
+  "context_loaded": [
+    { "source": "Target issue (DEMO-4522)", "type": "jira_issue", "status": "analyzed", "detail": "Key, summary, description, status, labels" },
+    { "source": "Acceptance criteria field", "type": "jira_issue", "status": "analyzed", "detail": "2 AC bullets read" },
+    { "source": "Comments", "type": "jira_comments", "status": "analyzed", "detail": "2 comments, no new facts beyond description" },
+    { "source": "Parent Epic (DEMO-4500)", "type": "jira_issue", "status": "analyzed", "detail": "Summary + description excerpt" },
+    { "source": "Sibling stories", "type": "jira_sibling", "status": "analyzed", "detail": "0 siblings returned by JQL" },
+    { "source": "Issue links", "type": "jira_link", "status": "analyzed", "detail": "None present" },
+    { "source": "Confluence", "type": "confluence_page", "status": "not_applicable", "detail": "No linked page found" },
+    { "source": "Spreadsheet", "type": "spreadsheet", "status": "not_applicable", "detail": "None referenced or pasted" },
+    { "source": "Screenshots", "type": "screenshot", "status": "not_applicable", "detail": "None attached" },
+    { "source": "Figma node 118:4402", "type": "figma_node", "status": "analyzed", "detail": "1 node fetched via get_design_context" }
+  ],
+  "requirements": [
+    {
+      "jira_key": "DEMO-4522",
+      "summary": "Bulk CSV export for OKR custom fields",
+      "issue_type": "Story",
+      "status": "In Progress",
+      "url": "https://example.atlassian.net/browse/DEMO-4522",
+      "acceptance_criteria": [
+        { "id": "AC-01", "text": "User can select which custom fields to include before exporting.", "testable": true },
+        { "id": "AC-02", "text": "Export completes in a reasonable time and downloads automatically.", "testable": false }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "RR-DEMO-4522-01", "jira_key": "DEMO-4522", "severity": "HIGH", "category": "acceptance_criteria", "checklist_ref": "A3",
+      "excerpt_quote": "Export completes in a reasonable time and downloads automatically.",
+      "finding_summary": "AC says export must complete \"in a reasonable time\" — no threshold stated.",
+      "testing_impact": "Cannot define a pass/fail latency assertion.",
+      "owner_hint": "PM", "source": "jira_ac_field", "blocks_test_generation": false, "status": "open"
+    },
+    {
+      "finding_id": "RR-DEMO-4522-02", "jira_key": "DEMO-4522", "severity": "HIGH", "category": "behavioral_gap", "checklist_ref": "B4",
+      "finding_summary": "Failure AC exists (\"show an error\") but not what the message says or whether retry is possible.",
+      "testing_impact": "Cannot write the negative-path assertion or a retry test.",
+      "owner_hint": "PM", "source": "jira_description", "blocks_test_generation": false, "status": "open"
+    },
+    {
+      "finding_id": "RR-DEMO-4522-03", "jira_key": "DEMO-4522", "severity": "MEDIUM", "category": "behavioral_gap", "checklist_ref": "B5",
+      "finding_summary": "No statement of which roles can trigger a bulk export (all users? admins only?).",
+      "testing_impact": "Permission-boundary tests cannot be scoped yet.",
+      "owner_hint": "PM", "source": "jira_description", "blocks_test_generation": false, "status": "open"
+    },
+    {
+      "finding_id": "RR-DEMO-4522-04", "jira_key": "DEMO-4522", "severity": "LOW", "category": "behavioral_gap", "checklist_ref": "B9",
+      "finding_summary": "No accessibility note for the export progress indicator.",
+      "testing_impact": "Low impact on initial scope; worth a follow-up question only.",
+      "owner_hint": "UX", "source": "figma", "blocks_test_generation": false, "status": "open"
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "Q1", "topic": "Behavior",
+      "question": "What does \"reasonable time\" mean for the export, in seconds or a row-count-scaled budget?",
+      "context": "AC-02 uses the phrase with no number.", "source": "AC field, AC-02",
+      "priority": "High", "unblocks": ["RR-DEMO-4522-01"], "owner_hint": "PM", "status": "open"
+    },
+    {
+      "question_id": "Q2", "topic": "Edge cases",
+      "question": "If a field mapping errors mid-export, does the partial file download anyway, or is it withheld entirely — and can the user retry?",
+      "context": "Failure behaviour and retry are undefined.", "source": "Gap analysis",
+      "priority": "High", "unblocks": ["RR-DEMO-4522-02"], "owner_hint": "EM", "status": "open"
+    },
+    {
+      "question_id": "Q3", "topic": "Permissions",
+      "question": "Is bulk export available to all authenticated users, or restricted to Admins?",
+      "context": "No role stated anywhere in analyzed sources.", "source": "Gap analysis",
+      "priority": "Medium", "unblocks": ["RR-DEMO-4522-03"], "owner_hint": "PM", "status": "open"
+    }
+  ],
+  "classifications": {
+    "testability": "Medium",
+    "test_scope_confidence": "Medium",
+    "risk": { "level": "Medium", "rationale_tags": ["data integrity"] },
+    "automation_candidate": { "value": "TBD", "rationale": "Assertions for latency and failure handling are undefined.", "suggested_level": "UI E2E" },
+    "readiness": {
+      "value": "needs_clarification_before_scope_lock",
+      "human_label": "Needs clarification before test design",
+      "blocking_refs": ["RR-DEMO-4522-01", "RR-DEMO-4522-02", "Q1", "Q2"]
+    }
+  },
+  "qa_readiness_checklist": [
+    { "index": 1, "check": "Field selection UI includes/excludes fields correctly before export", "source": "AC-01", "owner": "QA", "done": false },
+    { "index": 2, "check": "Export completes within the confirmed time budget", "source": "Pending Q1", "owner": "QA", "done": false },
+    { "index": 3, "check": "Failure shows the confirmed message and retry path", "source": "Pending Q2", "owner": "QA", "done": false },
+    { "index": 4, "check": "Field-level permission is enforced per row in the exported CSV", "source": "Pending Q3 / RR-DEMO-4522-03", "owner": "QA", "done": false }
+  ],
+  "gate": { "status": "PASS_WITH_WARNINGS", "critical_unresolved_count": 0, "high_unresolved_count": 2, "blocks_test_generation": false },
+  "report": {
+    "readiness_line": "2 High findings (RR-DEMO-4522-01, RR-DEMO-4522-02) and 2 open High questions (Q1, Q2) stand between this story and test design.",
+    "facts": [
+      { "text": "Feature adds a \"Bulk export\" action on the OKR custom-fields list view.", "source": "Description" },
+      { "text": "Export format is CSV, generated server-side.", "source": "Description" },
+      { "text": "Reuses the existing field-mapping service used by the single-record export.", "source": "Description" },
+      { "text": "AC-01: \"User can select which custom fields to include before exporting.\"", "source": "AC field" },
+      { "text": "AC-02: \"Export completes in a reasonable time and downloads automatically.\"", "source": "AC field" }
+    ],
+    "not_stated": [
+      "Numeric or scaled time budget for \"reasonable time.\"",
+      "Which roles may trigger a bulk export.",
+      "Whether a partially-failed export downloads a partial file or nothing."
+    ],
+    "risks": [
+      { "text": "Bulk export touches the same field-mapping service as the single-record export — regression surface if mapping logic is shared.", "source": "Description, \"reuses the existing field mapper\"" },
+      { "text": "Exported CSV may contain values from custom fields with restricted visibility — data integrity/permissions risk if the export doesn't re-check field-level permissions per row.", "source": "Gap analysis — no statement either way" }
+    ],
+    "testing_focus": [
+      { "text": "Verify export completion time once a numeric budget is confirmed.", "blocks": ["Q1"] },
+      { "text": "Verify the failure message text and retry behaviour once defined.", "blocks": ["Q2"] },
+      { "text": "Verify field-level permission enforcement on every exported row, regardless of who triggers the export.", "blocks": ["Q3"] }
+    ],
+    "design_observations": [
+      { "text": "Button labelled \"Export selected fields\".", "source": "Figma — figma.com/design/abc123/OKR-fields, node 118:4402" }
+    ],
+    "epic_context": [
+      { "text": "DEMO-4500 — \"OKR custom fields, phase 2\" — In Progress.", "source": "Epic description" },
+      { "text": "Epic goal: \"let teams get their custom-field data out of the product for reporting.\" No factual inconsistency found between epic and story text.", "source": "Epic description" }
+    ],
+    "next_action": "Ask the PM Q1 and the EM Q2, then rescan DEMO-4522. The Creator can start now on AC-01 if the team prefers to draft in parallel."
+  }
+}

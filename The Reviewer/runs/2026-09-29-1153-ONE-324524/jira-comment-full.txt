@@ -1,0 +1,36 @@
+h3. Requirement Review — ONE-324524
+
+_Based on the current content, here is a collaborative review to support early alignment._
+
+----
+*Testability:* Medium    *Test scope confidence:* Low
+*Risk level:* Medium — regression surface, integration dependency    *Readiness for test planning:* Needs clarification before scope can be tested
+*Automation candidate:* TBD
+
+*Data reviewed:* ONE-324524 (target issue), Acceptance Criteria field (customfield_10901), Comments on ONE-324524, Child inventory ("Epic Link" = ONE-324524), Issue links on ONE-324524, Parent AEPORT-1240, Confluence: Scope definition based on parents keys (97184810059), Confluence: Requirements and Issue Sizing (96217858423), Confluence: Manage Product Category Initiatives (96266356168) and Plan Initiatives Across the Organization (96266125367), Attachment: image-20260530-200944.png (inline in the Epic description as "Example from Structure")
+
+h4. Top findings (testing impact)
+* High — The Acceptance Criteria field is empty on the Epic and on all three children, and no description holds AC bullets. The epic has a one-line goal and no testable completion criterion: No epic-level acceptance test can be defined; pass criteria have to come from each child's own scan.
+* High — Nothing states whether "recurringly" means the box keeps following the hierarchy after the scope is saved. ONE-356784 persists a flag on the scope definition, but no source says whether descendants that are added, removed or re-parented later join or leave the box on the next refresh, or only the tree present at save time counts. The Structure screenshot shows a "Choose type of extend rule" dialog, but its layout is not a rule for BigPicture: The core state transition (hierarchy changes after save) has no expected result, so neither a one-time nor a live-rule test can be written.
+* High — The sources disagree on which relationship is traversed. The epic summary and linked Idea PPMR-342 say "recurring issue links"; the customer quote in ONE-36236 says issues are linked "via normal issue linking"; the Structure example offers both "Child Work Items" and "Linked Items". Yet ONE-36236 strikes through the "other Jira link" option, leaving only the Parent field. The epic never states that link-based traversal is out of scope: QA cannot tell whether issue-link hierarchies are in the test matrix or are an expected non-feature.
+* High — The children describe two different user interactions. ONE-36236 has the user enter task keys, with structure builders adjusted automatically. ONE-350189 adds one toggle below "Refresh search list", and ONE-356784 stores one boolean for the whole scope definition. No source says whether the toggle applies only to entered keys or also to projects, boards and filters in the same scope, or how it combines with Narrow Down: The primary flow cannot be written end to end: the inputs the toggle acts on are undefined.
+* High — The spike opened to check this epic's impact on the Scope Def data-storage refactor (ONE-357566) is Canceled, and the related refactor epic ONE-235869 is still Open. No outcome is recorded on this epic, so "no impact" is an unstated assumption: Regression scope for the persisted flag is unknown if ONE-235869 later changes how scope definitions are stored.
+
+h4. Clarification questions
+*Definition of done*
+# What observable outcome marks this epic done? In particular: once "Include all children recurringly" is saved, should descendants that are added, removed or re-parented later join or leave the box on its next refresh, or does only the tree present at save time count? _— for PO_
+*PRD authority*
+# The epic summary, Idea PPMR-342, the customer quote in ONE-36236 and the Structure example all refer to issue links, but ONE-36236 strikes out the "other Jira link" option. Which is authoritative: is traversal by Jira issue links out of scope for this epic, leaving only the Parent field? _— for PO_
+*Rollout*
+# Who switches ScopeDefinitionIncludeAllChildrenRecurringly on, and when? Does that flag also control the back-end query change in ONE-36236, or only the toggle? _— for PO_
+*Behavior*
+# What does the toggle act on? Only the task keys entered as described in ONE-36236, or every source in the scope definition (projects, boards, filters)? And how does it combine with Narrow Down? _— for PO_
+*Edge cases*
+# Is there a maximum depth, item count or build-time target for the descendant tree, and must the user also select a project to narrow the search, as the Confluence analysis proposed? _— for EM_
+*Integrations*
+# The spike ONE-357566 (impact on the Scope Def refactor) was Canceled and ONE-235869 is still Open. Was the impact confirmed elsewhere, and does the refactor change how includeAllChildrenRecurringly is stored? _— for EM_
+# Which Jira editions and project types does this epic support: Cloud Standard, Cloud Premium, team-managed projects, Data Center? _— for EM_
+*Permissions*
+# Who may enable the toggle? What happens when an entered key doesn't exist or can't be browsed, or when some descendants are not visible to the box's scope context user? _— for PO_
+----
+_This review supports shift-left preparation — it does not approve or reject the requirement._

@@ -1,0 +1,26 @@
+h3. Requirement Review — DEMO-4522
+
+_Based on the current content, here is a collaborative review to support early alignment._
+
+----
+*Testability:* Medium    *Test scope confidence:* Medium
+*Risk level:* Medium — data integrity    *Readiness for test planning:* Needs clarification before test design
+*Automation candidate:* TBD
+
+*Data reviewed:* Target issue (DEMO-4522), Acceptance criteria field, Comments, Parent Epic (DEMO-4500), Sibling stories, Issue links, Figma node 118:4402
+
+h4. Top findings (testing impact)
+* High — AC says export must complete "in a reasonable time" — no threshold stated: Cannot define a pass/fail latency assertion.
+* High — Failure AC exists ("show an error") but not what the message says or whether retry is possible: Cannot write the negative-path assertion or a retry test.
+* Medium — No statement of which roles can trigger a bulk export (all users? admins only?): Permission-boundary tests cannot be scoped yet.
+* Low — No accessibility note for the export progress indicator: Low impact on initial scope; worth a follow-up question only.
+
+h4. Clarification questions
+*Behavior*
+# What does "reasonable time" mean for the export, in seconds or a row-count-scaled budget? _— for PM_
+*Edge cases*
+# If a field mapping errors mid-export, does the partial file download anyway, or is it withheld entirely — and can the user retry? _— for EM_
+*Permissions*
+# Is bulk export available to all authenticated users, or restricted to Admins? _— for PM_
+----
+_This review supports shift-left preparation — it does not approve or reject the requirement._

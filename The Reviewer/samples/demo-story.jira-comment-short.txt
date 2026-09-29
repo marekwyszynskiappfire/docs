@@ -1,0 +1,10 @@
+h3. Requirement Review (summary) — DEMO-4522
+
+*Readiness for test planning:* Needs clarification before test design
+
+h4. Priority clarification needed
+*Behavior*
+# What does "reasonable time" mean for the export, in seconds or a row-count-scaled budget? _— for PM_
+*Edge cases*
+# If a field mapping errors mid-export, does the partial file download anyway, or is it withheld entirely — and can the user retry? _— for EM_
+----

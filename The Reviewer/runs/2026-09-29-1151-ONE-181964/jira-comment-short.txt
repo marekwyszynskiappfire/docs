@@ -1,0 +1,10 @@
+h3. Requirement Review (summary) — ONE-181964
+
+*Readiness for regression and sign-off:* Needs clarification before test design
+
+h4. Priority clarification needed
+*Definition of done*
+# What epic-level acceptance criteria define "metrics as fields in Jira" as delivered: which field types can be linked, what the user configures per option, and which direction values sync? _— for PO_
+*Scope*
+# The Epic lists a Jira field "created automatically by BigPicture" as one of two paths. Was that path delivered, deferred, or dropped? _— for PO_
+----

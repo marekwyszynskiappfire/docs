@@ -1,0 +1,339 @@
+{
+  "payload_version": "1.1",
+  "schema_version": "1.1",
+  "run_id": "2026-09-28-0044",
+  "generated_at": "2026-09-28T00:44:00+02:00",
+  "scan_label": "Initial scan",
+  "host": "cursor",
+  "product": {
+    "id": "demo",
+    "name": "Demo product"
+  },
+  "scope": {
+    "type": "epic",
+    "value": "DEMO-4500",
+    "issue_type": "Epic",
+    "is_epic_batch": true
+  },
+  "requirement_keys": [
+    "DEMO-4500"
+  ],
+  "requirement_fingerprint": "demo0000epic4500",
+  "context_loaded": [
+    {
+      "source": "Target issue (DEMO-4500)",
+      "type": "jira_issue",
+      "status": "analyzed",
+      "detail": "Key, summary, description, status"
+    },
+    {
+      "source": "Child inventory + content",
+      "type": "jira_epic_child",
+      "status": "analyzed",
+      "detail": "10 children, paginated to isLast; description requested in the same call (C4): 8 via description, 2 via title-only fallback"
+    },
+    {
+      "source": "Comments",
+      "type": "jira_comments",
+      "status": "analyzed",
+      "detail": "3 comments, no new facts beyond description"
+    },
+    {
+      "source": "Issue links",
+      "type": "jira_link",
+      "status": "analyzed",
+      "detail": "None present"
+    },
+    {
+      "source": "Confluence PRD",
+      "type": "confluence_page",
+      "status": "analyzed",
+      "detail": "1 linked PRD page fetched"
+    },
+    {
+      "source": "Spreadsheet",
+      "type": "spreadsheet",
+      "status": "not_applicable",
+      "detail": "None referenced or pasted"
+    },
+    {
+      "source": "Screenshots",
+      "type": "screenshot",
+      "status": "not_applicable",
+      "detail": "None attached"
+    },
+    {
+      "source": "Figma (epic's own link)",
+      "type": "figma_node",
+      "status": "analyzed",
+      "detail": "No node-id on the link — root metadata scanned, 2 frames shortlisted by title overlap. Epic-mode Figma detection only reads the epic's own text, never a child's."
+    }
+  ],
+  "requirements": [
+    {
+      "jira_key": "DEMO-4500",
+      "summary": "OKR custom fields, phase 2",
+      "issue_type": "Epic",
+      "status": "In Progress",
+      "url": "https://example.atlassian.net/browse/DEMO-4500",
+      "description_excerpt": "Let teams get their custom-field data out of the product for reporting."
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "RR-DEMO-4500-01",
+      "jira_key": "DEMO-4500",
+      "severity": "HIGH",
+      "category": "acceptance_criteria",
+      "checklist_ref": "A3",
+      "excerpt_quote": "let teams get their custom-field data out of the product for reporting",
+      "finding_summary": "Epic description states the goal but gives no testable completion criterion — no cohort, rollout scope, or exit criterion for \"phase 2\" being done.",
+      "testing_impact": "Cannot define an epic-level acceptance test independent of child-level tests.",
+      "owner_hint": "PO",
+      "source": "jira_description",
+      "blocks_test_generation": false,
+      "status": "open"
+    },
+    {
+      "finding_id": "RR-DEMO-4500-02",
+      "jira_key": "DEMO-4500",
+      "severity": "MEDIUM",
+      "category": "behavioral_gap",
+      "checklist_ref": "B12",
+      "finding_summary": "DEMO-4536 (bulk import — the reverse of DEMO-4522's export) is Waiting for Release while DEMO-4522 is still In Progress — the export→import round trip has no window where it can be tested end-to-end yet.",
+      "testing_impact": "An epic-level end-to-end pass must wait for both children; flag this dependency before scheduling one.",
+      "owner_hint": "EM",
+      "source": "epic",
+      "blocks_test_generation": false,
+      "status": "open"
+    },
+    {
+      "finding_id": "RR-DEMO-4500-03",
+      "jira_key": "DEMO-4500",
+      "severity": "LOW",
+      "category": "behavioral_gap",
+      "checklist_ref": "B12",
+      "finding_summary": "DEMO-4531's description covers an export destination/trigger that may overlap DEMO-4529 (\"Scheduled / recurring export\") — but DEMO-4529 has no description (`content_source: title_only`), so the overlap is named from its title only, not established as a fact.",
+      "testing_impact": "Low impact now; worth asking for a description on DEMO-4529 before both are picked up in the same sprint.",
+      "owner_hint": "PO",
+      "source": "epic",
+      "blocks_test_generation": false,
+      "status": "open"
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "Q1",
+      "topic": "Definition of done",
+      "question": "What does \"phase 2 complete\" mean — all customers, or a staged rollout behind a feature flag?",
+      "context": "The epic goal is qualitative only.",
+      "source": "Epic description",
+      "priority": "High",
+      "unblocks": [
+        "RR-DEMO-4500-01"
+      ],
+      "owner_hint": "PO",
+      "status": "open"
+    },
+    {
+      "question_id": "Q2",
+      "topic": "PRD authority",
+      "question": "The linked Confluence PRD says export defaults to CSV; DEMO-4531 assumes XLSX is also in scope for phase 2 — which document is authoritative?",
+      "context": "Confluence page fetched; conflicts with a child story.",
+      "source": "Confluence PRD §3; DEMO-4531 description",
+      "priority": "Medium",
+      "unblocks": [
+        "RR-DEMO-4500-03"
+      ],
+      "owner_hint": "PO",
+      "status": "open"
+    },
+    {
+      "question_id": "Q3",
+      "topic": "Design authority",
+      "question": "The epic's Figma link has no node-id; a root metadata scan shortlisted two frames matching the epic title — \"Export flow (v1, deprecated)\" and \"Export flow (v2, current)\". Which is canonical?",
+      "context": "Name-overlap shortlist returned 2 candidates, not 1.",
+      "source": "Figma — root metadata scan, figma.com/design/abc123/OKR-fields",
+      "priority": "Optional",
+      "unblocks": [],
+      "owner_hint": "UX",
+      "status": "open"
+    }
+  ],
+  "classifications": {
+    "testability": "Medium",
+    "test_scope_confidence": "Medium",
+    "risk": {
+      "level": "Medium",
+      "rationale_tags": [
+        "integration dependency"
+      ]
+    },
+    "automation_candidate": {
+      "value": "TBD",
+      "rationale": "Decided per child, not at epic scope.",
+      "suggested_level": "TBD"
+    },
+    "readiness": {
+      "value": "needs_clarification_before_scope_lock",
+      "human_label": "Needs clarification before test design",
+      "blocking_refs": [
+        "RR-DEMO-4500-01",
+        "Q1"
+      ]
+    }
+  },
+  "rollup": {
+    "epic_child_inventory": [
+      {
+        "key": "DEMO-4510",
+        "type": "Story",
+        "status": "Done",
+        "summary": "Add custom field picker to export dialog",
+        "content_source": "description",
+        "recommended_for_batch": false
+      },
+      {
+        "key": "DEMO-4515",
+        "type": "Story",
+        "status": "Done",
+        "summary": "Field-level permission check in export service",
+        "content_source": "description",
+        "recommended_for_batch": false
+      },
+      {
+        "key": "DEMO-4518",
+        "type": "Story",
+        "status": "Done",
+        "summary": "CSV formatting for multi-select custom fields",
+        "content_source": "description",
+        "recommended_for_batch": false
+      },
+      {
+        "key": "DEMO-4522",
+        "type": "Story",
+        "status": "In Progress",
+        "summary": "Bulk CSV export for OKR custom fields",
+        "content_source": "description",
+        "recommended_for_batch": true
+      },
+      {
+        "key": "DEMO-4525",
+        "type": "Story",
+        "status": "In Progress",
+        "summary": "Export audit log entry",
+        "content_source": "description",
+        "recommended_for_batch": true
+      },
+      {
+        "key": "DEMO-4529",
+        "type": "Story",
+        "status": "Open",
+        "summary": "Scheduled / recurring export",
+        "content_source": "title_only",
+        "recommended_for_batch": true
+      },
+      {
+        "key": "DEMO-4531",
+        "type": "Story",
+        "status": "Open",
+        "summary": "Export to Confluence page",
+        "content_source": "description",
+        "recommended_for_batch": true
+      },
+      {
+        "key": "DEMO-4534",
+        "type": "Story",
+        "status": "Open",
+        "summary": "Localize export column headers",
+        "content_source": "title_only",
+        "recommended_for_batch": true
+      },
+      {
+        "key": "DEMO-4536",
+        "type": "Story",
+        "status": "Waiting for Release",
+        "summary": "Bulk import counterpart (reverse of 4522)",
+        "content_source": "description",
+        "recommended_for_batch": true
+      },
+      {
+        "key": "DEMO-4540",
+        "type": "Story",
+        "status": "Waiting for Release",
+        "summary": "Deprecate legacy single-field export UI",
+        "content_source": "description",
+        "recommended_for_batch": true
+      }
+    ],
+    "epic_status_mix": {
+      "Done": 3,
+      "In Progress": 2,
+      "Open": 3,
+      "Waiting for Release": 2
+    },
+    "recommended_batch_keys": [
+      "DEMO-4522",
+      "DEMO-4536",
+      "DEMO-4531",
+      "DEMO-4525",
+      "DEMO-4540",
+      "DEMO-4529",
+      "DEMO-4534",
+      "DEMO-4510",
+      "DEMO-4515",
+      "DEMO-4518"
+    ]
+  },
+  "gate": {
+    "status": "PASS_WITH_WARNINGS",
+    "critical_unresolved_count": 0,
+    "high_unresolved_count": 1,
+    "blocks_test_generation": false
+  },
+  "report": {
+    "readiness_line": "1 High finding (RR-DEMO-4500-01) and 1 open High question (Q1) stand between this epic and a testable rollout definition.",
+    "facts": [
+      {
+        "text": "Epic goal: \"let teams get their custom-field data out of the product for reporting.\"",
+        "source": "Epic description"
+      },
+      {
+        "text": "The linked PRD states CSV as the default export format.",
+        "source": "Confluence PRD §3"
+      }
+    ],
+    "not_stated": [
+      "A concrete definition of \"phase 2 complete.\"",
+      "Canonical export file format if CSV and XLSX both ship (Confluence PRD vs. DEMO-4531 disagree)."
+    ],
+    "risks": [
+      {
+        "text": "The export→import round trip (DEMO-4522 ↔ DEMO-4536) is the epic's highest-value regression surface and currently untestable end-to-end — flag before release planning locks a date.",
+        "source": "Child status mix"
+      }
+    ],
+    "testing_focus": [
+      {
+        "text": "Once DEMO-4522 and DEMO-4536 are both Done, run one end-to-end export→import journey before any epic-level sign-off.",
+        "blocks": [
+          "RR-DEMO-4500-02"
+        ]
+      },
+      {
+        "text": "Confirm CSV-vs-XLSX scope with the PO before writing format-specific assertions for DEMO-4531.",
+        "blocks": [
+          "Q2"
+        ]
+      }
+    ],
+    "design_observations": [
+      {
+        "text": "The epic's Figma link has no node-id, so no single frame was fetched. A root get_metadata scan shortlisted 2 frames whose names overlap the epic title: \"Export flow (v1, deprecated)\" and \"Export flow (v2, current)\".",
+        "source": "Figma — figma.com/design/abc123/OKR-fields, root metadata scan"
+      }
+    ],
+    "batch_rationale": "Every child except Canceled ones is scanned. DEMO-4529 and DEMO-4531 come first because the open questions name them; the three Done children go last.",
+    "next_action": "Ask the PO Q1 and Q2, then run the batch for the non-Done children. Epic-level end-to-end testing waits until DEMO-4522 and DEMO-4536 are both Done."
+  }
+}

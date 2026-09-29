@@ -1,0 +1,441 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "review-payload.schema.json",
+  "title": "ReviewPayload",
+  "description": "Machine-readable output of The Reviewer. Rendered to review-report.md and review-report.html by scripts/render_report.py — the model writes only this payload, never the reports (PRF-21). See DECISIONS.md for the rationale behind every non-obvious field.",
+  "$comment": "Version history. 1.0 (2026-09-28): initial freeze. 1.1 (2026-09-29): rollup.epic_child_inventory[].content_source required (C4); Epic scope may not carry CRITICAL findings or a BLOCKED gate (PRF-12); new required `report` block holding all rendered prose (PRF-21); finding.testing_impact; context_loaded[].detail and status `not_applicable`; requirements[].status/url; question.owner_hint accepts Security; scope.lifecycle (PRF-15); category `epic_lifecycle` and checklist_ref C1-C3 (PRF-19); report.question_cap_reason (PRF-13); recommended_batch_keys maxItems removed (PRF-16). The PRF-13/16/19 additions were made after a 1.1 run existed, under the widening exception. Rule (PRF-20, amended 2026-09-29): a change that makes previously valid payloads invalid (new required field, removed or narrowed allowed value, tighter limit) bumps the version; a change that only widens what's allowed (new optional field, new allowed value, looser limit) does not, and is recorded here.",
+  "type": "object",
+  "required": [
+    "payload_version",
+    "run_id",
+    "generated_at",
+    "product",
+    "scope",
+    "requirement_fingerprint",
+    "context_loaded",
+    "findings",
+    "questions",
+    "classifications",
+    "gate",
+    "schema_version",
+    "report"
+  ],
+  "allOf": [
+    {
+      "$comment": "PRF-12: Epic mode never blocks — no CRITICAL finding, gate never BLOCKED.",
+      "if": {
+        "properties": { "scope": { "properties": { "type": { "const": "epic" } }, "required": ["type"] } },
+        "required": ["scope"]
+      },
+      "then": {
+        "properties": {
+          "findings": { "items": { "properties": { "severity": { "not": { "const": "CRITICAL" } } } } },
+          "gate": { "properties": { "status": { "not": { "const": "BLOCKED" } } } }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "payload_version": {
+      "type": "string",
+      "const": "1.1",
+      "description": "Renderer refuses any version other than the one it was built for, with a clear message (decision A3). A rescan against an older persisted version runs a full scan instead of a delta (PRF-20)."
+    },
+    "schema_version": { "type": "string", "const": "1.1" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "scan_label": {
+      "type": "string",
+      "enum": ["Initial scan", "Rescan"],
+      "description": "Rendered with the date next to it, so chat/HTML/Jira-comment references to 'the latest scan' are unambiguous."
+    },
+    "host": {
+      "type": "string",
+      "enum": ["cursor", "claude", "hive"],
+      "description": "Which of the three fully-supported hosts (decision D2/D13) produced this run."
+    },
+    "product": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "description": "The per-product config id resolved for this run (decision A9)."
+    },
+    "scope": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["story", "bug", "task", "epic", "stories", "jql", "bundle"]
+        },
+        "value": { "type": "string" },
+        "issue_type": {
+          "type": "string",
+          "description": "The literal Jira issue type name, so output text can substitute it (decision D8) instead of always saying 'story'."
+        },
+        "lifecycle": {
+          "type": "string",
+          "enum": ["pre_delivery", "post_delivery"],
+          "description": "Epic scope only (PRF-15). post_delivery when the Epic's status category is Done or its status is Waiting for Release/Deploy (or equivalent). Changes wording only — never severities or readiness."
+        },
+        "is_epic_batch": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when this run also produced/updated the epic batch handoff (decision RV4 — epic batch ships in v1)."
+        }
+      }
+    },
+    "requirement_keys": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9]+-[0-9]+$" },
+      "description": "May be empty when scope.type is 'bundle' or another non-Jira scope (decision A-5 — relaxed from the original schema's minItems:1)."
+    },
+    "source_ref": {
+      "type": "string",
+      "description": "Free-text pointer to the source when requirement_keys is empty (decision A-5) — e.g. a bundle file path."
+    },
+    "requirement_fingerprint": {
+      "type": "string",
+      "description": "Hash of the normalized, review-relevant requirement bundle at generation time. Any later reader (a rescan, or The Creator's gate check) re-fetches the live requirement, recomputes this, and flags STALE before trusting a cached result (decisions R-G4 / U-8)."
+    },
+    "context_loaded": {
+      "type": "array",
+      "description": "Every source attempted, Jira or otherwise, with outcome. Makes 'the agent never read the linked Confluence page' visible instead of invisible.",
+      "items": {
+        "type": "object",
+        "required": ["source", "type", "status"],
+        "properties": {
+          "source": { "type": "string", "description": "e.g. 'PROJ-456', 'Confluence: Checkout spec', 'Figma node 766:122827', 'Attachment: authorize-sequence.png'" },
+          "type": {
+            "type": "string",
+            "enum": ["jira_issue", "jira_comments", "jira_sibling", "jira_epic_child", "jira_link", "confluence_page", "figma_node", "screenshot", "spreadsheet", "pdf", "external_document", "pasted_bundle"]
+          },
+          "status": { "type": "string", "enum": ["analyzed", "unavailable", "failed", "not_applicable"] },
+          "detail": { "type": "string", "description": "What was read, for an analyzed source — e.g. '2 comments, no new facts beyond description'. Rendered in the Data sources table." },
+          "reason": { "type": "string", "description": "Required when status is unavailable or failed, e.g. 'Comments (403 permission denied)'." }
+        }
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "description": "The normalized, review-relevant bundle(s) actually analysed (narrow scope — decision 'bundle richness'). Not the full requirements-template.md shape.",
+      "items": {
+        "type": "object",
+        "required": ["jira_key", "summary", "issue_type"],
+        "properties": {
+          "jira_key": { "type": "string" },
+          "summary": { "type": "string" },
+          "issue_type": { "type": "string" },
+          "status": { "type": "string" },
+          "url": { "type": "string", "description": "Browse URL of the issue; rendered as the report header's Jira link." },
+          "description_excerpt": { "type": "string" },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "text": { "type": "string" },
+                "testable": { "type": "boolean" }
+              }
+            }
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "in_scope": { "type": "array", "items": { "type": "string" } },
+              "out_of_scope": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "redaction_applied": { "type": "boolean" }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/finding" }
+    },
+    "questions": {
+      "type": "array",
+      "description": "Clarification Questions — a mandatory, fully-specified output section (decision: 'Clarification Questions addendum'), not an afterthought of the limits table.",
+      "items": { "$ref": "#/$defs/question" }
+    },
+    "classifications": {
+      "type": "object",
+      "required": ["testability", "test_scope_confidence", "risk", "automation_candidate", "readiness"],
+      "properties": {
+        "testability": { "type": "string", "enum": ["High", "Medium", "Low"] },
+        "test_scope_confidence": { "type": "string", "enum": ["High", "Medium", "Low"] },
+        "risk": {
+          "type": "object",
+          "required": ["level"],
+          "properties": {
+            "level": { "type": "string", "enum": ["High", "Medium", "Low"] },
+            "rationale_tags": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["customer impact", "regression surface", "permissions/security", "data integrity", "integration dependency", "reversibility"]
+              }
+            }
+          }
+        },
+        "automation_candidate": {
+          "type": "object",
+          "required": ["value"],
+          "properties": {
+            "value": { "type": "string", "enum": ["Yes", "No", "TBD"] },
+            "rationale": { "type": "string" },
+            "suggested_level": {
+              "type": "string",
+              "enum": ["UI E2E", "API", "Unit", "TBD"],
+              "description": "A logical level, never a specific framework (decision A-18). Framework name comes from per-product config."
+            }
+          }
+        },
+        "readiness": {
+          "type": "object",
+          "required": ["value", "human_label"],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["ready_with_clarifications", "needs_clarification_before_scope_lock", "cannot_plan_scope_yet"],
+              "description": "Independent of gate.status (PRF-10, amends RV1): computed from testability, test scope confidence, and open-question priority, not from severity counts. Any combination with gate.status is valid."
+            },
+            "human_label": {
+              "type": "string",
+              "enum": ["Ready to build tests", "Needs clarification before test design", "Needs clarification before scope can be tested"],
+              "description": "The only headline shown to a PM. Never 'gate', 'blocked', or 'failed' (decision RV1)."
+            },
+            "blocking_refs": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Top blocking finding_id(s) and/or question_id(s), cited in one line — collaborative framing, not a verdict."
+            }
+          }
+        }
+      }
+    },
+    "rollup": {
+      "type": "object",
+      "description": "Populated for multi-issue (stories/jql) or epic scope only.",
+      "properties": {
+        "common_patterns": { "type": "array", "items": { "type": "string" } },
+        "recommended_pm_order": { "type": "array", "items": { "type": "string" } },
+        "epic_child_inventory": {
+          "type": "array",
+          "description": "Full inventory, paginated to isLast — never a 'sample' (decision A-14). Each child's description is fetched in the same paginated call, not a separate per-child round trip (decision C4).",
+          "items": {
+            "type": "object",
+            "required": ["key", "content_source"],
+            "properties": {
+              "key": { "type": "string" },
+              "type": { "type": "string" },
+              "status": { "type": "string" },
+              "summary": { "type": "string" },
+              "description_excerpt": {
+                "type": "string",
+                "description": "Verbatim excerpt from the child's description field, redacted per A7 before it reaches this field. Empty when content_source is not 'description'."
+              },
+              "content_source": {
+                "type": "string",
+                "enum": ["description", "title_only", "unavailable"],
+                "description": "Which signal fed this child's contribution to B12/epic-narrative analysis (decision C4): its own description text, a title-only fallback to summary when the description was empty/boilerplate (never sufficient alone to mark B12 COVERED — A-17), or unavailable if the field couldn't be read at all."
+              },
+              "recommended_for_batch": { "type": "boolean" }
+            }
+          }
+        },
+        "epic_status_mix": { "type": "object", "additionalProperties": { "type": "integer" } },
+        "recommended_batch_keys": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Decision RV4/R-G10, PRF-16 — every non-Canceled child, no cap, ranked: most-named by open findings/questions, then status (WFR/In Progress, To Do, Done), then key. Computed directly by The Reviewer."
+        }
+      }
+    },
+    "qa_readiness_checklist": {
+      "type": "array",
+      "maxItems": 50,
+      "description": "Included when >=3 suggested-testing-focus items, a spreadsheet was ingested, or the user asked. Labelled 'preliminary' until after a rescan.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": { "type": "integer" },
+          "check": { "type": "string" },
+          "source": { "type": "string" },
+          "owner": { "type": "string" },
+          "done": { "type": "boolean" }
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "required": ["status", "critical_unresolved_count", "high_unresolved_count", "blocks_test_generation"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "PASS_WITH_WARNINGS", "BLOCKED"] },
+        "critical_unresolved_count": { "type": "integer", "minimum": 0 },
+        "high_unresolved_count": { "type": "integer", "minimum": 0 },
+        "blocks_test_generation": {
+          "type": "boolean",
+          "description": "Computed read-only: true iff status == BLOCKED and force_override is not true. Never authored directly (decision A-4)."
+        },
+        "force_override": { "type": "boolean", "default": false },
+        "force_override_by": { "type": "string" },
+        "force_override_at": { "type": "string", "format": "date-time" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["force_override"],
+            "properties": { "force_override": { "const": true } }
+          },
+          "then": { "required": ["force_override_by", "force_override_at"] }
+        }
+      ]
+    },
+    "report": {
+      "type": "object",
+      "description": "Every piece of prose the reports render that isn't already a structured field above (PRF-21). The renderer adds nothing of its own beyond fixed labels, counts, and the gate line.",
+      "required": ["readiness_line", "facts", "not_stated", "risks", "testing_focus", "next_action"],
+      "properties": {
+        "readiness_line": { "type": "string", "description": "One collaborative sentence under the readiness label, citing the top blocking finding/question ids. No blocked phrases." },
+        "facts": { "type": "array", "items": { "$ref": "#/$defs/sourced_text" }, "description": "'Information identified' — every bullet carries a Source." },
+        "not_stated": { "type": "array", "items": { "type": "string" }, "description": "Gaps named plainly, never with a guessed answer." },
+        "risks": { "type": "array", "items": { "$ref": "#/$defs/sourced_text" } },
+        "testing_focus": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["text"],
+            "properties": {
+              "text": { "type": "string" },
+              "blocks": { "type": "array", "items": { "type": "string" }, "description": "finding_id(s)/question_id(s) this focus item waits on." }
+            }
+          }
+        },
+        "design_observations": { "type": "array", "items": { "$ref": "#/$defs/sourced_text" }, "description": "Literal Figma text only. The section renders only when at least one figma_node was analyzed." },
+        "epic_context": { "type": "array", "items": { "$ref": "#/$defs/sourced_text" }, "description": "Story/Bug/Task scope: parent Epic and sibling facts, plus any factual epic↔story inconsistency." },
+        "batch_rationale": { "type": "string", "description": "Epic scope: why these recommended_batch_keys, in one or two sentences." },
+        "next_action": { "type": "string" },
+        "handoff_note": { "type": "string", "description": "Optional extra sentence for the always-visible handoff block." },
+        "question_cap_reason": { "type": "string", "description": "Required by the renderer lint when more than 5 questions are High priority (PRF-13): why merging related questions was not enough." }
+      }
+    },
+    "rescan": {
+      "type": "object",
+      "description": "Present only when scan_label == 'Rescan'. Diffs against the persisted payload for the same requirement_keys, never against chat memory (decisions D5/R-G3).",
+      "properties": {
+        "previous_run_id": { "type": "string" },
+        "previous_generated_at": { "type": "string", "format": "date-time" },
+        "findings_resolved": { "type": "array", "items": { "type": "string" } },
+        "findings_open": { "type": "array", "items": { "type": "string" } },
+        "findings_new": { "type": "array", "items": { "type": "string" } },
+        "questions_new": {
+          "type": "array",
+          "maxItems": 5,
+          "items": { "type": "string" },
+          "description": "Decision A-16/second confirmation: capped at 5 new per rescan; no cumulative open-question ceiling exists."
+        },
+        "readiness_changed": { "type": "boolean" }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["jira_key", "message"],
+        "properties": {
+          "jira_key": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      },
+      "description": "Per-key operational errors. A batch continues past one failed key (decision: graceful degradation, Similarity #10)."
+    }
+  },
+  "$defs": {
+    "sourced_text": {
+      "type": "object",
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string" },
+        "source": { "type": "string", "description": "Rendered as '(Source: …)'. Required for facts and design observations by SKILL.md §14; optional for risks drawn from gap analysis." }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": ["finding_id", "jira_key", "severity", "category", "checklist_ref", "finding_summary", "blocks_test_generation"],
+      "properties": {
+        "finding_id": { "type": "string", "pattern": "^RR-[A-Z][A-Z0-9]+-[0-9]+-[0-9]+$" },
+        "jira_key": { "type": "string", "pattern": "^[A-Z][A-Z0-9]+-[0-9]+$" },
+        "severity": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+        "category": {
+          "type": "string",
+          "enum": ["acceptance_criteria", "scope", "testability", "traceability", "open_questions", "template_compliance", "data_sensitivity", "behavioral_gap", "epic_lifecycle"]
+        },
+        "checklist_ref": {
+          "type": "string",
+          "pattern": "^(A[1-8]|B(1[0-2]|[1-9])|C[1-3])$",
+          "description": "Points at exactly one row of checklist.md. Required on every finding (decision D15/RV3) — not optional as in the original schema."
+        },
+        "excerpt_quote": {
+          "type": "string",
+          "description": "Verbatim from the analyzed source — never paraphrased. Redacted at display time per A7 before it reaches this field."
+        },
+        "finding_summary": { "type": "string", "minLength": 1 },
+        "testing_impact": { "type": "string", "description": "One line: what QA cannot do until this is resolved. Rendered as the 'Testing impact' column." },
+        "question_for_PM": { "type": "string" },
+        "suggested_AC_patch": { "type": "string" },
+        "owner_hint": {
+          "type": "string",
+          "enum": ["PM", "UX", "EM", "Security", "PO"],
+          "description": "Generalises PM-only ownership to the personas that can actually act on a finding (decision R-G8)."
+        },
+        "source": {
+          "type": "string",
+          "enum": ["jira_description", "jira_ac_field", "jira_comment", "confluence", "figma", "screenshot", "spreadsheet", "sibling", "epic"]
+        },
+        "blocks_test_generation": {
+          "type": "boolean",
+          "description": "Computed read-only: true iff severity == CRITICAL. Never authored directly (decision A-4)."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["open", "resolved"],
+          "default": "open",
+          "description": "Maintained across rescans (decision D5)."
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "required": ["question_id", "topic", "question", "priority", "status"],
+      "properties": {
+        "question_id": { "type": "string", "pattern": "^Q[0-9]+$" },
+        "topic": {
+          "type": "string",
+          "enum": ["Behavior", "Scope", "Edge cases", "Integrations", "Permissions", "Data", "Definition of done", "PRD authority", "Design authority", "Rollout"],
+          "description": "Any topic is valid in any scope (PRF-17). The last four are preferred for epic-level concerns. question_id is assigned in display order after grouping (reference.md → Question topic order)."
+        },
+        "question": { "type": "string" },
+        "context": { "type": "string" },
+        "source": { "type": "string" },
+        "priority": { "type": "string", "enum": ["High", "Medium", "Optional"] },
+        "unblocks": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "finding_id(s) and/or checklist_ref(s) this question unblocks."
+        },
+        "owner_hint": {
+          "type": "string",
+          "enum": ["PM", "UX", "EM", "Security", "PO"],
+          "description": "Epic-scope questions route to PO/UX/EM rather than assuming PM (decision R-G8); epic-scope AC/scope questions default to PO (PRF-17)."
+        },
+        "status": { "type": "string", "enum": ["open", "resolved"], "default": "open" }
+      }
+    }
+  }
+}
