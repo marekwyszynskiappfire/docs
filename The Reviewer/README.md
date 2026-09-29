@@ -22,14 +22,14 @@ Operator guide: [`MANUAL.md`](MANUAL.md). Rules and workflow: [`SKILL.md`](SKILL
 | `schemas/review-payload.schema.json` | Payload contract |
 | `scripts/render_report.py` | Payload → reports (stdlib; optional `jsonschema`) |
 | `config/default.json` | Default product config |
-| `runs/` | Per-run artifacts (`{run_id}/review-payload.json`, reports) |
+| `artifacts/` | Per-run output (`{run_id}/review-payload.json`, reports) — gitignored |
 | `samples/` | Demo payloads for local renderer checks |
 | `DECISIONS.md` | Rationale archive (shared history with The Creator) |
 
 ## Render a payload locally
 
 ```bash
-python3 scripts/render_report.py runs/2026-09-29-1151-ONE-354099/review-payload.json --strict
+python3 scripts/render_report.py samples/demo-story.payload.json --strict
 ```
 
 ## Config

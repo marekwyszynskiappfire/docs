@@ -14,7 +14,7 @@
     "require_approval_before_write": true
   },
   "output": {
-    "artifacts_dir": "runs",
+    "artifacts_dir": "artifacts",
     "report_kinds": ["html", "md"]
   }
 }
