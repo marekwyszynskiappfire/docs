@@ -18,7 +18,7 @@ Structured quality review of a Jira requirement **before** test case generation.
 
 **Does not:** generate test cases, write to Xray, silently auto-post to Jira (copy-paste is always available; auto-post is a separate opt-in capability — see §7), verify against product code, or auto-fetch a linked PDF.
 
-Every non-obvious rule below traces back to a decision in [`DECISIONS.md`](DECISIONS.md) — that file is the record of *why*; this file is *what to do*.
+Every non-obvious rule below traces back to a maintainer-local decision record (`DECISIONS.md`, not published in this repo) — that file is the record of *why*; this file is *what to do*.
 
 ---
 

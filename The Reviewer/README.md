@@ -25,8 +25,6 @@ Operator guide: [`MANUAL.md`](MANUAL.md). Rules and workflow: [`SKILL.md`](SKILL
 | `config/DUAL-ATLASSIAN-MCP.md` | Two-site Cursor MCP setup + paste prompt |
 | `artifacts/` | Per-run output (`{run_id}/review-payload.json`, reports) — gitignored |
 | `samples/` | Demo payloads for local renderer checks |
-| `DECISIONS.md` | Rationale archive (shared history with The Creator) |
-
 ## Render a payload locally
 
 ```bash

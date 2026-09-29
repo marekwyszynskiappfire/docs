@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "review-payload.schema.json",
   "title": "ReviewPayload",
-  "description": "Machine-readable output of The Reviewer. Rendered to review-report.md and review-report.html by scripts/render_report.py — the model writes only this payload, never the reports (PRF-21). See DECISIONS.md for the rationale behind every non-obvious field.",
+  "description": "Machine-readable output of The Reviewer. Rendered to review-report.md and review-report.html by scripts/render_report.py — the model writes only this payload, never the reports (PRF-21). Rationale for non-obvious fields is in maintainer-local DECISIONS.md (not in this repo).",
   "$comment": "Version history. 1.0 (2026-09-28): initial freeze. 1.1 (2026-09-29): rollup.epic_child_inventory[].content_source required (C4); Epic scope may not carry CRITICAL findings or a BLOCKED gate (PRF-12); new required `report` block holding all rendered prose (PRF-21); finding.testing_impact; context_loaded[].detail and status `not_applicable`; requirements[].status/url; question.owner_hint accepts Security; scope.lifecycle (PRF-15); category `epic_lifecycle` and checklist_ref C1-C3 (PRF-19); report.question_cap_reason (PRF-13); recommended_batch_keys maxItems removed (PRF-16). The PRF-13/16/19 additions were made after a 1.1 run existed, under the widening exception. Rule (PRF-20, amended 2026-09-29): a change that makes previously valid payloads invalid (new required field, removed or narrowed allowed value, tighter limit) bumps the version; a change that only widens what's allowed (new optional field, new allowed value, looser limit) does not, and is recorded here.",
   "type": "object",
   "required": [

@@ -2,11 +2,11 @@
 
 **Version:** 1.1 · **Owner:** Marek Wyszyński (skill maintainer, persona P5) until a formal owner is assigned · **Status:** append-only — when a criterion changes, add a dated note under it rather than rewriting it, and never renumber a `checklist_ref` that has already shipped.
 
-This checklist merges **Marek's `requirement_standard.md`** (9 sections, structural/document quality) and **Karolina & Agata's `story-testability`** (12 gap dimensions, behavioural coverage) into one numbered list, per decision **RV3** in [`DECISIONS.md`](DECISIONS.md). Every finding The Reviewer emits carries a `checklist_ref` pointing at exactly one row below — there is no second checklist to cross-reference.
+This checklist merges **Marek's `requirement_standard.md`** (9 sections, structural/document quality) and **Karolina & Agata's `story-testability`** (12 gap dimensions, behavioural coverage) into one numbered list, per decision **RV3** in the maintainer-local `DECISIONS.md` (not in this repo). Every finding The Reviewer emits carries a `checklist_ref` pointing at exactly one row below — there is no second checklist to cross-reference.
 
 The two groups stay labelled because they check different things, not because they're two layers: **Group A** asks "is this requirement document well-formed?"; **Group B** asks "does its content cover these behavioural topics?" A requirement can pass every Group A row and still fail most of Group B (a beautifully structured story that never mentions error handling), and vice versa (a messy paragraph that happens to cover every edge case).
 
-**Scope note:** this checklist covers what **The Reviewer** itself enforces — the review-relevant subset of the requirement. It deliberately does **not** enforce the fuller `requirements-template.md` bundle (personas, fixtures, API/UI detail beyond presence, dependencies, glossary) — those sections exist to feed **The Creator**'s test generation and their absence is not a Reviewer finding. See `DECISIONS.md` → "bundle richness" resolution.
+**Scope note:** this checklist covers what **The Reviewer** itself enforces — the review-relevant subset of the requirement. It deliberately does **not** enforce the fuller `requirements-template.md` bundle (personas, fixtures, API/UI detail beyond presence, dependencies, glossary) — those sections exist to feed **The Creator**'s test generation and their absence is not a Reviewer finding. See maintainer-local `DECISIONS.md` → "bundle richness" resolution.
 
 ---
 

@@ -1,6 +1,6 @@
 # The Reviewer — reference
 
-Supporting detail for [`SKILL.md`](SKILL.md). Every rule here traces to a decision in [`DECISIONS.md`](DECISIONS.md); rulings are cited inline as `(D#)`, `(A-#)`, `(R-G#)`, `(RV#)`, `(U-#)`.
+Supporting detail for [`SKILL.md`](SKILL.md). Every rule here traces to the maintainer-local decision record (`DECISIONS.md`, not in this repo); rulings are cited inline as `(D#)`, `(A-#)`, `(R-G#)`, `(RV#)`, `(U-#)`.
 
 ---
 

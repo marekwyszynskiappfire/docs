@@ -155,4 +155,4 @@ Stop when the verification table shows both expected hosts.
 
 - Operator manual: [`MANUAL.md`](../MANUAL.md) (§10 summary + link here).
 - Site routing in runs: [`reference.md`](../reference.md) (`site_routing`), [`SKILL.md`](../SKILL.md) gather step 8.
-- Decision: [`DECISIONS.md`](../DECISIONS.md) PRF-24.
+- Decision record: PRF-24 in maintainer-local `DECISIONS.md` (not in this repo).

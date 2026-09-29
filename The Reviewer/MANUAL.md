@@ -176,7 +176,7 @@ Nothing in `config/<product>.json` is required for site routing — the skill di
 | **UX designer** | Findings and questions carrying `owner_hint: UX` (design/Figma disagreements, copy/labelling) are tagged as theirs directly, in both the HTML and Markdown reports — instead of everything defaulting to the PM |
 | **Release / delivery manager** | Uses Epic mode's child inventory, status mix, and batch handoff block for release-readiness triage — see [`sample-report-epic.html`](sample-report-epic.html) |
 | **Security / compliance reviewer** | Owns anything flagged `data_sensitivity` — a CRITICAL finding, always |
-| **Skill maintainer** | Owns `checklist.md` (append-only, versioned) and the decision record in `DECISIONS.md`; extends the checklist or the payload schema without renumbering a shipped `checklist_ref` |
+| **Skill maintainer** | Owns `checklist.md` (append-only, versioned) and a local `DECISIONS.md` (not in the public repo); extends the checklist or the payload schema without renumbering a shipped `checklist_ref` |
 | **Platform / MCP administrator** | Reads the "Data sources" section of any report — every source's status (Analyzed / Unavailable / Could not read / Not applicable) with a reason, always rendered even when nothing failed |
 
 *Not covered above: **Automation engineer** and **Test-data / environment steward**. Both are real personas for the Jira review ecosystem, but their needs (`test_pattern`, stability, parallel test-data isolation) belong to **The Creator**, not The Reviewer — this skill hands them a `automation_candidate`/`suggested_level` signal at most, nothing more.*
@@ -233,4 +233,4 @@ That's the duplicate-request guard (§8) — it noticed nothing changed and aske
 
 ## 15. Version
 
-This manual describes The Reviewer v1 (`payload_version` / `schema_version` `1.1`), drafted 2026-09-28, updated 2026-09-29. From schema 1.1 on, every report is generated from `review-payload.json` by `scripts/render_report.py`, so two reports always share the same sections in the same order. A rescan whose previous payload used an older schema runs as a full scan rather than a comparison. The full rationale for every rule above is recorded in [`DECISIONS.md`](DECISIONS.md); this manual will be updated if a locked decision changes.
+This manual describes The Reviewer v1 (`payload_version` / `schema_version` `1.1`), drafted 2026-09-28, updated 2026-09-29. From schema 1.1 on, every report is generated from `review-payload.json` by `scripts/render_report.py`, so two reports always share the same sections in the same order. A rescan whose previous payload used an older schema runs as a full scan rather than a comparison. The full rationale for every rule above lives in maintainer-local `DECISIONS.md` (not in this repo); this manual will be updated if a locked decision changes.

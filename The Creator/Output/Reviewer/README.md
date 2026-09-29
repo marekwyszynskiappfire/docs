@@ -7,4 +7,4 @@ The Reviewer skill lives at the **repository root**:
 
 Install that folder as the `reviewer` skill. Operator guide: `The Reviewer/MANUAL.md`.
 
-Decision record: `The Reviewer/DECISIONS.md` (shared history with The Creator).
+Maintainer decision record: local `DECISIONS.md` only (gitignored; see `The Creator/DECISIONS.md` in your working tree if you keep one).
