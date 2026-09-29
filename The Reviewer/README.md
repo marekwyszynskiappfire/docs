@@ -7,7 +7,7 @@ Product-agnostic Jira requirement quality review (Stories, Bugs, Tasks, Epics). 
 1. **Install the skill** — symlink or copy this folder into your agent skills path, for example:
    - Cursor: `.cursor/skills/reviewer/` → this directory (the folder must contain `SKILL.md`).
    - Claude / Hive: follow your host’s skill install docs; point `skill_root` at this directory.
-2. **Connect Atlassian MCP** (Jira read, optional Confluence read) and Figma MCP if design links appear on issues.
+2. **Connect Atlassian MCP** — for Appfire, two sites: see [`config/DUAL-ATLASSIAN-MCP.md`](config/DUAL-ATLASSIAN-MCP.md). Add Figma MCP if design links appear on issues.
 3. **Run:** `scan ONE-12345` or `Review ONE-12345` in chat.
 
 Operator guide: [`MANUAL.md`](MANUAL.md). Rules and workflow: [`SKILL.md`](SKILL.md).
@@ -22,6 +22,7 @@ Operator guide: [`MANUAL.md`](MANUAL.md). Rules and workflow: [`SKILL.md`](SKILL
 | `schemas/review-payload.schema.json` | Payload contract |
 | `scripts/render_report.py` | Payload → reports (stdlib; optional `jsonschema`) |
 | `config/default.json` | Default product config |
+| `config/DUAL-ATLASSIAN-MCP.md` | Two-site Cursor MCP setup + paste prompt |
 | `artifacts/` | Per-run output (`{run_id}/review-payload.json`, reports) — gitignored |
 | `samples/` | Demo payloads for local renderer checks |
 | `DECISIONS.md` | Rationale archive (shared history with The Creator) |

@@ -158,35 +158,11 @@ You don't need to touch the config to run a review. It matters when you're onboa
 
 ### Connecting to more than one Atlassian site
 
-Requirements sometimes link to a Confluence page or issue on a different Atlassian site. At Appfire that's typically Jira on `appfire.atlassian.net` with product pages on `appfireteam.atlassian.net`. The Reviewer reads each link through the connection for its site, so it needs one connection per site. Without the second one, those links show as unavailable, with the other site named.
+Requirements sometimes link to Confluence or Jira on a **second** Atlassian host (at Appfire: `appfire.atlassian.net` vs `appfireteam.atlassian.net`). The Reviewer needs one MCP connection per host; otherwise those sources appear as *Unavailable* in **Data sources**.
 
-**Why the built-in Atlassian plugin isn't enough:** it holds one site at a time. Re-authorising swaps the site rather than adding a second one. Two `mcp.json` entries using Cursor's native HTTP transport against the same Atlassian URL have the same problem, because Cursor keeps one login per server URL.
+**Full setup (manual steps, JSON template, troubleshooting, and a paste-in Cursor prompt):** [`config/DUAL-ATLASSIAN-MCP.md`](config/DUAL-ATLASSIAN-MCP.md).
 
-**What works:** two entries in `~/.cursor/mcp.json` that each run `mcp-remote`, a small proxy that keeps its own login per entry.
-
-1. Install `mcp-remote` once: `npm install -g mcp-remote`. If `npx mcp-remote` hangs silently, npm is failing certificate validation on the corporate network. Install with `npm_config_strict_ssl=false npm install -g mcp-remote` and point `mcp.json` at the installed binary (`which mcp-remote`) rather than `npx`.
-2. Add one entry per site, each with a **different callback port**. The default port is derived from the server URL, so without distinct ports two entries collide:
-
-   ```json
-   {
-     "mcpServers": {
-       "atlassian_appfire": {
-         "command": "/usr/local/bin/mcp-remote",
-         "args": ["https://mcp.atlassian.com/v2/mcp", "30801", "--resource", "https://appfire.atlassian.net/"]
-       },
-       "atlassian_appfireteam": {
-         "command": "/usr/local/bin/mcp-remote",
-         "args": ["https://mcp.atlassian.com/v2/mcp", "30802", "--resource", "https://appfireteam.atlassian.net/"]
-       }
-     }
-   }
-   ```
-
-3. Reload MCP servers in Cursor. Each entry opens a browser tab to authorise. Complete them **one at a time**. On the consent screen, pick the site that matches the entry you're authorising. The site granted is whichever one you select there; the `--resource` value only keeps the two logins apart locally.
-4. Check which site each connection actually reached: ask the agent to run `getAccessibleAtlassianResources` on both. If they came out swapped, rename the two top-level keys so the names match reality. **Don't edit the `args`.** The stored logins are keyed on them, and changing them forces a fresh login.
-5. Optionally disable the built-in Atlassian plugin, so the agent doesn't pick a third connection to one of the same sites.
-
-Nothing in the product config changes: The Reviewer discovers the connected sites at the start of each run.
+Nothing in `config/<product>.json` is required for site routing — the skill discovers connected sites each run.
 
 ---
 
