@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "TestCaseDraft.schema.json",
+  "title": "TestCaseDraftBatch",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "generated_at",
+    "golden_version",
+    "source_requirement_keys",
+    "coverage_report",
+    "tests"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "golden_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_requirement_keys": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9]+-[0-9]+$"
+      },
+      "minItems": 1
+    },
+    "requirements_review_run_id": {
+      "type": "string",
+      "description": "Optional link to requirements-review artifact"
+    },
+    "gate_override": {
+      "type": "boolean",
+      "description": "True if force=true was used to bypass BLOCKED review gate"
+    },
+    "execution_plan": {
+      "$ref": "#/$defs/execution_plan"
+    },
+    "coverage_report": {
+      "$ref": "#/$defs/coverage_report"
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/test_case_draft"
+      },
+      "minItems": 1
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "schema_valid": { "type": "boolean" },
+        "traceability_valid": { "type": "boolean" },
+        "policy_valid": { "type": "boolean" },
+        "errors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "test_case_draft": {
+      "type": "object",
+      "required": [
+        "title",
+        "linked_requirement_keys",
+        "steps",
+        "coverage_catalog_id",
+        "execution_tier",
+        "test_pattern",
+        "role",
+        "customer_impact",
+        "test_data_required",
+        "test_data_prerequisites"
+      ],
+      "properties": {
+        "draft_id": {
+          "type": "string",
+          "description": "Stable id within batch e.g. TC-001"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 8
+        },
+        "linked_requirement_keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9]+-[0-9]+$"
+          },
+          "minItems": 1
+        },
+        "coverage_catalog_id": {
+          "type": "string",
+          "description": "Id from coverage-catalog.md e.g. CAT-CREATE-TEXT",
+          "pattern": "^CAT-[A-Z0-9-]+$"
+        },
+        "execution_tier": {
+          "type": "string",
+          "enum": ["P0", "P1", "P2", "P3"],
+          "description": "P0=Critical, P1=Mandatory, P2=Medium, P3=Deferrable"
+        },
+        "test_pattern": {
+          "type": "string",
+          "enum": ["journey", "atomic"]
+        },
+        "role": {
+          "type": "string",
+          "description": "OKR_ADMIN, STANDARD_USER, NO_PERMISSION, API_CLIENT, SYSTEM"
+        },
+        "customer_impact": {
+          "type": "string",
+          "minLength": 10,
+          "description": "One sentence: who is harmed and how if this test fails"
+        },
+        "deferrable": {
+          "type": "boolean",
+          "description": "True if safe to skip under time pressure (required true for P3)"
+        },
+        "deferrable_rationale": {
+          "type": "string",
+          "description": "Why skipping is acceptable; required when deferrable=true"
+        },
+        "test_data_required": {
+          "type": "boolean",
+          "description": "True if domain test data must exist before executing step 1 (fields, OKRs, users, files). False if test creates all data during execution (environment-only setup)."
+        },
+        "test_data_prerequisites": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What to prepare before the test. If test_data_required=false, list environment-only needs (account, empty box, flag state)."
+        },
+        "objective": { "type": "string" },
+        "preconditions": { "type": "string" },
+        "test_type": {
+          "type": "string",
+          "enum": ["Manual", "Cucumber", "Generic", "Other"],
+          "default": "Manual"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["Highest", "High", "Medium", "Low", "Lowest"]
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["step", "expected_result"],
+            "properties": {
+              "step": { "type": "string", "minLength": 1 },
+              "expected_result": { "type": "string", "minLength": 1 },
+              "test_data": { "type": "string" }
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "covers_design": { "type": "boolean" },
+        "design_references": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        },
+        "linked_ac_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional traceability to requirement AC ids"
+        },
+        "source_quotes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Verbatim requirement excerpts grounding this test"
+        },
+        "generation_notes": { "type": "string" },
+        "possible_duplicate_of": {
+          "type": "string",
+          "description": "Xray test key if dedup search found similar test"
+        }
+      }
+    },
+    "coverage_report": {
+      "type": "object",
+      "required": ["uncovered_ac_ids", "warnings"],
+      "properties": {
+        "catalog_coverage_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of applicable catalog items Covered or N/A"
+        },
+        "catalog_coverage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["catalog_id", "tier", "status"],
+            "properties": {
+              "catalog_id": { "type": "string" },
+              "tier": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+              "covered_by": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "status": {
+                "type": "string",
+                "enum": ["Covered", "UNCOVERED", "PARTIAL", "N/A"]
+              },
+              "blocker": {
+                "type": "string",
+                "description": "Why UNCOVERED e.g. API spec TBD"
+              }
+            }
+          }
+        },
+        "matrix": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ac_id", "status"],
+            "properties": {
+              "jira_key": { "type": "string" },
+              "ac_id": { "type": "string" },
+              "covered_by": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "status": {
+                "type": "string",
+                "enum": ["Covered", "UNCOVERED", "PARTIAL", "N/A"]
+              }
+            }
+          }
+        },
+        "uncovered_ac_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "uncovered_goals": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Goal bullets from Epic description when formal AC ids absent"
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "execution_plan": {
+      "type": "object",
+      "properties": {
+        "p0_critical": { "$ref": "#/$defs/tier_plan" },
+        "p1_mandatory": { "$ref": "#/$defs/tier_plan" },
+        "p2_medium": { "$ref": "#/$defs/tier_plan" },
+        "p3_deferrable": { "$ref": "#/$defs/tier_plan" },
+        "minimum_release_gate": { "type": "string" },
+        "time_boxed_release": { "type": "string" }
+      }
+    },
+    "tier_plan": {
+      "type": "object",
+      "properties": {
+        "count": { "type": "integer", "minimum": 0 },
+        "estimated_hours": { "type": "number", "minimum": 0 },
+        "tests": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

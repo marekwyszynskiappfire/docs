@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timetracker E2E Skills — Quick Guide</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface-2: #243044;
+      --text: #e8edf4;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-2: #22c55e;
+      --warn: #f59e0b;
+      --writing: #8b5cf6;
+      --automating: #06b6d4;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 12px;
+      --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+      --mono: "SF Mono", "Fira Code", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 1.5rem 1rem;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+
+    nav h1 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    nav .subtitle {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    nav a {
+      display: block;
+      padding: 0.45rem 0.65rem;
+      margin-bottom: 0.25rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    main { padding: 2rem 2.5rem 4rem; max-width: 960px; }
+
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 1.75rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    p, li { color: #cbd5e1; font-size: 0.95rem; }
+    p { margin-bottom: 0.75rem; }
+
+    .lead { font-size: 1.05rem; color: #cbd5e1; max-width: 42rem; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-writing { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; }
+    .badge-auto { background: rgba(6, 182, 212, 0.2); color: #67e8f9; }
+    .badge-human { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
+    .badge-never { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.35rem;
+      margin: 1rem 0;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      nav { position: relative; height: auto; }
+      .card-grid { grid-template-columns: 1fr; }
+      main { padding: 1.25rem; }
+    }
+
+    .card-writing { border-left: 3px solid var(--writing); }
+    .card-auto { border-left: 3px solid var(--automating); }
+
+    .card h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-writing h4 { color: #c4b5fd; }
+    .card-auto h4 { color: #67e8f9; }
+
+    /* Pipeline */
+    .pipeline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .pipe-step {
+      flex: 1;
+      min-width: 120px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .pipe-step strong {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .pipe-step span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .pipe-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--muted);
+      font-size: 1.25rem;
+      padding: 0 0.15rem;
+    }
+
+    /* Authority stack */
+    .stack { list-style: none; margin: 1rem 0; }
+
+    .stack li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 0.5rem;
+      border-radius: var(--radius);
+    }
+
+    .stack .num {
+      flex-shrink: 0;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stack li:nth-child(2) .num { background: var(--accent-2); }
+    .stack li:nth-child(3) .num { background: var(--muted); }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 1rem 0;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td code, .card code {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 0.12rem 0.4rem;
+      border-radius: 4px;
+      color: #93c5fd;
+    }
+
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 700px) { .do-dont { grid-template-columns: 1fr; } }
+
+    .do, .dont {
+      padding: 1rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+    }
+
+    .do {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+    }
+
+    .dont {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .do h4 { color: #86efac; margin-bottom: 0.5rem; font-size: 0.8rem; }
+    .dont h4 { color: #fca5a5; margin-bottom: 0.5rem; font-size: 0.8rem; }
+
+    pre {
+      background: #0a0e14;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #a5f3fc;
+      margin: 1rem 0;
+    }
+
+    .data-map {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 700px) { .data-map { grid-template-columns: 1fr; } }
+
+    .data-node {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem;
+    }
+
+    .data-node .label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .data-node .title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .data-node .desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    ul.checklist { list-style: none; margin: 0.75rem 0; }
+    ul.checklist li {
+      padding: 0.35rem 0 0.35rem 1.5rem;
+      position: relative;
+      font-size: 0.88rem;
+    }
+
+    ul.checklist li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav>
+      <h1>E2E Skills Guide</h1>
+      <p class="subtitle">qa-coe/E2E/.cursor/skills</p>
+      <a href="#overview">Overview</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#authority">What to trust</a>
+      <a href="#writing">TestCaseWriting</a>
+      <a href="#automating">AutomatingTestCases</a>
+      <a href="#data">Where data comes from</a>
+      <a href="#mapping">Jira → Playwright</a>
+      <a href="#rules">Hard rules</a>
+      <a href="#invoke">How to invoke</a>
+    </nav>
+
+    <main>
+      <section id="overview">
+        <h2>Two skills, one workflow</h2>
+        <p class="lead">
+          Cursor skills for Timetracker QA CoE E2E: draft manual tests in Jira/XRay format,
+          then implement approved cases as Playwright specs. Neither skill creates Jira issues automatically.
+        </p>
+        <div class="badge-row">
+          <span class="badge badge-writing">TestCaseWriting</span>
+          <span class="badge badge-auto">AutomatingTestCases</span>
+          <span class="badge badge-human">Human imports to Jira</span>
+        </div>
+        <div class="card-grid">
+          <div class="card card-writing">
+            <h4>TestCaseWriting</h4>
+            <p>Manual UI test cases — Action, Data, Expected Result. XRay-ready CSV. E2E candidate recommendations.</p>
+            <p><strong>Output:</strong> Markdown tables + CSV blocks for human review and Jira import.</p>
+          </div>
+          <div class="card card-auto">
+            <h4>AutomatingTestCases</h4>
+            <p>Playwright implementation under <code>qa-coe/E2E/Timetracker/</code>. Reuses <code>views/</code>, <code>api/</code>, date isolation.</p>
+            <p><strong>Output:</strong> <code>TTQA-N.case.ts</code> + scenario registration.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pipeline">
+        <h2>End-to-end pipeline</h2>
+        <div class="pipeline">
+          <div class="pipe-step">
+            <strong>1. Ask user</strong>
+            <span>Summary, TTQA-*, KAN-* + id</span>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-step">
+            <strong>2. TestCaseWriting</strong>
+            <span>Draft + CSV</span>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-step">
+            <strong>3. Human</strong>
+            <span>Jira / XRay import</span>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-step">
+            <strong>4. AutomatingTestCases</strong>
+            <span>Playwright spec</span>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-step">
+            <strong>5. CI</strong>
+            <span><code>e2e:target</code></span>
+          </div>
+        </div>
+        <p>Always in this order. AutomatingTestCases blocks if issue keys or steps are missing.</p>
+      </section>
+
+      <section id="authority">
+        <h2>What to trust (authority order)</h2>
+        <p>Existing ~143 Playwright specs are <strong>examples</strong>, not law. Some predate current rules.</p>
+        <ol class="stack">
+          <li>
+            <span class="num">1</span>
+            <div>
+              <strong>Approved Jira steps</strong><br />
+              Action / Data / Expected Result — contract for manual and automated cases.
+            </div>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <div>
+              <strong>Product code + live UI</strong><br />
+              <code>translate.ts</code>, Jira-UI, <code>@7pace/components</code> — labels and behavior.
+            </div>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <div>
+              <strong>Repo examples</strong><br />
+              Sibling <code>TTQA-*.case.ts</code> — patterns for helpers, step tone, date labels. Fix when Jira/code disagree.
+            </div>
+          </li>
+        </ol>
+        <p><strong>Context (not step authority):</strong> Jira stories and epics you send — AC, scope, parent epic. Helps coverage and <strong>Preliminary</strong> drafts; approved XRay steps still win for wording.</p>
+      </section>
+
+      <section id="writing">
+        <h2>TestCaseWriting skill</h2>
+        <span class="badge badge-writing">Manual / XRay</span>
+
+        <h3>When to use</h3>
+        <ul class="checklist">
+          <li>New user-facing feature or UI regression</li>
+          <li>Convert exploratory notes → structured cases</li>
+          <li>Recommend E2E automation candidates (2–5 per slice)</li>
+        </ul>
+
+        <h3>Jira story &amp; epic context</h3>
+        <div class="card">
+          <p>When you <strong>paste, link, or export</strong> Jira <strong>stories</strong> or <strong>epics</strong>, the skill uses them for <strong>scope and acceptance criteria</strong> — feature intent, parent epic, what to cover, and open assumptions.</p>
+          <p><strong>Not a substitute</strong> for approved XRay steps. Story AC alone → <strong>Preliminary</strong> until code/UI is verified. <code>TT-*</code> / <code>EPIC-*</code> ≠ <code>KAN-*</code> issue under test — still ask for work-item key, summary, and id when Data needs an issue.</p>
+        </div>
+
+        <h3>Ask before drafting (minimum)</h3>
+        <table>
+          <thead>
+            <tr><th>#</th><th>Input</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Summary (full XRay title)</td><td>Primary identifier</td></tr>
+            <tr><td>2</td><td>TTQA-* key (if assigned)</td><td>Never invent</td></tr>
+            <tr><td>3–4</td><td>Folder / TS-* scenario</td><td>e.g. TS-1c, TS-8a</td></tr>
+            <tr><td>5</td><td>Jira story / epic / bug (optional)</td><td>Link, paste, or export — AC and scope</td></tr>
+            <tr><td>6–8</td><td>KAN-* key, summary, numeric id</td><td>Required when steps use an issue</td></tr>
+            <tr><td>9</td><td>Final vs Preliminary</td><td>Code-verified vs assumptions</td></tr>
+          </tbody>
+        </table>
+
+        <h3>What it produces</h3>
+        <div class="card">
+          <p><strong>Step format:</strong> Action | Data | Expected Result (CSV: 3 columns only)</p>
+          <p><strong>Description block</strong> in Jira (preconditions, aliases) — not in CSV</p>
+          <p><strong>Status labels:</strong> Final draft vs Preliminary — assumptions must be listed</p>
+          <p><strong>Does NOT:</strong> auto-create Jira/XRay issues, borrow KAN-* from other TTQA cases</p>
+        </div>
+
+        <h3>Workflow</h3>
+        <pre>Ask user → read Jira story/epic if sent → grep example specs → verify code/UI
+→ layer coverage (access → shell → happy path → edges)
+→ draft + CSV → human review → Jira import
+→ (optional) hand off to AutomatingTestCases</pre>
+      </section>
+
+      <section id="automating">
+        <h2>AutomatingTestCases skill</h2>
+        <span class="badge badge-auto">Playwright</span>
+
+        <h3>When to use</h3>
+        <p>After Jira case is approved and user wants Playwright automation.</p>
+
+        <h3>Ask before coding (blocks if missing)</h3>
+        <table>
+          <thead>
+            <tr><th>#</th><th>Input</th><th>Maps to code</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>TTQA-* key</td><td><code>TTQA-N.case.ts</code>, <code>TTQA_N()</code></td></tr>
+            <tr><td>2</td><td>XRay Summary</td><td><code>testCase("TTQA-N", "Summary", …)</code></td></tr>
+            <tr><td>3</td><td>Scenario TS-* suffix</td><td><code>TS-1c.scenario.spec.ts</code></td></tr>
+            <tr><td>4</td><td>Approved steps</td><td><code>testStep("…")</code> + <code>//</code> comments</td></tr>
+            <tr><td>5–7</td><td>KAN-* + summary + id</td><td><code>jiraIssueIds.json</code> + constants</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Reuse before create</h3>
+        <ol class="stack">
+          <li><span class="num">1</span><div>Grep <code>views/</code>, <code>selectors/</code>, <code>api/</code></div></li>
+          <li><span class="num">2</span><div>Skim sibling <code>TTQA-*.case.ts</code> as examples</div></li>
+          <li><span class="num">3</span><div>Read product UI only when adding a <em>new</em> helper</div></li>
+        </ol>
+
+        <h3>Deliverables</h3>
+        <ul class="checklist">
+          <li><code>specs/TS-*/TTQA-N.case.ts</code></li>
+          <li>Register in <code>TS-*a.scenario.spec.ts</code></li>
+          <li>Entry in <code>parallelTestDateIsolation.ts</code> if new date band</li>
+          <li><code>jiraIssueIds.json</code> row (user-provided id)</li>
+        </ul>
+      </section>
+
+      <section id="data">
+        <h2>Where data comes from</h2>
+        <p>No automatic Jira API fetch. The agent asks you, reads what you send from Jira, then reads the repo.</p>
+
+        <div class="data-map">
+          <div class="data-node">
+            <div class="label">You provide</div>
+            <div class="title">Jira contract</div>
+            <div class="desc">Steps, Summary, TTQA key, KAN-* key, summary, numeric id</div>
+          </div>
+          <div class="data-node">
+            <div class="label">You provide</div>
+            <div class="title">Stories &amp; epics</div>
+            <div class="desc">Link, paste, or export from Jira — AC, scope, parent epic (TestCaseWriting context)</div>
+          </div>
+          <div class="data-node">
+            <div class="label">Repo fixtures</div>
+            <div class="title">Isolation &amp; issues</div>
+            <div class="desc"><code>parallelTestDateIsolation.ts</code>, <code>jiraIssueIds.json</code></div>
+          </div>
+          <div class="data-node">
+            <div class="label">Repo examples</div>
+            <div class="title">~143 case files</div>
+            <div class="desc">Patterns only — same TS-* or theme</div>
+          </div>
+          <div class="data-node">
+            <div class="label">Shared code</div>
+            <div class="title">views / api</div>
+            <div class="desc">400+ helpers, selectors, seed modules</div>
+          </div>
+          <div class="data-node">
+            <div class="label">Product</div>
+            <div class="title">Jira-UI + packages</div>
+            <div class="desc">data-testid, tooltips, labels when inventing helpers</div>
+          </div>
+          <div class="data-node">
+            <div class="label">E2E config</div>
+            <div class="title">Users &amp; emails</div>
+            <div class="desc"><code>e2eRequiredJiraUserEmails.ts</code></div>
+          </div>
+        </div>
+
+        <h3>Date isolation (parallel workers)</h3>
+        <p>One E2E user — each TTQA gets a unique calendar band via resolvers:</p>
+        <table>
+          <thead>
+            <tr><th>Scenario</th><th>Resolver example</th><th>Anchor</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>TS-1c weekly</td><td><code>resolveTs1cWeek("TTQA-28")</code></td><td>4 months back + week index</td></tr>
+            <tr><td>TS-5 timesheet</td><td><code>resolveTs5Week("TTQA-96")</code></td><td>5 months back + week index</td></tr>
+            <tr><td>TS-2 monthly</td><td><code>resolveTs2Month("TTQA-24")</code></td><td>8+ months, 2-month gaps</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="mapping">
+        <h2>Jira → Playwright mapping</h2>
+        <table>
+          <thead>
+            <tr><th>Jira</th><th>Playwright</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Action (+ Data in title)</td><td><code>testStep("…", async () => {})</code> — plain <code>"..."</code> only</td></tr>
+            <tr><td>Expected Result</td><td><code>//</code> comment + <code>expect*</code> assertions</td></tr>
+            <tr><td>Preconditions / seed</td><td>API in step 1 or fixture options</td></tr>
+            <tr><td>Summary</td><td><code>testCase</code> 2nd argument</td></tr>
+            <tr><td>TTQA key</td><td>Filename + <code>testCase</code> 1st argument</td></tr>
+          </tbody>
+        </table>
+
+        <div class="do-dont">
+          <div class="do">
+            <h4>✓ Good testStep</h4>
+            <pre>testStep(
+  "Open Weekly module and go to week. week: 5 months ago; TotalTime1: 1h 00m",
+  async () => { … }
+);</pre>
+          </div>
+          <div class="dont">
+            <h4>✗ Never</h4>
+            <pre>testStep(
+  `Date1: ${date1Label}; IssueKey1: ${ISSUE_KEY}`,
+  async () => { … }
+);</pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="rules">
+        <h2>Hard rules (both skills)</h2>
+        <div class="badge-row">
+          <span class="badge badge-never">Never invent TTQA-*</span>
+          <span class="badge badge-never">Never borrow KAN-*</span>
+          <span class="badge badge-never">No ${} in testStep</span>
+        </div>
+        <ul class="checklist">
+          <li><strong>testStep titles:</strong> static <code>"..."</code> literals only — no template literals, no <code>${…}</code></li>
+          <li><strong>Dates in steps:</strong> relative labels (<code>5 months ago</code>) — not <code>today</code> or <code>moment().format()</code> in titles</li>
+          <li><strong>Weekly clock times:</strong> <code>test.use({ timezoneId: "UTC" })</code> + UTC seed via <code>moment.utc(...)</code></li>
+          <li><strong>Weekly hover:</strong> times on card; tooltip = project/summary (usually not times)</li>
+          <li><strong>Scenario ids:</strong> <code>TS-5a</code> not bare <code>TS-5</code></li>
+          <li><strong>Stage:</strong> always <code>DEVELOP | REVIEW</code> — do not ask user</li>
+        </ul>
+      </section>
+
+      <section id="invoke">
+        <h2>How to invoke in Cursor</h2>
+        <pre>@qa-coe/E2E/.cursor/skills/TestCaseWriting
+@qa-coe/E2E/.cursor/skills/AutomatingTestCases</pre>
+        <p>Skill files:</p>
+        <ul class="checklist">
+          <li><code>qa-coe/E2E/.cursor/skills/TestCaseWriting/SKILL.md</code></li>
+          <li><code>qa-coe/E2E/.cursor/skills/AutomatingTestCases/SKILL.md</code></li>
+        </ul>
+        <p>Verify automation locally:</p>
+        <pre>pnpm run e2e:target --pr=&lt;N&gt; --env=&lt;M&gt; --case=TTQA-XXX</pre>
+      </section>
+
+      <footer>
+        Timetracker QA CoE E2E skills overview · Generated from SKILL.md files ·
+        Open this file in any browser · No external dependencies
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const links = document.querySelectorAll("nav a");
+    const sections = [...links].map(a => document.querySelector(a.getAttribute("href")));
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove("active"));
+            const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add("active");
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+
+    sections.forEach(s => s && observer.observe(s));
+  </script>
+</body>
+</html>

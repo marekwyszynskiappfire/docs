@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "review_findings.schema.json",
+  "title": "RequirementsReviewFindings",
+  "type": "object",
+  "required": [
+    "run_id",
+    "reviewed_at",
+    "scope",
+    "requirement_keys",
+    "findings",
+    "gate",
+    "schema_version"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["epic", "story", "stories", "jql", "bundle"]
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requirement_keys": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9]+-[0-9]+$"
+      },
+      "minItems": 1
+    },
+    "bundle_version": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "rollup": {
+      "type": "object",
+      "properties": {
+        "common_patterns": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "critical_count": { "type": "integer", "minimum": 0 },
+        "high_count": { "type": "integer", "minimum": 0 },
+        "medium_count": { "type": "integer", "minimum": 0 },
+        "low_count": { "type": "integer", "minimum": 0 },
+        "recommended_pm_order": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "required": ["status", "critical_unresolved_count", "blocks_test_generation"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["PASS", "PASS_WITH_WARNINGS", "BLOCKED"]
+        },
+        "critical_unresolved_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocks_test_generation": {
+          "type": "boolean"
+        },
+        "force_override": {
+          "type": "boolean"
+        },
+        "force_override_by": {
+          "type": "string"
+        }
+      }
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["jira_key", "message"],
+        "properties": {
+          "jira_key": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": [
+        "finding_id",
+        "jira_key",
+        "severity",
+        "category",
+        "finding_summary",
+        "blocks_test_generation"
+      ],
+      "properties": {
+        "finding_id": {
+          "type": "string",
+          "pattern": "^RR-[A-Z][A-Z0-9]+-[0-9]+-[0-9]+$"
+        },
+        "jira_key": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9]+-[0-9]+$"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "acceptance_criteria",
+            "scope",
+            "testability",
+            "traceability",
+            "open_questions",
+            "template_compliance",
+            "data_sensitivity"
+          ]
+        },
+        "checklist_ref": {
+          "type": "string",
+          "description": "Reference to requirement_standard.md criterion, e.g. 3.1"
+        },
+        "excerpt_quote": {
+          "type": "string"
+        },
+        "finding_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_for_PM": {
+          "type": "string"
+        },
+        "suggested_AC_patch": {
+          "type": "string"
+        },
+        "blocks_test_generation": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
