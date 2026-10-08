@@ -8,6 +8,7 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+from creator_export import automation_candidate_flag, automation_fit_value
 from db import db, init_db, log_event, utc_now
 
 EPIC_DIR_RE = re.compile(r"^[A-Z][A-Z0-9]+-\d+$")
@@ -192,12 +193,14 @@ def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) 
             conn.execute(
                 """
                 INSERT INTO test_case_row (id, creator_run_id, draft_id, title, execution_tier, test_type,
-                  human_review_status, automation_candidate, updated_at)
-                VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?)
+                  human_review_status, automation_candidate, automation_fit, marked_for_xray_import, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, ?)
                 ON CONFLICT(creator_run_id, draft_id) DO UPDATE SET
                   title = excluded.title,
                   execution_tier = excluded.execution_tier,
                   test_type = excluded.test_type,
+                  automation_candidate = excluded.automation_candidate,
+                  automation_fit = excluded.automation_fit,
                   updated_at = excluded.updated_at
                 """,
                 (
@@ -207,7 +210,8 @@ def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) 
                     tc.get("title") or draft_id,
                     tc.get("execution_tier"),
                     tc.get("test_type"),
-                    1 if (tc.get("test_type") or "").lower() in ("cucumber", "generic") else 0,
+                    automation_candidate_flag(tc),
+                    automation_fit_value(tc),
                     now,
                 ),
             )

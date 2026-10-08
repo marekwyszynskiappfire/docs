@@ -13,5 +13,5 @@ Run once on a new machine before a portfolio review.
    Smoke: open **Personas** and **Reviewer configs**; save should write under `Trinity/personas/` and `Trinity/reviewer/config/runs/`.
 6. **Import** —  
    `./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<your-local-run>` after a Reviewer portfolio scan (runs are gitignored).
-7. **Pipeline** — skim [`PIPELINE.md`](PIPELINE.md) for the Reviewer → Studio → Creator sequence.
+7. **Pipeline** — skim [`PIPELINE.md`](PIPELINE.md); hands-on walkthrough: [`TESTING.md`](TESTING.md).
 8. **Optional Jira REST** (Studio scope resolve) — copy `Trinity/studio/.env.example` → `.env` with API token; otherwise use **Copy JQL resolve prompt** in Reviewer configs.

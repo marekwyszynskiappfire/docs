@@ -74,6 +74,8 @@ CREATE TABLE IF NOT EXISTS test_case_row (
   human_review_status TEXT NOT NULL DEFAULT 'pending'
     CHECK (human_review_status IN ('pending', 'edited', 'approved', 'rejected')),
   automation_candidate INTEGER,
+  automation_fit TEXT CHECK (automation_fit IS NULL OR automation_fit IN ('full', 'partial', 'manual_only')),
+  marked_for_xray_import INTEGER NOT NULL DEFAULT 0,
   current_revision_id INTEGER,
   xray_test_key TEXT,
   import_status TEXT,

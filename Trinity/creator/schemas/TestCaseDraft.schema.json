@@ -45,6 +45,28 @@
       "type": "boolean",
       "description": "True if force=true was used to bypass BLOCKED review gate"
     },
+    "suite_mode": {
+      "type": "string",
+      "enum": ["release_slice_e2e", "comprehensive_legacy"],
+      "description": "Default release_slice_e2e: 3-5 journey tests, no atomic"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Resolved config product id e.g. bigpicture"
+    },
+    "golden_root": {
+      "type": "string",
+      "description": "Path used for style/depth reference (from config or override)"
+    },
+    "review_ref": {
+      "type": "string",
+      "description": "Path to approved review-payload.json when Reviewer handoff was used"
+    },
+    "persona_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Trinity/personas/ files loaded for this run"
+    },
     "execution_plan": {
       "$ref": "#/$defs/execution_plan"
     },
@@ -78,13 +100,16 @@
         "title",
         "linked_requirement_keys",
         "steps",
-        "coverage_catalog_id",
         "execution_tier",
         "test_pattern",
         "role",
         "customer_impact",
         "test_data_required",
-        "test_data_prerequisites"
+        "test_data_prerequisites",
+        "automation_fit",
+        "automation_candidate",
+        "automation_blockers",
+        "persona_notes"
       ],
       "properties": {
         "draft_id": {
@@ -105,8 +130,32 @@
         },
         "coverage_catalog_id": {
           "type": "string",
-          "description": "Id from coverage-catalog.md e.g. CAT-CREATE-TEXT",
+          "description": "Optional; product catalog id when assets.coverage_catalog is set",
           "pattern": "^CAT-[A-Z0-9-]+$"
+        },
+        "automation_fit": {
+          "type": "string",
+          "enum": ["full", "partial", "manual_only"],
+          "description": "Automation suitability for regression backlog"
+        },
+        "automation_candidate": {
+          "type": "boolean",
+          "description": "True when full or partial happy path should enter automation backlog"
+        },
+        "automation_blockers": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Empty when automation_fit is full"
+        },
+        "persona_notes": {
+          "type": "object",
+          "required": ["qa_engineer", "test_architect", "automation_engineer"],
+          "properties": {
+            "qa_engineer": { "type": "string", "minLength": 1 },
+            "test_architect": { "type": "string", "minLength": 1 },
+            "automation_engineer": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
         },
         "execution_tier": {
           "type": "string",

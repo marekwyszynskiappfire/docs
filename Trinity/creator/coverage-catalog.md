@@ -1,15 +1,17 @@
-# Coverage catalog — comprehensive test generation
+# Coverage catalog — optional product pack (legacy comprehensive mode)
 
 **Version:** 1.0  
-**Used by:** `test-case-creation` skill (load on every run)  
-**Purpose:** Mandatory checklist so generated suites match **production QA depth** (see [6113-extraction.md](../artifacts/6113-extraction.md) — 19 authoritative Xray tests) **plus** full Epic traceability. Every catalog item must map to ≥1 test or an explicit `UNCOVERED` + warning.
+**Used by:** Trinity Creator **only** when `config/<product>.json` sets `assets.coverage_catalog` to this file (or a product fork).  
+**Default Epic runs:** coverage comes from **Reviewer** `review-payload.json` (`coverage_report.matrix`), not this catalog.
+
+**Purpose:** Checklist for **comprehensive_legacy** suites on specific products (e.g. OKR custom fields Part 2). Not the default 3–5 e2e release slice.
 
 ---
 
 ## How to use this catalog
 
-1. After parsing requirements, instantiate applicable **catalog items** for the feature.
-2. For each item, generate the prescribed **test pattern** (journey or atomic).
+1. Enable via product config; confirm Epic matches this catalog’s domain.
+2. For each item, generate the prescribed **test pattern** (prefer **journey**; atomic only where catalog requires).
 3. Assign **execution tier** (P0–P3), **customer impact** text, and **test data prerequisites** (`test_data_required`, `test_data_prerequisites`).
 4. In `coverage_report.catalog_coverage[]`, record item id → test title(s) → status.
 5. **Do not mark generation complete** while any **P0 or P1** item is `UNCOVERED` without a documented blocker (TBD spec).

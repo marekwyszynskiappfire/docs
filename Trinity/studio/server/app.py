@@ -20,6 +20,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from db import db, init_db, json_loads, log_event, row_to_dict, utc_now
 from import_review import import_reviewer_run, import_test_case_batch
 from personas import docs_repo_root, list_persona_files, read_persona, write_persona
+from creator_export import (
+    automation_candidate_flag,
+    automation_fit_value,
+    build_importer_payload,
+    validate_import_mark,
+    write_importer_export,
+)
 from creator_handoff import build_creator_prompt, payload_readiness, review_ref_relative
 from run_config import (
     list_new_epics,
@@ -65,7 +72,19 @@ class UnitMetaBody(BaseModel):
 class SaveTestCaseBody(BaseModel):
     case: dict[str, Any]
     human_review_status: str | None = None
+    marked_for_xray_import: bool | None = None
     created_by: str = "human"
+
+
+class PatchTestBody(BaseModel):
+    human_review_status: str | None = None
+    marked_for_xray_import: bool | None = None
+
+
+class BulkTestsBody(BaseModel):
+    test_ids: list[str] = Field(..., min_length=1)
+    human_review_status: str | None = None
+    marked_for_xray_import: bool | None = None
 
 
 class SavePersonaBody(BaseModel):
@@ -560,6 +579,12 @@ def global_stats() -> dict[str, Any]:
         imported_xray = conn.execute(
             "SELECT COUNT(*) FROM test_case_row WHERE xray_test_key IS NOT NULL"
         ).fetchone()[0]
+        ready_import = conn.execute(
+            """
+            SELECT COUNT(*) FROM test_case_row
+            WHERE human_review_status = 'approved' AND marked_for_xray_import = 1
+            """
+        ).fetchone()[0]
     return {
         "pipeline_runs": runs,
         "review_units": units,
@@ -571,6 +596,7 @@ def global_stats() -> dict[str, Any]:
         "test_cases_approved": tests_approved,
         "test_cases_automation_candidate": automatable,
         "test_cases_imported_xray": imported_xray,
+        "test_cases_ready_for_import": ready_import,
     }
 
 
@@ -597,7 +623,21 @@ def get_creator_run(run_id: str) -> dict[str, Any]:
             "SELECT * FROM test_case_row WHERE creator_run_id = ? ORDER BY draft_id",
             (run_id,),
         ).fetchall()
-    return {"run": row_to_dict(run), "tests": [row_to_dict(t) for t in tests]}
+        ready = sum(
+            1
+            for t in tests
+            if t["human_review_status"] == "approved" and t["marked_for_xray_import"]
+        )
+    return {
+        "run": row_to_dict(run),
+        "tests": [row_to_dict(t) for t in tests],
+        "summary": {
+            "total": len(tests),
+            "approved": sum(1 for t in tests if t["human_review_status"] == "approved"),
+            "rejected": sum(1 for t in tests if t["human_review_status"] == "rejected"),
+            "ready_for_import": ready,
+        },
+    }
 
 
 @app.get("/api/tests/{test_id}")
@@ -616,14 +656,49 @@ def get_test(test_id: str) -> dict[str, Any]:
     return {"test": row_to_dict(row), "case": json.loads(rev["case_json"]) if rev else None}
 
 
+def _resolve_test_row_update(
+    row: Any,
+    body_status: str | None,
+    body_marked: bool | None,
+    case: dict[str, Any],
+) -> tuple[str, int, str | None, int]:
+    status = body_status or row["human_review_status"] or "edited"
+    if status == "pending":
+        status = "edited"
+    marked = (
+        int(body_marked)
+        if body_marked is not None
+        else int(row["marked_for_xray_import"] or 0)
+    )
+    if status == "rejected":
+        marked = 0
+    try:
+        validate_import_mark(status, bool(marked))
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    auto = automation_candidate_flag(case)
+    fit = automation_fit_value(case)
+    return status, auto, fit, marked
+
+
 @app.put("/api/tests/{test_id}")
 def save_test(test_id: str, body: SaveTestCaseBody) -> dict[str, Any]:
     now = utc_now()
-    status = body.human_review_status or "edited"
     with db() as conn:
         row = conn.execute("SELECT * FROM test_case_row WHERE id = ?", (test_id,)).fetchone()
         if not row:
             raise HTTPException(404, "Test not found")
+        if body.human_review_status is not None:
+            status_in = body.human_review_status
+        elif row["human_review_status"] == "pending":
+            status_in = "edited"
+        else:
+            status_in = row["human_review_status"]
+        if status_in == "pending":
+            status_in = "edited"
+        status, auto, fit, marked = _resolve_test_row_update(
+            row, status_in, body.marked_for_xray_import, body.case
+        )
         max_rev = conn.execute(
             "SELECT COALESCE(MAX(revision), 0) FROM test_case_revision WHERE test_case_row_id = ?",
             (test_id,),
@@ -636,11 +711,11 @@ def save_test(test_id: str, body: SaveTestCaseBody) -> dict[str, Any]:
             """,
             (test_id, new_rev, json.dumps(body.case, ensure_ascii=False), now, body.created_by),
         )
-        auto = 1 if (body.case.get("test_type") or "").lower() in ("cucumber", "generic") else 0
         conn.execute(
             """
             UPDATE test_case_row SET title = ?, execution_tier = ?, test_type = ?,
-              human_review_status = ?, automation_candidate = ?, updated_at = ?
+              human_review_status = ?, automation_candidate = ?, automation_fit = ?,
+              marked_for_xray_import = ?, current_revision_id = ?, updated_at = ?
             WHERE id = ?
             """,
             (
@@ -649,11 +724,112 @@ def save_test(test_id: str, body: SaveTestCaseBody) -> dict[str, Any]:
                 body.case.get("test_type"),
                 status,
                 auto,
+                fit,
+                marked,
+                new_rev,
                 now,
                 test_id,
             ),
         )
-    return {"revision": new_rev}
+    return {"revision": new_rev, "human_review_status": status, "marked_for_xray_import": bool(marked)}
+
+
+@app.patch("/api/tests/{test_id}")
+def patch_test(test_id: str, body: PatchTestBody) -> dict[str, Any]:
+    now = utc_now()
+    with db() as conn:
+        row = conn.execute("SELECT * FROM test_case_row WHERE id = ?", (test_id,)).fetchone()
+        if not row:
+            raise HTTPException(404, "Test not found")
+        status = body.human_review_status or row["human_review_status"]
+        marked = row["marked_for_xray_import"]
+        if body.marked_for_xray_import is not None:
+            marked = int(body.marked_for_xray_import)
+        if body.human_review_status == "rejected":
+            marked = 0
+        try:
+            validate_import_mark(status, bool(marked))
+        except ValueError as exc:
+            raise HTTPException(400, str(exc)) from exc
+        conn.execute(
+            """
+            UPDATE test_case_row SET human_review_status = ?, marked_for_xray_import = ?, updated_at = ?
+            WHERE id = ?
+            """,
+            (status, marked, now, test_id),
+        )
+    return {"human_review_status": status, "marked_for_xray_import": bool(marked)}
+
+
+@app.post("/api/creator-runs/{run_id}/bulk-test-review")
+def bulk_test_review(run_id: str, body: BulkTestsBody) -> dict[str, Any]:
+    now = utc_now()
+    updated = 0
+    with db() as conn:
+        for test_id in body.test_ids:
+            row = conn.execute(
+                "SELECT * FROM test_case_row WHERE id = ? AND creator_run_id = ?",
+                (test_id, run_id),
+            ).fetchone()
+            if not row:
+                continue
+            status = body.human_review_status or row["human_review_status"]
+            marked = row["marked_for_xray_import"]
+            if body.marked_for_xray_import is not None:
+                marked = int(body.marked_for_xray_import)
+            if body.human_review_status == "rejected":
+                marked = 0
+            if body.marked_for_xray_import and body.human_review_status is None:
+                status = row["human_review_status"]
+                if status != "approved":
+                    continue
+            try:
+                validate_import_mark(status, bool(marked))
+            except ValueError:
+                continue
+            conn.execute(
+                """
+                UPDATE test_case_row SET human_review_status = ?, marked_for_xray_import = ?, updated_at = ?
+                WHERE id = ?
+                """,
+                (status, marked, now, test_id),
+            )
+            updated += 1
+    return {"updated": updated}
+
+
+@app.post("/api/creator-runs/{run_id}/export-for-importer")
+def export_creator_for_importer(run_id: str) -> dict[str, Any]:
+    with db() as conn:
+        try:
+            payload = build_importer_payload(conn, run_id)
+        except KeyError:
+            raise HTTPException(404, "Creator run not found") from None
+        if not payload["tests"]:
+            raise HTTPException(
+                400,
+                "No tests approved and marked for Xray import",
+            )
+        out_path = write_importer_export(conn, run_id, EXPORT_ROOT)
+        rel = out_path
+        try:
+            rel = out_path.resolve().relative_to(docs_repo_root().resolve())
+        except ValueError:
+            rel = out_path
+        log_event(
+            conn,
+            "creator_importer_export",
+            "creator_run",
+            run_id,
+            None,
+            {"path": str(rel), "test_count": payload["test_count"]},
+        )
+    return {
+        "path": str(rel),
+        "absolute_path": str(out_path),
+        "test_count": payload["test_count"],
+        "payload": payload,
+    }
 
 
 STATIC_FALLBACK = Path(__file__).resolve().parent / "static"
