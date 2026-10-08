@@ -8,7 +8,15 @@ User-facing docs: **[`../README.md`](../README.md)** · **[`../PREFLIGHT.md`](..
 ./Trinity/studio/scripts/start.sh
 ```
 
-API **8765** · Vite UI **5173**
+API **8765** · Vite UI **5173** (Vite uses `--strictPort` — will not silently move to 5174).
+
+If ports are busy (old Studio or a stray API from an agent session):
+
+```bash
+./Trinity/studio/scripts/stop.sh
+# or
+STUDIO_FORCE=1 ./Trinity/studio/scripts/start.sh
+```
 
 ## Import CLI
 

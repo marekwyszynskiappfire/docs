@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "instances": [
+    {
+      "id": "appfire-production",
+      "label": "Appfire production",
+      "jira_site": "https://appfire.atlassian.net",
+      "default_mapping": "mappings/appfire-production.json",
+      "risk_tier": "production",
+      "credential_hint": "Set XRAY_CLIENT_ID, XRAY_CLIENT_SECRET, JIRA_EMAIL, and JIRA_API_TOKEN for your production Appfire account before Execute.",
+      "mcp_cloud_hint": "Atlassian MCP: appfire.atlassian.net"
+    },
+    {
+      "id": "appfire-sandbox-774",
+      "label": "Appfire sandbox (774)",
+      "jira_site": "https://appfire-sandbox-774.atlassian.net",
+      "default_mapping": "mappings/appfire-sandbox.json",
+      "risk_tier": "sandbox",
+      "credential_hint": "Use sandbox-specific Xray API keys (Global Settings → API Keys). Export the same four env vars before Execute; they apply to whichever instance you selected in Studio.",
+      "mcp_cloud_hint": "Atlassian MCP: appfire-sandbox-774 (when configured)"
+    }
+  ]
+}

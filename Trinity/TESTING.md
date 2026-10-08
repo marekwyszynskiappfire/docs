@@ -13,9 +13,7 @@ cd /path/to/DOCS   # this repo
 # Cursor skills (Reviewer + Creator)
 ./Trinity/scripts/install-trinity-skills.sh
 
-# Studio Python deps (start.sh also creates .venv)
-python3 -m venv Trinity/studio/.venv
-Trinity/studio/.venv/bin/pip install -r Trinity/studio/requirements.txt
+# Studio: start.sh creates/syncs .venv (if API fails with missing httpx, delete Trinity/studio/.venv and re-run start.sh)
 
 # Studio UI deps
 cd Trinity/studio/web && npm install && cd ../../..
@@ -154,6 +152,6 @@ After **Send to Creator** from Studio (or manual):
 
 ## 6. What is not wired yet
 
-- **Importer** — does not push to Xray; only the export JSON is ready.
+- **Importer** — Studio **Preview import plan** + **Copy Cursor prompt**; production execute via `Trinity/importer/scripts/xray_graphql_import.py` (sandbox Xray keys: TBD in `.env`).
 - **Studio** does not run Reviewer/Creator agents (Cursor only).
 - **Suite HTML** report renderer for Creator batches (Markdown only).

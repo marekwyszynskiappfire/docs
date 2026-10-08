@@ -90,10 +90,16 @@ export const api = {
       `/api/runs/${id}`
     ),
   importRun: (path: string) =>
-    json<{ pipeline_run_id: string; units_imported: number }>(
-      "/api/import/reviewer-run",
-      { method: "POST", body: JSON.stringify({ path }) }
-    ),
+    json<{
+      pipeline_run_id: string;
+      units_imported: number;
+      import_kind: "new" | "updated";
+      pipeline_is_new: boolean;
+      source_path?: string;
+    }>("/api/import/reviewer-run", {
+      method: "POST",
+      body: JSON.stringify({ path }),
+    }),
   unit: (id: string) =>
     json<{
       unit: ReviewUnit;
@@ -133,7 +139,13 @@ export const api = {
     json<Record<string, unknown>>(`/api/runs/${runId}/creator-handoff`),
   creatorRuns: () =>
     json<
-      { id: string; label: string; test_count?: number; status: string }[]
+      {
+        id: string;
+        label: string;
+        test_count?: number;
+        batch_revision?: number;
+        status: string;
+      }[]
     >("/api/creator-runs"),
   creatorRun: (id: string) =>
     json<{
@@ -191,7 +203,14 @@ export const api = {
       payload: Record<string, unknown>;
     }>(`/api/creator-runs/${runId}/export-for-importer`, { method: "POST" }),
   importBatch: (path: string) =>
-    json("/api/import/test-case-batch", {
+    json<{
+      creator_run_id: string;
+      tests_imported: number;
+      batch_revision: number;
+      import_kind: "new" | "updated";
+      run_is_new: boolean;
+      source_path?: string;
+    }>("/api/import/test-case-batch", {
       method: "POST",
       body: JSON.stringify({ path }),
     }),
@@ -253,4 +272,73 @@ export const api = {
       scope_resolution_note?: string | null;
       error?: string | null;
     }>(`/api/reviewer-run-configs/${encodeURIComponent(portfolioId)}/new-epics`),
+  importerInstances: () =>
+    json<{
+      instances: {
+        id: string;
+        label: string;
+        jira_site: string;
+        default_mapping: string;
+        risk_tier: string;
+        credential_hint?: string;
+      }[];
+    }>("/api/importer/instances"),
+  importerMappings: () =>
+    json<{
+      mappings: {
+        id: string;
+        path: string;
+        environment?: string;
+        project_key?: string;
+        default_folder?: string;
+        jira_site?: string;
+      }[];
+    }>("/api/importer/mappings"),
+  importerPlan: (body: {
+    jira_instance_id: string;
+    folder_path: string;
+    create_folder_if_missing: boolean;
+    mapping_path?: string | null;
+    project_key_override?: string | null;
+    payload_path?: string | null;
+    creator_run_id?: string | null;
+    skip_requirement_link?: boolean;
+  }) => json<ImporterPlanResult>("/api/importer/plan", { method: "POST", body: JSON.stringify(body) }),
+};
+
+export type ImporterPlanResult = {
+  schema_version: string;
+  mode: string;
+  jira_instance: { id: string; label: string; jira_site: string; risk_tier: string };
+  mapping: {
+    path: string;
+    project_key?: string;
+    project_id?: string | null;
+    default_folder_path?: string;
+    jira_site?: string;
+  };
+  target: {
+    folder_path: string;
+    create_folder_if_missing: boolean;
+    action: string;
+    warnings: string[];
+    create_folder_mutation?: { mutation: string; variables: Record<string, unknown> } | null;
+  };
+  project_key: string;
+  credentials: {
+    xray_client_id: boolean;
+    xray_client_secret: boolean;
+    jira_email: boolean;
+    jira_api_token: boolean;
+    execute_ready: boolean;
+    credential_hint?: string;
+  };
+  summary: { total: number; valid: number; invalid: number; action: string };
+  tests: {
+    draft_id: string;
+    title?: string;
+    validation_errors: string[];
+    action: string;
+  }[];
+  cursor_prompt?: string;
 };

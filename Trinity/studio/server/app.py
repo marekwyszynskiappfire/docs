@@ -28,6 +28,9 @@ from creator_export import (
     write_importer_export,
 )
 from creator_handoff import build_creator_prompt, payload_readiness, review_ref_relative
+from importer_handoff import build_importer_cursor_prompt
+from importer_plan import build_import_plan, load_handoff_payload
+from importer_registry import list_jira_instances, list_mapping_files
 from run_config import (
     list_new_epics,
     list_run_configs,
@@ -57,6 +60,17 @@ class ImportRunBody(BaseModel):
 class ImportBatchBody(BaseModel):
     path: str
     creator_run_id: str | None = None
+
+
+class ImporterPlanBody(BaseModel):
+    jira_instance_id: str
+    folder_path: str
+    create_folder_if_missing: bool = False
+    mapping_path: str | None = None
+    project_key_override: str | None = None
+    payload_path: str | None = None
+    creator_run_id: str | None = None
+    skip_requirement_link: bool = False
 
 
 class SavePayloadBody(BaseModel):
@@ -95,19 +109,41 @@ class PasteResolvedKeysBody(BaseModel):
     keys_text: str = Field(..., min_length=1)
 
 
-def _load_dotenv() -> None:
-    env_path = Path(__file__).resolve().parent.parent / ".env"
-    if not env_path.is_file():
+def _load_env_file(path: Path, *, keys_only: set[str] | None = None, override: bool = False) -> None:
+    if not path.is_file():
         return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
+    for line in path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
         key, _, val = line.partition("=")
         key = key.strip()
         val = val.strip().strip('"').strip("'")
-        if key and key not in os.environ:
+        if not key:
+            continue
+        if keys_only is not None and key not in keys_only:
+            continue
+        if override or key not in os.environ:
             os.environ[key] = val
+
+
+def _load_dotenv() -> None:
+    studio_root = Path(__file__).resolve().parent.parent
+    _load_env_file(studio_root / ".env")
+
+
+def apply_importer_credential_profile(jira_instance_id: str) -> None:
+    """Overlay Xray (and site URL) from .env.production when targeting prod."""
+    if jira_instance_id != "appfire-production":
+        return
+    studio_root = Path(__file__).resolve().parent.parent
+    prod_keys = {
+        "XRAY_CLIENT_ID",
+        "XRAY_CLIENT_SECRET",
+        "JIRA_BASE_URL",
+        "XRAY_INSECURE_SSL",
+    }
+    _load_env_file(studio_root / ".env.production", keys_only=prod_keys, override=True)
 
 
 @app.on_event("startup")
@@ -117,8 +153,12 @@ def _startup() -> None:
 
 
 @app.get("/api/health")
-def health() -> dict[str, str]:
-    return {"status": "ok"}
+def health() -> dict[str, Any]:
+    return {
+        "status": "ok",
+        "studio_version": "0.2.0",
+        "features": ["importer_plan"],
+    }
 
 
 @app.get("/api/personas")
@@ -472,7 +512,7 @@ def send_to_creator(unit_id: str) -> dict[str, Any]:
         "review_ref": export["review_ref"],
         "creator_run_id": unit_row["jira_key"],
         "prompt": prompt,
-        "suite_payload_hint": f"Trinity/creator/artifacts/{unit_meta['jira_key']}/suite-payload.json",
+        "suite_payload_hint": f"Trinity/creator/artifacts/{unit_row['jira_key']}/suite-payload.json",
         "creator_studio_path": "/creator",
     }
 
@@ -606,7 +646,8 @@ def list_creator_runs() -> list[dict[str, Any]]:
         rows = conn.execute(
             """
             SELECT c.*,
-              (SELECT COUNT(*) FROM test_case_row t WHERE t.creator_run_id = c.id) AS test_count
+              (SELECT COUNT(*) FROM test_case_row t WHERE t.creator_run_id = c.id) AS test_count,
+              (SELECT COALESCE(MAX(revision), 0) FROM test_case_batch_revision b WHERE b.creator_run_id = c.id) AS batch_revision
             FROM creator_run c ORDER BY c.updated_at DESC
             """
         ).fetchall()
@@ -796,6 +837,84 @@ def bulk_test_review(run_id: str, body: BulkTestsBody) -> dict[str, Any]:
             )
             updated += 1
     return {"updated": updated}
+
+
+@app.get("/api/importer/instances")
+def importer_instances() -> dict[str, Any]:
+    return {"instances": list_jira_instances()}
+
+
+@app.get("/api/importer/mappings")
+def importer_mappings() -> dict[str, Any]:
+    return {"mappings": list_mapping_files()}
+
+
+@app.get("/api/importer/credentials")
+def importer_credentials() -> dict[str, Any]:
+    scripts = Path(__file__).resolve().parents[2] / "importer" / "scripts"
+    if str(scripts) not in sys.path:
+        sys.path.insert(0, str(scripts))
+    from xray_graphql_import import credentials_status as creds  # noqa: E402
+
+    status = creds()
+    jira_base = os.environ.get("JIRA_BASE_URL", "").strip()
+    return {
+        **status,
+        "jira_base_url_set": bool(jira_base),
+        "jira_base_url_host": jira_base.replace("https://", "").split("/")[0] if jira_base else None,
+        "loaded_from_dotenv": (Path(__file__).resolve().parent.parent / ".env").is_file(),
+    }
+
+
+def _resolve_importer_handoff(body: ImporterPlanBody) -> dict[str, Any]:
+    if body.payload_path:
+        path = Path(body.payload_path)
+        if not path.is_absolute():
+            path = (docs_repo_root() / path).resolve()
+        return load_handoff_payload(path)
+    if body.creator_run_id:
+        export_path = EXPORT_ROOT / "creator" / body.creator_run_id / "importer-payload.json"
+        if export_path.is_file():
+            return load_handoff_payload(export_path)
+        with db() as conn:
+            try:
+                return build_importer_payload(conn, body.creator_run_id)
+            except KeyError:
+                raise HTTPException(404, "Creator run not found") from None
+    raise HTTPException(400, "Provide payload_path or creator_run_id")
+
+
+@app.post("/api/importer/plan")
+def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
+    try:
+        handoff = _resolve_importer_handoff(body)
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from None
+    except FileNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from None
+    try:
+        apply_importer_credential_profile(body.jira_instance_id)
+        plan = build_import_plan(
+            jira_instance_id=body.jira_instance_id,
+            mapping_path=body.mapping_path,
+            folder_path=body.folder_path,
+            create_folder_if_missing=body.create_folder_if_missing,
+            handoff=handoff,
+            project_key_override=body.project_key_override,
+            skip_requirement_link=body.skip_requirement_link,
+        )
+        plan["cursor_prompt"] = build_importer_cursor_prompt(
+            plan,
+            payload_path=body.payload_path,
+            creator_run_id=body.creator_run_id,
+            mapping_path=body.mapping_path,
+            skip_requirement_link=body.skip_requirement_link,
+        )
+        return plan
+    except KeyError as exc:
+        raise HTTPException(400, str(exc)) from None
+    except FileNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from None
 
 
 @app.post("/api/creator-runs/{run_id}/export-for-importer")

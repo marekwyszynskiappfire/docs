@@ -45,6 +45,7 @@ Fully supported: **Cursor**, **Claude** (Code and desktop), and **Hive MCP**. On
 | **Portfolio run config** | `{skill_root}/config/runs/{portfolio_id}.json` — see **Interactive run configuration** |
 | Run config schema | `{skill_root}/schemas/run-config.schema.json` |
 | Nested Confluence hop (repair) | `{skill_root}/scripts/nested_confluence_rescan.py` (`discover` / `apply` + MCP body cache) |
+| Full-fidelity helpers | `{skill_root}/scripts/fetch_confluence_queue.py` (`discover-pending`, `ingest-mcp` from `_gather/nested-rescan/mcp/*.json`), `{skill_root}/scripts/merge_epic_gather.py` (live per-epic harvest `_gather/epics/{KEY}.json` + cache → `context_loaded`; writes `{KEY}.pages.json` dossier), `{skill_root}/scripts/close_merge_only_epics.py` (stub delta when re-review workers did not finish) |
 | Question normalizer (batch fix) | `{skill_root}/scripts/enrich_questions.py` (`--run-dir`, optional `--force`; expand why/source from findings; PRF-11-safe paraphrase outside quotes; PM default — not a substitute for gather) |
 | Portfolio static template | `{skill_root}/portfolio-report-template/` (copied into each run's `portfolio/`; do not hand-edit run copies) |
 | Demo payloads (sources of the sample reports) | `{skill_root}/samples/demo-story.payload.json`, `demo-epic.payload.json` |
@@ -105,6 +106,31 @@ When `scope` is a **JQL** (or URL whose query is JQL) that returns **multiple** 
 4. **Parallelism** — run Epics **in parallel** (separate agent threads/tasks) when the host allows; each thread executes the full workflow for **one** key only.
 5. **Portfolio bundle (required when ≥2 Epics)** — after every epic payload renders with `--strict`, run `{skill_root}/scripts/build_portfolio_report.py --run-dir {artifacts_dir}/{portfolio_run_id}` (pass `--title` / `--jql` when known). This writes **`{artifacts_dir}/{portfolio_run_id}/portfolio/`** — **Profile B** per [`../shared/html-report-guidelines.md`](../shared/html-report-guidelines.md): `index.html`, `assets/`, generated `data/report-data.js`, and copies of each epic report under `portfolio/epics/{KEY}/` (relative links only — portable on any machine). The portfolio synthesises finding **categories** (themes), **gap signal pills** (e.g. missing AC + backlog gaps when both apply), readiness, planning dates, and QA planning fit. **Creator handoff:** per-epic checkboxes (default excludes `qa_planning_fit: not_fit`), live JQL preview, export `creator-handoff.json`; builder also writes `portfolio/data/creator-handoff.json` and `portfolio/creator-handoff.md` for The Creator. **List `portfolio/index.html` first** in the run output paths you return to the operator (zip `portfolio/` to share the whole run).
 6. **Portfolio index (optional)** — `MANIFEST.md` in the run root is a Markdown companion; it does not replace the Profile B bundle.
+7. **Full fidelity (`pass_type: full_sweep`)** — see **Full fidelity and link ingestion** below. Portfolio parallelism does **not** relax gather rules per Epic.
+
+### Full fidelity and link ingestion (portfolio)
+
+When run config `pass_type` is **`full_sweep`** (or the operator asks for **full fidelity** on a portfolio folder):
+
+| Rule | Requirement |
+|------|-------------|
+| **No retarget / copy** | Do **not** copy `review-payload.json` from a prior run and only change `run_id`, re-render, or patch metadata. Each Epic must complete **§2 Gather** in the current session (or documented `rescan_delta` when fingerprint matches — §11). |
+| **URL harvest** | Collect every URL from: Epic description, Epic comments, **`listJiraIssueRemoteIssueLinks` on the Epic**, each **child Story** description (paginate children — no cap below Jira’s page size), and **`listJiraIssueRemoteIssueLinks` per child** when the Epic body has no requirement-relevant links. |
+| **Confluence** | Fetch **every** Confluence URL from that harvest (first hop + **mandatory nested hop** per step 8 table). Route by host via connected MCP `cloudId`. After gather, run `{skill_root}/scripts/nested_confluence_rescan.py discover` on the portfolio run dir; fetch any queued pages into `_gather/nested-rescan/cache/`; run `discover_nested` then `apply`; re-render touched epics with `--strict`. |
+| **Figma** | Up to 3 nodes per Epic from URLs on Epic, children, and comments (step 11). |
+| **Screenshots** | Epic attachments only (step 10); record child inline-image gaps via findings, not guesses. |
+| **context_loaded** | Every harvested source → `analyzed`, `failed`, or `unavailable` with reason. **`not_applicable`** only for workflow boilerplate (step 8) **after** proving no other URLs remain from Epic + children + remote links. |
+| **Repair pass** | If a portfolio folder was built without full gather, treat operator request for full fidelity as **`full_sweep` rescan** for **all** epics in that folder — not a Confluence-only patch unless the operator limits scope. |
+
+**Recommended procedure (portfolio, multi-worker):**
+1. **Harvest** — one worker per batch of Epics writes `_gather/epics/{KEY}.json` (epic + child URLs, remote links, comment metadata, Figma/screenshot status) from live MCP calls. Workers do not edit payloads.
+2. **Confluence** — collect all page ids from the harvest, fetch missing ones (route by host; `getConfluenceContent` for version, `getConfluenceContentVersion` markdown for the body) into `_gather/nested-rescan/mcp/{id}.json` (`{id}.fail.json` on 403/404), then `fetch_confluence_queue.py ingest-mcp`.
+3. **Merge** — `merge_epic_gather.py --run-dir …` (replaces generic Confluence/Figma/comments/remote-link/screenshot rows), then `nested_confluence_rescan.py apply` (one nested hop, max 10/epic).
+4. **Re-review** — workers re-assess findings/questions/facts per Epic against the cached page bodies and comment text; each writes `_gather/epics/{KEY}.review-delta.md`. If workers did not finish, run `close_merge_only_epics.py` (cache fact excerpts + honest delta stub — does not replace full checklist re-score).
+5. **Close** — `enrich_questions.py --force`, `render_report.py --strict` on every Epic, `build_portfolio_report.py`.
+Rate-limit (Atlassian "Too many requests") → retry after ~20s; Figma seat-limit failures are recorded as `failed`, never silently dropped.
+
+Write `FULL-FIDELITY-RESCAN.md` in the portfolio run root: timestamp, pass type, queue stats, epics re-gathered vs nested-only, and commands re-run.
 
 ### Resolve input (first match wins)
 

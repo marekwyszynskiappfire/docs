@@ -11,7 +11,7 @@ disable-model-invocation: true
 
 Draft **e2e journey test cases** from an approved **Reviewer** handoff. Default output is **3–5 scenarios** that maximize Epic coverage — not granular button-level tests. Output is **JSON batch** + **Markdown** suite report.
 
-**Does not:** import to Xray, invent requirements, run per-child Epic suites (**CR-EPIC-01**), or embed vendor names in skill text (**CR-AGNOSTIC-01**).
+**Does not:** import to Xray, invent requirements, run per-child Epic suites (**CR-EPIC-01**), embed vendor names in skill text (**CR-AGNOSTIC-01**), or draft tests from `review_ref` alone without reading production golden tests (**CR-GOLDEN-01**).
 
 ## Personas (load every run)
 
@@ -41,6 +41,27 @@ Summarize each persona in one line to the operator before drafting.
 
 Announce `product_id`, `golden_root`, `run_id`, and `suite_mode` at run start.
 
+## Golden as writing reference (**CR-GOLDEN-01** — mandatory)
+
+`style-rules.md` sets policy; **production golden tests set voice, depth, and step shape**. Every run must treat golden as a **writing reference**, not optional context.
+
+| Rule | Detail |
+|------|--------|
+| **Read before draft** | Select **5–10** full golden tests from `golden_root` (see [`reference.md`](reference.md) § Golden sampling) and read every selected `rag/by-key/TC-*.json` **before** proposing journey titles or writing steps. |
+| **Similarity first** | Rank tests in `extraction.md` by **thematic closeness** to the Epic (keywords from `review_ref` summary, goals, findings, module names). Take **as many top matches as possible** (cap **10**, at least **5** when the corpus has enough on-theme tests). |
+| **Random fallback** | Only when **&lt;5** similar tests exist: fill remaining slots with a **seeded random** draw from the rest of the extract (`method`: `similarity_with_random_fill`). If **no** keyword overlap at all, use seeded **random** 5–10 (`method`: `random`). |
+| **Helper** | `{skill_root}/scripts/sample_golden_references.py` — pass `--keywords` from Epic theme and optional `--theme-file` (review excerpt). |
+| **Sample size** | `sample_count` = `len(golden_references)` (**5–10**). Prefer **all** similar matches up to 10, not a fixed count. |
+| **Sources (priority)** | `rag/by-key/TC-*.json` → `rag/chunks.jsonl` / `extraction.md` index → `assets.golden_examples` (v1) when v2 is missing. |
+| **Match depth** | Step count per journey should be **in the same band** as the sampled tests for that domain (often **6–15** for BigPicture manual journeys — not a fixed 5). `release_slice_e2e` limits **journey count** (3–5), not steps per journey (`max_steps_per_journey`). |
+| **Match style** | Mirror title patterns (e.g. `Feature area - …`), navigation phrasing, separate **test data** in steps where golden does, `boxName` / role setup when journeys use dedicated boxes. |
+| **No copy-paste** | Reuse structure and tone; do **not** copy ticket-specific data, passwords, or unrelated module flows from samples. |
+| **Self-contained steps (CR-STEP-01)** | Steps and `expected_result` must stand alone: **no** Jira keys (`ONE-*`, `TC-*`), **no** “as in step N”, **no** analogies to other tests (“like TC-…”, “per PRD/Q7”), **no** “works as described in …”. Golden TCs inform the author only — **never** appear in step text. Use concrete UI labels, messages, HTTP codes, and data values. |
+| **Record provenance** | Populate `golden_sampling` (`method`, `similarity_count`, `random_fill_count`, `sample_count`, `keywords`, `random_seed` when random used) and `golden_references[]` — one entry per TC with paths, similarity rationale, and style cues applied. List in `suite-report.md`. |
+| **Stop** | If `golden_root` is missing, empty, or no test is plausibly on-domain after search → **stop** and ask the operator to refresh the extract or name fallback keys — do not invent generic QA prose. |
+
+`review_ref` drives **what** to cover; golden drives **how** it reads in Xray.
+
 ## Session inputs
 
 | Input | Mandatory? | Notes |
@@ -68,19 +89,20 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 
 ## Preconditions
 
-1. Load product config; resolve `golden_root` and read `golden/v1/style-rules.md` + 2–3 closest examples from golden (`rag/chunks.jsonl` or `golden/v1/examples/`).
-2. Load **`review_ref`**; apply gates in [`reference.md`](reference.md). Build **Epic coverage matrix** from payload (ACs, goals, findings, risks) — not from `coverage-catalog.md` unless config points at a matching catalog.
-3. Validate output against `TestCaseDraft.schema.json`.
-4. **Epic scope:** child story keys only in `linked_requirement_keys` / traceability.
+1. Load product config; resolve `golden_root`; read `assets.golden_style` (`style-rules.md`).
+2. **Golden sampling (blocking)** — Derive Epic theme keywords from config + early `review_ref` skim; rank golden TCs by similarity; take **max on-theme matches (5–10)**; random-fill only if needed. Read each selected JSON fully **before** matrix drafting.
+3. Load **`review_ref`**; apply gates in [`reference.md`](reference.md). Build **Epic coverage matrix** from payload (ACs, goals, findings, risks) — not from `coverage-catalog.md` unless config points at a matching catalog.
+4. Validate output against `TestCaseDraft.schema.json` (including `golden_references[]`).
+5. **Epic scope:** child story keys only in `linked_requirement_keys` / traceability.
 
 ## Workflow
 
 1. **Pre-flight** — Gate, readiness, fingerprint staleness vs live Jira.
-2. **Golden sampling** — From `golden_root`, find 2–3 production tests similar in domain (folder names, labels, summary keywords). Mirror **depth and step style**, not ticket-specific data.
-3. **Plan suite** (Test Architect) — Propose **3–5** journey titles mapping to the matrix; operator may adjust before full draft.
-4. **Draft journeys** — Each test includes:
+2. **Golden sampling (blocking)** — Run `scripts/sample_golden_references.py --golden-root … --keywords … --theme-file … --seed {run_id}-golden`. Read **all** selected tests. Announce `method`, `similarity_count`, `random_fill_count`, and TC keys. Fill `golden_sampling` + `golden_references[]`.
+3. **Plan suite** (Test Architect) — Propose **3–5** journey titles mapping to the matrix **and** golden title patterns; operator may adjust before full draft.
+4. **Draft journeys** — Write steps **in golden voice** (CR-GOLDEN-01) and **CR-STEP-01** (fully executable prose). Each test includes:
    - `test_pattern: journey` (required in `release_slice_e2e`)
-   - Up to **15** steps; multi-surface flow (setup → action → verification across relevant UI/API)
+   - Up to **15** steps; target the **depth band** of sampled golden tests; multi-surface flow (setup → action → verification across relevant UI/API)
    - `automation_fit`, `automation_candidate`, `automation_blockers[]`
    - `persona_notes` for all three personas
    - `linked_requirement_keys`, `linked_ac_ids` / goals, `source_quotes` where possible
@@ -99,10 +121,13 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 | Rule | Detail |
 |------|--------|
 | No granular tests | Reject single-control or single-screen scenarios unless Epic scope is trivial |
-| No placeholders | No “TBD”, “verify as appropriate” |
+| No placeholders | No “TBD”, “verify as appropriate”, `{from Q7}`, or “when documented” without a concrete example value in `test_data` |
+| CR-STEP-01 | Every step/action + expected result is **self-contained**; repeatable by manual tester or automation without reading other tests, epics, or golden keys |
 | No invented secrets/URLs | Use config redaction patterns |
 | P3 | `deferrable: true` + `deferrable_rationale` |
 | Count | **3–5** journeys in `release_slice_e2e` without operator approval to exceed |
+| Steps per journey | Up to **15**; prefer golden-like depth (often **>5** when samples are longer) — do not default every journey to five steps |
+| Golden | **CR-GOLDEN-01** — similarity-first **5–10** TCs; random only as fallback; `golden_sampling` + `golden_references[]` |
 | Atomic | **Forbidden** when `allow_atomic` is false |
 
 ## Trinity Studio

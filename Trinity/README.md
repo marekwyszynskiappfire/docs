@@ -30,7 +30,7 @@ Import a Reviewer run (example):
 |------|------|
 | [`reviewer/`](reviewer/) | Requirement quality review (SKILL, schemas, `runs/`, portfolio builder) |
 | [`creator/`](creator/) | Test suite generation ([`SKILL.md`](creator/SKILL.md); demo batch in `samples/`) |
-| [`importer/`](importer/) | Approved suites → Xray (roadmap; CR-IMPORTER-01) |
+| [`importer/`](importer/) | Approved suites → Xray (instance + folder targeting; dry-run in Studio) |
 | [`studio/`](studio/) | Trinity Studio — FastAPI + React, SQLite revisions |
 | [`shared/`](shared/) | HTML report guidelines (Profile A/B) |
 | [`personas/`](personas/) | Editable Reviewer/Creator/Importer role prompts |

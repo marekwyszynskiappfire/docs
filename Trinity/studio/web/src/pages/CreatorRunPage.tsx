@@ -105,6 +105,12 @@ export default function CreatorRunPage() {
       {exportPath && (
         <p className="muted">
           Importer payload: <code>{exportPath}</code>
+          {" · "}
+          <Link
+            to={`/importer?creator_run_id=${encodeURIComponent(runId)}&payload_path=${encodeURIComponent(exportPath)}`}
+          >
+            Open in Importer
+          </Link>
         </p>
       )}
 

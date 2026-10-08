@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trinity.appfire.local/schemas/import-operator-config.schema.json",
+  "title": "Trinity Importer operator config",
+  "type": "object",
+  "required": ["schema_version", "jira_instance_id", "mapping_path", "target"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "jira_instance_id": {
+      "type": "string",
+      "description": "Key from importer/config/instances.json"
+    },
+    "mapping_path": {
+      "type": "string",
+      "description": "Path to jira_xray_mapping JSON (repo-relative or absolute)"
+    },
+    "project_key_override": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional Jira project key override"
+    },
+    "target": {
+      "type": "object",
+      "required": ["folder_path", "create_folder_if_missing"],
+      "additionalProperties": false,
+      "properties": {
+        "folder_path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Xray Test Repository folderPath, e.g. /BP/Release 2026"
+        },
+        "create_folder_if_missing": {
+          "type": "boolean",
+          "description": "When true, Execute calls Xray createFolder for this path before createTest"
+        }
+      }
+    },
+    "payload_path": {
+      "type": "string",
+      "description": "importer-payload.json from Studio export"
+    },
+    "creator_run_id": {
+      "type": "string",
+      "description": "Optional Studio creator run id (alternative to payload_path)"
+    },
+    "skip_requirement_link": { "type": "boolean", "default": false }
+  }
+}

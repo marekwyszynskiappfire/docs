@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, PipelineRun, Stats } from "../api";
+import ImportFeedback from "../components/ImportFeedback";
 
 export default function HomePage() {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -10,6 +11,13 @@ export default function HomePage() {
   );
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [highlightId, setHighlightId] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<{
+    kind: "new" | "updated";
+    title: string;
+    detail: string;
+    runId: string;
+  } | null>(null);
 
   const load = () => {
     api.stats().then(setStats).catch((e) => setError(String(e)));
@@ -23,8 +31,22 @@ export default function HomePage() {
   const onImport = async () => {
     setBusy(true);
     setError("");
+    setFeedback(null);
     try {
-      await api.importRun(importPath);
+      const res = await api.importRun(importPath);
+      const isNew = res.import_kind === "new";
+      setFeedback({
+        kind: res.import_kind,
+        runId: res.pipeline_run_id,
+        title: isNew
+          ? `Imported new Reviewer run “${res.pipeline_run_id}”`
+          : `Re-imported Reviewer run “${res.pipeline_run_id}”`,
+        detail: isNew
+          ? `${res.units_imported} epic unit(s) added from folder.`
+          : `${res.units_imported} epic unit(s) processed; new payload revision(s) stored for each updated epic.`,
+      });
+      setHighlightId(res.pipeline_run_id);
+      window.setTimeout(() => setHighlightId(null), 8000);
       load();
     } catch (e) {
       setError(String(e));
@@ -92,6 +114,16 @@ export default function HomePage() {
             {busy ? "Importing…" : "Import run"}
           </button>
         </div>
+        {feedback && (
+          <ImportFeedback
+            kind={feedback.kind}
+            title={feedback.title}
+            detail={feedback.detail}
+            linkTo={`/runs/${encodeURIComponent(feedback.runId)}`}
+            linkLabel="Open run →"
+            onDismiss={() => setFeedback(null)}
+          />
+        )}
         {error && <p className="error">{error}</p>}
       </div>
 
@@ -108,9 +140,14 @@ export default function HomePage() {
           </thead>
           <tbody>
             {runs.map((r) => (
-              <tr key={r.id}>
+              <tr key={r.id} className={highlightId === r.id ? "row-highlight" : undefined}>
                 <td>
                   <Link to={`/runs/${r.id}`}>{r.label}</Link>
+                  {highlightId === r.id && (
+                    <span className={`import-kind-pill import-kind-pill--${feedback?.kind ?? "new"}`}>
+                      {feedback?.kind === "updated" ? "Updated" : "New"}
+                    </span>
+                  )}
                 </td>
                 <td>{r.unit_count ?? "—"}</td>
                 <td className="muted">{r.updated_at.slice(0, 19)}</td>

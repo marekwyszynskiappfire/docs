@@ -81,7 +81,7 @@ Persisted at `{skill_root}/config/runs/{portfolio_id}.json` (schema: `schemas/ru
 
 | `pass_type` | Agent behaviour |
 |---|---|
-| `full_sweep` | Initial gather + full checklist (default `scan`) |
+| `full_sweep` | Initial gather + full checklist (default `scan`). **No copying payloads from prior runs** — each Epic runs §2 Gather end-to-end (SKILL: Full fidelity and link ingestion). |
 | `rescan_delta` | Rescan rules §11 — delta when fingerprint matches |
 | `new_epics_only` | Resolve scope JQL/keys; skip epics that already have a payload under this `portfolio_id` unless operator overrides |
 

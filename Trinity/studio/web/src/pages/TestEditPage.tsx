@@ -70,6 +70,12 @@ export default function TestEditPage() {
     });
   };
 
+  const removeStep = (idx: number) => {
+    if (!caseObj || steps.length <= 1) return;
+    const next = steps.filter((_, i) => i !== idx);
+    setCaseObj({ ...caseObj, steps: next });
+  };
+
   const persist = async (status: string, importMark?: boolean) => {
     if (!testId || !caseObj) return;
     setError("");
@@ -223,35 +229,61 @@ export default function TestEditPage() {
       )}
 
       <div className="panel">
-        <h3 style={{ marginTop: 0 }}>Steps</h3>
-        {steps.map((s, i) => (
-          <div
-            key={i}
-            style={{
-              marginBottom: "1rem",
-              borderBottom: "1px solid var(--border)",
-              paddingBottom: "0.75rem",
-            }}
-          >
-            <strong>Step {i + 1}</strong>
-            <label>
-              Action
-              <textarea
-                value={s.step}
-                onChange={(e) => updateStep(i, { step: e.target.value })}
-                rows={2}
-              />
-            </label>
-            <label>
-              Expected
-              <textarea
-                value={s.expected_result}
-                onChange={(e) => updateStep(i, { expected_result: e.target.value })}
-                rows={2}
-              />
-            </label>
-          </div>
-        ))}
+        <div className="steps-panel-head">
+          <h3 style={{ margin: 0 }}>Steps ({steps.length})</h3>
+          <p className="muted steps-hint">
+            Action and expected result are shown side by side. There is no step limit — use Add step
+            for longer journeys.
+          </p>
+        </div>
+        <div className="steps-table-wrap">
+          <table className="steps-table">
+            <thead>
+              <tr>
+                <th className="steps-col-num">#</th>
+                <th className="steps-col-action">Step (action)</th>
+                <th className="steps-col-expected">Expected result</th>
+                <th className="steps-col-actions" aria-label="Row actions" />
+              </tr>
+            </thead>
+            <tbody>
+              {steps.map((s, i) => (
+                <tr key={i}>
+                  <td className="steps-col-num">{i + 1}</td>
+                  <td>
+                    <textarea
+                      className="steps-cell"
+                      aria-label={`Step ${i + 1} action`}
+                      value={s.step}
+                      onChange={(e) => updateStep(i, { step: e.target.value })}
+                      rows={4}
+                    />
+                  </td>
+                  <td>
+                    <textarea
+                      className="steps-cell"
+                      aria-label={`Step ${i + 1} expected result`}
+                      value={s.expected_result}
+                      onChange={(e) => updateStep(i, { expected_result: e.target.value })}
+                      rows={4}
+                    />
+                  </td>
+                  <td className="steps-col-actions">
+                    <button
+                      type="button"
+                      className="secondary steps-remove"
+                      onClick={() => removeStep(i)}
+                      disabled={steps.length <= 1}
+                      title="Remove step"
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <button type="button" className="secondary" onClick={addStep}>
           Add step
         </button>

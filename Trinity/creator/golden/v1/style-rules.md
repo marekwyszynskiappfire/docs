@@ -7,7 +7,7 @@
 
 These rules define how generated tests should read before QA triage. Golden **examples** live in `golden/v1/examples/` (atomic + journey).
 
-**Trinity Creator default (`release_slice_e2e`):** use **journey** tests only — 3–5 per Epic, production depth from `config.golden_root` (often v2 extract + these rules). Atomic examples are for legacy comprehensive catalog runs only.
+**Trinity Creator default (`release_slice_e2e`):** use **journey** tests only — 3–5 per Epic. **CR-GOLDEN-01:** pick **5–10** production tests **most similar in theme** to the Epic from `config.golden_root` (`scripts/sample_golden_references.py`); random fill only if &lt;5 matches; read each `rag/by-key/TC-*.json`. Atomic examples are for legacy comprehensive catalog runs only.
 
 ---
 
@@ -31,6 +31,7 @@ These rules define how generated tests should read before QA triage. Golden **ex
 | Step uses imperative mood | "Click **Save**", "Open OKR Overview table" |
 | Expected result is observable | UI state, message text, API response code, data persisted |
 | Avoid vague results | Not: "Works correctly". Yes: "Custom field appears in Overview table columns list" |
+| **CR-STEP-01 (Creator)** | No `ONE-*` / `TC-*` in steps or expected results; no "repeat step 3" or "as in TC-…"; each step fully states action + observable outcome (automation-ready) |
 | Max steps — **any** test (journey or atomic) | **15** — split into additional tests if a flow needs more |
 | Include test data in step or `test_data` field | "Enter `Budget Q2` in Name field" |
 | Journey tests use dedicated **boxName** | `boxName: QA-JOURNEY-CREATE-TEXT TC-001` |

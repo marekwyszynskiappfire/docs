@@ -4,9 +4,11 @@ import RunPage from "./pages/RunPage";
 import UnitReviewPage from "./pages/UnitReviewPage";
 import CreatorPage from "./pages/CreatorPage";
 import CreatorRunPage from "./pages/CreatorRunPage";
+import ImporterPage from "./pages/ImporterPage";
 import TestEditPage from "./pages/TestEditPage";
 import PersonasPage from "./pages/PersonasPage";
 import ReviewerConfigsPage from "./pages/ReviewerConfigsPage";
+import ThemeToggle from "./components/ThemeToggle";
 
 export default function App() {
   return (
@@ -20,6 +22,9 @@ export default function App() {
           <NavLink to="/creator" className={({ isActive }) => (isActive ? "active" : "")}>
             Creator
           </NavLink>
+          <NavLink to="/importer" className={({ isActive }) => (isActive ? "active" : "")}>
+            Importer
+          </NavLink>
           <NavLink to="/personas" className={({ isActive }) => (isActive ? "active" : "")}>
             Personas
           </NavLink>
@@ -27,6 +32,7 @@ export default function App() {
             Reviewer configs
           </NavLink>
         </nav>
+        <ThemeToggle />
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -36,6 +42,7 @@ export default function App() {
         <Route path="/reviewer-configs" element={<ReviewerConfigsPage />} />
         <Route path="/creator" element={<CreatorPage />} />
         <Route path="/creator/:runId" element={<CreatorRunPage />} />
+        <Route path="/importer" element={<ImporterPage />} />
         <Route path="/tests/:testId" element={<TestEditPage />} />
       </Routes>
     </div>

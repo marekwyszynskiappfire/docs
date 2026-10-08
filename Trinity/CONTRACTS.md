@@ -11,4 +11,6 @@ Canonical schemas live in skill folders; this page indexes them.
 | Epic feedback export | `{jira_key}-epic-feedback.json` (items with `send_to_epic`) |
 | Creator input | `review_ref` → approved `review-payload.json` ([`reviewer/reference.md`](reviewer/reference.md)) |
 | Test batch | Creator `TestCaseDraft` schema under `creator/schemas/` when promoted |
+| Importer handoff | Studio `importer-payload.json` (`export_kind`: `creator_importer_handoff`) |
+| Importer operator config | [`importer/schemas/import-operator-config.schema.json`](importer/schemas/import-operator-config.schema.json) |
 | HTML reports | [`shared/html-report-guidelines.md`](shared/html-report-guidelines.md) |

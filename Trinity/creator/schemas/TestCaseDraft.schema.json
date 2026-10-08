@@ -8,6 +8,8 @@
     "run_id",
     "generated_at",
     "golden_version",
+    "golden_sampling",
+    "golden_references",
     "source_requirement_keys",
     "coverage_report",
     "tests"
@@ -57,6 +59,79 @@
     "golden_root": {
       "type": "string",
       "description": "Path used for style/depth reference (from config or override)"
+    },
+    "golden_sampling": {
+      "type": "object",
+      "description": "CR-GOLDEN-01: auditable random draw of 5-10 golden tests before draft",
+      "required": [
+        "method",
+        "sample_count",
+        "candidate_pool_size",
+        "similarity_count",
+        "random_fill_count"
+      ],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["similarity", "similarity_with_random_fill", "random"]
+        },
+        "sample_count": { "type": "integer", "minimum": 5, "maximum": 10 },
+        "candidate_pool_size": { "type": "integer", "minimum": 5 },
+        "similarity_pool_size": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Tests in extract with similarity score > 0"
+        },
+        "similarity_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "How many references were chosen by theme similarity"
+        },
+        "random_fill_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Keys added by random draw when similar pool < sample_count"
+        },
+        "random_seed": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Required when random_fill_count > 0 or method is random"
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Epic theme keywords used for ranking"
+        },
+        "pool_note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "golden_references": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 10,
+      "description": "CR-GOLDEN-01: production golden tests read as writing reference before draft",
+      "items": {
+        "type": "object",
+        "required": ["jira_key", "path", "why_selected", "style_cues_applied"],
+        "properties": {
+          "jira_key": {
+            "type": "string",
+            "pattern": "^TC-[0-9]+$",
+            "description": "Golden test key from Xray extract, or use TC-0000 only for v1 markdown examples"
+          },
+          "path": { "type": "string", "minLength": 1 },
+          "why_selected": { "type": "string", "minLength": 1 },
+          "style_cues_applied": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
     },
     "review_ref": {
       "type": "string",
@@ -234,6 +309,14 @@
           "type": "array",
           "items": { "type": "string" },
           "description": "Verbatim requirement excerpts grounding this test"
+        },
+        "golden_reference_keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^TC-[0-9]+$"
+          },
+          "description": "Optional: which golden_references jira_keys this journey most closely follows"
         },
         "generation_notes": { "type": "string" },
         "possible_duplicate_of": {

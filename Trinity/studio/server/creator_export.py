@@ -71,7 +71,11 @@ def build_importer_payload(conn: Any, creator_run_id: str) -> dict[str, Any]:
         ).fetchone()
         if not rev:
             continue
-        tests.append(json.loads(rev["case_json"]))
+        case = json.loads(rev["case_json"])
+        if not case.get("coverage_catalog_id"):
+            linked_ac = case.get("linked_ac_ids") or []
+            case["coverage_catalog_id"] = str(linked_ac[0]) if linked_ac else "TRINITY-IMPORT"
+        tests.append(case)
 
     return {
         "schema_version": "1.0",

@@ -130,10 +130,19 @@ def cache_write(run_dir: Path, page_id: str, title: str, version: int, markdown:
     return path
 
 
+def load_fetch_failures(run_dir: Path) -> set[str]:
+    path = run_dir / "_gather" / "nested-rescan" / "fetch-failures.json"
+    if not path.is_file():
+        return set()
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    return {str(x["pageId"]) for x in doc.get("pages") or []}
+
+
 def discover_nested_from_cache(run_dir: Path) -> None:
     """Queue Confluence page IDs linked from cached bodies but not yet cached."""
     out_dir = run_dir / "_gather" / "nested-rescan"
     cache_dir = out_dir / "cache"
+    skipped = load_fetch_failures(run_dir)
     queue_path = out_dir / "fetch-queue.json"
     existing = json.loads(queue_path.read_text(encoding="utf-8")) if queue_path.is_file() else {"pages": []}
     seen = {item["pageId"] for item in existing.get("pages") or []}
@@ -154,7 +163,11 @@ def discover_nested_from_cache(run_dir: Path) -> None:
             )
     existing["generated_at"] = datetime.now(timezone.utc).isoformat()
     queue_path.write_text(json.dumps(existing, indent=2) + "\n", encoding="utf-8")
-    pending = [p for p in existing["pages"] if not load_cache(cache_dir, p["pageId"])]
+    pending = [
+        p
+        for p in existing["pages"]
+        if str(p["pageId"]) not in skipped and not load_cache(cache_dir, p["pageId"])
+    ]
     print(f"discover_nested: {len(pending)} page(s) still need fetch → {queue_path}")
 
 
@@ -264,10 +277,10 @@ def apply(run_dir: Path) -> None:
             sample = next(iter(externals_found))
             p.setdefault("findings", []).append(
                 {
-                    "finding_id": f"RR-{epic_key}-N8",
+                    "finding_id": f"RR-{epic_key}-98",
                     "jira_key": epic_key,
                     "severity": "MEDIUM",
-                    "category": "traceability",
+                    "category": "open_questions",
                     "checklist_ref": "A8",
                     "excerpt_quote": sample[:120],
                     "finding_summary": (
@@ -276,7 +289,7 @@ def apply(run_dir: Path) -> None:
                     ),
                     "testing_impact": "Confirm whether linked external docs are binding before locking tests.",
                     "owner_hint": "PM",
-                    "source": "nested_confluence_scan",
+                    "source": "confluence",
                     "blocks_test_generation": False,
                     "status": "open",
                 }

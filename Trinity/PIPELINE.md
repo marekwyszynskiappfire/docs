@@ -9,7 +9,7 @@ flowchart LR
   runs[reviewer/runs folder]
   studio[Trinity Studio]
   creator[trinity-creator]
-  importer[Importer roadmap]
+  importer[Importer dry-run + execute roadmap]
 
   config --> cursor
   cursor --> runs
@@ -45,7 +45,8 @@ Dashboard lists the pipeline run. Open the run to review epics.
 1. In Studio, open the epic unit → **Approve & export** → **Send to Creator** (prompt includes `review_ref` + three Creator personas).
 2. Run **trinity-creator** in Cursor — **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
 3. Import `suite-payload.json` in Studio → **Creator**.
-4. Operator: edit → approve or reject; mark **fit for Xray import**; **Export for Importer** → `studio/data/exports/creator/{run}/importer-payload.json`. **Importer** submits to Xray (roadmap).
+4. Operator: edit → approve or reject; mark **fit for Xray import**; **Export for Importer** → `studio/data/exports/creator/{run}/importer-payload.json`.
+5. **Importer** (Studio): choose **production vs sandbox** Jira, mapping config, Test Repository **folder** (+ optional **create folder**); **Preview import plan**; Execute to Xray (batch submit next).
 
 Each draft includes `automation_fit`, `automation_blockers`, and `persona_notes` (QA / architect / automation).
 

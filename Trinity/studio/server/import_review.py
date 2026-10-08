@@ -57,11 +57,13 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
 
     imported_units = 0
     now = utc_now()
+    pipeline_is_new = True
 
     with db() as conn:
         existing = conn.execute(
             "SELECT id FROM pipeline_run WHERE id = ?", (pipeline_id,)
         ).fetchone()
+        pipeline_is_new = existing is None
         if existing:
             conn.execute(
                 """
@@ -155,6 +157,8 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
         "pipeline_run_id": pipeline_id,
         "units_imported": imported_units,
         "source_path": str(run_dir),
+        "pipeline_is_new": pipeline_is_new,
+        "import_kind": "new" if pipeline_is_new else "updated",
     }
 
 
@@ -167,6 +171,10 @@ def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) 
     tests = batch.get("tests") or []
 
     with db() as conn:
+        run_is_new = (
+            conn.execute("SELECT id FROM creator_run WHERE id = ?", (run_id,)).fetchone()
+            is None
+        )
         conn.execute(
             """
             INSERT INTO creator_run (id, pipeline_run_id, review_unit_id, label, source_path, status, created_at, updated_at)
@@ -224,6 +232,20 @@ def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) 
                 (row_id, json.dumps(tc, ensure_ascii=False), now),
             )
 
-        log_event(conn, "creator_batch_imported", "creator_run", run_id, None, {"tests": len(tests)})
+        log_event(
+            conn,
+            "creator_batch_imported",
+            "creator_run",
+            run_id,
+            None,
+            {"tests": len(tests), "batch_revision": rev, "run_is_new": run_is_new},
+        )
 
-    return {"creator_run_id": run_id, "tests_imported": len(tests)}
+    return {
+        "creator_run_id": run_id,
+        "tests_imported": len(tests),
+        "batch_revision": rev,
+        "run_is_new": run_is_new,
+        "import_kind": "new" if run_is_new else "updated",
+        "source_path": str(batch_path),
+    }

@@ -2,32 +2,149 @@
   "schema_version": "1.0",
   "run_id": "demo-story-suite",
   "generated_at": "2026-10-08T11:00:00+02:00",
-  "golden_version": "golden/v1",
+  "golden_version": "golden/v2/filter-17844-bigpicture-manual",
   "suite_mode": "release_slice_e2e",
   "product_id": "default",
-  "golden_root": "Trinity/creator/golden/v1",
+  "golden_root": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual",
+  "golden_sampling": {
+    "method": "similarity",
+    "sample_count": 10,
+    "candidate_pool_size": 245,
+    "similarity_pool_size": 51,
+    "similarity_count": 10,
+    "random_fill_count": 0,
+    "random_seed": "demo-story-suite",
+    "keywords": [
+      "OKR",
+      "custom",
+      "field",
+      "Settings",
+      "export",
+      "CSV"
+    ]
+  },
+  "golden_references": [
+    {
+      "jira_key": "TC-6117",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6117.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Creating Text type custom field",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6118",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6118.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Creating Number type custom field",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6119",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6119.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Creating Hyperlink type custom field",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6120",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6120.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Creating Select type custom field",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6121",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6121.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Creating Multi-Select type custom field",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6122",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6122.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Creating User type custom field",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6123",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6123.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Creating Date type custom field",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6147",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6147.json",
+      "why_selected": "Theme similarity rank (score 3) to Epic keywords; title: SPM - OKR - Updating Text custom field values across OKR views",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6150",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6150.json",
+      "why_selected": "Theme similarity rank (score 4) to Epic keywords; title: SPM - OKR - Updating custom field name and description in Settings",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    },
+    {
+      "jira_key": "TC-6151",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual/rag/by-key/TC-6151.json",
+      "why_selected": "Theme similarity rank (score 4) to Epic keywords; title: SPM - OKR - Updating and Deleting Select custom field options in Settings",
+      "style_cues_applied": [
+        "Full JSON read for step depth and BP manual phrasing",
+        "Title/navigation pattern from this TC"
+      ]
+    }
+  ],
   "review_ref": "Trinity/reviewer/samples/demo-epic.payload.json",
   "persona_files": [
     "creator-expert-qa-engineer.md",
     "creator-test-architect.md",
     "creator-expert-test-automation-engineer.md"
   ],
-  "source_requirement_keys": ["DEMO-4522"],
+  "source_requirement_keys": [
+    "DEMO-4522"
+  ],
   "requirements_review_run_id": "2026-09-28-0031",
   "coverage_report": {
     "uncovered_ac_ids": [],
     "uncovered_goals": [],
-    "warnings": ["Sanitized demo batch for Trinity Studio — not a live Jira suite."],
+    "warnings": [
+      "Sanitized demo batch for Trinity Studio — not a live Jira suite."
+    ],
     "matrix": [
       {
         "ac_id": "AC-01",
         "status": "Covered",
-        "covered_by": ["TC-001"]
+        "covered_by": [
+          "TC-001"
+        ]
       },
       {
         "ac_id": "AC-02",
         "status": "Covered",
-        "covered_by": ["TC-002"]
+        "covered_by": [
+          "TC-002"
+        ]
       }
     ]
   },
@@ -35,8 +152,12 @@
     {
       "draft_id": "TC-001",
       "title": "OKR admin configures custom fields and exports configuration to CSV for audit",
-      "linked_requirement_keys": ["DEMO-4522"],
-      "linked_ac_ids": ["AC-01"],
+      "linked_requirement_keys": [
+        "DEMO-4522"
+      ],
+      "linked_ac_ids": [
+        "AC-01"
+      ],
       "execution_tier": "P1",
       "test_pattern": "journey",
       "role": "OKR_ADMIN",
@@ -49,7 +170,10 @@
       "preconditions": "User has OKR admin role; feature flag for CSV export enabled on staging.",
       "automation_fit": "partial",
       "automation_candidate": true,
-      "automation_blockers": ["file_download_assertion", "spreadsheet_parse_in_ci"],
+      "automation_blockers": [
+        "file_download_assertion",
+        "spreadsheet_parse_in_ci"
+      ],
       "persona_notes": {
         "qa_engineer": "Covers admin export happy path from settings through file validation — primary AC-01 revenue/audit path.",
         "test_architect": "Single journey spans configuration UI and export artifact; avoids separate atomic export click test.",
@@ -77,14 +201,24 @@
           "expected_result": "Row values match UI name and type."
         }
       ],
-      "tags": ["export", "journey", "demo"],
-      "source_quotes": ["Admins can export custom field definitions to CSV for audit."]
+      "tags": [
+        "export",
+        "journey",
+        "demo"
+      ],
+      "source_quotes": [
+        "Admins can export custom field definitions to CSV for audit."
+      ]
     },
     {
       "draft_id": "TC-002",
       "title": "Standard user completes OKR workflow but cannot export or edit field configuration",
-      "linked_requirement_keys": ["DEMO-4522"],
-      "linked_ac_ids": ["AC-02"],
+      "linked_requirement_keys": [
+        "DEMO-4522"
+      ],
+      "linked_ac_ids": [
+        "AC-02"
+      ],
       "execution_tier": "P1",
       "test_pattern": "journey",
       "role": "STANDARD_USER",
@@ -121,7 +255,11 @@
           "expected_result": "Export is not available or returns a clear permission error; no file download."
         }
       ],
-      "tags": ["permissions", "journey", "demo"]
+      "tags": [
+        "permissions",
+        "journey",
+        "demo"
+      ]
     }
   ],
   "validation": {

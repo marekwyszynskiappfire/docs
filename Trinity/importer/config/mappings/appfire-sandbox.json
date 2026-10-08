@@ -1,0 +1,36 @@
+{
+  "version": "0.1",
+  "environment": "sandbox",
+  "environment_label": "appfire-sandbox-774",
+  "xray": {
+    "graphql_url": "https://xray.cloud.getxray.app/api/v2/graphql",
+    "auth_url": "https://xray.cloud.getxray.app/api/v2/authenticate"
+  },
+  "project": {
+    "key": "TC",
+    "id": null,
+    "url": "https://appfire-sandbox-774.atlassian.net/jira/software/c/projects/TC"
+  },
+  "defaults": {
+    "folder_path": "/Trinity sandbox",
+    "test_type": "Manual",
+    "priority_map": {
+      "High": "High",
+      "Medium": "Medium",
+      "Low": "Low",
+      "Lowest": "Lowest"
+    },
+    "extra_labels": ["trinity-import", "sandbox"],
+    "jira_required_fields": {}
+  },
+  "jira": {
+    "site_url": "https://appfire-sandbox-774.atlassian.net",
+    "cloud_id": null
+  },
+  "requirement_link": {
+    "link_type_name": "Test",
+    "inward_issue": "test",
+    "outward_issue": "requirement"
+  },
+  "_operator_notes": "Fill project.id (numeric Jira project id) for createFolder. Sandbox custom field IDs often differ from production — adjust jira_required_fields after first dry-run."
+}
