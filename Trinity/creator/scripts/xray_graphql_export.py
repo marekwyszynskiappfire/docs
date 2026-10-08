@@ -31,6 +31,10 @@ from pathlib import Path
 from typing import Any
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+from redact_presigned_s3_urls import redact_object  # noqa: E402
+
 DEFAULT_CONFIG = (
     SCRIPT_DIR.parent.parent.parent
     / "The Creator/Input/Marek/_shared/config/jira_xray_mapping.json"
@@ -327,6 +331,7 @@ def fetch_batch(
 ) -> list[dict[str, Any]]:
     variables = {"issueIds": issue_ids, "limit": min(batch_size, len(issue_ids))}
     body = graphql_request(config, token, GET_TESTS_QUERY, variables)
+    body, _ = redact_object(body)
     raw_path = raw_dir / f"batch-{batch_index:05d}.json"
     raw_path.write_text(json.dumps(body, indent=2) + "\n", encoding="utf-8")
     results = (body.get("data") or {}).get("getTests", {}).get("results") or []
@@ -459,7 +464,16 @@ def main() -> int:
         print(f"{len(errors)} batch errors (see {err_path})", file=sys.stderr)
 
     tests = [normalize_test(r, site_url) for r in all_raw]
+    redacted_tests: list[dict[str, Any]] = []
+    redact_count = 0
+    for test in tests:
+        test, n = redact_object(test)
+        redact_count += n
+        redacted_tests.append(test)
+    tests = redacted_tests
     tests.sort(key=lambda t: t.get("key") or "")
+    if redact_count:
+        print(f"Redacted presigned S3 query strings in {redact_count} string(s)", file=sys.stderr)
 
     manifest = {
         **filter_meta,

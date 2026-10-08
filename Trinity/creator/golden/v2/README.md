@@ -34,4 +34,6 @@ python3 Trinity/creator/scripts/xray_graphql_export.py \
   --workers 6 --batch-size 8 --resume
 ```
 
+Committed artifacts (`extraction.json`, `rag/`) are written with presigned S3 query strings stripped automatically. Re-run `redact_presigned_s3_urls.py` only if you paste exports from elsewhere.
+
 Refresh `issues.json` after filter changes: paginate `filter = 17844` in Jira, then `merge_jira_search_pages.py`.

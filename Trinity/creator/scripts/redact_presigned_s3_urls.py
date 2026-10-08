@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+from typing import Any
 
 # Match S3-style URLs through the path; drop ?query (credentials live in query).
 S3_URL = re.compile(
@@ -25,6 +26,29 @@ def redact_text(text: str) -> tuple[str, int]:
         return url
 
     return S3_URL.sub(repl, text), count
+
+
+def redact_object(obj: Any) -> tuple[Any, int]:
+    """Recursively strip presigned query strings from strings inside JSON-like trees."""
+    if isinstance(obj, str):
+        return redact_text(obj)
+    if isinstance(obj, list):
+        total = 0
+        out: list[Any] = []
+        for item in obj:
+            redacted, n = redact_object(item)
+            total += n
+            out.append(redacted)
+        return out, total
+    if isinstance(obj, dict):
+        total = 0
+        out: dict[Any, Any] = {}
+        for key, value in obj.items():
+            redacted, n = redact_object(value)
+            total += n
+            out[key] = redacted
+        return out, total
+    return obj, 0
 
 
 def process_file(path: Path) -> int:
