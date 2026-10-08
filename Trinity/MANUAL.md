@@ -1,6 +1,6 @@
 # Trinity operator manual
 
-Hub: [`README.md`](README.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md)
+Hub: [`README.md`](README.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md) · **Testing:** [`TESTING.md`](TESTING.md)
 
 ## Reviewer — portfolio interview (Cursor)
 
@@ -62,6 +62,8 @@ After import, open a pipeline run on the Dashboard:
 2. **Send to Creator** copies a markdown prompt with `review_ref` (exported `review-payload.json` under `Trinity/studio/data/exports/`).
 3. Disabled when **not_fit** (not suitable for test design).
 4. Follow the link to **Creator** after the Cursor run to import `suite-payload.json`.
+5. Review **3–5 journey** drafts; edit automation fit / blockers; **approve** or **reject**; check **Fit for Xray import** when approved.
+6. On the Creator run page: bulk actions, filter **Ready for Xray import**, **Export for Importer** (JSON under `Trinity/studio/data/exports/creator/`).
 
 ## Import Reviewer results
 
@@ -73,4 +75,4 @@ Then review units on the Dashboard, approve payloads, export for Creator.
 
 ---
 
-More sections (Creator, Importer, end-to-end pipeline): [`PIPELINE.md`](PIPELINE.md) (planned).
+Pipeline overview: [`PIPELINE.md`](PIPELINE.md). Step-by-step validation: [`TESTING.md`](TESTING.md).

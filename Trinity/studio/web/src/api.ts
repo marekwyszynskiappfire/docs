@@ -68,6 +68,18 @@ export type Stats = {
   test_cases_approved: number;
   test_cases_automation_candidate: number;
   test_cases_imported_xray: number;
+  test_cases_ready_for_import: number;
+};
+
+export type CreatorTestRow = {
+  id: string;
+  draft_id: string;
+  title: string;
+  human_review_status: string;
+  automation_fit?: string | null;
+  automation_candidate?: number | null;
+  marked_for_xray_import?: number | null;
+  creator_run_id?: string;
 };
 
 export const api = {
@@ -126,17 +138,58 @@ export const api = {
   creatorRun: (id: string) =>
     json<{
       run: { id: string; label: string };
-      tests: { id: string; draft_id: string; title: string; human_review_status: string }[];
+      tests: CreatorTestRow[];
+      summary: {
+        total: number;
+        approved: number;
+        rejected: number;
+        ready_for_import: number;
+      };
     }>(`/api/creator-runs/${id}`),
   test: (id: string) =>
-    json<{ test: { id: string }; case: Record<string, unknown> }>(
-      `/api/tests/${id}`
-    ),
-  saveTest: (id: string, caseObj: Record<string, unknown>, status?: string) =>
-    json(`/api/tests/${id}`, {
+    json<{
+      test: CreatorTestRow & { creator_run_id?: string };
+      case: Record<string, unknown>;
+    }>(`/api/tests/${id}`),
+  saveTest: (
+    id: string,
+    caseObj: Record<string, unknown>,
+    status?: string,
+    markedForXrayImport?: boolean
+  ) =>
+    json<{
+      revision: number;
+      human_review_status: string;
+      marked_for_xray_import: boolean;
+    }>(`/api/tests/${id}`, {
       method: "PUT",
-      body: JSON.stringify({ case: caseObj, human_review_status: status }),
+      body: JSON.stringify({
+        case: caseObj,
+        human_review_status: status,
+        marked_for_xray_import: markedForXrayImport,
+      }),
     }),
+  patchTest: (
+    id: string,
+    body: { human_review_status?: string; marked_for_xray_import?: boolean }
+  ) =>
+    json(`/api/tests/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
+  bulkTestReview: (
+    runId: string,
+    testIds: string[],
+    body: { human_review_status?: string; marked_for_xray_import?: boolean }
+  ) =>
+    json<{ updated: number }>(`/api/creator-runs/${runId}/bulk-test-review`, {
+      method: "POST",
+      body: JSON.stringify({ test_ids: testIds, ...body }),
+    }),
+  exportForImporter: (runId: string) =>
+    json<{
+      path: string;
+      absolute_path: string;
+      test_count: number;
+      payload: Record<string, unknown>;
+    }>(`/api/creator-runs/${runId}/export-for-importer`, { method: "POST" }),
   importBatch: (path: string) =>
     json("/api/import/test-case-batch", {
       method: "POST",

@@ -5,6 +5,9 @@ Editable **role prompts** for Reviewer, Creator, and Importer. The agent loads t
 | File | Used by |
 |------|---------|
 | [`reviewer-expert-qa-automation.md`](reviewer-expert-qa-automation.md) | The Reviewer (default) |
+| [`creator-expert-qa-engineer.md`](creator-expert-qa-engineer.md) | The Creator |
+| [`creator-test-architect.md`](creator-test-architect.md) | The Creator |
+| [`creator-expert-test-automation-engineer.md`](creator-expert-test-automation-engineer.md) | The Creator |
 
 **Trinity Studio:** open **Personas** in the UI (`./Trinity/studio/scripts/start.sh`) — edits write back to this folder.
 

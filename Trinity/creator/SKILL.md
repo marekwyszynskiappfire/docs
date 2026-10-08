@@ -1,103 +1,116 @@
 ---
 name: trinity-creator
 description: >-
-  Generates a structured test suite (Markdown + JSON batch) from Jira requirements,
-  anchored to an optional Reviewer review_ref. Release-slice sizing (5–15 tests) when
-  review readiness needs clarification; journey + atomic patterns; P0–P3 tiers;
-  coverage reporting. Does not import to Xray (use Trinity Importer after Studio
-  approval). Use after The Reviewer or with an approved review-payload.json.
+  Generates 3–5 end-to-end journey test scenarios per Epic from Reviewer review_ref,
+  styled against per-product golden corpora; automation_fit tagging; persona lenses.
+  Does not import to Xray (Studio review + Trinity Importer). Epic-only scope.
 disable-model-invocation: true
 ---
 
 # Trinity Creator
 
-Draft **QA-ready test cases** from requirement context. Output is **machine JSON** plus human **Markdown** — the model does not hand-write HTML report shells (see [`../shared/html-report-guidelines.md`](../shared/html-report-guidelines.md); suite reports = Profile A when a renderer exists).
+Draft **e2e journey test cases** from an approved **Reviewer** handoff. Default output is **3–5 scenarios** that maximize Epic coverage — not granular button-level tests. Output is **JSON batch** + **Markdown** suite report.
 
-**Does not:** import to Xray, invent requirements, run per-child Epic test plans (epic-only scope — **CR-EPIC-01**), or embed product-specific vendor names in skill text (**CR-AGNOSTIC-01**).
+**Does not:** import to Xray, invent requirements, run per-child Epic suites (**CR-EPIC-01**), or embed vendor names in skill text (**CR-AGNOSTIC-01**).
 
-Decision memory: maintainer-local [`../reviewer/DECISIONS.md`](../reviewer/DECISIONS.md) § Creator resolutions — Part 2.
+## Personas (load every run)
 
-## Paths (`{skill_root}` = this folder)
+Read all three files under `{trinity_root}/personas/` and apply them to every test:
+
+| File | Lens |
+|------|------|
+| `creator-expert-qa-engineer.md` | Customer outcomes, data, traceability → `persona_notes.qa_engineer` |
+| `creator-test-architect.md` | Suite shape, coverage matrix, no overlap → `persona_notes.test_architect` |
+| `creator-expert-test-automation-engineer.md` | `automation_fit`, blockers → `persona_notes.automation_engineer` |
+
+Summarize each persona in one line to the operator before drafting.
+
+## Paths (`{skill_root}` = this folder, `{trinity_root}` = `Trinity/`)
 
 | Resource | Path |
 |----------|------|
-| Test batch schema (Studio import) | `{skill_root}/schemas/TestCaseDraft.schema.json` |
-| Golden style + examples | `{skill_root}/golden/v1/` |
-| Domain coverage catalog (optional) | `{skill_root}/coverage-catalog.md` |
-| Templates (review gate, external context) | `{skill_root}/templates/marek-test-case-creation/` |
-| Reference (gates, tiers, review_ref) | [`reference.md`](reference.md) |
-| Demo batch (Studio) | `{skill_root}/samples/demo-story.suite.json` |
-| Per-product config | `config/<product>.json` → `config/default.json` |
-| Run artifacts | `{config.output.artifacts_dir}/{run_id}/` (default `{skill_root}/artifacts/{run_id}/`) |
-| Profile B triage example | `{skill_root}/runs/TC-6504/report/` |
+| Batch schema | `{skill_root}/schemas/TestCaseDraft.schema.json` |
+| Product config | `{skill_root}/config/<product>.json` → `default.json` |
+| Golden root | `config.golden_root` (e.g. BigPicture → `golden/v2/filter-17844-bigpicture-manual`) |
+| Style rules | `config.assets.golden_style` or `golden/v1/style-rules.md` |
+| Optional product catalog | `config.assets.coverage_catalog` — **not** default for Epic runs |
+| `review_ref` template | `{skill_root}/templates/marek-test-case-creation/` |
+| Reference | [`reference.md`](reference.md) |
+| Demo batch | `{skill_root}/samples/demo-story.suite.json` |
+| Artifacts | `{skill_root}/{config.output.artifacts_dir}/{run_id}/` |
 
-Announce resolved `product` and `run_id` at the start of every run.
+Announce `product_id`, `golden_root`, `run_id`, and `suite_mode` at run start.
 
 ## Session inputs
 
 | Input | Mandatory? | Notes |
 |-------|------------|-------|
-| **Requirement source** | **Yes** | Jira key (Story or **Epic**), JQL, or normalized bundle |
-| **`review_ref`** | **Strongly encouraged** | Path to `review-payload.json` from Reviewer or Trinity Studio export (**CV4**) |
-| **External context** | No | User-supplied paths/URLs — see templates |
-| **Xray extract** | No | Dedupe / depth hints only |
+| **`review_ref`** | **Yes** when Studio handoff | Approved `review-payload.json` — primary source for coverage matrix |
+| **Requirement source** | **Yes** | Epic key from handoff or explicit `scope` |
+| **`product`** | No | Config id (`bigpicture`, `default`, …) |
+| **`golden_root` override** | No | Overrides `config.golden_root` for one run |
+| **`existing_xray_extract`** | No | Extra dedupe path under `golden_root` |
+| **External context** | No | Per templates |
 
-If `review_ref` is omitted, set `review_skipped: true` and a one-line reason in batch metadata; do not pretend a gate was evaluated.
+If `review_ref` is missing outside a deliberate dry-run, stop and ask — set `review_skipped` + reason only when operator confirms.
 
 ## Session parameters
 
-| Parameter | Required | Notes |
-|-----------|----------|-------|
-| `scope` | Yes | Issue key(s), JQL, bundle path, or `review_ref` path |
-| `run_id` | No | Default `{PRIMARY-KEY}` or timestamp |
-| `jira_primary_key` | No | Filename anchor when scope is multi-key |
-| `comprehensive` | No | Default **`false`** → **5–15** tests, `suite_mode=release_slice`. **`true`** only when review readiness is not `needs_clarification` and no open High Q#/RR-*, or user explicitly requests full suite |
-| `force` | No | Bypass Reviewer `BLOCKED` gate only with explicit QA confirmation in chat; set `gate_override: true` |
-| `figma_policy` | No | `link-only` (default), `export`, `out` — from config |
-| `external_context` | No | `paths[]`, `urls[]` per template |
-| `existing_xray_extract` | No | Path to extract JSON/MD |
+| Parameter | Default | Notes |
+|-----------|---------|-------|
+| `suite_mode` | `release_slice_e2e` | **3–5** tests, `test_pattern: journey` only |
+| `comprehensive` | `false` | If `true` → `comprehensive_legacy`; still journey-first unless operator requests atomic |
+| `scope` / Epic key | from `review_ref` | One Creator run per Epic |
+| `run_id` | Epic key or timestamp | |
+| `force` | `false` | Bypass Reviewer `BLOCKED` only with QA confirmation → `gate_override: true` |
 
-## Preconditions (enforce before drafting)
+Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default **false**), `max_steps_per_journey` (**15**).
 
-1. Resolve primary `{JIRA-KEY}` (Epic preferred when scope is an Epic batch).
-2. Load `review_ref` when provided; apply gate rules in [`reference.md`](reference.md).
-3. Load `golden/v1/style-rules.md`, both `golden/v1/examples/`, and validate against `TestCaseDraft.schema.json`.
-4. Build or load coverage checklist (`coverage-catalog.md` or run-scoped `CAT-*` rows).
-5. Acquire requirements (Jira MCP, bundle, linked Confluence/Figma per policy). User `external_context` merges **before** embedded link crawl — see reference.
-6. **Epic scope:** one suite on the Epic key; child stories supply traceability only — no separate child suites.
+## Preconditions
+
+1. Load product config; resolve `golden_root` and read `golden/v1/style-rules.md` + 2–3 closest examples from golden (`rag/chunks.jsonl` or `golden/v1/examples/`).
+2. Load **`review_ref`**; apply gates in [`reference.md`](reference.md). Build **Epic coverage matrix** from payload (ACs, goals, findings, risks) — not from `coverage-catalog.md` unless config points at a matching catalog.
+3. Validate output against `TestCaseDraft.schema.json`.
+4. **Epic scope:** child story keys only in `linked_requirement_keys` / traceability.
 
 ## Workflow
 
-1. **Pre-flight** — `comprehensive`, gate, fingerprint staleness: if `review_ref` fingerprint ≠ live requirement fingerprint, warn and ask whether to proceed.
-2. **Ingest** — Requirements + review findings; record loaded sources in batch metadata.
-3. **Size** — Release slice vs comprehensive per parameters and review readiness.
-4. **Draft tests** — Each test: `draft_id`, tiers, `customer_impact`, `test_data_*`, steps (`step` / `expected_result` / optional `test_data`), traceability keys and `source_quotes` where possible.
-5. **Coverage report** — `coverage_report` with `uncovered_ac_ids`, warnings, optional `catalog_coverage`.
-6. **Write artifacts** (same `run_id` folder):
+1. **Pre-flight** — Gate, readiness, fingerprint staleness vs live Jira.
+2. **Golden sampling** — From `golden_root`, find 2–3 production tests similar in domain (folder names, labels, summary keywords). Mirror **depth and step style**, not ticket-specific data.
+3. **Plan suite** (Test Architect) — Propose **3–5** journey titles mapping to the matrix; operator may adjust before full draft.
+4. **Draft journeys** — Each test includes:
+   - `test_pattern: journey` (required in `release_slice_e2e`)
+   - Up to **15** steps; multi-surface flow (setup → action → verification across relevant UI/API)
+   - `automation_fit`, `automation_candidate`, `automation_blockers[]`
+   - `persona_notes` for all three personas
+   - `linked_requirement_keys`, `linked_ac_ids` / goals, `source_quotes` where possible
+5. **Coverage report** — Prefer `coverage_report.matrix[]` from Reviewer ACs/goals; `catalog_coverage` only if product catalog loaded.
+6. **Write artifacts**
 
 | File | Purpose |
 |------|---------|
-| `suite-payload.json` | Canonical **TestCaseDraftBatch** (schema 1.0) — Studio import target |
-| `suite-report.md` | Human-readable suite (required per D21) |
-| `suite-report.html` | Optional Profile A HTML when `render_report` supports `suite` kind |
+| `suite-payload.json` | Studio import |
+| `suite-report.md` | Human suite (**D21**) |
 
-7. **Handoff** — Tell QA to import `suite-payload.json` in **Trinity Studio** (Creator tab) or continue edit/approve flow; Xray submit is **Importer** only (**CR-IMPORTER-01**).
+7. **Handoff** — Studio → Creator → import batch → operator **approve/reject** and mark **fit for Xray import** (Phase 2 UI). **Importer** submits to Xray.
 
-## Quality bar
+## Quality bar (all personas)
 
-- No placeholder steps (“TBD”, “verify as appropriate”).
-- No invented credentials or URLs; use config redaction patterns from Reviewer reference where applicable.
-- P3 requires `deferrable: true` and `deferrable_rationale`.
-- Do not exceed 15 tests in release slice without user approval for `comprehensive: true`.
+| Rule | Detail |
+|------|--------|
+| No granular tests | Reject single-control or single-screen scenarios unless Epic scope is trivial |
+| No placeholders | No “TBD”, “verify as appropriate” |
+| No invented secrets/URLs | Use config redaction patterns |
+| P3 | `deferrable: true` + `deferrable_rationale` |
+| Count | **3–5** journeys in `release_slice_e2e` without operator approval to exceed |
+| Atomic | **Forbidden** when `allow_atomic` is false |
 
 ## Trinity Studio
 
-After generation, import the JSON batch:
-
 ```text
 Trinity Studio → Creator → Import batch
-Path: Trinity/creator/samples/demo-story.suite.json   (demo)
-      Trinity/creator/artifacts/{run_id}/suite-payload.json   (your run)
+  Trinity/creator/samples/demo-story.suite.json
+  Trinity/creator/artifacts/{run_id}/suite-payload.json
 ```
 
-Approve tests in Studio; export approved payload for Importer (roadmap).
+Operator reviews each test (approve / reject / edit). **Marked for Xray import** is separate from approval (Studio Phase 2).

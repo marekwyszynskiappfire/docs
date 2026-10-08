@@ -6,7 +6,9 @@ Test suite generation skill for the Trinity pipeline: **Reviewer** → **Creator
 
 | Item | State |
 |------|--------|
-| [`SKILL.md`](SKILL.md) | v1 WIP — install via [`../scripts/install-trinity-skills.sh`](../scripts/install-trinity-skills.sh) |
+| [`SKILL.md`](SKILL.md) | v1 — 3–5 e2e journeys, Reviewer-driven coverage, three personas — install via [`../scripts/install-trinity-skills.sh`](../scripts/install-trinity-skills.sh) |
+| Personas | [`../personas/creator-*.md`](../personas/README.md) |
+| Product config | [`config/default.json`](config/default.json), [`config/bigpicture.json`](config/bigpicture.json) |
 | Schema | [`schemas/TestCaseDraft.schema.json`](schemas/TestCaseDraft.schema.json) |
 | Studio import | [`samples/demo-story.suite.json`](samples/demo-story.suite.json) |
 | Rule port | [`PORT-CHECKLIST.md`](PORT-CHECKLIST.md) (fill during Phase 1) |
@@ -30,6 +32,7 @@ creator/
   SKILL.md, reference.md
   schemas/          TestCaseDraft (+ future suite-payload)
   golden/v1/        Style rules and pattern examples
+  golden/v2/        Per-product Xray extracts (see config golden_root)
   samples/          Committed demo batches
   templates/        Review gate and external-context samples
   config/           Per-product JSON (start from default.json)

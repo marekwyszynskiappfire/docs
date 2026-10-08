@@ -1,29 +1,42 @@
 {
   "schema_version": "1.0",
   "run_id": "demo-story-suite",
-  "generated_at": "2026-10-08T08:00:00+02:00",
+  "generated_at": "2026-10-08T11:00:00+02:00",
   "golden_version": "golden/v1",
+  "suite_mode": "release_slice_e2e",
+  "product_id": "default",
+  "golden_root": "Trinity/creator/golden/v1",
+  "review_ref": "Trinity/reviewer/samples/demo-epic.payload.json",
+  "persona_files": [
+    "creator-expert-qa-engineer.md",
+    "creator-test-architect.md",
+    "creator-expert-test-automation-engineer.md"
+  ],
   "source_requirement_keys": ["DEMO-4522"],
   "requirements_review_run_id": "2026-09-28-0031",
   "coverage_report": {
     "uncovered_ac_ids": [],
-    "warnings": ["Sanitized demo batch for Trinity Studio import — not a live Jira suite."],
-    "catalog_coverage": [
+    "uncovered_goals": [],
+    "warnings": ["Sanitized demo batch for Trinity Studio — not a live Jira suite."],
+    "matrix": [
       {
-        "catalog_id": "CAT-DEMO-4522-EXPORT",
-        "tier": "P1",
-        "status": "covered",
+        "ac_id": "AC-01",
+        "status": "Covered",
         "covered_by": ["TC-001"]
+      },
+      {
+        "ac_id": "AC-02",
+        "status": "Covered",
+        "covered_by": ["TC-002"]
       }
     ]
   },
   "tests": [
     {
       "draft_id": "TC-001",
-      "title": "Admin exports OKR custom fields to CSV with expected columns",
+      "title": "OKR admin configures custom fields and exports configuration to CSV for audit",
       "linked_requirement_keys": ["DEMO-4522"],
       "linked_ac_ids": ["AC-01"],
-      "coverage_catalog_id": "CAT-DEMO-4522-EXPORT",
       "execution_tier": "P1",
       "test_pattern": "journey",
       "role": "OKR_ADMIN",
@@ -34,42 +47,81 @@
       "test_type": "Manual",
       "priority": "High",
       "preconditions": "User has OKR admin role; feature flag for CSV export enabled on staging.",
+      "automation_fit": "partial",
+      "automation_candidate": true,
+      "automation_blockers": ["file_download_assertion", "spreadsheet_parse_in_ci"],
+      "persona_notes": {
+        "qa_engineer": "Covers admin export happy path from settings through file validation — primary AC-01 revenue/audit path.",
+        "test_architect": "Single journey spans configuration UI and export artifact; avoids separate atomic export click test.",
+        "automation_engineer": "API setup for fields + UI export trigger; file content check may stay manual or use fixture parser."
+      },
       "steps": [
         {
-          "step": "Open **Settings → OKR → Custom fields** and choose **Export CSV**.",
-          "expected_result": "Export dialog or action starts; no permission error."
+          "step": "Open **Settings → OKR → Custom fields** and confirm existing fields list loads.",
+          "expected_result": "Table shows field name, type, and used-in columns for at least two fields."
         },
         {
-          "step": "Download the generated file and open it in a spreadsheet tool.",
-          "expected_result": "CSV contains header row with field name, type, and applicable goal type columns per AC-01."
+          "step": "Open one field detail and note name and type for later CSV comparison.",
+          "expected_result": "Detail panel matches list row values."
+        },
+        {
+          "step": "Choose **Export CSV** from settings toolbar.",
+          "expected_result": "Export starts without permission error; progress or download prompt appears."
+        },
+        {
+          "step": "Download the file and open in a spreadsheet tool.",
+          "expected_result": "CSV header includes field name, type, and applicable goal type columns per AC-01."
+        },
+        {
+          "step": "Locate the field from step 2 in the CSV.",
+          "expected_result": "Row values match UI name and type."
         }
       ],
-      "tags": ["export", "smoke", "demo"]
+      "tags": ["export", "journey", "demo"],
+      "source_quotes": ["Admins can export custom field definitions to CSV for audit."]
     },
     {
       "draft_id": "TC-002",
-      "title": "Export is denied for user without OKR admin permission",
+      "title": "Standard user completes OKR workflow but cannot export or edit field configuration",
       "linked_requirement_keys": ["DEMO-4522"],
       "linked_ac_ids": ["AC-02"],
-      "coverage_catalog_id": "CAT-DEMO-4522-PERM",
-      "execution_tier": "P2",
-      "test_pattern": "atomic",
+      "execution_tier": "P1",
+      "test_pattern": "journey",
       "role": "STANDARD_USER",
-      "customer_impact": "Unauthorized users could exfiltrate configuration data if permission checks fail.",
-      "deferrable": true,
-      "deferrable_rationale": "Covered indirectly by broader RBAC suite when time-boxed.",
-      "test_data_required": false,
-      "test_data_prerequisites": "Standard user account on staging; export UI reachable but action must be blocked.",
+      "customer_impact": "Unauthorized users could exfiltrate configuration or change global field setup if RBAC fails.",
+      "deferrable": false,
+      "test_data_required": true,
+      "test_data_prerequisites": "Standard user with access to OKR overview; at least one OKR visible; no admin rights.",
       "test_type": "Manual",
-      "priority": "Medium",
+      "priority": "High",
       "preconditions": "Logged in as standard user without custom-field admin rights.",
+      "automation_fit": "full",
+      "automation_candidate": true,
+      "automation_blockers": [],
+      "persona_notes": {
+        "qa_engineer": "Exercises allowed OKR usage then denies export/admin — RBAC AC-02 in one realistic session.",
+        "test_architect": "Pairs with TC-001 on matrix row AC-02 without duplicating admin export steps.",
+        "automation_engineer": "Role fixtures + API negative on export endpoint if available; UI hidden state assertions."
+      },
       "steps": [
         {
-          "step": "Navigate to the same export entry point as TC-001.",
-          "expected_result": "Export control is hidden or disabled, or action returns a clear permission error."
+          "step": "Open OKR **Overview** and open an existing OKR from the tree.",
+          "expected_result": "Detail or side panel loads; user can view OKR data."
+        },
+        {
+          "step": "Edit an inline field value allowed for standard users and save.",
+          "expected_result": "Value persists after refresh on the same row."
+        },
+        {
+          "step": "Navigate to **Settings → OKR → Custom fields**.",
+          "expected_result": "Page is blocked, read-only, or export/admin actions are hidden per product RBAC."
+        },
+        {
+          "step": "Attempt export via any visible entry point (toolbar, menu, or direct URL if documented).",
+          "expected_result": "Export is not available or returns a clear permission error; no file download."
         }
       ],
-      "tags": ["permissions", "demo"]
+      "tags": ["permissions", "journey", "demo"]
     }
   ],
   "validation": {

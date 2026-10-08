@@ -69,6 +69,10 @@ export default function HomePage() {
             <div className="label">Automatable</div>
             <div className="value">{stats.test_cases_automation_candidate}</div>
           </div>
+          <div className="stat-card">
+            <div className="label">Ready for Xray</div>
+            <div className="value">{stats.test_cases_ready_for_import ?? 0}</div>
+          </div>
         </div>
       )}
 

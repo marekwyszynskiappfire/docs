@@ -42,10 +42,12 @@ Dashboard lists the pipeline run. Open the run to review epics.
 
 ## 4. Creator (test cases)
 
-1. In Studio, open the epic unit → **Approve & export** → **Send to Creator** (copies Cursor prompt with `review_ref`).
-2. Run **trinity-creator** in Cursor (Epic key once — CR-EPIC-01).
-3. Import `suite-payload.json` in Studio → **Creator** (`Trinity/creator/artifacts/{EPIC}/…`).
-4. Edit and approve tests; Importer (roadmap) handles Xray.
+1. In Studio, open the epic unit → **Approve & export** → **Send to Creator** (prompt includes `review_ref` + three Creator personas).
+2. Run **trinity-creator** in Cursor — **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
+3. Import `suite-payload.json` in Studio → **Creator**.
+4. Operator: edit → approve or reject; mark **fit for Xray import**; **Export for Importer** → `studio/data/exports/creator/{run}/importer-payload.json`. **Importer** submits to Xray (roadmap).
+
+Each draft includes `automation_fit`, `automation_blockers`, and `persona_notes` (QA / architect / automation).
 
 Blocked in Studio when `qa_planning_fit` is **not_fit**.
 

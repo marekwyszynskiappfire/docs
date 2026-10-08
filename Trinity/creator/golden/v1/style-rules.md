@@ -7,6 +7,8 @@
 
 These rules define how generated tests should read before QA triage. Golden **examples** live in `golden/v1/examples/` (atomic + journey).
 
+**Trinity Creator default (`release_slice_e2e`):** use **journey** tests only — 3–5 per Epic, production depth from `config.golden_root` (often v2 extract + these rules). Atomic examples are for legacy comprehensive catalog runs only.
+
 ---
 
 ## 1. Naming

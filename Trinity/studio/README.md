@@ -29,6 +29,9 @@ API **8765** · Vite UI **5173**
 | `POST/DELETE .../resolved-keys` | Paste or clear `resolved_epic_keys` snapshot |
 | `POST /api/import/reviewer-run` | Import Reviewer run folder |
 | `POST /api/units/{id}/send-to-creator` | Approved export + Creator prompt (blocks not_fit) |
+| `PUT/PATCH /api/tests/{id}` | Save case JSON, review status, import mark |
+| `POST /api/creator-runs/{id}/bulk-test-review` | Bulk approve / reject / mark for Xray |
+| `POST /api/creator-runs/{id}/export-for-importer` | Write `data/exports/creator/{id}/importer-payload.json` |
 | `/api/units/...`, `/api/creator-runs/...` | Review and Creator batches |
 
 UI: **Personas** nav → edit role prompts used by Reviewer run config.

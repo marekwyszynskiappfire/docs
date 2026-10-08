@@ -1,12 +1,28 @@
 # Per-product config (Creator)
 
-Resolution order (same as The Reviewer): session `product` id → `config/<product>.json` → `config/default.json` → built-in defaults.
+Resolution order: session `product` id → `config/<product>.json` → `config/default.json`.
 
-**Phase 1:** copy [`The Reviewer/config/default.json`](../../../../The%20Reviewer/config/default.json) as a starting point and extend:
+## Keys (Phase 1)
 
-- `assets.golden`, `assets.coverage_catalog`, `assets.requirement_standard`
-- `xray.*` (environment, test project, folder, draft label, allowlist)
-- `policy.require_approval_before_write`, `policy.code_grounding`, `policy.generate_api_tests`
-- `policy.test_data_isolation` (hook for Kacper-style parallel date bands — T-G6)
+| Key | Purpose |
+|-----|---------|
+| `product.id` | Config file name / batch `product_id` |
+| `golden_root` | Product golden corpus (Xray extract folder or `golden/v1`) |
+| `assets.golden_style` | Path to `style-rules.md` |
+| `assets.golden_examples` | Optional v1 example folder |
+| `assets.coverage_catalog` | Optional `coverage-catalog.md` path; **null** for Reviewer-driven Epic runs |
+| `policy.suite_mode_default` | `release_slice_e2e` |
+| `policy.release_slice_test_count_min` / `max` | Default **3** / **5** |
+| `policy.allow_atomic` | Default **false** |
+| `policy.max_steps_per_journey` | Default **15** |
+
+## Examples
+
+| Product | File | `golden_root` |
+|---------|------|----------------|
+| Default | `default.json` | `Trinity/creator/golden/v1` |
+| BigPicture | `bigpicture.json` | `Trinity/creator/golden/v2/filter-17844-bigpicture-manual` |
+
+Add new products by copying `default.json`, pointing `golden_root` at that product’s extract (or v1 until export exists).
 
 Do not commit secrets or production tokens.

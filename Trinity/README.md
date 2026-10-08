@@ -16,6 +16,8 @@ Start here for install, preflight, and the full operator manual.
 
 Open **http://127.0.0.1:5173** (UI) · API **http://127.0.0.1:8765**
 
+**Hands-on test path:** [`TESTING.md`](TESTING.md) (Reviewer → Studio → Creator).
+
 Import a Reviewer run (example):
 
 ```bash

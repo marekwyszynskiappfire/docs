@@ -1,10 +1,10 @@
 {
   "config_version": "1.0",
   "product": {
-    "id": "default",
-    "name": "Default"
+    "id": "bigpicture",
+    "name": "BigPicture"
   },
-  "golden_root": "Trinity/creator/golden/v1",
+  "golden_root": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual",
   "assets": {
     "golden_style": "Trinity/creator/golden/v1/style-rules.md",
     "golden_examples": "Trinity/creator/golden/v1/examples",
@@ -30,6 +30,6 @@
   },
   "output": {
     "artifacts_dir": "artifacts",
-    "report_kinds": ["html", "md"]
+    "report_kinds": ["md"]
   }
 }

@@ -32,10 +32,21 @@ def connect() -> sqlite3.Connection:
     return conn
 
 
+def _migrate_schema(conn: sqlite3.Connection) -> None:
+    cols = {row[1] for row in conn.execute("PRAGMA table_info(test_case_row)")}
+    if cols and "marked_for_xray_import" not in cols:
+        conn.execute(
+            "ALTER TABLE test_case_row ADD COLUMN marked_for_xray_import INTEGER NOT NULL DEFAULT 0"
+        )
+    if cols and "automation_fit" not in cols:
+        conn.execute("ALTER TABLE test_case_row ADD COLUMN automation_fit TEXT")
+
+
 def init_db() -> None:
     sql = SCHEMA_PATH.read_text(encoding="utf-8")
     with connect() as conn:
         conn.executescript(sql)
+        _migrate_schema(conn)
         conn.commit()
 
 
