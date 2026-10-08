@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-3241",
+    "issue_id": "357598",
+    "url": "https://appfire.atlassian.net/browse/TC-3241",
+    "summary": "Feature area - Task structure - Basic operations - Bulk move tasks on Gantt chart",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Małgorzata Szkudlarek",
+    "reporter": "Daniel Beczala",
+    "created": "2022-04-21T05:31:07.966-0400",
+    "updated": "2026-06-18T05:57:02.891-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-75 Feature area - Task structure - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-3241 Feature area - Task structure - Basic operations - Bulk move tasks on Gantt chart",
+        "result": "Gantt chart and WBS are displayed\n\nFolLowing tasks are visible:\n* Task 1\n* Task 2\n* Task 3\n* Task 4 \n* Basic task 1\n* Basic task 2"
+      },
+      {
+        "step": 2,
+        "action": "In the Gantt chart, use command/ctrl to select taskName1 and taskName2",
+        "data": "taskName1: Task 1\ntaskName2: Task 2",
+        "result": "Tasks are selected and highlighted on both the WBS and the chart"
+      },
+      {
+        "step": 3,
+        "action": "Drag taskName1 and drop it 7 days later",
+        "data": "taskName1: Task 1",
+        "result": "Task 1 and Task 2 are moved 7 days later"
+      },
+      {
+        "step": 4,
+        "action": "In the Gantt chart, use command/ctrl to select taskName3, taskName4, taskName5 and taskName6",
+        "data": "taskName3: Task 3\ntaskName4: Task 4\ntaskName5: Basic task 1\ntaskName6: Basic task 2",
+        "result": "Tasks are selected and highlighted on both the WBS and the chart"
+      },
+      {
+        "step": 5,
+        "action": "Drag taskName4 and drop it 7 days earlier",
+        "data": "taskName4: Task 4",
+        "result": "All 4 tasks are moved 7 days earlier"
+      },
+      {
+        "step": 6,
+        "action": "In the Gantt chart, use command/ctrl to select taskName4 and taskName6",
+        "data": "taskName4: Task 4\ntaskName6: Basic task 2",
+        "result": "Tasks are selected and highlighted on both the WBS and the chart"
+      },
+      {
+        "step": 7,
+        "action": "Drag taskName6 and drop it 7 days earlier",
+        "data": "taskName6: Basic task 2",
+        "result": "Task 4 and Basic task 2 are moved 7 days earlier"
+      },
+      {
+        "step": 8,
+        "action": "While the tasks are still selected, on the Gantt chart, hover over the left side of taskName4 and resize it to 3 days task",
+        "data": "taskName4: Task 4",
+        "result": "Task 4 has been changed to 3 days\n\nBasic task 2 does not change its shape and is still a 1-day task"
+      },
+      {
+        "step": 9,
+        "action": "Drag taskName4 and drop it 1 day earlier",
+        "data": "taskName4: Task 4",
+        "result": "Task 1 and Basic task 2 are moved 1 day earlier"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-3241",
+    "text": "Test: TC-3241 — Feature area - Task structure - Basic operations - Bulk move tasks on Gantt chart\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-75 Feature area - Task structure - Basic operations\nLabels: teamspace\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-3241 Feature area - Task structure - Basic operations - Bulk move tasks on Gantt chart\n   Expected: Gantt chart and WBS are displayed\n\nFolLowing tasks are visible:\n* Task 1\n* Task 2\n* Task 3\n* Task 4 \n* Basic task 1\n* Basic task 2\n2. In the Gantt chart, use command/ctrl to select taskName1 and taskName2\n   Data: taskName1: Task 1\ntaskName2: Task 2\n   Expected: Tasks are selected and highlighted on both the WBS and the chart\n3. Drag taskName1 and drop it 7 days later\n   Data: taskName1: Task 1\n   Expected: Task 1 and Task 2 are moved 7 days later\n4. In the Gantt chart, use command/ctrl to select taskName3, taskName4, taskName5 and taskName6\n   Data: taskName3: Task 3\ntaskName4: Task 4\ntaskName5: Basic task 1\ntaskName6: Basic task 2\n   Expected: Tasks are selected and highlighted on both the WBS and the chart\n5. Drag taskName4 and drop it 7 days earlier\n   Data: taskName4: Task 4\n   Expected: All 4 tasks are moved 7 days earlier\n6. In the Gantt chart, use command/ctrl to select taskName4 and taskName6\n   Data: taskName4: Task 4\ntaskName6: Basic task 2\n   Expected: Tasks are selected and highlighted on both the WBS and the chart\n7. Drag taskName6 and drop it 7 days earlier\n   Data: taskName6: Basic task 2\n   Expected: Task 4 and Basic task 2 are moved 7 days earlier\n8. While the tasks are still selected, on the Gantt chart, hover over the left side of taskName4 and resize it to 3 days task\n   Data: taskName4: Task 4\n   Expected: Task 4 has been changed to 3 days\n\nBasic task 2 does not change its shape and is still a 1-day task\n9. Drag taskName4 and drop it 1 day earlier\n   Data: taskName4: Task 4\n   Expected: Task 1 and Basic task 2 are moved 1 day earlier",
+    "metadata": {
+      "jira_key": "TC-3241",
+      "issue_id": "357598",
+      "summary": "Feature area - Task structure - Basic operations - Bulk move tasks on Gantt chart",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-75 Feature area - Task structure - Basic operations",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

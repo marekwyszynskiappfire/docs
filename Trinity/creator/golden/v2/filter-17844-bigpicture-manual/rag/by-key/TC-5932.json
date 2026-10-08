@@ -1,0 +1,143 @@
+{
+  "test": {
+    "key": "TC-5932",
+    "issue_id": "1493335",
+    "url": "https://appfire.atlassian.net/browse/TC-5932",
+    "summary": "SPM  - Strategic areas - Changing the currency for Initatives tab",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-01-14T04:56:24.394-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of a boxName",
+        "data": "boxName: TC-5932 SPM  - Strategic areas - Changing the currency for Initatives tab",
+        "result": "OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context"
+      },
+      {
+        "step": 2,
+        "action": "Click ‘Create Strategic Theme’ button",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5932\n\nperiod: Y2026",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective",
+        "data": "newObjective: TC-5932 A",
+        "result": "New Objective TC-5932 A is created under Strategic Theme TC-5932."
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to TC-5932 A objective, type name of keyResult, period and click on Link Boxes",
+        "data": "keyResult: TC-5932 B\n\nperiod: Y2026",
+        "result": "Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status"
+      },
+      {
+        "step": 6,
+        "action": "Click Parent box and select boxName",
+        "data": "boxName: TC-5932 SPM - Strategic areas - Changing the currency for Initatives tab",
+        "result": "Box TC-5932 SPM - Strategic areas - Changing the currency for Initatives tab  is displayed on the list"
+      },
+      {
+        "step": 7,
+        "action": "Select boxName and click Save",
+        "data": "boxName: TC-5932 SPM - Strategic areas - Changing the currency for Initatives tab",
+        "result": "Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1"
+      },
+      {
+        "step": 8,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created"
+      },
+      {
+        "step": 9,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5932 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 10,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5932",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5932\n* Objective: TC-5932 A\n* Key result: TC-5932 B \n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed"
+      },
+      {
+        "step": 12,
+        "action": "Click on Initatives tab",
+        "data": "",
+        "result": "Summary Financials widget displays:\n\n* Budget - $20,000\n* Total cost - $18,400 - 92% of the budget \n* Actual cost - $8,000\n* Remaining cost - $10,400\n* Progress bar - 43%\n\nPie chart is 100% with $ currency when hovering over it\n\n1 Box is displayed:\n\nTC-5932 SPM - Strategic areas - Changing the currency for Initatives tab\n\nStatus tiles are displayed:\n\nClosed - 0% - 0/1\n\nNot Started - 100% - 1/1\n\nIn Progress - 0% - 0/1"
+      },
+      {
+        "step": 13,
+        "action": "Click on App settings icon and go to Financials → Currency",
+        "data": "",
+        "result": "Currency page is displayed with info icon \"Read more in documentation\" \n\nSet your preferred currency for all financial calculations. This currency will be used throughout the system, ensuring consistency in reports, transactions, and budgeting.\n\nCurrent Currency is set to US Dollar (USD)\nButton 'Save' is displayed{color:#ffffff}Sa've{color}"
+      },
+      {
+        "step": 14,
+        "action": "Click on currency and set newCurrency and click Save",
+        "data": "newCurrency: Euro (EUR)",
+        "result": "Euro currency is saved"
+      },
+      {
+        "step": 15,
+        "action": "Click on ‘Back to Strategic Area’",
+        "data": "",
+        "result": "OKRs tab is displayed of TC-5932 Strategic Theme"
+      },
+      {
+        "step": 16,
+        "action": "Click on Initatives tab",
+        "data": "",
+        "result": "Summary Financials widget displays:\n\n* Budget - €20,000\n\n* Total cost - €18,400 - 92% of the budget\n* Actual cost - €8,000\n* Remaining cost - €10,400\n* Progress bar - 43%\n\nPie chart is 100% with € currency when hovering over it\n\n1 Box is displayed:\n\nTC-5932 SPM - Strategic areas - Changing the currency for Initatives tab\n\nStatus tiles are displayed:\n\nClosed - 0% - 0/1\n\nNot Started - 100% - 1/1\n\nIn Progress - 0% - 0/1"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-5932",
+    "text": "Test: TC-5932 — SPM  - Strategic areas - Changing the currency for Initatives tab\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of a boxName\n   Data: boxName: TC-5932 SPM  - Strategic areas - Changing the currency for Initatives tab\n   Expected: OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context\n2. Click ‘Create Strategic Theme’ button\n   Expected: New Strategic theme modal is displayed\n3. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5932\n\nperiod: Y2026\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n4. Click on Plus button next to Strategic Theme, add newObjective\n   Data: newObjective: TC-5932 A\n   Expected: New Objective TC-5932 A is created under Strategic Theme TC-5932.\n5. Click on Plus button next to TC-5932 A objective, type name of keyResult, period and click on Link Boxes\n   Data: keyResult: TC-5932 B\n\nperiod: Y2026\n   Expected: Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status\n6. Click Parent box and select boxName\n   Data: boxName: TC-5932 SPM - Strategic areas - Changing the currency for Initatives tab\n   Expected: Box TC-5932 SPM - Strategic areas - Changing the currency for Initatives tab  is displayed on the list\n7. Select boxName and click Save\n   Data: boxName: TC-5932 SPM - Strategic areas - Changing the currency for Initatives tab\n   Expected: Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1\n8. Click Create button\n   Expected: Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created\n9. Click Finish & go back\n   Expected: Strategic Theme TC-5932 is displayed on the list with expand button next to it\n10. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n11. Click on strategicThemeName\n   Data: strategicThemeName: TC-5932\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5932\n* Objective: TC-5932 A\n* Key result: TC-5932 B \n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed\n12. Click on Initatives tab\n   Expected: Summary Financials widget displays:\n\n* Budget - $20,000\n* Total cost - $18,400 - 92% of the budget \n* Actual cost - $8,000\n* Remaining cost - $10,400\n* Progress bar - 43%\n\nPie chart is 100% with $ currency when hovering over it\n\n1 Box is displayed:\n\nTC-5932 SPM - Strategic areas - Changing the currency for Initatives tab\n\nStatus tiles are displayed:\n\nClosed - 0% - 0/1\n\nNot Started - 100% - 1/1\n\nIn Progress - 0% - 0/1\n13. Click on App settings icon and go to Financials → Currency\n   Expected: Currency page is displayed with info icon \"Read more in documentation\" \n\nSet your preferred currency for all financial calculations. This currency will be used throughout the system, ensuring consistency in reports, transactions, and budgeting.\n\nCurrent Currency is set to US Dollar (USD)\nButton 'Save' is displayed{color:#ffffff}Sa've{color}\n14. Click on currency and set newCurrency and click Save\n   Data: newCurrency: Euro (EUR)\n   Expected: Euro currency is saved\n15. Click on ‘Back to Strategic Area’\n   Expected: OKRs tab is displayed of TC-5932 Strategic Theme\n16. Click on Initatives tab\n   Expected: Summary Financials widget displays:\n\n* Budget - €20,000\n\n* Total cost - €18,400 - 92% of the budget\n* Actual cost - €8,000\n* Remaining cost - €10,400\n* Progress bar - 43%\n\nPie chart is 100% with € currency when hovering over it\n\n1 Box is displayed:\n\nTC-5932 SPM - Strategic areas - Changing the currency for Initatives tab\n\nStatus tiles are displayed:\n\nClosed - 0% - 0/1\n\nNot Started - 100% - 1/1\n\nIn Progress - 0% - 0/1",
+    "metadata": {
+      "jira_key": "TC-5932",
+      "issue_id": "1493335",
+      "summary": "SPM  - Strategic areas - Changing the currency for Initatives tab",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

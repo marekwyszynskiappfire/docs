@@ -1,0 +1,20 @@
+{
+  "config_version": "1.0",
+  "portfolio_id": "example.demo-portfolio",
+  "label": "Demo portfolio (sanitized)",
+  "created_at": "2026-10-08T09:00:00+02:00",
+  "updated_at": "2026-10-08T09:00:00+02:00",
+  "persona_id": "reviewer-expert-qa-automation.md",
+  "product_id": "default",
+  "scope": {
+    "kind": "epic_keys",
+    "value": "DEMO-4500,DEMO-4501"
+  },
+  "pass_type": "full_sweep",
+  "child_scan": "epic_only_inventory",
+  "planning_dates": "jira_due_then_end",
+  "artifacts_dir": "Trinity/reviewer/runs",
+  "creator_handoff_exclude_not_fit": true,
+  "jira_comment_policy": "generate_review_before_post",
+  "notes": "Replace scope with your Jira filter URL, JQL, or epic keys before a live run."
+}

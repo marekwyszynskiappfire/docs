@@ -1,0 +1,105 @@
+{
+  "test": {
+    "key": "TC-3896",
+    "issue_id": "358319",
+    "url": "https://appfire.atlassian.net/browse/TC-3896",
+    "summary": "Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Adding one date in Edit window ",
+    "description": "",
+    "status": "In Progress",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2023-02-24T10:58:37.171-0500",
+    "updated": "2026-03-30T09:56:22.306-0400",
+    "labels": [
+      "tc-tasks-no-dates",
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of boxName",
+        "data": "boxName: TC-3896 Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Adding one date in Edit window",
+        "result": "Two Jira tasks and two basic tasks are displayed on WBS."
+      },
+      {
+        "step": 2,
+        "action": "Click right mouse button on taskName and click Edit",
+        "data": "taskName: TC3896 Task Start Date",
+        "result": "Edit issue dialog is displayed."
+      },
+      {
+        "step": 3,
+        "action": "Add the startDate and close window",
+        "data": "startDate: 18/11/2024",
+        "result": "The start date of the TC3896 Task Start Date have been added. On Gantt timeline task starts on 18 of November, 2024, and has no end date."
+      },
+      {
+        "step": 4,
+        "action": "Click right mouse button on taskName and click Edit",
+        "data": "taskName: TC3896 Task End Date",
+        "result": "Edit issue dialog is displayed."
+      },
+      {
+        "step": 5,
+        "action": "Add the endDate and click Update",
+        "data": "endDate: 18/11/2024",
+        "result": "The end date of the TC3896 Task End Date have been added. On Gantt timeline task ends on 18 of November, 2024, and has no start date."
+      },
+      {
+        "step": 6,
+        "action": "Click right mouse button on taskName and click Edit",
+        "data": "taskName: TC3896 Basic Task Start Date",
+        "result": "Edit issue dialog is displayed."
+      },
+      {
+        "step": 7,
+        "action": "Add the startDate and click Update",
+        "data": "startDate: 18/11/2024",
+        "result": "The start date of the TC3896 Task Start Date have been added. On Gantt timeline task starts on 18 of November, 2024, and has no end date."
+      },
+      {
+        "step": 8,
+        "action": "Click right mouse button on taskName and click Edit",
+        "data": "taskName: TC3896 Basic Task End Date",
+        "result": "Edit issue dialog is displayed."
+      },
+      {
+        "step": 9,
+        "action": "Add the endDate and click Update",
+        "data": "endDate: 18/11/2024",
+        "result": "The end date of the TC3896 Basic Task End Date have been added. On Gantt timeline task ends on 18 of November, 2024, and has no start date."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-3896",
+    "text": "Test: TC-3896 — Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Adding one date in Edit window \nPriority: Medium | Status: In Progress | Type: Manual\nFolder: /BP/TS-88 Feature area - Box - Attributes displaying and editing\nLabels: tc-tasks-no-dates, teamembers, teamtree\n\nSteps:\n1. Navigate to the Gantt module of boxName\n   Data: boxName: TC-3896 Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Adding one date in Edit window\n   Expected: Two Jira tasks and two basic tasks are displayed on WBS.\n2. Click right mouse button on taskName and click Edit\n   Data: taskName: TC3896 Task Start Date\n   Expected: Edit issue dialog is displayed.\n3. Add the startDate and close window\n   Data: startDate: 18/11/2024\n   Expected: The start date of the TC3896 Task Start Date have been added. On Gantt timeline task starts on 18 of November, 2024, and has no end date.\n4. Click right mouse button on taskName and click Edit\n   Data: taskName: TC3896 Task End Date\n   Expected: Edit issue dialog is displayed.\n5. Add the endDate and click Update\n   Data: endDate: 18/11/2024\n   Expected: The end date of the TC3896 Task End Date have been added. On Gantt timeline task ends on 18 of November, 2024, and has no start date.\n6. Click right mouse button on taskName and click Edit\n   Data: taskName: TC3896 Basic Task Start Date\n   Expected: Edit issue dialog is displayed.\n7. Add the startDate and click Update\n   Data: startDate: 18/11/2024\n   Expected: The start date of the TC3896 Task Start Date have been added. On Gantt timeline task starts on 18 of November, 2024, and has no end date.\n8. Click right mouse button on taskName and click Edit\n   Data: taskName: TC3896 Basic Task End Date\n   Expected: Edit issue dialog is displayed.\n9. Add the endDate and click Update\n   Data: endDate: 18/11/2024\n   Expected: The end date of the TC3896 Basic Task End Date have been added. On Gantt timeline task ends on 18 of November, 2024, and has no start date.",
+    "metadata": {
+      "jira_key": "TC-3896",
+      "issue_id": "358319",
+      "summary": "Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Adding one date in Edit window ",
+      "priority": "Medium",
+      "status": "In Progress",
+      "test_type": "Manual",
+      "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+      "labels": [
+        "tc-tasks-no-dates",
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

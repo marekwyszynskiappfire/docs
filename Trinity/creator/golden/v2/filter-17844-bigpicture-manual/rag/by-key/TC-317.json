@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-317",
+    "issue_id": "357737",
+    "url": "https://appfire.atlassian.net/browse/TC-317",
+    "summary": "Box Module - Gantt - Basic operations - WBS",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Małgorzata Szkudlarek",
+    "reporter": "Małgorzata Szkudlarek",
+    "created": "2019-12-10T07:25:33.364-0500",
+    "updated": "2026-06-18T05:49:41.760-0400",
+    "labels": [
+      "gmodule",
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open Gantt module of box with boxName",
+        "data": "boxName: TS-52 Box Module - Gantt",
+        "result": "Gantt chart is successfully loaded and displayed.\n\nWBS is open on the left side."
+      },
+      {
+        "step": 2,
+        "action": "Click the toggle bar between WBS and the chart",
+        "data": "",
+        "result": "WBS closes, with only the toggle bar visible.\n\nThe arrow is replaced with TASKS text.\n\nChart folLows the border so that the leftmost visible day remains next to the toggle bar, revealing more days on the right."
+      },
+      {
+        "step": 3,
+        "action": "Click the toggle bar again",
+        "data": "",
+        "result": "WBS opens.\n\nTASKS text is replaced with an arrow pointing to the left.\n\nChart folLows the border so that the leftmost visible day remains next to the toggle bar, hiding some days on the right."
+      },
+      {
+        "step": 4,
+        "action": "Open Infobar and switch to _Overdue tasks_ tab\n\nScroll up and down a bit while hovering over WBS",
+        "data": "",
+        "result": "Both WBS and chart are scrolled simultaneously.\n\nInfobar is not scrolled."
+      },
+      {
+        "step": 5,
+        "action": "Grab the edge of WBS and move it a bit\n\nRelease the edge and check after refresh page",
+        "data": "",
+        "result": "Width of WBS is changed."
+      },
+      {
+        "step": 6,
+        "action": "Open Infobar\n\nGrab the edge of WBS and pull it towards the Infobar",
+        "data": "",
+        "result": "WBS stops upon reaching the edge of Infobar."
+      },
+      {
+        "step": 7,
+        "action": "Grab the edge of WBS and reduce its width as much as possible\n\nRelease the edge and check after refresh",
+        "data": "",
+        "result": "WBS cannot be narrower than 96px.\n\nWhen the edge is released beLow the minimal width, WBS is closed."
+      },
+      {
+        "step": 8,
+        "action": "Reopen WBS",
+        "data": "",
+        "result": "WBS does not have the minimal width, instead it is the same as before closing it by dragging to the left."
+      },
+      {
+        "step": 9,
+        "action": "Hover over Summary of taskName on WBS",
+        "data": "taskName: Project plan",
+        "result": "A tooltip with field's name and value appears.\n\"Summary (Built-in): Project plan\""
+      },
+      {
+        "step": 10,
+        "action": "Grab the edge of the WBS and drag it to the right so the Gantt chart is much more narrower than WBS.",
+        "data": "",
+        "result": "Width of WBS is resized.\n\nThe Gantt chart is visible but it is much more narrower than WBS."
+      },
+      {
+        "step": 11,
+        "action": "Using text Search next to QF type searchWord",
+        "data": "searchWord: fdsfsadfsfewadsaf",
+        "result": "There is a splash screen visible saying:\n\"No tasks matching your filters\nYou have filters enabled that result in hidden tasks.\"\n\nUnder the text, there is a button: Clear active filters"
+      },
+      {
+        "step": 12,
+        "action": "On visible splash screen click button: Clear active filters",
+        "data": "",
+        "result": "All filters are cleared.\n\nWBS and Gantt chart are visible.\n\nThe width of the WBS is the same as in step 10."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-317",
+    "text": "Test: TC-317 — Box Module - Gantt - Basic operations - WBS\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-52 Box Module - Gantt - Basic operations\nLabels: gmodule, teamspace\n\nSteps:\n1. Open Gantt module of box with boxName\n   Data: boxName: TS-52 Box Module - Gantt\n   Expected: Gantt chart is successfully loaded and displayed.\n\nWBS is open on the left side.\n2. Click the toggle bar between WBS and the chart\n   Expected: WBS closes, with only the toggle bar visible.\n\nThe arrow is replaced with TASKS text.\n\nChart folLows the border so that the leftmost visible day remains next to the toggle bar, revealing more days on the right.\n3. Click the toggle bar again\n   Expected: WBS opens.\n\nTASKS text is replaced with an arrow pointing to the left.\n\nChart folLows the border so that the leftmost visible day remains next to the toggle bar, hiding some days on the right.\n4. Open Infobar and switch to _Overdue tasks_ tab\n\nScroll up and down a bit while hovering over WBS\n   Expected: Both WBS and chart are scrolled simultaneously.\n\nInfobar is not scrolled.\n5. Grab the edge of WBS and move it a bit\n\nRelease the edge and check after refresh page\n   Expected: Width of WBS is changed.\n6. Open Infobar\n\nGrab the edge of WBS and pull it towards the Infobar\n   Expected: WBS stops upon reaching the edge of Infobar.\n7. Grab the edge of WBS and reduce its width as much as possible\n\nRelease the edge and check after refresh\n   Expected: WBS cannot be narrower than 96px.\n\nWhen the edge is released beLow the minimal width, WBS is closed.\n8. Reopen WBS\n   Expected: WBS does not have the minimal width, instead it is the same as before closing it by dragging to the left.\n9. Hover over Summary of taskName on WBS\n   Data: taskName: Project plan\n   Expected: A tooltip with field's name and value appears.\n\"Summary (Built-in): Project plan\"\n10. Grab the edge of the WBS and drag it to the right so the Gantt chart is much more narrower than WBS.\n   Expected: Width of WBS is resized.\n\nThe Gantt chart is visible but it is much more narrower than WBS.\n11. Using text Search next to QF type searchWord\n   Data: searchWord: fdsfsadfsfewadsaf\n   Expected: There is a splash screen visible saying:\n\"No tasks matching your filters\nYou have filters enabled that result in hidden tasks.\"\n\nUnder the text, there is a button: Clear active filters\n12. On visible splash screen click button: Clear active filters\n   Expected: All filters are cleared.\n\nWBS and Gantt chart are visible.\n\nThe width of the WBS is the same as in step 10.",
+    "metadata": {
+      "jira_key": "TC-317",
+      "issue_id": "357737",
+      "summary": "Box Module - Gantt - Basic operations - WBS",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+      "labels": [
+        "gmodule",
+        "teamspace"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

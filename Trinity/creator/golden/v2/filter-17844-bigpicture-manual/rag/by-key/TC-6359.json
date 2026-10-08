@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-6359",
+    "issue_id": "1788928",
+    "url": "https://appfire.atlassian.net/browse/TC-6359",
+    "summary": "SPM – OKR – Restrictions are updated when OKR is moved between parents",
+    "description": "This test verifies that inherited restrictions are correctly updated when an OKR is moved between parent OKRs.\n\n*Validation scope:*\n\n* Moving a child OKR from one restricted parent to another restricted parent\n* Verifying inherited restrictions are updated according to the new parent\n* Verifying the previous parent restriction is no longer applied\n* Verifying the child OKR displays information about the new parent restriction\n* Verifying users can access the moved OKR according to the new inherited restriction settings",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-06-24T04:50:17.284-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-509 OKR - Security",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Preconditions:*\n\n* 2x Strategic Theme, 2x Objective and  2x Key Result are created\n* Box scope is defined by 2x Strategic theme and OKR task structure is enabled in this box\n* Admin user and regular user (user B) are prepared",
+        "data": "* Strategic theme 1\n** Objective 1\n*** Key result 1\n* Strategic theme 2\n** Objective 2\n*** Key result 2",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "As admin user Open OKR Overview of boxName",
+        "data": "boxName: TC-6359 SPM - OKR - Restrictions are updated when OKR is moved between parents",
+        "result": "The following items are visible:\n\n* Strategic theme 1\n** Objective 1\n*** Key result 1\n* Strategic theme 2\n** Objective 2\n*** Key result 2"
+      },
+      {
+        "step": 3,
+        "action": "Open Strategic theme 1 → Click in Restriction button in the upper right corner → Open dropdown and set \"*Only specific people or teams can view or edit*\". Click Save",
+        "data": "",
+        "result": "The restriction is enabled and the *Restrictions button* changes its color to red."
+      },
+      {
+        "step": 4,
+        "action": "Open Strategic theme 2 → Click in Restriction button in the upper right corner → Open dropdown and set \"*Anyone can view specific people or teams can edit*\" for User B. Click Save",
+        "data": "",
+        "result": "The restriction is enabled and the *Restrictions button* changes its color to red."
+      },
+      {
+        "step": 5,
+        "action": "Log in as User B to BP and open OKR Overview of boxName",
+        "data": "boxName: TC-6359 SPM - OKR - Restrictions are updated when OKR is moved between parents",
+        "result": "The following items are visible:\n\n* Strategic theme 2\n** Objective 2\n*** Key result 2"
+      },
+      {
+        "step": 6,
+        "action": "As Admin user Open Key result 2 and change parent to Objective 1",
+        "data": "",
+        "result": "Key result 2 is displayed as child of Objective 1"
+      },
+      {
+        "step": 7,
+        "action": "Open Key result 2 and hover over to Restriction button",
+        "data": "",
+        "result": "The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*."
+      },
+      {
+        "step": 8,
+        "action": "as User B refresh the page being in OKR Overview",
+        "data": "",
+        "result": "The following items are visible:\n\n* Strategic theme 2\n** Objective 2\n\nKey result 2 disappear and not visible"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-6359",
+    "text": "Test: TC-6359 — SPM – OKR – Restrictions are updated when OKR is moved between parents\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-509 OKR - Security\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies that inherited restrictions are correctly updated when an OKR is moved between parent OKRs.\n\n*Validation scope:*\n\n* Moving a child OKR from one restricted parent to another restricted parent\n* Verifying inherited restrictions are updated according to the new parent\n* Verifying the previous parent restriction is no longer applied\n* Verifying the child OKR displays information about the new parent restriction\n* Verifying users can access the moved OKR according to the new inherited restriction settings\n\nSteps:\n1. *Preconditions:*\n\n* 2x Strategic Theme, 2x Objective and  2x Key Result are created\n* Box scope is defined by 2x Strategic theme and OKR task structure is enabled in this box\n* Admin user and regular user (user B) are prepared\n   Data: * Strategic theme 1\n** Objective 1\n*** Key result 1\n* Strategic theme 2\n** Objective 2\n*** Key result 2\n   Expected: \n2. As admin user Open OKR Overview of boxName\n   Data: boxName: TC-6359 SPM - OKR - Restrictions are updated when OKR is moved between parents\n   Expected: The following items are visible:\n\n* Strategic theme 1\n** Objective 1\n*** Key result 1\n* Strategic theme 2\n** Objective 2\n*** Key result 2\n3. Open Strategic theme 1 → Click in Restriction button in the upper right corner → Open dropdown and set \"*Only specific people or teams can view or edit*\". Click Save\n   Expected: The restriction is enabled and the *Restrictions button* changes its color to red.\n4. Open Strategic theme 2 → Click in Restriction button in the upper right corner → Open dropdown and set \"*Anyone can view specific people or teams can edit*\" for User B. Click Save\n   Expected: The restriction is enabled and the *Restrictions button* changes its color to red.\n5. Log in as User B to BP and open OKR Overview of boxName\n   Data: boxName: TC-6359 SPM - OKR - Restrictions are updated when OKR is moved between parents\n   Expected: The following items are visible:\n\n* Strategic theme 2\n** Objective 2\n*** Key result 2\n6. As Admin user Open Key result 2 and change parent to Objective 1\n   Expected: Key result 2 is displayed as child of Objective 1\n7. Open Key result 2 and hover over to Restriction button\n   Expected: The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*.\n8. as User B refresh the page being in OKR Overview\n   Expected: The following items are visible:\n\n* Strategic theme 2\n** Objective 2\n\nKey result 2 disappear and not visible",
+    "metadata": {
+      "jira_key": "TC-6359",
+      "issue_id": "1788928",
+      "summary": "SPM – OKR – Restrictions are updated when OKR is moved between parents",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-509 OKR - Security",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

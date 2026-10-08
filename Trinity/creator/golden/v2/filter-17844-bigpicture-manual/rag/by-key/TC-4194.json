@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-4194",
+    "issue_id": "588525",
+    "url": "https://appfire.atlassian.net/browse/TC-4194",
+    "summary": "Feature area - Box - Creating - Creating timeboxes inside on Scope Definition - Date validation",
+    "description": "This Test Case works when BigPicture Enterprise is disabled, as Enterprise by default suggests different timeboxes to be created inside.",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Maciej Boratyn",
+    "created": "2023-10-03T07:36:08.528-0400",
+    "updated": "2026-03-04T09:12:53.736-0500",
+    "labels": [
+      "team#Enigma"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-87 Feature area - Box - Creating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Scope Definition of boxName.",
+        "data": "boxName: TC-4194 Feature area - Box - Creating - Creating timeboxes inside on Scope Definition - Date validation",
+        "result": "Scope definition tab is displayed. The folLowing fields are visible:\n\n* Project\n* Board\n* Filter\n* Narrow down\n* Advanced configuration (With collapsed chevron)\n\n\nUnderneath the Automatic Rules, a Timeboxes section is visible with TC-4194 PI sub-scope synchronization settings."
+      },
+      {
+        "step": 2,
+        "action": "Click on the arrow down adjacent to boxName in Timeboxes section.",
+        "data": "boxName: TC-4194 PI",
+        "result": "The folLowing message is displayed in a dropdown: \"TC-4194 PI has no timeboxes. Do you want to create Iteration inside?\"\n\nCreate and Cancel buttons are visible underneath."
+      },
+      {
+        "step": 3,
+        "action": "Click the Create button.",
+        "data": "",
+        "result": "Modal window appears with header: 'Create timeboxes' and text: 'Period time of \"TC-4194 PI\": 2023-05-08 - 2023-05-11.'\n\nThere are three fields:\nName: 'Iteration'\nStart date - End Date: \n'08/May/23'\n'21/May/22'\n\n+Add more button is visible under Name field on the left side of the modal. \n\nIn the Lower right corner there are two buttons: \n\n* Cancel (active)\n* Create (active)"
+      },
+      {
+        "step": 4,
+        "action": "Set endDate of Iteration by clicking on third column in first row.",
+        "data": "endDate: 09/May/23",
+        "result": "Calendar closes. End date field has 09/May/23 value. Create button is active with blue color."
+      },
+      {
+        "step": 5,
+        "action": "Click the +Add more button.",
+        "data": "",
+        "result": "Two rows are visible inside of the modal with three fields. In the first row the folLowing data is visible:\nName: 'Iteration'\nStart date - End Date: \n'08/May/23'\n'09/May/22'\n\nIn the second row the folLowing data is visible:\nName: 'Iteration 2'\nStart date - End date: \n'10/May/23'\n'11/May/23'\n\nAn +Add more button is visible under Name field on the left side of the modal.\n\nIn the Lower right corner there are two buttons:\n\n* Cancel (active)\n* Create (active)"
+      },
+      {
+        "step": 6,
+        "action": "Click the +Add more button again.",
+        "data": "",
+        "result": "Three rows are visible inside of the modal with three fields. In the first row the folLowing data is visible:\nName: 'Iteration'\nStart date - End Date: \n'08/May/23'\n'09/May/22'\n\nIn the second row the folLowing data is visible:\nName: 'Iteration 2'\nStart date - End date: \n'10/May/23'\n'11/May/23'\n\nIn the third row the folLowing data is visible:\nName: 'Iteration 3'\nStart date - End date: \n'12/May/23'\n'13/May/23'\n\nAn +Add more button is visible under Name field on the left side of the modal.\n\nIn the Lower right corner there are two buttons:\n\n* Cancel (active)\n* Create (active)"
+      },
+      {
+        "step": 7,
+        "action": "Click the Create button.",
+        "data": "",
+        "result": "The folLowing error appears: \"Iteration 3 period must fit within the TC-4194 PI period\". No Iteration is created."
+      },
+      {
+        "step": 8,
+        "action": "Set endDate of Iteration 2 by clicking on third column in second row.",
+        "data": "endDate: 12/May/23",
+        "result": "Iteration 2 has the folLowing dates:\nStart Date: 10/May/23\nEnd Date: 12/May/23\n\nThe folLowing errors appear:\n\n\"Box Iteration 2 overlaps with others\"\n\"Box Iteration 3 overlaps with others\"\n\nCreate button is not active."
+      },
+      {
+        "step": 9,
+        "action": "Set startDate and endDate of Iteration 3 by clicking on second and third column in third row.",
+        "data": "startDate: 13/May/23\nendDate: 14/May/23",
+        "result": "Iteration 3 has the folLowing dates:\nStart Date: 13/May/23\nEnd Date: 14/May/23\n\nThere are no error messages. The create button is active."
+      },
+      {
+        "step": 10,
+        "action": "Click the Create button.",
+        "data": "",
+        "result": "The folLowing error messages appear:\n\"Iteration 2 period must fit within the TC-4194 PI period\"\n\"Iteration 3 period must fit within the TC-4194 PI period\"\n\nCreate button is not active."
+      },
+      {
+        "step": 11,
+        "action": "Click on the bin button beside Iteration 3.",
+        "data": "",
+        "result": "Iteration 3 is no longer visible inside the Create timeboxes modal."
+      },
+      {
+        "step": 12,
+        "action": "Set endDate of Iteration 2 by clicking on the third column in second row.",
+        "data": "endDate: 11/May/23",
+        "result": "Iteration 2 has the folLowing dates:\nStart Date: 10/May/23\nEnd Date: 11/May/23"
+      },
+      {
+        "step": 13,
+        "action": "Click the Create button.",
+        "data": "",
+        "result": "Iteration and Iteration 2 are created under TC-4194 PI successfully."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-4194",
+    "text": "Test: TC-4194 — Feature area - Box - Creating - Creating timeboxes inside on Scope Definition - Date validation\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-87 Feature area - Box - Creating\nLabels: team#Enigma\n\nDescription:\nThis Test Case works when BigPicture Enterprise is disabled, as Enterprise by default suggests different timeboxes to be created inside.\n\nSteps:\n1. Navigate to Scope Definition of boxName.\n   Data: boxName: TC-4194 Feature area - Box - Creating - Creating timeboxes inside on Scope Definition - Date validation\n   Expected: Scope definition tab is displayed. The folLowing fields are visible:\n\n* Project\n* Board\n* Filter\n* Narrow down\n* Advanced configuration (With collapsed chevron)\n\n\nUnderneath the Automatic Rules, a Timeboxes section is visible with TC-4194 PI sub-scope synchronization settings.\n2. Click on the arrow down adjacent to boxName in Timeboxes section.\n   Data: boxName: TC-4194 PI\n   Expected: The folLowing message is displayed in a dropdown: \"TC-4194 PI has no timeboxes. Do you want to create Iteration inside?\"\n\nCreate and Cancel buttons are visible underneath.\n3. Click the Create button.\n   Expected: Modal window appears with header: 'Create timeboxes' and text: 'Period time of \"TC-4194 PI\": 2023-05-08 - 2023-05-11.'\n\nThere are three fields:\nName: 'Iteration'\nStart date - End Date: \n'08/May/23'\n'21/May/22'\n\n+Add more button is visible under Name field on the left side of the modal. \n\nIn the Lower right corner there are two buttons: \n\n* Cancel (active)\n* Create (active)\n4. Set endDate of Iteration by clicking on third column in first row.\n   Data: endDate: 09/May/23\n   Expected: Calendar closes. End date field has 09/May/23 value. Create button is active with blue color.\n5. Click the +Add more button.\n   Expected: Two rows are visible inside of the modal with three fields. In the first row the folLowing data is visible:\nName: 'Iteration'\nStart date - End Date: \n'08/May/23'\n'09/May/22'\n\nIn the second row the folLowing data is visible:\nName: 'Iteration 2'\nStart date - End date: \n'10/May/23'\n'11/May/23'\n\nAn +Add more button is visible under Name field on the left side of the modal.\n\nIn the Lower right corner there are two buttons:\n\n* Cancel (active)\n* Create (active)\n6. Click the +Add more button again.\n   Expected: Three rows are visible inside of the modal with three fields. In the first row the folLowing data is visible:\nName: 'Iteration'\nStart date - End Date: \n'08/May/23'\n'09/May/22'\n\nIn the second row the folLowing data is visible:\nName: 'Iteration 2'\nStart date - End date: \n'10/May/23'\n'11/May/23'\n\nIn the third row the folLowing data is visible:\nName: 'Iteration 3'\nStart date - End date: \n'12/May/23'\n'13/May/23'\n\nAn +Add more button is visible under Name field on the left side of the modal.\n\nIn the Lower right corner there are two buttons:\n\n* Cancel (active)\n* Create (active)\n7. Click the Create button.\n   Expected: The folLowing error appears: \"Iteration 3 period must fit within the TC-4194 PI period\". No Iteration is created.\n8. Set endDate of Iteration 2 by clicking on third column in second row.\n   Data: endDate: 12/May/23\n   Expected: Iteration 2 has the folLowing dates:\nStart Date: 10/May/23\nEnd Date: 12/May/23\n\nThe folLowing errors appear:\n\n\"Box Iteration 2 overlaps with others\"\n\"Box Iteration 3 overlaps with others\"\n\nCreate button is not active.\n9. Set startDate and endDate of Iteration 3 by clicking on second and third column in third row.\n   Data: startDate: 13/May/23\nendDate: 14/May/23\n   Expected: Iteration 3 has the folLowing dates:\nStart Date: 13/May/23\nEnd Date: 14/May/23\n\nThere are no error messages. The create button is active.\n10. Click the Create button.\n   Expected: The folLowing error messages appear:\n\"Iteration 2 period must fit within the TC-4194 PI period\"\n\"Iteration 3 period must fit within the TC-4194 PI period\"\n\nCreate button is not active.\n11. Click on the bin button beside Iteration 3.\n   Expected: Iteration 3 is no longer visible inside the Create timeboxes modal.\n12. Set endDate of Iteration 2 by clicking on the third column in second row.\n   Data: endDate: 11/May/23\n   Expected: Iteration 2 has the folLowing dates:\nStart Date: 10/May/23\nEnd Date: 11/May/23\n13. Click the Create button.\n   Expected: Iteration and Iteration 2 are created under TC-4194 PI successfully.",
+    "metadata": {
+      "jira_key": "TC-4194",
+      "issue_id": "588525",
+      "summary": "Feature area - Box - Creating - Creating timeboxes inside on Scope Definition - Date validation",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-87 Feature area - Box - Creating",
+      "labels": [
+        "team#Enigma"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

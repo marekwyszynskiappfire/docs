@@ -1,0 +1,109 @@
+{
+  "test": {
+    "key": "TC-377",
+    "issue_id": "357027",
+    "url": "https://appfire.atlassian.net/browse/TC-377",
+    "summary": "Feature area - Box scope - Own scope definition - Removing filter from Jira",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2020-09-04T04:46:45.396-0400",
+    "updated": "2026-03-04T09:20:50.022-0500",
+    "labels": [
+      "Sanity",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Log into the folLowing accounts, as these are the owners of the filters and scope owners of Program Boxes.",
+        "data": "Atlassian Cloud: testlab.1@softwareplant.com\nAtlassian Server: admin",
+        "result": "User is logged into successfully."
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Box Configuration -> Tasks -> Scope definition tab of boxName",
+        "data": "boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira",
+        "result": "Scope definition tab is displayed. The folLowing fields are visible:\n- Project\n- Board\n- Filter\n- Narrow down\n\nUnderneath collapsed Advanced configuration and Manually added tasks are visible with a chevron."
+      },
+      {
+        "step": 3,
+        "action": "Add filter1 and filter2 to the Filter field. Save the configuration.",
+        "data": "filter1: TC-377 Filter A\nfilter2: TC-377 Filter B",
+        "result": "In Filter fields there are 2 filters displayed:\n- TC-377 Filter A\n- TC-377 Filter B"
+      },
+      {
+        "step": 4,
+        "action": "Atlassian Server: Navigate to Issues > Manage filters > Favorite \n\nAtlassian Cloud: Navigate to Filters > View all filters",
+        "data": "",
+        "result": "Filters tab is opened in Jira."
+      },
+      {
+        "step": 5,
+        "action": "Search for filterName.",
+        "data": "filterName: TC-377 Filter A",
+        "result": "Filter is found successfully."
+      },
+      {
+        "step": 6,
+        "action": "Atlassian Server:\nClick on the cog icon, select Delete and confirm Delete in the modal.\n\nAtlassian Cloud: \nClick on the ellipsis icon, select Delete and confirm Delete in the modal.",
+        "data": "",
+        "result": "Filter is deleted successfully."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Box Configuration -> Tasks -> Scope definition tab of boxName",
+        "data": "boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira",
+        "result": "A warning log appears. In a place of deleted filter there is red crossed element where element's name was previously.\n\nNOTE:\nOn Atlassian Cloud the changes may take a while for them to appear in Big Picture (https://wiki.softwareplant.com/doc/all/faqs/propagation-times-for-jira-configuration-changes)"
+      },
+      {
+        "step": 8,
+        "action": "Close the warning log. Navigate to Board module of boxName",
+        "data": "boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira",
+        "result": "Board module is displayed. In the bottom left corner a warning is shown:\n'The scope is corrupted\n\nAt least one of the automatic rules was deleted, or the Scope Owner lost permissions to some items. Working with the data may be unstable until all warnings are fixed'.\n\nScope settings and Read more buttons are underneath. \n\nOn Board there is a Warning stating: 'This scope is corrupted - tasks cannot be properly displayed. To address the issue, go to Configuration > Scope definition or contact your admin.'\n\nIn containers there are *i* icons with message in tooltip: The scope of this Box is corrupted you can change it in the settings.\n\nTasks are displayed correctly underneath the *i* icon.\n\nTasks in Backlog cannot be dragged and dropped."
+      },
+      {
+        "step": 9,
+        "action": "Close the warning. Navigate to Objectives module of boxName",
+        "data": "boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira",
+        "result": "Objectives module is displayed without objectives. In the bottom left corner a warning is shown:\n'The scope is corrupted\n\nAt least one of the automatic rules was deleted, or the Scope Owner lost permissions to some items. Working with the data may be unstable until all warnings are fixed'.\n\nScope settings and Read more buttons are underneath."
+      },
+      {
+        "step": 10,
+        "action": "Close the warning. Navigate to Risks module of boxName",
+        "data": "boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira",
+        "result": "Risks module is displayed. In the bottom left corner a warning is shown:\n'The scope is corrupted\n\nAt least one of the automatic rules was deleted, or the Scope Owner lost permissions to some items. Working with the data may be unstable until all warnings are fixed'.\n\nScope settings and Read more buttons are underneath."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-377",
+    "text": "Test: TC-377 — Feature area - Box scope - Own scope definition - Removing filter from Jira\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-25 Feature area - Box scope - Own scope definition\nLabels: Sanity, can_be_automated\n\nSteps:\n1. Log into the folLowing accounts, as these are the owners of the filters and scope owners of Program Boxes.\n   Data: Atlassian Cloud: testlab.1@softwareplant.com\nAtlassian Server: admin\n   Expected: User is logged into successfully.\n2. Navigate to Box Configuration -> Tasks -> Scope definition tab of boxName\n   Data: boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira\n   Expected: Scope definition tab is displayed. The folLowing fields are visible:\n- Project\n- Board\n- Filter\n- Narrow down\n\nUnderneath collapsed Advanced configuration and Manually added tasks are visible with a chevron.\n3. Add filter1 and filter2 to the Filter field. Save the configuration.\n   Data: filter1: TC-377 Filter A\nfilter2: TC-377 Filter B\n   Expected: In Filter fields there are 2 filters displayed:\n- TC-377 Filter A\n- TC-377 Filter B\n4. Atlassian Server: Navigate to Issues > Manage filters > Favorite \n\nAtlassian Cloud: Navigate to Filters > View all filters\n   Expected: Filters tab is opened in Jira.\n5. Search for filterName.\n   Data: filterName: TC-377 Filter A\n   Expected: Filter is found successfully.\n6. Atlassian Server:\nClick on the cog icon, select Delete and confirm Delete in the modal.\n\nAtlassian Cloud: \nClick on the ellipsis icon, select Delete and confirm Delete in the modal.\n   Expected: Filter is deleted successfully.\n7. Navigate to Box Configuration -> Tasks -> Scope definition tab of boxName\n   Data: boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira\n   Expected: A warning log appears. In a place of deleted filter there is red crossed element where element's name was previously.\n\nNOTE:\nOn Atlassian Cloud the changes may take a while for them to appear in Big Picture (https://wiki.softwareplant.com/doc/all/faqs/propagation-times-for-jira-configuration-changes)\n8. Close the warning log. Navigate to Board module of boxName\n   Data: boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira\n   Expected: Board module is displayed. In the bottom left corner a warning is shown:\n'The scope is corrupted\n\nAt least one of the automatic rules was deleted, or the Scope Owner lost permissions to some items. Working with the data may be unstable until all warnings are fixed'.\n\nScope settings and Read more buttons are underneath. \n\nOn Board there is a Warning stating: 'This scope is corrupted - tasks cannot be properly displayed. To address the issue, go to Configuration > Scope definition or contact your admin.'\n\nIn containers there are *i* icons with message in tooltip: The scope of this Box is corrupted you can change it in the settings.\n\nTasks are displayed correctly underneath the *i* icon.\n\nTasks in Backlog cannot be dragged and dropped.\n9. Close the warning. Navigate to Objectives module of boxName\n   Data: boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira\n   Expected: Objectives module is displayed without objectives. In the bottom left corner a warning is shown:\n'The scope is corrupted\n\nAt least one of the automatic rules was deleted, or the Scope Owner lost permissions to some items. Working with the data may be unstable until all warnings are fixed'.\n\nScope settings and Read more buttons are underneath.\n10. Close the warning. Navigate to Risks module of boxName\n   Data: boxName: TC-377 Feature area - Box scope - Own scope definition - Removing filter from Jira\n   Expected: Risks module is displayed. In the bottom left corner a warning is shown:\n'The scope is corrupted\n\nAt least one of the automatic rules was deleted, or the Scope Owner lost permissions to some items. Working with the data may be unstable until all warnings are fixed'.\n\nScope settings and Read more buttons are underneath.",
+    "metadata": {
+      "jira_key": "TC-377",
+      "issue_id": "357027",
+      "summary": "Feature area - Box scope - Own scope definition - Removing filter from Jira",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+      "labels": [
+        "Sanity",
+        "can_be_automated"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

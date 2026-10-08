@@ -1,0 +1,89 @@
+{
+  "test": {
+    "key": "TC-4852",
+    "issue_id": "825539",
+    "url": "https://appfire.atlassian.net/browse/TC-4852",
+    "summary": "Feature area - Box scope - Existing task cloning - Clone tasks without dates",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Mateusz Koman",
+    "reporter": "Mateusz Koman",
+    "created": "2024-08-09T02:42:20.673-0400",
+    "updated": "2026-03-30T09:56:48.832-0400",
+    "labels": [
+      "teamembers"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-70 Feature area - Box scope - Existing tasks cloning",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxname",
+        "data": "boxname: TC-4264 Feature area - Box scope - Existing task cloning - Clone tasks without dates",
+        "result": "Gantt module opened with following tasks:\n\n* TC-4264 Task 1 with empty Start Date and End Date set to 28/Aug/23\n* TC-4264 Task 2 with Start Date set to 28/Aug/23 and empty End Date\n* TC-4264 Task 3 without Start Date nor End Date\n* TC-4264 Task 4 with  Start Date set to 28/Aug/23 and End Date set to 28/Aug/23"
+      },
+      {
+        "step": 2,
+        "action": "Click + button from header",
+        "data": "",
+        "result": "Dropdown appear with following options:\n\n* Create task\n* disabled Create subtask\n* Manage scope definition\n* Import tasks from file\n* Clone existing scope"
+      },
+      {
+        "step": 3,
+        "action": "Click Clone existing scope",
+        "data": "",
+        "result": "Clone existing scope window shows up with \n\n* Clone the Scope from select\n* Clone the scope to select\n* Read more button\n* Cancel button\n* Clone button"
+      },
+      {
+        "step": 4,
+        "action": "Click on the select below Clone the scope from, type scopeName and click on it in dropdown",
+        "data": "scopeName: TC-4264 Feature area - Box scope - Existing task cloning - Clone tasks without dates",
+        "result": "TC-4264 Feature area - Box scope - Existing task cloning - Clone tasks without dates is filled in Clone the scope from select"
+      },
+      {
+        "step": 5,
+        "action": "Click on the select below Clone the scope to, type projectName and click on it in dropdown",
+        "data": "projectName: TC-4264 (CLONE) Feature area - Box scope - Existing task cloning - Clone",
+        "result": "TC-4264 (CLONE) Feature area - Box scope - Existing task cloning - Clone is filled in Clone the scope from select"
+      },
+      {
+        "step": 6,
+        "action": "Click Clone button and then Proceed button",
+        "data": "",
+        "result": "After a while, window Tasks have been successfully cloned shows up"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-4264 (CLONE) Feature area - Box scope - Existing task cloning - Clone tasks without dates",
+        "result": "Gantt module opened with following tasks:\n\n* TC-4264 Task 1 with empty Start Date and End Date set to 28/Aug/23\n* TC-4264 Task 2 with Start Date set to 28/Aug/23 and empty End Date\n* TC-4264 Task 3 without Start Date nor End Date\n* TC-4264 Task 4 with Start Date set to 28/Aug/23 and End Date set to 28/Aug/23"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-4852",
+    "text": "Test: TC-4852 — Feature area - Box scope - Existing task cloning - Clone tasks without dates\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-70 Feature area - Box scope - Existing tasks cloning\nLabels: teamembers\n\nSteps:\n1. Navigate to Gantt module of boxname\n   Data: boxname: TC-4264 Feature area - Box scope - Existing task cloning - Clone tasks without dates\n   Expected: Gantt module opened with following tasks:\n\n* TC-4264 Task 1 with empty Start Date and End Date set to 28/Aug/23\n* TC-4264 Task 2 with Start Date set to 28/Aug/23 and empty End Date\n* TC-4264 Task 3 without Start Date nor End Date\n* TC-4264 Task 4 with  Start Date set to 28/Aug/23 and End Date set to 28/Aug/23\n2. Click + button from header\n   Expected: Dropdown appear with following options:\n\n* Create task\n* disabled Create subtask\n* Manage scope definition\n* Import tasks from file\n* Clone existing scope\n3. Click Clone existing scope\n   Expected: Clone existing scope window shows up with \n\n* Clone the Scope from select\n* Clone the scope to select\n* Read more button\n* Cancel button\n* Clone button\n4. Click on the select below Clone the scope from, type scopeName and click on it in dropdown\n   Data: scopeName: TC-4264 Feature area - Box scope - Existing task cloning - Clone tasks without dates\n   Expected: TC-4264 Feature area - Box scope - Existing task cloning - Clone tasks without dates is filled in Clone the scope from select\n5. Click on the select below Clone the scope to, type projectName and click on it in dropdown\n   Data: projectName: TC-4264 (CLONE) Feature area - Box scope - Existing task cloning - Clone\n   Expected: TC-4264 (CLONE) Feature area - Box scope - Existing task cloning - Clone is filled in Clone the scope from select\n6. Click Clone button and then Proceed button\n   Expected: After a while, window Tasks have been successfully cloned shows up\n7. Navigate to Gantt module of boxName\n   Data: boxName: TC-4264 (CLONE) Feature area - Box scope - Existing task cloning - Clone tasks without dates\n   Expected: Gantt module opened with following tasks:\n\n* TC-4264 Task 1 with empty Start Date and End Date set to 28/Aug/23\n* TC-4264 Task 2 with Start Date set to 28/Aug/23 and empty End Date\n* TC-4264 Task 3 without Start Date nor End Date\n* TC-4264 Task 4 with Start Date set to 28/Aug/23 and End Date set to 28/Aug/23",
+    "metadata": {
+      "jira_key": "TC-4852",
+      "issue_id": "825539",
+      "summary": "Feature area - Box scope - Existing task cloning - Clone tasks without dates",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-70 Feature area - Box scope - Existing tasks cloning",
+      "labels": [
+        "teamembers"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

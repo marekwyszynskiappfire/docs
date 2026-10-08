@@ -1,0 +1,107 @@
+{
+  "test": {
+    "key": "TC-6251",
+    "issue_id": "1748874",
+    "url": "https://appfire.atlassian.net/browse/TC-6251",
+    "summary": "SPM – OKR – Manual updates visibility and behavior when toggle is OFF",
+    "description": "This test verifies manual updates visibility and behavior in OKR details when automated updates toggle is disabled.\n\nCovered areas:\n\n* Objective/KR Details page\n* Status changes tab\n* Toggle: {{Show automated updates}}\n* Info panel ({{Last updated}})\n\nValidation scope:\n\n* Verifying manual updates are visible when toggle is ON\n* Verifying manual updates are visible when toggle is OFF\n* Verifying AUTO updates are hidden when toggle is OFF\n* Verifying manual updates are not marked with {{API}} label\n* Verifying manual updates are displayed correctly in {{Status changes}}\n* Verifying manual updates are displayed correctly in {{Activity}}\n* Verifying {{Last updated}} section displays latest manual update correctly",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-05-29T04:38:48.093-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Preconditions:*\n\nObjective and Key Result are created and linked to the box",
+        "data": "* Objective 1\n* Key result 1",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Open OKR Overview of boxName",
+        "data": "boxName: TC-6251 SPM – OKR – Manual updates visibility and behavior when toggle is OFF",
+        "result": "Objective and Key result are displayed in Overview"
+      },
+      {
+        "step": 3,
+        "action": "Open Key result in Detail page and navigate to status changes",
+        "data": "",
+        "result": "Key result detail page is opened. *Show automated updates* toggle is visible and enabled. \n\n\"Key result created\" status update is displayed in the Status changes section."
+      },
+      {
+        "step": 4,
+        "action": "Click Update button and change status to \"ON TRACK\"",
+        "data": "",
+        "result": "Status is changed to ON TRACK"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Status changes",
+        "data": "",
+        "result": "*Show automated updates* toggle is visible and enabled.\n\nStatus update is displayed correctly in the Status changes section."
+      },
+      {
+        "step": 6,
+        "action": "Click on Activity tab",
+        "data": "",
+        "result": "Activity tab is opened. Key result creation activity is displayed with *NEW* label, correct status, progress and current value information."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Info section",
+        "data": "",
+        "result": "Last updated field is visible under Status and displayed last updated date (DD/MM/YY)"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to tree dots button and click in Convert to Auto Key result",
+        "data": "",
+        "result": "Success, Key result was successfully converted message is displayed"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Status changes",
+        "data": "",
+        "result": "*Show automated updates* toggle is visible and enabled.\n\nAUTO update is displayed in the Status changes section and update author is shown as *OKRobot.*"
+      },
+      {
+        "step": 10,
+        "action": "Disable *Show automated updates* toggle",
+        "data": "",
+        "result": "Show automated updates toggle is disabled. Only manual updates are displayed in the Status changes section. AUTO updates are hidden."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-6251",
+    "text": "Test: TC-6251 — SPM – OKR – Manual updates visibility and behavior when toggle is OFF\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-512 OKR - OKR module\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies manual updates visibility and behavior in OKR details when automated updates toggle is disabled.\n\nCovered areas:\n\n* Objective/KR Details page\n* Status changes tab\n* Toggle: {{Show automated updates}}\n* Info panel ({{Last updated}})\n\nValidation scope:\n\n* Verifying manual updates are visible when toggle is ON\n* Verifying manual updates are visible when toggle is OFF\n* Verifying AUTO updates are hidden when toggle is OFF\n* Verifying manual updates are not marked with {{API}} label\n* Verifying manual updates are displayed correctly in {{Status changes}}\n* Verifying manual updates are displayed correctly in {{Activity}}\n* Verifying {{Last updated}} section displays latest manual update correctly\n\nSteps:\n1. *Preconditions:*\n\nObjective and Key Result are created and linked to the box\n   Data: * Objective 1\n* Key result 1\n   Expected: \n2. Open OKR Overview of boxName\n   Data: boxName: TC-6251 SPM – OKR – Manual updates visibility and behavior when toggle is OFF\n   Expected: Objective and Key result are displayed in Overview\n3. Open Key result in Detail page and navigate to status changes\n   Expected: Key result detail page is opened. *Show automated updates* toggle is visible and enabled. \n\n\"Key result created\" status update is displayed in the Status changes section.\n4. Click Update button and change status to \"ON TRACK\"\n   Expected: Status is changed to ON TRACK\n5. Navigate to Status changes\n   Expected: *Show automated updates* toggle is visible and enabled.\n\nStatus update is displayed correctly in the Status changes section.\n6. Click on Activity tab\n   Expected: Activity tab is opened. Key result creation activity is displayed with *NEW* label, correct status, progress and current value information.\n7. Navigate to Info section\n   Expected: Last updated field is visible under Status and displayed last updated date (DD/MM/YY)\n8. Navigate to tree dots button and click in Convert to Auto Key result\n   Expected: Success, Key result was successfully converted message is displayed\n9. Navigate to Status changes\n   Expected: *Show automated updates* toggle is visible and enabled.\n\nAUTO update is displayed in the Status changes section and update author is shown as *OKRobot.*\n10. Disable *Show automated updates* toggle\n   Expected: Show automated updates toggle is disabled. Only manual updates are displayed in the Status changes section. AUTO updates are hidden.",
+    "metadata": {
+      "jira_key": "TC-6251",
+      "issue_id": "1748874",
+      "summary": "SPM – OKR – Manual updates visibility and behavior when toggle is OFF",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

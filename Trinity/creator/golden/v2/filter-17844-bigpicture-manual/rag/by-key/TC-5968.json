@@ -1,0 +1,143 @@
+{
+  "test": {
+    "key": "TC-5968",
+    "issue_id": "1520363",
+    "url": "https://appfire.atlassian.net/browse/TC-5968",
+    "summary": "SPM - Priorities - Changing template of prioritized Goals on Gantt module",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-02-05T03:57:52.407-0500",
+    "updated": "2026-10-06T08:50:28.946-0400",
+    "labels": [
+      "ppm-e2e-cloud"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/Priorities",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open OKR module of boxName",
+        "data": "boxName: TC-5968 SPM - Priorities - Changing template of prioritized Goals on Gantt module",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Create Strategic theme, Objective and Key-result",
+        "data": "",
+        "result": "OKRs are created"
+      },
+      {
+        "step": 3,
+        "action": "Open box configuration → Scope definition and add Strategic theme to the scope",
+        "data": "",
+        "result": "Strategic theme is added to the scope. Task counter displays 0 issue"
+      },
+      {
+        "step": 4,
+        "action": "Go to task structure and enable OKR task structure",
+        "data": "",
+        "result": "OKR task structure is enabled"
+      },
+      {
+        "step": 5,
+        "action": "Open Gantt module",
+        "data": "",
+        "result": "Gantt module is opened Strategic theme, Objective and Key-result are visible in WBS"
+      },
+      {
+        "step": 6,
+        "action": "Click on add column button and add Priority score column",
+        "data": "",
+        "result": "Priority score column is added. Columns have no values"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Priorities module → Goals tab",
+        "data": "",
+        "result": "Strategic theme, Objective and Key-result are visible without score values"
+      },
+      {
+        "step": 8,
+        "action": "Go to Configuration → Goals",
+        "data": "",
+        "result": "Prioritization template ICE is selected"
+      },
+      {
+        "step": 9,
+        "action": "Navigate back to Goals →  Strategic theme and set values",
+        "data": "* Impact:  *near zero*\n* Ease: *extremely hard*\n* Confidence: *no confidence*",
+        "result": "Score 1 is visible for strategic theme"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Objective and set values",
+        "data": "* Impact: *low*\n* Ease: *hard*\n* Confidence: *very low*",
+        "result": "Score 36 is visible for objective"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Key-result and set values",
+        "data": "* Impact: *High*\n* Ease: *Easy*\n* Confidence: *Medium*",
+        "result": "Score 336 is visible for key result"
+      },
+      {
+        "step": 12,
+        "action": "Open Gantt module and check priority score values for OKRs",
+        "data": "",
+        "result": "The values are visible and the same as in Priorities module\n\n*1* - for Strategic theme\n*36* - for Objective \n*366* - for Key-resuilt"
+      },
+      {
+        "step": 13,
+        "action": "Open Priority module → Goals → Click List view → Configure and change template to RISE. Click save changes",
+        "data": "",
+        "result": "Prioritization template is swiched to RISE. After saving Goals tab is opened. \nRISE template is visible with empty score values"
+      },
+      {
+        "step": 14,
+        "action": "Open Gantt module and refresh the page",
+        "data": "",
+        "result": "Priority score column has empty values for OKRs"
+      },
+      {
+        "step": 15,
+        "action": "Open Priority module → Configuration → Goals and change template to ICE. Click save changes",
+        "data": "",
+        "result": "Prioritization template is swiched to ICE. After saving Goals tab is opened.\nICE template is visible with score values\n\n\n*1* - for Strategic theme\n*36* - for Objective\n*366* - for Key-resuilt"
+      },
+      {
+        "step": 16,
+        "action": "Open Gantt module and refresh the page. Check priority score values for goals",
+        "data": "",
+        "result": "The values are visible and the same as in Priorities module\n\n*1* - for Strategic theme\n*36* - for Objective\n*366* - for Key-resuilt"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-5968",
+    "text": "Test: TC-5968 — SPM - Priorities - Changing template of prioritized Goals on Gantt module\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/Priorities\nLabels: ppm-e2e-cloud\n\nSteps:\n1. Open OKR module of boxName\n   Data: boxName: TC-5968 SPM - Priorities - Changing template of prioritized Goals on Gantt module\n   Expected: OKR module is displayed\n2. Create Strategic theme, Objective and Key-result\n   Expected: OKRs are created\n3. Open box configuration → Scope definition and add Strategic theme to the scope\n   Expected: Strategic theme is added to the scope. Task counter displays 0 issue\n4. Go to task structure and enable OKR task structure\n   Expected: OKR task structure is enabled\n5. Open Gantt module\n   Expected: Gantt module is opened Strategic theme, Objective and Key-result are visible in WBS\n6. Click on add column button and add Priority score column\n   Expected: Priority score column is added. Columns have no values\n7. Navigate to Priorities module → Goals tab\n   Expected: Strategic theme, Objective and Key-result are visible without score values\n8. Go to Configuration → Goals\n   Expected: Prioritization template ICE is selected\n9. Navigate back to Goals →  Strategic theme and set values\n   Data: * Impact:  *near zero*\n* Ease: *extremely hard*\n* Confidence: *no confidence*\n   Expected: Score 1 is visible for strategic theme\n10. Navigate to Objective and set values\n   Data: * Impact: *low*\n* Ease: *hard*\n* Confidence: *very low*\n   Expected: Score 36 is visible for objective\n11. Navigate to Key-result and set values\n   Data: * Impact: *High*\n* Ease: *Easy*\n* Confidence: *Medium*\n   Expected: Score 336 is visible for key result\n12. Open Gantt module and check priority score values for OKRs\n   Expected: The values are visible and the same as in Priorities module\n\n*1* - for Strategic theme\n*36* - for Objective \n*366* - for Key-resuilt\n13. Open Priority module → Goals → Click List view → Configure and change template to RISE. Click save changes\n   Expected: Prioritization template is swiched to RISE. After saving Goals tab is opened. \nRISE template is visible with empty score values\n14. Open Gantt module and refresh the page\n   Expected: Priority score column has empty values for OKRs\n15. Open Priority module → Configuration → Goals and change template to ICE. Click save changes\n   Expected: Prioritization template is swiched to ICE. After saving Goals tab is opened.\nICE template is visible with score values\n\n\n*1* - for Strategic theme\n*36* - for Objective\n*366* - for Key-resuilt\n16. Open Gantt module and refresh the page. Check priority score values for goals\n   Expected: The values are visible and the same as in Priorities module\n\n*1* - for Strategic theme\n*36* - for Objective\n*366* - for Key-resuilt",
+    "metadata": {
+      "jira_key": "TC-5968",
+      "issue_id": "1520363",
+      "summary": "SPM - Priorities - Changing template of prioritized Goals on Gantt module",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/Priorities",
+      "labels": [
+        "ppm-e2e-cloud"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

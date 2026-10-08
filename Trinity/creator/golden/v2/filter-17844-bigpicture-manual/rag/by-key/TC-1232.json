@@ -1,0 +1,123 @@
+{
+  "test": {
+    "key": "TC-1232",
+    "issue_id": "359053",
+    "url": "https://appfire.atlassian.net/browse/TC-1232",
+    "summary": "Box module - Board - Totals - Counting work progress by time spent",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2019-10-01T06:26:37.537-0400",
+    "updated": "2026-03-13T06:28:24.203-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-102 Box module - Board - Totals",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Board module of the boxName",
+        "data": "boxName: TC-1232 Box module - Board - Totals - Counting work progress by time spent",
+        "result": "Module opened correctly. TC1232 is selected as the default card view."
+      },
+      {
+        "step": 2,
+        "action": "Click on View > Totals and set Type to Work Progress and Aggregation to Time spent",
+        "data": "",
+        "result": "Progress bars are visible in every PI and Team. PI1 has 1w 2d 2.25h / 2w 3d 6.50h 53%. PI2 has 1d 0.75h / 2d 1h 51%."
+      },
+      {
+        "step": 3,
+        "action": "Click on Filters -> Filters option and check Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Progress bars are visible in every PI and Team. PI1 has 5h / 6h 83%. PI2 has 1d 0.75h / 2d 1h 51%."
+      },
+      {
+        "step": 4,
+        "action": "Click on Filters -> Filters option and uncheck Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Progress bars are visible in every PI and Team. PI1 has 1w 2d 2.25h / 2w 3d 6.50h 53%. PI2 has 1d 0.75h / 2d 1h 51%."
+      },
+      {
+        "step": 5,
+        "action": "Select issueName in PI1 in Team unassigned and fill time spent in log work on '1h 45m'.",
+        "data": "issueName: Task1",
+        "result": "PI1 has 1w 2d 4h / 2w 3d 6.50h 54%. Team unassigned of PI1 has 1d 7.75h / 1w 5h 35%"
+      },
+      {
+        "step": 6,
+        "action": "Select issueName in PI1 in Team 1 and fill time spent in log work on '1w'.",
+        "data": "issueName: Task7",
+        "result": "PI1 has 2w 2d 4h / 3w 3d 6.25h 67%. Team 1 of PI1 has 2w 4.25h / 2w 3d 1.25h 80%"
+      },
+      {
+        "step": 7,
+        "action": "Move issueName from PI1 Team 1 to PI2 Team unassigned",
+        "data": "issueName: Task6",
+        "result": "Issue moves correctly. PI1 has 1w 2d 4h / 2w 1d 6.25h 64%. Team 1 of PI1 has 1w 4.25h / 1w 1d 1.25h 90%. PI2 has 1w 1d 0.75h / 1w 4d 1h 67%. Team unassigned of PI2 has 1w 1d / 1w 4d 67%."
+      },
+      {
+        "step": 8,
+        "action": "Level down to Iteration level of PI1",
+        "data": "",
+        "result": "Iteration level is displayed. Iteration1 has 1d 5.75h / 3d 7h 44%. Iteration 2 has 1h / 2d 1h 6%."
+      },
+      {
+        "step": 9,
+        "action": "Select issueName in Iteration 1 in Team unassigned and fill time spent in log work on '1h'.",
+        "data": "issueName: Task10",
+        "result": "Iteration1 has 1d 6.75h / 3d 7h 48%. Team unassigned of Iteration 1 has 1d 3.75h / 3d 49%."
+      },
+      {
+        "step": 10,
+        "action": "Select issueName in Iteration 1 in Team 1 and fill time spent in log work on '1w'.",
+        "data": "issuename: Task3",
+        "result": "Iteration1 has 1w 1d 6.75h / 1w 3d 7h 82%. Team 1 of Iteration 1 has 1w 3h / 1w 3h 100%."
+      },
+      {
+        "step": 11,
+        "action": "Move issueName from Iteration1 Team unassigned to Iteration2 Team unassigned",
+        "data": "issueName: Task10",
+        "result": "Issue moves correctly. Iteration1 has 1w 1d 4.75h / 1w 3d 1h 81%. Team unassigned of Iteration 1 has 1d 1.75h / 2d 6h 44%. Iteration 2 has 3h / 2d 3h 16%. Team unassigned of Iteration 2 has 3h / 2d 3h 16%."
+      },
+      {
+        "step": 12,
+        "action": "Click 'Zoom out' button on the timeline.",
+        "data": "",
+        "result": "Iteration1 has 1w 1d 4.75h / 1w 3d 1h 81%. Iteration 2 has 3h / 2d 3h 16%. Iteration 3 appears and it has 1w 0.25h / 1w 0.25h 100%."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-1232",
+    "text": "Test: TC-1232 — Box module - Board - Totals - Counting work progress by time spent\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-102 Box module - Board - Totals\nLabels: Sanity, can_be_automated, teamsmile\n\nSteps:\n1. Navigate to the Board module of the boxName\n   Data: boxName: TC-1232 Box module - Board - Totals - Counting work progress by time spent\n   Expected: Module opened correctly. TC1232 is selected as the default card view.\n2. Click on View > Totals and set Type to Work Progress and Aggregation to Time spent\n   Expected: Progress bars are visible in every PI and Team. PI1 has 1w 2d 2.25h / 2w 3d 6.50h 53%. PI2 has 1d 0.75h / 2d 1h 51%.\n3. Click on Filters -> Filters option and check Show only tasks not planned on a lower level\n   Expected: Progress bars are visible in every PI and Team. PI1 has 5h / 6h 83%. PI2 has 1d 0.75h / 2d 1h 51%.\n4. Click on Filters -> Filters option and uncheck Show only tasks not planned on a lower level\n   Expected: Progress bars are visible in every PI and Team. PI1 has 1w 2d 2.25h / 2w 3d 6.50h 53%. PI2 has 1d 0.75h / 2d 1h 51%.\n5. Select issueName in PI1 in Team unassigned and fill time spent in log work on '1h 45m'.\n   Data: issueName: Task1\n   Expected: PI1 has 1w 2d 4h / 2w 3d 6.50h 54%. Team unassigned of PI1 has 1d 7.75h / 1w 5h 35%\n6. Select issueName in PI1 in Team 1 and fill time spent in log work on '1w'.\n   Data: issueName: Task7\n   Expected: PI1 has 2w 2d 4h / 3w 3d 6.25h 67%. Team 1 of PI1 has 2w 4.25h / 2w 3d 1.25h 80%\n7. Move issueName from PI1 Team 1 to PI2 Team unassigned\n   Data: issueName: Task6\n   Expected: Issue moves correctly. PI1 has 1w 2d 4h / 2w 1d 6.25h 64%. Team 1 of PI1 has 1w 4.25h / 1w 1d 1.25h 90%. PI2 has 1w 1d 0.75h / 1w 4d 1h 67%. Team unassigned of PI2 has 1w 1d / 1w 4d 67%.\n8. Level down to Iteration level of PI1\n   Expected: Iteration level is displayed. Iteration1 has 1d 5.75h / 3d 7h 44%. Iteration 2 has 1h / 2d 1h 6%.\n9. Select issueName in Iteration 1 in Team unassigned and fill time spent in log work on '1h'.\n   Data: issueName: Task10\n   Expected: Iteration1 has 1d 6.75h / 3d 7h 48%. Team unassigned of Iteration 1 has 1d 3.75h / 3d 49%.\n10. Select issueName in Iteration 1 in Team 1 and fill time spent in log work on '1w'.\n   Data: issuename: Task3\n   Expected: Iteration1 has 1w 1d 6.75h / 1w 3d 7h 82%. Team 1 of Iteration 1 has 1w 3h / 1w 3h 100%.\n11. Move issueName from Iteration1 Team unassigned to Iteration2 Team unassigned\n   Data: issueName: Task10\n   Expected: Issue moves correctly. Iteration1 has 1w 1d 4.75h / 1w 3d 1h 81%. Team unassigned of Iteration 1 has 1d 1.75h / 2d 6h 44%. Iteration 2 has 3h / 2d 3h 16%. Team unassigned of Iteration 2 has 3h / 2d 3h 16%.\n12. Click 'Zoom out' button on the timeline.\n   Expected: Iteration1 has 1w 1d 4.75h / 1w 3d 1h 81%. Iteration 2 has 3h / 2d 3h 16%. Iteration 3 appears and it has 1w 0.25h / 1w 0.25h 100%.",
+    "metadata": {
+      "jira_key": "TC-1232",
+      "issue_id": "359053",
+      "summary": "Box module - Board - Totals - Counting work progress by time spent",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-102 Box module - Board - Totals",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "teamsmile"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

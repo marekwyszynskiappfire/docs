@@ -1,0 +1,103 @@
+{
+  "test": {
+    "key": "TC-3260",
+    "issue_id": "358394",
+    "url": "https://appfire.atlassian.net/browse/TC-3260",
+    "summary": "Feature area - Task structure - Basic operations - Relevant fields are added in accordance with active structure builder",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2022-04-29T09:23:34.596-0400",
+    "updated": "2026-03-30T09:57:00.151-0400",
+    "labels": [
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-75 Feature area - Task structure - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of boxName",
+        "data": "boxName: TC-3260 Feature area - Task structure - Basic operations - Relevant fields are added in accordance with active structure builder",
+        "result": "Gantt module is correctly displayed, WBS and chart are visible. FolLowing structure is displayed:\n* Epic 1\n** Task 1\n* Version 1\n** Task 2\n* Component 1\n** Task 3\n* Sprint 1\n** Task 4"
+      },
+      {
+        "step": 2,
+        "action": "Select taskSummary on the WBS",
+        "data": "taskSummary: Task 1",
+        "result": "Task is selected on the WBS and the chart"
+      },
+      {
+        "step": 3,
+        "action": "Create a new Jira issue with taskSummary",
+        "data": "taskSummary: Task Epic",
+        "result": "New Jira issue is created under Epic 1 with 'Epic 1' value in Parent field"
+      },
+      {
+        "step": 4,
+        "action": "Select taskSummary on the WBS",
+        "data": "taskSummary: Task 2",
+        "result": "Task is selected on the WBS and the chart"
+      },
+      {
+        "step": 5,
+        "action": "Create a new Jira issue with taskSummary",
+        "data": "taskSummary: Task Version",
+        "result": "New Jira issue is created under Version 1 with 'Version 1' value in Fix Versions field"
+      },
+      {
+        "step": 6,
+        "action": "Select taskSummary on the WBS",
+        "data": "taskSummary: Task 3",
+        "result": "Task is selected on the WBS and the chart"
+      },
+      {
+        "step": 7,
+        "action": "Create a new Jira issue with taskSummary",
+        "data": "taskSummary: Task Component",
+        "result": "New Jira issue is created under Component 1 with 'Component 1' value in Components field"
+      },
+      {
+        "step": 8,
+        "action": "Select taskSummary on the WBS",
+        "data": "taskSummary: Task 4",
+        "result": "Task is selected on the WBS and the chart"
+      },
+      {
+        "step": 9,
+        "action": "Create a new Jira issue with taskSummary",
+        "data": "taskSummary: Task Sprint",
+        "result": "New Jira issue is created under Sprint 1 with 'Sprint 1' value in Sprint field"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-3260",
+    "text": "Test: TC-3260 — Feature area - Task structure - Basic operations - Relevant fields are added in accordance with active structure builder\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-75 Feature area - Task structure - Basic operations\nLabels: teamembers, teamtree\n\nSteps:\n1. Navigate to the Gantt module of boxName\n   Data: boxName: TC-3260 Feature area - Task structure - Basic operations - Relevant fields are added in accordance with active structure builder\n   Expected: Gantt module is correctly displayed, WBS and chart are visible. FolLowing structure is displayed:\n* Epic 1\n** Task 1\n* Version 1\n** Task 2\n* Component 1\n** Task 3\n* Sprint 1\n** Task 4\n2. Select taskSummary on the WBS\n   Data: taskSummary: Task 1\n   Expected: Task is selected on the WBS and the chart\n3. Create a new Jira issue with taskSummary\n   Data: taskSummary: Task Epic\n   Expected: New Jira issue is created under Epic 1 with 'Epic 1' value in Parent field\n4. Select taskSummary on the WBS\n   Data: taskSummary: Task 2\n   Expected: Task is selected on the WBS and the chart\n5. Create a new Jira issue with taskSummary\n   Data: taskSummary: Task Version\n   Expected: New Jira issue is created under Version 1 with 'Version 1' value in Fix Versions field\n6. Select taskSummary on the WBS\n   Data: taskSummary: Task 3\n   Expected: Task is selected on the WBS and the chart\n7. Create a new Jira issue with taskSummary\n   Data: taskSummary: Task Component\n   Expected: New Jira issue is created under Component 1 with 'Component 1' value in Components field\n8. Select taskSummary on the WBS\n   Data: taskSummary: Task 4\n   Expected: Task is selected on the WBS and the chart\n9. Create a new Jira issue with taskSummary\n   Data: taskSummary: Task Sprint\n   Expected: New Jira issue is created under Sprint 1 with 'Sprint 1' value in Sprint field",
+    "metadata": {
+      "jira_key": "TC-3260",
+      "issue_id": "358394",
+      "summary": "Feature area - Task structure - Basic operations - Relevant fields are added in accordance with active structure builder",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-75 Feature area - Task structure - Basic operations",
+      "labels": [
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

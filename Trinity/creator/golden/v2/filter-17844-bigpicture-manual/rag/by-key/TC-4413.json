@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-4413",
+    "issue_id": "814571",
+    "url": "https://appfire.atlassian.net/browse/TC-4413",
+    "summary": "Feature area - Risk - column add for sub-box",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:01:34.320-0400",
+    "updated": "2026-03-04T09:12:42.978-0500",
+    "labels": [
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-83 Feature area - Risk",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Risks module Table view of boxName",
+        "data": "boxName: TC-4413 Feature area - Risk - column add for sub-box",
+        "result": "One task is visible."
+      },
+      {
+        "step": 2,
+        "action": "Expand Column Manager ( gear icon ) and Add newColumnName",
+        "data": "newColumnName: Actual Cost (Built-in)",
+        "result": "No error message appears.  In column manager \"Restore columns\" is active, \"Save changes for all users\" is greyed out."
+      },
+      {
+        "step": 3,
+        "action": "Navigate to the Table view of boxName",
+        "data": "boxName: TC-4413 Feature area - Risk - column add for sub-box parent",
+        "result": "NewColumnName is visible in columns view."
+      },
+      {
+        "step": 4,
+        "action": "Expand Column Manager ( gear icon )",
+        "data": "",
+        "result": "In column manager \"Restore columns\" and \"Save changes for all users\" are active."
+      },
+      {
+        "step": 5,
+        "action": "Click on Restore columns",
+        "data": "",
+        "result": "NewColumnName isn't visible in columns view no more."
+      },
+      {
+        "step": 6,
+        "action": "Back to the boxName",
+        "data": "boxName: TC-4413 Feature area - Risk - column add for sub-box",
+        "result": "One task is visible."
+      },
+      {
+        "step": 7,
+        "action": "Hover over information icon \"Save changes for all users\"",
+        "data": "",
+        "result": "The information in tooltip is presented: \"You cannot save Column View inherited from the upper-level Box.\""
+      },
+      {
+        "step": 8,
+        "action": "Hover over information icon \"Restore columns\"",
+        "data": "",
+        "result": "The information in tooltip is presented: \"After adding or removing columns, you can easily return to your initial set.\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-4413",
+    "text": "Test: TC-4413 — Feature area - Risk - column add for sub-box\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-83 Feature area - Risk\nLabels: teamsource\n\nSteps:\n1. Navigate to the Risks module Table view of boxName\n   Data: boxName: TC-4413 Feature area - Risk - column add for sub-box\n   Expected: One task is visible.\n2. Expand Column Manager ( gear icon ) and Add newColumnName\n   Data: newColumnName: Actual Cost (Built-in)\n   Expected: No error message appears.  In column manager \"Restore columns\" is active, \"Save changes for all users\" is greyed out.\n3. Navigate to the Table view of boxName\n   Data: boxName: TC-4413 Feature area - Risk - column add for sub-box parent\n   Expected: NewColumnName is visible in columns view.\n4. Expand Column Manager ( gear icon )\n   Expected: In column manager \"Restore columns\" and \"Save changes for all users\" are active.\n5. Click on Restore columns\n   Expected: NewColumnName isn't visible in columns view no more.\n6. Back to the boxName\n   Data: boxName: TC-4413 Feature area - Risk - column add for sub-box\n   Expected: One task is visible.\n7. Hover over information icon \"Save changes for all users\"\n   Expected: The information in tooltip is presented: \"You cannot save Column View inherited from the upper-level Box.\"\n8. Hover over information icon \"Restore columns\"\n   Expected: The information in tooltip is presented: \"After adding or removing columns, you can easily return to your initial set.\"",
+    "metadata": {
+      "jira_key": "TC-4413",
+      "issue_id": "814571",
+      "summary": "Feature area - Risk - column add for sub-box",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-83 Feature area - Risk",
+      "labels": [
+        "teamsource"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

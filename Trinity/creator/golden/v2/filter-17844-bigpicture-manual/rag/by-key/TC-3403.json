@@ -1,0 +1,97 @@
+{
+  "test": {
+    "key": "TC-3403",
+    "issue_id": "359400",
+    "url": "https://appfire.atlassian.net/browse/TC-3403",
+    "summary": "Box Module - Reports - Creating new Capacity report",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2022-06-21T09:29:01.770-0400",
+    "updated": "2026-04-23T07:42:58.957-0400",
+    "labels": [
+      "can_be_automated",
+      "teamreports"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Reports module of boxName",
+        "data": "boxName: TC-3403 Box Module - Reports - Creating new Capacity report",
+        "result": "Reports module loaded correctly. There is information: Create reports with a few clicks\n\nClick the edit pencil in the left corner, then select the data you want to focus on.\n\n\nRead more about reports"
+      },
+      {
+        "step": 2,
+        "action": "Click on the Edit button.",
+        "data": "",
+        "result": "Selected button is marked and the edit mode is displayed: The add report button is displayed next to the Edit button."
+      },
+      {
+        "step": 3,
+        "action": "Click on the Add report button",
+        "data": "",
+        "result": "Modal dialog with 8 kinds of reports to select is displayed.\n\n* Task report\n* Risks matrix\n* Team dependencies\n* Dependencies\n* Milestons & Markers\n* Velocity\n* Plan delays\n* Capacity\n\nBelow there is a Create button and is disabled if none of reports is selected."
+      },
+      {
+        "step": 4,
+        "action": "Select the Capacity and click on the Create button.",
+        "data": "",
+        "result": "Modal is closed. Report configuration panel is opened with default fields:\n\n* Name (Capacity)\n* Project (New Program 1)\n* Category (Total)\n* Value (empty) \n* Aggregation (Total)\n* Start date (22/Jun/22)\n* End date (30/Jun/22)\n\nBeLow, there are Cancel and Save buttons."
+      },
+      {
+        "step": 5,
+        "action": "Fill data",
+        "data": "- Project: New Program 2\n- Category: Team\n- Value: Team Beta \n- Aggregation: Week",
+        "result": "Field Name automatically change value to \"Capacity - Team Beta\". Start date is set to 30/Jun/21. End date is set to 1/Sep/21."
+      },
+      {
+        "step": 6,
+        "action": "Change Start date",
+        "data": "Start date: 09/Aug/21",
+        "result": "Start date is set to 09/Aug/21."
+      },
+      {
+        "step": 7,
+        "action": "Click Save button.",
+        "data": "",
+        "result": "Capacity report configuration form is closed. New report is added. Four groups of columns are display with names:\n- WK 32 / Aug 2021\n- WK 33 / Aug 2021\n- WK 34 / Aug 2021\n- WK 35 / Aug 2021\n\nEvery group consist 3 columns:\n- Blue (Capacity)\n- Orange (Workload)\n- Green (Remaining Capacity)\n\nColumns for WK 32 / Aug 2021 have value like belLow:\n- Blue (40)\n- Orange (10)\n- Green (30)\n\nColumns for WK 33 / Aug 2021 have value like belLow:\n- Blue (40)\n- Orange (3)\n- Green (37)\n\nColumns for WK 34 / Aug 2021 have value like belLow:\n- Blue (40)\n- Orange (15)\n- Green (25)\n\nColumns for WK 35 / Aug 2021 have value like belLow:\n- Blue (24)\n- Orange (14)\n- Green (10)\n\nOn the bottom of the raport container is slide bar."
+      },
+      {
+        "step": 8,
+        "action": "Click Save button.",
+        "data": "",
+        "result": "Selected button is unmarked and edit mode is disabled. The add report button disappeared."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-3403",
+    "text": "Test: TC-3403 — Box Module - Reports - Creating new Capacity report\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: can_be_automated, teamreports\n\nSteps:\n1. Navigate to Reports module of boxName\n   Data: boxName: TC-3403 Box Module - Reports - Creating new Capacity report\n   Expected: Reports module loaded correctly. There is information: Create reports with a few clicks\n\nClick the edit pencil in the left corner, then select the data you want to focus on.\n\n\nRead more about reports\n2. Click on the Edit button.\n   Expected: Selected button is marked and the edit mode is displayed: The add report button is displayed next to the Edit button.\n3. Click on the Add report button\n   Expected: Modal dialog with 8 kinds of reports to select is displayed.\n\n* Task report\n* Risks matrix\n* Team dependencies\n* Dependencies\n* Milestons & Markers\n* Velocity\n* Plan delays\n* Capacity\n\nBelow there is a Create button and is disabled if none of reports is selected.\n4. Select the Capacity and click on the Create button.\n   Expected: Modal is closed. Report configuration panel is opened with default fields:\n\n* Name (Capacity)\n* Project (New Program 1)\n* Category (Total)\n* Value (empty) \n* Aggregation (Total)\n* Start date (22/Jun/22)\n* End date (30/Jun/22)\n\nBeLow, there are Cancel and Save buttons.\n5. Fill data\n   Data: - Project: New Program 2\n- Category: Team\n- Value: Team Beta \n- Aggregation: Week\n   Expected: Field Name automatically change value to \"Capacity - Team Beta\". Start date is set to 30/Jun/21. End date is set to 1/Sep/21.\n6. Change Start date\n   Data: Start date: 09/Aug/21\n   Expected: Start date is set to 09/Aug/21.\n7. Click Save button.\n   Expected: Capacity report configuration form is closed. New report is added. Four groups of columns are display with names:\n- WK 32 / Aug 2021\n- WK 33 / Aug 2021\n- WK 34 / Aug 2021\n- WK 35 / Aug 2021\n\nEvery group consist 3 columns:\n- Blue (Capacity)\n- Orange (Workload)\n- Green (Remaining Capacity)\n\nColumns for WK 32 / Aug 2021 have value like belLow:\n- Blue (40)\n- Orange (10)\n- Green (30)\n\nColumns for WK 33 / Aug 2021 have value like belLow:\n- Blue (40)\n- Orange (3)\n- Green (37)\n\nColumns for WK 34 / Aug 2021 have value like belLow:\n- Blue (40)\n- Orange (15)\n- Green (25)\n\nColumns for WK 35 / Aug 2021 have value like belLow:\n- Blue (24)\n- Orange (14)\n- Green (10)\n\nOn the bottom of the raport container is slide bar.\n8. Click Save button.\n   Expected: Selected button is unmarked and edit mode is disabled. The add report button disappeared.",
+    "metadata": {
+      "jira_key": "TC-3403",
+      "issue_id": "359400",
+      "summary": "Box Module - Reports - Creating new Capacity report",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "can_be_automated",
+        "teamreports"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

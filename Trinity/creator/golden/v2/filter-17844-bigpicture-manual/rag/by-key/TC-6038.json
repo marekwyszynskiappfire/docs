@@ -1,0 +1,42 @@
+{
+  "test": {
+    "key": "TC-6038",
+    "issue_id": "1607446",
+    "url": "https://appfire.atlassian.net/browse/TC-6038",
+    "summary": "TC-6038 Multi-team - Setting time estimates",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2026-03-30T10:19:46.959-0400",
+    "updated": "2026-04-07T04:36:06.919-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/Multi-team Assignment",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 0
+  },
+  "rag": {
+    "id": "TC-6038",
+    "text": "Test: TC-6038 — TC-6038 Multi-team - Setting time estimates\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/Multi-team Assignment",
+    "metadata": {
+      "jira_key": "TC-6038",
+      "issue_id": "1607446",
+      "summary": "TC-6038 Multi-team - Setting time estimates",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/Multi-team Assignment",
+      "labels": [],
+      "step_count": 0,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

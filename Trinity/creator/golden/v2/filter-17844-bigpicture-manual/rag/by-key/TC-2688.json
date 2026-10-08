@@ -1,0 +1,115 @@
+{
+  "test": {
+    "key": "TC-2688",
+    "issue_id": "359673",
+    "url": "https://appfire.atlassian.net/browse/TC-2688",
+    "summary": "Global - Task configuration - Changing dates of Jira tasks when Start date is mapped to Due date",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Adrian Rybak",
+    "created": "2021-11-23T11:31:13.264-0500",
+    "updated": "2026-06-18T05:56:20.125-0400",
+    "labels": [
+      "rocksolid",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-117 Global - Task configuration",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of the box.",
+        "data": "box: TC-2688 Global - Mapping Due Date to Start date field",
+        "result": "Task 1 is visible at the WBS and on the Gantt chart. \nThe Current view is set to TC-2688 View.\nAt the WBS, there are columns:\nIcon\nKey\nSummary\nDue date (Jira)\nEnd date (Jira)\nStart Date (Built-in)\nEnd Date (Built-in)"
+      },
+      {
+        "step": 2,
+        "action": "Using the inline editing at the WBS, set dueDate (Jira) of taskSummary.",
+        "data": "dueDate: 18/Nov/21\ntaskSummary: Task 1",
+        "result": "After a while, Start Date (Built-in) is changed. Task 1 has also changed start date to 18/Nov/21 at the Gantt chart."
+      },
+      {
+        "step": 3,
+        "action": "Using the inline editing at the WBS, set endDate (Jira) of taskSummary.",
+        "data": "endDate: 25/Nov/21\ntaskSummary: Task 1",
+        "result": "After a while, End Date (Built-in) is changed. Task 1 has also changed end date to 25/Nov/21 at the Gantt chart."
+      },
+      {
+        "step": 4,
+        "action": "Using the inline editing at the WBS, set dueDate (Jira) of taskSummary.",
+        "data": "dueDate: 29/Nov/21\ntaskSummary: Task 1",
+        "result": "After a while, all dates are changed to 29/Nov/21. Task 1 has moved to 29/Nov/21 on the Gantt chart."
+      },
+      {
+        "step": 5,
+        "action": "Using the inline editing at the WBS, set dueDate (Jira) of taskSummary.",
+        "data": "dueDate: 18/Nov/21\ntaskSummary: Task 1",
+        "result": "After a while, Start Date (Built-in) is changed. Task 1 has also changed start date to 18/Nov/21 at the Gantt chart."
+      },
+      {
+        "step": 6,
+        "action": "Using the inline editing at the WBS, set endDate (Jira) of taskSummary.",
+        "data": "endDate: 16/Nov/21\ntaskSummary: Task 1",
+        "result": "After a while, all dates are changed to 16/Nov/21. Task 1 has moved to 16/Nov/21 on the Gantt chart."
+      },
+      {
+        "step": 7,
+        "action": "Click on the key of the taskSummary to navigate to the Jira issues management.",
+        "data": "taskSummary: Task 1",
+        "result": "Jira view of the Task 1 is visible in the new tab."
+      },
+      {
+        "step": 8,
+        "action": "Set the new dueDate and endDate from the Jira level.",
+        "data": "dueDate: 15/Nov/21\nendDate: 23/Nov/21",
+        "result": "New dates are set correctly without any issues:\nDue Date: 15/Nov/21\nEnd Date: 23/Nov/21"
+      },
+      {
+        "step": 9,
+        "action": "Navigate back to the Gantt module of the box.",
+        "data": "box: TC-2688 Global - Mapping Due Date to Start date field",
+        "result": "All dates at the WBS are set correctly:\nDue Date: 15/Nov/21\nEnd Date: 23/Nov/21\nStart Date: 15/Nov/21\nEnd Date: 23/Nov/21\nTask 1 is correctly set on the Gantt chart."
+      },
+      {
+        "step": 10,
+        "action": "Move taskSummary on the Gantt chart two days to the feature.",
+        "data": "taskSummary: Task 1",
+        "result": "All dates at the WBS are changed correctly:\nDue Date: 17/Nov/21\nEnd Date: 25/Nov/21\nStart Date: 17/Nov/21\nEnd Date: 25/Nov/21\nTask 1 is correctly set on the Gantt chart."
+      },
+      {
+        "step": 11,
+        "action": "Move taskSummary on the Gantt chart one day to the past.",
+        "data": "taskSummary: Task 1",
+        "result": "All dates at the WBS are changed correctly:\nDue Date: 16/Nov/21\nEnd Date: 24/Nov/21\nStart Date: 16/Nov/21\nEnd Date: 24/Nov/21\nTask 1 is correctly set on the Gantt chart."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-2688",
+    "text": "Test: TC-2688 — Global - Task configuration - Changing dates of Jira tasks when Start date is mapped to Due date\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-117 Global - Task configuration\nLabels: rocksolid, teamtree\n\nSteps:\n1. Navigate to the Gantt module of the box.\n   Data: box: TC-2688 Global - Mapping Due Date to Start date field\n   Expected: Task 1 is visible at the WBS and on the Gantt chart. \nThe Current view is set to TC-2688 View.\nAt the WBS, there are columns:\nIcon\nKey\nSummary\nDue date (Jira)\nEnd date (Jira)\nStart Date (Built-in)\nEnd Date (Built-in)\n2. Using the inline editing at the WBS, set dueDate (Jira) of taskSummary.\n   Data: dueDate: 18/Nov/21\ntaskSummary: Task 1\n   Expected: After a while, Start Date (Built-in) is changed. Task 1 has also changed start date to 18/Nov/21 at the Gantt chart.\n3. Using the inline editing at the WBS, set endDate (Jira) of taskSummary.\n   Data: endDate: 25/Nov/21\ntaskSummary: Task 1\n   Expected: After a while, End Date (Built-in) is changed. Task 1 has also changed end date to 25/Nov/21 at the Gantt chart.\n4. Using the inline editing at the WBS, set dueDate (Jira) of taskSummary.\n   Data: dueDate: 29/Nov/21\ntaskSummary: Task 1\n   Expected: After a while, all dates are changed to 29/Nov/21. Task 1 has moved to 29/Nov/21 on the Gantt chart.\n5. Using the inline editing at the WBS, set dueDate (Jira) of taskSummary.\n   Data: dueDate: 18/Nov/21\ntaskSummary: Task 1\n   Expected: After a while, Start Date (Built-in) is changed. Task 1 has also changed start date to 18/Nov/21 at the Gantt chart.\n6. Using the inline editing at the WBS, set endDate (Jira) of taskSummary.\n   Data: endDate: 16/Nov/21\ntaskSummary: Task 1\n   Expected: After a while, all dates are changed to 16/Nov/21. Task 1 has moved to 16/Nov/21 on the Gantt chart.\n7. Click on the key of the taskSummary to navigate to the Jira issues management.\n   Data: taskSummary: Task 1\n   Expected: Jira view of the Task 1 is visible in the new tab.\n8. Set the new dueDate and endDate from the Jira level.\n   Data: dueDate: 15/Nov/21\nendDate: 23/Nov/21\n   Expected: New dates are set correctly without any issues:\nDue Date: 15/Nov/21\nEnd Date: 23/Nov/21\n9. Navigate back to the Gantt module of the box.\n   Data: box: TC-2688 Global - Mapping Due Date to Start date field\n   Expected: All dates at the WBS are set correctly:\nDue Date: 15/Nov/21\nEnd Date: 23/Nov/21\nStart Date: 15/Nov/21\nEnd Date: 23/Nov/21\nTask 1 is correctly set on the Gantt chart.\n10. Move taskSummary on the Gantt chart two days to the feature.\n   Data: taskSummary: Task 1\n   Expected: All dates at the WBS are changed correctly:\nDue Date: 17/Nov/21\nEnd Date: 25/Nov/21\nStart Date: 17/Nov/21\nEnd Date: 25/Nov/21\nTask 1 is correctly set on the Gantt chart.\n11. Move taskSummary on the Gantt chart one day to the past.\n   Data: taskSummary: Task 1\n   Expected: All dates at the WBS are changed correctly:\nDue Date: 16/Nov/21\nEnd Date: 24/Nov/21\nStart Date: 16/Nov/21\nEnd Date: 24/Nov/21\nTask 1 is correctly set on the Gantt chart.",
+    "metadata": {
+      "jira_key": "TC-2688",
+      "issue_id": "359673",
+      "summary": "Global - Task configuration - Changing dates of Jira tasks when Start date is mapped to Due date",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-117 Global - Task configuration",
+      "labels": [
+        "rocksolid",
+        "teamtree"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

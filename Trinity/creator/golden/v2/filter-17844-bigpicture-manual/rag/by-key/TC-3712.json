@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-3712",
+    "issue_id": "357282",
+    "url": "https://appfire.atlassian.net/browse/TC-3712",
+    "summary": "Box Module - Overview - Filtering panel - \"Remove all\" button",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Olga Bryska-Majda",
+    "reporter": "Olga Bryska-Majda",
+    "created": "2022-11-28T02:31:00.725-0500",
+    "updated": "2026-03-04T09:13:42.558-0500",
+    "labels": [
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-59 Box Module - Overview",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Overview module of the Root Box",
+        "data": "",
+        "result": "Overview module of the Root Box is loaded"
+      },
+      {
+        "step": 2,
+        "action": "Click on the \"Filters\" button in header",
+        "data": "",
+        "result": "Window with filtering options is opened."
+      },
+      {
+        "step": 3,
+        "action": "Click on \"Custom\"",
+        "data": "",
+        "result": "In the window is visible ‘Where' and selector with two field (one active with \"select field’ option and second inactive \"select value\")"
+      },
+      {
+        "step": 4,
+        "action": "Set the firstFilter",
+        "data": "firstFilter: Leader is admin",
+        "result": "\"Admin\" is set as leader. Boxes are filtered by leader."
+      },
+      {
+        "step": 5,
+        "action": "Set the secondFilter by click \"+ Add another\"",
+        "data": "secondFilter: Status = In progress",
+        "result": "\"In progress\" is set as status. Boxes are filtered by leader and status."
+      },
+      {
+        "step": 6,
+        "action": "Click on the \"Clear all\" button",
+        "data": "",
+        "result": "Both filters are removed. Boxes are not filtered by leader nor status."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-3712",
+    "text": "Test: TC-3712 — Box Module - Overview - Filtering panel - \"Remove all\" button\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-59 Box Module - Overview\nLabels: teamboxes\n\nSteps:\n1. Navigate to the Overview module of the Root Box\n   Expected: Overview module of the Root Box is loaded\n2. Click on the \"Filters\" button in header\n   Expected: Window with filtering options is opened.\n3. Click on \"Custom\"\n   Expected: In the window is visible ‘Where' and selector with two field (one active with \"select field’ option and second inactive \"select value\")\n4. Set the firstFilter\n   Data: firstFilter: Leader is admin\n   Expected: \"Admin\" is set as leader. Boxes are filtered by leader.\n5. Set the secondFilter by click \"+ Add another\"\n   Data: secondFilter: Status = In progress\n   Expected: \"In progress\" is set as status. Boxes are filtered by leader and status.\n6. Click on the \"Clear all\" button\n   Expected: Both filters are removed. Boxes are not filtered by leader nor status.",
+    "metadata": {
+      "jira_key": "TC-3712",
+      "issue_id": "357282",
+      "summary": "Box Module - Overview - Filtering panel - \"Remove all\" button",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-59 Box Module - Overview",
+      "labels": [
+        "teamboxes"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "test": {
+    "key": "TC-272",
+    "issue_id": "357429",
+    "url": "https://appfire.atlassian.net/browse/TC-272",
+    "summary": "Feature area - Task Dependencies -   Creating external dependencies in Gantt module",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Illia Mishkin",
+    "reporter": "Pawel Stawski (Inactive)",
+    "created": "2020-02-06T09:56:09.974-0500",
+    "updated": "2026-10-06T09:10:41.098-0400",
+    "labels": [
+      "ppm-e2e-cloud",
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-54 Feature area - Task Dependency",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-272 PI Project A",
+        "result": "Gantt module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on key of taskName to open Jira issue view",
+        "data": "taskName: TC-272 Task A1",
+        "result": "Jira issue detail view for \"TC-272 Task A1\" is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Click on More -> Link and create dependency passing this set of data",
+        "data": "dependencyType (this issue): has to be done before\ntargetIssueKey: TC272B-1",
+        "result": "Link is created and displayed in Issue Links section on Jira issue view"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-272 PI Project A",
+        "result": "Gantt module is displayed.\n\nA lozenge with number 1, symbolizing an external dependency, appears to the right of the task \"TC-272 Task A1\""
+      },
+      {
+        "step": 5,
+        "action": "Hover over the lozenge next to taskName",
+        "data": "taskName: TC-272 Task A1",
+        "result": "Tooltip is displayed with information about 1 External link"
+      },
+      {
+        "step": 6,
+        "action": "Open Dependencies dropdown menu and select Collapsed option",
+        "data": "",
+        "result": "External dependency lozenges disappear.\n\nBubble with number 1 is displayed next to \"TC-272 Task A1\""
+      },
+      {
+        "step": 7,
+        "action": "Click on the bubble next to taskName and hover over the icon on the outgoing dependecy",
+        "data": "taskName: TC-272 Task A1",
+        "result": "Inline dialog is displayed with folLowing information:\nTask dependencies \nOUTGOING DEPENDENCIES \nTC-272 Task A2.\n\nTooltip is displayed \"Out of view (it is not possible to see this task because it belongs to another Box)\""
+      },
+      {
+        "step": 8,
+        "action": "Click on three dots next task taskName",
+        "data": "taskName: TC-272 Task A2",
+        "result": "Only Delete option is displayed."
+      },
+      {
+        "step": 9,
+        "action": "Open Infobar - Dependencies tab hover over the icon right next to the taskName and taskName1 dependency",
+        "data": "taskName: TC-272 Task A1\ntaskName1:TC-272 Task A2",
+        "result": "Tooltip is displayed: \"Dependency is not visible on the timeline due to the target task is out of view\""
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Box configuration -> Tasks -> Scope definition tab of boxName",
+        "data": "boxName: TC-272 PI Project A",
+        "result": "Scope definition tab is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Expand Automatic rules section and add projectName to Project section\n\nSave changes",
+        "data": "projectName: TC-272 Gantt - Creating external dependencies - Project B",
+        "result": "Settings are saved."
+      },
+      {
+        "step": 12,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-272 PI Project A",
+        "result": "Gantt module is displayed.\n\nBubbles with numbers 1 is displayed next to \"TC-272 Task A1\"  and \"TC-272 Task A2\""
+      },
+      {
+        "step": 13,
+        "action": "Open Dependencies dropdown menu and select Expanded option",
+        "data": "",
+        "result": "External dependency lozenges are no longer displayed.\n\nTasks \"TC-272 Task A1\" and \"TC-272 Task A2\" are linked with strong dependency."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-272",
+    "text": "Test: TC-272 — Feature area - Task Dependencies -   Creating external dependencies in Gantt module\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-54 Feature area - Task Dependency\nLabels: ppm-e2e-cloud, teamspace\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-272 PI Project A\n   Expected: Gantt module is displayed\n2. Click on key of taskName to open Jira issue view\n   Data: taskName: TC-272 Task A1\n   Expected: Jira issue detail view for \"TC-272 Task A1\" is displayed\n3. Click on More -> Link and create dependency passing this set of data\n   Data: dependencyType (this issue): has to be done before\ntargetIssueKey: TC272B-1\n   Expected: Link is created and displayed in Issue Links section on Jira issue view\n4. Navigate to Gantt module of boxName\n   Data: boxName: TC-272 PI Project A\n   Expected: Gantt module is displayed.\n\nA lozenge with number 1, symbolizing an external dependency, appears to the right of the task \"TC-272 Task A1\"\n5. Hover over the lozenge next to taskName\n   Data: taskName: TC-272 Task A1\n   Expected: Tooltip is displayed with information about 1 External link\n6. Open Dependencies dropdown menu and select Collapsed option\n   Expected: External dependency lozenges disappear.\n\nBubble with number 1 is displayed next to \"TC-272 Task A1\"\n7. Click on the bubble next to taskName and hover over the icon on the outgoing dependecy\n   Data: taskName: TC-272 Task A1\n   Expected: Inline dialog is displayed with folLowing information:\nTask dependencies \nOUTGOING DEPENDENCIES \nTC-272 Task A2.\n\nTooltip is displayed \"Out of view (it is not possible to see this task because it belongs to another Box)\"\n8. Click on three dots next task taskName\n   Data: taskName: TC-272 Task A2\n   Expected: Only Delete option is displayed.\n9. Open Infobar - Dependencies tab hover over the icon right next to the taskName and taskName1 dependency\n   Data: taskName: TC-272 Task A1\ntaskName1:TC-272 Task A2\n   Expected: Tooltip is displayed: \"Dependency is not visible on the timeline due to the target task is out of view\"\n10. Navigate to Box configuration -> Tasks -> Scope definition tab of boxName\n   Data: boxName: TC-272 PI Project A\n   Expected: Scope definition tab is displayed\n11. Expand Automatic rules section and add projectName to Project section\n\nSave changes\n   Data: projectName: TC-272 Gantt - Creating external dependencies - Project B\n   Expected: Settings are saved.\n12. Navigate to Gantt module of boxName\n   Data: boxName: TC-272 PI Project A\n   Expected: Gantt module is displayed.\n\nBubbles with numbers 1 is displayed next to \"TC-272 Task A1\"  and \"TC-272 Task A2\"\n13. Open Dependencies dropdown menu and select Expanded option\n   Expected: External dependency lozenges are no longer displayed.\n\nTasks \"TC-272 Task A1\" and \"TC-272 Task A2\" are linked with strong dependency.",
+    "metadata": {
+      "jira_key": "TC-272",
+      "issue_id": "357429",
+      "summary": "Feature area - Task Dependencies -   Creating external dependencies in Gantt module",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-54 Feature area - Task Dependency",
+      "labels": [
+        "ppm-e2e-cloud",
+        "teamspace"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

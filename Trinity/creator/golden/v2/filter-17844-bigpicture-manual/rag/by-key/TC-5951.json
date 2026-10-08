@@ -1,0 +1,149 @@
+{
+  "test": {
+    "key": "TC-5951",
+    "issue_id": "1504008",
+    "url": "https://appfire.atlassian.net/browse/TC-5951",
+    "summary": "SPM - Strategic areas - Interacting with tables on Initatives tab",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-01-23T07:51:48.273-0500",
+    "updated": "2026-09-15T04:49:44.095-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of a boxName",
+        "data": "boxName: TC-5951 SPM - Strategic areas - Interacting with tables on Initatives tab",
+        "result": "OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context"
+      },
+      {
+        "step": 2,
+        "action": "Click ‘Create Strategic Theme’ button",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5951\n\nperiod: Y2026",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective",
+        "data": "newObjective: TC-5951 A",
+        "result": "New Objective TC-5951 A is created under Strategic Theme TC-5951."
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to TC-5951 A objective, type name of keyResult, period and click on Link Boxes",
+        "data": "keyResult: TC-5951 B\n\nperiod: Y2026",
+        "result": "Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status"
+      },
+      {
+        "step": 6,
+        "action": "Click Parent box and select boxName",
+        "data": "boxName: TC-5951 SPM - Strategic areas - Interacting with tables on Initatives tab",
+        "result": "Following boxes appeared on the list:\n\n* TC-5951 SPM - Strategic areas - Interacting with tables on Initatives tab\n** Program Increment\n*** Iteration\n*** Iteration 2\n** Program Increment 2\n*** Iteration 3\n*** Iteration 4"
+      },
+      {
+        "step": 7,
+        "action": "Select all visible boxes and click Save",
+        "data": "",
+        "result": "Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 7"
+      },
+      {
+        "step": 8,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created"
+      },
+      {
+        "step": 9,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5951 is displayed on the list with expand button next to itv"
+      },
+      {
+        "step": 10,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5951",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5951\n* Objective: TC-5951 A\n* Key result: TC-5951 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed"
+      },
+      {
+        "step": 12,
+        "action": "Click on Initatives tab",
+        "data": "",
+        "result": "Summary Financials widget displays:\n\n* Budget - $0\n\n* Total cost - -\n* Actual cost - -\n* Remaining cost - -\n* Progress bar - 0%\n\nPie chart has information \"Tasks inside initiatives are not estimated yet\"\n\nStatus tiles are displayed:\n\nClosed - 29% - 2/7\n\nNot Started - 29% - 2/7\n\nIn Progress - 43% - 3/7\n\nFollowing Initatives are displayed on the list:\n\n* Iteration 2\n* Iteration\n* Program Increment \n* Program Increment 2\n* Iteration 3\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives tab\n* Iteration 4"
+      },
+      {
+        "step": 13,
+        "action": "Hover over columnName and resize",
+        "data": "columnName: Initative",
+        "result": "Column is resized"
+      },
+      {
+        "step": 14,
+        "action": "Hover over columnName and resize",
+        "data": "columnName: Status",
+        "result": "Column is resized"
+      },
+      {
+        "step": 15,
+        "action": "Hover over columnName and click on Sort button",
+        "data": "columnName Initative",
+        "result": "Disable sorting button appeared\nSorting arrow direction is downwards\n\nInitiatives in the list are sorted:\n\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives tab\n* Program Increment 2\n* Program Increment\n* Iteration 4\n* Iteration 3\n* Iteration 2\n* Iteration"
+      },
+      {
+        "step": 16,
+        "action": "Click on Sorting button again",
+        "data": "",
+        "result": "Disable sorting button appeared\nSorting arrow direction is upwards\n\nInitiatives in the list are sorted:\n\n* Iteration\n\n* Iteration 2\n* Iteration 3\n* Iteration 4\n* Program Increment\n* Program Increment 2\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives tab"
+      },
+      {
+        "step": 17,
+        "action": "Click on Sorting button of columnName",
+        "data": "columnName: Status",
+        "result": "Sorting by OKR name is disabled and Sorting by status is enabled\n\nDisable sorting button appeared\nSorting arrow direction is downwards\n\nInitiatives in the list are sorted:\n\n* Program Increment 2 - STATUS: NOT STARTED\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives table - STATUS: NOT STARTED\n* Iteration STATUS: IN PROGRESS\n* Program Increment - STATUS: IN PROGRESS\n* Iteration 3 - STATUS: IN PROGRESS\n* Iteration 2 - STATUS: CLOSED\n* Iteration 4  - STATUS: CLOSED"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 17
+  },
+  "rag": {
+    "id": "TC-5951",
+    "text": "Test: TC-5951 — SPM - Strategic areas - Interacting with tables on Initatives tab\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of a boxName\n   Data: boxName: TC-5951 SPM - Strategic areas - Interacting with tables on Initatives tab\n   Expected: OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context\n2. Click ‘Create Strategic Theme’ button\n   Expected: New Strategic theme modal is displayed\n3. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5951\n\nperiod: Y2026\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n4. Click on Plus button next to Strategic Theme, add newObjective\n   Data: newObjective: TC-5951 A\n   Expected: New Objective TC-5951 A is created under Strategic Theme TC-5951.\n5. Click on Plus button next to TC-5951 A objective, type name of keyResult, period and click on Link Boxes\n   Data: keyResult: TC-5951 B\n\nperiod: Y2026\n   Expected: Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status\n6. Click Parent box and select boxName\n   Data: boxName: TC-5951 SPM - Strategic areas - Interacting with tables on Initatives tab\n   Expected: Following boxes appeared on the list:\n\n* TC-5951 SPM - Strategic areas - Interacting with tables on Initatives tab\n** Program Increment\n*** Iteration\n*** Iteration 2\n** Program Increment 2\n*** Iteration 3\n*** Iteration 4\n7. Select all visible boxes and click Save\n   Expected: Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 7\n8. Click Create button\n   Expected: Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created\n9. Click Finish & go back\n   Expected: Strategic Theme TC-5951 is displayed on the list with expand button next to itv\n10. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n11. Click on strategicThemeName\n   Data: strategicThemeName: TC-5951\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5951\n* Objective: TC-5951 A\n* Key result: TC-5951 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed\n12. Click on Initatives tab\n   Expected: Summary Financials widget displays:\n\n* Budget - $0\n\n* Total cost - -\n* Actual cost - -\n* Remaining cost - -\n* Progress bar - 0%\n\nPie chart has information \"Tasks inside initiatives are not estimated yet\"\n\nStatus tiles are displayed:\n\nClosed - 29% - 2/7\n\nNot Started - 29% - 2/7\n\nIn Progress - 43% - 3/7\n\nFollowing Initatives are displayed on the list:\n\n* Iteration 2\n* Iteration\n* Program Increment \n* Program Increment 2\n* Iteration 3\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives tab\n* Iteration 4\n13. Hover over columnName and resize\n   Data: columnName: Initative\n   Expected: Column is resized\n14. Hover over columnName and resize\n   Data: columnName: Status\n   Expected: Column is resized\n15. Hover over columnName and click on Sort button\n   Data: columnName Initative\n   Expected: Disable sorting button appeared\nSorting arrow direction is downwards\n\nInitiatives in the list are sorted:\n\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives tab\n* Program Increment 2\n* Program Increment\n* Iteration 4\n* Iteration 3\n* Iteration 2\n* Iteration\n16. Click on Sorting button again\n   Expected: Disable sorting button appeared\nSorting arrow direction is upwards\n\nInitiatives in the list are sorted:\n\n* Iteration\n\n* Iteration 2\n* Iteration 3\n* Iteration 4\n* Program Increment\n* Program Increment 2\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives tab\n17. Click on Sorting button of columnName\n   Data: columnName: Status\n   Expected: Sorting by OKR name is disabled and Sorting by status is enabled\n\nDisable sorting button appeared\nSorting arrow direction is downwards\n\nInitiatives in the list are sorted:\n\n* Program Increment 2 - STATUS: NOT STARTED\n* TC-5851 SPM - Strategic areas - Interacting with tables on Initatives table - STATUS: NOT STARTED\n* Iteration STATUS: IN PROGRESS\n* Program Increment - STATUS: IN PROGRESS\n* Iteration 3 - STATUS: IN PROGRESS\n* Iteration 2 - STATUS: CLOSED\n* Iteration 4  - STATUS: CLOSED",
+    "metadata": {
+      "jira_key": "TC-5951",
+      "issue_id": "1504008",
+      "summary": "SPM - Strategic areas - Interacting with tables on Initatives tab",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 17,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

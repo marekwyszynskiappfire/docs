@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-5711",
+    "issue_id": "1262315",
+    "url": "https://appfire.atlassian.net/browse/TC-5711",
+    "summary": "Feature area - Datatype - Basic actions - Built-in priority field",
+    "description": "",
+    "status": "In Progress",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2025-08-05T10:19:09.488-0400",
+    "updated": "2026-09-04T02:21:07.206-0400",
+    "labels": [
+      "teamembers"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: Feature area - Datatype - Basic actions - Built-in priority field",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Attempt to edit the Jira priority field for a basicTaskName",
+        "data": "basicTaskName: Priority For Basic Task",
+        "result": "Priority field is not editable;"
+      },
+      {
+        "step": 3,
+        "action": "Attempt to edit the built-in priority field for a basicTaskName",
+        "data": "basicTaskName: Priority For Basic Task",
+        "result": "Priority field is editable; List of options is displayed."
+      },
+      {
+        "step": 4,
+        "action": "Select newPiorityValue",
+        "data": "newPiorityValue: Highest",
+        "result": ""
+      },
+      {
+        "step": 5,
+        "action": "Attempt to edit the built-in priority field for a jiraTaskName",
+        "data": "jiraTaskName: Priority For Jira Task 1",
+        "result": "Priority field is editable; List of options is displayed."
+      },
+      {
+        "step": 6,
+        "action": "Select newPiorityValue",
+        "data": "newPiorityValue: Medium",
+        "result": "Priority value for built-in field is changed to Medium. Also priority value for Jira field is also changed to Medium."
+      },
+      {
+        "step": 7,
+        "action": "Attempt to edit the built-in priority field for a JiraTaskName",
+        "data": "jiraTaskName: Priority For Jira Task 2",
+        "result": "Priority field is editable; List of options is displayed."
+      },
+      {
+        "step": 8,
+        "action": "Select newPiorityValue",
+        "data": "newPiorityValue: Lowest",
+        "result": "Priority value for Jira field is changed to Lowest. Also priority value for built-in field is also changed to Lowest."
+      },
+      {
+        "step": 9,
+        "action": "Attempt to edit the Jira priority field for a sprintName",
+        "data": "sprintName: Priority For Sprint",
+        "result": "Priority field is not editable;"
+      },
+      {
+        "step": 10,
+        "action": "Attempt to edit the built-in priority field for a sprintName",
+        "data": "sprintName: Priority For Sprint Task",
+        "result": "Priority field is editable; List of options is displayed."
+      },
+      {
+        "step": 11,
+        "action": "Select newPiorityValue",
+        "data": "newPiorityValue: Highest",
+        "result": ""
+      },
+      {
+        "step": 12,
+        "action": "Attempt to edit the Jira priority field for a epicName",
+        "data": "epicName: Priority For Epic",
+        "result": "Priority field is editable;"
+      },
+      {
+        "step": 13,
+        "action": "Attempt to edit the built-in priority field for a epicName",
+        "data": "epicName: Priority For Epic",
+        "result": "Priority field is editable; List of options is displayed."
+      },
+      {
+        "step": 14,
+        "action": "Select newPiorityValue",
+        "data": "newPiorityValue: Highest",
+        "result": ""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-5711",
+    "text": "Test: TC-5711 — Feature area - Datatype - Basic actions - Built-in priority field\nPriority: Medium | Status: In Progress | Type: Manual\nFolder: /\nLabels: teamembers\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: Feature area - Datatype - Basic actions - Built-in priority field\n   Expected: \n2. Attempt to edit the Jira priority field for a basicTaskName\n   Data: basicTaskName: Priority For Basic Task\n   Expected: Priority field is not editable;\n3. Attempt to edit the built-in priority field for a basicTaskName\n   Data: basicTaskName: Priority For Basic Task\n   Expected: Priority field is editable; List of options is displayed.\n4. Select newPiorityValue\n   Data: newPiorityValue: Highest\n   Expected: \n5. Attempt to edit the built-in priority field for a jiraTaskName\n   Data: jiraTaskName: Priority For Jira Task 1\n   Expected: Priority field is editable; List of options is displayed.\n6. Select newPiorityValue\n   Data: newPiorityValue: Medium\n   Expected: Priority value for built-in field is changed to Medium. Also priority value for Jira field is also changed to Medium.\n7. Attempt to edit the built-in priority field for a JiraTaskName\n   Data: jiraTaskName: Priority For Jira Task 2\n   Expected: Priority field is editable; List of options is displayed.\n8. Select newPiorityValue\n   Data: newPiorityValue: Lowest\n   Expected: Priority value for Jira field is changed to Lowest. Also priority value for built-in field is also changed to Lowest.\n9. Attempt to edit the Jira priority field for a sprintName\n   Data: sprintName: Priority For Sprint\n   Expected: Priority field is not editable;\n10. Attempt to edit the built-in priority field for a sprintName\n   Data: sprintName: Priority For Sprint Task\n   Expected: Priority field is editable; List of options is displayed.\n11. Select newPiorityValue\n   Data: newPiorityValue: Highest\n   Expected: \n12. Attempt to edit the Jira priority field for a epicName\n   Data: epicName: Priority For Epic\n   Expected: Priority field is editable;\n13. Attempt to edit the built-in priority field for a epicName\n   Data: epicName: Priority For Epic\n   Expected: Priority field is editable; List of options is displayed.\n14. Select newPiorityValue\n   Data: newPiorityValue: Highest\n   Expected:",
+    "metadata": {
+      "jira_key": "TC-5711",
+      "issue_id": "1262315",
+      "summary": "Feature area - Datatype - Basic actions - Built-in priority field",
+      "priority": "Medium",
+      "status": "In Progress",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "teamembers"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

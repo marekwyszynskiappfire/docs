@@ -1,0 +1,145 @@
+{
+  "test": {
+    "key": "TC-5972",
+    "issue_id": "1523270",
+    "url": "https://appfire.atlassian.net/browse/TC-5972",
+    "summary": "SPM - Priorities - Changing aggregation of prioritized Goals on Gantt module",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-02-06T07:57:39.264-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/Priorities",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open OKR module of boxName",
+        "data": "boxName: TC-5972 SPM - Priorities - Changing aggregation of prioritized Goals on Gantt module",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Create Strategic theme, Objective and Key-result",
+        "data": "",
+        "result": "OKRs are created"
+      },
+      {
+        "step": 3,
+        "action": "Open KR → click Edit linked issue and link issues from projectName",
+        "data": "projectName: TC-5972 SPM - Priorities - Changing aggregation of prioritized Goals on Gantt module\n\nissueName:\n\n* Issue 1\n* Issue 2\n* Issue 3",
+        "result": "Issues are linked to KR"
+      },
+      {
+        "step": 4,
+        "action": "Open box configuration → Scope definition → OKR linked work items →  and add KR to the scope",
+        "data": "",
+        "result": "KR is added to the scope. Task counter displays 3 issue"
+      },
+      {
+        "step": 5,
+        "action": "Go to task structure and enable OKR task structure",
+        "data": "",
+        "result": "OKR task structure is enabled"
+      },
+      {
+        "step": 6,
+        "action": "Open Gantt module",
+        "data": "",
+        "result": "Gantt module is opened OKRs and 3 issues are visible in WBS"
+      },
+      {
+        "step": 7,
+        "action": "Click on add column button and add Priority score column",
+        "data": "",
+        "result": "Priority score column is added. Columns have no values"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Priorities module → Goals tab",
+        "data": "",
+        "result": "Strategic theme, Objective and Key-result are visible without score values"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Strategic theme and set values",
+        "data": "* Impact:  *near zero*\n* Ease: *extremely hard*\n* Confidence: *no confidence*",
+        "result": "Score 1 is visible for strategic theme"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Objective and set values",
+        "data": "* Impact: *low*\n* Ease: *hard*\n* Confidence: *very low*",
+        "result": "Score 36 is visible for objective"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Key-result and set values",
+        "data": "* Impact: *High*\n* Ease: *Easy*\n* Confidence: *Medium*",
+        "result": "Score 336 is visible for key result"
+      },
+      {
+        "step": 12,
+        "action": "Navigate to tasks tab and set values for issues",
+        "data": "* Issue 1\n** Impact: *near zero*\n** Ease: *easy*\n** Confidence: *low*\n* Issue 2\n** Impact: *medium*\n** Ease: *medium*\n** Confidence: *low*\n* Issue 3\n** Impact: *near zero*\n** Ease: *easy*\n** Confidence: *medium*",
+        "result": "Issue priority score are\n\n* Issue 1 - *28*\n* Issue 2 - *120*\n* Issue 3 - *42*"
+      },
+      {
+        "step": 13,
+        "action": "Open Gantt module and check priority score values for OKRs and issues",
+        "data": "",
+        "result": "The values are visible and the same as in Priorities module"
+      },
+      {
+        "step": 14,
+        "action": "Navigate to Priority score column and click Customize column → customize → minimum",
+        "data": "",
+        "result": "Score values orders are changed:\n\n* Strategic theme - *28*\n* Objective - *28*\n* Key-result - *28*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*"
+      },
+      {
+        "step": 15,
+        "action": "Navigate to Priority score column and click Customize column → customize → maximum",
+        "data": "",
+        "result": "Score values orders are changed:\n\n* Strategic theme - *120*\n* Objective - *120*\n* Key-result - *120*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*"
+      },
+      {
+        "step": 16,
+        "action": "Navigate to Priority score column and click Customize column → customize → sum",
+        "data": "",
+        "result": "Score values orders are changed:\n\n* Strategic theme - *563*\n* Objective - *563*\n* Key-result - *526*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*"
+      },
+      {
+        "step": 17,
+        "action": "Navigate to Priority score column and click Customize column → customize → sum without parent",
+        "data": "",
+        "result": "Score values orders are changed:\n\n* Strategic theme - *190*\n* Objective - *190*\n* Key-result - *190*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 17
+  },
+  "rag": {
+    "id": "TC-5972",
+    "text": "Test: TC-5972 — SPM - Priorities - Changing aggregation of prioritized Goals on Gantt module\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/Priorities\n\nSteps:\n1. Open OKR module of boxName\n   Data: boxName: TC-5972 SPM - Priorities - Changing aggregation of prioritized Goals on Gantt module\n   Expected: OKR module is displayed\n2. Create Strategic theme, Objective and Key-result\n   Expected: OKRs are created\n3. Open KR → click Edit linked issue and link issues from projectName\n   Data: projectName: TC-5972 SPM - Priorities - Changing aggregation of prioritized Goals on Gantt module\n\nissueName:\n\n* Issue 1\n* Issue 2\n* Issue 3\n   Expected: Issues are linked to KR\n4. Open box configuration → Scope definition → OKR linked work items →  and add KR to the scope\n   Expected: KR is added to the scope. Task counter displays 3 issue\n5. Go to task structure and enable OKR task structure\n   Expected: OKR task structure is enabled\n6. Open Gantt module\n   Expected: Gantt module is opened OKRs and 3 issues are visible in WBS\n7. Click on add column button and add Priority score column\n   Expected: Priority score column is added. Columns have no values\n8. Navigate to Priorities module → Goals tab\n   Expected: Strategic theme, Objective and Key-result are visible without score values\n9. Navigate to Strategic theme and set values\n   Data: * Impact:  *near zero*\n* Ease: *extremely hard*\n* Confidence: *no confidence*\n   Expected: Score 1 is visible for strategic theme\n10. Navigate to Objective and set values\n   Data: * Impact: *low*\n* Ease: *hard*\n* Confidence: *very low*\n   Expected: Score 36 is visible for objective\n11. Navigate to Key-result and set values\n   Data: * Impact: *High*\n* Ease: *Easy*\n* Confidence: *Medium*\n   Expected: Score 336 is visible for key result\n12. Navigate to tasks tab and set values for issues\n   Data: * Issue 1\n** Impact: *near zero*\n** Ease: *easy*\n** Confidence: *low*\n* Issue 2\n** Impact: *medium*\n** Ease: *medium*\n** Confidence: *low*\n* Issue 3\n** Impact: *near zero*\n** Ease: *easy*\n** Confidence: *medium*\n   Expected: Issue priority score are\n\n* Issue 1 - *28*\n* Issue 2 - *120*\n* Issue 3 - *42*\n13. Open Gantt module and check priority score values for OKRs and issues\n   Expected: The values are visible and the same as in Priorities module\n14. Navigate to Priority score column and click Customize column → customize → minimum\n   Expected: Score values orders are changed:\n\n* Strategic theme - *28*\n* Objective - *28*\n* Key-result - *28*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*\n15. Navigate to Priority score column and click Customize column → customize → maximum\n   Expected: Score values orders are changed:\n\n* Strategic theme - *120*\n* Objective - *120*\n* Key-result - *120*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*\n16. Navigate to Priority score column and click Customize column → customize → sum\n   Expected: Score values orders are changed:\n\n* Strategic theme - *563*\n* Objective - *563*\n* Key-result - *526*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*\n17. Navigate to Priority score column and click Customize column → customize → sum without parent\n   Expected: Score values orders are changed:\n\n* Strategic theme - *190*\n* Objective - *190*\n* Key-result - *190*\n** Issue 1 - *28*\n** Issue 2 - *120*\n** Issue 3 - *42*",
+    "metadata": {
+      "jira_key": "TC-5972",
+      "issue_id": "1523270",
+      "summary": "SPM - Priorities - Changing aggregation of prioritized Goals on Gantt module",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/Priorities",
+      "labels": [],
+      "step_count": 17,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

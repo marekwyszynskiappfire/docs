@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-1527",
+    "issue_id": "358449",
+    "url": "https://appfire.atlassian.net/browse/TC-1527",
+    "summary": "Feature area - Risk - Changing default Risks configuration",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Kinga Kiepas (Inactive)",
+    "created": "2020-07-20T11:13:32.652-0400",
+    "updated": "2026-03-04T09:18:08.735-0500",
+    "labels": [
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-83 Feature area - Risk",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Risks module of boxName",
+        "data": "boxName: TC-1527 Feature area - Risk - Changing default Risks configuration",
+        "result": "Risk matrix is displayed. Consequence is visible on x axis with folLowing values:\n- Lowest\n- Low\n- Medium\n- High\n- Severe\n\nProbability is visible on Y axis with folLowing values:\n- Almost Lowest\n- Low\n- Medium\n- High\n- Very High"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Big Picture Configuration → Modules tab → Risks tab.",
+        "data": "",
+        "result": "Risk configuration view is displayed. Two sections are visible:\n- Task sources \n- Risk value definition\n\nThe information is displayed under the instance name:\n- Select custom field values for both axes. They should match with axes values defined above.\n\nTwo fields are visible:\n- Probability field - Risk probability: Risk Probability field used by BigPicture plugin. (Only Issues with both, Risk Probability and Risk Consequence values selected will appear in Risk Matrix)\n\n- Consequence field - Risk consequence: Risk Consequence field used by BigPicture plugin. (Only Issues with both, Risk Probability and Risk Consequence values selected will appear in Risk Matrix)"
+      },
+      {
+        "step": 3,
+        "action": "Expand drop-down list in Probability field and select probabilityField. Expand drop-down list in Consequence field and select consequenceField.",
+        "data": "probabilityField: New Probability\nconsequenceField: New Consequence",
+        "result": "Custom fields are selected."
+      },
+      {
+        "step": 4,
+        "action": "Click on the probabilityValue1 in Probability settings. Switch the switcher on, expand drop-down list and select probabilityValue2. Repeat for all values.",
+        "data": "probabilityValue1:\n- Almost Lowest\n- Low\n- Medium\n- High\n- Very high\n\nprobabilityValue2:\n- 1\n- 2\n- 3\n- 4\n- 5",
+        "result": "FolLowing values are visible:\n- \"Almost Lowest → 1\"\n- \"Lowest → 2\"\n- \"Medium → 3\"\n- \"High → 4\"\n- \"Very high → 5\"\n\nIcon next to new values are changed from red to green. \n\nPurple frame is visible on the bottom of the site. The frame contains information about changes which will be made."
+      },
+      {
+        "step": 5,
+        "action": "Click on the consequenceValue1 in Consequence settings. Clear the field and fill it with consequenceValue2. Press Enter. Repeat for all values.",
+        "data": "consequenceValue1:\n- Lowest\n- Low\n- Medium\n- High\n- Severe\n\nconsequenceValue2:\n- 1\n- 2\n- 3\n- 4\n- 5",
+        "result": "FolLowing values are visible:\n- \"Lowest → 1\"\n- \"Low → 2\"\n- \"Medium → 3\"\n- \"High → 4\"\n- \"Severe → 5\"\n\nIcon next to new values are changed from red to green. \n\nPurple frame is visible on the bottom of the site. The frame contains information about changes which will be made."
+      },
+      {
+        "step": 6,
+        "action": "Uncheck Migration toggle. Click Save button on the bottom of the site. Click Confirm button.",
+        "data": "",
+        "result": "The purple frame and Save button disappears. Values are saved."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Risks module of boxName",
+        "data": "boxName: TC-1527 Feature area - Risk - Changing default Risks configuration",
+        "result": "Risk matrix is adapted to changes in Risks configuration. Risk Consequence is visible on x axis with folLowing values:\n- 1\n- 2\n- 3\n- 4\n- 5\n\nRisks Probability is visible on Y axis with folLowing values:\n- 1\n- 2\n- 3\n- 4\n- 5"
+      },
+      {
+        "step": 8,
+        "action": "Click on matrix cell with probabilityValue and consequenceValue. Click Create new issue. Fill Summary with issueName and click Create button.",
+        "data": "probabilityValue: 1\nconsequenceValue: 1\nissueName: Task1",
+        "result": "Task1 is displayed on matrix with folLowing values:\n- probability value: 1\n- consequence value: 1\n\nTask1 card has a green background."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-1527",
+    "text": "Test: TC-1527 — Feature area - Risk - Changing default Risks configuration\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-83 Feature area - Risk\nLabels: teamsource\n\nSteps:\n1. Navigate to Risks module of boxName\n   Data: boxName: TC-1527 Feature area - Risk - Changing default Risks configuration\n   Expected: Risk matrix is displayed. Consequence is visible on x axis with folLowing values:\n- Lowest\n- Low\n- Medium\n- High\n- Severe\n\nProbability is visible on Y axis with folLowing values:\n- Almost Lowest\n- Low\n- Medium\n- High\n- Very High\n2. Navigate to Big Picture Configuration → Modules tab → Risks tab.\n   Expected: Risk configuration view is displayed. Two sections are visible:\n- Task sources \n- Risk value definition\n\nThe information is displayed under the instance name:\n- Select custom field values for both axes. They should match with axes values defined above.\n\nTwo fields are visible:\n- Probability field - Risk probability: Risk Probability field used by BigPicture plugin. (Only Issues with both, Risk Probability and Risk Consequence values selected will appear in Risk Matrix)\n\n- Consequence field - Risk consequence: Risk Consequence field used by BigPicture plugin. (Only Issues with both, Risk Probability and Risk Consequence values selected will appear in Risk Matrix)\n3. Expand drop-down list in Probability field and select probabilityField. Expand drop-down list in Consequence field and select consequenceField.\n   Data: probabilityField: New Probability\nconsequenceField: New Consequence\n   Expected: Custom fields are selected.\n4. Click on the probabilityValue1 in Probability settings. Switch the switcher on, expand drop-down list and select probabilityValue2. Repeat for all values.\n   Data: probabilityValue1:\n- Almost Lowest\n- Low\n- Medium\n- High\n- Very high\n\nprobabilityValue2:\n- 1\n- 2\n- 3\n- 4\n- 5\n   Expected: FolLowing values are visible:\n- \"Almost Lowest → 1\"\n- \"Lowest → 2\"\n- \"Medium → 3\"\n- \"High → 4\"\n- \"Very high → 5\"\n\nIcon next to new values are changed from red to green. \n\nPurple frame is visible on the bottom of the site. The frame contains information about changes which will be made.\n5. Click on the consequenceValue1 in Consequence settings. Clear the field and fill it with consequenceValue2. Press Enter. Repeat for all values.\n   Data: consequenceValue1:\n- Lowest\n- Low\n- Medium\n- High\n- Severe\n\nconsequenceValue2:\n- 1\n- 2\n- 3\n- 4\n- 5\n   Expected: FolLowing values are visible:\n- \"Lowest → 1\"\n- \"Low → 2\"\n- \"Medium → 3\"\n- \"High → 4\"\n- \"Severe → 5\"\n\nIcon next to new values are changed from red to green. \n\nPurple frame is visible on the bottom of the site. The frame contains information about changes which will be made.\n6. Uncheck Migration toggle. Click Save button on the bottom of the site. Click Confirm button.\n   Expected: The purple frame and Save button disappears. Values are saved.\n7. Navigate to Risks module of boxName\n   Data: boxName: TC-1527 Feature area - Risk - Changing default Risks configuration\n   Expected: Risk matrix is adapted to changes in Risks configuration. Risk Consequence is visible on x axis with folLowing values:\n- 1\n- 2\n- 3\n- 4\n- 5\n\nRisks Probability is visible on Y axis with folLowing values:\n- 1\n- 2\n- 3\n- 4\n- 5\n8. Click on matrix cell with probabilityValue and consequenceValue. Click Create new issue. Fill Summary with issueName and click Create button.\n   Data: probabilityValue: 1\nconsequenceValue: 1\nissueName: Task1\n   Expected: Task1 is displayed on matrix with folLowing values:\n- probability value: 1\n- consequence value: 1\n\nTask1 card has a green background.",
+    "metadata": {
+      "jira_key": "TC-1527",
+      "issue_id": "358449",
+      "summary": "Feature area - Risk - Changing default Risks configuration",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-83 Feature area - Risk",
+      "labels": [
+        "teamsource"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

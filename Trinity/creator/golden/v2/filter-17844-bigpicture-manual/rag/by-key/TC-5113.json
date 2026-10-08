@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-5113",
+    "issue_id": "1050610",
+    "url": "https://appfire.atlassian.net/browse/TC-5113",
+    "summary": "Feature area - Task structure - Basic operations - Gantt - Task order is preserved after bulk move",
+    "description": "",
+    "status": "In Review",
+    "priority": "High",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2024-11-12T15:01:11.352-0500",
+    "updated": "2026-03-30T09:58:28.866-0400",
+    "labels": [
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Go to the Gantt module of the boxName",
+        "data": "boxName: TC-5113 Feature area - Task structure - Basic operations - Gantt - Task order is preserved after bulk move",
+        "result": "Gantt module is loaded. There are 10 task on the chart and on the WBS:\n\n* projectTasks\n** First parent\n*** child 1\n*** child 2\n** Second parent\n*** child 3\n*** child4\n** Third parent\n*** child 5\n*** child6\n** Fourth parent"
+      },
+      {
+        "step": 2,
+        "action": "Select 3 tasks in this order:\n1. taskName1\n2. taskName2\n3. taskName3",
+        "data": "taskName1: child 4\ntaskName2: child 2\ntaskName3: child 6",
+        "result": ""
+      },
+      {
+        "step": 3,
+        "action": "Move selected tasks under taskParent",
+        "data": "taskParent: Fourth parent",
+        "result": "Tasks are moved under taskParent, and are displayed in following order:\n1. child 2\n2. child 4\n3. child 6"
+      },
+      {
+        "step": 4,
+        "action": "Select 3 tasks in this order:\n1. taskName4\n2. taskName5\n3. taskName6",
+        "data": "taskName4: child 5\ntaskName5: child 1\ntaskName6: child 3",
+        "result": ""
+      },
+      {
+        "step": 5,
+        "action": "Move selected tasks under taskParent2",
+        "data": "taskParent2: Fifth parent",
+        "result": "Tasks are moved under taskParent2, and are displayed in following order:\n1. child 1\n2. child 3\n3. child 5"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-5113",
+    "text": "Test: TC-5113 — Feature area - Task structure - Basic operations - Gantt - Task order is preserved after bulk move\nPriority: High | Status: In Review | Type: Manual\nFolder: /\nLabels: teamembers, teamtree\n\nSteps:\n1. Go to the Gantt module of the boxName\n   Data: boxName: TC-5113 Feature area - Task structure - Basic operations - Gantt - Task order is preserved after bulk move\n   Expected: Gantt module is loaded. There are 10 task on the chart and on the WBS:\n\n* projectTasks\n** First parent\n*** child 1\n*** child 2\n** Second parent\n*** child 3\n*** child4\n** Third parent\n*** child 5\n*** child6\n** Fourth parent\n2. Select 3 tasks in this order:\n1. taskName1\n2. taskName2\n3. taskName3\n   Data: taskName1: child 4\ntaskName2: child 2\ntaskName3: child 6\n   Expected: \n3. Move selected tasks under taskParent\n   Data: taskParent: Fourth parent\n   Expected: Tasks are moved under taskParent, and are displayed in following order:\n1. child 2\n2. child 4\n3. child 6\n4. Select 3 tasks in this order:\n1. taskName4\n2. taskName5\n3. taskName6\n   Data: taskName4: child 5\ntaskName5: child 1\ntaskName6: child 3\n   Expected: \n5. Move selected tasks under taskParent2\n   Data: taskParent2: Fifth parent\n   Expected: Tasks are moved under taskParent2, and are displayed in following order:\n1. child 1\n2. child 3\n3. child 5",
+    "metadata": {
+      "jira_key": "TC-5113",
+      "issue_id": "1050610",
+      "summary": "Feature area - Task structure - Basic operations - Gantt - Task order is preserved after bulk move",
+      "priority": "High",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

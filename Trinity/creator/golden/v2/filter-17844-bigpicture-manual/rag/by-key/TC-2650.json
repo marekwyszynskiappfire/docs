@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-2650",
+    "issue_id": "357933",
+    "url": "https://appfire.atlassian.net/browse/TC-2650",
+    "summary": "Box Module - Reports - Editing report size",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Patryk Pesta",
+    "reporter": "Patryk Pesta",
+    "created": "2021-11-08T09:04:33.651-0500",
+    "updated": "2026-03-12T09:17:35.754-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "rocksolid",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Reports module of boxName",
+        "data": "boxName: TC-2650 Editing report size",
+        "result": "Reports module loaded correctly. 5 reports are visible:\n- Status per Assignee\n- Issue Type per Status\n- Fix Versions per Status\n- Assignee per Status\n- Priority per Assignee"
+      },
+      {
+        "step": 2,
+        "action": "Change to edit mode",
+        "data": "",
+        "result": "Edit mode is displayed.\n\nDashed borders are displayed around the charts. Chart types buttons are replaced with three buttons:\n\n* Edit report size\n* Edit report configuration\n* Remove report\n\nThe buttons names are displayed in tooltips on hover.\n\nAdd report tile is displaying next to the last report."
+      },
+      {
+        "step": 3,
+        "action": "Click on the Edit report size on the reportName.",
+        "data": "reportName: Status per Assignee",
+        "result": "The dropdown menu is displayed with a 3x3 matrix symbolising how much space the report will take up.\n1/9 squares is marked."
+      },
+      {
+        "step": 4,
+        "action": "Mark one square below the already marked square, and two squares to the right of already marked squares.",
+        "data": "",
+        "result": "Reports size is changed. The Status per Assignee report takes up 4/9 spaces of the page. Issue Type per Status and Fix Versions per Status are displayed to the right of the Status per Assignee report. \nAssignee per Status and Priority per Assignee are displayed beLow the Status per Assignee report."
+      },
+      {
+        "step": 5,
+        "action": "Click on the Edit report size on the reportName.",
+        "data": "reportName: Issue Type per Status",
+        "result": "The dropdown menu is displayed with a 3x3 matrix symbolising how much space the report will take up.\n1/9 squares is marked."
+      },
+      {
+        "step": 6,
+        "action": "Mark all squares",
+        "data": "",
+        "result": "Issue Type per Status report is bigger than Status per Assignee report. It takes up the whole width and length of the page."
+      },
+      {
+        "step": 7,
+        "action": "Click on the Edit report size on the reportName.",
+        "data": "reportName: Issue Type per Status",
+        "result": "The dropdown menu is displayed with a 3x3 matrix symbolising how much space the report will take up.\n9/9 squares are marked."
+      },
+      {
+        "step": 8,
+        "action": "Mark one square in the top left corner of the 3/x3 matrix.",
+        "data": "",
+        "result": "Reports size is changed. The Status per Assignee report takes up 4/9 spaces of the page. Issue Type per Status and Fix Versions per Status are displayed to the right of the Status per Assignee report. \nAssignee per Status and Priority per Assignee are displayed beLow the Status per Assignee report."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-2650",
+    "text": "Test: TC-2650 — Box Module - Reports - Editing report size\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: Sanity, can_be_automated, rocksolid, teamsmile\n\nSteps:\n1. Navigate to the Reports module of boxName\n   Data: boxName: TC-2650 Editing report size\n   Expected: Reports module loaded correctly. 5 reports are visible:\n- Status per Assignee\n- Issue Type per Status\n- Fix Versions per Status\n- Assignee per Status\n- Priority per Assignee\n2. Change to edit mode\n   Expected: Edit mode is displayed.\n\nDashed borders are displayed around the charts. Chart types buttons are replaced with three buttons:\n\n* Edit report size\n* Edit report configuration\n* Remove report\n\nThe buttons names are displayed in tooltips on hover.\n\nAdd report tile is displaying next to the last report.\n3. Click on the Edit report size on the reportName.\n   Data: reportName: Status per Assignee\n   Expected: The dropdown menu is displayed with a 3x3 matrix symbolising how much space the report will take up.\n1/9 squares is marked.\n4. Mark one square below the already marked square, and two squares to the right of already marked squares.\n   Expected: Reports size is changed. The Status per Assignee report takes up 4/9 spaces of the page. Issue Type per Status and Fix Versions per Status are displayed to the right of the Status per Assignee report. \nAssignee per Status and Priority per Assignee are displayed beLow the Status per Assignee report.\n5. Click on the Edit report size on the reportName.\n   Data: reportName: Issue Type per Status\n   Expected: The dropdown menu is displayed with a 3x3 matrix symbolising how much space the report will take up.\n1/9 squares is marked.\n6. Mark all squares\n   Expected: Issue Type per Status report is bigger than Status per Assignee report. It takes up the whole width and length of the page.\n7. Click on the Edit report size on the reportName.\n   Data: reportName: Issue Type per Status\n   Expected: The dropdown menu is displayed with a 3x3 matrix symbolising how much space the report will take up.\n9/9 squares are marked.\n8. Mark one square in the top left corner of the 3/x3 matrix.\n   Expected: Reports size is changed. The Status per Assignee report takes up 4/9 spaces of the page. Issue Type per Status and Fix Versions per Status are displayed to the right of the Status per Assignee report. \nAssignee per Status and Priority per Assignee are displayed beLow the Status per Assignee report.",
+    "metadata": {
+      "jira_key": "TC-2650",
+      "issue_id": "357933",
+      "summary": "Box Module - Reports - Editing report size",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "rocksolid",
+        "teamsmile"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

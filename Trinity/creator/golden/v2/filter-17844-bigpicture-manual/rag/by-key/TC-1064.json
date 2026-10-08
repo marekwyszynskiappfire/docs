@@ -1,0 +1,65 @@
+{
+  "test": {
+    "key": "TC-1064",
+    "issue_id": "356979",
+    "url": "https://appfire.atlassian.net/browse/TC-1064",
+    "summary": "Feature area - Extplatform Security - Jira Editable property check",
+    "description": "TC dotyczący sprawdzenia osbługi aplikacji, gdy Jira issue ma property (jira.issue.editable=false). Currently only for Atlassian Cloud ",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Tomasz Guzik",
+    "created": "2021-01-15T06:45:08.983-0500",
+    "updated": "2026-03-30T08:20:52.631-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-47 Feature area - Security",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-1064 Feature area - Extplatform Security - Jira Editable property check",
+        "result": "Gantt module of boxName is displayed.\n3 jira issues are visible:\n* TC-1064 TO DO - with status [To Do]\n* TC-1064 IN PROGRESS - with status [In Progress]\n* TC-1064 DONE - with status [Done]"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Story points column of taskName and try to set story points to 5",
+        "data": "taskName TC-1064 In Progress",
+        "result": "Column Story points is not editable. The contents of the column Story points is still set to 2."
+      },
+      {
+        "step": 3,
+        "action": "Hover over to taskName -> click tree dots button -> Edit and try to change priority",
+        "data": "taskName TC-1064 In Progress",
+        "result": "Cannot change priority of task. Priority is not editable"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 3
+  },
+  "rag": {
+    "id": "TC-1064",
+    "text": "Test: TC-1064 — Feature area - Extplatform Security - Jira Editable property check\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-47 Feature area - Security\nLabels: teamextplatform\n\nDescription:\nTC dotyczący sprawdzenia osbługi aplikacji, gdy Jira issue ma property (jira.issue.editable=false). Currently only for Atlassian Cloud \n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-1064 Feature area - Extplatform Security - Jira Editable property check\n   Expected: Gantt module of boxName is displayed.\n3 jira issues are visible:\n* TC-1064 TO DO - with status [To Do]\n* TC-1064 IN PROGRESS - with status [In Progress]\n* TC-1064 DONE - with status [Done]\n2. Navigate to Story points column of taskName and try to set story points to 5\n   Data: taskName TC-1064 In Progress\n   Expected: Column Story points is not editable. The contents of the column Story points is still set to 2.\n3. Hover over to taskName -> click tree dots button -> Edit and try to change priority\n   Data: taskName TC-1064 In Progress\n   Expected: Cannot change priority of task. Priority is not editable",
+    "metadata": {
+      "jira_key": "TC-1064",
+      "issue_id": "356979",
+      "summary": "Feature area - Extplatform Security - Jira Editable property check",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-47 Feature area - Security",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 3,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "test": {
+    "key": "TC-2461",
+    "issue_id": "356843",
+    "url": "https://appfire.atlassian.net/browse/TC-2461",
+    "summary": "Global - Platform connection warnings - Trello - Warning Logs after clearing Scope",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Testarnold (Inactive)",
+    "created": "2021-08-26T06:53:15.772-0400",
+    "updated": "2026-03-31T08:27:29.190-0400",
+    "labels": [
+      "manual",
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-374 Global - Platform connection warnings",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Overview module of Root Box and create New Program Box with boxName",
+        "data": "boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope",
+        "result": "A Program box with empty scope is created"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Box configuration for the boxName > Tasks > Scope configuration",
+        "data": "boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope",
+        "result": "Only main platform is visible"
+      },
+      {
+        "step": 3,
+        "action": "Add new Trello connection",
+        "data": "",
+        "result": "Trello connection is added"
+      },
+      {
+        "step": 4,
+        "action": "Expand Dropdown menu of Automatic rules -> Add Board from Trello",
+        "data": "",
+        "result": "Verify that the task count is the same as on Trello Board"
+      },
+      {
+        "step": 5,
+        "action": "Go to \"Trello.com\" -> Log in to your Account -> Navigate to Board which was added to box scope -> Click Show Menu -> Close Board... -> Close -> Permanently Delete",
+        "data": "",
+        "result": "\"Board not found.\nThis board may be private. If someone gave you this link, they may need to invite you to one of their boards or Workspaces.\" - Message Appears"
+      },
+      {
+        "step": 6,
+        "action": "Go back to BP -> Gantt module of boxName -> Wait 15 minutes -> Do e-sync -> Verify that warning log appears",
+        "data": "boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope",
+        "result": "Warning log appears with folLowing message: {{Trello scope is corrupted. Error in scope for {Trello workspace}: Trello board of id: {trello board id} does not exist!}}\n\nAll tasks from removed boar are greyed out with \"no access\""
+      },
+      {
+        "step": 7,
+        "action": "Go to Box Configuration -> Tasks -> Scope Definition tab of boxName",
+        "data": "boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope",
+        "result": "Box Configuration with Scope definition opens \"Atlassian Cloud\" pltaform and Trello Platform is visible"
+      },
+      {
+        "step": 8,
+        "action": "Expand Automatic Rules (In trello connection) -> Remove the Board -> Save",
+        "data": "",
+        "result": "The empty box scope is saved successfully"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope",
+        "result": "Tasks from removed Trello Board and warning log disappeared."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-2461",
+    "text": "Test: TC-2461 — Global - Platform connection warnings - Trello - Warning Logs after clearing Scope\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-374 Global - Platform connection warnings\nLabels: manual, teamextplatform\n\nSteps:\n1. Navigate to Overview module of Root Box and create New Program Box with boxName\n   Data: boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope\n   Expected: A Program box with empty scope is created\n2. Navigate to Box configuration for the boxName > Tasks > Scope configuration\n   Data: boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope\n   Expected: Only main platform is visible\n3. Add new Trello connection\n   Expected: Trello connection is added\n4. Expand Dropdown menu of Automatic rules -> Add Board from Trello\n   Expected: Verify that the task count is the same as on Trello Board\n5. Go to \"Trello.com\" -> Log in to your Account -> Navigate to Board which was added to box scope -> Click Show Menu -> Close Board... -> Close -> Permanently Delete\n   Expected: \"Board not found.\nThis board may be private. If someone gave you this link, they may need to invite you to one of their boards or Workspaces.\" - Message Appears\n6. Go back to BP -> Gantt module of boxName -> Wait 15 minutes -> Do e-sync -> Verify that warning log appears\n   Data: boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope\n   Expected: Warning log appears with folLowing message: {{Trello scope is corrupted. Error in scope for {Trello workspace}: Trello board of id: {trello board id} does not exist!}}\n\nAll tasks from removed boar are greyed out with \"no access\"\n7. Go to Box Configuration -> Tasks -> Scope Definition tab of boxName\n   Data: boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope\n   Expected: Box Configuration with Scope definition opens \"Atlassian Cloud\" pltaform and Trello Platform is visible\n8. Expand Automatic Rules (In trello connection) -> Remove the Board -> Save\n   Expected: The empty box scope is saved successfully\n9. Navigate to Gantt module of boxName\n   Data: boxName: TC-2461 Global - Platform connection warnings - Trello - Warning Logs after clearing Scope\n   Expected: Tasks from removed Trello Board and warning log disappeared.",
+    "metadata": {
+      "jira_key": "TC-2461",
+      "issue_id": "356843",
+      "summary": "Global - Platform connection warnings - Trello - Warning Logs after clearing Scope",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-374 Global - Platform connection warnings",
+      "labels": [
+        "manual",
+        "teamextplatform"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

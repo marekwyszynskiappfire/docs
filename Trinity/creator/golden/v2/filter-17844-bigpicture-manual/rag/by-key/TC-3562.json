@@ -1,0 +1,123 @@
+{
+  "test": {
+    "key": "TC-3562",
+    "issue_id": "360090",
+    "url": "https://appfire.atlassian.net/browse/TC-3562",
+    "summary": "Feature area - Box scope - Sub-scope definition - Creating sprints - Atlassian Cloud",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Rafał Matejak",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2022-09-09T06:01:59.886-0400",
+    "updated": "2026-05-12T05:21:15.402-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "rocksolid"
+    ],
+    "test_type": "Automated",
+    "folder": "/BP/TS-19 Feature area - Box scope - Sub-scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Box Configuration -> Tasks -> Scope definition tab of boxName",
+        "data": "boxName: TC-3562 Feature area - Box scope - Sub-scope definition - Creating sprints - Atlassian Cloud",
+        "result": "Scope definition tab is displayed.\nIn the Timeboxes section Connected Jira Field of sub-box PI1 has 'Program Increment' value."
+      },
+      {
+        "step": 2,
+        "action": "Click 'Level down' button of boxName",
+        "data": "boxName: PI1",
+        "result": "One iteration box is visible: Iteration1. Connected Jira Field is set to Sprint. Value column has placeholder 'Select or create Jira Sprint'. \nThere is a checkbox which states 'Each team has a different mapping with value."
+      },
+      {
+        "step": 3,
+        "action": "Click the checkbox to mark Each team has a different mapping with value for Iteration1.",
+        "data": "",
+        "result": "Each team has a different mapping with value is ticked. User sees two rows with Team Name and Value in Iteration sub-box:\n- Team unassigned\n- Zespol 1\n\nAll funnel icons are black and have an orange dot beside them, since on Atlassian Cloud a Board must be selected by default.\nAll selectors of Value have placeholder 'Select or create Jira Sprint'."
+      },
+      {
+        "step": 4,
+        "action": "Click 'Select or create Jira Sprint' selector of teamName.",
+        "data": "teamName: Zespol 1",
+        "result": "Search field wrapper appeared."
+      },
+      {
+        "step": 5,
+        "action": "Click the space bar twice.",
+        "data": "",
+        "result": "\"No matches\" is displayed. The user is unable to create a Sprint."
+      },
+      {
+        "step": 6,
+        "action": "Click funnel icon of teamName.",
+        "data": "teamName: Zespol 1",
+        "result": "Search field wrapper appeared with boards list."
+      },
+      {
+        "step": 7,
+        "action": "Type in boardName and select it.",
+        "data": "boardName: TC3562 board",
+        "result": "Orange dot is still visible in right upper corner of filter button.\nFilter icon is black and has a tooltip 'Filter value by TC3562 board'\nSelector of Value has placeholder 'Select or create Jira Sprint'"
+      },
+      {
+        "step": 8,
+        "action": "Click 'Select or create Jira Sprint' selector of teamName.",
+        "data": "teamName: Zespol 1",
+        "result": "Search field wrapper appears with sprints listed from TC3562 board. The folLowing options are visible:\n- Lowest\n- TC3562 Sprint 1\n- TC3562 Sprint 2\n- TC3562 Sprint 3"
+      },
+      {
+        "step": 9,
+        "action": "Type in a newSprintName.",
+        "data": "newSprintName: This is over thirty characters Sprint name",
+        "result": "Tip message is visible: Create \"This is over thirty characters\" in TC3562 board. This is because of a Jira limitation that Sprints have to be less than or 30 characters."
+      },
+      {
+        "step": 10,
+        "action": "Click on the tipMessage. Save the configuration.",
+        "data": "tipMessage: Create \"This is over thirty characters\" in TC3562 board",
+        "result": "Search field wrapper disappears. The value is set to \"This is over thirty characters\"\n\nGreen message appears on screen:\n\nTitle: Sprint created\nContent: Sprint was successfully created on the selected Jira board"
+      },
+      {
+        "step": 11,
+        "action": "In Jira click Projects -> View all projects",
+        "data": "",
+        "result": "All projects are visible."
+      },
+      {
+        "step": 12,
+        "action": "Search and click on projectName and go to Backlog tab.",
+        "data": "projectName: TC-3562 Feature area - Box scope - Sub-scope definition - Creating - JC",
+        "result": "Backlog screen is visible. User sees four sprints:\n\n- TC3562 Sprint 1\n- TC3562 Sprint 2\n- TC3562 Sprint 3\n- This is over thirty characters"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-3562",
+    "text": "Test: TC-3562 — Feature area - Box scope - Sub-scope definition - Creating sprints - Atlassian Cloud\nPriority: High | Status: Done | Type: Automated\nFolder: /BP/TS-19 Feature area - Box scope - Sub-scope definition\nLabels: Sanity, can_be_automated, rocksolid\n\nSteps:\n1. Navigate to Box Configuration -> Tasks -> Scope definition tab of boxName\n   Data: boxName: TC-3562 Feature area - Box scope - Sub-scope definition - Creating sprints - Atlassian Cloud\n   Expected: Scope definition tab is displayed.\nIn the Timeboxes section Connected Jira Field of sub-box PI1 has 'Program Increment' value.\n2. Click 'Level down' button of boxName\n   Data: boxName: PI1\n   Expected: One iteration box is visible: Iteration1. Connected Jira Field is set to Sprint. Value column has placeholder 'Select or create Jira Sprint'. \nThere is a checkbox which states 'Each team has a different mapping with value.\n3. Click the checkbox to mark Each team has a different mapping with value for Iteration1.\n   Expected: Each team has a different mapping with value is ticked. User sees two rows with Team Name and Value in Iteration sub-box:\n- Team unassigned\n- Zespol 1\n\nAll funnel icons are black and have an orange dot beside them, since on Atlassian Cloud a Board must be selected by default.\nAll selectors of Value have placeholder 'Select or create Jira Sprint'.\n4. Click 'Select or create Jira Sprint' selector of teamName.\n   Data: teamName: Zespol 1\n   Expected: Search field wrapper appeared.\n5. Click the space bar twice.\n   Expected: \"No matches\" is displayed. The user is unable to create a Sprint.\n6. Click funnel icon of teamName.\n   Data: teamName: Zespol 1\n   Expected: Search field wrapper appeared with boards list.\n7. Type in boardName and select it.\n   Data: boardName: TC3562 board\n   Expected: Orange dot is still visible in right upper corner of filter button.\nFilter icon is black and has a tooltip 'Filter value by TC3562 board'\nSelector of Value has placeholder 'Select or create Jira Sprint'\n8. Click 'Select or create Jira Sprint' selector of teamName.\n   Data: teamName: Zespol 1\n   Expected: Search field wrapper appears with sprints listed from TC3562 board. The folLowing options are visible:\n- Lowest\n- TC3562 Sprint 1\n- TC3562 Sprint 2\n- TC3562 Sprint 3\n9. Type in a newSprintName.\n   Data: newSprintName: This is over thirty characters Sprint name\n   Expected: Tip message is visible: Create \"This is over thirty characters\" in TC3562 board. This is because of a Jira limitation that Sprints have to be less than or 30 characters.\n10. Click on the tipMessage. Save the configuration.\n   Data: tipMessage: Create \"This is over thirty characters\" in TC3562 board\n   Expected: Search field wrapper disappears. The value is set to \"This is over thirty characters\"\n\nGreen message appears on screen:\n\nTitle: Sprint created\nContent: Sprint was successfully created on the selected Jira board\n11. In Jira click Projects -> View all projects\n   Expected: All projects are visible.\n12. Search and click on projectName and go to Backlog tab.\n   Data: projectName: TC-3562 Feature area - Box scope - Sub-scope definition - Creating - JC\n   Expected: Backlog screen is visible. User sees four sprints:\n\n- TC3562 Sprint 1\n- TC3562 Sprint 2\n- TC3562 Sprint 3\n- This is over thirty characters",
+    "metadata": {
+      "jira_key": "TC-3562",
+      "issue_id": "360090",
+      "summary": "Feature area - Box scope - Sub-scope definition - Creating sprints - Atlassian Cloud",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Automated",
+      "folder": "/BP/TS-19 Feature area - Box scope - Sub-scope definition",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "rocksolid"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "test": {
+    "key": "TC-1234",
+    "issue_id": "357733",
+    "url": "https://appfire.atlassian.net/browse/TC-1234",
+    "summary": "Box module - Board - Totals - Counting capacity allocation by remaining estimates",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2019-10-01T06:29:39.193-0400",
+    "updated": "2026-03-13T06:21:43.523-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-102 Box module - Board - Totals",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Board module of the boxName",
+        "data": "boxName: TC-1234 Box module - Board - Totals - Counting capacity allocation by remaining estimates",
+        "result": "Module opened correctly. TC1234 is selected as the default card view."
+      },
+      {
+        "step": 2,
+        "action": "Click Capacity planning button",
+        "data": "",
+        "result": "Capacity Planning screen is visible with PI1 and PI2."
+      },
+      {
+        "step": 3,
+        "action": "Change Units to Man-Days and return to Board",
+        "data": "",
+        "result": "Boxes are loaded correctly."
+      },
+      {
+        "step": 4,
+        "action": "Click on View > Totals and set Type to Capacity allocation and Aggregation to  Remaining Estimates",
+        "data": "",
+        "result": "Progress bars are visible in PI1 and PI2. Team 1 and Team 2 have progress bars too, however Team unassigned has no progress bars.\nPI1 has 12w 0.42h / 16w 3d 72%. PI2 has 5w 3h / 15w 2d 36%."
+      },
+      {
+        "step": 5,
+        "action": "Click on Filters -> Filters option and check Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Task8, Task9, Task10 and Task11 remain on Board.\nProgress bars are visible in PI1 and PI2. Team 1 and Team 2 have progress bars too, however Team unassigned has no progress bars.\nPI1 has 7w 2d / 16w 3d 45%. PI2 has 1w 3d 2.25h / 15w 2d 11%."
+      },
+      {
+        "step": 6,
+        "action": "Filters -> Filters option and uncheck Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Progress bars are visible in PI1 and PI2. Team 1 and Team 2 have progress bars too, however Team unassigned has no progress bars.\nPI1 has 12w 0.42h / 16w 3d 72%. PI2 has 5w 3h / 15w 2d 36%."
+      },
+      {
+        "step": 7,
+        "action": "Change issueName remaining estimate value by inline editing to new remaininglEstimateValue",
+        "data": "issueName: Task1\nremainingEstimateValue: 1w 3h",
+        "result": "Issue updates. PI1 has 12w 4d 7h / 16w 3d  78%. Team 1 has 5w 3h / 7w 2d 69%."
+      },
+      {
+        "step": 8,
+        "action": "Move issueName from PI2 to teamName in PI1",
+        "data": "issueName: Task2\nteamName: Team 2",
+        "result": "Issue moves correctly. PI1 has 14w 1d 4h / 16w 3d 86%. PI2 has 4w 1d 3h / 15w 2d 28%. Team 1 of PI2 has 1w 1d 3h / 7w 2d 17%. Team 2 of PI1 has 9w 1d 1h / 9w 1d 100%. Progress bar for PI1 Team 2 is red. Percentage at the end of progress bar is also red. Red exclamation mark is visible on the end of progress bar."
+      },
+      {
+        "step": 9,
+        "action": "Level down to Iteration level of PI1",
+        "data": "",
+        "result": "Progress bar of PI1 is not visible. Iteration 1 and Iteration 2 are visible with progress bars. Team 1 and Team 2 have progress bars, however Team unassigned has no progress bars.\nIteration 1 has 1w 3h / 10w 1d 11%. Iteration2 has 4w 2d 4h / 6w 2d 70%."
+      },
+      {
+        "step": 10,
+        "action": "Change issueName remaining estimate value by inline editing to new remainingEstimateValue",
+        "data": "issueName: Task3\nremainingEstimateValue: '1w 2h 30m'",
+        "result": "Issue updates. Iteration 2 has 4w 3d 2.50h / 6w 2d 73%. Team 2 of Iteration 2 has 3w 3d 2.50h / 3w 2d 108%.\nProgress bar for Iteration 2 Team 2 is red. Percentage at the end of progress bar is also red. Red exclamation mark is visible on the end of progress bar."
+      },
+      {
+        "step": 11,
+        "action": "Click 'Zoom out' button twice on the timeline.",
+        "data": "",
+        "result": "Iteration 3 and Iteration 4 appear. Iteration 1 has 1w 3h / 10w 1d 11%. Iteration 2 has 4w 3d 2.50h / 6w 2d 73%. Iteration 3 has 0 / 9w 1d 0%. Iteration 4 has 2w 3d 0.75h / 6w 1d 42%."
+      },
+      {
+        "step": 12,
+        "action": "Move issueName from Iteration 2 to teamName in Iteration 3.",
+        "data": "issuename: Task4\nteamName: Team 1",
+        "result": "Issue moves correctly. Progress bar for Iteration 2 Team 2 is no longer red and it states 1w 2.50h / 3w 2d 31%. Progress bar for Iteration 3 Team 1 states 2w 3d / 4w 2d 59%. Iteration 2 has 2w 2.50h / 6w 2d 32%. Iteration 3 has 2w 3d / 9w 1d 28%"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-1234",
+    "text": "Test: TC-1234 — Box module - Board - Totals - Counting capacity allocation by remaining estimates\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-102 Box module - Board - Totals\nLabels: Sanity, can_be_automated, teamsmile\n\nSteps:\n1. Navigate to the Board module of the boxName\n   Data: boxName: TC-1234 Box module - Board - Totals - Counting capacity allocation by remaining estimates\n   Expected: Module opened correctly. TC1234 is selected as the default card view.\n2. Click Capacity planning button\n   Expected: Capacity Planning screen is visible with PI1 and PI2.\n3. Change Units to Man-Days and return to Board\n   Expected: Boxes are loaded correctly.\n4. Click on View > Totals and set Type to Capacity allocation and Aggregation to  Remaining Estimates\n   Expected: Progress bars are visible in PI1 and PI2. Team 1 and Team 2 have progress bars too, however Team unassigned has no progress bars.\nPI1 has 12w 0.42h / 16w 3d 72%. PI2 has 5w 3h / 15w 2d 36%.\n5. Click on Filters -> Filters option and check Show only tasks not planned on a lower level\n   Expected: Task8, Task9, Task10 and Task11 remain on Board.\nProgress bars are visible in PI1 and PI2. Team 1 and Team 2 have progress bars too, however Team unassigned has no progress bars.\nPI1 has 7w 2d / 16w 3d 45%. PI2 has 1w 3d 2.25h / 15w 2d 11%.\n6. Filters -> Filters option and uncheck Show only tasks not planned on a lower level\n   Expected: Progress bars are visible in PI1 and PI2. Team 1 and Team 2 have progress bars too, however Team unassigned has no progress bars.\nPI1 has 12w 0.42h / 16w 3d 72%. PI2 has 5w 3h / 15w 2d 36%.\n7. Change issueName remaining estimate value by inline editing to new remaininglEstimateValue\n   Data: issueName: Task1\nremainingEstimateValue: 1w 3h\n   Expected: Issue updates. PI1 has 12w 4d 7h / 16w 3d  78%. Team 1 has 5w 3h / 7w 2d 69%.\n8. Move issueName from PI2 to teamName in PI1\n   Data: issueName: Task2\nteamName: Team 2\n   Expected: Issue moves correctly. PI1 has 14w 1d 4h / 16w 3d 86%. PI2 has 4w 1d 3h / 15w 2d 28%. Team 1 of PI2 has 1w 1d 3h / 7w 2d 17%. Team 2 of PI1 has 9w 1d 1h / 9w 1d 100%. Progress bar for PI1 Team 2 is red. Percentage at the end of progress bar is also red. Red exclamation mark is visible on the end of progress bar.\n9. Level down to Iteration level of PI1\n   Expected: Progress bar of PI1 is not visible. Iteration 1 and Iteration 2 are visible with progress bars. Team 1 and Team 2 have progress bars, however Team unassigned has no progress bars.\nIteration 1 has 1w 3h / 10w 1d 11%. Iteration2 has 4w 2d 4h / 6w 2d 70%.\n10. Change issueName remaining estimate value by inline editing to new remainingEstimateValue\n   Data: issueName: Task3\nremainingEstimateValue: '1w 2h 30m'\n   Expected: Issue updates. Iteration 2 has 4w 3d 2.50h / 6w 2d 73%. Team 2 of Iteration 2 has 3w 3d 2.50h / 3w 2d 108%.\nProgress bar for Iteration 2 Team 2 is red. Percentage at the end of progress bar is also red. Red exclamation mark is visible on the end of progress bar.\n11. Click 'Zoom out' button twice on the timeline.\n   Expected: Iteration 3 and Iteration 4 appear. Iteration 1 has 1w 3h / 10w 1d 11%. Iteration 2 has 4w 3d 2.50h / 6w 2d 73%. Iteration 3 has 0 / 9w 1d 0%. Iteration 4 has 2w 3d 0.75h / 6w 1d 42%.\n12. Move issueName from Iteration 2 to teamName in Iteration 3.\n   Data: issuename: Task4\nteamName: Team 1\n   Expected: Issue moves correctly. Progress bar for Iteration 2 Team 2 is no longer red and it states 1w 2.50h / 3w 2d 31%. Progress bar for Iteration 3 Team 1 states 2w 3d / 4w 2d 59%. Iteration 2 has 2w 2.50h / 6w 2d 32%. Iteration 3 has 2w 3d / 9w 1d 28%",
+    "metadata": {
+      "jira_key": "TC-1234",
+      "issue_id": "357733",
+      "summary": "Box module - Board - Totals - Counting capacity allocation by remaining estimates",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-102 Box module - Board - Totals",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "teamsmile"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

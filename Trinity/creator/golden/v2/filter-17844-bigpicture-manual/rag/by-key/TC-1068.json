@@ -1,0 +1,123 @@
+{
+  "test": {
+    "key": "TC-1068",
+    "issue_id": "359136",
+    "url": "https://appfire.atlassian.net/browse/TC-1068",
+    "summary": "Box Module - Board - Basic operations - Displaying tasks warnings",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Maksim Baranowski",
+    "reporter": "Robert Włodarczyk",
+    "created": "2021-01-15T07:38:20.962-0500",
+    "updated": "2026-03-13T06:26:12.786-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName.",
+        "data": "boxName: TC-1068 Box Module - Board - Basic operations - Displaying tasks warnings",
+        "result": "Board module is loaded."
+      },
+      {
+        "step": 2,
+        "action": "Click on the View icon and select Task warnings from the dropdown list.",
+        "data": "",
+        "result": "Task warnings are displayed as yelLow exclamation marks on the Lower left corner of the task cards. Task cards have yelLow frame, too."
+      },
+      {
+        "step": 3,
+        "action": "Click on the task warning on the task card of issueName.",
+        "data": "issueName: TC-1068 Task 1",
+        "result": "There is a message in the dialog:\n\n* The dates of this task don't fall within Program Increment 1.\n\nTwo buttons are displayed beLow:\n\n* Change task dates\n* Cancel"
+      },
+      {
+        "step": 4,
+        "action": "Click on the task warning on the task card of issueName.",
+        "data": "issueName: TC-1068 Task 2",
+        "result": "There is a message in the dialog:\n\n* The dates of this task don't fall within Program Increment 2. Change them to match this timebox or move the task to Program Increment 1.\n\nThree buttons are displayed beLow:\n\n* Change task dates\n* Move the task\n* Cancel"
+      },
+      {
+        "step": 5,
+        "action": "Hover over the task warning on the task card of issueName.",
+        "data": "issueName: TC-1068 Task 3",
+        "result": "There is a message in the tooltip displayed:\n- Task warning. Click to solve the problem."
+      },
+      {
+        "step": 6,
+        "action": "Click on the task warning on the task card of issueName.",
+        "data": "issueName: TC-1068 Task 3",
+        "result": "There is a message in the dialog:\n\nThe assignee of this task does not belong to Team Alpha. Change the assignee manually, or add this assignee as a team member of Team Alpha.\n\nTwo buttons are displayed beLow:\n\n* Go to Teams\n* Cancel"
+      },
+      {
+        "step": 7,
+        "action": "Click on Go to teams button.",
+        "data": "",
+        "result": "Teams module is displayed."
+      },
+      {
+        "step": 8,
+        "action": "Allocate new teamName with teamCode.",
+        "data": "teamName: Team Beta\nteamCode: TB",
+        "result": "Team is created correctly."
+      },
+      {
+        "step": 9,
+        "action": "Assignee userName to teamName.",
+        "data": "userName: Admin\nteamName: Team Alpha",
+        "result": "Admin is user in Team Alpha"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Board module of boxName.",
+        "data": "boxName: TC-1068 Box Module - Board - Basic operations - Displaying tasks warnings",
+        "result": "Board module is loaded."
+      },
+      {
+        "step": 11,
+        "action": "Move task card of issueName from Team Alpha to Team Beta",
+        "data": "issueName: TC-1068 Task 3",
+        "result": "Task card is in Team Beta in Program Increment 1 subbox.\nTask warning appeared."
+      },
+      {
+        "step": 12,
+        "action": "Click on the task warning on the task card of issueName.",
+        "data": "issueName: TC-1068 Task 3",
+        "result": "There is a message in the dialog:\nThe assignee of this task does not belong to Team Beta. Change the assignee manually, or plan this task for one of the teams that the assignee belongs to:\n\nBeLow there is a single select field with Select team placeholder and two buttons:\n- Plan for another team (greyed out)\n- Cancel"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-1068",
+    "text": "Test: TC-1068 — Box Module - Board - Basic operations - Displaying tasks warnings\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-34 Box Module - Board - Basic operations\nLabels: Sanity, can_be_automated, teamsmile\n\nSteps:\n1. Navigate to Board module of boxName.\n   Data: boxName: TC-1068 Box Module - Board - Basic operations - Displaying tasks warnings\n   Expected: Board module is loaded.\n2. Click on the View icon and select Task warnings from the dropdown list.\n   Expected: Task warnings are displayed as yelLow exclamation marks on the Lower left corner of the task cards. Task cards have yelLow frame, too.\n3. Click on the task warning on the task card of issueName.\n   Data: issueName: TC-1068 Task 1\n   Expected: There is a message in the dialog:\n\n* The dates of this task don't fall within Program Increment 1.\n\nTwo buttons are displayed beLow:\n\n* Change task dates\n* Cancel\n4. Click on the task warning on the task card of issueName.\n   Data: issueName: TC-1068 Task 2\n   Expected: There is a message in the dialog:\n\n* The dates of this task don't fall within Program Increment 2. Change them to match this timebox or move the task to Program Increment 1.\n\nThree buttons are displayed beLow:\n\n* Change task dates\n* Move the task\n* Cancel\n5. Hover over the task warning on the task card of issueName.\n   Data: issueName: TC-1068 Task 3\n   Expected: There is a message in the tooltip displayed:\n- Task warning. Click to solve the problem.\n6. Click on the task warning on the task card of issueName.\n   Data: issueName: TC-1068 Task 3\n   Expected: There is a message in the dialog:\n\nThe assignee of this task does not belong to Team Alpha. Change the assignee manually, or add this assignee as a team member of Team Alpha.\n\nTwo buttons are displayed beLow:\n\n* Go to Teams\n* Cancel\n7. Click on Go to teams button.\n   Expected: Teams module is displayed.\n8. Allocate new teamName with teamCode.\n   Data: teamName: Team Beta\nteamCode: TB\n   Expected: Team is created correctly.\n9. Assignee userName to teamName.\n   Data: userName: Admin\nteamName: Team Alpha\n   Expected: Admin is user in Team Alpha\n10. Navigate to Board module of boxName.\n   Data: boxName: TC-1068 Box Module - Board - Basic operations - Displaying tasks warnings\n   Expected: Board module is loaded.\n11. Move task card of issueName from Team Alpha to Team Beta\n   Data: issueName: TC-1068 Task 3\n   Expected: Task card is in Team Beta in Program Increment 1 subbox.\nTask warning appeared.\n12. Click on the task warning on the task card of issueName.\n   Data: issueName: TC-1068 Task 3\n   Expected: There is a message in the dialog:\nThe assignee of this task does not belong to Team Beta. Change the assignee manually, or plan this task for one of the teams that the assignee belongs to:\n\nBeLow there is a single select field with Select team placeholder and two buttons:\n- Plan for another team (greyed out)\n- Cancel",
+    "metadata": {
+      "jira_key": "TC-1068",
+      "issue_id": "359136",
+      "summary": "Box Module - Board - Basic operations - Displaying tasks warnings",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "teamsmile"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

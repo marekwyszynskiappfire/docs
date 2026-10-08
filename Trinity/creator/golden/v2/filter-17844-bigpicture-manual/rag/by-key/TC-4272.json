@@ -1,0 +1,85 @@
+{
+  "test": {
+    "key": "TC-4272",
+    "issue_id": "814418",
+    "url": "https://appfire.atlassian.net/browse/TC-4272",
+    "summary": "Box Module - Reports - Editing Velocity report with trend line presenting average value of velocity",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2024-07-22T09:59:33.560-0400",
+    "updated": "2026-05-06T02:44:45.901-0400",
+    "labels": [
+      "can_be_automated",
+      "teamreports"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Reports module of boxName",
+        "data": "boxName: TC-4272 Box Module - Reports - Editing Velocity report with trend line presenting average value of velocity",
+        "result": "Reports module loaded correctly. \n\nVelocity report with folLowing data is displaying:\n\nReport name: Velocity for TC-4272 Alpha\n\nUnder the title there is a legend with labels displayed: Planned, Done, Velocity\n\nThere are 6 iterations in total in the report.\n\n* Iteration 1: Planned (0.05) Done (1) Velocity (1)\n* Iteration 2: Planned (0.5) Done (5) Velocity (3)\n* Iteration 3: Planned (1) Done (1) Velocity (2.33)\n* Iteration 4: Planned (10) Done (5) Velocity (3.67)\n* Iteration 5: Planned (50) Done (15) Velocity (7)\n* Iteration 6: Planned (100) Done (90) Velocity (36.67)\n\nThere is a scrollbar at the bottom of the chart."
+      },
+      {
+        "step": 2,
+        "action": "Click on the Edit button.",
+        "data": "",
+        "result": "Selected button is marked and the edit mode is displayed: The add report button is displayed next to the Edit button. Dashed borders are displayed around the chart. Chart types buttons are replaced with three buttons:\n\n* Edit report size\n* Edit report configuration\n* Remove report\n\nThe buttons names are displayed in tooltips on hover."
+      },
+      {
+        "step": 3,
+        "action": "Click on the Edit report configuration button on reportName.",
+        "data": "reportName: Velocity for TC-4272 Alpha",
+        "result": "Modal with Velocity report configuration is loaded.\n\nThere is a Name field fulfilled with a text: Velocity for TC-4272 Alpha\n\nUnderneath, there is field Team. TC-4272 Alpha is selected.\n\nBeLow, there are marked checkboxes: \n\n* Show iterations with empty capacity\n* Show the velocity line on the chart\n\nUnder them there is field The number of iterations used to calculate velocity. The number is set to 3.\n\nAt the bottom, there are two buttons: Cancel and Save"
+      },
+      {
+        "step": 4,
+        "action": "Change the number of iterations used to calculate velocity to iterationsNumber and click on Save button.",
+        "data": "iterationsNumber: 6",
+        "result": "Velocity report is updated. Trend line is visible. Values for Velocity are changed.\n\nReport name: Velocity for TC-4272 Alpha\n\n* Iteration 1: Planned (0.05) Done (1) Velocity (1)\n* Iteration 2: Planned (0.5) Done (5) Velocity (3)\n* Iteration 3: Planned (1) Done (1) Velocity (2.33)\n* Iteration 4: Planned (10) Done (5) Velocity (3)\n* Iteration 5: Planned (50) Done (15) Velocity (5.4)\n* Iteration 6: Planned (100) Done (90) Velocity (19.5)"
+      },
+      {
+        "step": 5,
+        "action": "Click on the Edit report configuration button on reportName.",
+        "data": "reportName: Velocity for TC-4272 Alpha",
+        "result": "Modal with Velocity report configuration is loaded.\n\nThere is a Name field fulfilled with a text: Velocity for TC-4272 Alpha\n\nUnderneath, there is field Team. TC-4272 Alpha is selected.\n\nBeLow, there are marked checkboxes: \n\n* Show iterations with empty capacity\n* Show the velocity line on the chart\n\nUnder them there is field The number of iterations used to calculate velocity. The number is set to 6.\n\nAt the bottom, there are two buttons: Cancel and Save"
+      },
+      {
+        "step": 6,
+        "action": "Unmark checkbox Show the velocity line on the chart and click on Save button.",
+        "data": "",
+        "result": "Velocity report is updated. Trend line is not displaying on chart. Velocity label is not visible in legend of the report. FolLowing data are visible:\n\nReport name: Velocity for TC-4272 Alpha\n\n* Iteration 1: Planned (0.05) Done (1) \n* Iteration 2: Planned (0.5) Done (5) \n* Iteration 3: Planned (1) Done (1) \n* Iteration 4: Planned (10) Done (5) \n* Iteration 5: Planned (50) Done (15) \n* Iteration 6: Planned (100) Done (90)"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4272",
+    "text": "Test: TC-4272 — Box Module - Reports - Editing Velocity report with trend line presenting average value of velocity\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: can_be_automated, teamreports\n\nSteps:\n1. Navigate to the Reports module of boxName\n   Data: boxName: TC-4272 Box Module - Reports - Editing Velocity report with trend line presenting average value of velocity\n   Expected: Reports module loaded correctly. \n\nVelocity report with folLowing data is displaying:\n\nReport name: Velocity for TC-4272 Alpha\n\nUnder the title there is a legend with labels displayed: Planned, Done, Velocity\n\nThere are 6 iterations in total in the report.\n\n* Iteration 1: Planned (0.05) Done (1) Velocity (1)\n* Iteration 2: Planned (0.5) Done (5) Velocity (3)\n* Iteration 3: Planned (1) Done (1) Velocity (2.33)\n* Iteration 4: Planned (10) Done (5) Velocity (3.67)\n* Iteration 5: Planned (50) Done (15) Velocity (7)\n* Iteration 6: Planned (100) Done (90) Velocity (36.67)\n\nThere is a scrollbar at the bottom of the chart.\n2. Click on the Edit button.\n   Expected: Selected button is marked and the edit mode is displayed: The add report button is displayed next to the Edit button. Dashed borders are displayed around the chart. Chart types buttons are replaced with three buttons:\n\n* Edit report size\n* Edit report configuration\n* Remove report\n\nThe buttons names are displayed in tooltips on hover.\n3. Click on the Edit report configuration button on reportName.\n   Data: reportName: Velocity for TC-4272 Alpha\n   Expected: Modal with Velocity report configuration is loaded.\n\nThere is a Name field fulfilled with a text: Velocity for TC-4272 Alpha\n\nUnderneath, there is field Team. TC-4272 Alpha is selected.\n\nBeLow, there are marked checkboxes: \n\n* Show iterations with empty capacity\n* Show the velocity line on the chart\n\nUnder them there is field The number of iterations used to calculate velocity. The number is set to 3.\n\nAt the bottom, there are two buttons: Cancel and Save\n4. Change the number of iterations used to calculate velocity to iterationsNumber and click on Save button.\n   Data: iterationsNumber: 6\n   Expected: Velocity report is updated. Trend line is visible. Values for Velocity are changed.\n\nReport name: Velocity for TC-4272 Alpha\n\n* Iteration 1: Planned (0.05) Done (1) Velocity (1)\n* Iteration 2: Planned (0.5) Done (5) Velocity (3)\n* Iteration 3: Planned (1) Done (1) Velocity (2.33)\n* Iteration 4: Planned (10) Done (5) Velocity (3)\n* Iteration 5: Planned (50) Done (15) Velocity (5.4)\n* Iteration 6: Planned (100) Done (90) Velocity (19.5)\n5. Click on the Edit report configuration button on reportName.\n   Data: reportName: Velocity for TC-4272 Alpha\n   Expected: Modal with Velocity report configuration is loaded.\n\nThere is a Name field fulfilled with a text: Velocity for TC-4272 Alpha\n\nUnderneath, there is field Team. TC-4272 Alpha is selected.\n\nBeLow, there are marked checkboxes: \n\n* Show iterations with empty capacity\n* Show the velocity line on the chart\n\nUnder them there is field The number of iterations used to calculate velocity. The number is set to 6.\n\nAt the bottom, there are two buttons: Cancel and Save\n6. Unmark checkbox Show the velocity line on the chart and click on Save button.\n   Expected: Velocity report is updated. Trend line is not displaying on chart. Velocity label is not visible in legend of the report. FolLowing data are visible:\n\nReport name: Velocity for TC-4272 Alpha\n\n* Iteration 1: Planned (0.05) Done (1) \n* Iteration 2: Planned (0.5) Done (5) \n* Iteration 3: Planned (1) Done (1) \n* Iteration 4: Planned (10) Done (5) \n* Iteration 5: Planned (50) Done (15) \n* Iteration 6: Planned (100) Done (90)",
+    "metadata": {
+      "jira_key": "TC-4272",
+      "issue_id": "814418",
+      "summary": "Box Module - Reports - Editing Velocity report with trend line presenting average value of velocity",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "can_be_automated",
+        "teamreports"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

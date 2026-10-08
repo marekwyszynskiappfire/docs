@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-3748",
+    "issue_id": "360136",
+    "url": "https://appfire.atlassian.net/browse/TC-3748",
+    "summary": "Feature area - Risk - Add existing issue without a configured Scope as box Admin",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Alona Adamska",
+    "created": "2022-12-14T09:17:43.805-0500",
+    "updated": "2026-03-04T09:13:37.382-0500",
+    "labels": [
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-83 Feature area - Risk",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Risk module of the boxName as box Admin",
+        "data": "boxName: TC-3748 Feature area - Risk - Add existing issue without a configured Scope as box Admin",
+        "result": "Risk matrix load properly. No any tasks are visible"
+      },
+      {
+        "step": 2,
+        "action": "Click on Add risk button in the top left corner",
+        "data": "",
+        "result": "Dropdown is displayed with options: \n- Create new Jira issue\n- Add existing task (greyed out, with info icon)\n- Manage scope definition"
+      },
+      {
+        "step": 3,
+        "action": "Hover over Add existing task",
+        "data": "",
+        "result": "Tooltip \"Manage scope definition first\" appeared"
+      },
+      {
+        "step": 4,
+        "action": "Click on matrixCell",
+        "data": "matrixCell: High/High",
+        "result": "Two options are available:\n- Create new Jira issue\n- Add existing task (greyed out, with information \"Define the scope first\")"
+      },
+      {
+        "step": 5,
+        "action": "Click on Define the scope first",
+        "data": "",
+        "result": "Scope definition window appeared"
+      },
+      {
+        "step": 6,
+        "action": "Add projectName to the Project field and click Save",
+        "data": "projectName: TC-3748 Feature area - Risk - Add existing issue without a configured Scope as box Admin",
+        "result": "There is information: \"2 tasks in the scope\". \nMatrix is visible with info message: \n\n\"Scope definition has been set up\n\nNow you can organize your tasks in a neat and logical structure to view them clearly whenever you need to access them. Choose one of the predefined presets or create your custom task structure that will fit your scope\" and two buttons:\n\n* Configure task structure\n* Don't show again"
+      },
+      {
+        "step": 7,
+        "action": "Click on Don't show again",
+        "data": "",
+        "result": "The message window no more visible"
+      },
+      {
+        "step": 8,
+        "action": "Click on Add risk button in the top left corner",
+        "data": "",
+        "result": "Dropdown is displayed with options: \n- Create new Jira issue\n- Add existing task (active)\n- Manage scope definition"
+      },
+      {
+        "step": 9,
+        "action": "Choose Add existing task",
+        "data": "",
+        "result": "Add existing task window is appeared."
+      },
+      {
+        "step": 10,
+        "action": "Type in Task field failTaskName",
+        "data": "failTaskName: qwerty",
+        "result": "The information: \"No matches in the scope\" appeared under search bar"
+      },
+      {
+        "step": 11,
+        "action": "Fill the fields with taskName, riskProbability, riskConsequence and click Add",
+        "data": "taskName: Task A\nriskProbability: Medium\nriskConsequence: Medium",
+        "result": "Added task is visible on matrix grid in properly place"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-3748",
+    "text": "Test: TC-3748 — Feature area - Risk - Add existing issue without a configured Scope as box Admin\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-83 Feature area - Risk\nLabels: teamsource\n\nSteps:\n1. Navigate to Risk module of the boxName as box Admin\n   Data: boxName: TC-3748 Feature area - Risk - Add existing issue without a configured Scope as box Admin\n   Expected: Risk matrix load properly. No any tasks are visible\n2. Click on Add risk button in the top left corner\n   Expected: Dropdown is displayed with options: \n- Create new Jira issue\n- Add existing task (greyed out, with info icon)\n- Manage scope definition\n3. Hover over Add existing task\n   Expected: Tooltip \"Manage scope definition first\" appeared\n4. Click on matrixCell\n   Data: matrixCell: High/High\n   Expected: Two options are available:\n- Create new Jira issue\n- Add existing task (greyed out, with information \"Define the scope first\")\n5. Click on Define the scope first\n   Expected: Scope definition window appeared\n6. Add projectName to the Project field and click Save\n   Data: projectName: TC-3748 Feature area - Risk - Add existing issue without a configured Scope as box Admin\n   Expected: There is information: \"2 tasks in the scope\". \nMatrix is visible with info message: \n\n\"Scope definition has been set up\n\nNow you can organize your tasks in a neat and logical structure to view them clearly whenever you need to access them. Choose one of the predefined presets or create your custom task structure that will fit your scope\" and two buttons:\n\n* Configure task structure\n* Don't show again\n7. Click on Don't show again\n   Expected: The message window no more visible\n8. Click on Add risk button in the top left corner\n   Expected: Dropdown is displayed with options: \n- Create new Jira issue\n- Add existing task (active)\n- Manage scope definition\n9. Choose Add existing task\n   Expected: Add existing task window is appeared.\n10. Type in Task field failTaskName\n   Data: failTaskName: qwerty\n   Expected: The information: \"No matches in the scope\" appeared under search bar\n11. Fill the fields with taskName, riskProbability, riskConsequence and click Add\n   Data: taskName: Task A\nriskProbability: Medium\nriskConsequence: Medium\n   Expected: Added task is visible on matrix grid in properly place",
+    "metadata": {
+      "jira_key": "TC-3748",
+      "issue_id": "360136",
+      "summary": "Feature area - Risk - Add existing issue without a configured Scope as box Admin",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-83 Feature area - Risk",
+      "labels": [
+        "teamsource"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

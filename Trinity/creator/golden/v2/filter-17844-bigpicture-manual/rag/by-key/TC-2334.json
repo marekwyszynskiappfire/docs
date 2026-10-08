@@ -1,0 +1,143 @@
+{
+  "test": {
+    "key": "TC-2334",
+    "issue_id": "356832",
+    "url": "https://appfire.atlassian.net/browse/TC-2334",
+    "summary": "Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Tomasz Guzik",
+    "created": "2021-07-27T07:30:55.148-0400",
+    "updated": "2026-05-20T16:08:53.709-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-374 Global - Platform connection warnings",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Configuration -> Tasks -> Scope definition of boxName",
+        "data": "boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary",
+        "result": "Scope definition is open with one accordion for Atlassian Cloud  platform connection"
+      },
+      {
+        "step": 2,
+        "action": "Add project with projectName and click save button",
+        "data": "projectName: TC-2334 Warning log after removing a project",
+        "result": "project 'TC-2334 Warning log after removing a project' has been added to box scope"
+      },
+      {
+        "step": 3,
+        "action": "Add filter with filterName and click save button",
+        "data": "filterName: TC-2334 Filter to remove",
+        "result": "filter 'TC-2334 Filter to remove' has been added to the box scope"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Gantt module of boxName and do a resync",
+        "data": "boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary",
+        "result": "Gantt module display all tasks from projects:\n- 'TC-2334 Warning log after removing a project'\n- 'TC-2334 Warning log after remove a filter'"
+      },
+      {
+        "step": 5,
+        "action": "Go to Atlassian Cloud projects using Projects > View all project button",
+        "data": "",
+        "result": "All Atlassian Cloud projects are displayed"
+      },
+      {
+        "step": 6,
+        "action": "Find projectName and remove it",
+        "data": "projectName: TC-2334 Warning log after removing a project",
+        "result": "project 'TC-2334 Warning log after removing a project' has been removed"
+      },
+      {
+        "step": 7,
+        "action": "Go to Atlassian Cloud filters using Filters > View all filters button",
+        "data": "",
+        "result": "All Atlassian Cloud filters are displayed"
+      },
+      {
+        "step": 8,
+        "action": "Find filterName and remove it.",
+        "data": "filterName: TC-2334 Filter to remove",
+        "result": "Filter 'TC-2334 Filter to remove' has been removed"
+      },
+      {
+        "step": 9,
+        "action": "Go back to BP, Gantt modue of boxName do a resync and after that refresh the page",
+        "data": "boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary",
+        "result": "After resync should appear Warning log window with message:\nBoxName scope is corrupted Error in scope for Jira: FolLowing elements: ID (jira_filter),ID (jira_project) are unavailable for plugin or inaccessible by Scope Owner"
+      },
+      {
+        "step": 10,
+        "action": "Go to Root overview module",
+        "data": "",
+        "result": "There shouldn't display any warning log"
+      },
+      {
+        "step": 11,
+        "action": "End session in the browser",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 12,
+        "action": "Open Jira -> go to BigPicture and Open boxName",
+        "data": "boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary",
+        "result": "Warning log window with message appear :\nBoxName scope is corrupted Error in scope for Jira: FolLowing elements: ID (jira_filter),ID (jira_project) are unavailable for plugin or inaccessible by Scope Owner"
+      },
+      {
+        "step": 13,
+        "action": "Click on \"Mute notifications\"",
+        "data": "",
+        "result": "There shouldn't display any warning log"
+      },
+      {
+        "step": 14,
+        "action": "Repeat steps 11 and 12",
+        "data": "",
+        "result": "Warning log window with message appear :\nBoxName scope is corrupted Error in scope for Jira: FolLowing elements: ID (jira_filter),ID (jira_project) are unavailable for plugin or inaccessible by Scope Owner"
+      },
+      {
+        "step": 15,
+        "action": "Go to configuration -> Scope Definition of BoxName  -> Expand Automatic Rules -> Remove the project and filter -> Save",
+        "data": "boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\n\nprojectName: TC-2334 Warning log after removing a project\n\nfilterName: TC-2334 Filter to remove",
+        "result": "Project and filter is deleted from the Scope Definition and everything was successfully saved"
+      },
+      {
+        "step": 16,
+        "action": "Go to Gantt Module of BoxName -> Do Re-sync -> Verify That warning log disappeared",
+        "data": "boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary",
+        "result": "Verify that warning log is no longer appearing. Verify that no tasks are appearing on Gantt Module"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-2334",
+    "text": "Test: TC-2334 — Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-374 Global - Platform connection warnings\nLabels: teamextplatform\n\nSteps:\n1. Navigate to Configuration -> Tasks -> Scope definition of boxName\n   Data: boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\n   Expected: Scope definition is open with one accordion for Atlassian Cloud  platform connection\n2. Add project with projectName and click save button\n   Data: projectName: TC-2334 Warning log after removing a project\n   Expected: project 'TC-2334 Warning log after removing a project' has been added to box scope\n3. Add filter with filterName and click save button\n   Data: filterName: TC-2334 Filter to remove\n   Expected: filter 'TC-2334 Filter to remove' has been added to the box scope\n4. Navigate to Gantt module of boxName and do a resync\n   Data: boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\n   Expected: Gantt module display all tasks from projects:\n- 'TC-2334 Warning log after removing a project'\n- 'TC-2334 Warning log after remove a filter'\n5. Go to Atlassian Cloud projects using Projects > View all project button\n   Expected: All Atlassian Cloud projects are displayed\n6. Find projectName and remove it\n   Data: projectName: TC-2334 Warning log after removing a project\n   Expected: project 'TC-2334 Warning log after removing a project' has been removed\n7. Go to Atlassian Cloud filters using Filters > View all filters button\n   Expected: All Atlassian Cloud filters are displayed\n8. Find filterName and remove it.\n   Data: filterName: TC-2334 Filter to remove\n   Expected: Filter 'TC-2334 Filter to remove' has been removed\n9. Go back to BP, Gantt modue of boxName do a resync and after that refresh the page\n   Data: boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\n   Expected: After resync should appear Warning log window with message:\nBoxName scope is corrupted Error in scope for Jira: FolLowing elements: ID (jira_filter),ID (jira_project) are unavailable for plugin or inaccessible by Scope Owner\n10. Go to Root overview module\n   Expected: There shouldn't display any warning log\n11. End session in the browser\n   Expected: \n12. Open Jira -> go to BigPicture and Open boxName\n   Data: boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\n   Expected: Warning log window with message appear :\nBoxName scope is corrupted Error in scope for Jira: FolLowing elements: ID (jira_filter),ID (jira_project) are unavailable for plugin or inaccessible by Scope Owner\n13. Click on \"Mute notifications\"\n   Expected: There shouldn't display any warning log\n14. Repeat steps 11 and 12\n   Expected: Warning log window with message appear :\nBoxName scope is corrupted Error in scope for Jira: FolLowing elements: ID (jira_filter),ID (jira_project) are unavailable for plugin or inaccessible by Scope Owner\n15. Go to configuration -> Scope Definition of BoxName  -> Expand Automatic Rules -> Remove the project and filter -> Save\n   Data: boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\n\nprojectName: TC-2334 Warning log after removing a project\n\nfilterName: TC-2334 Filter to remove\n   Expected: Project and filter is deleted from the Scope Definition and everything was successfully saved\n16. Go to Gantt Module of BoxName -> Do Re-sync -> Verify That warning log disappeared\n   Data: boxName: TC-2334 Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary\n   Expected: Verify that warning log is no longer appearing. Verify that no tasks are appearing on Gantt Module",
+    "metadata": {
+      "jira_key": "TC-2334",
+      "issue_id": "356832",
+      "summary": "Global - Platform connection warnings - Warning log after removing a project and filter from Atlassian Cloud Primary",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-374 Global - Platform connection warnings",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

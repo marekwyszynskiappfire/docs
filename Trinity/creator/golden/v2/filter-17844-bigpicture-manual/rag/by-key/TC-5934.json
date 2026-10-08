@@ -1,0 +1,167 @@
+{
+  "test": {
+    "key": "TC-5934",
+    "issue_id": "1494382",
+    "url": "https://appfire.atlassian.net/browse/TC-5934",
+    "summary": "SPM - Strategic areas - Setting filters and changing between Strategic Themes",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-01-14T10:46:42.122-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of a boxName",
+        "data": "boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes",
+        "result": "OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context"
+      },
+      {
+        "step": 2,
+        "action": "Click ‘Create Strategic Theme’ button",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Type strategicThemeName, select period, owner and click Create",
+        "data": "strategicThemeName: TC-5934\n\nperiod: Y2026\n\nowner: testlab.11@softwareplant.com",
+        "result": "Strategic Theme is created and Tree view is displayed \n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective",
+        "data": "newObjective: TC-5934 A",
+        "result": "New Objective TC-5934 A is created under Strategic Theme TC-5934."
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to TC-5934 A objective, type name of keyResult and click on Link Boxes",
+        "data": "keyResult: TC-5934 B",
+        "result": "Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status"
+      },
+      {
+        "step": 6,
+        "action": "Click Parent box and select boxName",
+        "data": "boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes",
+        "result": "2 Boxes are displayed on the list\n\nTC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes - Program box\n\nTC-5934 - Iteration"
+      },
+      {
+        "step": 7,
+        "action": "Select boxName and click Save",
+        "data": "boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes",
+        "result": "Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1"
+      },
+      {
+        "step": 8,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created"
+      },
+      {
+        "step": 9,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5934 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 10,
+        "action": "Click Add and  ‘Create Strategic Theme’ button",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Type strategicThemeName, select period, owner and click Create",
+        "data": "strategicThemeName: TC-5934 C\n\nperiod: Q1 Y2026\n\nowner: testlab.12@softwareplant.com",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 12,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective",
+        "data": "newObjective: TC-5934 D",
+        "result": "New Objective TC-5934 D is created under Strategic Theme TC-5934 C."
+      },
+      {
+        "step": 13,
+        "action": "Click on Plus button next to TC-5934 D objective, type name of keyResult and click on Link Boxes",
+        "data": "keyResult: TC-5901 E",
+        "result": "Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status"
+      },
+      {
+        "step": 14,
+        "action": "Click Parent box and select boxName",
+        "data": "boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes",
+        "result": "2 Boxes are displayed\n\n* TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes\n* TC-5934 Iteration"
+      },
+      {
+        "step": 15,
+        "action": "Select boxName and click Save",
+        "data": "boxName: TC-5934 Iteration",
+        "result": "Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1"
+      },
+      {
+        "step": 16,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created"
+      },
+      {
+        "step": 17,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 18,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5934",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5934\n* Objective: TC-5934 A\n* Key result: TC-5934 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed"
+      },
+      {
+        "step": 19,
+        "action": "Click on OKR owner and select newOwner",
+        "data": "newOwner: testlab.12@softwareplant.com",
+        "result": "Splashscreen on list of OKRs is displayed \"No results found\nYour filter criteria did not match any items. Try adjusting your filters to broaden the search or reset them to view all available options.\"\n\n\"List is limited by filters. To display all existing initiatives\" info icon is displayed"
+      },
+      {
+        "step": 20,
+        "action": "Click on strategic theme picker and select newStrategicTheme",
+        "data": "newStrategicTheme: TC-5934 C",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5934 C\n* Objective: TC-5934 D\n* Key result: TC-5934 E\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 20
+  },
+  "rag": {
+    "id": "TC-5934",
+    "text": "Test: TC-5934 — SPM - Strategic areas - Setting filters and changing between Strategic Themes\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of a boxName\n   Data: boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes\n   Expected: OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context\n2. Click ‘Create Strategic Theme’ button\n   Expected: New Strategic theme modal is displayed\n3. Type strategicThemeName, select period, owner and click Create\n   Data: strategicThemeName: TC-5934\n\nperiod: Y2026\n\nowner: testlab.11@softwareplant.com\n   Expected: Strategic Theme is created and Tree view is displayed \n\nPlus button is displayed next to Strategic Theme\n4. Click on Plus button next to Strategic Theme, add newObjective\n   Data: newObjective: TC-5934 A\n   Expected: New Objective TC-5934 A is created under Strategic Theme TC-5934.\n5. Click on Plus button next to TC-5934 A objective, type name of keyResult and click on Link Boxes\n   Data: keyResult: TC-5934 B\n   Expected: Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status\n6. Click Parent box and select boxName\n   Data: boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes\n   Expected: 2 Boxes are displayed on the list\n\nTC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes - Program box\n\nTC-5934 - Iteration\n7. Select boxName and click Save\n   Data: boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes\n   Expected: Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1\n8. Click Create button\n   Expected: Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created\n9. Click Finish & go back\n   Expected: Strategic Theme TC-5934 is displayed on the list with expand button next to it\n10. Click Add and  ‘Create Strategic Theme’ button\n   Expected: New Strategic theme modal is displayed\n11. Type strategicThemeName, select period, owner and click Create\n   Data: strategicThemeName: TC-5934 C\n\nperiod: Q1 Y2026\n\nowner: testlab.12@softwareplant.com\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n12. Click on Plus button next to Strategic Theme, add newObjective\n   Data: newObjective: TC-5934 D\n   Expected: New Objective TC-5934 D is created under Strategic Theme TC-5934 C.\n13. Click on Plus button next to TC-5934 D objective, type name of keyResult and click on Link Boxes\n   Data: keyResult: TC-5901 E\n   Expected: Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status\n14. Click Parent box and select boxName\n   Data: boxName: TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes\n   Expected: 2 Boxes are displayed\n\n* TC-5934 SPM - Strategic areas - Setting filters and changing between Strategic Themes\n* TC-5934 Iteration\n15. Select boxName and click Save\n   Data: boxName: TC-5934 Iteration\n   Expected: Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1\n16. Click Create button\n   Expected: Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created\n17. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n18. Click on strategicThemeName\n   Data: strategicThemeName: TC-5934\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5934\n* Objective: TC-5934 A\n* Key result: TC-5934 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed\n19. Click on OKR owner and select newOwner\n   Data: newOwner: testlab.12@softwareplant.com\n   Expected: Splashscreen on list of OKRs is displayed \"No results found\nYour filter criteria did not match any items. Try adjusting your filters to broaden the search or reset them to view all available options.\"\n\n\"List is limited by filters. To display all existing initiatives\" info icon is displayed\n20. Click on strategic theme picker and select newStrategicTheme\n   Data: newStrategicTheme: TC-5934 C\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5934 C\n* Objective: TC-5934 D\n* Key result: TC-5934 E\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed",
+    "metadata": {
+      "jira_key": "TC-5934",
+      "issue_id": "1494382",
+      "summary": "SPM - Strategic areas - Setting filters and changing between Strategic Themes",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 20,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

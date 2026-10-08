@@ -1,0 +1,107 @@
+{
+  "test": {
+    "key": "TC-1653",
+    "issue_id": "358560",
+    "url": "https://appfire.atlassian.net/browse/TC-1653",
+    "summary": "Feature area - Marker - LiveSync for markers on Calendar",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Bartosz Drążewski",
+    "reporter": "Ilya Rybakou",
+    "created": "2021-03-24T08:28:52.209-0400",
+    "updated": "2026-06-18T05:53:57.198-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-8 Feature area - Marker",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to app's configuration > General > Live-sync tab\n\nTurn on Enable LiveSync on markers and click Save",
+        "data": "",
+        "result": "Configuration is saved."
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Calendar module of boxName.",
+        "data": "boxName: TC-1653 Feature area - Marker - LiveSync for markers on Calendar",
+        "result": "Calendar module is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Open the same page in another window\n\nPosition the windows so that they are open side by side",
+        "data": "",
+        "result": "Calendar is opened in two different windows, side by side."
+      },
+      {
+        "step": 4,
+        "action": "Refresh a both of the pages with Calendar modules.",
+        "data": "",
+        "result": "The pages are refreshed"
+      },
+      {
+        "step": 5,
+        "action": "Create a marker in the first window",
+        "data": "markerName: Test LiveSync\nmarkerDate: 24/Mar/21",
+        "result": "Marker is displayed in the first window.\n\nAfter a few seconds, marker appears in the second window."
+      },
+      {
+        "step": 6,
+        "action": "Change marker's color and date in the first window",
+        "data": "markerDate: 25/Mar/21\nmarkerColour: light_brown",
+        "result": "Marker is changed in the first window.\n\nAfter a few seconds, marker is changed in the second window."
+      },
+      {
+        "step": 7,
+        "action": "Delete the marker in the first window",
+        "data": "",
+        "result": "Marker is deleted in the first window.\n\nAfter a few seconds, marker is deleted in the second window."
+      },
+      {
+        "step": 8,
+        "action": "Create a marker in the first window\n\nQuickly create a marker with the same date in the second window",
+        "data": "markerName: LiveSync\nmarkerDate: 26/Mar/21",
+        "result": "The first created marker is on top of the other one in both windows."
+      },
+      {
+        "step": 9,
+        "action": "Edit a marker in the first window\n\nQuickly edit the same marker in the second window",
+        "data": "markerDate: 27/Mar/21\nmarkerColour: brown",
+        "result": "Changes from the second edit are applied in both windows."
+      },
+      {
+        "step": 10,
+        "action": "Open marker's edit modal in the first window\n\nDelete the same marker in the second window\n\nUpdate or delete the marker in the first window",
+        "data": "markerName: LiveSync",
+        "result": "Information about non-existent marker appears in the first window.\n\nNo errors occur."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-1653",
+    "text": "Test: TC-1653 — Feature area - Marker - LiveSync for markers on Calendar\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-8 Feature area - Marker\nLabels: teamspace\n\nSteps:\n1. Navigate to app's configuration > General > Live-sync tab\n\nTurn on Enable LiveSync on markers and click Save\n   Expected: Configuration is saved.\n2. Navigate to Calendar module of boxName.\n   Data: boxName: TC-1653 Feature area - Marker - LiveSync for markers on Calendar\n   Expected: Calendar module is displayed\n3. Open the same page in another window\n\nPosition the windows so that they are open side by side\n   Expected: Calendar is opened in two different windows, side by side.\n4. Refresh a both of the pages with Calendar modules.\n   Expected: The pages are refreshed\n5. Create a marker in the first window\n   Data: markerName: Test LiveSync\nmarkerDate: 24/Mar/21\n   Expected: Marker is displayed in the first window.\n\nAfter a few seconds, marker appears in the second window.\n6. Change marker's color and date in the first window\n   Data: markerDate: 25/Mar/21\nmarkerColour: light_brown\n   Expected: Marker is changed in the first window.\n\nAfter a few seconds, marker is changed in the second window.\n7. Delete the marker in the first window\n   Expected: Marker is deleted in the first window.\n\nAfter a few seconds, marker is deleted in the second window.\n8. Create a marker in the first window\n\nQuickly create a marker with the same date in the second window\n   Data: markerName: LiveSync\nmarkerDate: 26/Mar/21\n   Expected: The first created marker is on top of the other one in both windows.\n9. Edit a marker in the first window\n\nQuickly edit the same marker in the second window\n   Data: markerDate: 27/Mar/21\nmarkerColour: brown\n   Expected: Changes from the second edit are applied in both windows.\n10. Open marker's edit modal in the first window\n\nDelete the same marker in the second window\n\nUpdate or delete the marker in the first window\n   Data: markerName: LiveSync\n   Expected: Information about non-existent marker appears in the first window.\n\nNo errors occur.",
+    "metadata": {
+      "jira_key": "TC-1653",
+      "issue_id": "358560",
+      "summary": "Feature area - Marker - LiveSync for markers on Calendar",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-8 Feature area - Marker",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

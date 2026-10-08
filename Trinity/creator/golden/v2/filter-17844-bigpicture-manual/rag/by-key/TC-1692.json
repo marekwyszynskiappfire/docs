@@ -1,0 +1,85 @@
+{
+  "test": {
+    "key": "TC-1692",
+    "issue_id": "356785",
+    "url": "https://appfire.atlassian.net/browse/TC-1692",
+    "summary": "Box module - Board - Reports - Displaying reports group by assignee",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2021-04-07T08:27:29.545-0400",
+    "updated": "2026-03-13T06:20:24.247-0400",
+    "labels": [
+      "can_be_automated",
+      "teamagile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-103 Box module - Board - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName",
+        "data": "boxName: TC-1692 Box module - Board - Reports - Displaying reports group by assignee",
+        "result": "Board module is successfully loaded and displayed. PI1 and PI2 with tasks are visible."
+      },
+      {
+        "step": 2,
+        "action": "Click on Reports icon from header and click on cog icon.",
+        "data": "",
+        "result": "Reports are loaded with the default view:\n- Chart type: Pie\n- Data source: Tasks\n- Group by: Status\n- Count: Tasks"
+      },
+      {
+        "step": 3,
+        "action": "Set Group by Assignee",
+        "data": "",
+        "result": "Reports are loaded with the view:\n- Chart type: Pie\n- Data source: Tasks\n- Group by: Assignee\n- Count: Tasks"
+      },
+      {
+        "step": 4,
+        "action": "Check Reports values for teamName in PI1",
+        "data": "teamName: TC1692TeamA",
+        "result": "Values:\n- 50% User TC1692A\n- 50% User TC1692B"
+      },
+      {
+        "step": 5,
+        "action": "Click \"Level down\" button of subboxName",
+        "data": "subboxName: PI1",
+        "result": "Iteration and Iteration1 are visible. Iteration box has a pie chart in TC1692TeamB."
+      },
+      {
+        "step": 6,
+        "action": "Check Reports values for teamName in Iteration",
+        "data": "teamName: TC1692TeamB",
+        "result": "Values:\n- 25% User TC1692A\n- 25% User TC1692B\n- 25% User TC1692C\n- 25% User TC1692D"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-1692",
+    "text": "Test: TC-1692 — Box module - Board - Reports - Displaying reports group by assignee\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-103 Box module - Board - Reports\nLabels: can_be_automated, teamagile\n\nSteps:\n1. Navigate to Board module of boxName\n   Data: boxName: TC-1692 Box module - Board - Reports - Displaying reports group by assignee\n   Expected: Board module is successfully loaded and displayed. PI1 and PI2 with tasks are visible.\n2. Click on Reports icon from header and click on cog icon.\n   Expected: Reports are loaded with the default view:\n- Chart type: Pie\n- Data source: Tasks\n- Group by: Status\n- Count: Tasks\n3. Set Group by Assignee\n   Expected: Reports are loaded with the view:\n- Chart type: Pie\n- Data source: Tasks\n- Group by: Assignee\n- Count: Tasks\n4. Check Reports values for teamName in PI1\n   Data: teamName: TC1692TeamA\n   Expected: Values:\n- 50% User TC1692A\n- 50% User TC1692B\n5. Click \"Level down\" button of subboxName\n   Data: subboxName: PI1\n   Expected: Iteration and Iteration1 are visible. Iteration box has a pie chart in TC1692TeamB.\n6. Check Reports values for teamName in Iteration\n   Data: teamName: TC1692TeamB\n   Expected: Values:\n- 25% User TC1692A\n- 25% User TC1692B\n- 25% User TC1692C\n- 25% User TC1692D",
+    "metadata": {
+      "jira_key": "TC-1692",
+      "issue_id": "356785",
+      "summary": "Box module - Board - Reports - Displaying reports group by assignee",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-103 Box module - Board - Reports",
+      "labels": [
+        "can_be_automated",
+        "teamagile"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

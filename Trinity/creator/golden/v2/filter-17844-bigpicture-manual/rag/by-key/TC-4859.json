@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-4859",
+    "issue_id": "825546",
+    "url": "https://appfire.atlassian.net/browse/TC-4859",
+    "summary": "Feature area - Exporting - Exporting and then Importing tasks without dates from same file - CSV",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2024-08-09T02:42:24.696-0400",
+    "updated": "2026-08-11T08:11:13.613-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-4296 Feature area - Exporting - Exporting and then Importing tasks without dates from same file - CSV - Export",
+        "result": "Gantt module is displayed. 9 tasks are displayed on gantt chart and WBS.\n\n* Bug1 - no start date\n* Bug2 - no end date\n* Bug3 - no start & end date\n* Story1 - no start date\n* Story2 - no end date\n* Story3 - no start & end date\n* Task1 - no start date\n* Task2 - no end date\n* Task3 - no start & end date"
+      },
+      {
+        "step": 2,
+        "action": "Click the Export button in the module's header",
+        "data": "",
+        "result": "Export manager is displayed, with following options available:\n\n* Export to image (PDF) Range dropdown (\"Full scope\" option is displayed as default)\n* Export to CSV (CSV)\n* MS Excel export (XLSX)\n* MS Project Empty Template - MPP, MPX, PDF, XML"
+      },
+      {
+        "step": 3,
+        "action": "Export to CSV and check if data in file is correct",
+        "data": "",
+        "result": "Export to CSV and check if data in file is correct"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-4296 Feature area - Exporting - Exporting and then Importing tasks without dates from same file - CSV - Import",
+        "result": "Gantt module is displayed. Splash screen is displayed with two tiles:  Create new, Define scope"
+      },
+      {
+        "step": 5,
+        "action": "Click \"+Add task\" dropdown",
+        "data": "",
+        "result": "Dropdown is expanded. Following options are available:\n- Create task\nCreate sub-task (disabled)\n- Manage scope definition\n- Import tasks from file\n- Clone existing scope"
+      },
+      {
+        "step": 6,
+        "action": "Select \"Import tasks from file\" option",
+        "data": "",
+        "result": "Modal window is displayed with following fields:\n- Add an import file containing tasks to be imported\n- Select the Jira project where the tasks will be created\n\nIn modal window is switcher \"Convert parent tasks to Jira Epics\" and it is in off position."
+      },
+      {
+        "step": 7,
+        "action": "Upload the file that has been downloaded after clicking export",
+        "data": "",
+        "result": "File is uploaded. \"Map the columns \" section appears. Columns from file are correctly mapped to all corresponding task fields"
+      },
+      {
+        "step": 8,
+        "action": "Select projectName in modal window",
+        "data": "projectName: TC-4296B Feature area - Exporting - Exporting tasks without dates - Import",
+        "result": "Select the Jira project where the tasks will be created is set to \"TC-4296B Feature area - Exporting - Exporting tasks without dates - Import\""
+      },
+      {
+        "step": 9,
+        "action": "Click \"Import\" button",
+        "data": "",
+        "result": "Confirmation dialog with message\" Imported tasks will be added gradually. Refresh the page so that you can observe the results. \" appears."
+      },
+      {
+        "step": 10,
+        "action": "Click \"Proceed\" button",
+        "data": "",
+        "result": "Import file modal is closed."
+      },
+      {
+        "step": 11,
+        "action": "Refresh the page when the following message appears: \"Tasks have been successfully imported. Now you can refresh the page to see your tasks.\"",
+        "data": "",
+        "result": "Tasks become visible."
+      },
+      {
+        "step": 12,
+        "action": "Expand all tasks by arrow down next to column Summary",
+        "data": "",
+        "result": "All tasks are imported. Following structure is displayed in WBS:\n\n* Bug1 - no start date\n* Bug2 - no end date\n* Bug3 - no start & end date\n* Story1 - no start date\n* Story2 - no end date\n* Story3 - no start & end date\n* Task1 - no start date\n* Task2 - no end date\n* Task3 - no start & end date"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-4859",
+    "text": "Test: TC-4859 — Feature area - Exporting - Exporting and then Importing tasks without dates from same file - CSV\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-4296 Feature area - Exporting - Exporting and then Importing tasks without dates from same file - CSV - Export\n   Expected: Gantt module is displayed. 9 tasks are displayed on gantt chart and WBS.\n\n* Bug1 - no start date\n* Bug2 - no end date\n* Bug3 - no start & end date\n* Story1 - no start date\n* Story2 - no end date\n* Story3 - no start & end date\n* Task1 - no start date\n* Task2 - no end date\n* Task3 - no start & end date\n2. Click the Export button in the module's header\n   Expected: Export manager is displayed, with following options available:\n\n* Export to image (PDF) Range dropdown (\"Full scope\" option is displayed as default)\n* Export to CSV (CSV)\n* MS Excel export (XLSX)\n* MS Project Empty Template - MPP, MPX, PDF, XML\n3. Export to CSV and check if data in file is correct\n   Expected: Export to CSV and check if data in file is correct\n4. Navigate to Gantt module of boxName\n   Data: boxName: TC-4296 Feature area - Exporting - Exporting and then Importing tasks without dates from same file - CSV - Import\n   Expected: Gantt module is displayed. Splash screen is displayed with two tiles:  Create new, Define scope\n5. Click \"+Add task\" dropdown\n   Expected: Dropdown is expanded. Following options are available:\n- Create task\nCreate sub-task (disabled)\n- Manage scope definition\n- Import tasks from file\n- Clone existing scope\n6. Select \"Import tasks from file\" option\n   Expected: Modal window is displayed with following fields:\n- Add an import file containing tasks to be imported\n- Select the Jira project where the tasks will be created\n\nIn modal window is switcher \"Convert parent tasks to Jira Epics\" and it is in off position.\n7. Upload the file that has been downloaded after clicking export\n   Expected: File is uploaded. \"Map the columns \" section appears. Columns from file are correctly mapped to all corresponding task fields\n8. Select projectName in modal window\n   Data: projectName: TC-4296B Feature area - Exporting - Exporting tasks without dates - Import\n   Expected: Select the Jira project where the tasks will be created is set to \"TC-4296B Feature area - Exporting - Exporting tasks without dates - Import\"\n9. Click \"Import\" button\n   Expected: Confirmation dialog with message\" Imported tasks will be added gradually. Refresh the page so that you can observe the results. \" appears.\n10. Click \"Proceed\" button\n   Expected: Import file modal is closed.\n11. Refresh the page when the following message appears: \"Tasks have been successfully imported. Now you can refresh the page to see your tasks.\"\n   Expected: Tasks become visible.\n12. Expand all tasks by arrow down next to column Summary\n   Expected: All tasks are imported. Following structure is displayed in WBS:\n\n* Bug1 - no start date\n* Bug2 - no end date\n* Bug3 - no start & end date\n* Story1 - no start date\n* Story2 - no end date\n* Story3 - no start & end date\n* Task1 - no start date\n* Task2 - no end date\n* Task3 - no start & end date",
+    "metadata": {
+      "jira_key": "TC-4859",
+      "issue_id": "825546",
+      "summary": "Feature area - Exporting - Exporting and then Importing tasks without dates from same file - CSV",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

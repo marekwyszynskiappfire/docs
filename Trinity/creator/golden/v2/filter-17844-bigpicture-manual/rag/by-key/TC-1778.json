@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-1778",
+    "issue_id": "356805",
+    "url": "https://appfire.atlassian.net/browse/TC-1778",
+    "summary": "Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Artur Sędzik",
+    "reporter": "Artur Sędzik",
+    "created": "2021-04-20T08:50:18.923-0400",
+    "updated": "2026-03-04T09:17:42.566-0500",
+    "labels": [
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Log in as a BoxEditor.",
+        "data": "[Atlassian Server]\nusername: boxeditor\npassword: sdfoijj\n[Atlassian Cloud]\nusername: testlab.11@softwareplant.com\npassword: alamakota123",
+        "result": "User can be logged on successfully."
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Overview module of Root Box.",
+        "data": "",
+        "result": "Overview module loads and boxes are displayed."
+      },
+      {
+        "step": 3,
+        "action": "Click the elipsis icon on the right of boxName",
+        "data": "boxName: TC-1778 Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor",
+        "result": "The menu opens. All of the options are grayed out."
+      },
+      {
+        "step": 4,
+        "action": "Click on the optionName",
+        "data": "optionName: Configure",
+        "result": "Nothing happens. The option is disabled."
+      },
+      {
+        "step": 5,
+        "action": "Hover over the \"?\" on the right of any grayed out option from the menu.",
+        "data": "",
+        "result": "\"Insufficient permissions\" tooltip is displayed."
+      },
+      {
+        "step": 6,
+        "action": "Click on the chevron on tree root next to boxName",
+        "data": "boxName: TC-1778 Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor",
+        "result": "TC-1778 Program Increment is displayed underneath boxName"
+      },
+      {
+        "step": 7,
+        "action": "Click the elipsis icon on the right of boxName",
+        "data": "boxName: TC-1778 Program Increment",
+        "result": "The menu opens. All of the options are grayed out."
+      },
+      {
+        "step": 8,
+        "action": "Click on the optionName",
+        "data": "optionName: Configure",
+        "result": "Nothing happens. The option is disabled."
+      },
+      {
+        "step": 9,
+        "action": "Hover over the \"?\" on the right of any grayed out option from the menu.",
+        "data": "",
+        "result": "\"Insufficient permissions\" tooltip is displayed."
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Overview module of boxName",
+        "data": "boxName: TC-1778 Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor",
+        "result": "Overview module loads and boxes are displayed."
+      },
+      {
+        "step": 11,
+        "action": "Open the module switcher.",
+        "data": "",
+        "result": "Module switcher opens and modules are displayed. The \"Configuration\" option at the bottom of the list is grayed out, same as Manage modules option"
+      },
+      {
+        "step": 12,
+        "action": "Click on the optionName",
+        "data": "optionName: Configuration",
+        "result": "Nothing happens. The option is disabled."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-1778",
+    "text": "Test: TC-1778 — Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-88 Feature area - Box - Attributes displaying and editing\nLabels: teamboxes\n\nSteps:\n1. Log in as a BoxEditor.\n   Data: [Atlassian Server]\nusername: boxeditor\npassword: sdfoijj\n[Atlassian Cloud]\nusername: testlab.11@softwareplant.com\npassword: alamakota123\n   Expected: User can be logged on successfully.\n2. Navigate to Overview module of Root Box.\n   Expected: Overview module loads and boxes are displayed.\n3. Click the elipsis icon on the right of boxName\n   Data: boxName: TC-1778 Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor\n   Expected: The menu opens. All of the options are grayed out.\n4. Click on the optionName\n   Data: optionName: Configure\n   Expected: Nothing happens. The option is disabled.\n5. Hover over the \"?\" on the right of any grayed out option from the menu.\n   Expected: \"Insufficient permissions\" tooltip is displayed.\n6. Click on the chevron on tree root next to boxName\n   Data: boxName: TC-1778 Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor\n   Expected: TC-1778 Program Increment is displayed underneath boxName\n7. Click the elipsis icon on the right of boxName\n   Data: boxName: TC-1778 Program Increment\n   Expected: The menu opens. All of the options are grayed out.\n8. Click on the optionName\n   Data: optionName: Configure\n   Expected: Nothing happens. The option is disabled.\n9. Hover over the \"?\" on the right of any grayed out option from the menu.\n   Expected: \"Insufficient permissions\" tooltip is displayed.\n10. Navigate to Overview module of boxName\n   Data: boxName: TC-1778 Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor\n   Expected: Overview module loads and boxes are displayed.\n11. Open the module switcher.\n   Expected: Module switcher opens and modules are displayed. The \"Configuration\" option at the bottom of the list is grayed out, same as Manage modules option\n12. Click on the optionName\n   Data: optionName: Configuration\n   Expected: Nothing happens. The option is disabled.",
+    "metadata": {
+      "jira_key": "TC-1778",
+      "issue_id": "356805",
+      "summary": "Feature area - Box - Attributes displaying and editing -  Editing boxes on the Overview module - log as Box Editor",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+      "labels": [
+        "teamboxes"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

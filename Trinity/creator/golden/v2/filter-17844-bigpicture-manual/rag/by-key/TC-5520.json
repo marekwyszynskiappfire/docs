@@ -1,0 +1,109 @@
+{
+  "test": {
+    "key": "TC-5520",
+    "issue_id": "1199053",
+    "url": "https://appfire.atlassian.net/browse/TC-5520",
+    "summary": "new Box Module - Resources - Resource Grid -  Displaying Resources module when box is archived",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Monika Cecot",
+    "reporter": "Monika Cecot",
+    "created": "2025-04-29T05:19:20.004-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Overview module of Root Box (Main)",
+        "data": "",
+        "result": "Overview module is loaded and Boxes are displayed"
+      },
+      {
+        "step": 2,
+        "action": "Open the \"View\" dropdown and select \"Show Archived boxes\" option.",
+        "data": "",
+        "result": "Option is selected and archived Boxes are displayed in the Hierarchy."
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName: TC-5520 Box Module - Resources - Resource Grid - Displaying Resources module when box is archived",
+        "result": "Resources module is displayed\n\nTimeline starts at 1/06/2022\n\nFollowing tasks are displayed on Resource Grid: \n\n* Task 1\n* Task 2 \n* Task 3\n\nAll of the tasks are inactive (greyed out) but clickable"
+      },
+      {
+        "step": 4,
+        "action": "Click on ‘Export’ button",
+        "data": "",
+        "result": "'Export' button is active. \nThe 'Export data' dialog opens."
+      },
+      {
+        "step": 5,
+        "action": "Close the ‘Export data' dialog. Click on the 'Tasks' button in the header menu and hover over the information icons 'Jira work item' and 'BigPicture task’ options.",
+        "data": "",
+        "result": "Three options are visible in the dropdown list:\n\n* Jira work item (greyed out and with 'i' icon)\n* BigPicture task (greyed out and with 'i' icon)\n* Manage work items\n\nAfter hovering over the ‘Jira work item' and 'BigPicture task’ an unavailable pointer appears and after hovering over the information icons the tooltip is displayed: \"This action is unavailable in the read-only mode\"."
+      },
+      {
+        "step": 6,
+        "action": "Hover the mouse over the taskbar with taskName.",
+        "data": "taskName: Task 1",
+        "result": "Task is greyed out. \nAfter hovering the mouse over the task an unavailable pointer appears and tooltip is displayed with the information: \"You can't edit this task. TC-5520 Box Module - Resources - Resource Grid - Displaying Resources module when box is archived is closed or archived and currently functions in a read-only mode.\""
+      },
+      {
+        "step": 7,
+        "action": "Click on any task to displayed task details dialog and set contouring mode to Back-loaded",
+        "data": "",
+        "result": "Task details dialog is displayed. It is impossible to change contouring mode in read only mode."
+      },
+      {
+        "step": 8,
+        "action": "In task details dialog change Start date and End date.",
+        "data": "",
+        "result": "It is impossible to change the start date and end date."
+      },
+      {
+        "step": 9,
+        "action": "Click on Original estimate to change it",
+        "data": "",
+        "result": "It is impossible to change the Original estimate"
+      },
+      {
+        "step": 10,
+        "action": "Click on Find Perfect match button",
+        "data": "",
+        "result": "Nothing happens, Find Perfect match option is inactive."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-5520",
+    "text": "Test: TC-5520 — new Box Module - Resources - Resource Grid -  Displaying Resources module when box is archived\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: be-enterprise, can_be_automated\n\nSteps:\n1. Navigate to Overview module of Root Box (Main)\n   Expected: Overview module is loaded and Boxes are displayed\n2. Open the \"View\" dropdown and select \"Show Archived boxes\" option.\n   Expected: Option is selected and archived Boxes are displayed in the Hierarchy.\n3. Navigate to Resources module of boxName\n   Data: boxName: TC-5520 Box Module - Resources - Resource Grid - Displaying Resources module when box is archived\n   Expected: Resources module is displayed\n\nTimeline starts at 1/06/2022\n\nFollowing tasks are displayed on Resource Grid: \n\n* Task 1\n* Task 2 \n* Task 3\n\nAll of the tasks are inactive (greyed out) but clickable\n4. Click on ‘Export’ button\n   Expected: 'Export' button is active. \nThe 'Export data' dialog opens.\n5. Close the ‘Export data' dialog. Click on the 'Tasks' button in the header menu and hover over the information icons 'Jira work item' and 'BigPicture task’ options.\n   Expected: Three options are visible in the dropdown list:\n\n* Jira work item (greyed out and with 'i' icon)\n* BigPicture task (greyed out and with 'i' icon)\n* Manage work items\n\nAfter hovering over the ‘Jira work item' and 'BigPicture task’ an unavailable pointer appears and after hovering over the information icons the tooltip is displayed: \"This action is unavailable in the read-only mode\".\n6. Hover the mouse over the taskbar with taskName.\n   Data: taskName: Task 1\n   Expected: Task is greyed out. \nAfter hovering the mouse over the task an unavailable pointer appears and tooltip is displayed with the information: \"You can't edit this task. TC-5520 Box Module - Resources - Resource Grid - Displaying Resources module when box is archived is closed or archived and currently functions in a read-only mode.\"\n7. Click on any task to displayed task details dialog and set contouring mode to Back-loaded\n   Expected: Task details dialog is displayed. It is impossible to change contouring mode in read only mode.\n8. In task details dialog change Start date and End date.\n   Expected: It is impossible to change the start date and end date.\n9. Click on Original estimate to change it\n   Expected: It is impossible to change the Original estimate\n10. Click on Find Perfect match button\n   Expected: Nothing happens, Find Perfect match option is inactive.",
+    "metadata": {
+      "jira_key": "TC-5520",
+      "issue_id": "1199053",
+      "summary": "new Box Module - Resources - Resource Grid -  Displaying Resources module when box is archived",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

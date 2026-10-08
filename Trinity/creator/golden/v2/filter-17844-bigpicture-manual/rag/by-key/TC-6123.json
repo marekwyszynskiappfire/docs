@@ -1,0 +1,143 @@
+{
+  "test": {
+    "key": "TC-6123",
+    "issue_id": "1676032",
+    "url": "https://appfire.atlassian.net/browse/TC-6123",
+    "summary": "SPM - OKR - Creating Date type custom field",
+    "description": "This test verifies creation of a Data type custom field using the creation modal and its correct behavior across the application.\n\n* Creating a Data type custom field \n* Verifying that the field appears in the Fields list\n* Verifying that the field is visible in all relevant places:\n** OKR Detail, Overview table, Side Panel, creation dialog, and tree view\n* Verifying that the custom field is available for all OKR types (Strategic Theme, Objective, Key Result)\n* Verifying that a value can be selected during OKR creation\n* Verifying that the selected value is saved correctly and displayed in all supported views",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-05-05T08:17:48.815-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR settings → Fields of boxName",
+        "data": "boxName: TC-6123 SPM - OKR - Creating Data type custom field",
+        "result": "Fields settings page is displayed."
+      },
+      {
+        "step": 2,
+        "action": "Click on \"Create new\" button.",
+        "data": "",
+        "result": "\"Create custom field\" modal is displayed."
+      },
+      {
+        "step": 3,
+        "action": "Type field name, select Data field type. Click Create button",
+        "data": "* fieldName: Data field",
+        "result": "Data field is successfully created. New field appears in the \"Your custom fields\" list.\nField name, type and \"Used in\" values are displayed correctly"
+      },
+      {
+        "step": 4,
+        "action": "Open Overview → click Add → Create strategic theme",
+        "data": "",
+        "result": "Creation modal is displayed. Data field is visible in the OKR creation modal with default value \"Not set\""
+      },
+      {
+        "step": 5,
+        "action": "Enter strategic theme name, set period and select value in Data field. Click Create",
+        "data": "* stName: Strategic theme 1\n* period: Y2026\n* data field value: 05/10/2026",
+        "result": "Strategic theme is created and visible in tree view. Data field is visible in the right-side with correct value."
+      },
+      {
+        "step": 6,
+        "action": "Click Add + button next to strategic theme and add objective",
+        "data": "",
+        "result": "Creation modal is displayed. Data field is visible in the OKR creation modal with default value \"Not set\""
+      },
+      {
+        "step": 7,
+        "action": "Enter Objective name, set period and select value in Data field. Click Create",
+        "data": "* objectiveName: Objective 1\n* period: Y2026\n* data field value: 05/10/2026",
+        "result": "Objective is created and visible in tree view. Data field is visible in the right-side with correct value."
+      },
+      {
+        "step": 8,
+        "action": "Click Add + button next to Objective and add Key result",
+        "data": "",
+        "result": "Creation modal is displayed. Data field is visible in the OKR creation modal with default value \"Not set\""
+      },
+      {
+        "step": 9,
+        "action": "Enter Key reslut name, set period and select value in Data field. Click Create",
+        "data": "* key-resultName: KR 1\n* period: Y2026\n* data field value: 05/10/2026",
+        "result": "Key result is created and visible in tree view. Data field is visible in the right-side with correct value."
+      },
+      {
+        "step": 10,
+        "action": "Open Overview and navigate to Data field",
+        "data": "",
+        "result": "Data field is visible in the Overview table for Strategic Theme, Objective and Key result with correct name and values."
+      },
+      {
+        "step": 11,
+        "action": "Click on the grey area of the Strategic theme row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Strategic theme. Data field is visible with correct name and value."
+      },
+      {
+        "step": 12,
+        "action": "Click on the grey area of the Objective row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Objective. Data field is visible with correct name and value."
+      },
+      {
+        "step": 13,
+        "action": "Click on the grey area of the Key-result row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Key result. Data field is visible with correct name and value."
+      },
+      {
+        "step": 14,
+        "action": "Open Strategic theme in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Data field is visible with correct name and value."
+      },
+      {
+        "step": 15,
+        "action": "Open Objective in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Data field is visible with correct name and value."
+      },
+      {
+        "step": 16,
+        "action": "Open Key-result in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Data field is visible with correct name and value."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-6123",
+    "text": "Test: TC-6123 — SPM - OKR - Creating Date type custom field\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-512 OKR - OKR module\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies creation of a Data type custom field using the creation modal and its correct behavior across the application.\n\n* Creating a Data type custom field \n* Verifying that the field appears in the Fields list\n* Verifying that the field is visible in all relevant places:\n** OKR Detail, Overview table, Side Panel, creation dialog, and tree view\n* Verifying that the custom field is available for all OKR types (Strategic Theme, Objective, Key Result)\n* Verifying that a value can be selected during OKR creation\n* Verifying that the selected value is saved correctly and displayed in all supported views\n\nSteps:\n1. Navigate to OKR settings → Fields of boxName\n   Data: boxName: TC-6123 SPM - OKR - Creating Data type custom field\n   Expected: Fields settings page is displayed.\n2. Click on \"Create new\" button.\n   Expected: \"Create custom field\" modal is displayed.\n3. Type field name, select Data field type. Click Create button\n   Data: * fieldName: Data field\n   Expected: Data field is successfully created. New field appears in the \"Your custom fields\" list.\nField name, type and \"Used in\" values are displayed correctly\n4. Open Overview → click Add → Create strategic theme\n   Expected: Creation modal is displayed. Data field is visible in the OKR creation modal with default value \"Not set\"\n5. Enter strategic theme name, set period and select value in Data field. Click Create\n   Data: * stName: Strategic theme 1\n* period: Y2026\n* data field value: 05/10/2026\n   Expected: Strategic theme is created and visible in tree view. Data field is visible in the right-side with correct value.\n6. Click Add + button next to strategic theme and add objective\n   Expected: Creation modal is displayed. Data field is visible in the OKR creation modal with default value \"Not set\"\n7. Enter Objective name, set period and select value in Data field. Click Create\n   Data: * objectiveName: Objective 1\n* period: Y2026\n* data field value: 05/10/2026\n   Expected: Objective is created and visible in tree view. Data field is visible in the right-side with correct value.\n8. Click Add + button next to Objective and add Key result\n   Expected: Creation modal is displayed. Data field is visible in the OKR creation modal with default value \"Not set\"\n9. Enter Key reslut name, set period and select value in Data field. Click Create\n   Data: * key-resultName: KR 1\n* period: Y2026\n* data field value: 05/10/2026\n   Expected: Key result is created and visible in tree view. Data field is visible in the right-side with correct value.\n10. Open Overview and navigate to Data field\n   Expected: Data field is visible in the Overview table for Strategic Theme, Objective and Key result with correct name and values.\n11. Click on the grey area of the Strategic theme row\n   Expected: Side panel is opened on the right side and displays details of the selected Strategic theme. Data field is visible with correct name and value.\n12. Click on the grey area of the Objective row\n   Expected: Side panel is opened on the right side and displays details of the selected Objective. Data field is visible with correct name and value.\n13. Click on the grey area of the Key-result row\n   Expected: Side panel is opened on the right side and displays details of the selected Key result. Data field is visible with correct name and value.\n14. Open Strategic theme in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Data field is visible with correct name and value.\n15. Open Objective in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Data field is visible with correct name and value.\n16. Open Key-result in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Data field is visible with correct name and value.",
+    "metadata": {
+      "jira_key": "TC-6123",
+      "issue_id": "1676032",
+      "summary": "SPM - OKR - Creating Date type custom field",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "test": {
+    "key": "TC-6142",
+    "issue_id": "1682512",
+    "url": "https://appfire.atlassian.net/browse/TC-6142",
+    "summary": "SPM - Priorities - Deleting metrics for goals on Gantt module",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-05-07T09:40:58.214-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "paulina-q2-2026",
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of a boxName",
+        "data": "boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click Create and select Strategic Theme",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-6142\n\nperiod: Y2026",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button, add newObjective and add newKeyResult",
+        "data": "newObjective: TC-6142 A\n\nnewKeyResult: TC-6142 B",
+        "result": "Periods are automatically populated. New Objective TC-6142 A is created under Strategic Theme TC-6142. New Key result TC-6142 B is created under Objective TC-6142 A"
+      },
+      {
+        "step": 5,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-6142 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 6,
+        "action": "Click on keyResultName and click on Edit linked issues",
+        "data": "keyResultName: TC-6142 B",
+        "result": "Edit linked issues modal window is displayed\n\nCreate issue button is displayed\n\nSelect manually and Automated linking tabs are displayed"
+      },
+      {
+        "step": 7,
+        "action": "Click project and select boxName",
+        "data": "boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module",
+        "result": "Following tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 8,
+        "action": "Select taskNames and click Save",
+        "data": "taskNames: Task 1, Task 2, Task 3, Task 4, Task 5",
+        "result": "Modal window disappeared\n\nIssues Task 1, Task 2, Task 3, Task 4, Task 5 are linked to this box"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Configuration → Tasks → Task Structure, select newTaskStructure and click Save",
+        "data": "newTaskStructure: Objectives & Key results",
+        "result": "New Structure Objectives & Key results is Saved"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Priorities module of a boxName",
+        "data": "boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module",
+        "result": "Priorities module is displayed\n\nTasks tab is selected\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 11,
+        "action": "Click on OKRs tab",
+        "data": "",
+        "result": "Following OKRs are displayed:\n\n* Strategic Theme: TC-6142 \n* Objectives: TC-6142 A\n* Key Results: TC-6142 B"
+      },
+      {
+        "step": 12,
+        "action": "Set following values for okrName",
+        "data": "okrName: TC-6142\n\nImpact: Low \n\nEase: Hard\n\nConfidence: Medium",
+        "result": "Following values are set for OKR TC-6142\n\nImpact: Low \n\nEase: Hard\n\nConfidence: Medium\n\nScore is 72"
+      },
+      {
+        "step": 13,
+        "action": "Set following values for okrName",
+        "data": "okrName: TC-6142 A\n\nImpact: High \n\nEase: Easy\n\nConfidence: High",
+        "result": "Following values are set for okr TC-6142 A\n\nImpact: High \n\nEase: Easy\n\nConfidence: High\n\nScore is 448"
+      },
+      {
+        "step": 14,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module",
+        "result": "Following structure is displayed\n\n* Strategic Theme TC-6142 \n** Objective TC-6142 A\n*** Key result TC-6142 B\n**** Task 1\n**** Task 2\n**** Task 3\n**** Task 4\n**** Task 5"
+      },
+      {
+        "step": 15,
+        "action": "Click on add or edit column and add columnName",
+        "data": "columnName: Priority score",
+        "result": "Following values are displayed for OKRs\n\n* Strategic Theme TC-6142 - 72\n** Objective TC-6142 A - 448\n*** Key result TC-6142 B - empty"
+      },
+      {
+        "step": 16,
+        "action": "Click on okrName score",
+        "data": "okrName: TC-6142",
+        "result": "Priority score details modal is displayed\n\nFollowing values are displayed:\n\nImpact: Low\nEase: Hard\nConfidence: Medium"
+      },
+      {
+        "step": 17,
+        "action": "Hover over Ease value and click on it",
+        "data": "",
+        "result": "Dropdown with options is displayed\n\n\"X\" button is displayed"
+      },
+      {
+        "step": 18,
+        "action": "Click on \"X\" button next to Ease value",
+        "data": "",
+        "result": "Value of Ease is deleted \n\nModal window is closed\n\nValue of Priority score for okr TC-6142 is empty"
+      },
+      {
+        "step": 19,
+        "action": "Navigate to Priorities module of a boxName",
+        "data": "boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module",
+        "result": "Priorities module is displayed"
+      },
+      {
+        "step": 20,
+        "action": "Click on OKRs tab",
+        "data": "",
+        "result": "OKRs tab is displayed with following okrs:\n\n* TC-6142\n* TC-6142 A\n* TC-6142 B"
+      },
+      {
+        "step": 21,
+        "action": "Hover over Ease value and click on it",
+        "data": "okrName: TC-6142 A",
+        "result": "Dropdown with options is displayed\n\n\"X\" button is displayed"
+      },
+      {
+        "step": 22,
+        "action": "Click on \"X\" button next to Ease value",
+        "data": "",
+        "result": "Value of Ease is deleted\n\nValue of Priority score for TC-6142 A is empty"
+      },
+      {
+        "step": 23,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module",
+        "result": "OKRs values are not displayed in the Priorities module"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 23
+  },
+  "rag": {
+    "id": "TC-6142",
+    "text": "Test: TC-6142 — SPM - Priorities - Deleting metrics for goals on Gantt module\nPriority: High | Status: Done | Type: Manual\nFolder: /\nLabels: paulina-q2-2026, spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of a boxName\n   Data: boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module\n   Expected: OKR module is displayed\n2. Click Create and select Strategic Theme\n   Expected: New Strategic theme modal is displayed\n3. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-6142\n\nperiod: Y2026\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n4. Click on Plus button, add newObjective and add newKeyResult\n   Data: newObjective: TC-6142 A\n\nnewKeyResult: TC-6142 B\n   Expected: Periods are automatically populated. New Objective TC-6142 A is created under Strategic Theme TC-6142. New Key result TC-6142 B is created under Objective TC-6142 A\n5. Click Finish & go back\n   Expected: Strategic Theme TC-6142 is displayed on the list with expand button next to it\n6. Click on keyResultName and click on Edit linked issues\n   Data: keyResultName: TC-6142 B\n   Expected: Edit linked issues modal window is displayed\n\nCreate issue button is displayed\n\nSelect manually and Automated linking tabs are displayed\n7. Click project and select boxName\n   Data: boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module\n   Expected: Following tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n8. Select taskNames and click Save\n   Data: taskNames: Task 1, Task 2, Task 3, Task 4, Task 5\n   Expected: Modal window disappeared\n\nIssues Task 1, Task 2, Task 3, Task 4, Task 5 are linked to this box\n9. Navigate to Configuration → Tasks → Task Structure, select newTaskStructure and click Save\n   Data: newTaskStructure: Objectives & Key results\n   Expected: New Structure Objectives & Key results is Saved\n10. Navigate to Priorities module of a boxName\n   Data: boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module\n   Expected: Priorities module is displayed\n\nTasks tab is selected\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n11. Click on OKRs tab\n   Expected: Following OKRs are displayed:\n\n* Strategic Theme: TC-6142 \n* Objectives: TC-6142 A\n* Key Results: TC-6142 B\n12. Set following values for okrName\n   Data: okrName: TC-6142\n\nImpact: Low \n\nEase: Hard\n\nConfidence: Medium\n   Expected: Following values are set for OKR TC-6142\n\nImpact: Low \n\nEase: Hard\n\nConfidence: Medium\n\nScore is 72\n13. Set following values for okrName\n   Data: okrName: TC-6142 A\n\nImpact: High \n\nEase: Easy\n\nConfidence: High\n   Expected: Following values are set for okr TC-6142 A\n\nImpact: High \n\nEase: Easy\n\nConfidence: High\n\nScore is 448\n14. Navigate to Gantt module of a boxName\n   Data: boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module\n   Expected: Following structure is displayed\n\n* Strategic Theme TC-6142 \n** Objective TC-6142 A\n*** Key result TC-6142 B\n**** Task 1\n**** Task 2\n**** Task 3\n**** Task 4\n**** Task 5\n15. Click on add or edit column and add columnName\n   Data: columnName: Priority score\n   Expected: Following values are displayed for OKRs\n\n* Strategic Theme TC-6142 - 72\n** Objective TC-6142 A - 448\n*** Key result TC-6142 B - empty\n16. Click on okrName score\n   Data: okrName: TC-6142\n   Expected: Priority score details modal is displayed\n\nFollowing values are displayed:\n\nImpact: Low\nEase: Hard\nConfidence: Medium\n17. Hover over Ease value and click on it\n   Expected: Dropdown with options is displayed\n\n\"X\" button is displayed\n18. Click on \"X\" button next to Ease value\n   Expected: Value of Ease is deleted \n\nModal window is closed\n\nValue of Priority score for okr TC-6142 is empty\n19. Navigate to Priorities module of a boxName\n   Data: boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module\n   Expected: Priorities module is displayed\n20. Click on OKRs tab\n   Expected: OKRs tab is displayed with following okrs:\n\n* TC-6142\n* TC-6142 A\n* TC-6142 B\n21. Hover over Ease value and click on it\n   Data: okrName: TC-6142 A\n   Expected: Dropdown with options is displayed\n\n\"X\" button is displayed\n22. Click on \"X\" button next to Ease value\n   Expected: Value of Ease is deleted\n\nValue of Priority score for TC-6142 A is empty\n23. Navigate to Gantt module of a boxName\n   Data: boxName: TC-6142 SPM - Priorities - Deleting metrics for goals on Gantt module\n   Expected: OKRs values are not displayed in the Priorities module",
+    "metadata": {
+      "jira_key": "TC-6142",
+      "issue_id": "1682512",
+      "summary": "SPM - Priorities - Deleting metrics for goals on Gantt module",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "paulina-q2-2026",
+        "spm-paulina-tc"
+      ],
+      "step_count": 23,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

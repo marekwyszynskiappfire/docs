@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-4311",
+    "issue_id": "814457",
+    "url": "https://appfire.atlassian.net/browse/TC-4311",
+    "summary": "Box module - Resources - Resource Grid - Find Perfect match calculation basing on Remaining capacity when skills are not assigned to task and user",
+    "description": "Ze względu na ograniczoną liczbę użytkowników na cloudzie, user TC4625A nie ma uprawnień do Jiry,  więc nie można mu przypisać taska. Na potrzeby przejścia przez TC należy dodać usera do grupy Jira Setting → User management → Groups → search jira-users-(instanceName) → Show details → Add group members. Usuń usera z grupy po wykonanym teście",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2024-07-22T09:59:59.881-0400",
+    "updated": "2026-07-21T04:31:23.107-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-109 Box Module - Resources - Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of a boxName\n\nExpand Backlog sidebar",
+        "data": "boxName: TC-4625 Box module - Resources - Resource Grid - Find Perfect match calculation basing on Remaining capacity when skills are not assigned to task and user",
+        "result": "Resources module is displayed. Timeline starts at 1/02/2024. Individuals mode is selected. Time period is month and aggregation is weekly\n\nTask 1 and Task 2 are displayed on Resource Grid in Unassgined row\n\nTask 3 is displayed in the Backlog sidebar\n\nFollowing users are displayed on Resource Grid:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F"
+      },
+      {
+        "step": 2,
+        "action": "Click on taskKey and click on \n\nCloud: Open BigPicture skills and click required skills\n\nServer: Required skills\n\nthen select newSkill and click on Find Perfect Match",
+        "data": "taskName: Task 3\n\nnewSkill: Designer",
+        "result": "6 following users appeared in random order and match 30%:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F"
+      },
+      {
+        "step": 3,
+        "action": "Go back to Resources module and click on taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu.",
+        "data": "taskName: Task 1",
+        "result": "3 of 6 following users appeared in random order. After clicking on 'Show more >'  whole list is displayed with a match 30%:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F"
+      },
+      {
+        "step": 4,
+        "action": "Click on unassigned next to assginee, search and select userName. Close the task details dialog.",
+        "data": "FOR Atlassian Cloud read the description first.\n\nuserName: TC4625A",
+        "result": "Task 1 is assigned to user TC4625A\n\n* 8.0 in green is displayed for user TC4625A for Remaining Capacity, Week 06"
+      },
+      {
+        "step": 5,
+        "action": "Click on taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu",
+        "data": "taskName: Task 2",
+        "result": "3 of 5 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n\n5 users have a match of 30% and one TC4625A with 6%."
+      },
+      {
+        "step": 6,
+        "action": "Change original estimate  to newOriginalEstimate of taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu.",
+        "data": "newOriginalEstimate: 1d\n\ntaskName: Task 2",
+        "result": "Original estimate of Task 2 is changed to 1d\n\n3 of 6 following users appeared in random order. After clicking on 'Show more >'  whole list is displayed with a match 30%:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F"
+      },
+      {
+        "step": 7,
+        "action": "Right-click on userName and add absenceType with startData and endDate",
+        "data": "userName: TC4625D\n\nabsenceType: Holiday\n\nstartDate: 05/Feb/24\n\nendDate: 09/Feb/24",
+        "result": "Absence is added, and a modal window is closed.\n\nUser TC4625D has absence for week 6\n\n* '0' value in gray is displayed in Workload, Remaining capacity and Capacity"
+      },
+      {
+        "step": 8,
+        "action": "Click on taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu.",
+        "data": "taskName: Task 1",
+        "result": "3 of 4 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\n4 users have a match of 30% and one TC4625A with 8%."
+      },
+      {
+        "step": 9,
+        "action": "Change original estimate of taskName to newOriginalEstimate and click three times on icon find perfect match next to assignee field",
+        "data": "taskName: Task 1\n\nnewOriginalEstimate: 1w",
+        "result": "3 of 4 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed with a match 30%:\n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F"
+      },
+      {
+        "step": 10,
+        "action": "Click on tachometer and select newEffortMode",
+        "data": "newEffortMode: Story Points",
+        "result": "Story Points are selected \n\nFollowing values appear next to user TC4625A:\n\nWorkload - 3.0\n\nRemaining capacity - 2.0\n\nCapacity - 5.0"
+      },
+      {
+        "step": 11,
+        "action": "Click on taskName and click three times on icon find perfect match next to assignee field",
+        "data": "taskName: Task 1",
+        "result": "3 of 4 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\n4 users have a match of 30% and one TC4625A with 20%."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-4311",
+    "text": "Test: TC-4311 — Box module - Resources - Resource Grid - Find Perfect match calculation basing on Remaining capacity when skills are not assigned to task and user\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-109 Box Module - Resources - Resource Grid\nLabels: be-enterprise\n\nDescription:\nZe względu na ograniczoną liczbę użytkowników na cloudzie, user TC4625A nie ma uprawnień do Jiry,  więc nie można mu przypisać taska. Na potrzeby przejścia przez TC należy dodać usera do grupy Jira Setting → User management → Groups → search jira-users-(instanceName) → Show details → Add group members. Usuń usera z grupy po wykonanym teście\n\nSteps:\n1. Navigate to Resources module of a boxName\n\nExpand Backlog sidebar\n   Data: boxName: TC-4625 Box module - Resources - Resource Grid - Find Perfect match calculation basing on Remaining capacity when skills are not assigned to task and user\n   Expected: Resources module is displayed. Timeline starts at 1/02/2024. Individuals mode is selected. Time period is month and aggregation is weekly\n\nTask 1 and Task 2 are displayed on Resource Grid in Unassgined row\n\nTask 3 is displayed in the Backlog sidebar\n\nFollowing users are displayed on Resource Grid:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n2. Click on taskKey and click on \n\nCloud: Open BigPicture skills and click required skills\n\nServer: Required skills\n\nthen select newSkill and click on Find Perfect Match\n   Data: taskName: Task 3\n\nnewSkill: Designer\n   Expected: 6 following users appeared in random order and match 30%:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n3. Go back to Resources module and click on taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu.\n   Data: taskName: Task 1\n   Expected: 3 of 6 following users appeared in random order. After clicking on 'Show more >'  whole list is displayed with a match 30%:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n4. Click on unassigned next to assginee, search and select userName. Close the task details dialog.\n   Data: FOR Atlassian Cloud read the description first.\n\nuserName: TC4625A\n   Expected: Task 1 is assigned to user TC4625A\n\n* 8.0 in green is displayed for user TC4625A for Remaining Capacity, Week 06\n5. Click on taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu\n   Data: taskName: Task 2\n   Expected: 3 of 5 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n\n5 users have a match of 30% and one TC4625A with 6%.\n6. Change original estimate  to newOriginalEstimate of taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu.\n   Data: newOriginalEstimate: 1d\n\ntaskName: Task 2\n   Expected: Original estimate of Task 2 is changed to 1d\n\n3 of 6 following users appeared in random order. After clicking on 'Show more >'  whole list is displayed with a match 30%:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625D\n* TC4625E\n* TC4625F\n7. Right-click on userName and add absenceType with startData and endDate\n   Data: userName: TC4625D\n\nabsenceType: Holiday\n\nstartDate: 05/Feb/24\n\nendDate: 09/Feb/24\n   Expected: Absence is added, and a modal window is closed.\n\nUser TC4625D has absence for week 6\n\n* '0' value in gray is displayed in Workload, Remaining capacity and Capacity\n8. Click on taskName and click on icon Find the perfect match next to assignee field, then click on Show more menu.\n   Data: taskName: Task 1\n   Expected: 3 of 4 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\n4 users have a match of 30% and one TC4625A with 8%.\n9. Change original estimate of taskName to newOriginalEstimate and click three times on icon find perfect match next to assignee field\n   Data: taskName: Task 1\n\nnewOriginalEstimate: 1w\n   Expected: 3 of 4 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed with a match 30%:\n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n10. Click on tachometer and select newEffortMode\n   Data: newEffortMode: Story Points\n   Expected: Story Points are selected \n\nFollowing values appear next to user TC4625A:\n\nWorkload - 3.0\n\nRemaining capacity - 2.0\n\nCapacity - 5.0\n11. Click on taskName and click three times on icon find perfect match next to assignee field\n   Data: taskName: Task 1\n   Expected: 3 of 4 following users appeared in random order. \n\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\nAfter clicking on 'Show more >'  whole list is displayed:\n\n* TC4625A\n* TC4625B\n* TC4625C\n* TC4625E\n* TC4625F\n\n4 users have a match of 30% and one TC4625A with 20%.",
+    "metadata": {
+      "jira_key": "TC-4311",
+      "issue_id": "814457",
+      "summary": "Box module - Resources - Resource Grid - Find Perfect match calculation basing on Remaining capacity when skills are not assigned to task and user",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-109 Box Module - Resources - Resource Grid",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

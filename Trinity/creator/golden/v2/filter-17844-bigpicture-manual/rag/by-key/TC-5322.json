@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-5322",
+    "issue_id": "1125038",
+    "url": "https://appfire.atlassian.net/browse/TC-5322",
+    "summary": "Filtering panel - custom tab",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": null,
+    "reporter": "Olga Bryska-Majda",
+    "created": "2025-01-31T09:01:16.417-0500",
+    "updated": "2026-08-06T11:19:32.232-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "UNDER FF IntuitiveFilteringPanelEnabled\n\nNavigate to Calendar module of boxName.",
+        "data": "boxName: TC-5322",
+        "result": "Calendar module of \"TC-5322\" is loaded. There are three tasks visible:\n\n* Task 1 on 1/1/2025\n* Task 2 on 15/1/2025\n* Task 3 on 30/1/2025."
+      },
+      {
+        "step": 2,
+        "action": "Open Filtering panel.",
+        "data": "",
+        "result": "Filtering Panel is opened.\n\nThere are 3 tabs:\n\n* Quick Filters\n* Custom\n* Date Range."
+      },
+      {
+        "step": 3,
+        "action": "Open \"Custom\" tab in the Filtering panel.",
+        "data": "",
+        "result": "\"Custom\" tab is opened.\n\nThere are two drop down lists visible.\n\nThere is an inactive \"+ Add another\" button and inactive \"Clear custom filters\" button."
+      },
+      {
+        "step": 4,
+        "action": "Add filterOne",
+        "data": "filerOne: Color is green",
+        "result": "Custom filter is applied. Task 1 and Task 2 are visible. \n\nThere is an orange dot next to the Filters icon.\n\nThere is a blue number 1 next to \"Custom\" tab and \"Filters\".\n\n\"+ Add another\" and \"Clear custom filters\" buttons are active."
+      },
+      {
+        "step": 5,
+        "action": "Click \"+ Add another\".",
+        "data": "",
+        "result": "Two new dropdown windows are visible.\n\n\"+ Add another\" button is inactive.\n\n\"Clear custom filters\" button is active."
+      },
+      {
+        "step": 6,
+        "action": "Add filterTwo",
+        "data": "filterTwo: Assignee is admin",
+        "result": "Custom filter is applied. Task 1 is visible.\n\nThere is an orange dot next to the Filters icon.\n\nThere is a blue number 1 next to \"Custom\" tab and \"Filters\".\n\n\"+ Add another\" and \"Clear custom filters\" buttons are active."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-5322",
+    "text": "Test: TC-5322 — Filtering panel - custom tab\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /\n\nSteps:\n1. UNDER FF IntuitiveFilteringPanelEnabled\n\nNavigate to Calendar module of boxName.\n   Data: boxName: TC-5322\n   Expected: Calendar module of \"TC-5322\" is loaded. There are three tasks visible:\n\n* Task 1 on 1/1/2025\n* Task 2 on 15/1/2025\n* Task 3 on 30/1/2025.\n2. Open Filtering panel.\n   Expected: Filtering Panel is opened.\n\nThere are 3 tabs:\n\n* Quick Filters\n* Custom\n* Date Range.\n3. Open \"Custom\" tab in the Filtering panel.\n   Expected: \"Custom\" tab is opened.\n\nThere are two drop down lists visible.\n\nThere is an inactive \"+ Add another\" button and inactive \"Clear custom filters\" button.\n4. Add filterOne\n   Data: filerOne: Color is green\n   Expected: Custom filter is applied. Task 1 and Task 2 are visible. \n\nThere is an orange dot next to the Filters icon.\n\nThere is a blue number 1 next to \"Custom\" tab and \"Filters\".\n\n\"+ Add another\" and \"Clear custom filters\" buttons are active.\n5. Click \"+ Add another\".\n   Expected: Two new dropdown windows are visible.\n\n\"+ Add another\" button is inactive.\n\n\"Clear custom filters\" button is active.\n6. Add filterTwo\n   Data: filterTwo: Assignee is admin\n   Expected: Custom filter is applied. Task 1 is visible.\n\nThere is an orange dot next to the Filters icon.\n\nThere is a blue number 1 next to \"Custom\" tab and \"Filters\".\n\n\"+ Add another\" and \"Clear custom filters\" buttons are active.",
+    "metadata": {
+      "jira_key": "TC-5322",
+      "issue_id": "1125038",
+      "summary": "Filtering panel - custom tab",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

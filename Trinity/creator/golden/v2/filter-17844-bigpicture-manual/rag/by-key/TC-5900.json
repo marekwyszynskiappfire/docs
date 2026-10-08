@@ -1,0 +1,161 @@
+{
+  "test": {
+    "key": "TC-5900",
+    "issue_id": "1476754",
+    "url": "https://appfire.atlassian.net/browse/TC-5900",
+    "summary": "SPM - Strategic areas  - Entering Initatives tab and displaying tooltips",
+    "description": "Data is added to sp-images14",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2025-12-30T05:07:59.334-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of a boxName",
+        "data": "boxName: TC-5900 SPM - Strategic areas  - Entering Initatives tab",
+        "result": "OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation: \nRead more about OKRs in a box context"
+      },
+      {
+        "step": 2,
+        "action": "Click ‘Create Strategic Theme’ button",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5900\n\nperiod: Y2025",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective",
+        "data": "newObjective: TC-5900 A",
+        "result": "New Objective TC-5900 A is created under Strategic Theme TC-5900."
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to TC-5900 A objective, type name of keyResult and click on Link Boxes",
+        "data": "keyResult: TC-5900 B",
+        "result": "Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status"
+      },
+      {
+        "step": 6,
+        "action": "Click Parent box, select boxName and click Save",
+        "data": "boxName: TC-5900 SPM - Strategic areas  - Entering Initatives tab",
+        "result": "Modal window is closed"
+      },
+      {
+        "step": 7,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Two pop up windows are displayed\n\n# *Success*\nLinked boxes updated successfully\n# *Success*\nKey result created"
+      },
+      {
+        "step": 8,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5900 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 9,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 10,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5900",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5900\n* Objective: TC-5900 A\n* Key result: TC-5900 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed"
+      },
+      {
+        "step": 11,
+        "action": "Click on Initatives tab",
+        "data": "",
+        "result": "Tab is divided into 3 sections:\n\nFinancials summary:\n\n* Budget: $9000\n* Total cost: $7200 ('80% of the budget' in green lozenge)\n* Actual cost: $7200\n* Remaining cost: -\n* Progress bar 100%\n\nCost distribution by Initiatives:\n\nPie chat with 100% and green color\n\nTable with status tiles:\n\n* NOT STARTED - 100% -  1/1\n* IN PROGRESS - 0% - 0/1\n* CLOSED - 0% - 0/1\n\nTable has following columns with values:\n\n* Initative - TC-5900 SPM - Strategic areas  - Entering Initatives tab\n* Status - NOT STARTED\n* Progress - 0%\n* Leader - empty field\n* KR Name - TC-5900 B with it’s Key\n* KR Period - Y2025\n* Budget - 9,000\n* Actual Cost -  7,200\n* Remaining cost - empty\n* Start date - 2025-12-30\n* End Date - 2025-12-30"
+      },
+      {
+        "step": 12,
+        "action": "Hover over Budget in Financial summary widget",
+        "data": "",
+        "result": "Tooltip \"Total budget allocated for the space.\" is displayed"
+      },
+      {
+        "step": 13,
+        "action": "Hover over total cost in Financial summary widget",
+        "data": "",
+        "result": "Tooltip \"Sum of actual, remaining estimated, and non-labor costs. \"is displayed"
+      },
+      {
+        "step": 14,
+        "action": "Hover over Actual cost in Financial summary widget",
+        "data": "",
+        "result": "Tooltip \"Total amount already spent on the space. \" is displayed"
+      },
+      {
+        "step": 15,
+        "action": "Hover over remaining cost in Financial summary widget",
+        "data": "",
+        "result": "Tooltip \"Projected cost to complete the remaining work.\" is displayed"
+      },
+      {
+        "step": 16,
+        "action": "Hover over Pie chart in Cost distribution by Initatives",
+        "data": "",
+        "result": "Box Name \"TC-5900 SPM - Strategic areas  - Entering Initatives tab and displaying tooltips\" is displayed\n\n'$7,200 with lozenge ‘100% of allocation’' is displayed"
+      },
+      {
+        "step": 17,
+        "action": "Hover over info icon of ‘Budget’ in Table",
+        "data": "",
+        "result": "Tooltip \"FinAdmin or FinViewer role is required to view this data.\" is displayed"
+      },
+      {
+        "step": 18,
+        "action": "Hover over info icon of ‘Actual cost’ in table",
+        "data": "",
+        "result": "Tooltip \"FinAdmin or FinViewer role is required to view this data.\" is displayed"
+      },
+      {
+        "step": 19,
+        "action": "Hover over info icon of ‘Remaining cost’ in table",
+        "data": "",
+        "result": "Tooltip \"FinAdmin or FinViewer role is required to view this data.\" is displayed"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 19
+  },
+  "rag": {
+    "id": "TC-5900",
+    "text": "Test: TC-5900 — SPM - Strategic areas  - Entering Initatives tab and displaying tooltips\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nDescription:\nData is added to sp-images14\n\nSteps:\n1. Navigate to OKR module of a boxName\n   Data: boxName: TC-5900 SPM - Strategic areas  - Entering Initatives tab\n   Expected: OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation: \nRead more about OKRs in a box context\n2. Click ‘Create Strategic Theme’ button\n   Expected: New Strategic theme modal is displayed\n3. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5900\n\nperiod: Y2025\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n4. Click on Plus button next to Strategic Theme, add newObjective\n   Data: newObjective: TC-5900 A\n   Expected: New Objective TC-5900 A is created under Strategic Theme TC-5900.\n5. Click on Plus button next to TC-5900 A objective, type name of keyResult and click on Link Boxes\n   Data: keyResult: TC-5900 B\n   Expected: Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status\n6. Click Parent box, select boxName and click Save\n   Data: boxName: TC-5900 SPM - Strategic areas  - Entering Initatives tab\n   Expected: Modal window is closed\n7. Click Create button\n   Expected: Two pop up windows are displayed\n\n# *Success*\nLinked boxes updated successfully\n# *Success*\nKey result created\n8. Click Finish & go back\n   Expected: Strategic Theme TC-5900 is displayed on the list with expand button next to it\n9. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n10. Click on strategicThemeName\n   Data: strategicThemeName: TC-5900\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5900\n* Objective: TC-5900 A\n* Key result: TC-5900 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 1 - 0% closed\n* Key results: 1 - 0% closed\n11. Click on Initatives tab\n   Expected: Tab is divided into 3 sections:\n\nFinancials summary:\n\n* Budget: $9000\n* Total cost: $7200 ('80% of the budget' in green lozenge)\n* Actual cost: $7200\n* Remaining cost: -\n* Progress bar 100%\n\nCost distribution by Initiatives:\n\nPie chat with 100% and green color\n\nTable with status tiles:\n\n* NOT STARTED - 100% -  1/1\n* IN PROGRESS - 0% - 0/1\n* CLOSED - 0% - 0/1\n\nTable has following columns with values:\n\n* Initative - TC-5900 SPM - Strategic areas  - Entering Initatives tab\n* Status - NOT STARTED\n* Progress - 0%\n* Leader - empty field\n* KR Name - TC-5900 B with it’s Key\n* KR Period - Y2025\n* Budget - 9,000\n* Actual Cost -  7,200\n* Remaining cost - empty\n* Start date - 2025-12-30\n* End Date - 2025-12-30\n12. Hover over Budget in Financial summary widget\n   Expected: Tooltip \"Total budget allocated for the space.\" is displayed\n13. Hover over total cost in Financial summary widget\n   Expected: Tooltip \"Sum of actual, remaining estimated, and non-labor costs. \"is displayed\n14. Hover over Actual cost in Financial summary widget\n   Expected: Tooltip \"Total amount already spent on the space. \" is displayed\n15. Hover over remaining cost in Financial summary widget\n   Expected: Tooltip \"Projected cost to complete the remaining work.\" is displayed\n16. Hover over Pie chart in Cost distribution by Initatives\n   Expected: Box Name \"TC-5900 SPM - Strategic areas  - Entering Initatives tab and displaying tooltips\" is displayed\n\n'$7,200 with lozenge ‘100% of allocation’' is displayed\n17. Hover over info icon of ‘Budget’ in Table\n   Expected: Tooltip \"FinAdmin or FinViewer role is required to view this data.\" is displayed\n18. Hover over info icon of ‘Actual cost’ in table\n   Expected: Tooltip \"FinAdmin or FinViewer role is required to view this data.\" is displayed\n19. Hover over info icon of ‘Remaining cost’ in table\n   Expected: Tooltip \"FinAdmin or FinViewer role is required to view this data.\" is displayed",
+    "metadata": {
+      "jira_key": "TC-5900",
+      "issue_id": "1476754",
+      "summary": "SPM - Strategic areas  - Entering Initatives tab and displaying tooltips",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 19,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

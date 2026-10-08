@@ -1,0 +1,46 @@
+{
+  "test": {
+    "key": "TC-5975",
+    "issue_id": "1526926",
+    "url": "https://appfire.atlassian.net/browse/TC-5975",
+    "summary": "SPM - Dashboardhub - Displaying data on Project health report ",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2026-02-10T09:27:35.322-0500",
+    "updated": "2026-04-13T03:51:41.341-0400",
+    "labels": [
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-504 Dashboardhub",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 0
+  },
+  "rag": {
+    "id": "TC-5975",
+    "text": "Test: TC-5975 — SPM - Dashboardhub - Displaying data on Project health report \nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/SPM/TS-504 Dashboardhub\nLabels: teamsmile",
+    "metadata": {
+      "jira_key": "TC-5975",
+      "issue_id": "1526926",
+      "summary": "SPM - Dashboardhub - Displaying data on Project health report ",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-504 Dashboardhub",
+      "labels": [
+        "teamsmile"
+      ],
+      "step_count": 0,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

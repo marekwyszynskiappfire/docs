@@ -1,0 +1,107 @@
+{
+  "test": {
+    "key": "TC-2353",
+    "issue_id": "360045",
+    "url": "https://appfire.atlassian.net/browse/TC-2353",
+    "summary": "Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)    ",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Monika Cecot",
+    "reporter": "Tomasz Wyrwa",
+    "created": "2021-07-30T03:24:46.841-0400",
+    "updated": "2026-08-11T08:14:29.390-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName: TC-2353 Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)",
+        "result": "Resources module is displayed."
+      },
+      {
+        "step": 2,
+        "action": "Select Teams view mode",
+        "data": "",
+        "result": "Team view mode is selected\n\nFollowing teams are displayed on Resource Grid:\n\n* TC-2353A\n* TC-2353B"
+      },
+      {
+        "step": 3,
+        "action": "Click on View button and select Warnings -> Assignment",
+        "data": "",
+        "result": "Warnings -> Assignment is selected. \n\nFollowing task is displayed on Resource Grid: \n\n* Task 1 is assigned to Team Unassigned"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName: TC-2353 Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)",
+        "result": "Resources module is displayed."
+      },
+      {
+        "step": 5,
+        "action": "Assign taskName by drag and drop to the team and set the task startDate and endDate",
+        "data": "taskName: Task 1\nteam: TC-2353B\nstartdate: 30/07/2021\nendDate: 05/08/2021",
+        "result": "Following task is displayed on Resource Grid: \n\n*  Task 1 is assigned to team Unknown\n\nFOR Atlassian Server:\n\nMessage \n\"Team assignment failed\nThere is more than one team with the same code. To assign task (ID: TC2353-1) to one team change the team codes or create a global team inherited by selected Boxes. You can find the tasks for which the team assignment has failed in the \"Unknown\" swimlane.\" is displayed in top right corner.\n\nFOR Atlassian Cloud:\n\nMessage \n\"Team assignment failed\nThere is more than one team with the same code. To assign task (ID: 10046) to one team change the team codes or create a global team inherited by selected Boxes. You can find the tasks for which the team assignment has failed in the \"Unknown\" swimlane."
+      },
+      {
+        "step": 6,
+        "action": "Click on task of taskName -> in Task Details dialog scroll down to Warnings section.",
+        "data": "taskName: Task 1",
+        "result": "Warning \"There is more than one Team with the same code. To assign this task to one team, change team codes or create a Global Team inherited to selected Boxes.\" is displayed"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Teams module of boxName",
+        "data": "boxName: TC-2353 Other Box Team",
+        "result": "Teams module is displayed.\n\nFollowing team is displayed:\n\n* Theta with team code TC2353B"
+      },
+      {
+        "step": 8,
+        "action": "Click on teamName and click on the 'Details' tab in the sidebar that appears.",
+        "data": "teamName: Theta",
+        "result": "Sidebar is expanded and displayed on Details tab. Team name and code is displayed at the top of the sidebar."
+      },
+      {
+        "step": 9,
+        "action": "Click on Code and color input field, change teamCode to newCode and click on Save button",
+        "data": "teamCode: TC2353B\nnewCode: T1",
+        "result": "Team code is changed"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName: TC-2353 Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)",
+        "result": "Resources module is displayed.\nTimeline beginning is set to 30/07/2021 \nTeam view mode is selected\n\nFollowing teams are displayed on Resource Grid :\n\n* TC2353A\n* TC2353B\n\nFollowing task is displayed on Resource Grid: \n\n* Task 1 is assigned to team TC2353B"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-2353",
+    "text": "Test: TC-2353 — Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)    \nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Resources module of boxName\n   Data: boxName: TC-2353 Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)\n   Expected: Resources module is displayed.\n2. Select Teams view mode\n   Expected: Team view mode is selected\n\nFollowing teams are displayed on Resource Grid:\n\n* TC-2353A\n* TC-2353B\n3. Click on View button and select Warnings -> Assignment\n   Expected: Warnings -> Assignment is selected. \n\nFollowing task is displayed on Resource Grid: \n\n* Task 1 is assigned to Team Unassigned\n4. Navigate to Resources module of boxName\n   Data: boxName: TC-2353 Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)\n   Expected: Resources module is displayed.\n5. Assign taskName by drag and drop to the team and set the task startDate and endDate\n   Data: taskName: Task 1\nteam: TC-2353B\nstartdate: 30/07/2021\nendDate: 05/08/2021\n   Expected: Following task is displayed on Resource Grid: \n\n*  Task 1 is assigned to team Unknown\n\nFOR Atlassian Server:\n\nMessage \n\"Team assignment failed\nThere is more than one team with the same code. To assign task (ID: TC2353-1) to one team change the team codes or create a global team inherited by selected Boxes. You can find the tasks for which the team assignment has failed in the \"Unknown\" swimlane.\" is displayed in top right corner.\n\nFOR Atlassian Cloud:\n\nMessage \n\"Team assignment failed\nThere is more than one team with the same code. To assign task (ID: 10046) to one team change the team codes or create a global team inherited by selected Boxes. You can find the tasks for which the team assignment has failed in the \"Unknown\" swimlane.\n6. Click on task of taskName -> in Task Details dialog scroll down to Warnings section.\n   Data: taskName: Task 1\n   Expected: Warning \"There is more than one Team with the same code. To assign this task to one team, change team codes or create a Global Team inherited to selected Boxes.\" is displayed\n7. Navigate to Teams module of boxName\n   Data: boxName: TC-2353 Other Box Team\n   Expected: Teams module is displayed.\n\nFollowing team is displayed:\n\n* Theta with team code TC2353B\n8. Click on teamName and click on the 'Details' tab in the sidebar that appears.\n   Data: teamName: Theta\n   Expected: Sidebar is expanded and displayed on Details tab. Team name and code is displayed at the top of the sidebar.\n9. Click on Code and color input field, change teamCode to newCode and click on Save button\n   Data: teamCode: TC2353B\nnewCode: T1\n   Expected: Team code is changed\n10. Navigate to Resources module of boxName\n   Data: boxName: TC-2353 Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)\n   Expected: Resources module is displayed.\nTimeline beginning is set to 30/07/2021 \nTeam view mode is selected\n\nFollowing teams are displayed on Resource Grid :\n\n* TC2353A\n* TC2353B\n\nFollowing task is displayed on Resource Grid: \n\n* Task 1 is assigned to team TC2353B",
+    "metadata": {
+      "jira_key": "TC-2353",
+      "issue_id": "360045",
+      "summary": "Box Module - Resources - Resource Grid - Displaying Tasks on Resource Grid in Unknown Swimlane When Team is Undetermined (Two Own-scope boxes)    ",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

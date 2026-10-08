@@ -1,0 +1,185 @@
+{
+  "test": {
+    "key": "TC-5943",
+    "issue_id": "1499836",
+    "url": "https://appfire.atlassian.net/browse/TC-5943",
+    "summary": "SPM - Strategic areas - Navigation from OKRs to Initatives",
+    "description": "",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-01-20T08:03:57.453-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of ROOT (Main) box",
+        "data": "",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on Add button",
+        "data": "",
+        "result": "Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)"
+      },
+      {
+        "step": 3,
+        "action": "Click Create Strategic Theme",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5943\n\nperiod: Y2026",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective with period",
+        "data": "newObjective: TC-5943 A\n\nperiod: Y2026",
+        "result": "New Objective TC-5943 A is created under Strategic Theme TC-5943."
+      },
+      {
+        "step": 6,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective with period",
+        "data": "newObjective: TC-5943 B\n\nperiod: Y2026",
+        "result": "New Objective TC-5943 B is created under Strategic Theme TC-5943."
+      },
+      {
+        "step": 7,
+        "action": "Click on Plus button next to TC-5943 A objective, type name of keyResult and click Create",
+        "data": "keyResult: TC-5943 C",
+        "result": "New Key Result TC-5943 C is created under Objective TC-5943 A"
+      },
+      {
+        "step": 8,
+        "action": "Click on Plus button next to TC-5943 A objective, type name of keyResult, period and click on Link Boxes",
+        "data": "keyResult: TC-5943 D\n\nperiod: Y2026",
+        "result": "Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status"
+      },
+      {
+        "step": 9,
+        "action": "Click Parent box and select boxName",
+        "data": "boxName:  TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives",
+        "result": "Boxes TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives A is displayed on the list"
+      },
+      {
+        "step": 10,
+        "action": "Select boxName and click Save",
+        "data": "boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives",
+        "result": "Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1"
+      },
+      {
+        "step": 11,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created"
+      },
+      {
+        "step": 12,
+        "action": "Click on Plus button next to TC-5943 B objective, type name of keyResult and click on Link Boxes",
+        "data": "keyResult: TC-5943 E",
+        "result": "Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status"
+      },
+      {
+        "step": 13,
+        "action": "Click Parent box and select boxName",
+        "data": "boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives B",
+        "result": "TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives B is displayed on the list"
+      },
+      {
+        "step": 14,
+        "action": "Select boxName and click Save",
+        "data": "boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives B",
+        "result": "Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1"
+      },
+      {
+        "step": 15,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created"
+      },
+      {
+        "step": 16,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5902 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 17,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 18,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5943",
+        "result": "OKRs tab is displayed with following OKRs and values in Initatives column:\n\n* Strategic Theme: TC-5943 - 2 Initatives\n* Objective: TC-5943 A -  1 Initative, TC-5943 B  1 Initative\n* Key result: TC-5943 C, TC-5943 D - 1 Initative, TC-5943 E - 1 Initative\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 2 - 0% closed\n* Key results: 3 - 0% closed"
+      },
+      {
+        "step": 19,
+        "action": "Click on value in Initativies column of keyResult",
+        "data": "keyResult: TC-5943 C",
+        "result": "Modal window \"Initatives\" is displayed\n\nInformation \"View initiatives\n\nLink Initiatives (boxes) to Key results to start tracking delivery progress.\" is displayed\n\nView Inititatives button is displayed"
+      },
+      {
+        "step": 20,
+        "action": "Click \"View Initativies\" button",
+        "data": "",
+        "result": "\" No Initiatives linked to KRs yet\nIt looks like you don’t have any Initiatives linked to KRs yet. Go to the OKR module to link boxes to your KRs. Once that’s done, the content will appear here. \" splashscreen is displayed"
+      },
+      {
+        "step": 21,
+        "action": "Go back to OKRs tab and click on value in Initativies column of keyResult",
+        "data": "keyResult: TC-5943 D",
+        "result": "Initative TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives is displayed"
+      },
+      {
+        "step": 22,
+        "action": "Click on View Initatives",
+        "data": "",
+        "result": "Initatives tab is displayed\n\nList is limited by filters. To display all existing initiatives. Info is displayed\n\nFollowing values are displayed:\n\nSummary Financials widget displays:\n\n* Budget - $20,000\n* Total cost - $14,400\n* Actual cost - $4,800\n* Remaining cost - $9,600\n* Progress bar - 33%\n\nPie chart is 100%\n\n1 Box is displayed on the list: boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives \n\nStatus tiles are displayed:\n\nClosed - 0% - 0/1\n\nNot Started - 100% - 1/1\n\nIn Progress - 0% - 0/1"
+      },
+      {
+        "step": 23,
+        "action": "Go back to OKRs tab",
+        "data": "",
+        "result": "Key Result TC-5943 D is highlighted in blue color."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 23
+  },
+  "rag": {
+    "id": "TC-5943",
+    "text": "Test: TC-5943 — SPM - Strategic areas - Navigation from OKRs to Initatives\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of ROOT (Main) box\n   Expected: OKR module is displayed\n2. Click on Add button\n   Expected: Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)\n3. Click Create Strategic Theme\n   Expected: New Strategic theme modal is displayed\n4. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5943\n\nperiod: Y2026\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n5. Click on Plus button next to Strategic Theme, add newObjective with period\n   Data: newObjective: TC-5943 A\n\nperiod: Y2026\n   Expected: New Objective TC-5943 A is created under Strategic Theme TC-5943.\n6. Click on Plus button next to Strategic Theme, add newObjective with period\n   Data: newObjective: TC-5943 B\n\nperiod: Y2026\n   Expected: New Objective TC-5943 B is created under Strategic Theme TC-5943.\n7. Click on Plus button next to TC-5943 A objective, type name of keyResult and click Create\n   Data: keyResult: TC-5943 C\n   Expected: New Key Result TC-5943 C is created under Objective TC-5943 A\n8. Click on Plus button next to TC-5943 A objective, type name of keyResult, period and click on Link Boxes\n   Data: keyResult: TC-5943 D\n\nperiod: Y2026\n   Expected: Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status\n9. Click Parent box and select boxName\n   Data: boxName:  TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives\n   Expected: Boxes TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives A is displayed on the list\n10. Select boxName and click Save\n   Data: boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives\n   Expected: Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1\n11. Click Create button\n   Expected: Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created\n12. Click on Plus button next to TC-5943 B objective, type name of keyResult and click on Link Boxes\n   Data: keyResult: TC-5943 E\n   Expected: Edit linked boxes modal window is displayed\n\nFilter with Box Name placeholder is displayed\n\n3 filters are displayed:\n\n* Parent box\n* Box type\n* Box status\n13. Click Parent box and select boxName\n   Data: boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives B\n   Expected: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives B is displayed on the list\n14. Select boxName and click Save\n   Data: boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives B\n   Expected: Modal window disappeared\n\n‘Link issues’ button is grayed out with Linked issues: 0\n\n‘Edit linked boxes’ button appeared with Linked boxes: 1\n15. Click Create button\n   Expected: Modal window disappeared\n\nTwo pop up windows appeared for a few seconds:\n\n*Success*\n\nLinked boxes updated successfully\n\n*Success*\n\nKey result created\n16. Click Finish & go back\n   Expected: Strategic Theme TC-5902 is displayed on the list with expand button next to it\n17. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n18. Click on strategicThemeName\n   Data: strategicThemeName: TC-5943\n   Expected: OKRs tab is displayed with following OKRs and values in Initatives column:\n\n* Strategic Theme: TC-5943 - 2 Initatives\n* Objective: TC-5943 A -  1 Initative, TC-5943 B  1 Initative\n* Key result: TC-5943 C, TC-5943 D - 1 Initative, TC-5943 E - 1 Initative\n\nWidgets on the left shows\n\n* Strategic Theme: 1 - 0% closed\n* Objectives: 2 - 0% closed\n* Key results: 3 - 0% closed\n19. Click on value in Initativies column of keyResult\n   Data: keyResult: TC-5943 C\n   Expected: Modal window \"Initatives\" is displayed\n\nInformation \"View initiatives\n\nLink Initiatives (boxes) to Key results to start tracking delivery progress.\" is displayed\n\nView Inititatives button is displayed\n20. Click \"View Initativies\" button\n   Expected: \" No Initiatives linked to KRs yet\nIt looks like you don’t have any Initiatives linked to KRs yet. Go to the OKR module to link boxes to your KRs. Once that’s done, the content will appear here. \" splashscreen is displayed\n21. Go back to OKRs tab and click on value in Initativies column of keyResult\n   Data: keyResult: TC-5943 D\n   Expected: Initative TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives is displayed\n22. Click on View Initatives\n   Expected: Initatives tab is displayed\n\nList is limited by filters. To display all existing initiatives. Info is displayed\n\nFollowing values are displayed:\n\nSummary Financials widget displays:\n\n* Budget - $20,000\n* Total cost - $14,400\n* Actual cost - $4,800\n* Remaining cost - $9,600\n* Progress bar - 33%\n\nPie chart is 100%\n\n1 Box is displayed on the list: boxName: TC-5943 SPM - Strategic areas - Navigation from OKRs to Initatives \n\nStatus tiles are displayed:\n\nClosed - 0% - 0/1\n\nNot Started - 100% - 1/1\n\nIn Progress - 0% - 0/1\n23. Go back to OKRs tab\n   Expected: Key Result TC-5943 D is highlighted in blue color.",
+    "metadata": {
+      "jira_key": "TC-5943",
+      "issue_id": "1499836",
+      "summary": "SPM - Strategic areas - Navigation from OKRs to Initatives",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 23,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

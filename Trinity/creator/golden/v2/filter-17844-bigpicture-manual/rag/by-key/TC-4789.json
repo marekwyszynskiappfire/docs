@@ -1,0 +1,89 @@
+{
+  "test": {
+    "key": "TC-4789",
+    "issue_id": "820950",
+    "url": "https://appfire.atlassian.net/browse/TC-4789",
+    "summary": "Global - Workload Plans - Bulk assignment in Workload plans tab",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": null,
+    "reporter": "Paulina Sendecka",
+    "created": "2024-07-31T11:50:53.786-0400",
+    "updated": "2026-03-31T06:54:20.544-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-39 Global - Workload plans",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Administration -> Resources -> Workload plans tab",
+        "data": "",
+        "result": "Workload plans tab is displayed\n\n\n\nFollowing buttons are displayed in the right corner of this tab:\n\nSynchronize with Tempo, Assign Individuals and Add new plan"
+      },
+      {
+        "step": 2,
+        "action": "Click on Assign Individuals",
+        "data": "",
+        "result": "'Assign individuals to workload plan' modal window is displayed with following select buttons:\n\nWorkload plan (placeholder: Select workload)\n\nEfficiency 1 set as default\n\nStart date (End date will be adjusted automatically)\n\nUsers (placeholder: Select user)"
+      },
+      {
+        "step": 3,
+        "action": "Select workloadPlanName, set startDate",
+        "data": "workloadPlanName: TC-4789\n\nstartDate: 01/Sep/24",
+        "result": "Workload plan T-4789 is selected\n\nStart date is set to 01/Sep/24"
+      },
+      {
+        "step": 4,
+        "action": "Click on users selector and type userName",
+        "data": "userName: TC-4789",
+        "result": "Following users appeared in selector:\n\nTC-4789A\n\nTC-4789B\n\nTC-4789C"
+      },
+      {
+        "step": 5,
+        "action": "Select userName1 and userName2 and click assign",
+        "data": "userName1: TC-4789A\n\nuserName2: TC-4789B",
+        "result": "Modal window is closed"
+      },
+      {
+        "step": 6,
+        "action": "Click on workloadPlanName",
+        "data": "workloadPlanName: TC-4789",
+        "result": "Details of workload plan TC-4789 are displayed"
+      },
+      {
+        "step": 7,
+        "action": "Click on ‘Assigned resources’ button",
+        "data": "",
+        "result": "List of assigned resources is displayed:\n\nTC-4789A with efficiency 1 and startDate 01/Sep/24\n\nTC-4789B with efficiency 1 and startDate 01/Sep/24"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-4789",
+    "text": "Test: TC-4789 — Global - Workload Plans - Bulk assignment in Workload plans tab\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-39 Global - Workload plans\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Administration -> Resources -> Workload plans tab\n   Expected: Workload plans tab is displayed\n\n\n\nFollowing buttons are displayed in the right corner of this tab:\n\nSynchronize with Tempo, Assign Individuals and Add new plan\n2. Click on Assign Individuals\n   Expected: 'Assign individuals to workload plan' modal window is displayed with following select buttons:\n\nWorkload plan (placeholder: Select workload)\n\nEfficiency 1 set as default\n\nStart date (End date will be adjusted automatically)\n\nUsers (placeholder: Select user)\n3. Select workloadPlanName, set startDate\n   Data: workloadPlanName: TC-4789\n\nstartDate: 01/Sep/24\n   Expected: Workload plan T-4789 is selected\n\nStart date is set to 01/Sep/24\n4. Click on users selector and type userName\n   Data: userName: TC-4789\n   Expected: Following users appeared in selector:\n\nTC-4789A\n\nTC-4789B\n\nTC-4789C\n5. Select userName1 and userName2 and click assign\n   Data: userName1: TC-4789A\n\nuserName2: TC-4789B\n   Expected: Modal window is closed\n6. Click on workloadPlanName\n   Data: workloadPlanName: TC-4789\n   Expected: Details of workload plan TC-4789 are displayed\n7. Click on ‘Assigned resources’ button\n   Expected: List of assigned resources is displayed:\n\nTC-4789A with efficiency 1 and startDate 01/Sep/24\n\nTC-4789B with efficiency 1 and startDate 01/Sep/24",
+    "metadata": {
+      "jira_key": "TC-4789",
+      "issue_id": "820950",
+      "summary": "Global - Workload Plans - Bulk assignment in Workload plans tab",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-39 Global - Workload plans",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

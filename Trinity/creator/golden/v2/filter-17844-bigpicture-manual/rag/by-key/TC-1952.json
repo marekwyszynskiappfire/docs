@@ -1,0 +1,71 @@
+{
+  "test": {
+    "key": "TC-1952",
+    "issue_id": "358184",
+    "url": "https://appfire.atlassian.net/browse/TC-1952",
+    "summary": "Box module - Objectives - Basic operations - Displaying container outlines while D&D",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Michał Bucholc",
+    "created": "2021-05-25T09:26:15.963-0400",
+    "updated": "2026-03-31T09:20:54.957-0400",
+    "labels": [
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-30 Box module - Roadmap - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Objectives module of boxName",
+        "data": "boxName: TC-1952 Box module - Objectives - Basic operations - Displaying container outlines while D&D",
+        "result": "Objectives module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* PI1\n* PI2\n* PI3\n\nThe following two swimlanes are displayed and visible:\n\n* Main Objectives\n* Team Android"
+      },
+      {
+        "step": 2,
+        "action": "Grab objectiveName using mouse cursor by its grab-handle.",
+        "data": "objectiveName: Sport tracking app for Web - MVP",
+        "result": "Grabbed objective has blue background. Objective containers for the following swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Main Objectives under PI2\n* Main Objectives under PI3\n* Team Android under PI1\n* Team Android under PI2\n* Team Android under PI3\n\n\"+\" (add) objective containers in those sections are also outlined. Each container has only one dashed line border visible, without any scroll bars.\n\nObjective in Main Objectives swimlane under PI1 is not outlined."
+      },
+      {
+        "step": 3,
+        "action": "Click on Level down button in subboxName skeleton.",
+        "data": "subboxName: PI2",
+        "result": "Objectives module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* Iteration4\n* Iteration5\n* Iteration6\n\nThe following two swimlanes are displayed and visible:\n\n* Main Objectives\n* Team Android"
+      },
+      {
+        "step": 4,
+        "action": "Grab objectiveName using mouse cursor by its grab-handle.",
+        "data": "objectiveName: Iteration 4 Goal1",
+        "result": "Grabbed objective has blue background. Objective containers for the following swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Main Objectives under Iteration5\n* Main Objectives under Iteration6\n* Team Android under Iteration4\n* Team Android under Iteration5\n* Team Android under Iteration6\n\n\"+\" (add) objective containers in those sections are also outlined. Each container has only one dashed line border visible, without any scroll bars.\n\nObjective in Main Objectives swimlane under PI1 is not outlined."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 4
+  },
+  "rag": {
+    "id": "TC-1952",
+    "text": "Test: TC-1952 — Box module - Objectives - Basic operations - Displaying container outlines while D&D\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/TS-30 Box module - Roadmap - Basic operations\nLabels: teamsmile\n\nSteps:\n1. Navigate to Objectives module of boxName\n   Data: boxName: TC-1952 Box module - Objectives - Basic operations - Displaying container outlines while D&D\n   Expected: Objectives module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* PI1\n* PI2\n* PI3\n\nThe following two swimlanes are displayed and visible:\n\n* Main Objectives\n* Team Android\n2. Grab objectiveName using mouse cursor by its grab-handle.\n   Data: objectiveName: Sport tracking app for Web - MVP\n   Expected: Grabbed objective has blue background. Objective containers for the following swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Main Objectives under PI2\n* Main Objectives under PI3\n* Team Android under PI1\n* Team Android under PI2\n* Team Android under PI3\n\n\"+\" (add) objective containers in those sections are also outlined. Each container has only one dashed line border visible, without any scroll bars.\n\nObjective in Main Objectives swimlane under PI1 is not outlined.\n3. Click on Level down button in subboxName skeleton.\n   Data: subboxName: PI2\n   Expected: Objectives module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* Iteration4\n* Iteration5\n* Iteration6\n\nThe following two swimlanes are displayed and visible:\n\n* Main Objectives\n* Team Android\n4. Grab objectiveName using mouse cursor by its grab-handle.\n   Data: objectiveName: Iteration 4 Goal1\n   Expected: Grabbed objective has blue background. Objective containers for the following swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Main Objectives under Iteration5\n* Main Objectives under Iteration6\n* Team Android under Iteration4\n* Team Android under Iteration5\n* Team Android under Iteration6\n\n\"+\" (add) objective containers in those sections are also outlined. Each container has only one dashed line border visible, without any scroll bars.\n\nObjective in Main Objectives swimlane under PI1 is not outlined.",
+    "metadata": {
+      "jira_key": "TC-1952",
+      "issue_id": "358184",
+      "summary": "Box module - Objectives - Basic operations - Displaying container outlines while D&D",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-30 Box module - Roadmap - Basic operations",
+      "labels": [
+        "teamsmile"
+      ],
+      "step_count": 4,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "test": {
+    "key": "TC-5046",
+    "issue_id": "1035846",
+    "url": "https://appfire.atlassian.net/browse/TC-5046",
+    "summary": "Box Module - Overview - Public REST API - Creating a Box via Public REST API",
+    "description": "",
+    "status": "To Do",
+    "priority": "High",
+    "assignee": null,
+    "reporter": "Artur Sędzik",
+    "created": "2024-10-04T11:49:55.911-0400",
+    "updated": "2026-04-14T11:08:56.682-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to [https://developer.bigpicture.one/|https://developer.bigpicture.one/]",
+        "data": "",
+        "result": "Developer portal page loads."
+      },
+      {
+        "step": 2,
+        "action": "Go to BigPicture API > Boxes > Create Box",
+        "data": "",
+        "result": "The page with Create Box endpoint loads."
+      },
+      {
+        "step": 3,
+        "action": "Create a Box using the instructions provided on the Developer Portal page.",
+        "data": "",
+        "result": "The Box is created and is visible in the Box hierarchy."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 3
+  },
+  "rag": {
+    "id": "TC-5046",
+    "text": "Test: TC-5046 — Box Module - Overview - Public REST API - Creating a Box via Public REST API\nPriority: High | Status: To Do | Type: Manual\nFolder: /\n\nSteps:\n1. Navigate to [https://developer.bigpicture.one/|https://developer.bigpicture.one/]\n   Expected: Developer portal page loads.\n2. Go to BigPicture API > Boxes > Create Box\n   Expected: The page with Create Box endpoint loads.\n3. Create a Box using the instructions provided on the Developer Portal page.\n   Expected: The Box is created and is visible in the Box hierarchy.",
+    "metadata": {
+      "jira_key": "TC-5046",
+      "issue_id": "1035846",
+      "summary": "Box Module - Overview - Public REST API - Creating a Box via Public REST API",
+      "priority": "High",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [],
+      "step_count": 3,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-2576",
+    "issue_id": "357994",
+    "url": "https://appfire.atlassian.net/browse/TC-2576",
+    "summary": "Box module - Board - Basic operations - Displaying container outlines during D&D of a task into an empty container when there are multiple tasks in the second container",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2021-10-08T04:02:29.476-0400",
+    "updated": "2026-03-12T09:12:10.530-0400",
+    "labels": [
+      "teamagile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName",
+        "data": "boxName: TC-2576 Box module - Board - Basic operations - Displaying container outlines during D&D of a task into an empty container when there are multiple tasks in the second container",
+        "result": "Board module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* PI1\n* PI2\n* PI3\n\nAt least two swimlanes are displayed and visible:\n\n* Team unassigned\n* TeamA\n\nUnder PI1 in Team unassigned folLowing issues are visible:\n\n* Issue1\n* Issue2\n* Issue3\n* Issue4\n* Issue5\n* Issue6\n* Issue7\n* Issue8\n* Issue9\n* Issue10\n* Issue11\n* Issue12\n* Issue13\n* Issue14\n* Issue15\n* Issue16\n* Issue17\n* Issue18\n* Issue19\n* Issue20"
+      },
+      {
+        "step": 2,
+        "action": "Grab issueName using mouse cursor by its grab-handle",
+        "data": "issueName: TC2576-1 Issue1",
+        "result": "Grabbed issue has blue background and solid blue outline. Issue containers for folLowing swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Team unassigned under PI2\n* Team unassigned under PI3\n* TeamA under PI1\n* TeamA under PI2\n* TeamA under PI3\n\nEach container has only one dashed line border visible.\n\nIssue container in Team unassigned swimlane under PI1 has green background and is outlined with green dashed line."
+      },
+      {
+        "step": 3,
+        "action": "Release issueName - stop holding it by its grab-handle",
+        "data": "issueName: TC2576-1 Issue1",
+        "result": "Issue has a white background. \nIssue containers for folLowing swimlanes and Sub-Boxes have grey background:\n\n* Team unassigned under PI1\n* Team unassigned under PI2\n* Team unassigned under PI3\n* TeamA under PI1\n* TeamA under PI2\n* TeamA under PI3"
+      },
+      {
+        "step": 4,
+        "action": "Click on Level down button in subboxName skeleton",
+        "data": "subboxName: PI1",
+        "result": "Board module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* Iteration 1\n* Iteration 2\n* Iteration 3\n\nTwo swimlanes are displayed and visible:\n\n* Team unassigned\n* TeamA\n\nUnder Iteration1 in Team unassigned folLowing issues are visible:\n\n* Issue1\n* Issue2\n* Issue3\n* Issue4\n* Issue5\n* Issue6\n* Issue7\n* Issue8\n* Issue9\n* Issue10\n* Issue11\n* Issue12\n* Issue13\n* Issue14\n* Issue15\n* Issue16\n* Issue17\n* Issue18\n* Issue19\n* Issue20"
+      },
+      {
+        "step": 5,
+        "action": "Grab issueName using mouse cursor by its grab-handle",
+        "data": "issueName: TC2576-10 Issue10",
+        "result": "Grabbed issue has blue background and solid blue outline. Issue container for folLowing swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Team unassigned under Iteration 2\n* Team unassigned under Iteration 3\n* TeamA under Iteration 1\n* TeamA under Iteration 2\n* TeamA under Iteration 3\n\nEach container has only one dashed line border visible.\n\nIssue container in Team unassigned swimlane under Iteration 1 has green background and is outlined with green dashed line."
+      },
+      {
+        "step": 6,
+        "action": "Release issueName - stop holding it by its grab-handle",
+        "data": "issueName: TC2576-10 Issue10",
+        "result": "Issue has a white background. Issue containers for folLowing swimlanes and Sub-Boxes have grey background:\n\n* Team unassigned under Iteration 1\n* Team unassigned under Iteration 2\n* Team unassigned under Iteration 3\n* TeamA under Iteration 1\n* TeamA under Iteration 2\n* TeamA under Iteration 3"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-2576",
+    "text": "Test: TC-2576 — Box module - Board - Basic operations - Displaying container outlines during D&D of a task into an empty container when there are multiple tasks in the second container\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/TS-34 Box Module - Board - Basic operations\nLabels: teamagile\n\nSteps:\n1. Navigate to Board module of boxName\n   Data: boxName: TC-2576 Box module - Board - Basic operations - Displaying container outlines during D&D of a task into an empty container when there are multiple tasks in the second container\n   Expected: Board module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* PI1\n* PI2\n* PI3\n\nAt least two swimlanes are displayed and visible:\n\n* Team unassigned\n* TeamA\n\nUnder PI1 in Team unassigned folLowing issues are visible:\n\n* Issue1\n* Issue2\n* Issue3\n* Issue4\n* Issue5\n* Issue6\n* Issue7\n* Issue8\n* Issue9\n* Issue10\n* Issue11\n* Issue12\n* Issue13\n* Issue14\n* Issue15\n* Issue16\n* Issue17\n* Issue18\n* Issue19\n* Issue20\n2. Grab issueName using mouse cursor by its grab-handle\n   Data: issueName: TC2576-1 Issue1\n   Expected: Grabbed issue has blue background and solid blue outline. Issue containers for folLowing swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Team unassigned under PI2\n* Team unassigned under PI3\n* TeamA under PI1\n* TeamA under PI2\n* TeamA under PI3\n\nEach container has only one dashed line border visible.\n\nIssue container in Team unassigned swimlane under PI1 has green background and is outlined with green dashed line.\n3. Release issueName - stop holding it by its grab-handle\n   Data: issueName: TC2576-1 Issue1\n   Expected: Issue has a white background. \nIssue containers for folLowing swimlanes and Sub-Boxes have grey background:\n\n* Team unassigned under PI1\n* Team unassigned under PI2\n* Team unassigned under PI3\n* TeamA under PI1\n* TeamA under PI2\n* TeamA under PI3\n4. Click on Level down button in subboxName skeleton\n   Data: subboxName: PI1\n   Expected: Board module is loaded and displayed. Three Sub-Box skeletons are visible:\n\n* Iteration 1\n* Iteration 2\n* Iteration 3\n\nTwo swimlanes are displayed and visible:\n\n* Team unassigned\n* TeamA\n\nUnder Iteration1 in Team unassigned folLowing issues are visible:\n\n* Issue1\n* Issue2\n* Issue3\n* Issue4\n* Issue5\n* Issue6\n* Issue7\n* Issue8\n* Issue9\n* Issue10\n* Issue11\n* Issue12\n* Issue13\n* Issue14\n* Issue15\n* Issue16\n* Issue17\n* Issue18\n* Issue19\n* Issue20\n5. Grab issueName using mouse cursor by its grab-handle\n   Data: issueName: TC2576-10 Issue10\n   Expected: Grabbed issue has blue background and solid blue outline. Issue container for folLowing swimlanes and Sub-Boxes are outlined with blue dashed line and have blue background:\n\n* Team unassigned under Iteration 2\n* Team unassigned under Iteration 3\n* TeamA under Iteration 1\n* TeamA under Iteration 2\n* TeamA under Iteration 3\n\nEach container has only one dashed line border visible.\n\nIssue container in Team unassigned swimlane under Iteration 1 has green background and is outlined with green dashed line.\n6. Release issueName - stop holding it by its grab-handle\n   Data: issueName: TC2576-10 Issue10\n   Expected: Issue has a white background. Issue containers for folLowing swimlanes and Sub-Boxes have grey background:\n\n* Team unassigned under Iteration 1\n* Team unassigned under Iteration 2\n* Team unassigned under Iteration 3\n* TeamA under Iteration 1\n* TeamA under Iteration 2\n* TeamA under Iteration 3",
+    "metadata": {
+      "jira_key": "TC-2576",
+      "issue_id": "357994",
+      "summary": "Box module - Board - Basic operations - Displaying container outlines during D&D of a task into an empty container when there are multiple tasks in the second container",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+      "labels": [
+        "teamagile"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

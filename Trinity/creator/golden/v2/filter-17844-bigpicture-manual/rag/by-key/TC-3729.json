@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-3729",
+    "issue_id": "359764",
+    "url": "https://appfire.atlassian.net/browse/TC-3729",
+    "summary": "Feature area - Scenario - Basic Actions - Grouping on Gantt with date columns",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2022-12-05T09:00:12.783-0500",
+    "updated": "2026-06-18T05:47:22.356-0400",
+    "labels": [
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-48 Feature area - Scenario",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open Gantt module of box with boxName",
+        "data": "boxName: TC-3729 Feature area - Scenario - Basic Actions - Grouping on Gantt with date columns",
+        "result": "Gantt module is displayed with tasks:\n\n- P1\n- P2\n\nView TC3729 is active"
+      },
+      {
+        "step": 2,
+        "action": "Click on live button on choose scenarioName from dropdown",
+        "data": "scenarioName: Wednesday",
+        "result": "Scenario is active."
+      },
+      {
+        "step": 3,
+        "action": "Click Data -> Group tasks\nActivate Status\nClick Apply",
+        "data": "",
+        "result": "Tasks are grouped by Status\n\nThere is \"In progress\" group\nthat has task P1 with dates:\n\n* Start date built-in: 18/Jan/23\n* Start date Jira: 18/Jan/23\n* End date built-in: 20/Jan/23\n* End date Jira: 20/Jan/23\n\nThere is \"To do\" group\n\nthat has task P2 with dates:\n\n* Start date built-in: 16/Jan/23\n* Start date Jira: 16/Jan/23\n* End date built-in: 17/Jan/23\n* End date Jira: 17/Jan/23\n\nThere is \"No value\" group\n\nthat has project task TC3729 with dates:\n\n* Start date built-in: 16/Jan/23\n* End date built-in: 20/Jan/23"
+      },
+      {
+        "step": 4,
+        "action": "Move taskName five days backward to 11/Jan/23",
+        "data": "taskName: P1",
+        "result": "Task P1 has the same dates in columns:\n- Start date built-in: 18/Jan/23\n- Start date Jira: 18/Jan/23\n- End date built-in: 20/Jan/23\n- End date Jira: 20/Jan/23"
+      },
+      {
+        "step": 5,
+        "action": "Move taskName two days forward to 18/Jan/23",
+        "data": "taskName: P2",
+        "result": "Task P2 has the same dates in columns:\n- Start date built-in: 16/Jan/23\n- Start date Jira: 16/Jan/23\n- End date built-in: 17/Jan/23\n- End date Jira: 17/Jan/23\n\nProject task TC-3729 has the same dates in columns:\n- Start date built-in: 16/Jan/23\n- End date built-in: 20/Jan/23"
+      },
+      {
+        "step": 6,
+        "action": "Move taskName three days forward to 19/Jan/23",
+        "data": "taskName: TC-3729 Scenario - Basic Actions - Grouping on Gantt with date columns",
+        "result": "Project task has the same dates in columns:\n- Start date built-in: 16/Jan/23\n- End date built-in: 20/Jan/23"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-3729",
+    "text": "Test: TC-3729 — Feature area - Scenario - Basic Actions - Grouping on Gantt with date columns\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-48 Feature area - Scenario\nLabels: teamtree\n\nSteps:\n1. Open Gantt module of box with boxName\n   Data: boxName: TC-3729 Feature area - Scenario - Basic Actions - Grouping on Gantt with date columns\n   Expected: Gantt module is displayed with tasks:\n\n- P1\n- P2\n\nView TC3729 is active\n2. Click on live button on choose scenarioName from dropdown\n   Data: scenarioName: Wednesday\n   Expected: Scenario is active.\n3. Click Data -> Group tasks\nActivate Status\nClick Apply\n   Expected: Tasks are grouped by Status\n\nThere is \"In progress\" group\nthat has task P1 with dates:\n\n* Start date built-in: 18/Jan/23\n* Start date Jira: 18/Jan/23\n* End date built-in: 20/Jan/23\n* End date Jira: 20/Jan/23\n\nThere is \"To do\" group\n\nthat has task P2 with dates:\n\n* Start date built-in: 16/Jan/23\n* Start date Jira: 16/Jan/23\n* End date built-in: 17/Jan/23\n* End date Jira: 17/Jan/23\n\nThere is \"No value\" group\n\nthat has project task TC3729 with dates:\n\n* Start date built-in: 16/Jan/23\n* End date built-in: 20/Jan/23\n4. Move taskName five days backward to 11/Jan/23\n   Data: taskName: P1\n   Expected: Task P1 has the same dates in columns:\n- Start date built-in: 18/Jan/23\n- Start date Jira: 18/Jan/23\n- End date built-in: 20/Jan/23\n- End date Jira: 20/Jan/23\n5. Move taskName two days forward to 18/Jan/23\n   Data: taskName: P2\n   Expected: Task P2 has the same dates in columns:\n- Start date built-in: 16/Jan/23\n- Start date Jira: 16/Jan/23\n- End date built-in: 17/Jan/23\n- End date Jira: 17/Jan/23\n\nProject task TC-3729 has the same dates in columns:\n- Start date built-in: 16/Jan/23\n- End date built-in: 20/Jan/23\n6. Move taskName three days forward to 19/Jan/23\n   Data: taskName: TC-3729 Scenario - Basic Actions - Grouping on Gantt with date columns\n   Expected: Project task has the same dates in columns:\n- Start date built-in: 16/Jan/23\n- End date built-in: 20/Jan/23",
+    "metadata": {
+      "jira_key": "TC-3729",
+      "issue_id": "359764",
+      "summary": "Feature area - Scenario - Basic Actions - Grouping on Gantt with date columns",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-48 Feature area - Scenario",
+      "labels": [
+        "teamtree"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "test": {
+    "key": "TC-999",
+    "issue_id": "358113",
+    "url": "https://appfire.atlassian.net/browse/TC-999",
+    "summary": "Box module - Board - Totals - Counting capacity allocation by  story points",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2019-10-01T06:30:14.074-0400",
+    "updated": "2026-03-13T06:18:41.730-0400",
+    "labels": [
+      "can_be_automated",
+      "teamagile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-102 Box module - Board - Totals",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName",
+        "data": "boxName: TC-999 Box module - Board - Totals - Counting capacity allocation by story points",
+        "result": "Board module opened properly. PI 1 and PI 2 with tasks are visible.\n\nProgress bars are visible in every PI and Team. Progress Bars in Unassigned have only Allocated work (Story Points).\nTC999 is Current view."
+      },
+      {
+        "step": 2,
+        "action": "Click on Filters -> Filters option and check Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Tasks from Lower level are no longer displayed."
+      },
+      {
+        "step": 3,
+        "action": "Check progress bars for teamName in  SubBoxes.",
+        "data": "teamName: Team 2",
+        "result": "Progress bars have values:\n- PI 1: 20%\n- PI 2: 7%"
+      },
+      {
+        "step": 4,
+        "action": "Click on Filters -> Filters option and uncheck Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Progress bars are visible in every PI and Team. Progress Bars in Unassigned have only Allocated work (Story Points).\nTasks from Lower level are now visible on Board"
+      },
+      {
+        "step": 5,
+        "action": "Check progress bars for teamName in all SubBoxes.",
+        "data": "teamName: Team 1",
+        "result": "Progress bars have values:\n- PI 1: 80%\n- PI 2: 67%"
+      },
+      {
+        "step": 6,
+        "action": "Change taskName Story point value by inline editing to new storypointValue",
+        "data": "taskName: Task 7\nstorypointValue: 13",
+        "result": "Issue has been updated and has 13 Story points assigned. Progress bar for Team 1 has 83%"
+      },
+      {
+        "step": 7,
+        "action": "Move taskName from PI 1 to teamName in PI 2",
+        "data": "taskName: Task 4\nteamName: Team 2",
+        "result": "Task is moved properly. Progress bar value is changed in Team 2:\n- PI 1: 50%\n- PI 2: 43%"
+      },
+      {
+        "step": 8,
+        "action": "Click on Level down button inside subboxName skeleton.",
+        "data": "subboxName: PI 1",
+        "result": "Two iterations are displayed:\n- Iteration 1\n- Iteration 2\n\nTwo tasks are displayed in Team 2 swimlane under Sub-Box Iteration 1 and Iteration 2: \n- Task 5\n- Task 10\n\nProgress bar in Team 2 for Iteration 1 has 50%.\nProgress bar in Team 2 for Iteration 2 has 23%."
+      },
+      {
+        "step": 9,
+        "action": "Change taskName Story point value by inline editing to new storypointValue",
+        "data": "taskName: Task 5\nstorypointValue: 5",
+        "result": "Iteration 1 progress for Team 2 has changed to 25%."
+      },
+      {
+        "step": 10,
+        "action": "Move taskName from Iteration 1 to teamName in Iteration 2",
+        "data": "taskName: Task 5\nteamName: Team 2",
+        "result": "Task is moved properly. Progress bar value is changed in Team 2:\n- Iteration 1: 0%\n- Iteration 2: 40%"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-999",
+    "text": "Test: TC-999 — Box module - Board - Totals - Counting capacity allocation by  story points\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-102 Box module - Board - Totals\nLabels: can_be_automated, teamagile\n\nSteps:\n1. Navigate to Board module of boxName\n   Data: boxName: TC-999 Box module - Board - Totals - Counting capacity allocation by story points\n   Expected: Board module opened properly. PI 1 and PI 2 with tasks are visible.\n\nProgress bars are visible in every PI and Team. Progress Bars in Unassigned have only Allocated work (Story Points).\nTC999 is Current view.\n2. Click on Filters -> Filters option and check Show only tasks not planned on a lower level\n   Expected: Tasks from Lower level are no longer displayed.\n3. Check progress bars for teamName in  SubBoxes.\n   Data: teamName: Team 2\n   Expected: Progress bars have values:\n- PI 1: 20%\n- PI 2: 7%\n4. Click on Filters -> Filters option and uncheck Show only tasks not planned on a lower level\n   Expected: Progress bars are visible in every PI and Team. Progress Bars in Unassigned have only Allocated work (Story Points).\nTasks from Lower level are now visible on Board\n5. Check progress bars for teamName in all SubBoxes.\n   Data: teamName: Team 1\n   Expected: Progress bars have values:\n- PI 1: 80%\n- PI 2: 67%\n6. Change taskName Story point value by inline editing to new storypointValue\n   Data: taskName: Task 7\nstorypointValue: 13\n   Expected: Issue has been updated and has 13 Story points assigned. Progress bar for Team 1 has 83%\n7. Move taskName from PI 1 to teamName in PI 2\n   Data: taskName: Task 4\nteamName: Team 2\n   Expected: Task is moved properly. Progress bar value is changed in Team 2:\n- PI 1: 50%\n- PI 2: 43%\n8. Click on Level down button inside subboxName skeleton.\n   Data: subboxName: PI 1\n   Expected: Two iterations are displayed:\n- Iteration 1\n- Iteration 2\n\nTwo tasks are displayed in Team 2 swimlane under Sub-Box Iteration 1 and Iteration 2: \n- Task 5\n- Task 10\n\nProgress bar in Team 2 for Iteration 1 has 50%.\nProgress bar in Team 2 for Iteration 2 has 23%.\n9. Change taskName Story point value by inline editing to new storypointValue\n   Data: taskName: Task 5\nstorypointValue: 5\n   Expected: Iteration 1 progress for Team 2 has changed to 25%.\n10. Move taskName from Iteration 1 to teamName in Iteration 2\n   Data: taskName: Task 5\nteamName: Team 2\n   Expected: Task is moved properly. Progress bar value is changed in Team 2:\n- Iteration 1: 0%\n- Iteration 2: 40%",
+    "metadata": {
+      "jira_key": "TC-999",
+      "issue_id": "358113",
+      "summary": "Box module - Board - Totals - Counting capacity allocation by  story points",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-102 Box module - Board - Totals",
+      "labels": [
+        "can_be_automated",
+        "teamagile"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

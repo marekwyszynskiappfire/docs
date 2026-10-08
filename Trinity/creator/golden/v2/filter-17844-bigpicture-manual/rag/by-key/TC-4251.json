@@ -1,0 +1,115 @@
+{
+  "test": {
+    "key": "TC-4251",
+    "issue_id": "814397",
+    "url": "https://appfire.atlassian.net/browse/TC-4251",
+    "summary": "Feature area - Importing - Importing and then Exporting tasks without dates from same file - CSV",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T09:59:18.444-0400",
+    "updated": "2026-04-08T13:05:53.547-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-93 Feature area - Importing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-4251 Feature area - Importing - Importing and then Exporting tasks without dates from same file - CSV",
+        "result": "Gantt module is displayed. Splash screen is displayed with two tiles:  Create new, Define scope"
+      },
+      {
+        "step": 2,
+        "action": "Click \"+Add task\" dropdown",
+        "data": "",
+        "result": "Dropdown is expanded. FolLowing options are available:\n\n* Create task\nCreate sub-task (disabled)\n* Manage scope definition\n* Import tasks from file\n* Clone existing scope"
+      },
+      {
+        "step": 3,
+        "action": "Select \"Import tasks from file\" option",
+        "data": "",
+        "result": "Modal window is displayed with folLowing fields:\n\n* Add an import file containing tasks to be imported\n* Select the Jira project where the tasks will be created\n\nIn modal window is switcher \"Convert parent tasks to Jira Epics\" and it is in off position."
+      },
+      {
+        "step": 4,
+        "action": "Upload \"TC4251.csv\" file (attached to this TC)",
+        "data": "",
+        "result": "File is uploaded. \"Match the columns \" section appears. Columns from file are correctly mapped to all corresponding task fields"
+      },
+      {
+        "step": 5,
+        "action": "Select projectName in modal window",
+        "data": "projectName: TC-4251 Feature area - Importing and then Exporting tasks without dates",
+        "result": "Project \"TC-4251 Feature area - Importing and then Exporting tasks without dates\" is selected"
+      },
+      {
+        "step": 6,
+        "action": "Change switcher \"Convert parent tasks to Jira Epics\" to ON position",
+        "data": "",
+        "result": "Parent tasks are set to be Epics."
+      },
+      {
+        "step": 7,
+        "action": "Click the \"Import\" button",
+        "data": "",
+        "result": "Confirmation dialog with message\" Imported tasks will be added gradually. Refresh the page so that you can observe the results. \" appears."
+      },
+      {
+        "step": 8,
+        "action": "Click \"Proceed\" button",
+        "data": "",
+        "result": "Import file modal is closed."
+      },
+      {
+        "step": 9,
+        "action": "Refresh the page when the folLowing message appears: \"Tasks have been successfully imported. Now you can refresh the page to see your tasks.\"",
+        "data": "",
+        "result": "All tasks are imported. FolLowing structure is displayed:\n\n* *project task TC-4251 Feature area - Importing and then Exporting tasks without dates*\n* *File to import (Epic) as parent* \nStart date - 22/Feb/21 \nEnd Date - 01/Apr/21\n* *Parent Epic 1 (Epic) as parent* \nStart date - 01/Jan/20 \nEnd Date - 01/Apr/21\n* *Parent story 1 (Epic)* \nStart date - 12/Mar/21\nEnd Date - NO END DATE\n* *child of Parent story 1 : Child story 2*\nStart date - NO START DATE\nEnd Date - 01/Apr/21\n* *Parent Bug 1 (Epic)*\nStart date - 13/Mar/21\nEnd Date - NO END DATE \n* *child of Parent Bug 1: Child bug 2*\nStart date - NO START DATE\nEnd Date - NO END DATE\n* *Parent task 1 (Epic)* \nStart date - 22/Feb/21\nEnd Date - NO END DATE\n* *child of Parent task 1: Child task 2*\nStart date - NO START DATE\nEnd Date - 12/Mar/21\n\nTasks hierarchy, order of tasks and issue types are imported properly."
+      },
+      {
+        "step": 10,
+        "action": "Click the Export button in the module's header and click on File Type dropdown.",
+        "data": "",
+        "result": "Export manager is displayed, with folLowing options available:\n\n* Export to image (PDF) Range dropdown (\"Full scope\" option is displayed as default)\n* Export to CSV (CSV)\n* MS Excel export (XLSX)\n* MS Project Empty Template - MPP, MPX, PDF, XML"
+      },
+      {
+        "step": 11,
+        "action": "Export to CSV and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' names are folLowing the filename schema:\n_gantt_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks are properly exported, with their basic data:\n\n* Key\n* Parent Row\n* Issue Type\n* Summary\n* Start Date\n* End Date\n* Parent Key\n* Link"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-4251",
+    "text": "Test: TC-4251 — Feature area - Importing - Importing and then Exporting tasks without dates from same file - CSV\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-93 Feature area - Importing\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-4251 Feature area - Importing - Importing and then Exporting tasks without dates from same file - CSV\n   Expected: Gantt module is displayed. Splash screen is displayed with two tiles:  Create new, Define scope\n2. Click \"+Add task\" dropdown\n   Expected: Dropdown is expanded. FolLowing options are available:\n\n* Create task\nCreate sub-task (disabled)\n* Manage scope definition\n* Import tasks from file\n* Clone existing scope\n3. Select \"Import tasks from file\" option\n   Expected: Modal window is displayed with folLowing fields:\n\n* Add an import file containing tasks to be imported\n* Select the Jira project where the tasks will be created\n\nIn modal window is switcher \"Convert parent tasks to Jira Epics\" and it is in off position.\n4. Upload \"TC4251.csv\" file (attached to this TC)\n   Expected: File is uploaded. \"Match the columns \" section appears. Columns from file are correctly mapped to all corresponding task fields\n5. Select projectName in modal window\n   Data: projectName: TC-4251 Feature area - Importing and then Exporting tasks without dates\n   Expected: Project \"TC-4251 Feature area - Importing and then Exporting tasks without dates\" is selected\n6. Change switcher \"Convert parent tasks to Jira Epics\" to ON position\n   Expected: Parent tasks are set to be Epics.\n7. Click the \"Import\" button\n   Expected: Confirmation dialog with message\" Imported tasks will be added gradually. Refresh the page so that you can observe the results. \" appears.\n8. Click \"Proceed\" button\n   Expected: Import file modal is closed.\n9. Refresh the page when the folLowing message appears: \"Tasks have been successfully imported. Now you can refresh the page to see your tasks.\"\n   Expected: All tasks are imported. FolLowing structure is displayed:\n\n* *project task TC-4251 Feature area - Importing and then Exporting tasks without dates*\n* *File to import (Epic) as parent* \nStart date - 22/Feb/21 \nEnd Date - 01/Apr/21\n* *Parent Epic 1 (Epic) as parent* \nStart date - 01/Jan/20 \nEnd Date - 01/Apr/21\n* *Parent story 1 (Epic)* \nStart date - 12/Mar/21\nEnd Date - NO END DATE\n* *child of Parent story 1 : Child story 2*\nStart date - NO START DATE\nEnd Date - 01/Apr/21\n* *Parent Bug 1 (Epic)*\nStart date - 13/Mar/21\nEnd Date - NO END DATE \n* *child of Parent Bug 1: Child bug 2*\nStart date - NO START DATE\nEnd Date - NO END DATE\n* *Parent task 1 (Epic)* \nStart date - 22/Feb/21\nEnd Date - NO END DATE\n* *child of Parent task 1: Child task 2*\nStart date - NO START DATE\nEnd Date - 12/Mar/21\n\nTasks hierarchy, order of tasks and issue types are imported properly.\n10. Click the Export button in the module's header and click on File Type dropdown.\n   Expected: Export manager is displayed, with folLowing options available:\n\n* Export to image (PDF) Range dropdown (\"Full scope\" option is displayed as default)\n* Export to CSV (CSV)\n* MS Excel export (XLSX)\n* MS Project Empty Template - MPP, MPX, PDF, XML\n11. Export to CSV and check if data in file is correct\n   Expected: Downloaded files' names are folLowing the filename schema:\n_gantt_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks are properly exported, with their basic data:\n\n* Key\n* Parent Row\n* Issue Type\n* Summary\n* Start Date\n* End Date\n* Parent Key\n* Link",
+    "metadata": {
+      "jira_key": "TC-4251",
+      "issue_id": "814397",
+      "summary": "Feature area - Importing - Importing and then Exporting tasks without dates from same file - CSV",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-93 Feature area - Importing",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

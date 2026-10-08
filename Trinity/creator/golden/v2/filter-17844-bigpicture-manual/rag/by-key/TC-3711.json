@@ -1,0 +1,85 @@
+{
+  "test": {
+    "key": "TC-3711",
+    "issue_id": "360189",
+    "url": "https://appfire.atlassian.net/browse/TC-3711",
+    "summary": "Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box",
+    "description": "This TC check: Inherited Quick filters list displayed in BoxType and Box Configuration for \"None\" scope box",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Piotr Zadora {Appfire}",
+    "created": "2022-11-25T08:28:45.833-0500",
+    "updated": "2026-10-06T09:11:39.382-0400",
+    "labels": [
+      "ppm-e2e-cloud",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-6 Feature area - Task - Quick Filters",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Configuration -> Tasks -> Quick Filters of boxName",
+        "data": "boxName: TC-3711 Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box",
+        "result": "Quick filters list displayed \n\n* Sample view with my tasks (query:\nassignee = currentUser())\n* OwnQF (query:issuetype = Story)"
+      },
+      {
+        "step": 2,
+        "action": "Add Quick Filter",
+        "data": "Quick Filter: OwnQF2\njqlQuery: issuetype = bug",
+        "result": "New Quick Filter 'newQF2' is created and visible on the list"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Configuration -> Tasks -> Quick Filters of boxName",
+        "data": "boxName: TC - 3711 NoneScopeBox",
+        "result": "Quick filters list displayed \n- Sample view with my tasks (query:\nassignee = currentUser())"
+      },
+      {
+        "step": 4,
+        "action": "Add Quick Filter",
+        "data": "Quick Filter: OwnScopeQF\njqlQuery: issuetype = task",
+        "result": "New Quick Filter 'OwnScopeQF' is created and visible on the list"
+      },
+      {
+        "step": 5,
+        "action": "Delete Quick Filter",
+        "data": "Quick Filter: Sample view with my tasks",
+        "result": "Quick Filter Sample view with my tasks has been deletes and is not visible on the list"
+      },
+      {
+        "step": 6,
+        "action": "Navigate to Configuration -> Tasks -> Quick Filters of boxName",
+        "data": "boxName: TC-3711 Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box",
+        "result": "Quick filters list displayed \n\n* Sample view with my tasks (query:\nassignee = currentUser())\n* OwnQF (query:issueType = Story)\n* OwnQF2 (query:issuetype = bug)\n* OwnScopeQF (query:issueType = task) - inherited"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-3711",
+    "text": "Test: TC-3711 — Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-6 Feature area - Task - Quick Filters\nLabels: ppm-e2e-cloud, teamtree\n\nDescription:\nThis TC check: Inherited Quick filters list displayed in BoxType and Box Configuration for \"None\" scope box\n\nSteps:\n1. Navigate to Configuration -> Tasks -> Quick Filters of boxName\n   Data: boxName: TC-3711 Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box\n   Expected: Quick filters list displayed \n\n* Sample view with my tasks (query:\nassignee = currentUser())\n* OwnQF (query:issuetype = Story)\n2. Add Quick Filter\n   Data: Quick Filter: OwnQF2\njqlQuery: issuetype = bug\n   Expected: New Quick Filter 'newQF2' is created and visible on the list\n3. Navigate to Configuration -> Tasks -> Quick Filters of boxName\n   Data: boxName: TC - 3711 NoneScopeBox\n   Expected: Quick filters list displayed \n- Sample view with my tasks (query:\nassignee = currentUser())\n4. Add Quick Filter\n   Data: Quick Filter: OwnScopeQF\njqlQuery: issuetype = task\n   Expected: New Quick Filter 'OwnScopeQF' is created and visible on the list\n5. Delete Quick Filter\n   Data: Quick Filter: Sample view with my tasks\n   Expected: Quick Filter Sample view with my tasks has been deletes and is not visible on the list\n6. Navigate to Configuration -> Tasks -> Quick Filters of boxName\n   Data: boxName: TC-3711 Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box\n   Expected: Quick filters list displayed \n\n* Sample view with my tasks (query:\nassignee = currentUser())\n* OwnQF (query:issueType = Story)\n* OwnQF2 (query:issuetype = bug)\n* OwnScopeQF (query:issueType = task) - inherited",
+    "metadata": {
+      "jira_key": "TC-3711",
+      "issue_id": "360189",
+      "summary": "Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-6 Feature area - Task - Quick Filters",
+      "labels": [
+        "ppm-e2e-cloud",
+        "teamtree"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

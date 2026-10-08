@@ -1,0 +1,97 @@
+{
+  "test": {
+    "key": "TC-4869",
+    "issue_id": "825556",
+    "url": "https://appfire.atlassian.net/browse/TC-4869",
+    "summary": "Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2024-08-09T02:42:31.332-0400",
+    "updated": "2026-03-30T09:57:25.062-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-70 Feature area - Box scope - Existing tasks cloning",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxname",
+        "data": "boxname: TC-4710 Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning",
+        "result": "Gantt module opens with following task:\n\n* issue#1"
+      },
+      {
+        "step": 2,
+        "action": "Click + button from header",
+        "data": "",
+        "result": "Dropdown appear with following options:\n\n* Create task\n* (disabled) Create subtask\n* Manage scope definition\n* Import tasks from file\n* Clone existing scope"
+      },
+      {
+        "step": 3,
+        "action": "Click Clone existing scope",
+        "data": "",
+        "result": "Clone existing scope window shows up with \n\n* Clone the Scope from select\n* Clone the scope to select\n* Read more button\n* Cancel button\n* Clone button"
+      },
+      {
+        "step": 4,
+        "action": "Click on the select underneath Clone the scope from, type boxName and click on it in dropdown",
+        "data": "boxname: TC-4710 Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning",
+        "result": "\"TC-4710 Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning\" is filled in 'Clone the scope from' select"
+      },
+      {
+        "step": 5,
+        "action": "Click on the select underneath Clone the scope to, type projectName and click on it in dropdown",
+        "data": "projectName: TC-4710 Clone To",
+        "result": "\"TC-4710 Clone To\" is filled in 'Clone the scope to' select"
+      },
+      {
+        "step": 6,
+        "action": "Click Clone button and then Proceed button",
+        "data": "",
+        "result": "After a while, window Tasks have been successfully cloned shows up. Both projects TC-4710 Clone To and TC-4710  Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning will be visible in the scope of TC-4710  Feature area - Box scope - Existing tasks cloning (…)"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to projectName in Jira",
+        "data": "projectName: TC-4710 Clone To",
+        "result": "Backlog of \"TC-4710 Clone To\" is opened. \nissue#1 is visible in the backlog."
+      },
+      {
+        "step": 8,
+        "action": "Open issueName in Jira",
+        "data": "issueName: issue#1",
+        "result": "issue#1 is opened. \n\nIssue links has a \"*clones*\" link."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-4869",
+    "text": "Test: TC-4869 — Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-70 Feature area - Box scope - Existing tasks cloning\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Navigate to Gantt module of boxname\n   Data: boxname: TC-4710 Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning\n   Expected: Gantt module opens with following task:\n\n* issue#1\n2. Click + button from header\n   Expected: Dropdown appear with following options:\n\n* Create task\n* (disabled) Create subtask\n* Manage scope definition\n* Import tasks from file\n* Clone existing scope\n3. Click Clone existing scope\n   Expected: Clone existing scope window shows up with \n\n* Clone the Scope from select\n* Clone the scope to select\n* Read more button\n* Cancel button\n* Clone button\n4. Click on the select underneath Clone the scope from, type boxName and click on it in dropdown\n   Data: boxname: TC-4710 Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning\n   Expected: \"TC-4710 Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning\" is filled in 'Clone the scope from' select\n5. Click on the select underneath Clone the scope to, type projectName and click on it in dropdown\n   Data: projectName: TC-4710 Clone To\n   Expected: \"TC-4710 Clone To\" is filled in 'Clone the scope to' select\n6. Click Clone button and then Proceed button\n   Expected: After a while, window Tasks have been successfully cloned shows up. Both projects TC-4710 Clone To and TC-4710  Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning will be visible in the scope of TC-4710  Feature area - Box scope - Existing tasks cloning (…)\n7. Navigate to projectName in Jira\n   Data: projectName: TC-4710 Clone To\n   Expected: Backlog of \"TC-4710 Clone To\" is opened. \nissue#1 is visible in the backlog.\n8. Open issueName in Jira\n   Data: issueName: issue#1\n   Expected: issue#1 is opened. \n\nIssue links has a \"*clones*\" link.",
+    "metadata": {
+      "jira_key": "TC-4869",
+      "issue_id": "825556",
+      "summary": "Feature area - Box scope - Existing tasks cloning - Verifying link types in Jira after cloning",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-70 Feature area - Box scope - Existing tasks cloning",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-609",
+    "issue_id": "357061",
+    "url": "https://appfire.atlassian.net/browse/TC-609",
+    "summary": "Feature area - Task Scheduling - Dependencies - Links scheduling in Gantt module when ASAP mode is turned on",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Patryk Pesta",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2020-10-15T02:04:52.271-0400",
+    "updated": "2026-06-18T05:50:16.079-0400",
+    "labels": [
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-79 Feature area - Task Scheduling - Dependencies",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to plugin's Technical Configuration -> General/Link tab and turn on ASAP mode",
+        "data": "",
+        "result": "ASAP mode is turned on"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-271 / TC-609 Links scheduling in Gantt module when ASAP mode is turned on/off",
+        "result": "Gantt module is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Move Timeline to date",
+        "data": "date: 25/Sep/20",
+        "result": "Timeline is moved to selected date"
+      },
+      {
+        "step": 4,
+        "action": "Click on endpoint on the the right side of taskbar and drag the cursor to the start of targetTask",
+        "data": "taskbar: TC-609 Analysis\ntargetTask: TC-609 Final feature",
+        "result": "Tasks are linked. Target task is moved and starts on 21/Oct/20, so that there is no gap time between the source and the target tasks"
+      },
+      {
+        "step": 5,
+        "action": "Click on link started from taskbar and check if ASAP mode is turned on",
+        "data": "taskbar: TC-609 Analysis",
+        "result": "ASAP mode is turned on"
+      },
+      {
+        "step": 6,
+        "action": "Move the taskbar to the date",
+        "data": "taskbar: TC-609 Final feature\ndate: 06/Oct/20",
+        "result": "Target task cannot be moved to the past. Task is moved back to 21/Oct/20, so that there is no gap time between the source and the target tasks\n\nFolLowing message appears:\n\nUnable to change dates\n\nThe dates of this task are determined by the dependency linking it to another task. Linked task: TC-609 Analysis"
+      },
+      {
+        "step": 7,
+        "action": "Move the taskbar to the date",
+        "data": "taskbar: TC-609 Final feature\ndate: 20/Nov/20",
+        "result": "Target task cannot be moved to the future. Task is moved back to 21/Oct/20, so that there is no gap time between the source and the target task\n\nFolLowing message appears:\nUnable to change dates\n\nThe dates of this task are determined by the dependency linking it to another task. Linked task: TC-609 Analysis"
+      },
+      {
+        "step": 8,
+        "action": "Resize the taskbar to the date",
+        "data": "taskbar: TC-609 Final feature\ndate: 7/Oct/20",
+        "result": "Task is resized, start date isn't changed but new end date is 17/Nov/20. \n\nFolLowing message appears:\n\nDates adjusted by dependency\n\nThe dates of this task are determined by the dependency linking it to another task. Linked task: TC-609 Analysis"
+      },
+      {
+        "step": 9,
+        "action": "Click on link started from taskbar and add lagTime",
+        "data": "taskbar: TC-609 Analysis\nlagTime: 5",
+        "result": "Target task \"TC-609 Final feature\" is moved to 20/Nov/20, so that it starts as soon as possible, considering setted lag time"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-609",
+    "text": "Test: TC-609 — Feature area - Task Scheduling - Dependencies - Links scheduling in Gantt module when ASAP mode is turned on\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-79 Feature area - Task Scheduling - Dependencies\nLabels: teamscheduling\n\nSteps:\n1. Navigate to plugin's Technical Configuration -> General/Link tab and turn on ASAP mode\n   Expected: ASAP mode is turned on\n2. Navigate to Gantt module of boxName\n   Data: boxName: TC-271 / TC-609 Links scheduling in Gantt module when ASAP mode is turned on/off\n   Expected: Gantt module is displayed\n3. Move Timeline to date\n   Data: date: 25/Sep/20\n   Expected: Timeline is moved to selected date\n4. Click on endpoint on the the right side of taskbar and drag the cursor to the start of targetTask\n   Data: taskbar: TC-609 Analysis\ntargetTask: TC-609 Final feature\n   Expected: Tasks are linked. Target task is moved and starts on 21/Oct/20, so that there is no gap time between the source and the target tasks\n5. Click on link started from taskbar and check if ASAP mode is turned on\n   Data: taskbar: TC-609 Analysis\n   Expected: ASAP mode is turned on\n6. Move the taskbar to the date\n   Data: taskbar: TC-609 Final feature\ndate: 06/Oct/20\n   Expected: Target task cannot be moved to the past. Task is moved back to 21/Oct/20, so that there is no gap time between the source and the target tasks\n\nFolLowing message appears:\n\nUnable to change dates\n\nThe dates of this task are determined by the dependency linking it to another task. Linked task: TC-609 Analysis\n7. Move the taskbar to the date\n   Data: taskbar: TC-609 Final feature\ndate: 20/Nov/20\n   Expected: Target task cannot be moved to the future. Task is moved back to 21/Oct/20, so that there is no gap time between the source and the target task\n\nFolLowing message appears:\nUnable to change dates\n\nThe dates of this task are determined by the dependency linking it to another task. Linked task: TC-609 Analysis\n8. Resize the taskbar to the date\n   Data: taskbar: TC-609 Final feature\ndate: 7/Oct/20\n   Expected: Task is resized, start date isn't changed but new end date is 17/Nov/20. \n\nFolLowing message appears:\n\nDates adjusted by dependency\n\nThe dates of this task are determined by the dependency linking it to another task. Linked task: TC-609 Analysis\n9. Click on link started from taskbar and add lagTime\n   Data: taskbar: TC-609 Analysis\nlagTime: 5\n   Expected: Target task \"TC-609 Final feature\" is moved to 20/Nov/20, so that it starts as soon as possible, considering setted lag time",
+    "metadata": {
+      "jira_key": "TC-609",
+      "issue_id": "357061",
+      "summary": "Feature area - Task Scheduling - Dependencies - Links scheduling in Gantt module when ASAP mode is turned on",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-79 Feature area - Task Scheduling - Dependencies",
+      "labels": [
+        "teamscheduling"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

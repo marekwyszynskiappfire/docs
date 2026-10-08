@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-790",
+    "issue_id": "358459",
+    "url": "https://appfire.atlassian.net/browse/TC-790",
+    "summary": "Feature area - Task - Workload contouring - Editing Manual contour",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Monika Cecot",
+    "reporter": "Bartosz Drążewski",
+    "created": "2020-12-07T11:17:01.925-0500",
+    "updated": "2026-03-17T15:08:20.611-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName: TC-790 Feature area - Task - Workload contouring - Editing Manual contour",
+        "result": "Resources module is successfully loaded and displayed.\nThe beginning of Timeline is set to 01/Dec/2024.\nIndividual view - All is selected in the left top corner.\nEffort mode is set to Original estimate and Units to Hours.\nScale is set to Month/Weekly.\nAll rows are expanded.\n\nFollowing task is visible on Resources Grid:\n\n* TC-790 Task 1"
+      },
+      {
+        "step": 2,
+        "action": "Look at the Workload and the Remaining capacity values for weekNumbers.",
+        "data": "weekNumbers: 50, 51",
+        "result": "Workload, Remaining capacity and Capacity bars are displayed on Resource Grid.\n\nFollowing values are displayed in Workload bar:\n\n* \"15\" in green lozenge for User \"TC-790\" for week 50\n* \"0\" in green lozenge for User \"TC-790\" for week 51\n\nFollowing values are displayed in Remaining capacity bar:\n\n* \"25\" in green lozenge for User \"TC-790\" for week 50\n* \"40\" in green lozenge for User \"TC-790\" for week 51"
+      },
+      {
+        "step": 3,
+        "action": "Click on taskName.",
+        "data": "taskName: TC-790 Task 1",
+        "result": "Task Details dialog is displayed."
+      },
+      {
+        "step": 4,
+        "action": "Scroll down to the Workload contouring section.",
+        "data": "",
+        "result": "Workload contouring mode is set to manual\nWorkload value for the first 3 days is set to \"5\""
+      },
+      {
+        "step": 5,
+        "action": "Change value for the first 3 days to newValue.\nFor the last 3 days set the value to newValue2:\nClick on empty place in dialog to save changes.",
+        "data": "newValue: 0\nnewValue2: 10",
+        "result": "Values in workload contour are set."
+      },
+      {
+        "step": 6,
+        "action": "Click on the exclamation mark in Distributed effort row and confirm by clicking on 'Overwrite' button.",
+        "data": "",
+        "result": "Distributed workload is not equal to Original estimate. You can overwrite the Original estimate to make it equal."
+      },
+      {
+        "step": 7,
+        "action": "Close Task details dialog and look at Resources Grid.",
+        "data": "",
+        "result": "Values on Resource grid changed.\n\nFollowing values are displayed in Workload bar:\n\n* \"0\" in green lozenge for User \"TC-790\" for week 50\n* \"30\" in green lozenge for User \"TC-790\" for week 51\n\nFollowing values are displayed in Remaining capacity bar:\n\n* \"40\" in green lozenge for User \"TC-790\" for week 50\n* \"10\" in green lozenge for User \"TC-790\" for week 51"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-790",
+    "text": "Test: TC-790 — Feature area - Task - Workload contouring - Editing Manual contour\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: be-enterprise, can_be_automated\n\nSteps:\n1. Navigate to Resources module of boxName\n   Data: boxName: TC-790 Feature area - Task - Workload contouring - Editing Manual contour\n   Expected: Resources module is successfully loaded and displayed.\nThe beginning of Timeline is set to 01/Dec/2024.\nIndividual view - All is selected in the left top corner.\nEffort mode is set to Original estimate and Units to Hours.\nScale is set to Month/Weekly.\nAll rows are expanded.\n\nFollowing task is visible on Resources Grid:\n\n* TC-790 Task 1\n2. Look at the Workload and the Remaining capacity values for weekNumbers.\n   Data: weekNumbers: 50, 51\n   Expected: Workload, Remaining capacity and Capacity bars are displayed on Resource Grid.\n\nFollowing values are displayed in Workload bar:\n\n* \"15\" in green lozenge for User \"TC-790\" for week 50\n* \"0\" in green lozenge for User \"TC-790\" for week 51\n\nFollowing values are displayed in Remaining capacity bar:\n\n* \"25\" in green lozenge for User \"TC-790\" for week 50\n* \"40\" in green lozenge for User \"TC-790\" for week 51\n3. Click on taskName.\n   Data: taskName: TC-790 Task 1\n   Expected: Task Details dialog is displayed.\n4. Scroll down to the Workload contouring section.\n   Expected: Workload contouring mode is set to manual\nWorkload value for the first 3 days is set to \"5\"\n5. Change value for the first 3 days to newValue.\nFor the last 3 days set the value to newValue2:\nClick on empty place in dialog to save changes.\n   Data: newValue: 0\nnewValue2: 10\n   Expected: Values in workload contour are set.\n6. Click on the exclamation mark in Distributed effort row and confirm by clicking on 'Overwrite' button.\n   Expected: Distributed workload is not equal to Original estimate. You can overwrite the Original estimate to make it equal.\n7. Close Task details dialog and look at Resources Grid.\n   Expected: Values on Resource grid changed.\n\nFollowing values are displayed in Workload bar:\n\n* \"0\" in green lozenge for User \"TC-790\" for week 50\n* \"30\" in green lozenge for User \"TC-790\" for week 51\n\nFollowing values are displayed in Remaining capacity bar:\n\n* \"40\" in green lozenge for User \"TC-790\" for week 50\n* \"10\" in green lozenge for User \"TC-790\" for week 51",
+    "metadata": {
+      "jira_key": "TC-790",
+      "issue_id": "358459",
+      "summary": "Feature area - Task - Workload contouring - Editing Manual contour",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-5727",
+    "issue_id": "1279536",
+    "url": "https://appfire.atlassian.net/browse/TC-5727",
+    "summary": "SPM - Strategic areas  - Adding strategic theme by Create Strategic Theme button",
+    "description": "This Test Case can be only exectuted if there are not strategic themes created on the instance yet",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2025-08-29T06:09:59.067-0400",
+    "updated": "2026-10-06T09:10:37.166-0400",
+    "labels": [
+      "ppm-e2e-cloud",
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Strategic Areas overview",
+        "data": "",
+        "result": "Splashscreen \"Track your strategic goals in 3 simple steps\n\nCreate strategic themeSet objectives and key resultsLink your initiatives\" is displayed\n\nButtons are displayed under the message \n\n* Create Strategic Theme \n* Go to OKRs\n\nBack to Home and Go to OKR button are displayed in the right-top corner"
+      },
+      {
+        "step": 2,
+        "action": "Click on \"Create Strategic Theme\" button",
+        "data": "",
+        "result": "User is directed to Main OKR box with modal to create New Strategic theme\n\nCreate and Cancel buttons are displayed at the bottom-right of the modal window"
+      },
+      {
+        "step": 3,
+        "action": "Type Strategic Theme name and select period and click Create",
+        "data": "name: TC-5727\n\nperiod: Y2025",
+        "result": "Tree view is displayed\n\nPlus button is displayed next to Strategic Theme TC-5727"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button, select Add sub-objective and click Create",
+        "data": "name: TC-5727 Objective",
+        "result": "Period is automatically populated as Y2025\n\nTC-5727 Objective is created under Strategic Theme TC-5727"
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button, select Key result and click Create",
+        "data": "name: TC-5727 Key result",
+        "result": "Period is automatically populated as Y2025\n\nTC-5727 Key result is created under  TC-5727 Objective"
+      },
+      {
+        "step": 6,
+        "action": "Click on Finish & go back",
+        "data": "",
+        "result": "Modal is closed\n\nStrategic Theme TC-5727 is displayed on the list with its children\n\nFollowing columns are displayed on the left\n\n* OKR Overview\n* OKR Hierarchy\n* Progress Dashboard\n* Strategic Areas\n* Settings"
+      },
+      {
+        "step": 7,
+        "action": "Click on Strategic Areas",
+        "data": "",
+        "result": "*Strategic theme* TC-5727 is displayed\n\nOwner: currentAccount\n\nStatus: Not Started\n\nProgress 0%\n\nSub-Theme 0\n\nObjectives 1 \n\nKey Results 1\n\nPeriod Y2025"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-5727",
+    "text": "Test: TC-5727 — SPM - Strategic areas  - Adding strategic theme by Create Strategic Theme button\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: ppm-e2e-cloud, spm-paulina-tc\n\nDescription:\nThis Test Case can be only exectuted if there are not strategic themes created on the instance yet\n\nSteps:\n1. Navigate to Strategic Areas overview\n   Expected: Splashscreen \"Track your strategic goals in 3 simple steps\n\nCreate strategic themeSet objectives and key resultsLink your initiatives\" is displayed\n\nButtons are displayed under the message \n\n* Create Strategic Theme \n* Go to OKRs\n\nBack to Home and Go to OKR button are displayed in the right-top corner\n2. Click on \"Create Strategic Theme\" button\n   Expected: User is directed to Main OKR box with modal to create New Strategic theme\n\nCreate and Cancel buttons are displayed at the bottom-right of the modal window\n3. Type Strategic Theme name and select period and click Create\n   Data: name: TC-5727\n\nperiod: Y2025\n   Expected: Tree view is displayed\n\nPlus button is displayed next to Strategic Theme TC-5727\n4. Click on Plus button, select Add sub-objective and click Create\n   Data: name: TC-5727 Objective\n   Expected: Period is automatically populated as Y2025\n\nTC-5727 Objective is created under Strategic Theme TC-5727\n5. Click on Plus button, select Key result and click Create\n   Data: name: TC-5727 Key result\n   Expected: Period is automatically populated as Y2025\n\nTC-5727 Key result is created under  TC-5727 Objective\n6. Click on Finish & go back\n   Expected: Modal is closed\n\nStrategic Theme TC-5727 is displayed on the list with its children\n\nFollowing columns are displayed on the left\n\n* OKR Overview\n* OKR Hierarchy\n* Progress Dashboard\n* Strategic Areas\n* Settings\n7. Click on Strategic Areas\n   Expected: *Strategic theme* TC-5727 is displayed\n\nOwner: currentAccount\n\nStatus: Not Started\n\nProgress 0%\n\nSub-Theme 0\n\nObjectives 1 \n\nKey Results 1\n\nPeriod Y2025",
+    "metadata": {
+      "jira_key": "TC-5727",
+      "issue_id": "1279536",
+      "summary": "SPM - Strategic areas  - Adding strategic theme by Create Strategic Theme button",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "ppm-e2e-cloud",
+        "spm-paulina-tc"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

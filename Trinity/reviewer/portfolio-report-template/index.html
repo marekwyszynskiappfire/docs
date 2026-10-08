@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Reviewer portfolio</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#epic-table">Skip to epic table</a>
+  <header class="page-header">
+    <h1 id="page-title">Reviewer portfolio</h1>
+    <p class="meta" id="meta-line"></p>
+  </header>
+
+  <section class="note" aria-labelledby="note-heading">
+    <h2 id="note-heading" class="visually-hidden">How to read this report</h2>
+    <p id="note-body"></p>
+  </section>
+
+  <section class="exec card" aria-labelledby="exec-heading">
+    <h2 id="exec-heading">Executive snapshot</h2>
+    <div class="stats" id="execStats" aria-label="Portfolio totals"></div>
+    <p class="synth" id="synth-text"></p>
+  </section>
+
+  <section class="card" aria-labelledby="themes-heading">
+    <h2 id="themes-heading">Problem themes (by finding category)</h2>
+    <p class="hint" id="themes-hint"></p>
+    <div id="themeBars" class="theme-bars" role="img" aria-label="Finding category distribution"></div>
+    <div id="themeGroups"></div>
+  </section>
+
+  <section aria-labelledby="filters-heading">
+    <div class="filters-bar">
+      <h2 id="filters-heading">Filter epics</h2>
+      <p class="filters-hint">Combine filters (AND). Counts update for the current selection.</p>
+      <button type="button" class="btn btn-ghost" id="clearFilters" disabled>Clear all filters</button>
+    </div>
+    <div class="active-filters" id="activeFilters" hidden>
+      <span class="active-filters-label">Active:</span>
+      <ul id="activeFilterList" class="active-filter-list"></ul>
+    </div>
+    <div class="cards" id="filterCards" role="group" aria-label="Facet filters"></div>
+    <div class="stats" id="statCards" aria-label="Totals for filtered epics"></div>
+  </section>
+
+  <section class="card creator-handoff" aria-labelledby="creator-heading">
+    <h2 id="creator-heading">Creator handoff</h2>
+    <p class="hint" id="creator-hint">
+      Choose which epics should get test cases from The Creator. Excluded epics stay in the portfolio for planning only.
+    </p>
+    <div class="creator-actions">
+      <button type="button" class="btn" id="creatorSelectDefaults">Reset to defaults</button>
+      <button type="button" class="btn" id="creatorCopyJql">Copy JQL</button>
+      <button type="button" class="btn btn-primary" id="creatorExport">Export creator-handoff.json</button>
+    </div>
+    <p class="creator-jql mono" id="creatorJqlPreview" aria-live="polite"></p>
+    <p class="hint" id="creatorExportNote">Also written on build: <code>data/creator-handoff.json</code> and <code>creator-handoff.md</code>.</p>
+  </section>
+
+  <section class="toolbar-section" aria-labelledby="search-heading">
+    <label for="textFilter" id="search-heading">Search within results</label>
+    <div class="toolbar">
+      <input id="textFilter" type="search" placeholder="Epic key, summary, gap label…" autocomplete="off" spellcheck="false">
+    </div>
+    <p class="result-summary" id="resultSummary" aria-live="polite"></p>
+  </section>
+
+  <div class="table-wrap card">
+    <table id="epic-table">
+      <thead id="tableHead"></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <footer class="page-footer">
+    <p>Zip this <code>portfolio/</code> folder to share. Open <code>index.html</code> locally — no server required.</p>
+  </footer>
+
+  <script src="data/report-data.js"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

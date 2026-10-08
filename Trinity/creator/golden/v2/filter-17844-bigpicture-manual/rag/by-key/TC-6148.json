@@ -1,0 +1,107 @@
+{
+  "test": {
+    "key": "TC-6148",
+    "issue_id": "1688153",
+    "url": "https://appfire.atlassian.net/browse/TC-6148",
+    "summary": "SPM - OKR - Updating Number custom field values across OKR views",
+    "description": "This test verifies updating Number custom field values across all supported OKR views.\n\nCovered areas:\n\n* OKR Detail page\n* Overview (inline editing)\n* Side panel\n\nValidation scope:\n\n* Editing and saving Number custom field values\n* Updating positive and negative numeric values\n* Updating decimal and whole number values\n* Validation of invalid non-numeric input\n* Validation of Number custom field stepper controls behavior\n* Correct inline editing behavior across supported views",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-05-11T06:39:21.323-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Preconditions:*\n\n* Number custom field is created and assigned to Strategic Theme, Objective and Key Result (used-in)\n* Existing OKRs contain predefined values for Number fields\n* User has permissions to edit OKRs and custom field values",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Open OKR Overview of boxName",
+        "data": "boxName: TC-6148 SPM - OKR - Updating Number custom field values across OKR views",
+        "result": "Overview module is opened. The following OKRs are visible:\n\n* Strategic theme 1\n* Objective 1\n* Key result 1"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Number field",
+        "data": "",
+        "result": "Number custom field is visible for Strategic Theme, Objective and Key Result.\n\nThe following text field values are displayed correctly for each item:\n\n* Strategic Theme - \"100\"\n* Objective - \"25.5\"\n* Key Result - \"0\""
+      },
+      {
+        "step": 4,
+        "action": "Navigate to the Key result Number custom field and update the value",
+        "data": "newValue: abc",
+        "result": "Value is not saved. Non-numeric characters are not accepted in the Number custom field input"
+      },
+      {
+        "step": 5,
+        "action": "Update value",
+        "data": "newValue: 250",
+        "result": "The new field value is saved and displayed correctly"
+      },
+      {
+        "step": 6,
+        "action": "Click on field value and use field stepper controls to change value",
+        "data": "newValue: 253\n\n!xray-attachment://8271eb35-1952-4806-9040-53512558870f|width=353,height=134!",
+        "result": "The new field value is saved and displayed correctly when using the stepper controls"
+      },
+      {
+        "step": 7,
+        "action": "Click on the grey area of the Key result row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Key result. Number field is visible with correct value."
+      },
+      {
+        "step": 8,
+        "action": "Navigate to the Number field and update the value",
+        "data": "newValue: -15",
+        "result": "The new field value is saved and displayed correctly"
+      },
+      {
+        "step": 9,
+        "action": "Open Key-result in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Number field is visible with correct value."
+      },
+      {
+        "step": 10,
+        "action": "Navigate to the Number field and update the value",
+        "data": "newValue: 999.99",
+        "result": "The new field value is saved and displayed correctly"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-6148",
+    "text": "Test: TC-6148 — SPM - OKR - Updating Number custom field values across OKR views\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-512 OKR - OKR module\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies updating Number custom field values across all supported OKR views.\n\nCovered areas:\n\n* OKR Detail page\n* Overview (inline editing)\n* Side panel\n\nValidation scope:\n\n* Editing and saving Number custom field values\n* Updating positive and negative numeric values\n* Updating decimal and whole number values\n* Validation of invalid non-numeric input\n* Validation of Number custom field stepper controls behavior\n* Correct inline editing behavior across supported views\n\nSteps:\n1. *Preconditions:*\n\n* Number custom field is created and assigned to Strategic Theme, Objective and Key Result (used-in)\n* Existing OKRs contain predefined values for Number fields\n* User has permissions to edit OKRs and custom field values\n   Expected: \n2. Open OKR Overview of boxName\n   Data: boxName: TC-6148 SPM - OKR - Updating Number custom field values across OKR views\n   Expected: Overview module is opened. The following OKRs are visible:\n\n* Strategic theme 1\n* Objective 1\n* Key result 1\n3. Navigate to Number field\n   Expected: Number custom field is visible for Strategic Theme, Objective and Key Result.\n\nThe following text field values are displayed correctly for each item:\n\n* Strategic Theme - \"100\"\n* Objective - \"25.5\"\n* Key Result - \"0\"\n4. Navigate to the Key result Number custom field and update the value\n   Data: newValue: abc\n   Expected: Value is not saved. Non-numeric characters are not accepted in the Number custom field input\n5. Update value\n   Data: newValue: 250\n   Expected: The new field value is saved and displayed correctly\n6. Click on field value and use field stepper controls to change value\n   Data: newValue: 253\n\n!xray-attachment://8271eb35-1952-4806-9040-53512558870f|width=353,height=134!\n   Expected: The new field value is saved and displayed correctly when using the stepper controls\n7. Click on the grey area of the Key result row\n   Expected: Side panel is opened on the right side and displays details of the selected Key result. Number field is visible with correct value.\n8. Navigate to the Number field and update the value\n   Data: newValue: -15\n   Expected: The new field value is saved and displayed correctly\n9. Open Key-result in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Number field is visible with correct value.\n10. Navigate to the Number field and update the value\n   Data: newValue: 999.99\n   Expected: The new field value is saved and displayed correctly",
+    "metadata": {
+      "jira_key": "TC-6148",
+      "issue_id": "1688153",
+      "summary": "SPM - OKR - Updating Number custom field values across OKR views",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

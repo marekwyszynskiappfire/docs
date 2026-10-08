@@ -1,0 +1,137 @@
+{
+  "test": {
+    "key": "TC-5952",
+    "issue_id": "1504070",
+    "url": "https://appfire.atlassian.net/browse/TC-5952",
+    "summary": "SPM - Strategic areas - Share option",
+    "description": "User is logged on his Jira account\n\n[testlab.1@softwareplant.com|mailto:testlab.1@softwareplant.com] is secondary account",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-01-23T10:33:57.268-0500",
+    "updated": "2026-09-15T04:49:42.939-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of ROOT (Main) box",
+        "data": "",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on Add button",
+        "data": "",
+        "result": "Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)"
+      },
+      {
+        "step": 3,
+        "action": "Click Create and select Strategic Theme",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5952\n\nperiod: Y2026",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective and period",
+        "data": "newObjective: TC-5952 A\n\nperiod: Q12026",
+        "result": "New Objective TC-5952 A is created under Strategic Theme TC-5952."
+      },
+      {
+        "step": 6,
+        "action": "Click on Plus button next to TC-5952 A objective, add keyResult with period",
+        "data": "keyResult: TC-5952 B\n\nperiod: Y2026",
+        "result": "New Key Result TC-5952 B is created under Objective TC-5952 A"
+      },
+      {
+        "step": 7,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5952 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 8,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 9,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5952",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5952\n* Objective: TC-5952 A\n* Key result:  TC-5952 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1\n* Objectives: 1\n* Key results: 1"
+      },
+      {
+        "step": 10,
+        "action": "Click on period filter",
+        "data": "period: Q1 Y2026",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5952 (grayed out)\n* Objective: TC-5952 A \n* Key result: TC-5952 B (grayed out)\n\nWidgets on the left shows\n\n* Strategic Theme: 0\n* Objectives: 1\n* Key results: 0\n\nInformation Filter \"List is limited by filters. To display all existing initiatives\" is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Click on Share button{color:#ffffff}Copy URL to clipboard{color}",
+        "data": "",
+        "result": "Share view modal is disaplayed with information: \n\nBy copying the link, you can easily share the current view with your team.\n\n‘Get Help’ button is displayed and ‘Copy URL to clipboard’ buttons are displayed\n\n{color:#ffffff}Copy URL to clipboard{color}"
+      },
+      {
+        "step": 12,
+        "action": "Click on Get Help button",
+        "data": "",
+        "result": "New tab is opened with link directing to [https://appfire.atlassian.net/wiki/spaces/SPM/pages/2325217590/Strategic+Areas?platform=JiraCloud|https://appfire.atlassian.net/wiki/spaces/SPM/pages/2325217590/Strategic+Areas?platform=JiraCloud]"
+      },
+      {
+        "step": 13,
+        "action": "Go back to pervious tab and click on ‘Copy URL to clipboard’ button",
+        "data": "",
+        "result": "Button changed to green \n\n\"URL copied to clipboard\""
+      },
+      {
+        "step": 14,
+        "action": "Log as testlab.1@softwareplant.com",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 15,
+        "action": "In new tab, paste link",
+        "data": "",
+        "result": "Period filter Q1 Y2026 is selected\n\nOKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5952 (grayed out)\n* Objective: TC-5952 A\n* Key result: TC-5952 B (grayed out)\n\nWidgets on the left shows\n\n* Strategic Theme: 0\n* Objectives: 1\n* Key results: 0\n\nInformation Filter \"List is limited by filters. To display all existing initiatives\" is displayed"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 15
+  },
+  "rag": {
+    "id": "TC-5952",
+    "text": "Test: TC-5952 — SPM - Strategic areas - Share option\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nDescription:\nUser is logged on his Jira account\n\n[testlab.1@softwareplant.com|mailto:testlab.1@softwareplant.com] is secondary account\n\nSteps:\n1. Navigate to OKR module of ROOT (Main) box\n   Expected: OKR module is displayed\n2. Click on Add button\n   Expected: Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)\n3. Click Create and select Strategic Theme\n   Expected: New Strategic theme modal is displayed\n4. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5952\n\nperiod: Y2026\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n5. Click on Plus button next to Strategic Theme, add newObjective and period\n   Data: newObjective: TC-5952 A\n\nperiod: Q12026\n   Expected: New Objective TC-5952 A is created under Strategic Theme TC-5952.\n6. Click on Plus button next to TC-5952 A objective, add keyResult with period\n   Data: keyResult: TC-5952 B\n\nperiod: Y2026\n   Expected: New Key Result TC-5952 B is created under Objective TC-5952 A\n7. Click Finish & go back\n   Expected: Strategic Theme TC-5952 is displayed on the list with expand button next to it\n8. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n9. Click on strategicThemeName\n   Data: strategicThemeName: TC-5952\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5952\n* Objective: TC-5952 A\n* Key result:  TC-5952 B\n\nWidgets on the left shows\n\n* Strategic Theme: 1\n* Objectives: 1\n* Key results: 1\n10. Click on period filter\n   Data: period: Q1 Y2026\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5952 (grayed out)\n* Objective: TC-5952 A \n* Key result: TC-5952 B (grayed out)\n\nWidgets on the left shows\n\n* Strategic Theme: 0\n* Objectives: 1\n* Key results: 0\n\nInformation Filter \"List is limited by filters. To display all existing initiatives\" is displayed\n11. Click on Share button{color:#ffffff}Copy URL to clipboard{color}\n   Expected: Share view modal is disaplayed with information: \n\nBy copying the link, you can easily share the current view with your team.\n\n‘Get Help’ button is displayed and ‘Copy URL to clipboard’ buttons are displayed\n\n{color:#ffffff}Copy URL to clipboard{color}\n12. Click on Get Help button\n   Expected: New tab is opened with link directing to [https://appfire.atlassian.net/wiki/spaces/SPM/pages/2325217590/Strategic+Areas?platform=JiraCloud|https://appfire.atlassian.net/wiki/spaces/SPM/pages/2325217590/Strategic+Areas?platform=JiraCloud]\n13. Go back to pervious tab and click on ‘Copy URL to clipboard’ button\n   Expected: Button changed to green \n\n\"URL copied to clipboard\"\n14. Log as testlab.1@softwareplant.com\n   Expected: \n15. In new tab, paste link\n   Expected: Period filter Q1 Y2026 is selected\n\nOKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5952 (grayed out)\n* Objective: TC-5952 A\n* Key result: TC-5952 B (grayed out)\n\nWidgets on the left shows\n\n* Strategic Theme: 0\n* Objectives: 1\n* Key results: 0\n\nInformation Filter \"List is limited by filters. To display all existing initiatives\" is displayed",
+    "metadata": {
+      "jira_key": "TC-5952",
+      "issue_id": "1504070",
+      "summary": "SPM - Strategic areas - Share option",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 15,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

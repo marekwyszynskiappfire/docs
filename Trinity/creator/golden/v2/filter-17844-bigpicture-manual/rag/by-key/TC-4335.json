@@ -1,0 +1,73 @@
+{
+  "test": {
+    "key": "TC-4335",
+    "issue_id": "814481",
+    "url": "https://appfire.atlassian.net/browse/TC-4335",
+    "summary": "new Box Module - Resources - Resource Grid - Add Absence by right click on user's avatar",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2024-07-22T10:00:17.036-0400",
+    "updated": "2026-07-20T12:04:47.464-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName: TC-4715 Box Module - Resources - Resource Grid - Add Absence by right click on user's avatar",
+        "result": "Resources module is successfully loaded and displayed. Individuals mode is selected in the left top corner.\n\nTwo users are displayed on Resource Grid:\n\n* TC-4715-01\n* TC-4715-02"
+      },
+      {
+        "step": 2,
+        "action": "Hover over avatar of userName and Right-click on it",
+        "data": "userName: TC-4715-01",
+        "result": "'Add Absence' button is displayed."
+      },
+      {
+        "step": 3,
+        "action": "Click on \"Add Absence\" button",
+        "data": "",
+        "result": "Modal \"TC-4715-01: Add Absence\" is opened.\n\nName dropdown menu is empty with a placeholder \"Select Absence type\"\n\nStart date and End date are empty with a placeholder \"Click to select\"\n\n\"Half-day\" slider is grayed out. \n\nComment is empty with a placeholder \"Comment\"\n\n\"Add another\" checkbox is displayed on the left.\n\n\"Add\" button is grayed out and inactive. \n\n\"Cancel\" button is displayed next to \"Add\" button on the left."
+      },
+      {
+        "step": 4,
+        "action": "Pass following set of data and click Add",
+        "data": "Name: Sick leave\nstartDate: 15/Mar/22\nendDate: 17/Mar/22",
+        "result": "Modal window is closed.\n\n\"16.0h\" is displayed in Remaining Capacity lozenge for week 11 for userName: TC-4715-01"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 4
+  },
+  "rag": {
+    "id": "TC-4335",
+    "text": "Test: TC-4335 — new Box Module - Resources - Resource Grid - Add Absence by right click on user's avatar\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: be-enterprise, can_be_automated\n\nSteps:\n1. Navigate to Resources module of boxName\n   Data: boxName: TC-4715 Box Module - Resources - Resource Grid - Add Absence by right click on user's avatar\n   Expected: Resources module is successfully loaded and displayed. Individuals mode is selected in the left top corner.\n\nTwo users are displayed on Resource Grid:\n\n* TC-4715-01\n* TC-4715-02\n2. Hover over avatar of userName and Right-click on it\n   Data: userName: TC-4715-01\n   Expected: 'Add Absence' button is displayed.\n3. Click on \"Add Absence\" button\n   Expected: Modal \"TC-4715-01: Add Absence\" is opened.\n\nName dropdown menu is empty with a placeholder \"Select Absence type\"\n\nStart date and End date are empty with a placeholder \"Click to select\"\n\n\"Half-day\" slider is grayed out. \n\nComment is empty with a placeholder \"Comment\"\n\n\"Add another\" checkbox is displayed on the left.\n\n\"Add\" button is grayed out and inactive. \n\n\"Cancel\" button is displayed next to \"Add\" button on the left.\n4. Pass following set of data and click Add\n   Data: Name: Sick leave\nstartDate: 15/Mar/22\nendDate: 17/Mar/22\n   Expected: Modal window is closed.\n\n\"16.0h\" is displayed in Remaining Capacity lozenge for week 11 for userName: TC-4715-01",
+    "metadata": {
+      "jira_key": "TC-4335",
+      "issue_id": "814481",
+      "summary": "new Box Module - Resources - Resource Grid - Add Absence by right click on user's avatar",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 4,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

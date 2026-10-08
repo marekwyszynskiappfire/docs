@@ -1,0 +1,73 @@
+{
+  "test": {
+    "key": "TC-3819",
+    "issue_id": "357297",
+    "url": "https://appfire.atlassian.net/browse/TC-3819",
+    "summary": "Box Module - Reports - Grouping tasks with the same ID in Milestones & Markers report",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2023-01-27T03:45:33.978-0500",
+    "updated": "2026-03-12T09:19:35.358-0400",
+    "labels": [
+      "can_be_automated",
+      "teamreports"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Reports module of boxName.",
+        "data": "boxName: TC-3819\nBox Module - Reports - Checking if tasks on the Milestones & Markers report are grouped if they have the same ID",
+        "result": "Reports module loaded correctly. There is Milestones&Markers report displaying."
+      },
+      {
+        "step": 2,
+        "action": "Check data on reportName.",
+        "data": "reportName: Milestones & Markers",
+        "result": "There are 4 columns: \nNAME, END DATE, BASELINE, SOURCE.\n\nMilestones are displayed in the folLowing order:\n\n* Milestone 3 (to do)/ 02/Jan/23 / +25d / (empty field) \n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / (empty field) \n* Milestone 1 (to do)/ 27/Jan/23 / 0d / (empty field)\n* Milestone 1 (in progress)/ 27/Jan/23 / 0d / (empty field) \n* Milestone 4(to do)/ 01/Jan/25 / -705d / (empty field) \n* Milestone 2 (to do)/ 01/Jan/25 / (empty field) / (empty field) \n* Milestone 4(in progress)/ 01/Jan/25 / -705d / (empty field) \n* Milestone 2 (in progress)/ 01/Jan/25 / (empty field) / (empty field) \n* Milestone (basic task)/ 01/Jan/25/ (empty field) / Program \n* Milestone 4(done)/ 01/Jan/40 / -6183d / (empty field) \n* Milestone 2 (done)/ 01/Jan/40 / (empty field) / (empty field) \n\nTree nodes are collapsed.\n\nThere is a Today marker placed in the right position between milestones. \n\nToday marker's name and End date are bold.\n\nThe Baseline is displayed in red colour if its value is less than 0. \n\nTree node is not displaying for: Milestone (basic task)\n\nThere is scroll bar on the right side of the report."
+      },
+      {
+        "step": 3,
+        "action": "Click on tree node button next to milestoneName.",
+        "data": "milestoneName: Milestone 3 (in progress)",
+        "result": "The tasks located under the node are presented:\n\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Agile Project\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Classic project\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Hybrid Project\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Program\n\nThe parent's row has the columns NAME, END DATE, BASELINE filled in the same way as its children.\n\nThe exception is the SOURCE column - it’s empty for the parent, but each child keeps its original Source field."
+      },
+      {
+        "step": 4,
+        "action": "Click again on tree node button next to milestoneName.",
+        "data": "milestoneName: Milestone 3 (in progress)",
+        "result": "View is collapsed. \nOnly parent row is visible."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 4
+  },
+  "rag": {
+    "id": "TC-3819",
+    "text": "Test: TC-3819 — Box Module - Reports - Grouping tasks with the same ID in Milestones & Markers report\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: can_be_automated, teamreports\n\nSteps:\n1. Navigate to the Reports module of boxName.\n   Data: boxName: TC-3819\nBox Module - Reports - Checking if tasks on the Milestones & Markers report are grouped if they have the same ID\n   Expected: Reports module loaded correctly. There is Milestones&Markers report displaying.\n2. Check data on reportName.\n   Data: reportName: Milestones & Markers\n   Expected: There are 4 columns: \nNAME, END DATE, BASELINE, SOURCE.\n\nMilestones are displayed in the folLowing order:\n\n* Milestone 3 (to do)/ 02/Jan/23 / +25d / (empty field) \n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / (empty field) \n* Milestone 1 (to do)/ 27/Jan/23 / 0d / (empty field)\n* Milestone 1 (in progress)/ 27/Jan/23 / 0d / (empty field) \n* Milestone 4(to do)/ 01/Jan/25 / -705d / (empty field) \n* Milestone 2 (to do)/ 01/Jan/25 / (empty field) / (empty field) \n* Milestone 4(in progress)/ 01/Jan/25 / -705d / (empty field) \n* Milestone 2 (in progress)/ 01/Jan/25 / (empty field) / (empty field) \n* Milestone (basic task)/ 01/Jan/25/ (empty field) / Program \n* Milestone 4(done)/ 01/Jan/40 / -6183d / (empty field) \n* Milestone 2 (done)/ 01/Jan/40 / (empty field) / (empty field) \n\nTree nodes are collapsed.\n\nThere is a Today marker placed in the right position between milestones. \n\nToday marker's name and End date are bold.\n\nThe Baseline is displayed in red colour if its value is less than 0. \n\nTree node is not displaying for: Milestone (basic task)\n\nThere is scroll bar on the right side of the report.\n3. Click on tree node button next to milestoneName.\n   Data: milestoneName: Milestone 3 (in progress)\n   Expected: The tasks located under the node are presented:\n\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Agile Project\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Classic project\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Hybrid Project\n* Milestone 3 (in progress)/ 02/Jan/23 / +25d / Program\n\nThe parent's row has the columns NAME, END DATE, BASELINE filled in the same way as its children.\n\nThe exception is the SOURCE column - it’s empty for the parent, but each child keeps its original Source field.\n4. Click again on tree node button next to milestoneName.\n   Data: milestoneName: Milestone 3 (in progress)\n   Expected: View is collapsed. \nOnly parent row is visible.",
+    "metadata": {
+      "jira_key": "TC-3819",
+      "issue_id": "357297",
+      "summary": "Box Module - Reports - Grouping tasks with the same ID in Milestones & Markers report",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "can_be_automated",
+        "teamreports"
+      ],
+      "step_count": 4,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

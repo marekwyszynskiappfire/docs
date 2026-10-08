@@ -1,0 +1,149 @@
+{
+  "test": {
+    "key": "TC-6151",
+    "issue_id": "1688170",
+    "url": "https://appfire.atlassian.net/browse/TC-6151",
+    "summary": "SPM - OKR - Updating and Deleting Select custom field options in Settings",
+    "description": "This test verifies updating, deleting and adding Select custom field options in Settings.\n\nCovered areas:\n\n* Settings → Fields\n* OKR Detail page\n* Overview (inline editing)\n* Side panel\n\nValidation scope:\n\n* Editing and saving Select custom field option names\n* Adding new Select custom field options\n* Deleting existing Select custom field options\n* Verifying warning message displayed before deleting option values used by OKR items\n* Verifying assigned values are removed after deleting Select option\n* Verifying updated and newly added option values are displayed correctly across all supported OKR views\n* Verifying deleted option values are no longer available ",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-05-11T06:48:49.871-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Preconditions:*\n\n* Select custom field is created and assigned to Strategic Theme, Objective and Key Result (used-in)\n* Existing OKRs contain predefined values for Select fields\n* User has permissions to edit OKRs and custom field values",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Open OKR Overview of boxName",
+        "data": "boxName: TC-6151 SPM - OKR - Updating and Deleting Select custom field options in Settings",
+        "result": "Overview module is opened. The following OKRs are visible:\n\n* Strategic theme 1\n* Objective 1\n* Key result 1"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Select field",
+        "data": "",
+        "result": "Select field is visible for Strategic Theme, Objective and Key Result.\n\nThe following text field values are displayed correctly for each item:\n\n* Strategic Theme - \"High\"\n* Objective - \"Medium\"\n* Key Result - \"Low\""
+      },
+      {
+        "step": 4,
+        "action": "Navigate to OKR settings → Fields",
+        "data": "",
+        "result": "List of fields are displayed"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to fieldName and Click in tree dots button → Edit",
+        "data": "fieldName: Select field",
+        "result": "\"Edit custom field\" modal is displayed.\nSelect custom field options are displayed correctly:\n\n* Value 1: High\n* Value 2: Medium\n* Value 3: Low"
+      },
+      {
+        "step": 6,
+        "action": "delete old and fill in new values",
+        "data": "newValue:\n\n* High → Critical\n* Medium → Major\n* Low → Minor",
+        "result": "new value filled"
+      },
+      {
+        "step": 7,
+        "action": "Click + Add button and add newValue, click Save",
+        "data": "newValue:  Blocker",
+        "result": "Edit modal closed"
+      },
+      {
+        "step": 8,
+        "action": "Open Overview and navigate to select field",
+        "data": "",
+        "result": "new field value is changed and displayed correctly\n\n* Strategic theme → Critical\n* Objective → Major\n* Key result → Minor"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Key result and select field value",
+        "data": "",
+        "result": "Dropdown with available Select custom field values is displayed correctly and contains newly added option (Blocker)"
+      },
+      {
+        "step": 10,
+        "action": "change the value",
+        "data": "newValue: Blocker",
+        "result": "The new field value is saved and displayed correctly in Overview"
+      },
+      {
+        "step": 11,
+        "action": "Click on the grey area of the Key result row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Key result. Select field is visible with correct value."
+      },
+      {
+        "step": 12,
+        "action": "Open Key result in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Select field is visible with correct value."
+      },
+      {
+        "step": 13,
+        "action": "Navigate to Settings → Fields → Select field → click Tree dots button → edit",
+        "data": "",
+        "result": "Edit field modal is opened"
+      },
+      {
+        "step": 14,
+        "action": "Click the delete button next to the \"Critical\" Select custom field option",
+        "data": "",
+        "result": "Delete confirmation dialog is displayed with information \" _This value is used in 1 strategic theme. Deleting it will permanently erase the assigned data_.\""
+      },
+      {
+        "step": 15,
+        "action": "Click Delete",
+        "data": "",
+        "result": "Value disappear from values list"
+      },
+      {
+        "step": 16,
+        "action": "Click Save button",
+        "data": "",
+        "result": "Edit modal closed"
+      },
+      {
+        "step": 17,
+        "action": "Open Overview and navigate to Strategic theme Select field",
+        "data": "",
+        "result": "Select field displays empty field for Strategic theme"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 17
+  },
+  "rag": {
+    "id": "TC-6151",
+    "text": "Test: TC-6151 — SPM - OKR - Updating and Deleting Select custom field options in Settings\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-512 OKR - OKR module\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies updating, deleting and adding Select custom field options in Settings.\n\nCovered areas:\n\n* Settings → Fields\n* OKR Detail page\n* Overview (inline editing)\n* Side panel\n\nValidation scope:\n\n* Editing and saving Select custom field option names\n* Adding new Select custom field options\n* Deleting existing Select custom field options\n* Verifying warning message displayed before deleting option values used by OKR items\n* Verifying assigned values are removed after deleting Select option\n* Verifying updated and newly added option values are displayed correctly across all supported OKR views\n* Verifying deleted option values are no longer available \n\nSteps:\n1. *Preconditions:*\n\n* Select custom field is created and assigned to Strategic Theme, Objective and Key Result (used-in)\n* Existing OKRs contain predefined values for Select fields\n* User has permissions to edit OKRs and custom field values\n   Expected: \n2. Open OKR Overview of boxName\n   Data: boxName: TC-6151 SPM - OKR - Updating and Deleting Select custom field options in Settings\n   Expected: Overview module is opened. The following OKRs are visible:\n\n* Strategic theme 1\n* Objective 1\n* Key result 1\n3. Navigate to Select field\n   Expected: Select field is visible for Strategic Theme, Objective and Key Result.\n\nThe following text field values are displayed correctly for each item:\n\n* Strategic Theme - \"High\"\n* Objective - \"Medium\"\n* Key Result - \"Low\"\n4. Navigate to OKR settings → Fields\n   Expected: List of fields are displayed\n5. Navigate to fieldName and Click in tree dots button → Edit\n   Data: fieldName: Select field\n   Expected: \"Edit custom field\" modal is displayed.\nSelect custom field options are displayed correctly:\n\n* Value 1: High\n* Value 2: Medium\n* Value 3: Low\n6. delete old and fill in new values\n   Data: newValue:\n\n* High → Critical\n* Medium → Major\n* Low → Minor\n   Expected: new value filled\n7. Click + Add button and add newValue, click Save\n   Data: newValue:  Blocker\n   Expected: Edit modal closed\n8. Open Overview and navigate to select field\n   Expected: new field value is changed and displayed correctly\n\n* Strategic theme → Critical\n* Objective → Major\n* Key result → Minor\n9. Navigate to Key result and select field value\n   Expected: Dropdown with available Select custom field values is displayed correctly and contains newly added option (Blocker)\n10. change the value\n   Data: newValue: Blocker\n   Expected: The new field value is saved and displayed correctly in Overview\n11. Click on the grey area of the Key result row\n   Expected: Side panel is opened on the right side and displays details of the selected Key result. Select field is visible with correct value.\n12. Open Key result in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Select field is visible with correct value.\n13. Navigate to Settings → Fields → Select field → click Tree dots button → edit\n   Expected: Edit field modal is opened\n14. Click the delete button next to the \"Critical\" Select custom field option\n   Expected: Delete confirmation dialog is displayed with information \" _This value is used in 1 strategic theme. Deleting it will permanently erase the assigned data_.\"\n15. Click Delete\n   Expected: Value disappear from values list\n16. Click Save button\n   Expected: Edit modal closed\n17. Open Overview and navigate to Strategic theme Select field\n   Expected: Select field displays empty field for Strategic theme",
+    "metadata": {
+      "jira_key": "TC-6151",
+      "issue_id": "1688170",
+      "summary": "SPM - OKR - Updating and Deleting Select custom field options in Settings",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 17,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

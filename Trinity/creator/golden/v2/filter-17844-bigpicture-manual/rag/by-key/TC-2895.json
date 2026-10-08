@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-2895",
+    "issue_id": "356925",
+    "url": "https://appfire.atlassian.net/browse/TC-2895",
+    "summary": "Box Module - Resources - Resource Grid - Filtering by Name or Multiselect in Individual and Team view ",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Bartosz Drążewski",
+    "reporter": "Paulina Sendecka",
+    "created": "2022-01-20T10:29:00.372-0500",
+    "updated": "2026-03-17T15:10:27.028-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-109 Box Module - Resources - Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName:\nTC-2895 Box Module - Resources - Resource Grid - Filtering by name / Multiselect in Individual/Team view",
+        "result": "The individual view is set by default.\n\nTimeline starts from 01/01/2022\n\nFollowing tasks are displayed in  Resource Grid:\n\n* TC-2895 Task 4 and TC-2895 Task 7 in Unassigned row.\n* TC-2895 Task 6 and TC-2895 Task 1 assigned to TC-2895 User 2\n* TC-2895 Task 5 assigned to TC-2895 User 3\n* TC-2895 Task 2 and  TC-2895  Task 3 assigned to TC-2895 User 4\n\nTime period is set to Month/Weekly."
+      },
+      {
+        "step": 2,
+        "action": "Click on filter button in the left header, expand ‘Teams,’ and click on ‘Select team’ dropdown menu",
+        "data": "",
+        "result": "Search field is displayed.\n\nFollowing options can be chosen from dropdown menu: \n\n* Select all and Deselect all buttons\n* Unknown\n* Team Unassigned \n* 2895 Team A  \n* 2895 Team B  \n* 2895 Team C  \n* 2895 Team D"
+      },
+      {
+        "step": 3,
+        "action": "Select teams from the menu",
+        "data": "teams:\n2895 Team A \n2895 Team D",
+        "result": "Following Users are displayed:\n\n* TC-2895 User 1 \n* TC-2895 User 4 with tasks TC-2895 Task 2 and TC-2895 Task 3"
+      },
+      {
+        "step": 4,
+        "action": "Click on filter button in the left header and select 'Hide swimlanes with no tasks' checkbox",
+        "data": "",
+        "result": "TC-2895 User 4 is displayed in swimlane\n\nTC-2895 User 1 disappeared"
+      },
+      {
+        "step": 5,
+        "action": "Click on filter button in the left header, expand ‘Teams’, click on ‘Select team’, and click on ‘Select all’",
+        "data": "",
+        "result": "All options from the dropdown menu are selected. \n\nFollowing swimlanes are displayed in Resource Grid:\n\n* Unassigned\n* TC-2895 User 2 \n* TC-2895 User 3 \n* TC-2895 User 4"
+      },
+      {
+        "step": 6,
+        "action": "Click on filter button in the left header, expand ‘Teams’, click on ‘Select team, and type value in the Search field, but do not select this option",
+        "data": "value: Team A",
+        "result": "Only 2895 Team A is displayed in the dropdown menu."
+      },
+      {
+        "step": 7,
+        "action": "Switch to Teams view",
+        "data": "",
+        "result": "The view is changed to Teams. \n\nFollowing tasks are displayed in Resource Grid:\n\n* TC-2895  Task 2, TC-2895 Task 6, TC-2895  Task 4, TC-2895  Task 3 in Team unassigned row. \n* TC-2895  Task 5 is assigned to 2895 Team A\n*  TC-2895  Task 1 is assigned to 2895 Team C\n*  TC-2895  Task 7 is assigned to 2895 Team D"
+      },
+      {
+        "step": 8,
+        "action": "Click on filter button in the left header, expand ‘Teams,’ and click on ‘Select team’ dropdown menu",
+        "data": "",
+        "result": "Search field is displayed.\n\nAll options are chosen from the dropdown menu:\n\n* Select all and Deselect all buttons\n* Unknown\n* Team unassigned\n* 2895 Team A \n* 2895 Team B \n* 2895 Team C \n* 2895 Team D"
+      },
+      {
+        "step": 9,
+        "action": "Click on filter button in the left header, expand ‘Teams’, click on ‘Select team’, click on ‘Deselect all’ and select teams from the menu",
+        "data": "2895 Team A\n2895 Team C",
+        "result": "2895 Team A and 2895 Team C are displayed in the swimlanes."
+      },
+      {
+        "step": 10,
+        "action": "Click on taskName and click on keyName",
+        "data": "taskName: TC2895-5 Task 5\nkeyName: TC2895-5 (Jira Server)/TC2895-12 (Jira Cloud)",
+        "result": "Jira issue page is displayed\n\nteam#2895A label is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Change the labelName",
+        "data": "labelName: team#12345",
+        "result": "labelName is changed to team#12345"
+      },
+      {
+        "step": 12,
+        "action": "Go back to Resources module of boxName and refresh the website",
+        "data": "TC-2895 Box Module - Resources - Resource Grid - Filtering by name / Multiselect in Individual/Team view",
+        "result": "Team C is displayed in the swimlane"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-2895",
+    "text": "Test: TC-2895 — Box Module - Resources - Resource Grid - Filtering by Name or Multiselect in Individual and Team view \nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-109 Box Module - Resources - Resource Grid\nLabels: be-enterprise, can_be_automated\n\nSteps:\n1. Navigate to Resources module of boxName\n   Data: boxName:\nTC-2895 Box Module - Resources - Resource Grid - Filtering by name / Multiselect in Individual/Team view\n   Expected: The individual view is set by default.\n\nTimeline starts from 01/01/2022\n\nFollowing tasks are displayed in  Resource Grid:\n\n* TC-2895 Task 4 and TC-2895 Task 7 in Unassigned row.\n* TC-2895 Task 6 and TC-2895 Task 1 assigned to TC-2895 User 2\n* TC-2895 Task 5 assigned to TC-2895 User 3\n* TC-2895 Task 2 and  TC-2895  Task 3 assigned to TC-2895 User 4\n\nTime period is set to Month/Weekly.\n2. Click on filter button in the left header, expand ‘Teams,’ and click on ‘Select team’ dropdown menu\n   Expected: Search field is displayed.\n\nFollowing options can be chosen from dropdown menu: \n\n* Select all and Deselect all buttons\n* Unknown\n* Team Unassigned \n* 2895 Team A  \n* 2895 Team B  \n* 2895 Team C  \n* 2895 Team D\n3. Select teams from the menu\n   Data: teams:\n2895 Team A \n2895 Team D\n   Expected: Following Users are displayed:\n\n* TC-2895 User 1 \n* TC-2895 User 4 with tasks TC-2895 Task 2 and TC-2895 Task 3\n4. Click on filter button in the left header and select 'Hide swimlanes with no tasks' checkbox\n   Expected: TC-2895 User 4 is displayed in swimlane\n\nTC-2895 User 1 disappeared\n5. Click on filter button in the left header, expand ‘Teams’, click on ‘Select team’, and click on ‘Select all’\n   Expected: All options from the dropdown menu are selected. \n\nFollowing swimlanes are displayed in Resource Grid:\n\n* Unassigned\n* TC-2895 User 2 \n* TC-2895 User 3 \n* TC-2895 User 4\n6. Click on filter button in the left header, expand ‘Teams’, click on ‘Select team, and type value in the Search field, but do not select this option\n   Data: value: Team A\n   Expected: Only 2895 Team A is displayed in the dropdown menu.\n7. Switch to Teams view\n   Expected: The view is changed to Teams. \n\nFollowing tasks are displayed in Resource Grid:\n\n* TC-2895  Task 2, TC-2895 Task 6, TC-2895  Task 4, TC-2895  Task 3 in Team unassigned row. \n* TC-2895  Task 5 is assigned to 2895 Team A\n*  TC-2895  Task 1 is assigned to 2895 Team C\n*  TC-2895  Task 7 is assigned to 2895 Team D\n8. Click on filter button in the left header, expand ‘Teams,’ and click on ‘Select team’ dropdown menu\n   Expected: Search field is displayed.\n\nAll options are chosen from the dropdown menu:\n\n* Select all and Deselect all buttons\n* Unknown\n* Team unassigned\n* 2895 Team A \n* 2895 Team B \n* 2895 Team C \n* 2895 Team D\n9. Click on filter button in the left header, expand ‘Teams’, click on ‘Select team’, click on ‘Deselect all’ and select teams from the menu\n   Data: 2895 Team A\n2895 Team C\n   Expected: 2895 Team A and 2895 Team C are displayed in the swimlanes.\n10. Click on taskName and click on keyName\n   Data: taskName: TC2895-5 Task 5\nkeyName: TC2895-5 (Jira Server)/TC2895-12 (Jira Cloud)\n   Expected: Jira issue page is displayed\n\nteam#2895A label is displayed\n11. Change the labelName\n   Data: labelName: team#12345\n   Expected: labelName is changed to team#12345\n12. Go back to Resources module of boxName and refresh the website\n   Data: TC-2895 Box Module - Resources - Resource Grid - Filtering by name / Multiselect in Individual/Team view\n   Expected: Team C is displayed in the swimlane",
+    "metadata": {
+      "jira_key": "TC-2895",
+      "issue_id": "356925",
+      "summary": "Box Module - Resources - Resource Grid - Filtering by Name or Multiselect in Individual and Team view ",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-109 Box Module - Resources - Resource Grid",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

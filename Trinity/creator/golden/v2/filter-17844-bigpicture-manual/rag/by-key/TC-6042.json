@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-6042",
+    "issue_id": "1625257",
+    "url": "https://appfire.atlassian.net/browse/TC-6042",
+    "summary": "Feature area- ExtPlatform- Security- Blocking link editing via Workflow status properties",
+    "description": "The purpose of this test is to verify if the system correctly blocks link creation on the Gantt chart for tasks in a status that has been set to non-editable via Workflow properties. The test also validates whether the user receives a standard warning message when attempting to create such a link after clearing the cache.",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Tomasz Guzik",
+    "reporter": "Tomasz Guzik",
+    "created": "2026-04-08T12:49:38.364-0400",
+    "updated": "2026-04-08T13:01:15.880-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-47 Feature area - Security",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Create new boxName then navigate to Box Configuration -> Tasks -> Scope definition and add *projectName* to the Box scope",
+        "data": "*boxName*: TC-6042 Box\n\n*projektName*: TC-6042 Space",
+        "result": "Project is successfully added to the Box scope."
+      },
+      {
+        "step": 2,
+        "action": "Go to *projectName* -> Project settings -> Workflows and click 'Edit' on the active workflow",
+        "data": "*projectName:* TC-6042 Space",
+        "result": "Workflow editor is opened."
+      },
+      {
+        "step": 3,
+        "action": "Select 'In progress' status, click 'Properties', add the specific Property Key and Value, then save",
+        "data": "*Property Key*: {{jira.permission.link.denied}}\n\n\n\n*Property Value*: [empty]",
+        "result": "Properties for 'In progress' status are defined."
+      },
+      {
+        "step": 4,
+        "action": "Click 'Update workflow' to publish the changes",
+        "data": "",
+        "result": "Workflow is updated and saved."
+      },
+      {
+        "step": 5,
+        "action": "Open Gantt module for the *boxName* and perform 'Clear cache'",
+        "data": "*boxName*: TC-6042 Box",
+        "result": "Gantt module is loaded and cache is cleared"
+      },
+      {
+        "step": 6,
+        "action": "Attempt to create a link between a task in 'In progress' status and any other task",
+        "data": "",
+        "result": "A standard yellow warning message appears: \"Insufficient permissions to perform this action\"."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-6042",
+    "text": "Test: TC-6042 — Feature area- ExtPlatform- Security- Blocking link editing via Workflow status properties\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-47 Feature area - Security\nLabels: teamextplatform\n\nDescription:\nThe purpose of this test is to verify if the system correctly blocks link creation on the Gantt chart for tasks in a status that has been set to non-editable via Workflow properties. The test also validates whether the user receives a standard warning message when attempting to create such a link after clearing the cache.\n\nSteps:\n1. Create new boxName then navigate to Box Configuration -> Tasks -> Scope definition and add *projectName* to the Box scope\n   Data: *boxName*: TC-6042 Box\n\n*projektName*: TC-6042 Space\n   Expected: Project is successfully added to the Box scope.\n2. Go to *projectName* -> Project settings -> Workflows and click 'Edit' on the active workflow\n   Data: *projectName:* TC-6042 Space\n   Expected: Workflow editor is opened.\n3. Select 'In progress' status, click 'Properties', add the specific Property Key and Value, then save\n   Data: *Property Key*: {{jira.permission.link.denied}}\n\n\n\n*Property Value*: [empty]\n   Expected: Properties for 'In progress' status are defined.\n4. Click 'Update workflow' to publish the changes\n   Expected: Workflow is updated and saved.\n5. Open Gantt module for the *boxName* and perform 'Clear cache'\n   Data: *boxName*: TC-6042 Box\n   Expected: Gantt module is loaded and cache is cleared\n6. Attempt to create a link between a task in 'In progress' status and any other task\n   Expected: A standard yellow warning message appears: \"Insufficient permissions to perform this action\".",
+    "metadata": {
+      "jira_key": "TC-6042",
+      "issue_id": "1625257",
+      "summary": "Feature area- ExtPlatform- Security- Blocking link editing via Workflow status properties",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-47 Feature area - Security",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

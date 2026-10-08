@@ -1,0 +1,149 @@
+{
+  "test": {
+    "key": "TC-5793",
+    "issue_id": "1358800",
+    "url": "https://appfire.atlassian.net/browse/TC-5793",
+    "summary": "SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module",
+    "description": "",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2025-10-20T11:20:21.999-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/Priorities",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of a box",
+        "data": "boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click Create and select Strategic Theme",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5793\n\nperiod: Y2025",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button, add newObjective and add newKeyResult",
+        "data": "newObjective: TC-5793 A\n\nnewKeyResult: TC-5793 B",
+        "result": "Periods are automatically populated. New Objective TC-5793 A is created under Strategic Theme  TC-5793.  New Key result  TC-5793 B is created under Objective TC-5793 A"
+      },
+      {
+        "step": 5,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5793 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 6,
+        "action": "Click on keyResultName and click on Edit linked issues",
+        "data": "keyResultName:  TC-5793 B",
+        "result": "Edit linked issues modal window is displayed\n\nCreate issue button is displayed\n\nSelect manually and Automated linking tabs are displayed"
+      },
+      {
+        "step": 7,
+        "action": "Click project and select boxName",
+        "data": "boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module",
+        "result": "Following tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3"
+      },
+      {
+        "step": 8,
+        "action": "Select taskNames and click Save",
+        "data": "taskNames: Task 1, Task 2, Task 3",
+        "result": "Modal window disappeared\n\nIssues Task 1, Task 2, Task 3 are linked to this box"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module",
+        "result": "Following tasks are displayed on WBS Gantt\n\n* Task 1\n* Task 2\n* Task 3"
+      },
+      {
+        "step": 10,
+        "action": "Go to Box configuration → Tasks → Task structure, change Task structure and click Save",
+        "data": "Task structure: Objective & Key Result",
+        "result": "Configuration is saved"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module",
+        "result": "Following Tasks and OKRs are displayed:\n\n* Strategic Theme - TC-5793 \n** Objective - TC-5793 A\n*** Key result: TC-5793 B\n**** Task 1\n**** Task 2\n**** Task 3"
+      },
+      {
+        "step": 12,
+        "action": "Click on Add or edit column and add newColumn",
+        "data": "newColumn: Priority score",
+        "result": "Priority score column is added"
+      },
+      {
+        "step": 13,
+        "action": "Click on plus button next to objectiveName",
+        "data": "objectiveName: TC-5893 A",
+        "result": "Modal with Priority score details opened with following values:\n\nImpact - none\n\nEase - none\n\nConfidence - none"
+      },
+      {
+        "step": 14,
+        "action": "Set values for metrics",
+        "data": "Impact: Very High\n\nEase: Hard\n\nConfidence: Low",
+        "result": "Modal window is closed\n\nCalculated score is 120 and it’s appearing in the Priority score column next to Objective TC-5793 A"
+      },
+      {
+        "step": 15,
+        "action": "Click on plus button next to keyResultName and set metrics",
+        "data": "keyResultName: TC-5893 B\n\nImpact: Low\n\nEase: Easy\n\nConfidence: Low",
+        "result": "Modal window is closed\n\nCalculated score is 120 and it’s appearing in the Priority score column next to Key result TC-5793 B"
+      },
+      {
+        "step": 16,
+        "action": "Navigate to Priorities module of a boxName",
+        "data": "boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module",
+        "result": "Priorities module is displayed"
+      },
+      {
+        "step": 17,
+        "action": "Click on Goals tab",
+        "data": "",
+        "result": "Goals tab is displayed with the following values:\n\n* Score for Objective  TC-5793 A is 120\n* Score for Key result TC-5793 B is 112"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 17
+  },
+  "rag": {
+    "id": "TC-5793",
+    "text": "Test: TC-5793 — SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/SPM/Priorities\nLabels: spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of a box\n   Data: boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module\n   Expected: OKR module is displayed\n2. Click Create and select Strategic Theme\n   Expected: New Strategic theme modal is displayed\n3. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5793\n\nperiod: Y2025\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n4. Click on Plus button, add newObjective and add newKeyResult\n   Data: newObjective: TC-5793 A\n\nnewKeyResult: TC-5793 B\n   Expected: Periods are automatically populated. New Objective TC-5793 A is created under Strategic Theme  TC-5793.  New Key result  TC-5793 B is created under Objective TC-5793 A\n5. Click Finish & go back\n   Expected: Strategic Theme TC-5793 is displayed on the list with expand button next to it\n6. Click on keyResultName and click on Edit linked issues\n   Data: keyResultName:  TC-5793 B\n   Expected: Edit linked issues modal window is displayed\n\nCreate issue button is displayed\n\nSelect manually and Automated linking tabs are displayed\n7. Click project and select boxName\n   Data: boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module\n   Expected: Following tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n8. Select taskNames and click Save\n   Data: taskNames: Task 1, Task 2, Task 3\n   Expected: Modal window disappeared\n\nIssues Task 1, Task 2, Task 3 are linked to this box\n9. Navigate to Gantt module of a boxName\n   Data: boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module\n   Expected: Following tasks are displayed on WBS Gantt\n\n* Task 1\n* Task 2\n* Task 3\n10. Go to Box configuration → Tasks → Task structure, change Task structure and click Save\n   Data: Task structure: Objective & Key Result\n   Expected: Configuration is saved\n11. Navigate to Gantt module of boxName\n   Data: boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module\n   Expected: Following Tasks and OKRs are displayed:\n\n* Strategic Theme - TC-5793 \n** Objective - TC-5793 A\n*** Key result: TC-5793 B\n**** Task 1\n**** Task 2\n**** Task 3\n12. Click on Add or edit column and add newColumn\n   Data: newColumn: Priority score\n   Expected: Priority score column is added\n13. Click on plus button next to objectiveName\n   Data: objectiveName: TC-5893 A\n   Expected: Modal with Priority score details opened with following values:\n\nImpact - none\n\nEase - none\n\nConfidence - none\n14. Set values for metrics\n   Data: Impact: Very High\n\nEase: Hard\n\nConfidence: Low\n   Expected: Modal window is closed\n\nCalculated score is 120 and it’s appearing in the Priority score column next to Objective TC-5793 A\n15. Click on plus button next to keyResultName and set metrics\n   Data: keyResultName: TC-5893 B\n\nImpact: Low\n\nEase: Easy\n\nConfidence: Low\n   Expected: Modal window is closed\n\nCalculated score is 120 and it’s appearing in the Priority score column next to Key result TC-5793 B\n16. Navigate to Priorities module of a boxName\n   Data: boxName: TC-5793 SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module\n   Expected: Priorities module is displayed\n17. Click on Goals tab\n   Expected: Goals tab is displayed with the following values:\n\n* Score for Objective  TC-5793 A is 120\n* Score for Key result TC-5793 B is 112",
+    "metadata": {
+      "jira_key": "TC-5793",
+      "issue_id": "1358800",
+      "summary": "SPM - Priorities - Prioritizing Goals on Gantt module and displaying on Priorities module",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/Priorities",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 17,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

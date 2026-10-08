@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-5942",
+    "issue_id": "1497953",
+    "url": "https://appfire.atlassian.net/browse/TC-5942",
+    "summary": "Box module - Financials - Hierarchal structure on the Work cost breakdown widget",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Martyna Turowska",
+    "reporter": "Martyna Turowska",
+    "created": "2026-01-19T06:47:19.949-0500",
+    "updated": "2026-04-09T09:33:39.766-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/Financials module/TS-500 Box module - Financials",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Financials module of boxName",
+        "data": "boxName: TC-5942 Box module - Financials - Hierarchal structure on the Work cost breakdown widget",
+        "result": "Financials module is displayed with 5 widgets."
+      },
+      {
+        "step": 2,
+        "action": "Select custom date with startDate and endDate",
+        "data": "startDate: 01/Jan/25\nendDate: 31/Dec/25",
+        "result": "Dates are changed. 5 widgets are visible with the data.\n\nWork cost breakdown widget is displayed with 7 work items in the following structure: \n\n* Epic: TC5942\n** Story: TC5942 Parent\n** Task: TC5942 Child\n** Bug: TC5942\n* Epic nr 2: TC5942\n** Story nr 2: TC5942 \n*** Task nr 2: TC5942\n\nCost distribution widget by tasks is displayed with 7 pieces with following percentages: \n\n29%, 18%, 18%, 11%, 11%, 7%, 7%."
+      },
+      {
+        "step": 3,
+        "action": "Navigate to the Gantt module of boxName and indent taskName",
+        "data": "taskName: TC5942 Task Child",
+        "result": "TC5942 Indent is a child of TC5942 Story Parent"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to the Financials module of boxName",
+        "data": "boxName: TC-5942 Box module - Financials - Hierarchal structure on the Work cost breakdown widget",
+        "result": "Widget is displayed with 7 work items in the following structure: \n\n* Epic nr 2: TC5942\n** Story nr 2: TC5942 \n*** Task nr 2: TC5942\n* Epic: TC5942 \n** Story: TC5942 Parent\n*** Task: TC5942 Child\n** Bug: TC5942\n\nCost distribution by tasks stil displayed following values:\n\n29%, 18%, 18%, 11%, 11%, 7%, 7%."
+      },
+      {
+        "step": 5,
+        "action": "Change the period to Custom dates with new startDate and endDate",
+        "data": "startDate: 16/May/2025\nendDate: 31/May/2025",
+        "result": "Work cost breakdown widget is displayed with warning message: 1 tasks excluded from calculations due to missing data. \nThere are 7 work items and following structure:\n\n* Epic nr 2: TC5942\n** Story nr 2: TC5942 \n*** Task nr 2: TC5942\n* Epic: TC5942 \n** Story: TC5942 Parent (greyed out and with 0 values in Actual, Remaining and Total costs)\n*** Task: TC5942 Child\n** Bug: TC5942\n\nCost distribution by tasks is displayed 6 following values:\n\n42%, 26%, 16%, 5%, 5%, 5%."
+      },
+      {
+        "step": 6,
+        "action": "Navigate to the Box configuration → Tasks → Task structure, turn off the ‘Epic’ in Advanced configuration and click Save",
+        "data": "",
+        "result": "Epic type is no longer selected. Changes are saved."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to the Financials module of boxName and select new startDate and endDate",
+        "data": "boxName: TC-5942 Box module - Financials - Hierarchal structure on the Work cost breakdown widget\nstartDate: 01/Jan/25\nendDate: 31/Dec/25",
+        "result": "Widget is displayed with 7 work items in the following structure: \n\n* Epic nr 2: TC5942 \n* Epic: TC5942\n* Story: TC5942 Parent\n** Task: TC5942 Child\n* Story nr 2: TC5942 \n** Task nr 2: TC5942\n* Bug: TC5942\n\nCost distribution by tasks is displayed 7 values:\n29%, 18%, 18%, 11%, 11%, 7%, 7%."
+      },
+      {
+        "step": 8,
+        "action": "Inline edit the summary of taskName to newSummary",
+        "data": "taskName: Story TC5942 \nnewSummary: Edited TC5942",
+        "result": "Summary is changed to Edited TC5942. Structure with 7 tasks are still displayed."
+      },
+      {
+        "step": 9,
+        "action": "Inline edit the start date and end date of taskName to startDate and endDate",
+        "data": "startDate: empty\nendDate: empty\ntaskName: Story nr 2: TC5942",
+        "result": "Dates are removed. Story nr 2: TC5942 is greyed out and has no dates nor costs."
+      },
+      {
+        "step": 10,
+        "action": "Click on Filters button → Custom tab and select ‘Issue type’ IS Bug",
+        "data": "",
+        "result": "Only one task is displayed on the Work costs breakdown: Bug: TC5942 with Total cost 1,600.\nCost distribution by tasks widget displayed one task with 100%."
+      },
+      {
+        "step": 11,
+        "action": "Clear all filters",
+        "data": "",
+        "result": "Work costs breakdown widget is displayed with 7 work items in the following structure: \n\n* Epic: TC5942, Total cost: 4,000\n* Bug: TC5942, Total cost: 4,000\n* Epic nr 2: TC5942 \n* Story: TC5942 Parent\n** Task: TC5942 Child\n* Story nr 2: TC5942 \n** Task nr 2: TC5942"
+      },
+      {
+        "step": 12,
+        "action": "Navigate to the TC-5942 PI",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 13,
+        "action": "Navigate to the TC-5942 Iteration",
+        "data": "",
+        "result": ""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-5942",
+    "text": "Test: TC-5942 — Box module - Financials - Hierarchal structure on the Work cost breakdown widget\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/SPM/Financials module/TS-500 Box module - Financials\n\nSteps:\n1. Navigate to the Financials module of boxName\n   Data: boxName: TC-5942 Box module - Financials - Hierarchal structure on the Work cost breakdown widget\n   Expected: Financials module is displayed with 5 widgets.\n2. Select custom date with startDate and endDate\n   Data: startDate: 01/Jan/25\nendDate: 31/Dec/25\n   Expected: Dates are changed. 5 widgets are visible with the data.\n\nWork cost breakdown widget is displayed with 7 work items in the following structure: \n\n* Epic: TC5942\n** Story: TC5942 Parent\n** Task: TC5942 Child\n** Bug: TC5942\n* Epic nr 2: TC5942\n** Story nr 2: TC5942 \n*** Task nr 2: TC5942\n\nCost distribution widget by tasks is displayed with 7 pieces with following percentages: \n\n29%, 18%, 18%, 11%, 11%, 7%, 7%.\n3. Navigate to the Gantt module of boxName and indent taskName\n   Data: taskName: TC5942 Task Child\n   Expected: TC5942 Indent is a child of TC5942 Story Parent\n4. Navigate to the Financials module of boxName\n   Data: boxName: TC-5942 Box module - Financials - Hierarchal structure on the Work cost breakdown widget\n   Expected: Widget is displayed with 7 work items in the following structure: \n\n* Epic nr 2: TC5942\n** Story nr 2: TC5942 \n*** Task nr 2: TC5942\n* Epic: TC5942 \n** Story: TC5942 Parent\n*** Task: TC5942 Child\n** Bug: TC5942\n\nCost distribution by tasks stil displayed following values:\n\n29%, 18%, 18%, 11%, 11%, 7%, 7%.\n5. Change the period to Custom dates with new startDate and endDate\n   Data: startDate: 16/May/2025\nendDate: 31/May/2025\n   Expected: Work cost breakdown widget is displayed with warning message: 1 tasks excluded from calculations due to missing data. \nThere are 7 work items and following structure:\n\n* Epic nr 2: TC5942\n** Story nr 2: TC5942 \n*** Task nr 2: TC5942\n* Epic: TC5942 \n** Story: TC5942 Parent (greyed out and with 0 values in Actual, Remaining and Total costs)\n*** Task: TC5942 Child\n** Bug: TC5942\n\nCost distribution by tasks is displayed 6 following values:\n\n42%, 26%, 16%, 5%, 5%, 5%.\n6. Navigate to the Box configuration → Tasks → Task structure, turn off the ‘Epic’ in Advanced configuration and click Save\n   Expected: Epic type is no longer selected. Changes are saved.\n7. Navigate to the Financials module of boxName and select new startDate and endDate\n   Data: boxName: TC-5942 Box module - Financials - Hierarchal structure on the Work cost breakdown widget\nstartDate: 01/Jan/25\nendDate: 31/Dec/25\n   Expected: Widget is displayed with 7 work items in the following structure: \n\n* Epic nr 2: TC5942 \n* Epic: TC5942\n* Story: TC5942 Parent\n** Task: TC5942 Child\n* Story nr 2: TC5942 \n** Task nr 2: TC5942\n* Bug: TC5942\n\nCost distribution by tasks is displayed 7 values:\n29%, 18%, 18%, 11%, 11%, 7%, 7%.\n8. Inline edit the summary of taskName to newSummary\n   Data: taskName: Story TC5942 \nnewSummary: Edited TC5942\n   Expected: Summary is changed to Edited TC5942. Structure with 7 tasks are still displayed.\n9. Inline edit the start date and end date of taskName to startDate and endDate\n   Data: startDate: empty\nendDate: empty\ntaskName: Story nr 2: TC5942\n   Expected: Dates are removed. Story nr 2: TC5942 is greyed out and has no dates nor costs.\n10. Click on Filters button → Custom tab and select ‘Issue type’ IS Bug\n   Expected: Only one task is displayed on the Work costs breakdown: Bug: TC5942 with Total cost 1,600.\nCost distribution by tasks widget displayed one task with 100%.\n11. Clear all filters\n   Expected: Work costs breakdown widget is displayed with 7 work items in the following structure: \n\n* Epic: TC5942, Total cost: 4,000\n* Bug: TC5942, Total cost: 4,000\n* Epic nr 2: TC5942 \n* Story: TC5942 Parent\n** Task: TC5942 Child\n* Story nr 2: TC5942 \n** Task nr 2: TC5942\n12. Navigate to the TC-5942 PI\n   Expected: \n13. Navigate to the TC-5942 Iteration\n   Expected:",
+    "metadata": {
+      "jira_key": "TC-5942",
+      "issue_id": "1497953",
+      "summary": "Box module - Financials - Hierarchal structure on the Work cost breakdown widget",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/Financials module/TS-500 Box module - Financials",
+      "labels": [],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

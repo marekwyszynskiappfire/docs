@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-2804",
+    "issue_id": "359312",
+    "url": "https://appfire.atlassian.net/browse/TC-2804",
+    "summary": "Box Module - Board - Basic operations - Checking shared parameters",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2021-12-23T07:36:06.530-0500",
+    "updated": "2026-03-12T09:11:38.380-0400",
+    "labels": [
+      "can_be_automated",
+      "teamagile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Board module of the boxName",
+        "data": "boxName: TC-2804 Box Module - Board - Basic operations - Checking shared parameters",
+        "result": "The Board module is visible. Four Sub-boxes are visible. Tasks are visible on Board."
+      },
+      {
+        "step": 2,
+        "action": "Click on the Share button, on the right to the module selector.",
+        "data": "",
+        "result": "Share view modal window is visible with the URL. Two buttons are visible: Get help and Copy URL to clipboard"
+      },
+      {
+        "step": 3,
+        "action": "Click 'X' button in right upper corner.",
+        "data": "",
+        "result": "Modal window closes. Board module is visible again."
+      },
+      {
+        "step": 4,
+        "action": "Click on the Share button, on the right to the module selector again.",
+        "data": "",
+        "result": "Share view modal window is visible with the URL. Two buttons are visible: Get help and Copy URL to clipboard."
+      },
+      {
+        "step": 5,
+        "action": "Click 'Get help' button.",
+        "data": "",
+        "result": "[https://appfire.atlassian.net/wiki/spaces/DLPDRAFT/pages/297861777/Share+view|https://appfire.atlassian.net/wiki/spaces/DLPDRAFT/pages/297861777/Share+view] Opens in a new tab."
+      },
+      {
+        "step": 6,
+        "action": "Return to BP tab and click 'Copy URL to clipboard' button",
+        "data": "",
+        "result": "The button is green for a moment. URL is copied to the clipboard."
+      },
+      {
+        "step": 7,
+        "action": "Close the modal. Click 'View' button from the header and choose 'Layout' > 'Compact'",
+        "data": "",
+        "result": "Cards on board are smaller and have one row."
+      },
+      {
+        "step": 8,
+        "action": "Collapse all swimlanes.",
+        "data": "",
+        "result": "All swimlanes are collapsed. No tasks are visible."
+      },
+      {
+        "step": 9,
+        "action": "Open new incognito tab, go to same instance and log in as different user. Go to TC-2804 in this browser tab. Open new tab in browser, paste the link that is copied to clipboard. If necessary paste the link again after being logged in.",
+        "data": "",
+        "result": "A Shared view settings window is displayed. The folLowing text is visible: \"As this shared view settings may differ from the ones you are currently working with, decide what to do:\"\nTwo options are displayed underneath:\n- Adjust my current view\n- Keep my settings\n\n'Continue' button and 'Don't ask again' checkbox are also visible."
+      },
+      {
+        "step": 10,
+        "action": "Select 'Keep my settings' and click on 'Continue'.",
+        "data": "",
+        "result": "Default view for box is displayed. You can see 5 expanded teams with tasks. Layout is set to Regular"
+      },
+      {
+        "step": 11,
+        "action": "Open new incognito tab and paste the link again.",
+        "data": "",
+        "result": "A Shared view settings window is displayed. The folLowing text is visible: \"As this shared view settings may differ from the ones you are currently working with, decide what to do:\"\nTwo options are displayed underneath:\n- Adjust my current view\n- Keep my settings\n\n'Continue' button and 'Don't ask again' checkbox are also visible."
+      },
+      {
+        "step": 12,
+        "action": "Select 'Adjust my current view' and click on 'Continue'.",
+        "data": "",
+        "result": "5 Swimlanes are collapsed. Layout is set to Compact"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-2804",
+    "text": "Test: TC-2804 — Box Module - Board - Basic operations - Checking shared parameters\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-34 Box Module - Board - Basic operations\nLabels: can_be_automated, teamagile\n\nSteps:\n1. Navigate to the Board module of the boxName\n   Data: boxName: TC-2804 Box Module - Board - Basic operations - Checking shared parameters\n   Expected: The Board module is visible. Four Sub-boxes are visible. Tasks are visible on Board.\n2. Click on the Share button, on the right to the module selector.\n   Expected: Share view modal window is visible with the URL. Two buttons are visible: Get help and Copy URL to clipboard\n3. Click 'X' button in right upper corner.\n   Expected: Modal window closes. Board module is visible again.\n4. Click on the Share button, on the right to the module selector again.\n   Expected: Share view modal window is visible with the URL. Two buttons are visible: Get help and Copy URL to clipboard.\n5. Click 'Get help' button.\n   Expected: [https://appfire.atlassian.net/wiki/spaces/DLPDRAFT/pages/297861777/Share+view|https://appfire.atlassian.net/wiki/spaces/DLPDRAFT/pages/297861777/Share+view] Opens in a new tab.\n6. Return to BP tab and click 'Copy URL to clipboard' button\n   Expected: The button is green for a moment. URL is copied to the clipboard.\n7. Close the modal. Click 'View' button from the header and choose 'Layout' > 'Compact'\n   Expected: Cards on board are smaller and have one row.\n8. Collapse all swimlanes.\n   Expected: All swimlanes are collapsed. No tasks are visible.\n9. Open new incognito tab, go to same instance and log in as different user. Go to TC-2804 in this browser tab. Open new tab in browser, paste the link that is copied to clipboard. If necessary paste the link again after being logged in.\n   Expected: A Shared view settings window is displayed. The folLowing text is visible: \"As this shared view settings may differ from the ones you are currently working with, decide what to do:\"\nTwo options are displayed underneath:\n- Adjust my current view\n- Keep my settings\n\n'Continue' button and 'Don't ask again' checkbox are also visible.\n10. Select 'Keep my settings' and click on 'Continue'.\n   Expected: Default view for box is displayed. You can see 5 expanded teams with tasks. Layout is set to Regular\n11. Open new incognito tab and paste the link again.\n   Expected: A Shared view settings window is displayed. The folLowing text is visible: \"As this shared view settings may differ from the ones you are currently working with, decide what to do:\"\nTwo options are displayed underneath:\n- Adjust my current view\n- Keep my settings\n\n'Continue' button and 'Don't ask again' checkbox are also visible.\n12. Select 'Adjust my current view' and click on 'Continue'.\n   Expected: 5 Swimlanes are collapsed. Layout is set to Compact",
+    "metadata": {
+      "jira_key": "TC-2804",
+      "issue_id": "359312",
+      "summary": "Box Module - Board - Basic operations - Checking shared parameters",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+      "labels": [
+        "can_be_automated",
+        "teamagile"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-1179",
+    "issue_id": "357729",
+    "url": "https://appfire.atlassian.net/browse/TC-1179",
+    "summary": "Box module - Board - Totals - Counting work progress by tasks",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2019-10-01T06:24:22.221-0400",
+    "updated": "2026-03-13T06:22:17.600-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "rocksolid",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-102 Box module - Board - Totals",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Board module of the boxName",
+        "data": "boxName: TC-1179 Box module - Board - Totals - Counting work progress by tasks",
+        "result": "Module opened correctly."
+      },
+      {
+        "step": 2,
+        "action": "Click View -> Totals -> Work progress -> Tasks",
+        "data": "",
+        "result": "Bars progress are visible in every PI and swimlane. PI1 has 7/12 58% tasks done and PI2 has 2/3 67% tasks done."
+      },
+      {
+        "step": 3,
+        "action": "Click on Filters -> Filters option and check Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Bars progress are visible in every PI and swimlane. PI1 has 2/4 50% tasks done and PI2 has 2/3 67% tasks done."
+      },
+      {
+        "step": 4,
+        "action": "Click on Filters -> Filters option and uncheck Show only tasks not planned on a lower level",
+        "data": "",
+        "result": "Bars progress are visible in every PI and swimlane. PI1 has 7/12 58% tasks done and PI2 has 2/3 67% tasks done."
+      },
+      {
+        "step": 5,
+        "action": "Select issueName in PI1 in Team 1 and change status on status1",
+        "data": "issueName: T14\nstatus1: In progress",
+        "result": "Issue has been updated. PI1 has still 7/12 58% tasks done and Team 1 has still 6/9 67%"
+      },
+      {
+        "step": 6,
+        "action": "Select issueName in PI1 in Team 1  and change status on status2",
+        "data": "issueName: T14\nstatus2: Done",
+        "result": "Issue has been updated. PI1 has 8/12 67% tasks done and Team 1 has  7/9 78%"
+      },
+      {
+        "step": 7,
+        "action": "Move issueName from PI1 Team 1 to PI2 Team unassigned",
+        "data": "issueName: T4",
+        "result": "Issue has been moved. PI1 has 7/11 64% tasks done, Team 1 of PI1 has 6/8 75%, PI2 has 3/4 75% and Team unassigned of PI2 has 2/2 100%"
+      },
+      {
+        "step": 8,
+        "action": "Level down to Iterations of PI1",
+        "data": "",
+        "result": "Progress bar of PI1 is not visible. User sees two Iterations. Every Iteration and swimlane has progress bars. Iteration1 has 1/3 33% tasks done, Iteration2 3/4 75%."
+      },
+      {
+        "step": 9,
+        "action": "Select issueName in Iteration1 in Team unassigned and change status on status2",
+        "data": "issueName: T10\nstatus2: Done",
+        "result": "Issue has been updated. Iteration1 has 2/3 67% tasks done and Team unassigned has 1/1 100%."
+      },
+      {
+        "step": 10,
+        "action": "Move issueName from Iteration1 Team unassigned to Iteration2 Team unassigned",
+        "data": "issueName: T10",
+        "result": "Issue has been moved. Iteration1 has 1/2 50% tasks done, progress bars of Team unassigned of Iteration1 is not visible, Iteration2 has 4/5 80% and Team unassigned of Iteration2 has 2/2 100%."
+      },
+      {
+        "step": 11,
+        "action": "Move issueName from Iteration2 Team unassigned to Iteration1 Team 1",
+        "data": "issueName: T12",
+        "result": "Issue has been moved. Iteration2 has 3/4 75% tasks done, Team 1 in Iteration1 has 2/3 67%, Team unassigned of Iteration2 has 1/1 100%."
+      },
+      {
+        "step": 12,
+        "action": "Click 'Zoom out' button on the timeline.",
+        "data": "",
+        "result": "Progress bars of PI1 are not visible. User see three Iterations. Iteration3 has 1/1 100% tasks done."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-1179",
+    "text": "Test: TC-1179 — Box module - Board - Totals - Counting work progress by tasks\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-102 Box module - Board - Totals\nLabels: Sanity, can_be_automated, rocksolid, teamsmile\n\nSteps:\n1. Navigate to the Board module of the boxName\n   Data: boxName: TC-1179 Box module - Board - Totals - Counting work progress by tasks\n   Expected: Module opened correctly.\n2. Click View -> Totals -> Work progress -> Tasks\n   Expected: Bars progress are visible in every PI and swimlane. PI1 has 7/12 58% tasks done and PI2 has 2/3 67% tasks done.\n3. Click on Filters -> Filters option and check Show only tasks not planned on a lower level\n   Expected: Bars progress are visible in every PI and swimlane. PI1 has 2/4 50% tasks done and PI2 has 2/3 67% tasks done.\n4. Click on Filters -> Filters option and uncheck Show only tasks not planned on a lower level\n   Expected: Bars progress are visible in every PI and swimlane. PI1 has 7/12 58% tasks done and PI2 has 2/3 67% tasks done.\n5. Select issueName in PI1 in Team 1 and change status on status1\n   Data: issueName: T14\nstatus1: In progress\n   Expected: Issue has been updated. PI1 has still 7/12 58% tasks done and Team 1 has still 6/9 67%\n6. Select issueName in PI1 in Team 1  and change status on status2\n   Data: issueName: T14\nstatus2: Done\n   Expected: Issue has been updated. PI1 has 8/12 67% tasks done and Team 1 has  7/9 78%\n7. Move issueName from PI1 Team 1 to PI2 Team unassigned\n   Data: issueName: T4\n   Expected: Issue has been moved. PI1 has 7/11 64% tasks done, Team 1 of PI1 has 6/8 75%, PI2 has 3/4 75% and Team unassigned of PI2 has 2/2 100%\n8. Level down to Iterations of PI1\n   Expected: Progress bar of PI1 is not visible. User sees two Iterations. Every Iteration and swimlane has progress bars. Iteration1 has 1/3 33% tasks done, Iteration2 3/4 75%.\n9. Select issueName in Iteration1 in Team unassigned and change status on status2\n   Data: issueName: T10\nstatus2: Done\n   Expected: Issue has been updated. Iteration1 has 2/3 67% tasks done and Team unassigned has 1/1 100%.\n10. Move issueName from Iteration1 Team unassigned to Iteration2 Team unassigned\n   Data: issueName: T10\n   Expected: Issue has been moved. Iteration1 has 1/2 50% tasks done, progress bars of Team unassigned of Iteration1 is not visible, Iteration2 has 4/5 80% and Team unassigned of Iteration2 has 2/2 100%.\n11. Move issueName from Iteration2 Team unassigned to Iteration1 Team 1\n   Data: issueName: T12\n   Expected: Issue has been moved. Iteration2 has 3/4 75% tasks done, Team 1 in Iteration1 has 2/3 67%, Team unassigned of Iteration2 has 1/1 100%.\n12. Click 'Zoom out' button on the timeline.\n   Expected: Progress bars of PI1 are not visible. User see three Iterations. Iteration3 has 1/1 100% tasks done.",
+    "metadata": {
+      "jira_key": "TC-1179",
+      "issue_id": "357729",
+      "summary": "Box module - Board - Totals - Counting work progress by tasks",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-102 Box module - Board - Totals",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "rocksolid",
+        "teamsmile"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-4573",
+    "issue_id": "814735",
+    "url": "https://appfire.atlassian.net/browse/TC-4573",
+    "summary": "Global - Platform connection warnings - BP behavior after revoke Trello token",
+    "description": "# Adding projects from Jira Primary to box scope after revoking Trello\n# Task structure visibility after revoking Trello token",
+    "status": "In Progress",
+    "priority": "High",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:05:51.723-0400",
+    "updated": "2026-03-30T08:19:48.468-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-374 Global - Platform connection warnings",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Box Configration -> Tasks -> Scope definition tab of boxName",
+        "data": "boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello token",
+        "result": "Scope definition tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on \"add new tool\" button and add trello extplatform then click save",
+        "data": "instruction how to add Trello is [*here*|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+add+Trello+extPlatform]",
+        "result": "Trello extplatform is added to scope definition"
+      },
+      {
+        "step": 3,
+        "action": "In the new browser tab go to QA Trello Account > settings and revoke connection with Big Picture/Big Gantt",
+        "data": "",
+        "result": "Connection revoked"
+      },
+      {
+        "step": 4,
+        "action": "Go back to BigPicture/Big Gantt app where scope definition of a boxName is open and refresh page",
+        "data": "boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello token",
+        "result": "Warning log is displayed with message \"You may experience synchronization problems or a complete lack of access to tasks.\". On the right side of message is hyperlink 'Read more' which redirects to [wiki site|https://wiki.softwareplant.com/doc/all/troubleshooting/warning-log/connected-tool-is-not-operational?product=softwareplant.bigpicture.dawid-develop2&utm_source=app]"
+      },
+      {
+        "step": 5,
+        "action": "Go to Administration-> Box Types click on the \"Program Box\" type",
+        "data": "",
+        "result": "Basic configurations are displayed"
+      },
+      {
+        "step": 6,
+        "action": "On the menu on the left side go to Tasks-> task structure",
+        "data": "",
+        "result": "Accordion with trello connection is blocked for editing"
+      },
+      {
+        "step": 7,
+        "action": "Go back to BP/BG box scope definition of boxName and expand line Automatic rules in accordion Jira Primary",
+        "data": "boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello token",
+        "result": "Automatic reules are expanded and fields: Scope Owner, Board, Filter, Project,Task types and Narrow down are visible."
+      },
+      {
+        "step": 8,
+        "action": "Select project and save changes",
+        "data": "# Project Name : TC-2315 Global - Platform connection warnings - Adding projects from Jira host to box scope after revoke Trello",
+        "result": "Project has been added to scope"
+      },
+      {
+        "step": 9,
+        "action": "Go to Gantt module of  boxName",
+        "data": "boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello toke",
+        "result": "All tasks from added JC primary project are visible."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-4573",
+    "text": "Test: TC-4573 — Global - Platform connection warnings - BP behavior after revoke Trello token\nPriority: High | Status: In Progress | Type: Manual\nFolder: /BP/TS-374 Global - Platform connection warnings\nLabels: teamextplatform\n\nDescription:\n# Adding projects from Jira Primary to box scope after revoking Trello\n# Task structure visibility after revoking Trello token\n\nSteps:\n1. Navigate to Box Configration -> Tasks -> Scope definition tab of boxName\n   Data: boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello token\n   Expected: Scope definition tab is displayed\n2. Click on \"add new tool\" button and add trello extplatform then click save\n   Data: instruction how to add Trello is [*here*|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+add+Trello+extPlatform]\n   Expected: Trello extplatform is added to scope definition\n3. In the new browser tab go to QA Trello Account > settings and revoke connection with Big Picture/Big Gantt\n   Expected: Connection revoked\n4. Go back to BigPicture/Big Gantt app where scope definition of a boxName is open and refresh page\n   Data: boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello token\n   Expected: Warning log is displayed with message \"You may experience synchronization problems or a complete lack of access to tasks.\". On the right side of message is hyperlink 'Read more' which redirects to [wiki site|https://wiki.softwareplant.com/doc/all/troubleshooting/warning-log/connected-tool-is-not-operational?product=softwareplant.bigpicture.dawid-develop2&utm_source=app]\n5. Go to Administration-> Box Types click on the \"Program Box\" type\n   Expected: Basic configurations are displayed\n6. On the menu on the left side go to Tasks-> task structure\n   Expected: Accordion with trello connection is blocked for editing\n7. Go back to BP/BG box scope definition of boxName and expand line Automatic rules in accordion Jira Primary\n   Data: boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello token\n   Expected: Automatic reules are expanded and fields: Scope Owner, Board, Filter, Project,Task types and Narrow down are visible.\n8. Select project and save changes\n   Data: # Project Name : TC-2315 Global - Platform connection warnings - Adding projects from Jira host to box scope after revoke Trello\n   Expected: Project has been added to scope\n9. Go to Gantt module of  boxName\n   Data: boxName: TC-785 Global - Box Type - CRUD operations - Task structure visibility after revoke trello toke\n   Expected: All tasks from added JC primary project are visible.",
+    "metadata": {
+      "jira_key": "TC-4573",
+      "issue_id": "814735",
+      "summary": "Global - Platform connection warnings - BP behavior after revoke Trello token",
+      "priority": "High",
+      "status": "In Progress",
+      "test_type": "Manual",
+      "folder": "/BP/TS-374 Global - Platform connection warnings",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

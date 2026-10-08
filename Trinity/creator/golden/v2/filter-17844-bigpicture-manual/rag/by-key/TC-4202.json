@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-4202",
+    "issue_id": "591681",
+    "url": "https://appfire.atlassian.net/browse/TC-4202",
+    "summary": "Box Module - Overview - Column Views - Select DataType columns can have colors assigned",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Artur Sędzik",
+    "reporter": "Maciej Boratyn",
+    "created": "2023-10-06T06:07:03.169-0400",
+    "updated": "2026-03-04T09:12:52.761-0500",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-59 Box Module - Overview",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Box Configuration of the Root Box > Overview > Box Columns",
+        "data": "",
+        "result": "The page loads."
+      },
+      {
+        "step": 2,
+        "action": "Create a new custom column passing the folLowing set of data:",
+        "data": "field name: [TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356]\n\nfield type: Select\n\nfield values:\n\n* option 1\n* option 2",
+        "result": "The column is successfully created."
+      },
+      {
+        "step": 3,
+        "action": "Change the color of option 1 to red, and the color of option 2 to blue.",
+        "data": "",
+        "result": "The colors are successfully changed."
+      },
+      {
+        "step": 4,
+        "action": "Navigate to the Overview module of the boxName",
+        "data": "boxName: [TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356] Main Box",
+        "result": "The Overview module loads and the Boxes are displayed."
+      },
+      {
+        "step": 5,
+        "action": "Click on the \"Manage columns\" cog and add the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356]\" column to the current view.",
+        "data": "",
+        "result": "The column is successfully added to the current view."
+      },
+      {
+        "step": 6,
+        "action": "In the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356]\" column assign the \"option 1\" option to the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356] Main Box\" and the \"option 2\" to the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356] Child Box\".",
+        "data": "",
+        "result": "The options are successfully assigned to the Boxes. The \"option 1\" is red and the \"option 2\" is blue."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4202",
+    "text": "Test: TC-4202 — Box Module - Overview - Column Views - Select DataType columns can have colors assigned\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-59 Box Module - Overview\n\nSteps:\n1. Navigate to the Box Configuration of the Root Box > Overview > Box Columns\n   Expected: The page loads.\n2. Create a new custom column passing the folLowing set of data:\n   Data: field name: [TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356]\n\nfield type: Select\n\nfield values:\n\n* option 1\n* option 2\n   Expected: The column is successfully created.\n3. Change the color of option 1 to red, and the color of option 2 to blue.\n   Expected: The colors are successfully changed.\n4. Navigate to the Overview module of the boxName\n   Data: boxName: [TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356] Main Box\n   Expected: The Overview module loads and the Boxes are displayed.\n5. Click on the \"Manage columns\" cog and add the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356]\" column to the current view.\n   Expected: The column is successfully added to the current view.\n6. In the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356]\" column assign the \"option 1\" option to the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356] Main Box\" and the \"option 2\" to the \"[TC-4202|https://appfire.atlassian.net/plugins/servlet/ac/com.infostretch.QmetryTestManager/qtm4j-test-management?project.key=TC&project.id=10356#!/TestCaseDetail/qMpouJjGHd4Ggq/1?projectId=10356] Child Box\".\n   Expected: The options are successfully assigned to the Boxes. The \"option 1\" is red and the \"option 2\" is blue.",
+    "metadata": {
+      "jira_key": "TC-4202",
+      "issue_id": "591681",
+      "summary": "Box Module - Overview - Column Views - Select DataType columns can have colors assigned",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-59 Box Module - Overview",
+      "labels": [],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

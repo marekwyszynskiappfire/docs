@@ -1,0 +1,133 @@
+{
+  "test": {
+    "key": "TC-6143",
+    "issue_id": "1684989",
+    "url": "https://appfire.atlassian.net/browse/TC-6143",
+    "summary": "SPM - Priorities - Deleting metrics for boxes on Overview module",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": null,
+    "reporter": "Paulina Sendecka",
+    "created": "2026-05-08T07:18:12.726-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "paulina-q2-2026",
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Priorities module of a boxName",
+        "data": "boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module",
+        "result": "Priorities module is displayed\n\nTasks tab is displayed with a splashscreen \n\n\"No tasks to prioritize yet\n\nGo to the Gantt or Scope module to create your first task.\""
+      },
+      {
+        "step": 2,
+        "action": "Click on Boxes tab",
+        "data": "",
+        "result": "Following boxes are displayed:\n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n* Program Increment: TC-6143 Program Increment\n* Iteration: TC-6143 Iteration"
+      },
+      {
+        "step": 3,
+        "action": "Set following values for boxName",
+        "data": "boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n\nImpact: Low\n\nEase: Extremely Hard\n\nConfidence: High",
+        "result": "Following values are set for box TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n\nImpact: Low\n\nEase: Extremely Hard\n\nConfidence: High\n\nPriority score is 32"
+      },
+      {
+        "step": 4,
+        "action": "Set following values for boxName",
+        "data": "boxName: TC-6143 Program Increment\n\nImpact: Medium\n\nEase: Extremely Easy\n\nConfidence: Very High",
+        "result": "Following values are set for box TC-6143 Program Increment\n\nImpact: Medium\n\nEase: Extremely Easy\n\nConfidence: Very High\n\nPriority score is 420"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Overview module of a boxName",
+        "data": "boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module",
+        "result": "Following boxes are displayed:\n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n* Program Increment: TC-6143 Program Increment\n* Iteration: TC-6143 Iteration"
+      },
+      {
+        "step": 6,
+        "action": "Click on Manage columns button → Add newColumn",
+        "data": "newColumn: Priority score",
+        "result": "Priority score column is added with values for boxes: \n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module - 32\n* Program Increment: TC-6143 Program Increment -420\n* Iteration: TC-6143 Iteration - empty"
+      },
+      {
+        "step": 7,
+        "action": "Click on boxName score",
+        "data": "boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module",
+        "result": "Priority score details modal is displayed\n\nFollowing values are displayed:\n\nImpact: Low\n\nEase: Extremely Hard\n\nConfidence: High"
+      },
+      {
+        "step": 8,
+        "action": "Hover over Ease value and click on it",
+        "data": "",
+        "result": "Dropdown with options is displayed\n\n\"X\" button is displayed"
+      },
+      {
+        "step": 9,
+        "action": "Click on \"X\" button next to Ease value",
+        "data": "",
+        "result": "Value of Ease is deleted\n\nModal window is closed\n\nValue of Priority score for Box: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module is empty"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Priorities module of a boxName",
+        "data": "boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module",
+        "result": "Priorities module is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Click on Boxes tab",
+        "data": "",
+        "result": "Priority score column is added with values for boxes:\n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module - no Priority score - Ease is deleted\n* Program Increment: TC-6143 Program Increment -420\n* Iteration: TC-6143 Iteration - empty"
+      },
+      {
+        "step": 12,
+        "action": "Hover over Ease value of boxName and click on it",
+        "data": "boxName: TC-6143 Program Increment",
+        "result": "Dropdown with options is displayed\n\n\"X\" button is displayed"
+      },
+      {
+        "step": 13,
+        "action": "Click on \"X\" button next to Ease value",
+        "data": "",
+        "result": "Value of Ease is deleted\n\nValue of Priority score for box: TC-6143 Program Increment  is empty"
+      },
+      {
+        "step": 14,
+        "action": "Navigate to Overview module of a boxName",
+        "data": "boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module",
+        "result": "All Priority score values disappeared from Priority score column"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-6143",
+    "text": "Test: TC-6143 — SPM - Priorities - Deleting metrics for boxes on Overview module\nPriority: High | Status: Done | Type: Manual\nFolder: /\nLabels: paulina-q2-2026, spm-paulina-tc\n\nSteps:\n1. Navigate to Priorities module of a boxName\n   Data: boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n   Expected: Priorities module is displayed\n\nTasks tab is displayed with a splashscreen \n\n\"No tasks to prioritize yet\n\nGo to the Gantt or Scope module to create your first task.\"\n2. Click on Boxes tab\n   Expected: Following boxes are displayed:\n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n* Program Increment: TC-6143 Program Increment\n* Iteration: TC-6143 Iteration\n3. Set following values for boxName\n   Data: boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n\nImpact: Low\n\nEase: Extremely Hard\n\nConfidence: High\n   Expected: Following values are set for box TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n\nImpact: Low\n\nEase: Extremely Hard\n\nConfidence: High\n\nPriority score is 32\n4. Set following values for boxName\n   Data: boxName: TC-6143 Program Increment\n\nImpact: Medium\n\nEase: Extremely Easy\n\nConfidence: Very High\n   Expected: Following values are set for box TC-6143 Program Increment\n\nImpact: Medium\n\nEase: Extremely Easy\n\nConfidence: Very High\n\nPriority score is 420\n5. Navigate to Overview module of a boxName\n   Data: boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n   Expected: Following boxes are displayed:\n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n* Program Increment: TC-6143 Program Increment\n* Iteration: TC-6143 Iteration\n6. Click on Manage columns button → Add newColumn\n   Data: newColumn: Priority score\n   Expected: Priority score column is added with values for boxes: \n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module - 32\n* Program Increment: TC-6143 Program Increment -420\n* Iteration: TC-6143 Iteration - empty\n7. Click on boxName score\n   Data: boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n   Expected: Priority score details modal is displayed\n\nFollowing values are displayed:\n\nImpact: Low\n\nEase: Extremely Hard\n\nConfidence: High\n8. Hover over Ease value and click on it\n   Expected: Dropdown with options is displayed\n\n\"X\" button is displayed\n9. Click on \"X\" button next to Ease value\n   Expected: Value of Ease is deleted\n\nModal window is closed\n\nValue of Priority score for Box: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module is empty\n10. Navigate to Priorities module of a boxName\n   Data: boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n   Expected: Priorities module is displayed\n11. Click on Boxes tab\n   Expected: Priority score column is added with values for boxes:\n\n* Program: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module - no Priority score - Ease is deleted\n* Program Increment: TC-6143 Program Increment -420\n* Iteration: TC-6143 Iteration - empty\n12. Hover over Ease value of boxName and click on it\n   Data: boxName: TC-6143 Program Increment\n   Expected: Dropdown with options is displayed\n\n\"X\" button is displayed\n13. Click on \"X\" button next to Ease value\n   Expected: Value of Ease is deleted\n\nValue of Priority score for box: TC-6143 Program Increment  is empty\n14. Navigate to Overview module of a boxName\n   Data: boxName: TC-6143 SPM - Priorities - Deleting metrics for boxes on Overview module\n   Expected: All Priority score values disappeared from Priority score column",
+    "metadata": {
+      "jira_key": "TC-6143",
+      "issue_id": "1684989",
+      "summary": "SPM - Priorities - Deleting metrics for boxes on Overview module",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "paulina-q2-2026",
+        "spm-paulina-tc"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-1044",
+    "issue_id": "358408",
+    "url": "https://appfire.atlassian.net/browse/TC-1044",
+    "summary": "Feature area - Exporting - Gantt - Full scope exporting",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Anna Turuk",
+    "reporter": "Bartosz Drążewski",
+    "created": "2019-07-11T10:22:46.446-0400",
+    "updated": "2026-08-20T05:19:40.732-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-1044 Feature area - Exporting - Gantt - Full scope exporting",
+        "result": "Gantt module is displayed. 27 tasks are displayed on gantt chart and WBS."
+      },
+      {
+        "step": 2,
+        "action": "Click Fit to scale button",
+        "data": "",
+        "result": "Gantt chart is fully displayed"
+      },
+      {
+        "step": 3,
+        "action": "Click Data dropdown and Organize A-Z by Key",
+        "data": "",
+        "result": "Tasks are sorted A-Z by Key"
+      },
+      {
+        "step": 4,
+        "action": "Add task without dates",
+        "data": "",
+        "result": "Task without dates is added"
+      },
+      {
+        "step": 5,
+        "action": "Click the Export button in the module's header",
+        "data": "",
+        "result": "Export manager is displayed, with folLowing options available:\n\n* File type dropdown (Export to image (PDF) is set as default)\n* Range dropdown (\"Full scope\" option is set as default)\n\nBlue active Export button is in the bottom right corner of this window"
+      },
+      {
+        "step": 6,
+        "action": "Export to image (PDF) and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.PDF_\n\nImage is a faithful representation of current Gantt chart and WBS.\n\nImage is complete, with 27 tasks present, and not cut off in any way. Tasks are sorted A-Z by Key."
+      },
+      {
+        "step": 7,
+        "action": "Click on File type and choose Export to CSV (CSV), export and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.CSV_\n\n27 tasks are properly exported, with their basic data:\n\n* Id,\n* Icon,\n* Key,\n* Summary,\n* Status_SUBTASK_STATUS_CATEGORIES_ PERCENTAGE,\n* Start Date,\n* End Date,\n* Parent Key,\n* Parent Row,\n* Link\n* Issue Type\n\nAll columns visible on Gantt and their data are also exported. Tasks are sorted A-Z by Key.\n\nStatus percentage values are correct and sum up to 100%."
+      },
+      {
+        "step": 8,
+        "action": "Click on File type and choose MS Excel Export (XLSX), export and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.XLSX_\n\n27 tasks are properly exported, with their basic data:\n\n* Id\n* Parent Row\n* Issue Type\n* Icon\n* Key\n* Summary\n* Status_SUBTASK_STATUS_CATEGORIES_ PERCENTAGE,\n* Start Date\n* End Date\n* Parent Key,\n* Parent Row\n* Link\n\nAll columns visible on Gantt and their data are also exported. Tasks are sorted A-Z by Key.\n\nStatus percentage values are correct and sum up to 100%."
+      },
+      {
+        "step": 9,
+        "action": "Click on File type and choose MS Project Empty Template (MPX), export and check if data in file is correct",
+        "data": "Use MS Project or similar solution to open the files.",
+        "result": "Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.MPX_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key."
+      },
+      {
+        "step": 10,
+        "action": "Click on File type and choose MS Project Empty Template (XML), export and check if data in file is correct",
+        "data": "Use MS Project or similar solution to open the files.",
+        "result": "Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.XML_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key."
+      },
+      {
+        "step": 11,
+        "action": "Click on File type and choose MS Project Empty Template (PDF), export and check if data in file is correct",
+        "data": "Use MS Project or similar solution to open the files.",
+        "result": "Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.PDF_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key."
+      },
+      {
+        "step": 12,
+        "action": "Click on File type and choose MS Project Empty Template (MPP), export and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' names are folLowing the filename schema:\n_gantt_<current-date>_<current-time>.MPP_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key."
+      },
+      {
+        "step": 13,
+        "action": "Close the exporter and resize WBS to 75% width of the screen",
+        "data": "",
+        "result": "WBS is resized to be 75% of the screen."
+      },
+      {
+        "step": 14,
+        "action": "Click the Export button in the module's header and export to image (PDF). Check if data in file is correct.",
+        "data": "",
+        "result": "Downloaded files' name id folLowing the filename schema:\n_gantt_<current-date>_<current-time>.PDF_\n\nImage is a faithful representation of current Gantt chart and WBS.\n\nImage is complete, with 27 tasks present, and not cut off in any way. Tasks are sorted A-Z by Key."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-1044",
+    "text": "Test: TC-1044 — Feature area - Exporting - Gantt - Full scope exporting\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\nLabels: teamspace\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-1044 Feature area - Exporting - Gantt - Full scope exporting\n   Expected: Gantt module is displayed. 27 tasks are displayed on gantt chart and WBS.\n2. Click Fit to scale button\n   Expected: Gantt chart is fully displayed\n3. Click Data dropdown and Organize A-Z by Key\n   Expected: Tasks are sorted A-Z by Key\n4. Add task without dates\n   Expected: Task without dates is added\n5. Click the Export button in the module's header\n   Expected: Export manager is displayed, with folLowing options available:\n\n* File type dropdown (Export to image (PDF) is set as default)\n* Range dropdown (\"Full scope\" option is set as default)\n\nBlue active Export button is in the bottom right corner of this window\n6. Export to image (PDF) and check if data in file is correct\n   Expected: Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.PDF_\n\nImage is a faithful representation of current Gantt chart and WBS.\n\nImage is complete, with 27 tasks present, and not cut off in any way. Tasks are sorted A-Z by Key.\n7. Click on File type and choose Export to CSV (CSV), export and check if data in file is correct\n   Expected: Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.CSV_\n\n27 tasks are properly exported, with their basic data:\n\n* Id,\n* Icon,\n* Key,\n* Summary,\n* Status_SUBTASK_STATUS_CATEGORIES_ PERCENTAGE,\n* Start Date,\n* End Date,\n* Parent Key,\n* Parent Row,\n* Link\n* Issue Type\n\nAll columns visible on Gantt and their data are also exported. Tasks are sorted A-Z by Key.\n\nStatus percentage values are correct and sum up to 100%.\n8. Click on File type and choose MS Excel Export (XLSX), export and check if data in file is correct\n   Expected: Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.XLSX_\n\n27 tasks are properly exported, with their basic data:\n\n* Id\n* Parent Row\n* Issue Type\n* Icon\n* Key\n* Summary\n* Status_SUBTASK_STATUS_CATEGORIES_ PERCENTAGE,\n* Start Date\n* End Date\n* Parent Key,\n* Parent Row\n* Link\n\nAll columns visible on Gantt and their data are also exported. Tasks are sorted A-Z by Key.\n\nStatus percentage values are correct and sum up to 100%.\n9. Click on File type and choose MS Project Empty Template (MPX), export and check if data in file is correct\n   Data: Use MS Project or similar solution to open the files.\n   Expected: Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.MPX_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key.\n10. Click on File type and choose MS Project Empty Template (XML), export and check if data in file is correct\n   Data: Use MS Project or similar solution to open the files.\n   Expected: Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.XML_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key.\n11. Click on File type and choose MS Project Empty Template (PDF), export and check if data in file is correct\n   Data: Use MS Project or similar solution to open the files.\n   Expected: Downloaded files' name is folLowing the filename schema:\n_gantt_<current-date>_<current-time>.PDF_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key.\n12. Click on File type and choose MS Project Empty Template (MPP), export and check if data in file is correct\n   Expected: Downloaded files' names are folLowing the filename schema:\n_gantt_<current-date>_<current-time>.MPP_\n\n27 tasks and their data are properly exported. Tasks are sorted A-Z by Key.\n13. Close the exporter and resize WBS to 75% width of the screen\n   Expected: WBS is resized to be 75% of the screen.\n14. Click the Export button in the module's header and export to image (PDF). Check if data in file is correct.\n   Expected: Downloaded files' name id folLowing the filename schema:\n_gantt_<current-date>_<current-time>.PDF_\n\nImage is a faithful representation of current Gantt chart and WBS.\n\nImage is complete, with 27 tasks present, and not cut off in any way. Tasks are sorted A-Z by Key.",
+    "metadata": {
+      "jira_key": "TC-1044",
+      "issue_id": "358408",
+      "summary": "Feature area - Exporting - Gantt - Full scope exporting",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

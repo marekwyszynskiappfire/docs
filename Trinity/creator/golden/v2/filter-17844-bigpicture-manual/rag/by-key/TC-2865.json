@@ -1,0 +1,147 @@
+{
+  "test": {
+    "key": "TC-2865",
+    "issue_id": "359001",
+    "url": "https://appfire.atlassian.net/browse/TC-2865",
+    "summary": "Box Module - Board - Basic operations - Read only mode when box is archived",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2022-01-12T06:13:51.895-0500",
+    "updated": "2026-04-02T08:50:58.898-0400",
+    "labels": [
+      "can_be_automated",
+      "rocksolid",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Home and mark Show archived box in View dropdown",
+        "data": "",
+        "result": "Show archived box is marked. Archived boxes are visible"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Board module of boxName.",
+        "data": "boxName: TC-2865 Box Module - Board - Basic operations - Read only mode when box is archived",
+        "result": "Board module is successfully loaded and displayed."
+      },
+      {
+        "step": 3,
+        "action": "Click on timeline and add new marker.",
+        "data": "",
+        "result": "User cannot add new marker, option is not displaying."
+      },
+      {
+        "step": 4,
+        "action": "Hover over the Export button.",
+        "data": "",
+        "result": "Export Button is active. A tooltip appears with text: Export"
+      },
+      {
+        "step": 5,
+        "action": "Click on Export button.",
+        "data": "",
+        "result": "Export data modal dialog is displayed.\n\nDefault file type is selected as: Export to image (PDF)\n\nThere is active Export button."
+      },
+      {
+        "step": 6,
+        "action": "Click on Export button. \n\nAfter the export is finished successfully close the dialog by clicking on X button.",
+        "data": "",
+        "result": "PDF file is successfully exported.\n\nExport data dialog is closed after clicking on X button."
+      },
+      {
+        "step": 7,
+        "action": "Click-right on Interation and change status of subbox.",
+        "data": "",
+        "result": "User cannot change status of subbox, option is not displaying."
+      },
+      {
+        "step": 8,
+        "action": "Click-right on Interation and change Task period alignment of subbox.",
+        "data": "",
+        "result": "User cannot change Task period alignment of subbox, option is not displaying."
+      },
+      {
+        "step": 9,
+        "action": "Click on ellipsis button (three dots) and change status of subbox.",
+        "data": "",
+        "result": "User cannot change status of subbox, option is unavailable"
+      },
+      {
+        "step": 10,
+        "action": "Click on ellipsis button (three dots) -> edit and change Task period alignment of subbox.",
+        "data": "",
+        "result": "User cannot change Task period alignment of subbox, option is unavailable"
+      },
+      {
+        "step": 11,
+        "action": "Double-click on task summary and change its name.",
+        "data": "",
+        "result": "User cannot change task summary name, edition field in unavailable."
+      },
+      {
+        "step": 12,
+        "action": "Create dependency between taskName1 and taskName2.",
+        "data": "taskName1: TestTask1\ntaskName2: TestTask3",
+        "result": "User cannot create dependency between tasks, option is unavailable."
+      },
+      {
+        "step": 13,
+        "action": "Move task from backlog to board.",
+        "data": "taskName: TestTask2",
+        "result": "User cannot move task from backlog to board."
+      },
+      {
+        "step": 14,
+        "action": "Move task from board to backlog.",
+        "data": "taskName: TestTask1",
+        "result": "User cannot move task from board to backlog."
+      },
+      {
+        "step": 15,
+        "action": "Add new task using '+' button.",
+        "data": "",
+        "result": "User cannot add new task, '+' button is not displaying."
+      },
+      {
+        "step": 16,
+        "action": "Allocate new team in boxName.",
+        "data": "",
+        "result": "User cannot allocate new team, Allocate team button is not displaying."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-2865",
+    "text": "Test: TC-2865 — Box Module - Board - Basic operations - Read only mode when box is archived\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-34 Box Module - Board - Basic operations\nLabels: can_be_automated, rocksolid, teamsmile\n\nSteps:\n1. Navigate to Home and mark Show archived box in View dropdown\n   Expected: Show archived box is marked. Archived boxes are visible\n2. Navigate to Board module of boxName.\n   Data: boxName: TC-2865 Box Module - Board - Basic operations - Read only mode when box is archived\n   Expected: Board module is successfully loaded and displayed.\n3. Click on timeline and add new marker.\n   Expected: User cannot add new marker, option is not displaying.\n4. Hover over the Export button.\n   Expected: Export Button is active. A tooltip appears with text: Export\n5. Click on Export button.\n   Expected: Export data modal dialog is displayed.\n\nDefault file type is selected as: Export to image (PDF)\n\nThere is active Export button.\n6. Click on Export button. \n\nAfter the export is finished successfully close the dialog by clicking on X button.\n   Expected: PDF file is successfully exported.\n\nExport data dialog is closed after clicking on X button.\n7. Click-right on Interation and change status of subbox.\n   Expected: User cannot change status of subbox, option is not displaying.\n8. Click-right on Interation and change Task period alignment of subbox.\n   Expected: User cannot change Task period alignment of subbox, option is not displaying.\n9. Click on ellipsis button (three dots) and change status of subbox.\n   Expected: User cannot change status of subbox, option is unavailable\n10. Click on ellipsis button (three dots) -> edit and change Task period alignment of subbox.\n   Expected: User cannot change Task period alignment of subbox, option is unavailable\n11. Double-click on task summary and change its name.\n   Expected: User cannot change task summary name, edition field in unavailable.\n12. Create dependency between taskName1 and taskName2.\n   Data: taskName1: TestTask1\ntaskName2: TestTask3\n   Expected: User cannot create dependency between tasks, option is unavailable.\n13. Move task from backlog to board.\n   Data: taskName: TestTask2\n   Expected: User cannot move task from backlog to board.\n14. Move task from board to backlog.\n   Data: taskName: TestTask1\n   Expected: User cannot move task from board to backlog.\n15. Add new task using '+' button.\n   Expected: User cannot add new task, '+' button is not displaying.\n16. Allocate new team in boxName.\n   Expected: User cannot allocate new team, Allocate team button is not displaying.",
+    "metadata": {
+      "jira_key": "TC-2865",
+      "issue_id": "359001",
+      "summary": "Box Module - Board - Basic operations - Read only mode when box is archived",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-34 Box Module - Board - Basic operations",
+      "labels": [
+        "can_be_automated",
+        "rocksolid",
+        "teamsmile"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

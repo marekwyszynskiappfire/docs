@@ -1,0 +1,85 @@
+{
+  "test": {
+    "key": "TC-4791",
+    "issue_id": "821631",
+    "url": "https://appfire.atlassian.net/browse/TC-4791",
+    "summary": "Feature area - Task Scheduling - Period movement - Moving operation on tasks imported from file",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Patryk Pesta",
+    "reporter": "Patryk Pesta",
+    "created": "2024-08-01T04:59:14.276-0400",
+    "updated": "2026-03-30T09:57:23.537-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-78 Feature area - Task Scheduling - Period movement",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of boxName",
+        "data": "boxName: TC-4216 Moving operation on tasks imported from file",
+        "result": "Gantt module is loaded. There are no tasks in the scope."
+      },
+      {
+        "step": 2,
+        "action": "Click on the Add task and select Import tasks from file",
+        "data": "",
+        "result": "Import from file dialog is loaded"
+      },
+      {
+        "step": 3,
+        "action": "Download fileName from the attachments and upload it",
+        "data": "fileName: gantt-2023-05-23T18_20_17.XLSX",
+        "result": "File is uploaded"
+      },
+      {
+        "step": 4,
+        "action": "Select projectName and click the Import button. Confirm by clicking the Proceed button.",
+        "data": "projectName: TC-4216 Moving operation on tasks imported from file",
+        "result": "Following message is displayed:\nTasks have been successfully imported\n\nNow you can refresh the page to see your tasks.\n\nRefresh the page"
+      },
+      {
+        "step": 5,
+        "action": "Click on the Refresh the page button.",
+        "data": "",
+        "result": "Page is refreshed.\n\nImported tasks are displayed:\n\n* TC-4216 Moving operation on tasks imported from file (parent)\n* TC-4216 Project (parent)\n* TC-4216 Task-1 (parent)\n* TC-4216 Task-2 (parent)\n* TC-4216 Task-3"
+      },
+      {
+        "step": 6,
+        "action": "Move the issueName outside its parent's period",
+        "data": "issueName: TC-4216 Task-3",
+        "result": "Task is correctly moved. All its parents periods are updated."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4791",
+    "text": "Test: TC-4791 — Feature area - Task Scheduling - Period movement - Moving operation on tasks imported from file\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-78 Feature area - Task Scheduling - Period movement\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Navigate to the Gantt module of boxName\n   Data: boxName: TC-4216 Moving operation on tasks imported from file\n   Expected: Gantt module is loaded. There are no tasks in the scope.\n2. Click on the Add task and select Import tasks from file\n   Expected: Import from file dialog is loaded\n3. Download fileName from the attachments and upload it\n   Data: fileName: gantt-2023-05-23T18_20_17.XLSX\n   Expected: File is uploaded\n4. Select projectName and click the Import button. Confirm by clicking the Proceed button.\n   Data: projectName: TC-4216 Moving operation on tasks imported from file\n   Expected: Following message is displayed:\nTasks have been successfully imported\n\nNow you can refresh the page to see your tasks.\n\nRefresh the page\n5. Click on the Refresh the page button.\n   Expected: Page is refreshed.\n\nImported tasks are displayed:\n\n* TC-4216 Moving operation on tasks imported from file (parent)\n* TC-4216 Project (parent)\n* TC-4216 Task-1 (parent)\n* TC-4216 Task-2 (parent)\n* TC-4216 Task-3\n6. Move the issueName outside its parent's period\n   Data: issueName: TC-4216 Task-3\n   Expected: Task is correctly moved. All its parents periods are updated.",
+    "metadata": {
+      "jira_key": "TC-4791",
+      "issue_id": "821631",
+      "summary": "Feature area - Task Scheduling - Period movement - Moving operation on tasks imported from file",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-78 Feature area - Task Scheduling - Period movement",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

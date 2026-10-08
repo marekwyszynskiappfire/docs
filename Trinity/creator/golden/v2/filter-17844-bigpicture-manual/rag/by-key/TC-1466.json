@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-1466",
+    "issue_id": "357854",
+    "url": "https://appfire.atlassian.net/browse/TC-1466",
+    "summary": "Feature area - Box scope - Existing task(s) removing - Trello tasks on Gantt module",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Martyna Turowska",
+    "reporter": "Martyna Turowska",
+    "created": "2021-02-15T10:00:24.855-0500",
+    "updated": "2026-06-18T05:53:20.457-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-72 Feature area - Box scope - Existing task(s) removing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Box configuration -> Scope definition of boxName and add Trello with connectionName",
+        "data": "boxName: TC-1466 Feature area - Box scope - Existing task(s) removing - Trello tasks on Gantt module\n\nconnectionName: OMEGA",
+        "result": "Trello is correctly added to Scope definition.\n\nOMEGA via Admin Adminowski TRELLO is visible."
+      },
+      {
+        "step": 2,
+        "action": "Expand Automatic rules of platformName, select boardName and click Save",
+        "data": "platformName: OMEGA via Admin Adminowski TRELLO.\n\nboardName: TC-1466 Feature area - Box Scope - Existing removing tasks",
+        "result": "Board TC-1466 Feature area - Box Scope - Existing removing tasks is added to Scope definition of Trello."
+      },
+      {
+        "step": 3,
+        "action": "Open boxName on Gantt module\n\nExpand all tasks",
+        "data": "boxName: TC-1466 Feature area - Box scope - Existing task(s) removing - Trello tasks on Gantt module",
+        "result": "Gantt module is displayed, WBS and chart are visible.\n\nOne project task, three lists task, three card tasks and four issue tasks are visible in the structure."
+      },
+      {
+        "step": 4,
+        "action": "Select taskSummary\n\nOn editor slider click trash icon (Delete)",
+        "data": "taskSummary: TC1466 Task to delete",
+        "result": "Confirmation window is displayed with the text:\n\nDelete this task and its dependencies? The card in Trello will also be deleted. \n\nAvailable buttons:\n- Delete\n- Cancel"
+      },
+      {
+        "step": 5,
+        "action": "Click Delete on confirmation window",
+        "data": "",
+        "result": "TC1466 Task to delete is not displayed on WBS."
+      },
+      {
+        "step": 6,
+        "action": "Select taskSummary\n\nOn editor slider click trash icon (Delete)",
+        "data": "taskSummary: TC1466 Card to delete",
+        "result": "Confirmation window is displayed with the text:\n\nDelete this task and its dependencies? The card in Trello will also be deleted.\n\nAvailable buttons:\n- Delete\n- Cancel"
+      },
+      {
+        "step": 7,
+        "action": "Click Delete on confirmation window",
+        "data": "",
+        "result": "TC1466 Card to delete is not displayed on WBS.\n\nTC1466 Task A and TC1466 Task B are children of TC1466 Table A now."
+      },
+      {
+        "step": 8,
+        "action": "Select taskSummary\n\nOn editor slider click trash icon (Delete)",
+        "data": "taskSummary: TC1466 Table to delete",
+        "result": "Confirmation window is displayed with the text:\n\nDelete this task and its dependencies? The card in Trello will also be deleted.\n\nAvailable buttons:\n- Delete\n- Cancel"
+      },
+      {
+        "step": 9,
+        "action": "Click Delete on confirmation window",
+        "data": "",
+        "result": "TC1466 Table to delete is not displayed on WBS.\n\nTC1466 Card 2 is child of TC-1466 Feature area - Box Scope - Existing task(s) removing - Trello tasks now."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-1466",
+    "text": "Test: TC-1466 — Feature area - Box scope - Existing task(s) removing - Trello tasks on Gantt module\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-72 Feature area - Box scope - Existing task(s) removing\nLabels: teamspace\n\nSteps:\n1. Navigate to Box configuration -> Scope definition of boxName and add Trello with connectionName\n   Data: boxName: TC-1466 Feature area - Box scope - Existing task(s) removing - Trello tasks on Gantt module\n\nconnectionName: OMEGA\n   Expected: Trello is correctly added to Scope definition.\n\nOMEGA via Admin Adminowski TRELLO is visible.\n2. Expand Automatic rules of platformName, select boardName and click Save\n   Data: platformName: OMEGA via Admin Adminowski TRELLO.\n\nboardName: TC-1466 Feature area - Box Scope - Existing removing tasks\n   Expected: Board TC-1466 Feature area - Box Scope - Existing removing tasks is added to Scope definition of Trello.\n3. Open boxName on Gantt module\n\nExpand all tasks\n   Data: boxName: TC-1466 Feature area - Box scope - Existing task(s) removing - Trello tasks on Gantt module\n   Expected: Gantt module is displayed, WBS and chart are visible.\n\nOne project task, three lists task, three card tasks and four issue tasks are visible in the structure.\n4. Select taskSummary\n\nOn editor slider click trash icon (Delete)\n   Data: taskSummary: TC1466 Task to delete\n   Expected: Confirmation window is displayed with the text:\n\nDelete this task and its dependencies? The card in Trello will also be deleted. \n\nAvailable buttons:\n- Delete\n- Cancel\n5. Click Delete on confirmation window\n   Expected: TC1466 Task to delete is not displayed on WBS.\n6. Select taskSummary\n\nOn editor slider click trash icon (Delete)\n   Data: taskSummary: TC1466 Card to delete\n   Expected: Confirmation window is displayed with the text:\n\nDelete this task and its dependencies? The card in Trello will also be deleted.\n\nAvailable buttons:\n- Delete\n- Cancel\n7. Click Delete on confirmation window\n   Expected: TC1466 Card to delete is not displayed on WBS.\n\nTC1466 Task A and TC1466 Task B are children of TC1466 Table A now.\n8. Select taskSummary\n\nOn editor slider click trash icon (Delete)\n   Data: taskSummary: TC1466 Table to delete\n   Expected: Confirmation window is displayed with the text:\n\nDelete this task and its dependencies? The card in Trello will also be deleted.\n\nAvailable buttons:\n- Delete\n- Cancel\n9. Click Delete on confirmation window\n   Expected: TC1466 Table to delete is not displayed on WBS.\n\nTC1466 Card 2 is child of TC-1466 Feature area - Box Scope - Existing task(s) removing - Trello tasks now.",
+    "metadata": {
+      "jira_key": "TC-1466",
+      "issue_id": "357854",
+      "summary": "Feature area - Box scope - Existing task(s) removing - Trello tasks on Gantt module",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-72 Feature area - Box scope - Existing task(s) removing",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

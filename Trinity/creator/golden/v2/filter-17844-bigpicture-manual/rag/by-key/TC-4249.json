@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-4249",
+    "issue_id": "814395",
+    "url": "https://appfire.atlassian.net/browse/TC-4249",
+    "summary": "Global - Task Configuration - \"Overwrite Jira task data with data from the App\" is disabled until Jira field is changed",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": null,
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T09:59:16.965-0400",
+    "updated": "2026-03-04T09:12:48.999-0500",
+    "labels": [
+      "teamlego"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-117 Global - Task configuration",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Configuration - General - Fields tab",
+        "data": "",
+        "result": "The fields tab is displayed\n\nThere are two sub-tabs: General mapping and Custom mapping\n\nGeneral mapping page contains list of fields:\n\n* Start date (camera icon is present)\n* End date (camera icon is present)\n* Baseline start date (camera icon is present)\n* Baseline end date (camera icon is present)\n* Team Code\n* Milestone field (camera icon is present)\n* Story Points\n* Required Skills\n* Actual cost\n* Estimated cost\n* Progress\n* Scheduling mode (camera icon is present)\n\nIn the middle there are icons with two arrows pointing in both directions ⇆\n\nAt the bottom there is section with \"Additional task settings\" with 5 toggle buttons, Save button and Reset to defaults button\n\nNext to \"Fields\" and \"Additional task settings\" there is question mark icon with link to help page."
+      },
+      {
+        "step": 2,
+        "action": "Scroll down to \"*Additional task settings*\" section and \n\nclick on inactive toggle \"*Overwrite Jira task data with data from the App*\"",
+        "data": "",
+        "result": "The toggle is not changing the state and remains inactive"
+      },
+      {
+        "step": 3,
+        "action": "Set *Start date* field to {StartDateValue1}",
+        "data": "StartDateValue1 = \"*Target start*\"",
+        "result": "The value is changed and toggle \"*Overwrite Jira task data with data from the App*\" is now active\n\nBeLow appears new section: *\"FolLowing changes will be applied\"* which contains information about changes in *Start date* field"
+      },
+      {
+        "step": 4,
+        "action": "Click on toggle \"*Overwrite Jira task data with data from the App*\"",
+        "data": "",
+        "result": "It changes its' state to green.\n\n*\"FolLowing changes will be applied\" section* which contains additional information about toggle changing status from *false* to *true*"
+      },
+      {
+        "step": 5,
+        "action": "Click on \"Reset to defaults\" button",
+        "data": "",
+        "result": "* Confirmation modal appears: \"_Are you sure?_ _All custom changes you've made will be overwritten with default settings. This action cannot be undone._\" with buttons \"Reset now\" and \"Cancel\""
+      },
+      {
+        "step": 6,
+        "action": "Click on \"Reset now\"",
+        "data": "",
+        "result": "* *Start date* field changes value from \"*Target* *start*\" back to \"*Start* *date*\".\n* Toggle \"*Overwrite Jira task data with data from the App*\" changes state to false and inactive.\n* *\"FolLowing changes will be applied\"* section disappears."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4249",
+    "text": "Test: TC-4249 — Global - Task Configuration - \"Overwrite Jira task data with data from the App\" is disabled until Jira field is changed\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-117 Global - Task configuration\nLabels: teamlego\n\nSteps:\n1. Navigate to App Configuration - General - Fields tab\n   Expected: The fields tab is displayed\n\nThere are two sub-tabs: General mapping and Custom mapping\n\nGeneral mapping page contains list of fields:\n\n* Start date (camera icon is present)\n* End date (camera icon is present)\n* Baseline start date (camera icon is present)\n* Baseline end date (camera icon is present)\n* Team Code\n* Milestone field (camera icon is present)\n* Story Points\n* Required Skills\n* Actual cost\n* Estimated cost\n* Progress\n* Scheduling mode (camera icon is present)\n\nIn the middle there are icons with two arrows pointing in both directions ⇆\n\nAt the bottom there is section with \"Additional task settings\" with 5 toggle buttons, Save button and Reset to defaults button\n\nNext to \"Fields\" and \"Additional task settings\" there is question mark icon with link to help page.\n2. Scroll down to \"*Additional task settings*\" section and \n\nclick on inactive toggle \"*Overwrite Jira task data with data from the App*\"\n   Expected: The toggle is not changing the state and remains inactive\n3. Set *Start date* field to {StartDateValue1}\n   Data: StartDateValue1 = \"*Target start*\"\n   Expected: The value is changed and toggle \"*Overwrite Jira task data with data from the App*\" is now active\n\nBeLow appears new section: *\"FolLowing changes will be applied\"* which contains information about changes in *Start date* field\n4. Click on toggle \"*Overwrite Jira task data with data from the App*\"\n   Expected: It changes its' state to green.\n\n*\"FolLowing changes will be applied\" section* which contains additional information about toggle changing status from *false* to *true*\n5. Click on \"Reset to defaults\" button\n   Expected: * Confirmation modal appears: \"_Are you sure?_ _All custom changes you've made will be overwritten with default settings. This action cannot be undone._\" with buttons \"Reset now\" and \"Cancel\"\n6. Click on \"Reset now\"\n   Expected: * *Start date* field changes value from \"*Target* *start*\" back to \"*Start* *date*\".\n* Toggle \"*Overwrite Jira task data with data from the App*\" changes state to false and inactive.\n* *\"FolLowing changes will be applied\"* section disappears.",
+    "metadata": {
+      "jira_key": "TC-4249",
+      "issue_id": "814395",
+      "summary": "Global - Task Configuration - \"Overwrite Jira task data with data from the App\" is disabled until Jira field is changed",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-117 Global - Task configuration",
+      "labels": [
+        "teamlego"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

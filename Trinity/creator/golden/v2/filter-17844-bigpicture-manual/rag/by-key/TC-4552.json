@@ -1,0 +1,71 @@
+{
+  "test": {
+    "key": "TC-4552",
+    "issue_id": "814714",
+    "url": "https://appfire.atlassian.net/browse/TC-4552",
+    "summary": "Feature area - Task - Atributes displaying and editing -  field editing with specific custom field context ",
+    "description": "Checking field editable from BP level when select list ( single choise ) is set to specific context (project,issuetype)",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": null,
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:05:38.484-0400",
+    "updated": "2026-04-23T07:18:11.717-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open boxName in Gantt module",
+        "data": "boxName: TC-4634 Feature area - Task - Atributes displaying and editing -  field editing with specific custom field context",
+        "result": "There are two projects visible in WBS:\n\n* TC-4634 (1)\n** Task 1\n* TC-4634 (2)\n** Task 2"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to fieldName of Task 1 and set fieldValue",
+        "data": "fieldName: TC-4634\nfieldValue: 11",
+        "result": "Field is set to 11 of Task 1"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to fieldName of Task 2 and set fieldValue",
+        "data": "fieldName: TC-4634\nfieldValue: 11",
+        "result": "Field is set to 11 of Task 2"
+      },
+      {
+        "step": 4,
+        "action": "Refresh the page",
+        "data": "",
+        "result": "Fields are set to 11. Warning log is not displayed"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 4
+  },
+  "rag": {
+    "id": "TC-4552",
+    "text": "Test: TC-4552 — Feature area - Task - Atributes displaying and editing -  field editing with specific custom field context \nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-66 Feature area - Task - Attributes displaying and editing\nLabels: teamextplatform\n\nDescription:\nChecking field editable from BP level when select list ( single choise ) is set to specific context (project,issuetype)\n\nSteps:\n1. Open boxName in Gantt module\n   Data: boxName: TC-4634 Feature area - Task - Atributes displaying and editing -  field editing with specific custom field context\n   Expected: There are two projects visible in WBS:\n\n* TC-4634 (1)\n** Task 1\n* TC-4634 (2)\n** Task 2\n2. Navigate to fieldName of Task 1 and set fieldValue\n   Data: fieldName: TC-4634\nfieldValue: 11\n   Expected: Field is set to 11 of Task 1\n3. Navigate to fieldName of Task 2 and set fieldValue\n   Data: fieldName: TC-4634\nfieldValue: 11\n   Expected: Field is set to 11 of Task 2\n4. Refresh the page\n   Expected: Fields are set to 11. Warning log is not displayed",
+    "metadata": {
+      "jira_key": "TC-4552",
+      "issue_id": "814714",
+      "summary": "Feature area - Task - Atributes displaying and editing -  field editing with specific custom field context ",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 4,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-4990",
+    "issue_id": "852039",
+    "url": "https://appfire.atlassian.net/browse/TC-4990",
+    "summary": "Feature area - Exporting - Preserving template configuration - Cloud",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2024-09-09T02:47:21.607-0400",
+    "updated": "2026-03-30T09:58:10.572-0400",
+    "labels": [
+      "team#Enigma",
+      "teamembers"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to BigTemplate Configuration -> Templates",
+        "data": "",
+        "result": "A list of all available templates is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Delete all templates.",
+        "data": "",
+        "result": "All templates are deleted."
+      },
+      {
+        "step": 3,
+        "action": "Click on Upload template button and create a template passing the following set of data",
+        "data": "moduleVisibility: Widget\ntemplateName: New Widget Template\nfileToUpload: TC4990.xlsx\nsetAsGlobalTemplate: unchecked",
+        "result": "Template is created and is visible on the templates list"
+      },
+      {
+        "step": 4,
+        "action": "Click on Upload template button and create a template passing the following set of data",
+        "data": "moduleVisibility: Gantt\ntemplateName: New Gantt Template\nfileToUpload: TC4990.xlsx\nsetAsGlobalTemplate: unchecked",
+        "result": "Template is created and is visible on the templates list"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Manage add-ons page and Uninstall BigTemplate plugin",
+        "data": "",
+        "result": "BigTemplate is successfully uninstalled"
+      },
+      {
+        "step": 6,
+        "action": "Install BigTemplate plugin",
+        "data": "",
+        "result": "BigTemplate is successfully installed"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to BigTemplate Configuration -> Templates",
+        "data": "",
+        "result": "Templates removed in step 2 are not visible.\n\nTemplate added in step 3 is visible:\n\n* New Widget Template\n\nTemplate added in step 4 is visible:\n\n* New Gantt Template"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-4990",
+    "text": "Test: TC-4990 — Feature area - Exporting - Preserving template configuration - Cloud\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /\nLabels: team#Enigma, teamembers\n\nSteps:\n1. Navigate to BigTemplate Configuration -> Templates\n   Expected: A list of all available templates is displayed\n2. Delete all templates.\n   Expected: All templates are deleted.\n3. Click on Upload template button and create a template passing the following set of data\n   Data: moduleVisibility: Widget\ntemplateName: New Widget Template\nfileToUpload: TC4990.xlsx\nsetAsGlobalTemplate: unchecked\n   Expected: Template is created and is visible on the templates list\n4. Click on Upload template button and create a template passing the following set of data\n   Data: moduleVisibility: Gantt\ntemplateName: New Gantt Template\nfileToUpload: TC4990.xlsx\nsetAsGlobalTemplate: unchecked\n   Expected: Template is created and is visible on the templates list\n5. Navigate to Manage add-ons page and Uninstall BigTemplate plugin\n   Expected: BigTemplate is successfully uninstalled\n6. Install BigTemplate plugin\n   Expected: BigTemplate is successfully installed\n7. Navigate to BigTemplate Configuration -> Templates\n   Expected: Templates removed in step 2 are not visible.\n\nTemplate added in step 3 is visible:\n\n* New Widget Template\n\nTemplate added in step 4 is visible:\n\n* New Gantt Template",
+    "metadata": {
+      "jira_key": "TC-4990",
+      "issue_id": "852039",
+      "summary": "Feature area - Exporting - Preserving template configuration - Cloud",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "team#Enigma",
+        "teamembers"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

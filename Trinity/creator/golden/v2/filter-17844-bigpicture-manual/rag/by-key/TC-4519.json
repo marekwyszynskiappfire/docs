@@ -1,0 +1,61 @@
+{
+  "test": {
+    "key": "TC-4519",
+    "issue_id": "814680",
+    "url": "https://appfire.atlassian.net/browse/TC-4519",
+    "summary": "Feature area - Task Scheduling - Period movement - Moving basic milestone on Gantt module",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Patryk Pesta",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:05:15.612-0400",
+    "updated": "2026-03-30T09:56:51.459-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-78 Feature area - Task Scheduling - Period movement",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module with boxName.",
+        "data": "boxName: TC-4519 Moving basic milestone on Gantt module",
+        "result": "Gantt module is loaded."
+      },
+      {
+        "step": 2,
+        "action": "Click on the End date field of issueName and select the endDate from date picker.",
+        "data": "endDate: 28/Apr/24\n\nissueName: TC-4519 Basic task",
+        "result": "TC-4519 Basic task is moved.Start date and End date are set to 28/Apr/24"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 2
+  },
+  "rag": {
+    "id": "TC-4519",
+    "text": "Test: TC-4519 — Feature area - Task Scheduling - Period movement - Moving basic milestone on Gantt module\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-78 Feature area - Task Scheduling - Period movement\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Navigate to the Gantt module with boxName.\n   Data: boxName: TC-4519 Moving basic milestone on Gantt module\n   Expected: Gantt module is loaded.\n2. Click on the End date field of issueName and select the endDate from date picker.\n   Data: endDate: 28/Apr/24\n\nissueName: TC-4519 Basic task\n   Expected: TC-4519 Basic task is moved.Start date and End date are set to 28/Apr/24",
+    "metadata": {
+      "jira_key": "TC-4519",
+      "issue_id": "814680",
+      "summary": "Feature area - Task Scheduling - Period movement - Moving basic milestone on Gantt module",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-78 Feature area - Task Scheduling - Period movement",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 2,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

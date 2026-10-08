@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-4189",
+    "issue_id": "586398",
+    "url": "https://appfire.atlassian.net/browse/TC-4189",
+    "summary": "Box Module - Gantt - Resource Panel - Displaying details in the Workload details dialog after changing aggregation",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Monika Cecot",
+    "reporter": "Maciej Boratyn",
+    "created": "2023-09-29T05:17:41.607-0400",
+    "updated": "2026-03-17T15:11:11.196-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-50 Box Module - Gantt - Resource Panel",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName.",
+        "data": "boxName: TC-4189 Box Module - Gantt - Resource Panel - Displaying details in the Workload details dialog after changing aggregation",
+        "result": "The Gantt chart is displayed.\n\nThe following tasks are displayed on WBS and Gantt chart: \n\n* TC-4189 Box Module - Gantt - Resource Panel (project task)\n* Task 1\n* Task 2 (parent task)\n* Task 3 (child task)\n* Task 4"
+      },
+      {
+        "step": 2,
+        "action": "Click on View button in the header menu and select Resource panel option",
+        "data": "",
+        "result": "The Resource panel is displayed at the bottom of the page.\n\nThe following users are displayed in the Resource panel:\n\n* Unassigned\n* TC4189-user1\n* TC4189-user2\n\nThe following values are displayed in the Workload bars:\n\n* For 'TC4189-user1': \n** \"34.7\" in red lozenge from 31/Dec/29 to 06/Jan/30\n** \"109.3\" in red lozenge from 07/Jan/30 to 13/Jan/3\n** \"16\" in green lozenge from 14/Jan/30 to 20/Jan/30\n* For 'TC4189-user2’: \n** \"16\" in green lozenge from 31/Dec/29 to 06/Jan/30 \n** \"24\" in green lozenge from 07/Jan/30 to 13/Jan/3"
+      },
+      {
+        "step": 3,
+        "action": "Click on the bar with the workloadValue in the userName row.",
+        "data": "workloadValue: 109.3\nuserName: TC4189-user1",
+        "result": "The Workload details dialog of user ‘TC4189-user1’ appears with:\n\n* Effort mode: Remaining estimate\n* Total workload: \"109.3H\" in red lozenge\n* Remaining capacity: \"-69.3H\" in red lozenge\n* Information: \"The cell is red due to a workload-to-capacity ratio of 273%, which varies from 100.01% to infinity for Individuals.\"\n* List of tasks that are present in the week 07/Jan/30 -13/Jan/30 along with their Key, Summary, and total Workload of individual tasks::\n** TC4189-2 Task 2 with Workload \"53.3h\" in gray lozenge\n** TC4189-4 Task 4 with Workload \"40.0h\" in gray lozenge\n** TC4189-3 Task 3 with Workload \"16.0h\" in gray lozenge"
+      },
+      {
+        "step": 4,
+        "action": "Click on the ‘Weekly’ dropdown menu button and change aggregation to 'Daily'.",
+        "data": "",
+        "result": "The following values are displayed in the Workload bars:\n\n* For 'TC4189-user1': \n** \"17.3\" in red lozenge from 03/Jan/30 to 04/Jan/30\n** \"25.3\" in red lozenge from 07/Jan/30 to 10/Jan/3\n** \"8\" in green lozenge from 11/Jan/30, 14/Jan/30 and 15/Jan/30\n* For 'TC4189-user2’: \n** \"8\" in green lozenge 03/Jan/30, 04/Jan/30 and from 07/Jan/30 to 09/Jan/30"
+      },
+      {
+        "step": 5,
+        "action": "Click on the bar with the workloadValue in the userName row of date.",
+        "data": "workloadValue: 25.3\nuserName: TC4189-user1\ndate: 08/Jan/30",
+        "result": "The Workload details dialog of user ‘TC4189-user1’ appears with:\n\n* Effort mode: Remaining estimate\n* Total workload: \"25.3H\" in red lozenge\n* Remaining capacity: \"-17.3H\" in red lozenge\n* Information: \"The cell is red due to a workload-to-capacity ratio of 317%, which varies from 100.01% to infinity for Individuals.\"\n* List of tasks that are present on 08/Jan/30 along with their Key, Summary, and total Workload of individual tasks::\n** TC4189-2 Task 2 with Workload \"13.3h\" in gray lozenge\n** TC4189-4 Task 4 with Workload \"8.0h\" in gray lozenge\n** TC4189-3 Task 3 with Workload \"4.0h\" in gray lozenge"
+      },
+      {
+        "step": 6,
+        "action": "Click on the 'Daily' dropdown menu button and change aggregation to 'Monthly'.\n\nClick on 'Zoom out' button in the chart menu.",
+        "data": "",
+        "result": "The following values are displayed in the Workload bars:\n\n* For 'TC4189-user1': \n** \"160\" in green lozenge from 01/Jan/30 to 31/Jan/30\n* For 'TC4189-user2’: \n** \"40\" in green lozenge from 01/Jan/30 to 31/Jan/30"
+      },
+      {
+        "step": 7,
+        "action": "Click on the bar with the workloadValue in the userName row of date.",
+        "data": "workloadValue: 160\nuserName: TC4189-user1",
+        "result": "The Workload details dialog of user ‘TC4189-user1’ appears with:\n\n* Effort mode: Remaining estimate\n* Total workload: \"160.0H\" in green lozenge\n* Remaining capacity: \"24.0H\" in green lozenge\n* Information: \"The cell is green due to a workload-to-capacity ratio of 87%, which varies from 0% to 100% for Individuals.\"\n* List of tasks that are present in January 2030 along with their Key, Summary, and total Workload of individual tasks:\n** TC4189-2 Task 2 with Workload \"80.0h\" in gray lozenge\n** TC4189-4 Task 4 with Workload \"56.0h\" in gray lozenge\n** TC4189-3 Task 3 with Workload \"24.0h\" in gray lozenge"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-4189",
+    "text": "Test: TC-4189 — Box Module - Gantt - Resource Panel - Displaying details in the Workload details dialog after changing aggregation\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-50 Box Module - Gantt - Resource Panel\nLabels: be-enterprise, can_be_automated\n\nSteps:\n1. Navigate to Gantt module of boxName.\n   Data: boxName: TC-4189 Box Module - Gantt - Resource Panel - Displaying details in the Workload details dialog after changing aggregation\n   Expected: The Gantt chart is displayed.\n\nThe following tasks are displayed on WBS and Gantt chart: \n\n* TC-4189 Box Module - Gantt - Resource Panel (project task)\n* Task 1\n* Task 2 (parent task)\n* Task 3 (child task)\n* Task 4\n2. Click on View button in the header menu and select Resource panel option\n   Expected: The Resource panel is displayed at the bottom of the page.\n\nThe following users are displayed in the Resource panel:\n\n* Unassigned\n* TC4189-user1\n* TC4189-user2\n\nThe following values are displayed in the Workload bars:\n\n* For 'TC4189-user1': \n** \"34.7\" in red lozenge from 31/Dec/29 to 06/Jan/30\n** \"109.3\" in red lozenge from 07/Jan/30 to 13/Jan/3\n** \"16\" in green lozenge from 14/Jan/30 to 20/Jan/30\n* For 'TC4189-user2’: \n** \"16\" in green lozenge from 31/Dec/29 to 06/Jan/30 \n** \"24\" in green lozenge from 07/Jan/30 to 13/Jan/3\n3. Click on the bar with the workloadValue in the userName row.\n   Data: workloadValue: 109.3\nuserName: TC4189-user1\n   Expected: The Workload details dialog of user ‘TC4189-user1’ appears with:\n\n* Effort mode: Remaining estimate\n* Total workload: \"109.3H\" in red lozenge\n* Remaining capacity: \"-69.3H\" in red lozenge\n* Information: \"The cell is red due to a workload-to-capacity ratio of 273%, which varies from 100.01% to infinity for Individuals.\"\n* List of tasks that are present in the week 07/Jan/30 -13/Jan/30 along with their Key, Summary, and total Workload of individual tasks::\n** TC4189-2 Task 2 with Workload \"53.3h\" in gray lozenge\n** TC4189-4 Task 4 with Workload \"40.0h\" in gray lozenge\n** TC4189-3 Task 3 with Workload \"16.0h\" in gray lozenge\n4. Click on the ‘Weekly’ dropdown menu button and change aggregation to 'Daily'.\n   Expected: The following values are displayed in the Workload bars:\n\n* For 'TC4189-user1': \n** \"17.3\" in red lozenge from 03/Jan/30 to 04/Jan/30\n** \"25.3\" in red lozenge from 07/Jan/30 to 10/Jan/3\n** \"8\" in green lozenge from 11/Jan/30, 14/Jan/30 and 15/Jan/30\n* For 'TC4189-user2’: \n** \"8\" in green lozenge 03/Jan/30, 04/Jan/30 and from 07/Jan/30 to 09/Jan/30\n5. Click on the bar with the workloadValue in the userName row of date.\n   Data: workloadValue: 25.3\nuserName: TC4189-user1\ndate: 08/Jan/30\n   Expected: The Workload details dialog of user ‘TC4189-user1’ appears with:\n\n* Effort mode: Remaining estimate\n* Total workload: \"25.3H\" in red lozenge\n* Remaining capacity: \"-17.3H\" in red lozenge\n* Information: \"The cell is red due to a workload-to-capacity ratio of 317%, which varies from 100.01% to infinity for Individuals.\"\n* List of tasks that are present on 08/Jan/30 along with their Key, Summary, and total Workload of individual tasks::\n** TC4189-2 Task 2 with Workload \"13.3h\" in gray lozenge\n** TC4189-4 Task 4 with Workload \"8.0h\" in gray lozenge\n** TC4189-3 Task 3 with Workload \"4.0h\" in gray lozenge\n6. Click on the 'Daily' dropdown menu button and change aggregation to 'Monthly'.\n\nClick on 'Zoom out' button in the chart menu.\n   Expected: The following values are displayed in the Workload bars:\n\n* For 'TC4189-user1': \n** \"160\" in green lozenge from 01/Jan/30 to 31/Jan/30\n* For 'TC4189-user2’: \n** \"40\" in green lozenge from 01/Jan/30 to 31/Jan/30\n7. Click on the bar with the workloadValue in the userName row of date.\n   Data: workloadValue: 160\nuserName: TC4189-user1\n   Expected: The Workload details dialog of user ‘TC4189-user1’ appears with:\n\n* Effort mode: Remaining estimate\n* Total workload: \"160.0H\" in green lozenge\n* Remaining capacity: \"24.0H\" in green lozenge\n* Information: \"The cell is green due to a workload-to-capacity ratio of 87%, which varies from 0% to 100% for Individuals.\"\n* List of tasks that are present in January 2030 along with their Key, Summary, and total Workload of individual tasks:\n** TC4189-2 Task 2 with Workload \"80.0h\" in gray lozenge\n** TC4189-4 Task 4 with Workload \"56.0h\" in gray lozenge\n** TC4189-3 Task 3 with Workload \"24.0h\" in gray lozenge",
+    "metadata": {
+      "jira_key": "TC-4189",
+      "issue_id": "586398",
+      "summary": "Box Module - Gantt - Resource Panel - Displaying details in the Workload details dialog after changing aggregation",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-50 Box Module - Gantt - Resource Panel",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

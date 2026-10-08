@@ -1,0 +1,67 @@
+{
+  "test": {
+    "key": "TC-5039",
+    "issue_id": "1009334",
+    "url": "https://appfire.atlassian.net/browse/TC-5039",
+    "summary": "Global - App entry - Jira Project - User without access to App cannot access it via App widget",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2024-09-23T11:42:37.048-0400",
+    "updated": "2026-03-30T09:55:56.651-0400",
+    "labels": [
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Log in as a userName",
+        "data": "userName: [testlab.14@softwareplant.com|mailto:testlab.14@softwareplant.com]\npassword: standard",
+        "result": "User is logged in to Jira"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to the jiraProject",
+        "data": "jiraProject: TC-5039 Global - App entry - Jira Project - User without access to App cannot access it via App widget",
+        "result": "Project is displayed."
+      },
+      {
+        "step": 3,
+        "action": "Click on the BigPicture button on the menu header for the project",
+        "data": "",
+        "result": "Screen is displayed:\n\n\"Your permissions are insufficient\nOpen the Permission helper to find out what permissions you need to access BigPicture and contact the App admin.\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 3
+  },
+  "rag": {
+    "id": "TC-5039",
+    "text": "Test: TC-5039 — Global - App entry - Jira Project - User without access to App cannot access it via App widget\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /\nLabels: teamembers, teamtree\n\nSteps:\n1. Log in as a userName\n   Data: userName: [testlab.14@softwareplant.com|mailto:testlab.14@softwareplant.com]\npassword: standard\n   Expected: User is logged in to Jira\n2. Navigate to the jiraProject\n   Data: jiraProject: TC-5039 Global - App entry - Jira Project - User without access to App cannot access it via App widget\n   Expected: Project is displayed.\n3. Click on the BigPicture button on the menu header for the project\n   Expected: Screen is displayed:\n\n\"Your permissions are insufficient\nOpen the Permission helper to find out what permissions you need to access BigPicture and contact the App admin.\"",
+    "metadata": {
+      "jira_key": "TC-5039",
+      "issue_id": "1009334",
+      "summary": "Global - App entry - Jira Project - User without access to App cannot access it via App widget",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 3,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

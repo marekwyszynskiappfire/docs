@@ -1,0 +1,16 @@
+{
+  "filter_id": "17844",
+  "filter_name": "BigPicture - Manual TestRun",
+  "filter_jql": "filter=17844",
+  "filter_url": "https://appfire.atlassian.net/issues/?filter=17844",
+  "run_id": "xray-filter-17844",
+  "extracted_at": "2026-10-08T08:05:58.575621+00:00",
+  "source": "Xray Cloud GraphQL API",
+  "issue_count_requested": 245,
+  "test_count": 245,
+  "total_steps": 2582,
+  "batch_count": 31,
+  "workers": 6,
+  "batch_size": 8,
+  "errors": []
+}

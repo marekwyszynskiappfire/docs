@@ -1,0 +1,81 @@
+{
+  "test": {
+    "key": "TC-2824",
+    "issue_id": "357667",
+    "url": "https://appfire.atlassian.net/browse/TC-2824",
+    "summary": "Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Piotr Zadora {Appfire}",
+    "created": "2021-12-28T09:14:39.291-0500",
+    "updated": "2026-10-06T09:07:58.581-0400",
+    "labels": [
+      "ppm-e2e-cloud",
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-117 Global - Task configuration",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-2824 Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate",
+        "result": "Gantt module is displayed. Column View is set to \"TC2824\". FolLowing tasks are visible on WBS and Gantt chart:\n- TC-2824 Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate (project task)\n- TC-2824 Task 1\n- TC-2824 Task 2\n- TC-2824 Task 3"
+      },
+      {
+        "step": 2,
+        "action": "Grab the end of taskName and move it 2 days to the future. Refresh the page",
+        "data": "taskName: TC-2824 Task 2",
+        "result": "Task is resized. The value of Original Estimate field in WBS is correctly updated to 3d. Due date is changed to 31/Dec/21."
+      },
+      {
+        "step": 3,
+        "action": "Click on task key of taskName to open jira issue view",
+        "data": "taskName: TC-2824 Task 3",
+        "result": "Jira issue view of TC-2824 Task 3 is opened in the new tab"
+      },
+      {
+        "step": 4,
+        "action": "Change Due date value to 31/Dec/21",
+        "data": "",
+        "result": "Due date is changed to 31/Dec/21"
+      },
+      {
+        "step": 5,
+        "action": "Go back to Gantt module of boxName",
+        "data": "boxName: TC-2824 Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate",
+        "result": "Gantt module is displayed. Task 3 is moved. Due date of TC-2824 Task 3 is set to 31/Dec/21. Start date is still on 29/Dec/21. The value of Original Estimate field is changed to 3d."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-2824",
+    "text": "Test: TC-2824 — Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-117 Global - Task configuration\nLabels: ppm-e2e-cloud, teamembers, teamtree\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-2824 Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate\n   Expected: Gantt module is displayed. Column View is set to \"TC2824\". FolLowing tasks are visible on WBS and Gantt chart:\n- TC-2824 Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate (project task)\n- TC-2824 Task 1\n- TC-2824 Task 2\n- TC-2824 Task 3\n2. Grab the end of taskName and move it 2 days to the future. Refresh the page\n   Data: taskName: TC-2824 Task 2\n   Expected: Task is resized. The value of Original Estimate field in WBS is correctly updated to 3d. Due date is changed to 31/Dec/21.\n3. Click on task key of taskName to open jira issue view\n   Data: taskName: TC-2824 Task 3\n   Expected: Jira issue view of TC-2824 Task 3 is opened in the new tab\n4. Change Due date value to 31/Dec/21\n   Expected: Due date is changed to 31/Dec/21\n5. Go back to Gantt module of boxName\n   Data: boxName: TC-2824 Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate\n   Expected: Gantt module is displayed. Task 3 is moved. Due date of TC-2824 Task 3 is set to 31/Dec/21. Start date is still on 29/Dec/21. The value of Original Estimate field is changed to 3d.",
+    "metadata": {
+      "jira_key": "TC-2824",
+      "issue_id": "357667",
+      "summary": "Global - Task configuration - End Date mapped to Due Date in case the Start date is mapped to Original estimate",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-117 Global - Task configuration",
+      "labels": [
+        "ppm-e2e-cloud",
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

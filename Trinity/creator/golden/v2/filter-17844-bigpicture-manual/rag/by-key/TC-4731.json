@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-4731",
+    "issue_id": "814894",
+    "url": "https://appfire.atlassian.net/browse/TC-4731",
+    "summary": "Global - Security -  Quick Filters",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Marcin Koziński",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:07:52.553-0400",
+    "updated": "2026-10-06T09:11:09.114-0400",
+    "labels": [
+      "ppm-e2e-cloud"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-407 Global - Technical Security",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Log in an a User without access to certain Projects, Filters, Issues etc.",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Navigate to any module that allows JQL filters",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 3,
+        "action": "In the JQL filter search for a Project that the User has no access to",
+        "data": "",
+        "result": "The Project does not appear in the Quick filter dropdown"
+      },
+      {
+        "step": 4,
+        "action": "In the JQL filter search for a Sprint that the User has no access to",
+        "data": "",
+        "result": "The Sprint does not appear in the Quick filter dropdown"
+      },
+      {
+        "step": 5,
+        "action": "In the JQL filter search for a Component that the User has no access to",
+        "data": "",
+        "result": "The Component does not appear in the Quick filter dropdown"
+      },
+      {
+        "step": 6,
+        "action": "In the JQL filter search for an Issue that the User has no access to",
+        "data": "",
+        "result": "The Issue does not appear in the Quick filter dropdown"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4731",
+    "text": "Test: TC-4731 — Global - Security -  Quick Filters\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-407 Global - Technical Security\nLabels: ppm-e2e-cloud\n\nSteps:\n1. Log in an a User without access to certain Projects, Filters, Issues etc.\n   Expected: \n2. Navigate to any module that allows JQL filters\n   Expected: \n3. In the JQL filter search for a Project that the User has no access to\n   Expected: The Project does not appear in the Quick filter dropdown\n4. In the JQL filter search for a Sprint that the User has no access to\n   Expected: The Sprint does not appear in the Quick filter dropdown\n5. In the JQL filter search for a Component that the User has no access to\n   Expected: The Component does not appear in the Quick filter dropdown\n6. In the JQL filter search for an Issue that the User has no access to\n   Expected: The Issue does not appear in the Quick filter dropdown",
+    "metadata": {
+      "jira_key": "TC-4731",
+      "issue_id": "814894",
+      "summary": "Global - Security -  Quick Filters",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-407 Global - Technical Security",
+      "labels": [
+        "ppm-e2e-cloud"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

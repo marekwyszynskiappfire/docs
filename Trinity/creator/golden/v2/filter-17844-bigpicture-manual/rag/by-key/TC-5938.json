@@ -1,0 +1,143 @@
+{
+  "test": {
+    "key": "TC-5938",
+    "issue_id": "1496201",
+    "url": "https://appfire.atlassian.net/browse/TC-5938",
+    "summary": "SPM - Strategic areas - Filtering by using show child items (descendants)",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-01-16T07:34:12.370-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of ROOT (Main) box",
+        "data": "",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on Add button",
+        "data": "",
+        "result": "Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)"
+      },
+      {
+        "step": 3,
+        "action": "Click Create strategic theme",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5938\n\nperiod: Y2026",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective with period",
+        "data": "newObjective: TC-5938 A\n\nperiod: Y2026",
+        "result": "New Objective TC-5938 A is created under Strategic Theme TC-5938."
+      },
+      {
+        "step": 6,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective with period",
+        "data": "newObjective: TC-5938 B\n\nperiod: Y2027",
+        "result": "New Objective TC-5938 B is created under Strategic Theme TC-5938."
+      },
+      {
+        "step": 7,
+        "action": "Click on Plus button next to TC-5938 A objective, add keyResult with period",
+        "data": "keyResult: TC-5938 C\n\nperiod: Y2027",
+        "result": "New Key Result TC-5938 C is created under Objective TC-5938 A"
+      },
+      {
+        "step": 8,
+        "action": "Click on Plus button next to TC-5938 A objective, add keyResult with period",
+        "data": "keyResult: TC-5938 D\n\nperiod: Q2 Y2026",
+        "result": "New Key Result TC-5938 D is created under Objective TC-5938 A."
+      },
+      {
+        "step": 9,
+        "action": "Click on Plus button next to TC-5938 B objective, add keyResult with period",
+        "data": "keyResult: TC-5938 E\n\nperiod: Y2027",
+        "result": "New Key Result TC-5938 E is created under Objective TC-5938 B."
+      },
+      {
+        "step": 10,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5938 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 11,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 12,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5938",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5938\n* 2 Objectives: TC-5938 A, TC-5938 B\n* 3 Key results: TC-5938 C, TC-5938 D, TC-5938 E\n\nWidgets on the left shows\n\n* Strategic Theme: 1\n* Objectives: 2\n* Key results: 3"
+      },
+      {
+        "step": 13,
+        "action": "Click on dropdown Settings icon next to Status filter",
+        "data": "",
+        "result": "Checkbox \"Show filtered items descendants\" is deselected by default"
+      },
+      {
+        "step": 14,
+        "action": "Click on period filter and select newPeriod",
+        "data": "newPeriod: Y2026",
+        "result": "Following OKRs are displayed on the list:\n\n* Strategic Theme: TC-5938\n* Objective TC-5938 A"
+      },
+      {
+        "step": 15,
+        "action": "Click on dropdown Settings icon and click on checkBox",
+        "data": "checkBox: Show filtered items descendants",
+        "result": "Checkbox is marked\n\nFollowing OKRs are displayed on the list:\n\n* Strategic Theme: TC-5938\n* Objective TC-5938 A, TC-5938 B (grayed out)\n* Key Results: TC-5938 C (grayed out), TC-5938 D (grayed out)"
+      },
+      {
+        "step": 16,
+        "action": "Refresh website",
+        "data": "",
+        "result": "Checkbox is marked\n\nFollowing OKRs are displayed on the list:\n\n* Strategic Theme: TC-5938\n* Objective TC-5938 A, TC-5938 B (grayed out)\n* Key Results: TC-5938 C (grayed out), TC-5938 D (grayed out)"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-5938",
+    "text": "Test: TC-5938 — SPM - Strategic areas - Filtering by using show child items (descendants)\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of ROOT (Main) box\n   Expected: OKR module is displayed\n2. Click on Add button\n   Expected: Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)\n3. Click Create strategic theme\n   Expected: New Strategic theme modal is displayed\n4. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5938\n\nperiod: Y2026\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n5. Click on Plus button next to Strategic Theme, add newObjective with period\n   Data: newObjective: TC-5938 A\n\nperiod: Y2026\n   Expected: New Objective TC-5938 A is created under Strategic Theme TC-5938.\n6. Click on Plus button next to Strategic Theme, add newObjective with period\n   Data: newObjective: TC-5938 B\n\nperiod: Y2027\n   Expected: New Objective TC-5938 B is created under Strategic Theme TC-5938.\n7. Click on Plus button next to TC-5938 A objective, add keyResult with period\n   Data: keyResult: TC-5938 C\n\nperiod: Y2027\n   Expected: New Key Result TC-5938 C is created under Objective TC-5938 A\n8. Click on Plus button next to TC-5938 A objective, add keyResult with period\n   Data: keyResult: TC-5938 D\n\nperiod: Q2 Y2026\n   Expected: New Key Result TC-5938 D is created under Objective TC-5938 A.\n9. Click on Plus button next to TC-5938 B objective, add keyResult with period\n   Data: keyResult: TC-5938 E\n\nperiod: Y2027\n   Expected: New Key Result TC-5938 E is created under Objective TC-5938 B.\n10. Click Finish & go back\n   Expected: Strategic Theme TC-5938 is displayed on the list with expand button next to it\n11. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n12. Click on strategicThemeName\n   Data: strategicThemeName: TC-5938\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5938\n* 2 Objectives: TC-5938 A, TC-5938 B\n* 3 Key results: TC-5938 C, TC-5938 D, TC-5938 E\n\nWidgets on the left shows\n\n* Strategic Theme: 1\n* Objectives: 2\n* Key results: 3\n13. Click on dropdown Settings icon next to Status filter\n   Expected: Checkbox \"Show filtered items descendants\" is deselected by default\n14. Click on period filter and select newPeriod\n   Data: newPeriod: Y2026\n   Expected: Following OKRs are displayed on the list:\n\n* Strategic Theme: TC-5938\n* Objective TC-5938 A\n15. Click on dropdown Settings icon and click on checkBox\n   Data: checkBox: Show filtered items descendants\n   Expected: Checkbox is marked\n\nFollowing OKRs are displayed on the list:\n\n* Strategic Theme: TC-5938\n* Objective TC-5938 A, TC-5938 B (grayed out)\n* Key Results: TC-5938 C (grayed out), TC-5938 D (grayed out)\n16. Refresh website\n   Expected: Checkbox is marked\n\nFollowing OKRs are displayed on the list:\n\n* Strategic Theme: TC-5938\n* Objective TC-5938 A, TC-5938 B (grayed out)\n* Key Results: TC-5938 C (grayed out), TC-5938 D (grayed out)",
+    "metadata": {
+      "jira_key": "TC-5938",
+      "issue_id": "1496201",
+      "summary": "SPM - Strategic areas - Filtering by using show child items (descendants)",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

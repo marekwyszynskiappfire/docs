@@ -1,0 +1,115 @@
+{
+  "test": {
+    "key": "TC-2861",
+    "issue_id": "357316",
+    "url": "https://appfire.atlassian.net/browse/TC-2861",
+    "summary": "Feature area - Task Dependency - Scheduling 3.0 - Creating a cycle dependency from extPlatform",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Tomasz Wyrwa",
+    "reporter": "Jakub Wrzalik (Inactive)",
+    "created": "2022-01-05T04:18:40.085-0500",
+    "updated": "2026-03-30T09:57:27.637-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-54 Feature area - Task Dependency",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-2861 Feature area - Scheduling 3.0 - Creating dependencies from the extPlatform",
+        "result": "Gantt module is loaded, folLowing tasks with start to end dependences \nare displayed on Gantt chart and WBS: \n- Task 1 \n- Task 2 \n- Task 3"
+      },
+      {
+        "step": 2,
+        "action": "Click on task bar of taskName and click on task issue key",
+        "data": "taskName: Task 2",
+        "result": "Jira issue detail view for Task 2 is displayed in new window."
+      },
+      {
+        "step": 3,
+        "action": "Click on More -> Link and create dependency passing this set of data",
+        "data": "dependencyType (this issue): has to be done before\ntargetIssueKey: TC2861-3",
+        "result": "Link is created and displayed in Issue Links section on Jira issue view"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-2861 Feature area - Scheduling 3.0 - Creating dependencies from the extPlatform",
+        "result": "Gantt module is loaded, folLowing tasks are displayed on Gantt chart and WBS: \n\n* Task 1 \n* Task 2 \n* Task 3\n\nTC2861 Task 2 is displayed with a red border. Ban icon is displayed on the left side of task bar and red warn icon is in the in bottom right corner."
+      },
+      {
+        "step": 5,
+        "action": "Click on  Warn icon in bottom right corner of Task 2",
+        "data": "",
+        "result": "FolLowing message is displayed :\n\"This task was excluded from automated scheduling because it's part of a cyclical relationship chain. This means that it won't be affected by any other tasks via dependencies or parent-child relations until it is restored.\"\n\n\"Try to restore\" button is displayed under message."
+      },
+      {
+        "step": 6,
+        "action": "Click on 'Tty to restore' button",
+        "data": "",
+        "result": "FolLowing message is displayed:\n\n\"\nFailed to restore task\n\nTC2861-2 - Task 2 is still part of a cyclical relationship chain so it cannot be restored. The relationship chain looks as folLows:\nTC2861-2 Task 2\nTC2861-1 Task 1\nTC2861-3 Task 3\nTC2861-2 Task 2\nRemove one of the listed relationships and try again. You might need to repeat this operation a few times as the task might be part of multiple cyclical relationship chains.\""
+      },
+      {
+        "step": 7,
+        "action": "Click on task bar of taskName and click on task issue key",
+        "data": "taskName: Task 3",
+        "result": "Jira issue detail view for Task 3 is displayed in new window."
+      },
+      {
+        "step": 8,
+        "action": "Remove Issue link with linkDeatails",
+        "data": "linkDeatails: has to be done after TC2861-2 Task 2",
+        "result": "Issue link is removed"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-2861 Feature area - Scheduling 3.0 - Creating dependencies from the extPlatform",
+        "result": "Gantt module is loaded, folLowing tasks with start to end dependences \nare displayed on Gantt chart and WBS: \n\n* Task 1 \n* Task 2 \n* Task 3\n\nTC2861 Task 2 is displayed with a red warn icon. Ban icon is displayed on the left side of task bar."
+      },
+      {
+        "step": 10,
+        "action": "Click on  red warn icon in bottom right corner of Task 2",
+        "data": "",
+        "result": "FolLowing message is displayed :\n\"This task was excluded from automated scheduling because it's part of a cyclical relationship chain. This means that it won't be affected by any other tasks via dependencies or parent-child relations until it is restored.\"\n\n\"Try to restore\" button is displayed under message."
+      },
+      {
+        "step": 11,
+        "action": "Click on 'Try to restore' button",
+        "data": "",
+        "result": "FolLowing message is displayed:\n\n\" Task successfully restored\n\nThe cyclical relationship chain that TC2861-2 - Task 2 belonged to no longer exists. The task was restored to automated scheduling\"\n\nTask 2 no longer has red border and Ban icon."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-2861",
+    "text": "Test: TC-2861 — Feature area - Task Dependency - Scheduling 3.0 - Creating a cycle dependency from extPlatform\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-54 Feature area - Task Dependency\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-2861 Feature area - Scheduling 3.0 - Creating dependencies from the extPlatform\n   Expected: Gantt module is loaded, folLowing tasks with start to end dependences \nare displayed on Gantt chart and WBS: \n- Task 1 \n- Task 2 \n- Task 3\n2. Click on task bar of taskName and click on task issue key\n   Data: taskName: Task 2\n   Expected: Jira issue detail view for Task 2 is displayed in new window.\n3. Click on More -> Link and create dependency passing this set of data\n   Data: dependencyType (this issue): has to be done before\ntargetIssueKey: TC2861-3\n   Expected: Link is created and displayed in Issue Links section on Jira issue view\n4. Navigate to Gantt module of boxName\n   Data: boxName: TC-2861 Feature area - Scheduling 3.0 - Creating dependencies from the extPlatform\n   Expected: Gantt module is loaded, folLowing tasks are displayed on Gantt chart and WBS: \n\n* Task 1 \n* Task 2 \n* Task 3\n\nTC2861 Task 2 is displayed with a red border. Ban icon is displayed on the left side of task bar and red warn icon is in the in bottom right corner.\n5. Click on  Warn icon in bottom right corner of Task 2\n   Expected: FolLowing message is displayed :\n\"This task was excluded from automated scheduling because it's part of a cyclical relationship chain. This means that it won't be affected by any other tasks via dependencies or parent-child relations until it is restored.\"\n\n\"Try to restore\" button is displayed under message.\n6. Click on 'Tty to restore' button\n   Expected: FolLowing message is displayed:\n\n\"\nFailed to restore task\n\nTC2861-2 - Task 2 is still part of a cyclical relationship chain so it cannot be restored. The relationship chain looks as folLows:\nTC2861-2 Task 2\nTC2861-1 Task 1\nTC2861-3 Task 3\nTC2861-2 Task 2\nRemove one of the listed relationships and try again. You might need to repeat this operation a few times as the task might be part of multiple cyclical relationship chains.\"\n7. Click on task bar of taskName and click on task issue key\n   Data: taskName: Task 3\n   Expected: Jira issue detail view for Task 3 is displayed in new window.\n8. Remove Issue link with linkDeatails\n   Data: linkDeatails: has to be done after TC2861-2 Task 2\n   Expected: Issue link is removed\n9. Navigate to Gantt module of boxName\n   Data: boxName: TC-2861 Feature area - Scheduling 3.0 - Creating dependencies from the extPlatform\n   Expected: Gantt module is loaded, folLowing tasks with start to end dependences \nare displayed on Gantt chart and WBS: \n\n* Task 1 \n* Task 2 \n* Task 3\n\nTC2861 Task 2 is displayed with a red warn icon. Ban icon is displayed on the left side of task bar.\n10. Click on  red warn icon in bottom right corner of Task 2\n   Expected: FolLowing message is displayed :\n\"This task was excluded from automated scheduling because it's part of a cyclical relationship chain. This means that it won't be affected by any other tasks via dependencies or parent-child relations until it is restored.\"\n\n\"Try to restore\" button is displayed under message.\n11. Click on 'Try to restore' button\n   Expected: FolLowing message is displayed:\n\n\" Task successfully restored\n\nThe cyclical relationship chain that TC2861-2 - Task 2 belonged to no longer exists. The task was restored to automated scheduling\"\n\nTask 2 no longer has red border and Ban icon.",
+    "metadata": {
+      "jira_key": "TC-2861",
+      "issue_id": "357316",
+      "summary": "Feature area - Task Dependency - Scheduling 3.0 - Creating a cycle dependency from extPlatform",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-54 Feature area - Task Dependency",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

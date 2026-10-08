@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-5073",
+    "issue_id": "1042655",
+    "url": "https://appfire.atlassian.net/browse/TC-5073",
+    "summary": "Global - Advanced app configuration - Checking live sync interval - Board module",
+    "description": "",
+    "status": "To Do",
+    "priority": "High",
+    "assignee": null,
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-10-22T06:16:26.780-0400",
+    "updated": "2026-04-10T07:57:00.822-0400",
+    "labels": [
+      "team#Enigma"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Configuration -> Performance -> Live sync tab",
+        "data": "",
+        "result": "Live sync tab is displayed. There are forms for Live sync intervals for the following modules:\n\n* Gantt\n* Scope\n* Board\n* Calendar"
+      },
+      {
+        "step": 2,
+        "action": "Type newValue in 'Live sync interval' input form located in Board module section",
+        "data": "newValue: 1",
+        "result": "Live sync interval is set to 1. Save button is enabled."
+      },
+      {
+        "step": 3,
+        "action": "Save the configuration.",
+        "data": "",
+        "result": "Configuration is saved without any error"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Board module of programBox. Open up network in dev console. Observe 'connect' request.",
+        "data": "programBox: TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module",
+        "result": "Board module of TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module is opened. Connect requests are sent out every second."
+      },
+      {
+        "step": 5,
+        "action": "Navigate to App Configuration -> Performance -> Live sync tab",
+        "data": "",
+        "result": "Live sync tab is displayed. There are forms for Live sync intervals for the following modules:\n\n* Gantt\n* Scope\n* Board\n* Calendar"
+      },
+      {
+        "step": 6,
+        "action": "Type newValue in 'Live sync interval' input form located in Board module section",
+        "data": "newValue: 5",
+        "result": "Live sync interval is set to 5. Save button is enabled."
+      },
+      {
+        "step": 7,
+        "action": "Save the configuration.",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Board module of programBox. Open up network in dev console. Observe 'connect' request.",
+        "data": "programBox: TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module",
+        "result": "Board module of TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module is opened. Connect requests are sent out every five seconds."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-5073",
+    "text": "Test: TC-5073 — Global - Advanced app configuration - Checking live sync interval - Board module\nPriority: High | Status: To Do | Type: Manual\nFolder: /\nLabels: team#Enigma\n\nSteps:\n1. Navigate to App Configuration -> Performance -> Live sync tab\n   Expected: Live sync tab is displayed. There are forms for Live sync intervals for the following modules:\n\n* Gantt\n* Scope\n* Board\n* Calendar\n2. Type newValue in 'Live sync interval' input form located in Board module section\n   Data: newValue: 1\n   Expected: Live sync interval is set to 1. Save button is enabled.\n3. Save the configuration.\n   Expected: Configuration is saved without any error\n4. Navigate to Board module of programBox. Open up network in dev console. Observe 'connect' request.\n   Data: programBox: TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module\n   Expected: Board module of TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module is opened. Connect requests are sent out every second.\n5. Navigate to App Configuration -> Performance -> Live sync tab\n   Expected: Live sync tab is displayed. There are forms for Live sync intervals for the following modules:\n\n* Gantt\n* Scope\n* Board\n* Calendar\n6. Type newValue in 'Live sync interval' input form located in Board module section\n   Data: newValue: 5\n   Expected: Live sync interval is set to 5. Save button is enabled.\n7. Save the configuration.\n   Expected: \n8. Navigate to Board module of programBox. Open up network in dev console. Observe 'connect' request.\n   Data: programBox: TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module\n   Expected: Board module of TC-5073 Global - Advanced app configuration - Checking live sync interval - Board module is opened. Connect requests are sent out every five seconds.",
+    "metadata": {
+      "jira_key": "TC-5073",
+      "issue_id": "1042655",
+      "summary": "Global - Advanced app configuration - Checking live sync interval - Board module",
+      "priority": "High",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "team#Enigma"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

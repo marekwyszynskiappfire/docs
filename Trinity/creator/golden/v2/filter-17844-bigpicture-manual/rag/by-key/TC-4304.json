@@ -1,0 +1,157 @@
+{
+  "test": {
+    "key": "TC-4304",
+    "issue_id": "814450",
+    "url": "https://appfire.atlassian.net/browse/TC-4304",
+    "summary": "Global - Gadget - Objectives - Editing objective's status and progress",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2024-07-22T09:59:55.891-0400",
+    "updated": "2026-06-16T05:32:07.149-0400",
+    "labels": [
+      "can_be_automated",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-162 Global - Gadget",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to dashboardName",
+        "data": "dashboardName: TC-4304 Global - Gadget - Roadmap - Editing objective's status and progress",
+        "result": "Jira dashboard page is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click Add gadget button\n\nOn Atlassian Cloud first click Edit button to add gadget.",
+        "data": "",
+        "result": "Add a gadget window appears"
+      },
+      {
+        "step": 3,
+        "action": "Atlassian Server: Click Load all gadgets and search for gadgetName\n\nAtlassian Cloud: Select gadgetName",
+        "data": "gadgetName: BigPicture Goals",
+        "result": "BigPicture Golas gadget is visible in the list"
+      },
+      {
+        "step": 4,
+        "action": "Click on Add gadget button",
+        "data": "",
+        "result": "Gadget is visible in the dashboard"
+      },
+      {
+        "step": 5,
+        "action": "Close Add gadget window",
+        "data": "",
+        "result": "Add gadget window disappears"
+      },
+      {
+        "step": 6,
+        "action": "In field Box find boxName.",
+        "data": "boxName: TC-4304 Global - Gadget - Roadmap - Editing objective's status and progress",
+        "result": "boxName is added to Box field"
+      },
+      {
+        "step": 7,
+        "action": "Click on Save button\n\nAtlassian Cloud: Click Done to not be in edit mode anymore",
+        "data": "",
+        "result": "Gadget is added. Inside gadget is TC-4304 Global - Gadget - Roadmap - Editing objective's status and progress box"
+      },
+      {
+        "step": 8,
+        "action": "Right click on objectiveName",
+        "data": "objectiveName: TC-4304 Task 1",
+        "result": "Nothing happened. No context menu is displaying."
+      },
+      {
+        "step": 9,
+        "action": "Click on percent value displayed in progress column for objectiveName and change it to progressValue",
+        "data": "objectiveName: Objective 2\n\nprogressValue: 80",
+        "result": "Progress value can't be edited."
+      },
+      {
+        "step": 10,
+        "action": "Click > on timeline to display TC-4587 PI2 timebox",
+        "data": "",
+        "result": "TC-4304 PI2 timebox is visible."
+      },
+      {
+        "step": 11,
+        "action": "Right click on objectiveName",
+        "data": "objectiveName: Objective 1",
+        "result": "Context menu is displaying. There are available options:\n\n* Open\n* Completed\n* Failed\n* Abandoned\n\nOpen option is selected."
+      },
+      {
+        "step": 12,
+        "action": "Select option Completed",
+        "data": "objectiveName: Objective 1",
+        "result": "objectiveName changed color to green. Value in progress column is set to 100%"
+      },
+      {
+        "step": 13,
+        "action": "Click on percent value displayed in progress column for objectiveName and change it to progressValue",
+        "data": "objectiveName: TC-4304 Task 2\n\nprogressValue: 80",
+        "result": "Progress value for objectiveName is changed and set to progressValue"
+      },
+      {
+        "step": 14,
+        "action": "Click > on timeline to display TC-4304 PI3 timebox",
+        "data": "",
+        "result": "TC-4304 PI3 timebox is visible."
+      },
+      {
+        "step": 15,
+        "action": "Right click on objectiveName",
+        "data": "objectiveName: Objective 3",
+        "result": "Context menu is displaying. There are available options:\n\n* Open\n* Completed\n* Failed\n* Abandoned\n\nOpen option is selected."
+      },
+      {
+        "step": 16,
+        "action": "Select option Abandoned",
+        "data": "objectiveName: Objective 3",
+        "result": "objectiveName changed color to gray"
+      },
+      {
+        "step": 17,
+        "action": "Right click on objectiveName",
+        "data": "objectiveName: TC-4304 Task 3",
+        "result": "Context menu is displaying. There are available options:\n\n* Open\n* Completed\n* Failed\n* Abandoned\n\nOpen option is selected."
+      },
+      {
+        "step": 18,
+        "action": "Select option Failed",
+        "data": "objectiveName: TC-4304 Task 3",
+        "result": "objectiveName changed color to red"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 18
+  },
+  "rag": {
+    "id": "TC-4304",
+    "text": "Test: TC-4304 — Global - Gadget - Objectives - Editing objective's status and progress\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-162 Global - Gadget\nLabels: can_be_automated, teamsmile\n\nSteps:\n1. Navigate to dashboardName\n   Data: dashboardName: TC-4304 Global - Gadget - Roadmap - Editing objective's status and progress\n   Expected: Jira dashboard page is displayed\n2. Click Add gadget button\n\nOn Atlassian Cloud first click Edit button to add gadget.\n   Expected: Add a gadget window appears\n3. Atlassian Server: Click Load all gadgets and search for gadgetName\n\nAtlassian Cloud: Select gadgetName\n   Data: gadgetName: BigPicture Goals\n   Expected: BigPicture Golas gadget is visible in the list\n4. Click on Add gadget button\n   Expected: Gadget is visible in the dashboard\n5. Close Add gadget window\n   Expected: Add gadget window disappears\n6. In field Box find boxName.\n   Data: boxName: TC-4304 Global - Gadget - Roadmap - Editing objective's status and progress\n   Expected: boxName is added to Box field\n7. Click on Save button\n\nAtlassian Cloud: Click Done to not be in edit mode anymore\n   Expected: Gadget is added. Inside gadget is TC-4304 Global - Gadget - Roadmap - Editing objective's status and progress box\n8. Right click on objectiveName\n   Data: objectiveName: TC-4304 Task 1\n   Expected: Nothing happened. No context menu is displaying.\n9. Click on percent value displayed in progress column for objectiveName and change it to progressValue\n   Data: objectiveName: Objective 2\n\nprogressValue: 80\n   Expected: Progress value can't be edited.\n10. Click > on timeline to display TC-4587 PI2 timebox\n   Expected: TC-4304 PI2 timebox is visible.\n11. Right click on objectiveName\n   Data: objectiveName: Objective 1\n   Expected: Context menu is displaying. There are available options:\n\n* Open\n* Completed\n* Failed\n* Abandoned\n\nOpen option is selected.\n12. Select option Completed\n   Data: objectiveName: Objective 1\n   Expected: objectiveName changed color to green. Value in progress column is set to 100%\n13. Click on percent value displayed in progress column for objectiveName and change it to progressValue\n   Data: objectiveName: TC-4304 Task 2\n\nprogressValue: 80\n   Expected: Progress value for objectiveName is changed and set to progressValue\n14. Click > on timeline to display TC-4304 PI3 timebox\n   Expected: TC-4304 PI3 timebox is visible.\n15. Right click on objectiveName\n   Data: objectiveName: Objective 3\n   Expected: Context menu is displaying. There are available options:\n\n* Open\n* Completed\n* Failed\n* Abandoned\n\nOpen option is selected.\n16. Select option Abandoned\n   Data: objectiveName: Objective 3\n   Expected: objectiveName changed color to gray\n17. Right click on objectiveName\n   Data: objectiveName: TC-4304 Task 3\n   Expected: Context menu is displaying. There are available options:\n\n* Open\n* Completed\n* Failed\n* Abandoned\n\nOpen option is selected.\n18. Select option Failed\n   Data: objectiveName: TC-4304 Task 3\n   Expected: objectiveName changed color to red",
+    "metadata": {
+      "jira_key": "TC-4304",
+      "issue_id": "814450",
+      "summary": "Global - Gadget - Objectives - Editing objective's status and progress",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-162 Global - Gadget",
+      "labels": [
+        "can_be_automated",
+        "teamsmile"
+      ],
+      "step_count": 18,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

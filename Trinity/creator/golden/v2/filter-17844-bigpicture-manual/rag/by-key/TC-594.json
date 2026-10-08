@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-594",
+    "issue_id": "359066",
+    "url": "https://appfire.atlassian.net/browse/TC-594",
+    "summary": "Feature area - Task Dependencies - Circular relations between tasks in Gantt module",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Aneta Wójcik",
+    "reporter": "Daniel Beczala",
+    "created": "2020-03-10T09:42:27.180-0400",
+    "updated": "2026-06-18T05:50:07.338-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-54 Feature area - Task Dependency",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-594 / TC-597 Circular relations between tasks in Gantt module",
+        "result": "Gantt module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on endpoint on the the right side of taskbar and drag the cursor to the end of targetTask",
+        "data": "taskbar: TC-594 Child 1\ntargetTask: TC-594 Parent 1",
+        "result": "Dependency cannot be created. Error message is displayed:\nCan't edit/add a new dependency, as it would create a circular relatioship."
+      },
+      {
+        "step": 3,
+        "action": "Click on endpoint on the the right side of taskbar and drag the cursor to the end of targetTask",
+        "data": "taskbar: TC-594 Child 3\ntargetTask: TC-594 Child 4",
+        "result": "Dependency cannot be created. Error message is displayed:\nCan't edit/add a new dependency, as it would create a circular relatioship."
+      },
+      {
+        "step": 4,
+        "action": "Click on endpoint on the the right side of taskbar and drag the cursor to the end of targetTask",
+        "data": "taskbar: TC-594 Child 5\ntargetTask: TC-594 Child 7",
+        "result": "Dependency between Tasks \"TC-594 Child 5\" and \"TC-594 Child 7\" is created."
+      },
+      {
+        "step": 5,
+        "action": "Select taskName on WBS",
+        "data": "taskName: TC-594 Child 8",
+        "result": "Task is highlighted. Task \"TC-594 Child 8\" is linked with task \"TC-594 Parent 4\""
+      },
+      {
+        "step": 6,
+        "action": "Indent taskName",
+        "data": "taskName: TC-594 Child 8",
+        "result": "Dependency cannot be created. Error message is displayed: +XXX+ wasn’t moved as it would cause a circular dependency."
+      },
+      {
+        "step": 7,
+        "action": "Click on key of taskName to open Jira issue view",
+        "data": "taskName: TC-597 Child 9",
+        "result": "Jira issue view is opened in new tab"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Jira Administration -> Manage apps and disable BP plugin",
+        "data": "",
+        "result": "BP is disabled"
+      },
+      {
+        "step": 9,
+        "action": "Go back to Jira issue view of taskName and make a link passing this set of data",
+        "data": "linkType: has to be finished together with\ntargetTask: TC-597 Child 10",
+        "result": "Link is created"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Jira Administration -> Manage apps and enable BP/BG plugin",
+        "data": "",
+        "result": "BP/BG is enabled"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-594 / TC-597 Circular relations between tasks in Gantt module",
+        "result": "Gantt module is displayed\n\nAfter enabling plugin one of link that is causing circular relation should be deleted from Jira and from Gantt."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-594",
+    "text": "Test: TC-594 — Feature area - Task Dependencies - Circular relations between tasks in Gantt module\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-54 Feature area - Task Dependency\nLabels: teamspace\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-594 / TC-597 Circular relations between tasks in Gantt module\n   Expected: Gantt module is displayed\n2. Click on endpoint on the the right side of taskbar and drag the cursor to the end of targetTask\n   Data: taskbar: TC-594 Child 1\ntargetTask: TC-594 Parent 1\n   Expected: Dependency cannot be created. Error message is displayed:\nCan't edit/add a new dependency, as it would create a circular relatioship.\n3. Click on endpoint on the the right side of taskbar and drag the cursor to the end of targetTask\n   Data: taskbar: TC-594 Child 3\ntargetTask: TC-594 Child 4\n   Expected: Dependency cannot be created. Error message is displayed:\nCan't edit/add a new dependency, as it would create a circular relatioship.\n4. Click on endpoint on the the right side of taskbar and drag the cursor to the end of targetTask\n   Data: taskbar: TC-594 Child 5\ntargetTask: TC-594 Child 7\n   Expected: Dependency between Tasks \"TC-594 Child 5\" and \"TC-594 Child 7\" is created.\n5. Select taskName on WBS\n   Data: taskName: TC-594 Child 8\n   Expected: Task is highlighted. Task \"TC-594 Child 8\" is linked with task \"TC-594 Parent 4\"\n6. Indent taskName\n   Data: taskName: TC-594 Child 8\n   Expected: Dependency cannot be created. Error message is displayed: +XXX+ wasn’t moved as it would cause a circular dependency.\n7. Click on key of taskName to open Jira issue view\n   Data: taskName: TC-597 Child 9\n   Expected: Jira issue view is opened in new tab\n8. Navigate to Jira Administration -> Manage apps and disable BP plugin\n   Expected: BP is disabled\n9. Go back to Jira issue view of taskName and make a link passing this set of data\n   Data: linkType: has to be finished together with\ntargetTask: TC-597 Child 10\n   Expected: Link is created\n10. Navigate to Jira Administration -> Manage apps and enable BP/BG plugin\n   Expected: BP/BG is enabled\n11. Navigate to Gantt module of boxName\n   Data: boxName: TC-594 / TC-597 Circular relations between tasks in Gantt module\n   Expected: Gantt module is displayed\n\nAfter enabling plugin one of link that is causing circular relation should be deleted from Jira and from Gantt.",
+    "metadata": {
+      "jira_key": "TC-594",
+      "issue_id": "359066",
+      "summary": "Feature area - Task Dependencies - Circular relations between tasks in Gantt module",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-54 Feature area - Task Dependency",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-2501",
+    "issue_id": "359652",
+    "url": "https://appfire.atlassian.net/browse/TC-2501",
+    "summary": "Feature area - Task - Attributes displaying and editing - Editing tasks in jira issue view",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Bartosz Drążewski",
+    "reporter": "Bartosz Drążewski",
+    "created": "2021-09-07T05:35:50.439-0400",
+    "updated": "2026-06-18T05:55:52.733-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName and click Scale to fit button",
+        "data": "boxName: TC-2501 Feature area - Task - Attributes displaying and editing - Editing tasks in jira issue view",
+        "result": "Gantt chart is displayed. FolLowing tasks are displayed in WBS and Gantt chart:\n- TC-2501 Editing tasks in jira issue view\n- TC-2501 Parent task 1\n- TC-2501 Child task 1A\n- TC-2501 Parent task 2\n- TC-2501 Child task 2A"
+      },
+      {
+        "step": 2,
+        "action": "Click on issue key of taskName to open Jira issue view",
+        "data": "taskName: TC-2501 Parent task 1",
+        "result": "Jira issue view is opened in new tab"
+      },
+      {
+        "step": 3,
+        "action": "Change summary to newSummary, status to newStatus, start date to newStartDate.",
+        "data": "newSummary: TC-2501 Parent task edited\nnewStatus: In Progress\nnewStartDate: 01/Oct/21",
+        "result": "Changes are saved"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Gantt module of boxName and click Scale to fit button",
+        "data": "boxName: TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view",
+        "result": "Gantt chart is displayed. FolLowing tasks are displayed in WBS and Gantt chart:\n- TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view\n- TC-2501 Parent task edited\n- TC-2501 Child task 1A\n- TC-2501 Parent task 2\n- TC-2501 Child task 2A"
+      },
+      {
+        "step": 5,
+        "action": "Click on issue key of taskName to open Jira issue view",
+        "data": "taskName: TC-2501 Child task 1A",
+        "result": "Jira issue view is opened in new tab"
+      },
+      {
+        "step": 6,
+        "action": "Change the end date to newEndDate and start date to newStartDate",
+        "data": "newStartDate: 16/Sep/21\nnewEndDate: 30/Sep/21",
+        "result": "Task dates are correctly changed"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Gantt module of boxName and click Scale to fit button",
+        "data": "boxName: TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view",
+        "result": "Gantt chart is displayed. TC-2501 Child task 1A has start date set to 16/Sep/21 and end date set to 30/Sep/21"
+      },
+      {
+        "step": 8,
+        "action": "Open Data dropdown and choose Re-sync option",
+        "data": "",
+        "result": "All changes made to tasks are preserved"
+      },
+      {
+        "step": 9,
+        "action": "Click on issue key of taskName to open Jira issue view",
+        "data": "taskName: TC-2501 Child task 2A",
+        "result": "Jira issue view is opened in new tab"
+      },
+      {
+        "step": 10,
+        "action": "Change assignee to newUser",
+        "data": "newUser: testlab.14",
+        "result": "Assignee is correcly changed."
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view",
+        "result": "On WBS assignee for TC-2501 Child task 2A is changed to testlab.2"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-2501",
+    "text": "Test: TC-2501 — Feature area - Task - Attributes displaying and editing - Editing tasks in jira issue view\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-66 Feature area - Task - Attributes displaying and editing\nLabels: teamspace\n\nSteps:\n1. Navigate to Gantt module of boxName and click Scale to fit button\n   Data: boxName: TC-2501 Feature area - Task - Attributes displaying and editing - Editing tasks in jira issue view\n   Expected: Gantt chart is displayed. FolLowing tasks are displayed in WBS and Gantt chart:\n- TC-2501 Editing tasks in jira issue view\n- TC-2501 Parent task 1\n- TC-2501 Child task 1A\n- TC-2501 Parent task 2\n- TC-2501 Child task 2A\n2. Click on issue key of taskName to open Jira issue view\n   Data: taskName: TC-2501 Parent task 1\n   Expected: Jira issue view is opened in new tab\n3. Change summary to newSummary, status to newStatus, start date to newStartDate.\n   Data: newSummary: TC-2501 Parent task edited\nnewStatus: In Progress\nnewStartDate: 01/Oct/21\n   Expected: Changes are saved\n4. Navigate to Gantt module of boxName and click Scale to fit button\n   Data: boxName: TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view\n   Expected: Gantt chart is displayed. FolLowing tasks are displayed in WBS and Gantt chart:\n- TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view\n- TC-2501 Parent task edited\n- TC-2501 Child task 1A\n- TC-2501 Parent task 2\n- TC-2501 Child task 2A\n5. Click on issue key of taskName to open Jira issue view\n   Data: taskName: TC-2501 Child task 1A\n   Expected: Jira issue view is opened in new tab\n6. Change the end date to newEndDate and start date to newStartDate\n   Data: newStartDate: 16/Sep/21\nnewEndDate: 30/Sep/21\n   Expected: Task dates are correctly changed\n7. Navigate to Gantt module of boxName and click Scale to fit button\n   Data: boxName: TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view\n   Expected: Gantt chart is displayed. TC-2501 Child task 1A has start date set to 16/Sep/21 and end date set to 30/Sep/21\n8. Open Data dropdown and choose Re-sync option\n   Expected: All changes made to tasks are preserved\n9. Click on issue key of taskName to open Jira issue view\n   Data: taskName: TC-2501 Child task 2A\n   Expected: Jira issue view is opened in new tab\n10. Change assignee to newUser\n   Data: newUser: testlab.14\n   Expected: Assignee is correcly changed.\n11. Navigate to Gantt module of boxName\n   Data: boxName: TC-2501 Box Module - Gantt - Basic operations - Editing tasks in jira issue view\n   Expected: On WBS assignee for TC-2501 Child task 2A is changed to testlab.2",
+    "metadata": {
+      "jira_key": "TC-2501",
+      "issue_id": "359652",
+      "summary": "Feature area - Task - Attributes displaying and editing - Editing tasks in jira issue view",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

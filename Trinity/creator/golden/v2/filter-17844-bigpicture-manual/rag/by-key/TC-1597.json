@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-1597",
+    "issue_id": "357873",
+    "url": "https://appfire.atlassian.net/browse/TC-1597",
+    "summary": "Feature area - Task Scheduling - Period mode - Changing period mode on Gantt when mapping is not defined",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Tomasz Wyrwa",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2021-03-13T09:24:37.766-0500",
+    "updated": "2026-06-18T05:53:48.066-0400",
+    "labels": [
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Go to Gantt module of boxName",
+        "data": "boxName: TC-1597 Changing period mode on Gantt when mapping is not defined",
+        "result": "Gantt module is opened. WBS and timeline is visible. Tasks are loaded:\n\n* TC1597 TC-1597 Changing period mode on Gantt when mapping is not defined\n* TC1597-1 Bunkrów\n* TC1597-2 Nie ma\n* TC1597-3 Ale \n* TC1597-4 Też jest\n* TC1597-5 Zajebiście!"
+      },
+      {
+        "step": 2,
+        "action": "Add period mode and task mode fields to CV if needed.",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 3,
+        "action": "Click on Data in menu header.\nGo to Period mode and click on Manual.",
+        "data": "",
+        "result": "Confirmation window appears with message:\n\nOverwriting confirmation\n\nAre you sure you want to overwrite Period Mode for all tasks?\n\nTwo buttons are active:\n* Overvwrite\n* Cancel"
+      },
+      {
+        "step": 4,
+        "action": "Click on Overwrite button.",
+        "data": "",
+        "result": "Period modes for all tasks are changes to Manual."
+      },
+      {
+        "step": 5,
+        "action": "Move task to future so it's start date is on 26/Mar/21",
+        "data": "taskSummary: Nie ma",
+        "result": "Task is correctly moved to new date"
+      },
+      {
+        "step": 6,
+        "action": "Move task to past so it's start date is again on 16/Mar/21.",
+        "data": "taskSummary: Nie ma",
+        "result": "Task is correctly moved to new date"
+      },
+      {
+        "step": 7,
+        "action": "Perform re-sync",
+        "data": "",
+        "result": "Re-sync is finished with success. All tasks still have manual period mode."
+      },
+      {
+        "step": 8,
+        "action": "Go back to Gantt module and perform re-sync",
+        "data": "",
+        "result": "Tasks are still in manual mode"
+      },
+      {
+        "step": 9,
+        "action": "Click on issuekey of task",
+        "data": "taskSummary: Zajebiście",
+        "result": "Jira issue view of TC1597-5 is opened."
+      },
+      {
+        "step": 10,
+        "action": "On Jira issue view of task change task mode to lock.\nGo back to Gantt and do re-sync",
+        "data": "",
+        "result": "Period mode on Gantt timeline is still manual. New value is visible on WBS only in column for Task mode."
+      },
+      {
+        "step": 11,
+        "action": "Move task to past so its start date is on 1/Mar/21",
+        "data": "taskSummary: Zajebiście",
+        "result": "Task is correctly moved to new date."
+      },
+      {
+        "step": 12,
+        "action": "Click on Data in menu header.\nGo to Period mode and click on Auto top-down.",
+        "data": "",
+        "result": "Confirmation window appears with message:\n\nOverwriting confirmation\n\nAre you sure you want to overwrite Period Mode for all tasks?\n\nTwo buttons are active:\n* Overvwrite\n* Cancel"
+      },
+      {
+        "step": 13,
+        "action": "Click on Overwrite button.",
+        "data": "",
+        "result": "Period modes for all tasks are changes to Auto top-down."
+      },
+      {
+        "step": 14,
+        "action": "Perform re-sync",
+        "data": "",
+        "result": "Re-sync is finished with success. All tasks have auto top-down period mode.\nValue on WBS for Task mode column is still Lock."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-1597",
+    "text": "Test: TC-1597 — Feature area - Task Scheduling - Period mode - Changing period mode on Gantt when mapping is not defined\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-80 Feature area - Task Scheduling - Period modes\nLabels: teamscheduling\n\nSteps:\n1. Go to Gantt module of boxName\n   Data: boxName: TC-1597 Changing period mode on Gantt when mapping is not defined\n   Expected: Gantt module is opened. WBS and timeline is visible. Tasks are loaded:\n\n* TC1597 TC-1597 Changing period mode on Gantt when mapping is not defined\n* TC1597-1 Bunkrów\n* TC1597-2 Nie ma\n* TC1597-3 Ale \n* TC1597-4 Też jest\n* TC1597-5 Zajebiście!\n2. Add period mode and task mode fields to CV if needed.\n   Expected: \n3. Click on Data in menu header.\nGo to Period mode and click on Manual.\n   Expected: Confirmation window appears with message:\n\nOverwriting confirmation\n\nAre you sure you want to overwrite Period Mode for all tasks?\n\nTwo buttons are active:\n* Overvwrite\n* Cancel\n4. Click on Overwrite button.\n   Expected: Period modes for all tasks are changes to Manual.\n5. Move task to future so it's start date is on 26/Mar/21\n   Data: taskSummary: Nie ma\n   Expected: Task is correctly moved to new date\n6. Move task to past so it's start date is again on 16/Mar/21.\n   Data: taskSummary: Nie ma\n   Expected: Task is correctly moved to new date\n7. Perform re-sync\n   Expected: Re-sync is finished with success. All tasks still have manual period mode.\n8. Go back to Gantt module and perform re-sync\n   Expected: Tasks are still in manual mode\n9. Click on issuekey of task\n   Data: taskSummary: Zajebiście\n   Expected: Jira issue view of TC1597-5 is opened.\n10. On Jira issue view of task change task mode to lock.\nGo back to Gantt and do re-sync\n   Expected: Period mode on Gantt timeline is still manual. New value is visible on WBS only in column for Task mode.\n11. Move task to past so its start date is on 1/Mar/21\n   Data: taskSummary: Zajebiście\n   Expected: Task is correctly moved to new date.\n12. Click on Data in menu header.\nGo to Period mode and click on Auto top-down.\n   Expected: Confirmation window appears with message:\n\nOverwriting confirmation\n\nAre you sure you want to overwrite Period Mode for all tasks?\n\nTwo buttons are active:\n* Overvwrite\n* Cancel\n13. Click on Overwrite button.\n   Expected: Period modes for all tasks are changes to Auto top-down.\n14. Perform re-sync\n   Expected: Re-sync is finished with success. All tasks have auto top-down period mode.\nValue on WBS for Task mode column is still Lock.",
+    "metadata": {
+      "jira_key": "TC-1597",
+      "issue_id": "357873",
+      "summary": "Feature area - Task Scheduling - Period mode - Changing period mode on Gantt when mapping is not defined",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+      "labels": [
+        "teamscheduling"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

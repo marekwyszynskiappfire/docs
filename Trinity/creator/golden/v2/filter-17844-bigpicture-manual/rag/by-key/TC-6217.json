@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-6217",
+    "issue_id": "1742037",
+    "url": "https://appfire.atlassian.net/browse/TC-6217",
+    "summary": "Box Module - Reports - Tabs - Creating new tabs",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2026-05-26T02:57:21.379-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Reports module of boxName",
+        "data": "boxName: TC-6217 Box Module - Reports - Tabs - Creating new tabs",
+        "result": "Reports module is loaded correctly.\n\nDefault tab is selected.\n\nThere is one report added: Task report"
+      },
+      {
+        "step": 2,
+        "action": "Change mode to Edit",
+        "data": "",
+        "result": "Mode is changed.\n\nNext to Default tab there is + button visible."
+      },
+      {
+        "step": 3,
+        "action": "Click on + button next to Default tab",
+        "data": "",
+        "result": "Create new dashboard dropdown menu is displaying.\n\nThere are two options:\n\n* Empty\n* From existing template"
+      },
+      {
+        "step": 4,
+        "action": "Click on Empty option",
+        "data": "",
+        "result": "New dashboard tab is added.\n\nThere is no reports in newly created tab.\n\nSplash screen: No reports to display is visible."
+      },
+      {
+        "step": 5,
+        "action": "Change name of newly created tab to tabName and click outside a field",
+        "data": "* tabName: TC-6217 Tab",
+        "result": "Tab name is changed to tabName\n\nTab is selected."
+      },
+      {
+        "step": 6,
+        "action": "Click on + button next to tabName tab and hover over From existing template option",
+        "data": "* tabName: TC-6217 Tab\n* template: TC-6217 Template",
+        "result": "template is displaying on a list of templates"
+      },
+      {
+        "step": 7,
+        "action": "Click on template",
+        "data": "* template: TC-6217 Template",
+        "result": "New dashboard tab with name: template is added.\n\nThere are three reports visible:\n\n* Status per Assignee\n* Assignee per Status\n* Issue Type per Status"
+      },
+      {
+        "step": 8,
+        "action": "Click on tabName to change dashboard",
+        "data": "* tabName: TC-6217 Tab",
+        "result": "Dashboard is changed.\n\nThere is no reports added in tabName.\n\nSplash screen: No reports to display is visible."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-6217",
+    "text": "Test: TC-6217 — Box Module - Reports - Tabs - Creating new tabs\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: teamsmile\n\nSteps:\n1. Navigate to Reports module of boxName\n   Data: boxName: TC-6217 Box Module - Reports - Tabs - Creating new tabs\n   Expected: Reports module is loaded correctly.\n\nDefault tab is selected.\n\nThere is one report added: Task report\n2. Change mode to Edit\n   Expected: Mode is changed.\n\nNext to Default tab there is + button visible.\n3. Click on + button next to Default tab\n   Expected: Create new dashboard dropdown menu is displaying.\n\nThere are two options:\n\n* Empty\n* From existing template\n4. Click on Empty option\n   Expected: New dashboard tab is added.\n\nThere is no reports in newly created tab.\n\nSplash screen: No reports to display is visible.\n5. Change name of newly created tab to tabName and click outside a field\n   Data: * tabName: TC-6217 Tab\n   Expected: Tab name is changed to tabName\n\nTab is selected.\n6. Click on + button next to tabName tab and hover over From existing template option\n   Data: * tabName: TC-6217 Tab\n* template: TC-6217 Template\n   Expected: template is displaying on a list of templates\n7. Click on template\n   Data: * template: TC-6217 Template\n   Expected: New dashboard tab with name: template is added.\n\nThere are three reports visible:\n\n* Status per Assignee\n* Assignee per Status\n* Issue Type per Status\n8. Click on tabName to change dashboard\n   Data: * tabName: TC-6217 Tab\n   Expected: Dashboard is changed.\n\nThere is no reports added in tabName.\n\nSplash screen: No reports to display is visible.",
+    "metadata": {
+      "jira_key": "TC-6217",
+      "issue_id": "1742037",
+      "summary": "Box Module - Reports - Tabs - Creating new tabs",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "teamsmile"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "config_version": "1.0",
+  "product": {
+    "id": "default",
+    "name": "Default"
+  },
+  "jira": {
+    "field_map": {
+      "acceptance_criteria": "customfield_10901",
+      "end_date": "customfield_10548",
+      "duedate": "duedate"
+    }
+  },
+  "policy": {
+    "gate_blocks_on": ["CRITICAL"],
+    "figma_policy": "link-only",
+    "jira_comment": "off",
+    "require_approval_before_write": true
+  },
+  "output": {
+    "artifacts_dir": "artifacts",
+    "report_kinds": ["html", "md"]
+  }
+}

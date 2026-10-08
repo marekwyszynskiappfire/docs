@@ -1,0 +1,61 @@
+{
+  "test": {
+    "key": "TC-4606",
+    "issue_id": "814768",
+    "url": "https://appfire.atlassian.net/browse/TC-4606",
+    "summary": "Feature area - Task Dependency - Dependences coloring algorithm ",
+    "description": "",
+    "status": "In Progress",
+    "priority": "Medium",
+    "assignee": "Tomasz Wyrwa",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:06:15.623-0400",
+    "updated": "2026-03-30T09:56:33.694-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-54 Feature area - Task Dependency",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to box with boxName",
+        "data": "boxName: TC-4606 Dependency coloring  algorithm",
+        "result": "OK  ASAP- normal dependency grey color\nOK nonASAP - normal dependency blue color\nBROKEN ASAP and BROKEN nonASAP - broken dependency yelLow color"
+      },
+      {
+        "step": 2,
+        "action": "expand gradually each Epic and check if dependency coloring is correct.\n\nEpic name describe dependency type",
+        "data": "",
+        "result": "OK ASAP- normal dependency grey color\nOK nonASAP - normal dependency blue color\nBROKEN ASAP and BROKEN nonASAP - broken dependency yelLow color"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 2
+  },
+  "rag": {
+    "id": "TC-4606",
+    "text": "Test: TC-4606 — Feature area - Task Dependency - Dependences coloring algorithm \nPriority: Medium | Status: In Progress | Type: Manual\nFolder: /BP/TS-54 Feature area - Task Dependency\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Navigate to box with boxName\n   Data: boxName: TC-4606 Dependency coloring  algorithm\n   Expected: OK  ASAP- normal dependency grey color\nOK nonASAP - normal dependency blue color\nBROKEN ASAP and BROKEN nonASAP - broken dependency yelLow color\n2. expand gradually each Epic and check if dependency coloring is correct.\n\nEpic name describe dependency type\n   Expected: OK ASAP- normal dependency grey color\nOK nonASAP - normal dependency blue color\nBROKEN ASAP and BROKEN nonASAP - broken dependency yelLow color",
+    "metadata": {
+      "jira_key": "TC-4606",
+      "issue_id": "814768",
+      "summary": "Feature area - Task Dependency - Dependences coloring algorithm ",
+      "priority": "Medium",
+      "status": "In Progress",
+      "test_type": "Manual",
+      "folder": "/BP/TS-54 Feature area - Task Dependency",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 2,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "test": {
+    "key": "TC-624",
+    "issue_id": "357361",
+    "url": "https://appfire.atlassian.net/browse/TC-624",
+    "summary": "Feature area - Task Scheduling - Period modes - Setting period mode for a single parent task",
+    "description": "",
+    "status": "In Progress",
+    "priority": "Medium",
+    "assignee": "Rafał Matejak",
+    "reporter": "Patryk Pesta",
+    "created": "2020-04-15T10:11:11.298-0400",
+    "updated": "2026-03-30T09:56:11.562-0400",
+    "labels": [
+      "schedulingsanity",
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-624 Feature area - Task Scheduling - Period modes - Setting mode for a single parent task",
+        "result": "Gantt module is successfully loaded and displayed.\nGantt module icon is marked as active on the header grid."
+      },
+      {
+        "step": 2,
+        "action": "Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu",
+        "data": "issueName: TC-624-1",
+        "result": "FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down"
+      },
+      {
+        "step": 3,
+        "action": "Switch the parent task period mode to the Manual mode",
+        "data": "",
+        "result": "Period mode is switched. Manual mode icon is displayed next to taskbar on Gantt chart.\nManual mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-1A remains in Auto bottom up mode."
+      },
+      {
+        "step": 4,
+        "action": "Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu",
+        "data": "issueName: TC-624-2",
+        "result": "FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down"
+      },
+      {
+        "step": 5,
+        "action": "Switch the parent task period mode to the Locked mode",
+        "data": "",
+        "result": "Period mode is switched. Locked mode icon is displayed next to taskbar on Gantt chart.\nLocked mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-2A remains in Auto bottom up mode."
+      },
+      {
+        "step": 6,
+        "action": "Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu",
+        "data": "issueName: TC-624-3",
+        "result": "FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down"
+      },
+      {
+        "step": 7,
+        "action": "Switch the parent task period mode to the Auto bottom-up mode",
+        "data": "",
+        "result": "Period mode is switched. Auto bottom-up mode icon is displayed next to taskbar on Gantt chart.\nAuto bottom-up mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-3A remains in Auto bottom up mode."
+      },
+      {
+        "step": 8,
+        "action": "Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu",
+        "data": "issueName: TC-624-4",
+        "result": "FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down"
+      },
+      {
+        "step": 9,
+        "action": "Switch the parent task period mode to the Auto top-down mode",
+        "data": "",
+        "result": "Period mode is switched. Auto top-down mode icon is displayed next to taskbar on Gantt chart.\nAuto top-down mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-4A remains in Auto bottom up mode."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-624",
+    "text": "Test: TC-624 — Feature area - Task Scheduling - Period modes - Setting period mode for a single parent task\nPriority: Medium | Status: In Progress | Type: Manual\nFolder: /BP/TS-80 Feature area - Task Scheduling - Period modes\nLabels: schedulingsanity, teamembers, teamscheduling\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-624 Feature area - Task Scheduling - Period modes - Setting mode for a single parent task\n   Expected: Gantt module is successfully loaded and displayed.\nGantt module icon is marked as active on the header grid.\n2. Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu\n   Data: issueName: TC-624-1\n   Expected: FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n3. Switch the parent task period mode to the Manual mode\n   Expected: Period mode is switched. Manual mode icon is displayed next to taskbar on Gantt chart.\nManual mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-1A remains in Auto bottom up mode.\n4. Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu\n   Data: issueName: TC-624-2\n   Expected: FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n5. Switch the parent task period mode to the Locked mode\n   Expected: Period mode is switched. Locked mode icon is displayed next to taskbar on Gantt chart.\nLocked mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-2A remains in Auto bottom up mode.\n6. Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu\n   Data: issueName: TC-624-3\n   Expected: FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n7. Switch the parent task period mode to the Auto bottom-up mode\n   Expected: Period mode is switched. Auto bottom-up mode icon is displayed next to taskbar on Gantt chart.\nAuto bottom-up mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-3A remains in Auto bottom up mode.\n8. Select issueName and click on the three dots on editor slider's menu\n\nHover over the Period mode sub-menu\n   Data: issueName: TC-624-4\n   Expected: FolLowing period modes are available:\n\nPERIOD MODE:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n\nINCLUDE CHILDREN:\n* Manual\n* Lock\n* Auto bottom up\n* Auto top down\n9. Switch the parent task period mode to the Auto top-down mode\n   Expected: Period mode is switched. Auto top-down mode icon is displayed next to taskbar on Gantt chart.\nAuto top-down mode icon is also displayed in Period mode column on WBS.\nChildren task TC-624-4A remains in Auto bottom up mode.",
+    "metadata": {
+      "jira_key": "TC-624",
+      "issue_id": "357361",
+      "summary": "Feature area - Task Scheduling - Period modes - Setting period mode for a single parent task",
+      "priority": "Medium",
+      "status": "In Progress",
+      "test_type": "Manual",
+      "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+      "labels": [
+        "schedulingsanity",
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

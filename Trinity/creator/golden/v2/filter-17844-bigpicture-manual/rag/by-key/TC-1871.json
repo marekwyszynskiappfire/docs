@@ -1,0 +1,109 @@
+{
+  "test": {
+    "key": "TC-1871",
+    "issue_id": "359714",
+    "url": "https://appfire.atlassian.net/browse/TC-1871",
+    "summary": "Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Tomasz Guzik",
+    "created": "2021-05-07T11:19:23.042-0400",
+    "updated": "2026-10-06T09:12:51.887-0400",
+    "labels": [
+      "ppm-e2e-cloud",
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-374 Global - Platform connection warnings",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to configuration -> tasks -> scope definition of  boxName",
+        "data": "boxName: TC-1871 Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization",
+        "result": "Scope definition tab of program box is opened"
+      },
+      {
+        "step": 2,
+        "action": "Click on add new integration button and add JC Subsidiary connection",
+        "data": "[instruction|https://wiki.bigpicture.one/display/DOC/Extplatform+-++QA+Jira+Cloud+Subsidiary+connection+Instruction]",
+        "result": "JC Subsidiary is added to the box scope and visible"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to the page (URL) with API tokens and revoke the token",
+        "data": "URL: https://id.atlassian.com/manage-profile/security/api-tokens",
+        "result": "Modal window \"Revoke API token\" is displayed. After Revoking the token it is no longer displayed on the screen"
+      },
+      {
+        "step": 4,
+        "action": "After few minutes navigate to primary instance and go to Gantt module of boxName:",
+        "data": "boxName: TC-1871 Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization",
+        "result": "Gantt module is displayed.\nWarning log appear. The scope is corrupted. Subsidiary Tasks has no access"
+      },
+      {
+        "step": 5,
+        "action": "Go to BigPicture Configuration -> Integrations -> Connections",
+        "data": "",
+        "result": "JC Subsidiary has status \"Not Operational\""
+      },
+      {
+        "step": 6,
+        "action": "Navigate to app configuration -> integration click on edit button -> re-autorize",
+        "data": "",
+        "result": "Reauthoritize Atlassian Cloud connection window appear"
+      },
+      {
+        "step": 7,
+        "action": "Fill in the following fields and click next button",
+        "data": "- Atlassian Cloud Subsidiary instance URL\n- E-mail address: email used during the first connection\n- Api token: new generated api token",
+        "result": "After clicking on next button  the window with creating corresponding webhooks  appear"
+      },
+      {
+        "step": 8,
+        "action": "Copy Endpoint URL for webhooks -> Open Subsidiary instance -> navigate to Jira settings -> system -> webhooks -> delete existing webhook and\nregister new using copied endpoint",
+        "data": "",
+        "result": "Webhook is registered correctly in Subsidiary instance"
+      },
+      {
+        "step": 9,
+        "action": "Go back to BP (primary instance), confirm following steps and click connect button",
+        "data": "folLowing steps:\n- I have read the instructions\n- I have registered webhooks",
+        "result": "Connection is active and have status operational"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-1871 Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization",
+        "result": "Gantt module is opened, all tasks from JC Subsidiary are visible in WBS"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-1871",
+    "text": "Test: TC-1871 — Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-374 Global - Platform connection warnings\nLabels: ppm-e2e-cloud, teamextplatform\n\nSteps:\n1. Navigate to configuration -> tasks -> scope definition of  boxName\n   Data: boxName: TC-1871 Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization\n   Expected: Scope definition tab of program box is opened\n2. Click on add new integration button and add JC Subsidiary connection\n   Data: [instruction|https://wiki.bigpicture.one/display/DOC/Extplatform+-++QA+Jira+Cloud+Subsidiary+connection+Instruction]\n   Expected: JC Subsidiary is added to the box scope and visible\n3. Navigate to the page (URL) with API tokens and revoke the token\n   Data: URL: https://id.atlassian.com/manage-profile/security/api-tokens\n   Expected: Modal window \"Revoke API token\" is displayed. After Revoking the token it is no longer displayed on the screen\n4. After few minutes navigate to primary instance and go to Gantt module of boxName:\n   Data: boxName: TC-1871 Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization\n   Expected: Gantt module is displayed.\nWarning log appear. The scope is corrupted. Subsidiary Tasks has no access\n5. Go to BigPicture Configuration -> Integrations -> Connections\n   Expected: JC Subsidiary has status \"Not Operational\"\n6. Navigate to app configuration -> integration click on edit button -> re-autorize\n   Expected: Reauthoritize Atlassian Cloud connection window appear\n7. Fill in the following fields and click next button\n   Data: - Atlassian Cloud Subsidiary instance URL\n- E-mail address: email used during the first connection\n- Api token: new generated api token\n   Expected: After clicking on next button  the window with creating corresponding webhooks  appear\n8. Copy Endpoint URL for webhooks -> Open Subsidiary instance -> navigate to Jira settings -> system -> webhooks -> delete existing webhook and\nregister new using copied endpoint\n   Expected: Webhook is registered correctly in Subsidiary instance\n9. Go back to BP (primary instance), confirm following steps and click connect button\n   Data: folLowing steps:\n- I have read the instructions\n- I have registered webhooks\n   Expected: Connection is active and have status operational\n10. Navigate to Gantt module of boxName\n   Data: boxName: TC-1871 Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization\n   Expected: Gantt module is opened, all tasks from JC Subsidiary are visible in WBS",
+    "metadata": {
+      "jira_key": "TC-1871",
+      "issue_id": "359714",
+      "summary": "Global - Platform connection warnings - Atlassian Cloud Subsidiary Invalid Connection Reauthorization",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-374 Global - Platform connection warnings",
+      "labels": [
+        "ppm-e2e-cloud",
+        "teamextplatform"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

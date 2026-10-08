@@ -1,0 +1,221 @@
+{
+  "test": {
+    "key": "TC-4257",
+    "issue_id": "814403",
+    "url": "https://appfire.atlassian.net/browse/TC-4257",
+    "summary": "Global - Application dumps migrating - JCMA BigTemplate",
+    "description": "Before sanity tests create environment:\n\n*JCMA - PRODUCTION TO PREPROD*\n\nCreate a Jira DC instance with 2 nodes, without the apps and with a database appropriate to the most recently released DC versions ([+#bp-status-release-feature+|https://appfireworkspace.slack.com/archives/C034T18L5RQ] version cut off/preprod date, e.g. preprod/2025-11-17/8.64 - database date min. 1 day before cut off), GIT_COMMIT_ID can be develop from branch for appropriate Jira version, FORGE_ENVIRONMENT_NAME: production. [+https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/+|https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/]\nUpload the BP app from the marketplace.\nNavigate to Jira Administration - Manage apps and update Jira Cloud Migration Assistant app. \n\nCreate a new Jira Cloud instance in [Sign up - Jira - Try Atlassian Cloud | Atlassian|https://www.atlassian.com/try/cloud/signup?product=confluence.ondemand,jira-software.ondemand,jira-servicedesk.ondemand,jira-core.ondemand&developer=true]  and create some space (e.g. Software development - Scrum - Company-managed space).\nUpload BP from the marketplace.\nMove the app to the preprod version in: [+https://admin-cloud.softwareplant.com/+|https://admin-cloud.softwareplant.com/]. Wait about 1 hour until the app updates its version, or ask the manager for a force move.\n\n*JCMA - PREPROD TO PREPROD*\n\nCreate a Jira DC instance with 2 nodes, with the apps (GIT_COMMIT_ID preprod from branch for appropriate Jira version), and with a database appropriate to the most recently released DC versions ([+#bp-status-release-feature+|https://appfireworkspace.slack.com/archives/C034T18L5RQ] version cut off/preprod date, e.g. preprod/2025-11-17/8.64 - database date min. 1 day before cut off), FORGE_ENVIRONMENT_NAME: production. [+https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/+|https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/]\nNavigate to Jira Administration - Manage apps and update Jira Cloud Migration Assistant app.\n\nCreate a new Jira Cloud instance in [+Sign up - Jira - Try Atlassian Cloud | Atlassian+|https://www.atlassian.com/try/cloud/signup?product=confluence.ondemand,jira-software.ondemand,jira-servicedesk.ondemand,jira-core.ondemand&developer=true]  and create some space (e.g. Software development - Scrum - Company-managed space).\nUpload BP from the marketplace.\nMove the app to the preprod version in: [+https://admin-cloud.softwareplant.com/+|https://admin-cloud.softwareplant.com/]. Wait about 1 hour until the app updates its version, or ask the manager for a force move.\n\n*JCMA - DEVELOP TO DEVELOP*\n\nCreate a Jira DC instance with 2 nodes, with the apps (GIT_COMMIT_ID develop from branch for appropriate Jira version), and the latest database, FORGE_ENVIRONMENT_NAME: your CONTEXT_PATH used to build your Jira cloud instance. [+https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/+|https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/]\nNavigate to Jira Administration - Manage apps and update Jira Cloud Migration Assistant app.\n\nCreate a new Jira Cloud instance in [+Sign up - Jira - Try Atlassian Cloud | Atlassian+|https://www.atlassian.com/try/cloud/signup?product=confluence.ondemand,jira-software.ondemand,jira-servicedesk.ondemand,jira-core.ondemand&developer=true]+,+ in JIRA_INSTANCE_URL add DC instance name (e.g. [jkowalski.atlassian.net|http://jkowalski.atlassian.net]), and create some space (e.g. Software development - Scrum - Company-managed space).",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2024-07-22T09:59:22.610-0400",
+    "updated": "2026-05-05T09:21:07.584-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-386 Global - Application dumps migrating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "URGENT!\nPerform this migration after or with the BigPicture or BigGantt app migration\n\nCloud instance: Navigate to BigPicture/BigGantt App Configuration -> Techical info",
+        "data": "",
+        "result": "Technical info tab is displayed\n'Allow JCMA migration' switcher is gray and disabled"
+      },
+      {
+        "step": 2,
+        "action": "Click on switcher 'Allow JCMA migration'",
+        "data": "",
+        "result": "Switcher 'Allow JCMA migration' is green and enabled"
+      },
+      {
+        "step": 3,
+        "action": "Jira DC Instance: \n\nNavigate Jira Administration -> User Management \nCreate a new user with your email address",
+        "data": "",
+        "result": "User is created"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to the Box configuration → Tasks → Scope definition of the boxName\nExpand Advanced configuration, and add the new created user as a Scope Owner",
+        "data": "boxName:  TC-4351 Global - Application dumps migrating - JCMA BigTemplate",
+        "result": "User is added"
+      },
+      {
+        "step": 5,
+        "action": "Jira DC Instance: Navigate to BigPicture App Configuration -> Advanced -> Database dumps",
+        "data": "",
+        "result": "Database dumps tab is displayed"
+      },
+      {
+        "step": 6,
+        "action": "Click on 'New Dump' and select JCMA Dump",
+        "data": "",
+        "result": "New JCMA snapshot' is displayed\n\n* Required field 'Migration name' with 'i' icon and tooltip 'Enter a unique migration name you will later need to identify this snapshot in JCMA' is displayed\n* Required field 'Description' is displayed\n\nFollowing text is displayed: 'Creating a database dump will restart the App and may take a significant amount of time and resources, so we recommend running it during non-business hours. Do not interrupt the process or disable the App until the dump is complete.' \n\nCreate snapshot (grayed out)  and Cancel button are displayed"
+      },
+      {
+        "step": 7,
+        "action": "Type migrationName and description, then click on Create snapshot",
+        "data": "migrationName: JCMABT\n\ndescription: JCMABT",
+        "result": "Dialog appears:\n\"Reinstall the App manually\nDue to your Jira multi-node instance configuration, restoring the selected backup will take effect after you reinstall the BigPicture App manually.\"\nwith the Manage Apps button"
+      },
+      {
+        "step": 8,
+        "action": "Click on the Manage Apps button.\nDisable (with don't send feedback) and enable the BigPicture app.\nGo back to the previous tab and refresh the page.",
+        "data": "",
+        "result": "Creating snapshot has started"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Jira Administration -> System -> Migrate to Cloud",
+        "data": "",
+        "result": "Migration Dashboard is displayed with ‘Create new migration’ button"
+      },
+      {
+        "step": 10,
+        "action": "Click on ‘Create new migration' button",
+        "data": "",
+        "result": "Message window appears with statement:\n\"You haven't reviewed your email domains\nYou can only migrate users from domains you trust. You’ll need to review the email domains and mark those domains as trusted.\nYou can continue without reviewing the domains, but to protect the security of your cloud site, you won’t be able to migrate until all domains are trusted.\"\nTwo buttons are under the statement: 'Continue without reviewing' and ‘Review domains’"
+      },
+      {
+        "step": 11,
+        "action": "Click on ‘Review domains' button",
+        "data": "",
+        "result": "'Connect to cloud' page is displayed\nChoose your destination cloud site* required field is visible with 'Choose cloud site' button and Jira Cloud trial link"
+      },
+      {
+        "step": 12,
+        "action": "Select 'Choose cloud site' button and then Continue",
+        "data": "",
+        "result": "Choose your destination cloud site' page is displayed\n\nThere are following required fields:\n\n* Migrate from\n* Migrate to\n* Chceckbox 'Allow Atlassian to access migrations data to perform your migration'"
+      },
+      {
+        "step": 13,
+        "action": "Type migrateFrom and migrateTo, click on checkbox and Confirm",
+        "data": "migrateFrom: DC InstanceURL (f.e [https://qa.softwareplant.com/dc/name|https://qa.softwareplant.com/dc/name])\n\nmigrateTo: Cloud InstanceURL (f.e [https://bigpictureone-name.atlassian.net|https://bigpictureone-name.atlassian.net])",
+        "result": "‘Connect to cloud' page is displayed\nChoose your destination cloud site* required field is visible with ‘Choose cloud site' button and Jira Cloud trial link\nTwo buttons are visible at the bottom: 'Back’ and 'Review all domains’"
+      },
+      {
+        "step": 14,
+        "action": "Click on ‘Review all domains’ button and then ‘Begin assessing’ button\nWait for a while\nSelect every possible domain as ‘Trusted domain' and click on 'Done’ button",
+        "data": "",
+        "result": "Migration Assistant home is displayed. \n\nFollowing tiles are displayed:\n\n* Assess your instance with 'Begin assessing' button\n* Access your apps with 'View App assessment' button\n* Prepare apps with 'Begin preparing' button\n* Assess and prepare your users with 'Begin assessing' button\n* Review all email domains with ‘Review’ button\n* Migrate your users in advance (recommended) with ‘Migrate users’ button\n* Migrate your data with 'Create migration' and 'Manage your migrations' buttons"
+      },
+      {
+        "step": 15,
+        "action": "Click on ‘Begin assessing’ in Assess your instance and confirm by ‘Begin assessing’ button",
+        "data": "",
+        "result": "Assess your instance\nAssess the scale, performance, and usage of your instance. We'll use the results to help you create a migration strategy. You can continue your work while the assessment is running.\nCOMPLETED\nYou can download the report for another 13 days.\nFinished (with the elapsed time given)\nTwo buttons are visible: ‘Download report’ and ‘Assess again’\n\nInformation below:\nAtlassian Administration\nIf you have a cloud organization, you can view your cloud readiness report in Portfolio insights, with additional recommendations on improving your data.\n'How to get started' button"
+      },
+      {
+        "step": 16,
+        "action": "Click on ‘View App assessment’ button in 'Assess your apps’ section",
+        "data": "",
+        "result": "Following table with columns is displayed:\n\n* User installed apps (1): BigTemplate\n* Cloud visibility: Yes\n* Migration path: Automated path\n* App usage: arrow redirecting to App usage\n* Decision: Needed in Cloud\n\n'Done' button is displayed at the bottom"
+      },
+      {
+        "step": 17,
+        "action": "Click 'Done'",
+        "data": "",
+        "result": "Page with App assessment is closed\n\nMessage:\"App assessment is complete\nPrepare your apps to continue\" is displayed"
+      },
+      {
+        "step": 18,
+        "action": "Click ‘Continue preparing’ button in ‘Prepare your apps’ section and then 'Continue’ button",
+        "data": "",
+        "result": "Agree to app migration' page is displayed with folLowing data:\n\n* Apps needed in cloud (1) \n* App migration agreement status - \n\"The policy you agreed to has been updated. Review changes and agree again before your app data can be migrated.\"\n* Policy details - View policy"
+      },
+      {
+        "step": 19,
+        "action": "Click on ‘View policy’ and Confirm",
+        "data": "",
+        "result": "Agree to app migration' page is displayed with folLowing data:\n\n* Apps needed in cloud (1) \n* App migration agreement status - \nYou have agreed to third-party automated app data migration for this app.\n* Policy details - Revoke agreement"
+      },
+      {
+        "step": 20,
+        "action": "Click on Done",
+        "data": "",
+        "result": "Page with Preparing app is closed\n\nMessage \"Apps are ready to migrate\nSelect Create a migration.\" is displayed"
+      },
+      {
+        "step": 21,
+        "action": "Click on ‘Begin assessing’ button in ‘Asses and prepare your users’ section.\nClick ‘Begin assessing’ on Connect to Cloud page and then click on ‘Begin assessing’ button on Review page.",
+        "data": "",
+        "result": "Results page is displayed\n\nCheck that all your users have valid and unique email addresses as required in cloud. Choose what to do with any invalid accounts.\n\nIn the next steps, we'll ask you to decide what to do with any invalid and duplicate email addresses we found in the most recent user assessment.\nYour choices will apply to all future migrations.\n\nInvalid email addresses 2\nAssessment completed on Today’s date\n\nAll email addresses are unique\n\n3 buttons are visible at the bottom: ‘Back’, ‘Asses again’, ‘Fix or customize users’"
+      },
+      {
+        "step": 22,
+        "action": "Click on ‘Fix or customize users’ button, then ‘Next’ button.\nSelect ‘Migrate invalid users as Former users’ button, click on ‘Review and apply’ button, and ‘Apply to all migrations’ button.",
+        "data": "",
+        "result": "Page is closed.\n\nMessage: ‘Your users are ready to migrate to cloud\nSelect Create a migration to create a new migration plan.’ is displayed."
+      },
+      {
+        "step": 23,
+        "action": "Click on Create a migration -> Connect to cloud",
+        "data": "",
+        "result": "Connect to your cloud site page is displayed\n\nTwo required fields are displayed:\n\n* Name your migration\n* Choose your destination cloud site"
+      },
+      {
+        "step": 24,
+        "action": "Type name, choose migrationStage and select cloudSite\nThen click ‘Choose migration options’ button",
+        "data": "name: JCMABT\nmigrationStage: Production migration stage\ncloudSite: Cloud instance URL (f.e  [https://bigpictureone-name.atlassian.net|https://bigpictureone-name.atlassian.net])",
+        "result": "Choose your migration options page is displayed with folLowing options: \n\n* Projects\n* Advanced Roadmaps plans\n* Dashboards, boards and filters\n* Users and Groups\n* Apps"
+      },
+      {
+        "step": 25,
+        "action": "Choose project, Skip plans, Skip in Dashboards, boards and filters, select usersAndGroups and apps \nClick ‘Save and run pre-migration checks’ button",
+        "data": "project: TC-4351 JCMA BigTemplate\nusersAndGroups: All users and groups from the Jira directory\napps: All - 1 marked as Needed in cloud with a migration path",
+        "result": "Pre migration check complited\n‘Back’, ‘Stop’, ‘Refresh all’, ‘Review migration’ buttons are displayed at the bottom"
+      },
+      {
+        "step": 26,
+        "action": "Click on ‘Review migration’, click ‘Continue’ button and then click on ‘Run’\nOn Migration dashboard click on ‘View details’ in migration row",
+        "data": "",
+        "result": "Migration starts and ends with 100% success"
+      },
+      {
+        "step": 27,
+        "action": "AFTER migration: \n\nNavigate to Jira Cloud settings -> User management\nClick on ‘review now’ link on the yellow banner at the top of the page\nClick on ‘Review’, ‘Approve', and 'Done’",
+        "data": "",
+        "result": "Imported groups have been approved and roles assigned"
+      },
+      {
+        "step": 28,
+        "action": "Clear cache, wait 10 minutes, and navigate navigate to Configuration a boxName and then go to General -> Exporting",
+        "data": "boxName:  TC-4351 Global - Application dumps migrating - JCMA BigTemplate",
+        "result": "Following templates are displayed for module Gantt:\n\n* TC-4351 with filename TC-4351-MSEtemplate.xlsx\n* MS Project Empty Template. with filename project.mpp and set as Global Template"
+      },
+      {
+        "step": 29,
+        "action": "Navigate to Manage Apps -> Big Template",
+        "data": "",
+        "result": "Following templates are displayed: \n\n* TC-4351 with filename TC-4351-MSEtemplate.xlsx\n* TC-4351 with filename TC-4351-XLSXtoComapare.xlsx"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 29
+  },
+  "rag": {
+    "id": "TC-4257",
+    "text": "Test: TC-4257 — Global - Application dumps migrating - JCMA BigTemplate\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-386 Global - Application dumps migrating\nLabels: be-enterprise\n\nDescription:\nBefore sanity tests create environment:\n\n*JCMA - PRODUCTION TO PREPROD*\n\nCreate a Jira DC instance with 2 nodes, without the apps and with a database appropriate to the most recently released DC versions ([+#bp-status-release-feature+|https://appfireworkspace.slack.com/archives/C034T18L5RQ] version cut off/preprod date, e.g. preprod/2025-11-17/8.64 - database date min. 1 day before cut off), GIT_COMMIT_ID can be develop from branch for appropriate Jira version, FORGE_ENVIRONMENT_NAME: production. [+https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/+|https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/]\nUpload the BP app from the marketplace.\nNavigate to Jira Administration - Manage apps and update Jira Cloud Migration Assistant app. \n\nCreate a new Jira Cloud instance in [Sign up - Jira - Try Atlassian Cloud | Atlassian|https://www.atlassian.com/try/cloud/signup?product=confluence.ondemand,jira-software.ondemand,jira-servicedesk.ondemand,jira-core.ondemand&developer=true]  and create some space (e.g. Software development - Scrum - Company-managed space).\nUpload BP from the marketplace.\nMove the app to the preprod version in: [+https://admin-cloud.softwareplant.com/+|https://admin-cloud.softwareplant.com/]. Wait about 1 hour until the app updates its version, or ask the manager for a force move.\n\n*JCMA - PREPROD TO PREPROD*\n\nCreate a Jira DC instance with 2 nodes, with the apps (GIT_COMMIT_ID preprod from branch for appropriate Jira version), and with a database appropriate to the most recently released DC versions ([+#bp-status-release-feature+|https://appfireworkspace.slack.com/archives/C034T18L5RQ] version cut off/preprod date, e.g. preprod/2025-11-17/8.64 - database date min. 1 day before cut off), FORGE_ENVIRONMENT_NAME: production. [+https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/+|https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/]\nNavigate to Jira Administration - Manage apps and update Jira Cloud Migration Assistant app.\n\nCreate a new Jira Cloud instance in [+Sign up - Jira - Try Atlassian Cloud | Atlassian+|https://www.atlassian.com/try/cloud/signup?product=confluence.ondemand,jira-software.ondemand,jira-servicedesk.ondemand,jira-core.ondemand&developer=true]  and create some space (e.g. Software development - Scrum - Company-managed space).\nUpload BP from the marketplace.\nMove the app to the preprod version in: [+https://admin-cloud.softwareplant.com/+|https://admin-cloud.softwareplant.com/]. Wait about 1 hour until the app updates its version, or ask the manager for a force move.\n\n*JCMA - DEVELOP TO DEVELOP*\n\nCreate a Jira DC instance with 2 nodes, with the apps (GIT_COMMIT_ID develop from branch for appropriate Jira version), and the latest database, FORGE_ENVIRONMENT_NAME: your CONTEXT_PATH used to build your Jira cloud instance. [+https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/+|https://ci.softwareplant.com/job/QA/job/PERSONAL/job/_JIRA_DC/job/JIRA_DC_START/]\nNavigate to Jira Administration - Manage apps and update Jira Cloud Migration Assistant app.\n\nCreate a new Jira Cloud instance in [+Sign up - Jira - Try Atlassian Cloud | Atlassian+|https://www.atlassian.com/try/cloud/signup?product=confluence.ondemand,jira-software.ondemand,jira-servicedesk.ondemand,jira-core.ondemand&developer=true]+,+ in JIRA_INSTANCE_URL add DC instance name (e.g. [jkowalski.atlassian.net|http://jkowalski.atlassian.net]), and create some space (e.g. Software development - Scrum - Company-managed space).\n\nSteps:\n1. URGENT!\nPerform this migration after or with the BigPicture or BigGantt app migration\n\nCloud instance: Navigate to BigPicture/BigGantt App Configuration -> Techical info\n   Expected: Technical info tab is displayed\n'Allow JCMA migration' switcher is gray and disabled\n2. Click on switcher 'Allow JCMA migration'\n   Expected: Switcher 'Allow JCMA migration' is green and enabled\n3. Jira DC Instance: \n\nNavigate Jira Administration -> User Management \nCreate a new user with your email address\n   Expected: User is created\n4. Navigate to the Box configuration → Tasks → Scope definition of the boxName\nExpand Advanced configuration, and add the new created user as a Scope Owner\n   Data: boxName:  TC-4351 Global - Application dumps migrating - JCMA BigTemplate\n   Expected: User is added\n5. Jira DC Instance: Navigate to BigPicture App Configuration -> Advanced -> Database dumps\n   Expected: Database dumps tab is displayed\n6. Click on 'New Dump' and select JCMA Dump\n   Expected: New JCMA snapshot' is displayed\n\n* Required field 'Migration name' with 'i' icon and tooltip 'Enter a unique migration name you will later need to identify this snapshot in JCMA' is displayed\n* Required field 'Description' is displayed\n\nFollowing text is displayed: 'Creating a database dump will restart the App and may take a significant amount of time and resources, so we recommend running it during non-business hours. Do not interrupt the process or disable the App until the dump is complete.' \n\nCreate snapshot (grayed out)  and Cancel button are displayed\n7. Type migrationName and description, then click on Create snapshot\n   Data: migrationName: JCMABT\n\ndescription: JCMABT\n   Expected: Dialog appears:\n\"Reinstall the App manually\nDue to your Jira multi-node instance configuration, restoring the selected backup will take effect after you reinstall the BigPicture App manually.\"\nwith the Manage Apps button\n8. Click on the Manage Apps button.\nDisable (with don't send feedback) and enable the BigPicture app.\nGo back to the previous tab and refresh the page.\n   Expected: Creating snapshot has started\n9. Navigate to Jira Administration -> System -> Migrate to Cloud\n   Expected: Migration Dashboard is displayed with ‘Create new migration’ button\n10. Click on ‘Create new migration' button\n   Expected: Message window appears with statement:\n\"You haven't reviewed your email domains\nYou can only migrate users from domains you trust. You’ll need to review the email domains and mark those domains as trusted.\nYou can continue without reviewing the domains, but to protect the security of your cloud site, you won’t be able to migrate until all domains are trusted.\"\nTwo buttons are under the statement: 'Continue without reviewing' and ‘Review domains’\n11. Click on ‘Review domains' button\n   Expected: 'Connect to cloud' page is displayed\nChoose your destination cloud site* required field is visible with 'Choose cloud site' button and Jira Cloud trial link\n12. Select 'Choose cloud site' button and then Continue\n   Expected: Choose your destination cloud site' page is displayed\n\nThere are following required fields:\n\n* Migrate from\n* Migrate to\n* Chceckbox 'Allow Atlassian to access migrations data to perform your migration'\n13. Type migrateFrom and migrateTo, click on checkbox and Confirm\n   Data: migrateFrom: DC InstanceURL (f.e [https://qa.softwareplant.com/dc/name|https://qa.softwareplant.com/dc/name])\n\nmigrateTo: Cloud InstanceURL (f.e [https://bigpictureone-name.atlassian.net|https://bigpictureone-name.atlassian.net])\n   Expected: ‘Connect to cloud' page is displayed\nChoose your destination cloud site* required field is visible with ‘Choose cloud site' button and Jira Cloud trial link\nTwo buttons are visible at the bottom: 'Back’ and 'Review all domains’\n14. Click on ‘Review all domains’ button and then ‘Begin assessing’ button\nWait for a while\nSelect every possible domain as ‘Trusted domain' and click on 'Done’ button\n   Expected: Migration Assistant home is displayed. \n\nFollowing tiles are displayed:\n\n* Assess your instance with 'Begin assessing' button\n* Access your apps with 'View App assessment' button\n* Prepare apps with 'Begin preparing' button\n* Assess and prepare your users with 'Begin assessing' button\n* Review all email domains with ‘Review’ button\n* Migrate your users in advance (recommended) with ‘Migrate users’ button\n* Migrate your data with 'Create migration' and 'Manage your migrations' buttons\n15. Click on ‘Begin assessing’ in Assess your instance and confirm by ‘Begin assessing’ button\n   Expected: Assess your instance\nAssess the scale, performance, and usage of your instance. We'll use the results to help you create a migration strategy. You can continue your work while the assessment is running.\nCOMPLETED\nYou can download the report for another 13 days.\nFinished (with the elapsed time given)\nTwo buttons are visible: ‘Download report’ and ‘Assess again’\n\nInformation below:\nAtlassian Administration\nIf you have a cloud organization, you can view your cloud readiness report in Portfolio insights, with additional recommendations on improving your data.\n'How to get started' button\n16. Click on ‘View App assessment’ button in 'Assess your apps’ section\n   Expected: Following table with columns is displayed:\n\n* User installed apps (1): BigTemplate\n* Cloud visibility: Yes\n* Migration path: Automated path\n* App usage: arrow redirecting to App usage\n* Decision: Needed in Cloud\n\n'Done' button is displayed at the bottom\n17. Click 'Done'\n   Expected: Page with App assessment is closed\n\nMessage:\"App assessment is complete\nPrepare your apps to continue\" is displayed\n18. Click ‘Continue preparing’ button in ‘Prepare your apps’ section and then 'Continue’ button\n   Expected: Agree to app migration' page is displayed with folLowing data:\n\n* Apps needed in cloud (1) \n* App migration agreement status - \n\"The policy you agreed to has been updated. Review changes and agree again before your app data can be migrated.\"\n* Policy details - View policy\n19. Click on ‘View policy’ and Confirm\n   Expected: Agree to app migration' page is displayed with folLowing data:\n\n* Apps needed in cloud (1) \n* App migration agreement status - \nYou have agreed to third-party automated app data migration for this app.\n* Policy details - Revoke agreement\n20. Click on Done\n   Expected: Page with Preparing app is closed\n\nMessage \"Apps are ready to migrate\nSelect Create a migration.\" is displayed\n21. Click on ‘Begin assessing’ button in ‘Asses and prepare your users’ section.\nClick ‘Begin assessing’ on Connect to Cloud page and then click on ‘Begin assessing’ button on Review page.\n   Expected: Results page is displayed\n\nCheck that all your users have valid and unique email addresses as required in cloud. Choose what to do with any invalid accounts.\n\nIn the next steps, we'll ask you to decide what to do with any invalid and duplicate email addresses we found in the most recent user assessment.\nYour choices will apply to all future migrations.\n\nInvalid email addresses 2\nAssessment completed on Today’s date\n\nAll email addresses are unique\n\n3 buttons are visible at the bottom: ‘Back’, ‘Asses again’, ‘Fix or customize users’\n22. Click on ‘Fix or customize users’ button, then ‘Next’ button.\nSelect ‘Migrate invalid users as Former users’ button, click on ‘Review and apply’ button, and ‘Apply to all migrations’ button.\n   Expected: Page is closed.\n\nMessage: ‘Your users are ready to migrate to cloud\nSelect Create a migration to create a new migration plan.’ is displayed.\n23. Click on Create a migration -> Connect to cloud\n   Expected: Connect to your cloud site page is displayed\n\nTwo required fields are displayed:\n\n* Name your migration\n* Choose your destination cloud site\n24. Type name, choose migrationStage and select cloudSite\nThen click ‘Choose migration options’ button\n   Data: name: JCMABT\nmigrationStage: Production migration stage\ncloudSite: Cloud instance URL (f.e  [https://bigpictureone-name.atlassian.net|https://bigpictureone-name.atlassian.net])\n   Expected: Choose your migration options page is displayed with folLowing options: \n\n* Projects\n* Advanced Roadmaps plans\n* Dashboards, boards and filters\n* Users and Groups\n* Apps\n25. Choose project, Skip plans, Skip in Dashboards, boards and filters, select usersAndGroups and apps \nClick ‘Save and run pre-migration checks’ button\n   Data: project: TC-4351 JCMA BigTemplate\nusersAndGroups: All users and groups from the Jira directory\napps: All - 1 marked as Needed in cloud with a migration path\n   Expected: Pre migration check complited\n‘Back’, ‘Stop’, ‘Refresh all’, ‘Review migration’ buttons are displayed at the bottom\n26. Click on ‘Review migration’, click ‘Continue’ button and then click on ‘Run’\nOn Migration dashboard click on ‘View details’ in migration row\n   Expected: Migration starts and ends with 100% success\n27. AFTER migration: \n\nNavigate to Jira Cloud settings -> User management\nClick on ‘review now’ link on the yellow banner at the top of the page\nClick on ‘Review’, ‘Approve', and 'Done’\n   Expected: Imported groups have been approved and roles assigned\n28. Clear cache, wait 10 minutes, and navigate navigate to Configuration a boxName and then go to General -> Exporting\n   Data: boxName:  TC-4351 Global - Application dumps migrating - JCMA BigTemplate\n   Expected: Following templates are displayed for module Gantt:\n\n* TC-4351 with filename TC-4351-MSEtemplate.xlsx\n* MS Project Empty Template. with filename project.mpp and set as Global Template\n29. Navigate to Manage Apps -> Big Template\n   Expected: Following templates are displayed: \n\n* TC-4351 with filename TC-4351-MSEtemplate.xlsx\n* TC-4351 with filename TC-4351-XLSXtoComapare.xlsx",
+    "metadata": {
+      "jira_key": "TC-4257",
+      "issue_id": "814403",
+      "summary": "Global - Application dumps migrating - JCMA BigTemplate",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-386 Global - Application dumps migrating",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 29,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

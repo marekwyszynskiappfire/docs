@@ -1,0 +1,99 @@
+{
+  "test": {
+    "key": "TC-4252",
+    "issue_id": "814398",
+    "url": "https://appfire.atlassian.net/browse/TC-4252",
+    "summary": "Feature area - Exporting - Exporting Reports on Goals module",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T09:59:19.185-0400",
+    "updated": "2026-08-20T05:20:07.982-0400",
+    "labels": [
+      "can_be_automated",
+      "export",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Goals module of boxName",
+        "data": "boxName: TC-4252 - Feature area - Exporting - Exporting Reports on Objectives module",
+        "result": "Goals module is successfully loaded.\n\n2 PIs are visible. 3 sections are displayed under each PI:\n\n* Main Objectives\n* TC-4252 Team A\n* TC-4252 Team B\n\nThree goals are displayed under each section in each PI. The exception is PI2 - TC-4252 Team B - no goal in this section."
+      },
+      {
+        "step": 2,
+        "action": "Change Swimlanes view to Reports view",
+        "data": "",
+        "result": "2 PIs are visible. 3 sections are displayed under each PI:\n\n* Main Objectives\n* TC-4303 Team A\n* TC-4303 Team B\n\nUnder each section in each PI there is a pie chart displaying. The exception is PI2 - TC-4303 Team B there is a text displaying: \n\nNo goals to report. Add the first one to display a chart."
+      },
+      {
+        "step": 3,
+        "action": "Click the Export button in the module's header.",
+        "data": "",
+        "result": "Export data window is displayed with following:\n\n# File type dropdown. Export to image (PDF) is set by default\n# Blue Export button"
+      },
+      {
+        "step": 4,
+        "action": "Click on File type dropdown",
+        "data": "",
+        "result": "Following options shows up in  dropdown:\n\n* Export to image (PDF)\n* MS Excel Basic Template (XLSX)"
+      },
+      {
+        "step": 5,
+        "action": "Select fileType",
+        "data": "fileType: Export to image (PDF)",
+        "result": "Value in File type dropdown remains set to Export to image (PDF)"
+      },
+      {
+        "step": 6,
+        "action": "Click Export button",
+        "data": "",
+        "result": "The PDF file is downloaded successfully.\n\nDownloaded file name is following the filename schema: goals-<current-date>T<current-time>.PDF"
+      },
+      {
+        "step": 7,
+        "action": "Click on File type dropdown again and select fileType.",
+        "data": "fileType: MS Excel Basic Template (XLSX)",
+        "result": "Value in File type dropdown is set to Export to MS Excel Basic Template (XLSX)"
+      },
+      {
+        "step": 8,
+        "action": "Click Export button",
+        "data": "",
+        "result": "The XLSX file is downloaded successfully.\n\nDownloaded file name is folLowing the filename schema: goals-<current-date>T<current-time>.XLSX"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-4252",
+    "text": "Test: TC-4252 — Feature area - Exporting - Exporting Reports on Goals module\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\nLabels: can_be_automated, export, teamsmile\n\nSteps:\n1. Navigate to Goals module of boxName\n   Data: boxName: TC-4252 - Feature area - Exporting - Exporting Reports on Objectives module\n   Expected: Goals module is successfully loaded.\n\n2 PIs are visible. 3 sections are displayed under each PI:\n\n* Main Objectives\n* TC-4252 Team A\n* TC-4252 Team B\n\nThree goals are displayed under each section in each PI. The exception is PI2 - TC-4252 Team B - no goal in this section.\n2. Change Swimlanes view to Reports view\n   Expected: 2 PIs are visible. 3 sections are displayed under each PI:\n\n* Main Objectives\n* TC-4303 Team A\n* TC-4303 Team B\n\nUnder each section in each PI there is a pie chart displaying. The exception is PI2 - TC-4303 Team B there is a text displaying: \n\nNo goals to report. Add the first one to display a chart.\n3. Click the Export button in the module's header.\n   Expected: Export data window is displayed with following:\n\n# File type dropdown. Export to image (PDF) is set by default\n# Blue Export button\n4. Click on File type dropdown\n   Expected: Following options shows up in  dropdown:\n\n* Export to image (PDF)\n* MS Excel Basic Template (XLSX)\n5. Select fileType\n   Data: fileType: Export to image (PDF)\n   Expected: Value in File type dropdown remains set to Export to image (PDF)\n6. Click Export button\n   Expected: The PDF file is downloaded successfully.\n\nDownloaded file name is following the filename schema: goals-<current-date>T<current-time>.PDF\n7. Click on File type dropdown again and select fileType.\n   Data: fileType: MS Excel Basic Template (XLSX)\n   Expected: Value in File type dropdown is set to Export to MS Excel Basic Template (XLSX)\n8. Click Export button\n   Expected: The XLSX file is downloaded successfully.\n\nDownloaded file name is folLowing the filename schema: goals-<current-date>T<current-time>.XLSX",
+    "metadata": {
+      "jira_key": "TC-4252",
+      "issue_id": "814398",
+      "summary": "Feature area - Exporting - Exporting Reports on Goals module",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [
+        "can_be_automated",
+        "export",
+        "teamsmile"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "run_id": "demo-story-suite",
+  "generated_at": "2026-10-08T08:00:00+02:00",
+  "golden_version": "golden/v1",
+  "source_requirement_keys": ["DEMO-4522"],
+  "requirements_review_run_id": "2026-09-28-0031",
+  "coverage_report": {
+    "uncovered_ac_ids": [],
+    "warnings": ["Sanitized demo batch for Trinity Studio import — not a live Jira suite."],
+    "catalog_coverage": [
+      {
+        "catalog_id": "CAT-DEMO-4522-EXPORT",
+        "tier": "P1",
+        "status": "covered",
+        "covered_by": ["TC-001"]
+      }
+    ]
+  },
+  "tests": [
+    {
+      "draft_id": "TC-001",
+      "title": "Admin exports OKR custom fields to CSV with expected columns",
+      "linked_requirement_keys": ["DEMO-4522"],
+      "linked_ac_ids": ["AC-01"],
+      "coverage_catalog_id": "CAT-DEMO-4522-EXPORT",
+      "execution_tier": "P1",
+      "test_pattern": "journey",
+      "role": "OKR_ADMIN",
+      "customer_impact": "Admins cannot bulk-export field data; migration and audits are blocked.",
+      "deferrable": false,
+      "test_data_required": true,
+      "test_data_prerequisites": "Staging tenant with at least two OKR custom fields and sample OKR records.",
+      "test_type": "Manual",
+      "priority": "High",
+      "preconditions": "User has OKR admin role; feature flag for CSV export enabled on staging.",
+      "steps": [
+        {
+          "step": "Open **Settings → OKR → Custom fields** and choose **Export CSV**.",
+          "expected_result": "Export dialog or action starts; no permission error."
+        },
+        {
+          "step": "Download the generated file and open it in a spreadsheet tool.",
+          "expected_result": "CSV contains header row with field name, type, and applicable goal type columns per AC-01."
+        }
+      ],
+      "tags": ["export", "smoke", "demo"]
+    },
+    {
+      "draft_id": "TC-002",
+      "title": "Export is denied for user without OKR admin permission",
+      "linked_requirement_keys": ["DEMO-4522"],
+      "linked_ac_ids": ["AC-02"],
+      "coverage_catalog_id": "CAT-DEMO-4522-PERM",
+      "execution_tier": "P2",
+      "test_pattern": "atomic",
+      "role": "STANDARD_USER",
+      "customer_impact": "Unauthorized users could exfiltrate configuration data if permission checks fail.",
+      "deferrable": true,
+      "deferrable_rationale": "Covered indirectly by broader RBAC suite when time-boxed.",
+      "test_data_required": false,
+      "test_data_prerequisites": "Standard user account on staging; export UI reachable but action must be blocked.",
+      "test_type": "Manual",
+      "priority": "Medium",
+      "preconditions": "Logged in as standard user without custom-field admin rights.",
+      "steps": [
+        {
+          "step": "Navigate to the same export entry point as TC-001.",
+          "expected_result": "Export control is hidden or disabled, or action returns a clear permission error."
+        }
+      ],
+      "tags": ["permissions", "demo"]
+    }
+  ],
+  "validation": {
+    "schema_valid": true,
+    "traceability_valid": true,
+    "policy_valid": true,
+    "errors": []
+  }
+}
