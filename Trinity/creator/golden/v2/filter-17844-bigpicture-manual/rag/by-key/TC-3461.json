@@ -1,0 +1,65 @@
+{
+  "test": {
+    "key": "TC-3461",
+    "issue_id": "357264",
+    "url": "https://appfire.atlassian.net/browse/TC-3461",
+    "summary": "Feature area - Task - Attributes displaying and editing - Display - Task Reference - Gantt module",
+    "description": "New Data type - Task Reference. On Front-end is visible as Parent (column in Column View). It is different from Parent Link which is Labels Data Type.\r\nReason: Technical change of Atlassian Cloud API https://community.developer.atlassian.com/t/deprecation-of-the-epic-link-parent-link-and-other-related-fields-in-rest-apis-and-webhooks/54048. ",
+    "status": "In Progress",
+    "priority": "Medium",
+    "assignee": "Patryk Watras",
+    "reporter": "Patryk Watras",
+    "created": "2022-07-15T06:40:55.186-0400",
+    "updated": "2026-04-10T06:08:19.504-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "On Atlassian Cloud navigate to Gantt module of boxName and check if columnView is selected",
+        "data": "boxName: TC-3461 Feature area - Task - Attributes displaying and editing - Display - Task Reference - Gantt module\n\ncolumnView: TC3461 with Parent",
+        "result": "WBS and Gantt chart are displayed.\n\n\"TC3461 with Parent\" column view is selected. FolLowing columns are visible:\n- Icon\n- Key\n- Summary\n- Parent\n\nProject \"TC-3461 Feature area - Task - Attributes displaying and editing - Display - Task Reference - Gantt module\" is visible. FolLowing tasks are displayed:\n- Epic parent\n-- Task child\n-- Story child\n-- Bug child"
+      },
+      {
+        "step": 2,
+        "action": "Check columnView field value",
+        "data": "columnView: TC3461 with Parent",
+        "result": "For epic children: Task child, Story child and Bug child Parent field value is: \"Epic parent\""
+      },
+      {
+        "step": 3,
+        "action": "Click on taskChild Parent fieldValue.",
+        "data": "taskChild: Task child\nfieldValue: Epic Parent",
+        "result": "Jira page for Epic Parent is open in new tab"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 3
+  },
+  "rag": {
+    "id": "TC-3461",
+    "text": "Test: TC-3461 — Feature area - Task - Attributes displaying and editing - Display - Task Reference - Gantt module\nPriority: Medium | Status: In Progress | Type: Manual\nFolder: /BP/TS-66 Feature area - Task - Attributes displaying and editing\nLabels: teamspace\n\nDescription:\nNew Data type - Task Reference. On Front-end is visible as Parent (column in Column View). It is different from Parent Link which is Labels Data Type.\r\nReason: Technical change of Atlassian Cloud API https://community.developer.atlassian.com/t/deprecation-of-the-epic-link-parent-link-and-other-related-fields-in-rest-apis-and-webhooks/54048. \n\nSteps:\n1. On Atlassian Cloud navigate to Gantt module of boxName and check if columnView is selected\n   Data: boxName: TC-3461 Feature area - Task - Attributes displaying and editing - Display - Task Reference - Gantt module\n\ncolumnView: TC3461 with Parent\n   Expected: WBS and Gantt chart are displayed.\n\n\"TC3461 with Parent\" column view is selected. FolLowing columns are visible:\n- Icon\n- Key\n- Summary\n- Parent\n\nProject \"TC-3461 Feature area - Task - Attributes displaying and editing - Display - Task Reference - Gantt module\" is visible. FolLowing tasks are displayed:\n- Epic parent\n-- Task child\n-- Story child\n-- Bug child\n2. Check columnView field value\n   Data: columnView: TC3461 with Parent\n   Expected: For epic children: Task child, Story child and Bug child Parent field value is: \"Epic parent\"\n3. Click on taskChild Parent fieldValue.\n   Data: taskChild: Task child\nfieldValue: Epic Parent\n   Expected: Jira page for Epic Parent is open in new tab",
+    "metadata": {
+      "jira_key": "TC-3461",
+      "issue_id": "357264",
+      "summary": "Feature area - Task - Attributes displaying and editing - Display - Task Reference - Gantt module",
+      "priority": "Medium",
+      "status": "In Progress",
+      "test_type": "Manual",
+      "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 3,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

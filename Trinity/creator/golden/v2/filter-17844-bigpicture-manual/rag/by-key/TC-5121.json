@@ -1,0 +1,81 @@
+{
+  "test": {
+    "key": "TC-5121",
+    "issue_id": "1052615",
+    "url": "https://appfire.atlassian.net/browse/TC-5121",
+    "summary": "SPM - Workday - Synchronization with BP",
+    "description": "In order to execute this test, first execute Workday Integration [https://appfire.atlassian.net/browse/TC-5064|https://appfire.atlassian.net/browse/TC-5064|smart-link] ",
+    "status": "In Review",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2024-11-15T09:52:40.648-0500",
+    "updated": "2026-05-05T09:38:59.000-0400",
+    "labels": [
+      "spm-paulina-tc",
+      "teamace",
+      "teamresources"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-505 Workday",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Administration → Resources → Individuals",
+        "data": "",
+        "result": "Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To \n* Add new Individual"
+      },
+      {
+        "step": 2,
+        "action": "Click on Refresh Workday absences",
+        "data": "",
+        "result": "Refresh Workday absences button is gray and has a loading icon\n\nIn the left corner there’s blue message\n\n'Synchronization with Workday in progress\n\nThe synchronization of absences from Workday is currently in progress. We will notify you once it has been completed'\n\nAfter few seconds, green message is displayed ‘Synchronization with Workday finished’"
+      },
+      {
+        "step": 3,
+        "action": "Click on three dots on Full Name column, type userName1 and userName2 and select them",
+        "data": "userName1: paulina.sendecka\n\nuserName2: monika.cecot",
+        "result": "User paulina.sendecka and monika.cecot are selected\n\n'Workday sync status' column has a green label SYNCED"
+      },
+      {
+        "step": 4,
+        "action": "Click on userName to open Resource details page",
+        "data": "userName: paulina.sendecka",
+        "result": "Green Label ‘Workday’ is displayed next to userName\n\nAbsences are displayed in Absences tab\n\n+ Add new button is grayed out next to Absences tab"
+      },
+      {
+        "step": 5,
+        "action": "Scroll down on absences",
+        "data": "",
+        "result": "Following absences are displayed: \n\nOther reason\n\n05/Dec/24-05/Dec/24\n\nOther reason\n\n20/Nov/24-20/Nov/24\n\nOther reason\n\n13/Nov/24-13/Nov/24\n\nOther reason\n\n04/Nov/24-06/Nov/24\n\nOther reason\n\n28/Oct/24-31/Oct/24\n\nOther reason\n\n21/Oct/24-25/Oct/24\n\nOther reason\n\n07/Oct/24-07/Oct/24\n\nOther reason\n\n23/Sep/24-24/Sep/24\n\nOther reason\n\n02/Sep/24-02/Sep/24\n\nOther reason\n\n07/Aug/24-07/Aug/24\n\nOther reason\n\n01/Aug/24-01/Aug/24"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-5121",
+    "text": "Test: TC-5121 — SPM - Workday - Synchronization with BP\nPriority: High | Status: In Review | Type: Manual\nFolder: /BP/SPM/TS-505 Workday\nLabels: spm-paulina-tc, teamace, teamresources\n\nDescription:\nIn order to execute this test, first execute Workday Integration [https://appfire.atlassian.net/browse/TC-5064|https://appfire.atlassian.net/browse/TC-5064|smart-link] \n\nSteps:\n1. Navigate to Administration → Resources → Individuals\n   Expected: Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To \n* Add new Individual\n2. Click on Refresh Workday absences\n   Expected: Refresh Workday absences button is gray and has a loading icon\n\nIn the left corner there’s blue message\n\n'Synchronization with Workday in progress\n\nThe synchronization of absences from Workday is currently in progress. We will notify you once it has been completed'\n\nAfter few seconds, green message is displayed ‘Synchronization with Workday finished’\n3. Click on three dots on Full Name column, type userName1 and userName2 and select them\n   Data: userName1: paulina.sendecka\n\nuserName2: monika.cecot\n   Expected: User paulina.sendecka and monika.cecot are selected\n\n'Workday sync status' column has a green label SYNCED\n4. Click on userName to open Resource details page\n   Data: userName: paulina.sendecka\n   Expected: Green Label ‘Workday’ is displayed next to userName\n\nAbsences are displayed in Absences tab\n\n+ Add new button is grayed out next to Absences tab\n5. Scroll down on absences\n   Expected: Following absences are displayed: \n\nOther reason\n\n05/Dec/24-05/Dec/24\n\nOther reason\n\n20/Nov/24-20/Nov/24\n\nOther reason\n\n13/Nov/24-13/Nov/24\n\nOther reason\n\n04/Nov/24-06/Nov/24\n\nOther reason\n\n28/Oct/24-31/Oct/24\n\nOther reason\n\n21/Oct/24-25/Oct/24\n\nOther reason\n\n07/Oct/24-07/Oct/24\n\nOther reason\n\n23/Sep/24-24/Sep/24\n\nOther reason\n\n02/Sep/24-02/Sep/24\n\nOther reason\n\n07/Aug/24-07/Aug/24\n\nOther reason\n\n01/Aug/24-01/Aug/24",
+    "metadata": {
+      "jira_key": "TC-5121",
+      "issue_id": "1052615",
+      "summary": "SPM - Workday - Synchronization with BP",
+      "priority": "High",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-505 Workday",
+      "labels": [
+        "spm-paulina-tc",
+        "teamace",
+        "teamresources"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

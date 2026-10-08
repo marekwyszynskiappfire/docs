@@ -1,0 +1,109 @@
+{
+  "test": {
+    "key": "TC-4536",
+    "issue_id": "814698",
+    "url": "https://appfire.atlassian.net/browse/TC-4536",
+    "summary": "Box module - Gantt - Basic Operations - Creating Basic task without dates",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Patryk Watras",
+    "reporter": "Bartosz Drążewski",
+    "created": "2024-07-22T10:05:27.443-0400",
+    "updated": "2026-05-08T09:08:44.048-0400",
+    "labels": [
+      "tc-tasks-no-dates",
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-4536 - Box Module - Gantt - Basic operations - Creating Basic task without dates",
+        "result": "Gantt module is displayed. \n\nSplash screen with informationis visible : \n\"Fill your box with the first tasks\n\nYou can create them from scratch or define the scope to sync existing projects or boards.\"  \n\nBelow that information 2 tiles is visible: \n\n* \"Create new\" tile \n* \"Define scope\" tile"
+      },
+      {
+        "step": 2,
+        "action": "Click on Create new task tile -> Basic Task \n\nIn Basic Task create task modal fill folLowing fields: Summary -> basicTask1 \nStart Date/End Date -> leave empty",
+        "data": "basicTask1: Basic Task One",
+        "result": "On WBS there is newly created basic task - \"Basic Task One\" \n\nNo taskbar has been created on the Gantt chart."
+      },
+      {
+        "step": 3,
+        "action": "In column view switch Current view to newColumnView",
+        "data": "newColumnCV: TC4536cv",
+        "result": "New column view is visible on WBS. TC4536cv column view has 5 columns: \n\n* Icon \n* Key \n* Summary \n* Start Date (Built-in) \n* End Date (Built-in)"
+      },
+      {
+        "step": 4,
+        "action": "Scroll Gantt chart to dateOne and set cursor on dateOne over row corresponding to basicTask1",
+        "data": "basicTask1: Basic Task One dateOne: 23.08.2023",
+        "result": "While hovering over Gantt chart row corresponding to \"Basic Task One\" there is a grey placeholder (phantom task) with \"+\" sign inside. \n\nThere are visible dates on the left and right side of the placeholder: 23.08.2023 for start date and end date. \n\nStart Date and End Date field in columns on WBS are empty."
+      },
+      {
+        "step": 5,
+        "action": "On Gantt chart hover over row corresponding to basicTask1 and move the cursor from dateOne to dateTwo",
+        "data": "basicTask1: Basic Task One \ndateOne: 23.08.2023 \ndateTwo: 29.08.2023",
+        "result": "Placeholder is still visible while moving cursor over Gantt chart row. \n\nNow it has dates 29.08.2023 for Start Date (on the left side) and End Date (on the right side)."
+      },
+      {
+        "step": 6,
+        "action": "Zoom in Gantt chart to maximum and scroll the chart to dateTwo. Hover over row corresponding to basicTask1 and move cursor over dateTwo.",
+        "data": "basicTask1: Basic Task One \ndateTwo: 29.08.2023",
+        "result": "Placeholder visible width has increased and is adjusted to the width of the cell containing the day in the timeline. \n\nThere are visible dates on the left and right side of the placeholder: 29.08.2023 for start date and end date."
+      },
+      {
+        "step": 7,
+        "action": "In context menu click Create task -> Basic Task and add basicTask2",
+        "data": "basicTask2: Basic Task Two",
+        "result": "\"Basic Task Two\" is added on WBS. \nStart date and End date fields on WBS are empty. No taskbar for task is visible on Gantt chart."
+      },
+      {
+        "step": 8,
+        "action": "On Gantt chart hover over row corresponding to basicTask2 and move the cursor over dateThree",
+        "data": "basicTask2: Basic Task Two \ndateThree: 15.08.2023",
+        "result": "Placeholder is visible while moving cursor over Gantt chart row. \n\nIt has dates 15.08.2023 for Start Date and End Date."
+      },
+      {
+        "step": 9,
+        "action": "Select basicTask1 on WBS and in context menu click Create task -> Create subtask -> Basic Task and add basicTaskChild",
+        "data": "basicTask2: Basic Task One \nbasicTaskChild: Basic Task Child",
+        "result": "After selecting \"Basic Task One\" no snipe on Gantt chart is visible. \n\n\"Basic Task Child\" is added as a child task of \"Basic Task One\". Start date and End date fields on WBS are empty. No taskbar for child task is visible on Gantt chart."
+      },
+      {
+        "step": 10,
+        "action": "On Gantt chart hover over row corresponding to basicTaskChild",
+        "data": "basicTaskChild: Basic Task Child",
+        "result": "Placeholder is visible while moving cursor over Gantt chart row."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-4536",
+    "text": "Test: TC-4536 — Box module - Gantt - Basic Operations - Creating Basic task without dates\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-52 Box Module - Gantt - Basic operations\nLabels: tc-tasks-no-dates, teamspace\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-4536 - Box Module - Gantt - Basic operations - Creating Basic task without dates\n   Expected: Gantt module is displayed. \n\nSplash screen with informationis visible : \n\"Fill your box with the first tasks\n\nYou can create them from scratch or define the scope to sync existing projects or boards.\"  \n\nBelow that information 2 tiles is visible: \n\n* \"Create new\" tile \n* \"Define scope\" tile\n2. Click on Create new task tile -> Basic Task \n\nIn Basic Task create task modal fill folLowing fields: Summary -> basicTask1 \nStart Date/End Date -> leave empty\n   Data: basicTask1: Basic Task One\n   Expected: On WBS there is newly created basic task - \"Basic Task One\" \n\nNo taskbar has been created on the Gantt chart.\n3. In column view switch Current view to newColumnView\n   Data: newColumnCV: TC4536cv\n   Expected: New column view is visible on WBS. TC4536cv column view has 5 columns: \n\n* Icon \n* Key \n* Summary \n* Start Date (Built-in) \n* End Date (Built-in)\n4. Scroll Gantt chart to dateOne and set cursor on dateOne over row corresponding to basicTask1\n   Data: basicTask1: Basic Task One dateOne: 23.08.2023\n   Expected: While hovering over Gantt chart row corresponding to \"Basic Task One\" there is a grey placeholder (phantom task) with \"+\" sign inside. \n\nThere are visible dates on the left and right side of the placeholder: 23.08.2023 for start date and end date. \n\nStart Date and End Date field in columns on WBS are empty.\n5. On Gantt chart hover over row corresponding to basicTask1 and move the cursor from dateOne to dateTwo\n   Data: basicTask1: Basic Task One \ndateOne: 23.08.2023 \ndateTwo: 29.08.2023\n   Expected: Placeholder is still visible while moving cursor over Gantt chart row. \n\nNow it has dates 29.08.2023 for Start Date (on the left side) and End Date (on the right side).\n6. Zoom in Gantt chart to maximum and scroll the chart to dateTwo. Hover over row corresponding to basicTask1 and move cursor over dateTwo.\n   Data: basicTask1: Basic Task One \ndateTwo: 29.08.2023\n   Expected: Placeholder visible width has increased and is adjusted to the width of the cell containing the day in the timeline. \n\nThere are visible dates on the left and right side of the placeholder: 29.08.2023 for start date and end date.\n7. In context menu click Create task -> Basic Task and add basicTask2\n   Data: basicTask2: Basic Task Two\n   Expected: \"Basic Task Two\" is added on WBS. \nStart date and End date fields on WBS are empty. No taskbar for task is visible on Gantt chart.\n8. On Gantt chart hover over row corresponding to basicTask2 and move the cursor over dateThree\n   Data: basicTask2: Basic Task Two \ndateThree: 15.08.2023\n   Expected: Placeholder is visible while moving cursor over Gantt chart row. \n\nIt has dates 15.08.2023 for Start Date and End Date.\n9. Select basicTask1 on WBS and in context menu click Create task -> Create subtask -> Basic Task and add basicTaskChild\n   Data: basicTask2: Basic Task One \nbasicTaskChild: Basic Task Child\n   Expected: After selecting \"Basic Task One\" no snipe on Gantt chart is visible. \n\n\"Basic Task Child\" is added as a child task of \"Basic Task One\". Start date and End date fields on WBS are empty. No taskbar for child task is visible on Gantt chart.\n10. On Gantt chart hover over row corresponding to basicTaskChild\n   Data: basicTaskChild: Basic Task Child\n   Expected: Placeholder is visible while moving cursor over Gantt chart row.",
+    "metadata": {
+      "jira_key": "TC-4536",
+      "issue_id": "814698",
+      "summary": "Box module - Gantt - Basic Operations - Creating Basic task without dates",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+      "labels": [
+        "tc-tasks-no-dates",
+        "teamspace"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

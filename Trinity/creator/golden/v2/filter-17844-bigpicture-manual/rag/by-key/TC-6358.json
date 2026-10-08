@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-6358",
+    "issue_id": "1788926",
+    "url": "https://appfire.atlassian.net/browse/TC-6358",
+    "summary": "SPM – OKR – Child OKRs inherit restrictions from parent OKR",
+    "description": "This test verifies inheriting restrictions from a parent OKR to its child OKRs.\n\n*Validation scope:*\n\n* Applying restrictions to a parent OKR\n* Verifying restrictions are automatically inherited by all existing child OKRs\n* Verifying restrictions are inherited by newly created child OKRs\n* Verifying restrictions are propagated through all hierarchy levels (children and descendants)\n* Verifying inherited restrictions cannot be manually modified on child OKRs\n* Verifying changes to parent restrictions are reflected in all child OKRs",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-06-24T04:49:02.976-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-509 OKR - Security",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Preconditions:*\n\n* Strategic Theme, Objective and Key Result are created\n* Box scope is defined by Strategic theme and OKR task structure is enabled in this box\n* Admin user and regular user (user B) are prepared",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "As admin user Open OKR Overview of boxName",
+        "data": "boxName: TC-6358 SPM - OKR - Child OKRs inherit restrictions from parent OKR",
+        "result": "Strategic Theme, Objective and Key Result are visible in OKR Overview\n\n* Strategic Theme 1 \n** Objective 1 \n*** Key Result 1"
+      },
+      {
+        "step": 3,
+        "action": "Log in as User B to BP and open OKR Overview of boxName",
+        "data": "boxName: TC-6358 SPM - OKR - Child OKRs inherit restrictions from parent OKR",
+        "result": "Strategic Theme, Objective and Key Result are visible in OKR Overview\n\n* Strategic Theme 1\n** Objective 1\n*** Key Result 1"
+      },
+      {
+        "step": 4,
+        "action": "As admin user Open Strategic theme 1 → Click in Restriction button in the upper right corner → Open dropdown and set \"*Only specific people or teams can view or edit*\". Click Save",
+        "data": "",
+        "result": "The restriction is enabled and the *Restrictions button* changes its color to red."
+      },
+      {
+        "step": 5,
+        "action": "Click back to Overview →  Open Objective 1 and hover over to Restriction button",
+        "data": "",
+        "result": "The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*."
+      },
+      {
+        "step": 6,
+        "action": "Click back to Overview → Open Key result 1 and hover over to Restriction button",
+        "data": "",
+        "result": "The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*."
+      },
+      {
+        "step": 7,
+        "action": "Click Restriction button",
+        "data": "",
+        "result": "The *View restrictions* modal is displayed. The parent OKR key (*ST*) is visible, indicating that restrictions are inherited from the parent. Restriction settings is disabled and cannot be edited in this view.\n\n!xray-attachment://918b00ac-bb27-4ad6-8407-9ec236cdda46|width=66%!"
+      },
+      {
+        "step": 8,
+        "action": "Click in Parent OKR key (ST)",
+        "data": "",
+        "result": "Strategic theme is opened in new tab i OKR detail view"
+      },
+      {
+        "step": 9,
+        "action": "As user B refresh the page being in OKR Overview",
+        "data": "",
+        "result": "OKR Overview is empty. OKRs are not displayed"
+      },
+      {
+        "step": 10,
+        "action": "Open Gantt module",
+        "data": "",
+        "result": "OKRs are displayed as \"No access\""
+      },
+      {
+        "step": 11,
+        "action": "As Admin user Open Objective 1 → navigate to Alignment click Add button and create Key result",
+        "data": "keyresultName: KR2",
+        "result": "Key result is created and displayed as child of Objective 1 in OKR overview"
+      },
+      {
+        "step": 12,
+        "action": "Open KR 2 and hover over to *Restriction button*",
+        "data": "",
+        "result": "The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-6358",
+    "text": "Test: TC-6358 — SPM – OKR – Child OKRs inherit restrictions from parent OKR\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-509 OKR - Security\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies inheriting restrictions from a parent OKR to its child OKRs.\n\n*Validation scope:*\n\n* Applying restrictions to a parent OKR\n* Verifying restrictions are automatically inherited by all existing child OKRs\n* Verifying restrictions are inherited by newly created child OKRs\n* Verifying restrictions are propagated through all hierarchy levels (children and descendants)\n* Verifying inherited restrictions cannot be manually modified on child OKRs\n* Verifying changes to parent restrictions are reflected in all child OKRs\n\nSteps:\n1. *Preconditions:*\n\n* Strategic Theme, Objective and Key Result are created\n* Box scope is defined by Strategic theme and OKR task structure is enabled in this box\n* Admin user and regular user (user B) are prepared\n   Expected: \n2. As admin user Open OKR Overview of boxName\n   Data: boxName: TC-6358 SPM - OKR - Child OKRs inherit restrictions from parent OKR\n   Expected: Strategic Theme, Objective and Key Result are visible in OKR Overview\n\n* Strategic Theme 1 \n** Objective 1 \n*** Key Result 1\n3. Log in as User B to BP and open OKR Overview of boxName\n   Data: boxName: TC-6358 SPM - OKR - Child OKRs inherit restrictions from parent OKR\n   Expected: Strategic Theme, Objective and Key Result are visible in OKR Overview\n\n* Strategic Theme 1\n** Objective 1\n*** Key Result 1\n4. As admin user Open Strategic theme 1 → Click in Restriction button in the upper right corner → Open dropdown and set \"*Only specific people or teams can view or edit*\". Click Save\n   Expected: The restriction is enabled and the *Restrictions button* changes its color to red.\n5. Click back to Overview →  Open Objective 1 and hover over to Restriction button\n   Expected: The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*.\n6. Click back to Overview → Open Key result 1 and hover over to Restriction button\n   Expected: The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*.\n7. Click Restriction button\n   Expected: The *View restrictions* modal is displayed. The parent OKR key (*ST*) is visible, indicating that restrictions are inherited from the parent. Restriction settings is disabled and cannot be edited in this view.\n\n!xray-attachment://918b00ac-bb27-4ad6-8407-9ec236cdda46|width=66%!\n8. Click in Parent OKR key (ST)\n   Expected: Strategic theme is opened in new tab i OKR detail view\n9. As user B refresh the page being in OKR Overview\n   Expected: OKR Overview is empty. OKRs are not displayed\n10. Open Gantt module\n   Expected: OKRs are displayed as \"No access\"\n11. As Admin user Open Objective 1 → navigate to Alignment click Add button and create Key result\n   Data: keyresultName: KR2\n   Expected: Key result is created and displayed as child of Objective 1 in OKR overview\n12. Open KR 2 and hover over to *Restriction button*\n   Expected: The restriction is enabled and the *Restrictions button* is displayed in red color. Tooltip with message\" *Restricted by the parent \"Parent-Key\" - Only specific people or teams can view or edit*.",
+    "metadata": {
+      "jira_key": "TC-6358",
+      "issue_id": "1788926",
+      "summary": "SPM – OKR – Child OKRs inherit restrictions from parent OKR",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-509 OKR - Security",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

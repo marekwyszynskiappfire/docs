@@ -1,0 +1,107 @@
+{
+  "test": {
+    "key": "TC-3948",
+    "issue_id": "358737",
+    "url": "https://appfire.atlassian.net/browse/TC-3948",
+    "summary": "Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+    "description": "Checking new available project webhooks event\r\n\r\n \r\n * moved to trash ({{{}project_soft_deleted{}}})\r\n * restored from trash ({{{}project_restored_deleted{}}})\r\n * archived ({{{}project_archived{}}})\r\n * restored from archive ({{{}project_restored_archived{}}})",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2023-03-10T09:57:39.528-0500",
+    "updated": "2026-03-30T08:13:48.580-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Prerequisites: Enterprise instance required",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Navigate to boxName -> Box Configuration -> Scope Definition -> and add projectName",
+        "data": "boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\nprojectName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+        "result": "Project is added to the scope\n3 tasks in the scope is visible in scope definition window"
+      },
+      {
+        "step": 3,
+        "action": "Open Gantt module of boxName",
+        "data": "boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+        "result": "Three issues are visible in WBS:\n\n* Bug\n* Task\n* Story"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Jira Projects -> View all projects and find projectName:",
+        "data": "projectName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+        "result": "projectName is displayed"
+      },
+      {
+        "step": 5,
+        "action": "Click tree dots button -> Move to trash",
+        "data": "",
+        "result": "Project is moved to trash message is displayed"
+      },
+      {
+        "step": 6,
+        "action": "Open webhooks.log and verify if webhook \"project_soft_deleted\" is logged",
+        "data": "Verify webhooks log in GCP or Kibana",
+        "result": "\"project_soft_deleted\" is logged"
+      },
+      {
+        "step": 7,
+        "action": "Open Gantt module of boxName",
+        "data": "boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+        "result": "The scope is corrupted massage appear. \nThe warning log with message appear:\n- Error in scope for Jira: User does not have permission to access tasks or a value with ID does not exist for the field 'project'\n\nAll tasks has no access"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Jira settings -> Projects -> Trash\nClick tree dots button to projectName and click \"Restore\" button",
+        "data": "projectName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+        "result": "Project successfully restored message is displayed"
+      },
+      {
+        "step": 9,
+        "action": "Open webhooks.log and verify if webhook \"project_restored_deleted\" is logged",
+        "data": "",
+        "result": "Webhook \"project_restored_deleted\" is logged"
+      },
+      {
+        "step": 10,
+        "action": "Open Gantt module of boxName and refresh the page",
+        "data": "boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+        "result": "Three issues are visible in WBS:\n- Bug\n- Task\n- Story"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-3948",
+    "text": "Test: TC-3948 — Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-25 Feature area - Box scope - Own scope definition\nLabels: teamextplatform\n\nDescription:\nChecking new available project webhooks event\r\n\r\n \r\n * moved to trash ({{{}project_soft_deleted{}}})\r\n * restored from trash ({{{}project_restored_deleted{}}})\r\n * archived ({{{}project_archived{}}})\r\n * restored from archive ({{{}project_restored_archived{}}})\n\nSteps:\n1. Prerequisites: Enterprise instance required\n   Expected: \n2. Navigate to boxName -> Box Configuration -> Scope Definition -> and add projectName\n   Data: boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\nprojectName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\n   Expected: Project is added to the scope\n3 tasks in the scope is visible in scope definition window\n3. Open Gantt module of boxName\n   Data: boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\n   Expected: Three issues are visible in WBS:\n\n* Bug\n* Task\n* Story\n4. Navigate to Jira Projects -> View all projects and find projectName:\n   Data: projectName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\n   Expected: projectName is displayed\n5. Click tree dots button -> Move to trash\n   Expected: Project is moved to trash message is displayed\n6. Open webhooks.log and verify if webhook \"project_soft_deleted\" is logged\n   Data: Verify webhooks log in GCP or Kibana\n   Expected: \"project_soft_deleted\" is logged\n7. Open Gantt module of boxName\n   Data: boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\n   Expected: The scope is corrupted massage appear. \nThe warning log with message appear:\n- Error in scope for Jira: User does not have permission to access tasks or a value with ID does not exist for the field 'project'\n\nAll tasks has no access\n8. Navigate to Jira settings -> Projects -> Trash\nClick tree dots button to projectName and click \"Restore\" button\n   Data: projectName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\n   Expected: Project successfully restored message is displayed\n9. Open webhooks.log and verify if webhook \"project_restored_deleted\" is logged\n   Expected: Webhook \"project_restored_deleted\" is logged\n10. Open Gantt module of boxName and refresh the page\n   Data: boxName: TC-3948 Feature area - Box scope - Own scope definition - Checking Project Webhooks Event\n   Expected: Three issues are visible in WBS:\n- Bug\n- Task\n- Story",
+    "metadata": {
+      "jira_key": "TC-3948",
+      "issue_id": "358737",
+      "summary": "Feature area - Box scope - Own scope definition - Checking Project Webhooks Event",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

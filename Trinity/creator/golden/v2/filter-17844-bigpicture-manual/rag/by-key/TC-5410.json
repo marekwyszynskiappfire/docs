@@ -1,0 +1,105 @@
+{
+  "test": {
+    "key": "TC-5410",
+    "issue_id": "1162466",
+    "url": "https://appfire.atlassian.net/browse/TC-5410",
+    "summary": "SPM - Priorities - Displaying values for different types  of templates",
+    "description": "dane dodane na images",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2025-02-27T11:43:41.343-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc",
+      "teamace",
+      "teamresources"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/Priorities",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Priorities module of boxName",
+        "data": "boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates",
+        "result": "Priorities module is displayed\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 2,
+        "action": "Set following values for taskName",
+        "data": "taskName: Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low",
+        "result": "Following values are set for Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n\nScore is 80"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates",
+        "result": "Following tasks are displayed\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 4,
+        "action": "Click on add or edit column and add columnName",
+        "data": "columnName: Priority score",
+        "result": "Following values are displayed for each task\n\n* Task 1 - 80 in gray lozenge\n* Task 2 - Empty field\n* Task 3 - Empty field\n* Task 4 - Empty field\n* Task 5 - Empty field"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Priorities module of boxName",
+        "data": "boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates",
+        "result": "Following tasks are displayed\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 6,
+        "action": "Click on Customize in the right corner",
+        "data": "",
+        "result": "Select prioritization template is ICE"
+      },
+      {
+        "step": 7,
+        "action": "Select newPrioritizationTemplate and click Save changes",
+        "data": "newPrioritizationTemplate: RICE",
+        "result": "New columns appeared\n\nValues are 0 for each task\n\nFollowing columns are displayed:\n\n* Score\n* Impact\n* Effort\n* Reach \n* Confidence"
+      },
+      {
+        "step": 8,
+        "action": "Set values for taskName",
+        "data": "taskName: Task 2",
+        "result": "Impact: 3 starts\n\nEffort: M\n\nReach: 22\n\nConfidence: Low\n\nAfter loading Score is 1100"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates",
+        "result": "Following tasks are displayed with value \n\n* Task 1 - Empty field\n* Task 2 - 1100\n* Task 3 - Empty field\n* Task 4 - Empty field\n* Task 5 - Empty field"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-5410",
+    "text": "Test: TC-5410 — SPM - Priorities - Displaying values for different types  of templates\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/Priorities\nLabels: spm-paulina-tc, teamace, teamresources\n\nDescription:\ndane dodane na images\n\nSteps:\n1. Navigate to Priorities module of boxName\n   Data: boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates\n   Expected: Priorities module is displayed\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n2. Set following values for taskName\n   Data: taskName: Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n   Expected: Following values are set for Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n\nScore is 80\n3. Navigate to Gantt module of a boxName\n   Data: boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates\n   Expected: Following tasks are displayed\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n4. Click on add or edit column and add columnName\n   Data: columnName: Priority score\n   Expected: Following values are displayed for each task\n\n* Task 1 - 80 in gray lozenge\n* Task 2 - Empty field\n* Task 3 - Empty field\n* Task 4 - Empty field\n* Task 5 - Empty field\n5. Navigate to Priorities module of boxName\n   Data: boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates\n   Expected: Following tasks are displayed\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n6. Click on Customize in the right corner\n   Expected: Select prioritization template is ICE\n7. Select newPrioritizationTemplate and click Save changes\n   Data: newPrioritizationTemplate: RICE\n   Expected: New columns appeared\n\nValues are 0 for each task\n\nFollowing columns are displayed:\n\n* Score\n* Impact\n* Effort\n* Reach \n* Confidence\n8. Set values for taskName\n   Data: taskName: Task 2\n   Expected: Impact: 3 starts\n\nEffort: M\n\nReach: 22\n\nConfidence: Low\n\nAfter loading Score is 1100\n9. Navigate to Gantt module of a boxName\n   Data: boxName: TC-5410 SPM - Foxly - Displaying values for different types of templates\n   Expected: Following tasks are displayed with value \n\n* Task 1 - Empty field\n* Task 2 - 1100\n* Task 3 - Empty field\n* Task 4 - Empty field\n* Task 5 - Empty field",
+    "metadata": {
+      "jira_key": "TC-5410",
+      "issue_id": "1162466",
+      "summary": "SPM - Priorities - Displaying values for different types  of templates",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/Priorities",
+      "labels": [
+        "spm-paulina-tc",
+        "teamace",
+        "teamresources"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-1861",
+    "issue_id": "359711",
+    "url": "https://appfire.atlassian.net/browse/TC-1861",
+    "summary": "Feature area - Exporting - Resource Grid - Exporting xlsx file",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2021-05-07T04:23:15.500-0400",
+    "updated": "2026-08-18T09:09:32.277-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of boxName.",
+        "data": "boxName: TC-1861 Box Module - Resource Grid - Exporting xlsx file",
+        "result": "Resources module is successfully loaded and displayed.\nIndividuals mode -> All is selected in the left top corner.\nEffort mode is set to Original estimate and Units to Hours.\nScale is set to Month/Weekly."
+      },
+      {
+        "step": 2,
+        "action": "Move Timeline to date.",
+        "data": "date: 03/May/21",
+        "result": "Timeline is moved to selected date.\n\nAll rows are expanded. \n\nWorkload, Remaining Capacity, Capacity, Values on heatmap and Tasks are displayed on Resource Grid.\n\nFollowing tasks are assigned to TC-1861 user:\n\n* TC1861-1 TC1861 Task 1\n* TC1861-2 TC1861 Task 2\n* TC1861-3 TC1861 Task 3\n\nFollowing values for Workload are displayed:\n\n* \"22.0\" in green lozenge for week 18\n* \"44.0\" in red lozenge for week 19\n\nFollowing values for Remaining Capacity are displayed:\n\n* \"18.0\" in green lozenge for week 18\n* \"-14.0\" in red lozenge for week 19\n\nFollowing values for Capacity are displayed:\n\n* \"40.0\" in light grey lozenge for week 18\n* \"30.0\" in light grey lozenge for week 19"
+      },
+      {
+        "step": 3,
+        "action": "Click on Weekly dropdown menu butoon and change Aggregation to Daily.",
+        "data": "",
+        "result": "Aggregation change to Daily.\n\nFollowing values for Workload are displayed:\n\n* 07/05 \"22.0\" in red lozenge\n* 08/05 \"0\" in grey lozenge\n* 09/05 \"0\" in grey lozenge\n* 10/05 \"0\" in grey lozenge\n* 11/05 \"22.0\" in red lozenge\n* 12/05 \"16.0\" in red lozenge\n* 13/05 \"6.0\" in orange lozenge\n\nFollowing values for Remaining Capacity are displayed:\n\n* 07/05 \"-14.0\" in red lozenge\n* 08/05 \"0\" in grey lozenge\n* 09/05 \"0\" in grey lozenge\n* 10/05 \"0\" in grey lozenge\n* 11/05 \"-14.0\" in red lozenge\n* 12/05 \"-10.0\" in red lozenge\n* 13/05 \"2.0\" in orange lozenge\n\nFollowing values for Capacity are displayed:\n\n* 07/05 \"8.0\" in light grey lozenge\n* 08/05 \"0\" in light grey lozenge\n* 09/05 \"0\" in light grey lozenge\n* 10/05 \"0\" in light grey lozenge\n* 11/05 \"8.0\" in light grey lozenge\n* 12/05 \"6.0\" in light grey lozenge\n* 13/05 \"8.0\" in light grey lozenge"
+      },
+      {
+        "step": 4,
+        "action": "Click on Export button -> in Export Manager modal select XLSX file next to the MS Excel Basic Template.",
+        "data": "",
+        "result": "File is successfully downloaded."
+      },
+      {
+        "step": 5,
+        "action": "Open xlsx file -> select Remaining Capacity tab",
+        "data": "",
+        "result": "xlsx file is opened.\nFollowing values for Remaining capacity are displayed for TC-1861 user: \n\n* 03/05 - \"8,0\"\n* 04/05 - \"8,0\"\n* 05/05 - \"8,0\"\n* 06/05 - \"8,0\"\n* 07/05 - \"-14,0\"\n* 08/05 - \"0,0\"\n* 09/05 - \"0,0\"\n* 10/05 - \"0,0\" \n* 11/05 - \"-14,0\"\n* 12/05 - \"-10,0\"\n* 13/05 - \"2,0\""
+      },
+      {
+        "step": 6,
+        "action": "Select Capacity tab in xlsx file",
+        "data": "",
+        "result": "Following values for capacity are displayed for TC-1861 user: \n\n* 03/05 - \"8,0\"\n* 04/05 - \"8,0\"\n* 05/05 - \"8,0\"\n* 06/05 - \"8,0\"\n* 07/05 - \"8,0\"\n* 08/05 - \"0,0\"\n* 09/05 - \"0,0\"\n* 10/05 - \"0,0\" \n* 11/05 - \"8,0\"\n* 12/05 - \"6,0\"\n* 13/05 - \"8,0\""
+      },
+      {
+        "step": 7,
+        "action": "Go back to BigPicture.",
+        "data": "",
+        "result": "Resources module is displayed."
+      },
+      {
+        "step": 8,
+        "action": "Close the \"Export data\" window.\nClick the button with the tachometer icon in the header menu and set newUnit.\nClick on an empty place on Resource Grid to close the dropdown list.",
+        "data": "newUnit: Percent",
+        "result": "Following values for Workload are displayed:\n\n* 07/05 - \"275%\" in red lozenge\n* 08/05 - empty field in grey lozenge\n* 09/05 - empty field in grey lozenge\n* 10/05 - empty field in grey lozenge\n* 11/05 \"275%\" in red lozenge\n* 12/05 \"267%\" in red lozenge\n* 13/05 \"75%\" in orange lozenge\n\nFollowing values for Remaining Capacity are displayed:\n\n* 07/05 - \"-175%\" in red lozenge\n* 08/05 - empty field in grey lozenge\n* 09/05 - empty field in grey lozenge\n* 10/05 - empty field in grey lozenge\n* 11/05 - \"-175%\" in red lozenge\n* 12/05 - \"-167%\" in red lozenge\n* 13/05 - \"25%\" in orange lozenge\n\nFollowing values for Capacity are displayed:\n\n* 07/05 - \"100%\" in light grey lozenge\n* 08/05 - empty field \n* 09/05 - empty field \n* 10/05 - empty field \n* 11/05 - \"100%\" in light grey lozenge\n* 12/05 - \"75%\" in light grey lozenge\n* 13/05 - \"100%\" in light grey lozenge"
+      },
+      {
+        "step": 9,
+        "action": "Click on Export button -> in Export Manager modal select XLSX file next to the MS Excel Basic Template.",
+        "data": "",
+        "result": "File is successfully downloaded."
+      },
+      {
+        "step": 10,
+        "action": "Open xlsx file -> select Remaining Capacity tab",
+        "data": "",
+        "result": "xlsx file is opened.\nFollowing values for Remaining capacity are displayed for TC-1861 user: \n\n* 03/05 - \"100%\"\n* 04/05 - \"100%\"\n* 05/05 - \"100%\"\n* 06/05 - \"100%\"\n* 07/05 - \"-175%\"\n* 08/05 - empty field\n* 09/05 - empty field\n* 10/05 - empty field\n* 11/05 - \"-175%\"\n* 12/05 - \"-167%\"\n* 13/05 - \"25%\""
+      },
+      {
+        "step": 11,
+        "action": "Select Capacity tab in xlsx file",
+        "data": "",
+        "result": "Following values for capacity are displayed for TC-1861 user: \n\n* 03/05 - \"100%\"\n* 04/05 - \"100%\"\n* 05/05 - \"100%\"\n* 06/05 - \"100%\"\n* 07/05 - \"100%\"\n* 08/05 - empty field\n* 09/05 - empty field\n* 10/05 - empty field\n* 11/05 - \"100%\"\n* 12/05 - \"100%\"\n* 13/05 - \"100%\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-1861",
+    "text": "Test: TC-1861 — Feature area - Exporting - Resource Grid - Exporting xlsx file\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Resources module of boxName.\n   Data: boxName: TC-1861 Box Module - Resource Grid - Exporting xlsx file\n   Expected: Resources module is successfully loaded and displayed.\nIndividuals mode -> All is selected in the left top corner.\nEffort mode is set to Original estimate and Units to Hours.\nScale is set to Month/Weekly.\n2. Move Timeline to date.\n   Data: date: 03/May/21\n   Expected: Timeline is moved to selected date.\n\nAll rows are expanded. \n\nWorkload, Remaining Capacity, Capacity, Values on heatmap and Tasks are displayed on Resource Grid.\n\nFollowing tasks are assigned to TC-1861 user:\n\n* TC1861-1 TC1861 Task 1\n* TC1861-2 TC1861 Task 2\n* TC1861-3 TC1861 Task 3\n\nFollowing values for Workload are displayed:\n\n* \"22.0\" in green lozenge for week 18\n* \"44.0\" in red lozenge for week 19\n\nFollowing values for Remaining Capacity are displayed:\n\n* \"18.0\" in green lozenge for week 18\n* \"-14.0\" in red lozenge for week 19\n\nFollowing values for Capacity are displayed:\n\n* \"40.0\" in light grey lozenge for week 18\n* \"30.0\" in light grey lozenge for week 19\n3. Click on Weekly dropdown menu butoon and change Aggregation to Daily.\n   Expected: Aggregation change to Daily.\n\nFollowing values for Workload are displayed:\n\n* 07/05 \"22.0\" in red lozenge\n* 08/05 \"0\" in grey lozenge\n* 09/05 \"0\" in grey lozenge\n* 10/05 \"0\" in grey lozenge\n* 11/05 \"22.0\" in red lozenge\n* 12/05 \"16.0\" in red lozenge\n* 13/05 \"6.0\" in orange lozenge\n\nFollowing values for Remaining Capacity are displayed:\n\n* 07/05 \"-14.0\" in red lozenge\n* 08/05 \"0\" in grey lozenge\n* 09/05 \"0\" in grey lozenge\n* 10/05 \"0\" in grey lozenge\n* 11/05 \"-14.0\" in red lozenge\n* 12/05 \"-10.0\" in red lozenge\n* 13/05 \"2.0\" in orange lozenge\n\nFollowing values for Capacity are displayed:\n\n* 07/05 \"8.0\" in light grey lozenge\n* 08/05 \"0\" in light grey lozenge\n* 09/05 \"0\" in light grey lozenge\n* 10/05 \"0\" in light grey lozenge\n* 11/05 \"8.0\" in light grey lozenge\n* 12/05 \"6.0\" in light grey lozenge\n* 13/05 \"8.0\" in light grey lozenge\n4. Click on Export button -> in Export Manager modal select XLSX file next to the MS Excel Basic Template.\n   Expected: File is successfully downloaded.\n5. Open xlsx file -> select Remaining Capacity tab\n   Expected: xlsx file is opened.\nFollowing values for Remaining capacity are displayed for TC-1861 user: \n\n* 03/05 - \"8,0\"\n* 04/05 - \"8,0\"\n* 05/05 - \"8,0\"\n* 06/05 - \"8,0\"\n* 07/05 - \"-14,0\"\n* 08/05 - \"0,0\"\n* 09/05 - \"0,0\"\n* 10/05 - \"0,0\" \n* 11/05 - \"-14,0\"\n* 12/05 - \"-10,0\"\n* 13/05 - \"2,0\"\n6. Select Capacity tab in xlsx file\n   Expected: Following values for capacity are displayed for TC-1861 user: \n\n* 03/05 - \"8,0\"\n* 04/05 - \"8,0\"\n* 05/05 - \"8,0\"\n* 06/05 - \"8,0\"\n* 07/05 - \"8,0\"\n* 08/05 - \"0,0\"\n* 09/05 - \"0,0\"\n* 10/05 - \"0,0\" \n* 11/05 - \"8,0\"\n* 12/05 - \"6,0\"\n* 13/05 - \"8,0\"\n7. Go back to BigPicture.\n   Expected: Resources module is displayed.\n8. Close the \"Export data\" window.\nClick the button with the tachometer icon in the header menu and set newUnit.\nClick on an empty place on Resource Grid to close the dropdown list.\n   Data: newUnit: Percent\n   Expected: Following values for Workload are displayed:\n\n* 07/05 - \"275%\" in red lozenge\n* 08/05 - empty field in grey lozenge\n* 09/05 - empty field in grey lozenge\n* 10/05 - empty field in grey lozenge\n* 11/05 \"275%\" in red lozenge\n* 12/05 \"267%\" in red lozenge\n* 13/05 \"75%\" in orange lozenge\n\nFollowing values for Remaining Capacity are displayed:\n\n* 07/05 - \"-175%\" in red lozenge\n* 08/05 - empty field in grey lozenge\n* 09/05 - empty field in grey lozenge\n* 10/05 - empty field in grey lozenge\n* 11/05 - \"-175%\" in red lozenge\n* 12/05 - \"-167%\" in red lozenge\n* 13/05 - \"25%\" in orange lozenge\n\nFollowing values for Capacity are displayed:\n\n* 07/05 - \"100%\" in light grey lozenge\n* 08/05 - empty field \n* 09/05 - empty field \n* 10/05 - empty field \n* 11/05 - \"100%\" in light grey lozenge\n* 12/05 - \"75%\" in light grey lozenge\n* 13/05 - \"100%\" in light grey lozenge\n9. Click on Export button -> in Export Manager modal select XLSX file next to the MS Excel Basic Template.\n   Expected: File is successfully downloaded.\n10. Open xlsx file -> select Remaining Capacity tab\n   Expected: xlsx file is opened.\nFollowing values for Remaining capacity are displayed for TC-1861 user: \n\n* 03/05 - \"100%\"\n* 04/05 - \"100%\"\n* 05/05 - \"100%\"\n* 06/05 - \"100%\"\n* 07/05 - \"-175%\"\n* 08/05 - empty field\n* 09/05 - empty field\n* 10/05 - empty field\n* 11/05 - \"-175%\"\n* 12/05 - \"-167%\"\n* 13/05 - \"25%\"\n11. Select Capacity tab in xlsx file\n   Expected: Following values for capacity are displayed for TC-1861 user: \n\n* 03/05 - \"100%\"\n* 04/05 - \"100%\"\n* 05/05 - \"100%\"\n* 06/05 - \"100%\"\n* 07/05 - \"100%\"\n* 08/05 - empty field\n* 09/05 - empty field\n* 10/05 - empty field\n* 11/05 - \"100%\"\n* 12/05 - \"100%\"\n* 13/05 - \"100%\"",
+    "metadata": {
+      "jira_key": "TC-1861",
+      "issue_id": "359711",
+      "summary": "Feature area - Exporting - Resource Grid - Exporting xlsx file",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

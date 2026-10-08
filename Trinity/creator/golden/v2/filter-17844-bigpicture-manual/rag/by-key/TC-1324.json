@@ -1,0 +1,103 @@
+{
+  "test": {
+    "key": "TC-1324",
+    "issue_id": "356727",
+    "url": "https://appfire.atlassian.net/browse/TC-1324",
+    "summary": "Feature area - Resource - Capacity - Changing capacity by changing workload plan efficiency",
+    "description": "",
+    "status": "In Review",
+    "priority": "High",
+    "assignee": "Monika Cecot",
+    "reporter": "Bartosz Drążewski",
+    "created": "2021-02-04T04:08:00.482-0500",
+    "updated": "2026-03-17T15:08:28.130-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources Module of boxName",
+        "data": "boxName: TC-1324 Feature area - Resource - Capacity - Changing capacity by changing workload plan efficiency",
+        "result": "Resources module is successfully loaded and displayed. \nIndividual view is selected in the left top corner.\nThe beginning of Timeline is set to 01/Feb/2021.\n\nResource TC1324 is displayed on the Resources Grid with following tasks:\n\n* TC1324-1 Task1\n* TC1324-2 Task2\n* TC1324-3 Task3"
+      },
+      {
+        "step": 2,
+        "action": "Look at the Workload values of resourceName.",
+        "data": "resourceName: TC1324",
+        "result": "Resource TC1324 is displayed with following workload:\n\n* Workload for week 05 is \"30.0\" in green lozenge\n* Workload for week 06 is \"24.0\" in green lozenge\n* Workload for week 07 is \"30.0\" in green lozenge"
+      },
+      {
+        "step": 3,
+        "action": "Look at the Remaining capacity values of resourceName.",
+        "data": "resourceName: TC1324",
+        "result": "Resource TC1324 is displayed with following remaining capacities:\n\n* Remaining capacity for week 05 is \"10.0\" in green lozenge\n* Remaining capacity for week 06 is \"16.0\" in green lozenge\n* Remaining capacity for week 07 is \"10.0\" in green lozenge"
+      },
+      {
+        "step": 4,
+        "action": "Look ate the Capacity values of resourceName.",
+        "data": "resourceName: TC1324",
+        "result": "Resource TC1324 is displayed with following capacities:\n\n* Capacity of TC1323 for week 05 is \"40.0\" in white lozenge\n* Capacity of TC1323 for week 06 is \"40.0\" in white lozenge\n* Capacity of TC1323 for week 07 is \"40.0\" in white lozenge"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to BP Administration -> Resources -> Workload Plans tab",
+        "data": "",
+        "result": "Workload Plans tab in Administration is displayed."
+      },
+      {
+        "step": 6,
+        "action": "Click Details button for Workload plan with workloadPlanName and workloadPlanCode",
+        "data": "workloadPlanName: TC-1324 Changing Capacity efficiency\nworkloadPlanCode: TC1324",
+        "result": "Details page for TC-1324 Changing Capacity efficiency is displayed. Following details are provided:\n\n* Name: TC-1324 Changing Capacity efficiency\n* Code: TC1324\n* Description: \\{empty}\n* Max weekly workload: 40h"
+      },
+      {
+        "step": 7,
+        "action": "Click on Assigned resources in the right top corner",
+        "data": "",
+        "result": "Window with assigned resources is displayed. There is one user on the list:\n\n* TC1324 with Efficiency set to 1 and Start date set to 01/Jan/19"
+      },
+      {
+        "step": 8,
+        "action": "In the add section Select user with Efficiency and Start Date and click on \"+\" icon and then Assign button",
+        "data": "user: TC1324\nEfficiency: 0.6\nStart date: 01/Jan/20",
+        "result": "New period is added and displayed in the chevron."
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Resources Module of boxName",
+        "data": "boxName: TC-1324 Feature area - Resource - Capacity - Changing capacity by changing workload plan efficiency",
+        "result": "Resources module is successfully loaded and displayed. \nIndividual view -> All is selected in the left top corner.\n\nFollowing values are visible on Resource Grid:\n\n* Workload for week 05 is \"30.0\" in red lozenge\n* Workload for week 06 is \"24.0\" in green lozenge\n* Workload for week 07 is \"30.0\" in red lozenge\n* Remaining capacity for week 05 is \"-6.0\" in red lozenge\n* Remaining capacity for week 06 is \"0\" in green lozenge\n* Remaining capacity for week 07 is \"-6.0\" in red lozenge\n* Capacity of TC1323 for week 05 is \"24.0\" in white lozenge\n* Capacity of TC1323 for week 06 is \"24.0\" in white lozenge\n* Capacity of TC1323 for week 07 is \"24.0\" in white lozenge"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-1324",
+    "text": "Test: TC-1324 — Feature area - Resource - Capacity - Changing capacity by changing workload plan efficiency\nPriority: High | Status: In Review | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: be-enterprise, can_be_automated\n\nSteps:\n1. Navigate to Resources Module of boxName\n   Data: boxName: TC-1324 Feature area - Resource - Capacity - Changing capacity by changing workload plan efficiency\n   Expected: Resources module is successfully loaded and displayed. \nIndividual view is selected in the left top corner.\nThe beginning of Timeline is set to 01/Feb/2021.\n\nResource TC1324 is displayed on the Resources Grid with following tasks:\n\n* TC1324-1 Task1\n* TC1324-2 Task2\n* TC1324-3 Task3\n2. Look at the Workload values of resourceName.\n   Data: resourceName: TC1324\n   Expected: Resource TC1324 is displayed with following workload:\n\n* Workload for week 05 is \"30.0\" in green lozenge\n* Workload for week 06 is \"24.0\" in green lozenge\n* Workload for week 07 is \"30.0\" in green lozenge\n3. Look at the Remaining capacity values of resourceName.\n   Data: resourceName: TC1324\n   Expected: Resource TC1324 is displayed with following remaining capacities:\n\n* Remaining capacity for week 05 is \"10.0\" in green lozenge\n* Remaining capacity for week 06 is \"16.0\" in green lozenge\n* Remaining capacity for week 07 is \"10.0\" in green lozenge\n4. Look ate the Capacity values of resourceName.\n   Data: resourceName: TC1324\n   Expected: Resource TC1324 is displayed with following capacities:\n\n* Capacity of TC1323 for week 05 is \"40.0\" in white lozenge\n* Capacity of TC1323 for week 06 is \"40.0\" in white lozenge\n* Capacity of TC1323 for week 07 is \"40.0\" in white lozenge\n5. Navigate to BP Administration -> Resources -> Workload Plans tab\n   Expected: Workload Plans tab in Administration is displayed.\n6. Click Details button for Workload plan with workloadPlanName and workloadPlanCode\n   Data: workloadPlanName: TC-1324 Changing Capacity efficiency\nworkloadPlanCode: TC1324\n   Expected: Details page for TC-1324 Changing Capacity efficiency is displayed. Following details are provided:\n\n* Name: TC-1324 Changing Capacity efficiency\n* Code: TC1324\n* Description: \\{empty}\n* Max weekly workload: 40h\n7. Click on Assigned resources in the right top corner\n   Expected: Window with assigned resources is displayed. There is one user on the list:\n\n* TC1324 with Efficiency set to 1 and Start date set to 01/Jan/19\n8. In the add section Select user with Efficiency and Start Date and click on \"+\" icon and then Assign button\n   Data: user: TC1324\nEfficiency: 0.6\nStart date: 01/Jan/20\n   Expected: New period is added and displayed in the chevron.\n9. Navigate to Resources Module of boxName\n   Data: boxName: TC-1324 Feature area - Resource - Capacity - Changing capacity by changing workload plan efficiency\n   Expected: Resources module is successfully loaded and displayed. \nIndividual view -> All is selected in the left top corner.\n\nFollowing values are visible on Resource Grid:\n\n* Workload for week 05 is \"30.0\" in red lozenge\n* Workload for week 06 is \"24.0\" in green lozenge\n* Workload for week 07 is \"30.0\" in red lozenge\n* Remaining capacity for week 05 is \"-6.0\" in red lozenge\n* Remaining capacity for week 06 is \"0\" in green lozenge\n* Remaining capacity for week 07 is \"-6.0\" in red lozenge\n* Capacity of TC1323 for week 05 is \"24.0\" in white lozenge\n* Capacity of TC1323 for week 06 is \"24.0\" in white lozenge\n* Capacity of TC1323 for week 07 is \"24.0\" in white lozenge",
+    "metadata": {
+      "jira_key": "TC-1324",
+      "issue_id": "356727",
+      "summary": "Feature area - Resource - Capacity - Changing capacity by changing workload plan efficiency",
+      "priority": "High",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

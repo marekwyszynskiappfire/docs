@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-1971",
+    "issue_id": "357809",
+    "url": "https://appfire.atlassian.net/browse/TC-1971",
+    "summary": "Global - Task configuration - Validation error of partial fields mapping for Jira project",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": null,
+    "reporter": "Patryk Watras",
+    "created": "2021-06-01T10:10:51.679-0400",
+    "updated": "2026-04-14T09:20:25.571-0400",
+    "labels": [
+      "teamlego"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-117 Global - Task configuration",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Settings -> General (App configuration section)",
+        "data": "",
+        "result": "Field mapping page is displayed"
+      },
+      {
+        "step": 2,
+        "action": "In \"General mapping\" settings set newValue1 for *Start date* field",
+        "data": "newValue1: Original Estimate",
+        "result": "*Start date* field has new value - \"*Original estimate*\"\n\nNew *One-way sync start date field* field appears beLow Start date field."
+      },
+      {
+        "step": 3,
+        "action": "Click *Save* and *refresh the page*. \nCheck if newField1 is visible in \"General mapping\" settings after page refresh.",
+        "data": "newField1: One-way sync start date field",
+        "result": "After page refresh in \"General mapping\" settings new field is displayed with label: *One-way sync start date field*."
+      },
+      {
+        "step": 4,
+        "action": "In \"General mapping\" settings set: \n\n* newValue3 for *One-way sync start date* field\n* newValue2 for *Start date* field",
+        "data": "newValue3: Start date\n\nnewValue2: Not Synchronized",
+        "result": "*Start date* field value is *\"Not Synchronized\"*, and \n\n*One-way sync start date* field should disappear as Start Date is no longer set to Original estimate"
+      },
+      {
+        "step": 5,
+        "action": "Click *Save*",
+        "data": "",
+        "result": "Red coloured info:\nFailed to save configuration \nis visible next to Save button\n\nValidation errors are displayed\n\n* Validation Error\nPartial synchronization of dates is not alLowed. Disable the synchronization of both Start and End date fields or map both fields to a date picker or date time picker type of fields.\n\n* -Validation Error-\n-Cannot set secondary mapping for field which does not have main mapping configured-"
+      },
+      {
+        "step": 6,
+        "action": "In \"General mapping\" settings set:\n\n* newValue2 for *Start date* field\n* newValue4 for *End date* field\n\nClick *Save*",
+        "data": "newValue2: Start date\n\nnewValue4: Not Synchronized",
+        "result": "Validation errors is displayed\n\n* Validation Error\nPartial synchronization of dates is not alLowed. Disable the synchronization of both Start and End date fields or map both fields to a date picker or date time picker type of fields."
+      },
+      {
+        "step": 7,
+        "action": "Reset fields to default values with the button on the bottom of the page",
+        "data": "",
+        "result": "Values are set to default"
+      },
+      {
+        "step": 8,
+        "action": "In \"General mapping\" settings set:\n\n* newValue5 for *Baseline start date* field\n* newValue6 for *Baseline end date* field\n\nClick *Save*",
+        "data": "newValue5: Baseline start date (customfield_xxxx): Baseline start date field used by SoftwarePlant plugins\n\nnewValue6: Not Synchronized",
+        "result": "Validation errors is displayed\n\n* Validation Error\nPartial synchronization of baseline dates is not alLowed. Disable the synchronization of both baseline Start and End date fields or map both fields to a date picker or date time picker type of fields."
+      },
+      {
+        "step": 9,
+        "action": "In \"General mapping\" settings set:\n\n* newValue5 for *Baseline start date* field\n* newValue6 for *Baseline end date* field\n\nClick *Save*",
+        "data": "newValue5: Not Synchronized\n\nnewValue6: Baseline end date (customfield_xxxx): Baseline end date field used by SoftwarePlant plugins",
+        "result": "Validation errors is displayed\n\n* Validation Error\nPartial synchronization of baseline dates is not alLowed. Disable the synchronization of both baseline Start and End date fields or map both fields to a date picker or date time picker type of fields."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-1971",
+    "text": "Test: TC-1971 — Global - Task configuration - Validation error of partial fields mapping for Jira project\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-117 Global - Task configuration\nLabels: teamlego\n\nSteps:\n1. Navigate to App Settings -> General (App configuration section)\n   Expected: Field mapping page is displayed\n2. In \"General mapping\" settings set newValue1 for *Start date* field\n   Data: newValue1: Original Estimate\n   Expected: *Start date* field has new value - \"*Original estimate*\"\n\nNew *One-way sync start date field* field appears beLow Start date field.\n3. Click *Save* and *refresh the page*. \nCheck if newField1 is visible in \"General mapping\" settings after page refresh.\n   Data: newField1: One-way sync start date field\n   Expected: After page refresh in \"General mapping\" settings new field is displayed with label: *One-way sync start date field*.\n4. In \"General mapping\" settings set: \n\n* newValue3 for *One-way sync start date* field\n* newValue2 for *Start date* field\n   Data: newValue3: Start date\n\nnewValue2: Not Synchronized\n   Expected: *Start date* field value is *\"Not Synchronized\"*, and \n\n*One-way sync start date* field should disappear as Start Date is no longer set to Original estimate\n5. Click *Save*\n   Expected: Red coloured info:\nFailed to save configuration \nis visible next to Save button\n\nValidation errors are displayed\n\n* Validation Error\nPartial synchronization of dates is not alLowed. Disable the synchronization of both Start and End date fields or map both fields to a date picker or date time picker type of fields.\n\n* -Validation Error-\n-Cannot set secondary mapping for field which does not have main mapping configured-\n6. In \"General mapping\" settings set:\n\n* newValue2 for *Start date* field\n* newValue4 for *End date* field\n\nClick *Save*\n   Data: newValue2: Start date\n\nnewValue4: Not Synchronized\n   Expected: Validation errors is displayed\n\n* Validation Error\nPartial synchronization of dates is not alLowed. Disable the synchronization of both Start and End date fields or map both fields to a date picker or date time picker type of fields.\n7. Reset fields to default values with the button on the bottom of the page\n   Expected: Values are set to default\n8. In \"General mapping\" settings set:\n\n* newValue5 for *Baseline start date* field\n* newValue6 for *Baseline end date* field\n\nClick *Save*\n   Data: newValue5: Baseline start date (customfield_xxxx): Baseline start date field used by SoftwarePlant plugins\n\nnewValue6: Not Synchronized\n   Expected: Validation errors is displayed\n\n* Validation Error\nPartial synchronization of baseline dates is not alLowed. Disable the synchronization of both baseline Start and End date fields or map both fields to a date picker or date time picker type of fields.\n9. In \"General mapping\" settings set:\n\n* newValue5 for *Baseline start date* field\n* newValue6 for *Baseline end date* field\n\nClick *Save*\n   Data: newValue5: Not Synchronized\n\nnewValue6: Baseline end date (customfield_xxxx): Baseline end date field used by SoftwarePlant plugins\n   Expected: Validation errors is displayed\n\n* Validation Error\nPartial synchronization of baseline dates is not alLowed. Disable the synchronization of both baseline Start and End date fields or map both fields to a date picker or date time picker type of fields.",
+    "metadata": {
+      "jira_key": "TC-1971",
+      "issue_id": "357809",
+      "summary": "Global - Task configuration - Validation error of partial fields mapping for Jira project",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-117 Global - Task configuration",
+      "labels": [
+        "teamlego"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

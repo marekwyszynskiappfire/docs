@@ -1,0 +1,42 @@
+{
+  "test": {
+    "key": "TC-5978",
+    "issue_id": "1528476",
+    "url": "https://appfire.atlassian.net/browse/TC-5978",
+    "summary": "New Homepage - Boxes section",
+    "description": "",
+    "status": "To Do",
+    "priority": "High",
+    "assignee": null,
+    "reporter": "Robert Włodarczyk",
+    "created": "2026-02-11T05:33:06.240-0500",
+    "updated": "2026-08-06T11:17:34.708-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/New Homepage",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 0
+  },
+  "rag": {
+    "id": "TC-5978",
+    "text": "Test: TC-5978 — New Homepage - Boxes section\nPriority: High | Status: To Do | Type: Manual\nFolder: /BP/New Homepage",
+    "metadata": {
+      "jira_key": "TC-5978",
+      "issue_id": "1528476",
+      "summary": "New Homepage - Boxes section",
+      "priority": "High",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/New Homepage",
+      "labels": [],
+      "step_count": 0,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

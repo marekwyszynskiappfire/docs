@@ -1,0 +1,157 @@
+{
+  "test": {
+    "key": "TC-3493",
+    "issue_id": "359011",
+    "url": "https://appfire.atlassian.net/browse/TC-3493",
+    "summary": "Feature area - Risk - Modification of risk values definition",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Alona Adamska",
+    "created": "2022-08-12T07:14:54.904-0400",
+    "updated": "2026-03-04T09:14:06.814-0500",
+    "labels": [
+      "tc-tasks-no-dates",
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-83 Feature area - Risk",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Big Picture Configuration → Modules tab → Risks tab → Risk value definition section",
+        "data": "",
+        "result": "Task sources and Risk value definition section is displayed. \n\nRisk value definition contain information: \"Define labels and values of the Risks matrix. Values must be the same as the mapped Jira custom field's options.\"\n\nProbability and Consequence settings subsections are visible."
+      },
+      {
+        "step": 2,
+        "action": "Click Add value (plus icon) button, under the Probability subsection",
+        "data": "",
+        "result": "New, empty, edit field is visible."
+      },
+      {
+        "step": 3,
+        "action": "Type the valueName in the field, and press Enter",
+        "data": "valueName: High New value",
+        "result": "valueName is visible on the values list, with green lozenge contains \"to be added\" text"
+      },
+      {
+        "step": 4,
+        "action": "Drag and drop valueName1 to the newPosition",
+        "data": "valueName1: High \nnewPosition: 1 (Almost none)",
+        "result": "valueName1 is moved to the newPosition"
+      },
+      {
+        "step": 5,
+        "action": "Click on trash icon of valueName2",
+        "data": "valueName2: Low",
+        "result": "valueName2 is visible on the values list, with red lozenge contains \"to be removed\" text"
+      },
+      {
+        "step": 6,
+        "action": "Click Add value (plus icon) button, under the Consequence",
+        "data": "",
+        "result": "New, empty, edit field is visible."
+      },
+      {
+        "step": 7,
+        "action": "Type the valueName3 in the field, and press Enter",
+        "data": "valueName3: High New value",
+        "result": "valueName3 is visible on the values list, with green lozenge contains \"to be added\" text"
+      },
+      {
+        "step": 8,
+        "action": "Drag and drop valueName4 to the newPosition",
+        "data": "valueName4: High\nnewPosition: 3 (Medium)",
+        "result": "valueName4 is moved to the newPosition"
+      },
+      {
+        "step": 9,
+        "action": "Click on trash icon of valueName5",
+        "data": "valueName5: Severe",
+        "result": "valueName5 is visible on the values list, with red lozenge contains \"to be removed\" text"
+      },
+      {
+        "step": 10,
+        "action": "Scroll down to the Save button",
+        "data": "",
+        "result": "Above the Save button is frame with the changes, that will be applied, ordered in the way: \n\nProbability value to be removed:\nLow\n\nProbability value to be added:\nHigh new value\n\nProbability position to be modified:\nHigh position:  1\n\nConsequence value to be removed:\nSevere\n\nConsequence value to be added:\nHigh new value\n\nConsequence position to be modified:\nHigh position:  3\n\nMigration toggle button isn't appear."
+      },
+      {
+        "step": 11,
+        "action": "Save changes",
+        "data": "",
+        "result": "Save button has a statuses: \n\n* Save - blue colour;\n* Saving - grey clour;\n* Saved - green colour.\n\nChanges are saved correctly."
+      },
+      {
+        "step": 12,
+        "action": "Click on probabilityValue and check toggle button",
+        "data": "probabilityValue: Medium",
+        "result": "\"Search for the value...\" drop down menu appears"
+      },
+      {
+        "step": 13,
+        "action": "Expand drop down menu",
+        "data": "",
+        "result": "Drop down menu contains: \n\n* Search bar\n* List of already used and available values: \n\nHigh - Already used\n\nAlmost Lowest - Already used\n\nVery high - Already used\n\nLow - green check mark\n\nMedium - Already used\n\nThe values already used are greyed and not possible choose them."
+      },
+      {
+        "step": 14,
+        "action": "Click Add value (plus icon) button, under the Consequence and type the valueName",
+        "data": "valueName: New value",
+        "result": "New, empty, edit field is visible.\n\nvalueName is visible on the values list, with green lozenge contains \"to be added\" text."
+      },
+      {
+        "step": 15,
+        "action": "Click Discard changes",
+        "data": "",
+        "result": "Changes are abandoned."
+      },
+      {
+        "step": 16,
+        "action": "Click on probabilityValue and type newProbabilityValue",
+        "data": "probabilityValue: Almost None\n\nnewProbabilityValue: Lowest",
+        "result": "Edit mode is active. New value is provided"
+      },
+      {
+        "step": 17,
+        "action": "Press Enter",
+        "data": "",
+        "result": "Warning red icon appear near New Value."
+      },
+      {
+        "step": 18,
+        "action": "Scroll down to the Save button",
+        "data": "",
+        "result": "Above the Save button is frame with the changes, that will be applied, ordered in the way:\n\n* Probability value to be modified:\n\nAlmost None -> Lowest\n\n* Toggle button: Migrate existing values to newly selected fields\n*  Changes will affect all tasks synchronized with BigPicture. This process can take a while, so we recommend running it during non-business hours."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 18
+  },
+  "rag": {
+    "id": "TC-3493",
+    "text": "Test: TC-3493 — Feature area - Risk - Modification of risk values definition\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-83 Feature area - Risk\nLabels: tc-tasks-no-dates, teamsource\n\nSteps:\n1. Navigate to Big Picture Configuration → Modules tab → Risks tab → Risk value definition section\n   Expected: Task sources and Risk value definition section is displayed. \n\nRisk value definition contain information: \"Define labels and values of the Risks matrix. Values must be the same as the mapped Jira custom field's options.\"\n\nProbability and Consequence settings subsections are visible.\n2. Click Add value (plus icon) button, under the Probability subsection\n   Expected: New, empty, edit field is visible.\n3. Type the valueName in the field, and press Enter\n   Data: valueName: High New value\n   Expected: valueName is visible on the values list, with green lozenge contains \"to be added\" text\n4. Drag and drop valueName1 to the newPosition\n   Data: valueName1: High \nnewPosition: 1 (Almost none)\n   Expected: valueName1 is moved to the newPosition\n5. Click on trash icon of valueName2\n   Data: valueName2: Low\n   Expected: valueName2 is visible on the values list, with red lozenge contains \"to be removed\" text\n6. Click Add value (plus icon) button, under the Consequence\n   Expected: New, empty, edit field is visible.\n7. Type the valueName3 in the field, and press Enter\n   Data: valueName3: High New value\n   Expected: valueName3 is visible on the values list, with green lozenge contains \"to be added\" text\n8. Drag and drop valueName4 to the newPosition\n   Data: valueName4: High\nnewPosition: 3 (Medium)\n   Expected: valueName4 is moved to the newPosition\n9. Click on trash icon of valueName5\n   Data: valueName5: Severe\n   Expected: valueName5 is visible on the values list, with red lozenge contains \"to be removed\" text\n10. Scroll down to the Save button\n   Expected: Above the Save button is frame with the changes, that will be applied, ordered in the way: \n\nProbability value to be removed:\nLow\n\nProbability value to be added:\nHigh new value\n\nProbability position to be modified:\nHigh position:  1\n\nConsequence value to be removed:\nSevere\n\nConsequence value to be added:\nHigh new value\n\nConsequence position to be modified:\nHigh position:  3\n\nMigration toggle button isn't appear.\n11. Save changes\n   Expected: Save button has a statuses: \n\n* Save - blue colour;\n* Saving - grey clour;\n* Saved - green colour.\n\nChanges are saved correctly.\n12. Click on probabilityValue and check toggle button\n   Data: probabilityValue: Medium\n   Expected: \"Search for the value...\" drop down menu appears\n13. Expand drop down menu\n   Expected: Drop down menu contains: \n\n* Search bar\n* List of already used and available values: \n\nHigh - Already used\n\nAlmost Lowest - Already used\n\nVery high - Already used\n\nLow - green check mark\n\nMedium - Already used\n\nThe values already used are greyed and not possible choose them.\n14. Click Add value (plus icon) button, under the Consequence and type the valueName\n   Data: valueName: New value\n   Expected: New, empty, edit field is visible.\n\nvalueName is visible on the values list, with green lozenge contains \"to be added\" text.\n15. Click Discard changes\n   Expected: Changes are abandoned.\n16. Click on probabilityValue and type newProbabilityValue\n   Data: probabilityValue: Almost None\n\nnewProbabilityValue: Lowest\n   Expected: Edit mode is active. New value is provided\n17. Press Enter\n   Expected: Warning red icon appear near New Value.\n18. Scroll down to the Save button\n   Expected: Above the Save button is frame with the changes, that will be applied, ordered in the way:\n\n* Probability value to be modified:\n\nAlmost None -> Lowest\n\n* Toggle button: Migrate existing values to newly selected fields\n*  Changes will affect all tasks synchronized with BigPicture. This process can take a while, so we recommend running it during non-business hours.",
+    "metadata": {
+      "jira_key": "TC-3493",
+      "issue_id": "359011",
+      "summary": "Feature area - Risk - Modification of risk values definition",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-83 Feature area - Risk",
+      "labels": [
+        "tc-tasks-no-dates",
+        "teamsource"
+      ],
+      "step_count": 18,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

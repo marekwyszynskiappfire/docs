@@ -1,0 +1,97 @@
+{
+  "test": {
+    "key": "TC-5157",
+    "issue_id": "1068683",
+    "url": "https://appfire.atlassian.net/browse/TC-5157",
+    "summary": "SPM - Workday - Synchronizing Archived Resources",
+    "description": "In order to execute this test, first execute Workday Integration [https://appfire.atlassian.net/browse/TC-5064|https://appfire.atlassian.net/browse/TC-5064|smart-link]",
+    "status": "In Review",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2024-12-04T11:27:40.548-0500",
+    "updated": "2026-05-05T09:39:06.712-0400",
+    "labels": [
+      "spm-paulina-tc",
+      "teamace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-505 Workday",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Administration → Resources → Individuals",
+        "data": "",
+        "result": "Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To\n* Add new Individual"
+      },
+      {
+        "step": 2,
+        "action": "Click on three dots on Full Name column, type userName1 and select",
+        "data": "userName: kamil.koszarny",
+        "result": "User Kamil Koszarny is selected"
+      },
+      {
+        "step": 3,
+        "action": "Click on Archive resources button next to userName",
+        "data": "userName: kamil.koszarny",
+        "result": "Confirmation message is displayed\n\n‘After archiving, this resource's capacity will be zero, and team’s availability will be set as Unavailable from the archive date. You can restore it anytime, but team availability must be manually adjusted.’ \n\nArchive and Cancel buttons are displayed"
+      },
+      {
+        "step": 4,
+        "action": "Click Archive",
+        "data": "",
+        "result": "User Kamil Koszarny disappeared from the list"
+      },
+      {
+        "step": 5,
+        "action": "Click on Three dots next to Archived column",
+        "data": "",
+        "result": "Two options are displayed in filer menu:\n\n* Empty Value\n* Archived"
+      },
+      {
+        "step": 6,
+        "action": "Click Archived",
+        "data": "",
+        "result": "Option Archvied is selected. \n\nUser Kamil Koszarny is visible on the list again"
+      },
+      {
+        "step": 7,
+        "action": "Click on Refresh Workday absences",
+        "data": "",
+        "result": "Refresh Workday absences button is gray and has a loading icon\n\nIn the left corner there’s blue message\n\n'Synchronization with Workday in progress\n\nThe synchronization of absences from Workday is currently in progress. We will notify you once it has been completed'\n\nAfter few seconds, green message is displayed ‘Synchronization with Workday finished’\n\n\n\nWorkday sync column appeared but Kamil Koszarny has no synced status"
+      },
+      {
+        "step": 8,
+        "action": "Click on useName",
+        "data": "userName: kamil.koszarny",
+        "result": "User Kamil Koszarny has Archived label\n\nUser is not synchronized with Workday"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-5157",
+    "text": "Test: TC-5157 — SPM - Workday - Synchronizing Archived Resources\nPriority: High | Status: In Review | Type: Manual\nFolder: /BP/SPM/TS-505 Workday\nLabels: spm-paulina-tc, teamace\n\nDescription:\nIn order to execute this test, first execute Workday Integration [https://appfire.atlassian.net/browse/TC-5064|https://appfire.atlassian.net/browse/TC-5064|smart-link]\n\nSteps:\n1. Navigate to Administration → Resources → Individuals\n   Expected: Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To\n* Add new Individual\n2. Click on three dots on Full Name column, type userName1 and select\n   Data: userName: kamil.koszarny\n   Expected: User Kamil Koszarny is selected\n3. Click on Archive resources button next to userName\n   Data: userName: kamil.koszarny\n   Expected: Confirmation message is displayed\n\n‘After archiving, this resource's capacity will be zero, and team’s availability will be set as Unavailable from the archive date. You can restore it anytime, but team availability must be manually adjusted.’ \n\nArchive and Cancel buttons are displayed\n4. Click Archive\n   Expected: User Kamil Koszarny disappeared from the list\n5. Click on Three dots next to Archived column\n   Expected: Two options are displayed in filer menu:\n\n* Empty Value\n* Archived\n6. Click Archived\n   Expected: Option Archvied is selected. \n\nUser Kamil Koszarny is visible on the list again\n7. Click on Refresh Workday absences\n   Expected: Refresh Workday absences button is gray and has a loading icon\n\nIn the left corner there’s blue message\n\n'Synchronization with Workday in progress\n\nThe synchronization of absences from Workday is currently in progress. We will notify you once it has been completed'\n\nAfter few seconds, green message is displayed ‘Synchronization with Workday finished’\n\n\n\nWorkday sync column appeared but Kamil Koszarny has no synced status\n8. Click on useName\n   Data: userName: kamil.koszarny\n   Expected: User Kamil Koszarny has Archived label\n\nUser is not synchronized with Workday",
+    "metadata": {
+      "jira_key": "TC-5157",
+      "issue_id": "1068683",
+      "summary": "SPM - Workday - Synchronizing Archived Resources",
+      "priority": "High",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-505 Workday",
+      "labels": [
+        "spm-paulina-tc",
+        "teamace"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

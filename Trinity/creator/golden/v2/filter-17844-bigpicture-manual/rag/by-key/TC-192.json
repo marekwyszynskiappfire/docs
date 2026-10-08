@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-192",
+    "issue_id": "358468",
+    "url": "https://appfire.atlassian.net/browse/TC-192",
+    "summary": "Box Module - Gantt - Column Views - Deleting selected view by second user",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2020-08-20T02:54:18.050-0400",
+    "updated": "2026-06-18T05:47:56.509-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-96 Box Module - Gantt - Column Views",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Login as App Admin",
+        "data": "login: appadmin\npassword: sdfoijj\n\nfor Cloud: \nlogin: testlab.1@softwareplant.com\t\npassword: alamakota123",
+        "result": "User App admin is logged in"
+      },
+      {
+        "step": 2,
+        "action": "Proceed to Gantt module of boxName",
+        "data": "boxName: TC-192 Box Module - Gantt - Column Views - Deleting selected view by second user",
+        "result": "User is redirected to Gantt module in boxName"
+      },
+      {
+        "step": 3,
+        "action": "Click on Current view -> set view to viewName",
+        "data": "viewName: TC-192",
+        "result": "View is correctly visible. There are folLowing columns on Gantt:\n- _Icon_\n- _Key_\n- _Summary_\n- _Assignee_\n- _Skills_"
+      },
+      {
+        "step": 4,
+        "action": "Open new incognito tab and login as Box Admin",
+        "data": "login: boxadmin\npasswork: sdfoijj\n\nfor Cloud:\nlogin: testlab.10@softwareplant.com\t\npassword: alamakota123",
+        "result": "User Box Admin is logged in"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Box configuration of boxName (in the new incognito tab) -> Gantt -> Column Views",
+        "data": "boxName: TC-192 Box Module - Gantt - Column Views - Deleting selected view by second user",
+        "result": "User can see all available column views for this box:\n- _Agile_\n- _Essentials_\n- _Time tracking_\n- _Baseline_\n- _Teams_\n- _TC-192_"
+      },
+      {
+        "step": 6,
+        "action": "Click on 'details' icon to viewName and change visibility to Public. Save the change.",
+        "data": "viewName: TC-192",
+        "result": "Visibility is correctly changed from private to a public."
+      },
+      {
+        "step": 7,
+        "action": "Click on delete icon next to viewName and press Delete in modal window (make sure that TC-192 is not a Current View, if it necessary, change it on Gantt module)",
+        "data": "viewName: TC-192",
+        "result": "View is correctly deleted and is not visible on the list."
+      },
+      {
+        "step": 8,
+        "action": "Go back to tab when user Admin is logged in",
+        "data": "",
+        "result": "Gantt module is visible. As selected Column View is visible TC-192"
+      },
+      {
+        "step": 9,
+        "action": "Refresh the page",
+        "data": "",
+        "result": "The next column view from the list is displayed. TC-192 column view is not visible and no error is showing up."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-192",
+    "text": "Test: TC-192 — Box Module - Gantt - Column Views - Deleting selected view by second user\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-96 Box Module - Gantt - Column Views\nLabels: teamspace\n\nSteps:\n1. Login as App Admin\n   Data: login: appadmin\npassword: sdfoijj\n\nfor Cloud: \nlogin: testlab.1@softwareplant.com\t\npassword: alamakota123\n   Expected: User App admin is logged in\n2. Proceed to Gantt module of boxName\n   Data: boxName: TC-192 Box Module - Gantt - Column Views - Deleting selected view by second user\n   Expected: User is redirected to Gantt module in boxName\n3. Click on Current view -> set view to viewName\n   Data: viewName: TC-192\n   Expected: View is correctly visible. There are folLowing columns on Gantt:\n- _Icon_\n- _Key_\n- _Summary_\n- _Assignee_\n- _Skills_\n4. Open new incognito tab and login as Box Admin\n   Data: login: boxadmin\npasswork: sdfoijj\n\nfor Cloud:\nlogin: testlab.10@softwareplant.com\t\npassword: alamakota123\n   Expected: User Box Admin is logged in\n5. Navigate to Box configuration of boxName (in the new incognito tab) -> Gantt -> Column Views\n   Data: boxName: TC-192 Box Module - Gantt - Column Views - Deleting selected view by second user\n   Expected: User can see all available column views for this box:\n- _Agile_\n- _Essentials_\n- _Time tracking_\n- _Baseline_\n- _Teams_\n- _TC-192_\n6. Click on 'details' icon to viewName and change visibility to Public. Save the change.\n   Data: viewName: TC-192\n   Expected: Visibility is correctly changed from private to a public.\n7. Click on delete icon next to viewName and press Delete in modal window (make sure that TC-192 is not a Current View, if it necessary, change it on Gantt module)\n   Data: viewName: TC-192\n   Expected: View is correctly deleted and is not visible on the list.\n8. Go back to tab when user Admin is logged in\n   Expected: Gantt module is visible. As selected Column View is visible TC-192\n9. Refresh the page\n   Expected: The next column view from the list is displayed. TC-192 column view is not visible and no error is showing up.",
+    "metadata": {
+      "jira_key": "TC-192",
+      "issue_id": "358468",
+      "summary": "Box Module - Gantt - Column Views - Deleting selected view by second user",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-96 Box Module - Gantt - Column Views",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

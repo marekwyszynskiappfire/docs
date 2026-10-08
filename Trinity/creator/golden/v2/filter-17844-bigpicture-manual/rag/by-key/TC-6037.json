@@ -1,0 +1,109 @@
+{
+  "test": {
+    "key": "TC-6037",
+    "issue_id": "1607437",
+    "url": "https://appfire.atlassian.net/browse/TC-6037",
+    "summary": "TC-6037 Multi-team - Creating team by modal",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2026-03-30T10:03:42.835-0400",
+    "updated": "2026-03-31T08:39:37.425-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/Multi-team Assignment",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-6037 Multi-team - Creating team by modal",
+        "result": "Gantt module is loaded correctly."
+      },
+      {
+        "step": 2,
+        "action": "Click ‘Add time estimates’ button of columnName of taskName",
+        "data": "columnName: Multi-team planning (Story Points)\n\ntaskName: Task 1",
+        "result": "Dialog appeared. Warning banner is visible with text: \n\n\"You don’t have any teams yet. Create a team to add estimates.\"\n\nSelect team dropdown and Time estimates field are blocked."
+      },
+      {
+        "step": 3,
+        "action": "Click linkName",
+        "data": "linkName: Create a team",
+        "result": "Teams module is loaded. Three tiles are visible:\n\n* Assign existing\n* Create new team\n* Duplicate & edit existing"
+      },
+      {
+        "step": 4,
+        "action": "Click tileName.",
+        "data": "tileName: Create new team",
+        "result": "Dialog to creating new team appeared."
+      },
+      {
+        "step": 5,
+        "action": "Fill nameTeam and codeTeam.\n\nClick Create",
+        "data": "nameTeam: Team 1\n\ncodeTeam: T1",
+        "result": "New team is created."
+      },
+      {
+        "step": 6,
+        "action": "Delete teamName.",
+        "data": "teamName: Team 1",
+        "result": "Team is deleted. Three tiles are visible:\n\n* Assign existing\n* Create new team\n* Duplicate & edit existing"
+      },
+      {
+        "step": 7,
+        "action": "Back to Gantt module",
+        "data": "",
+        "result": "Gantt module is loaded correctly."
+      },
+      {
+        "step": 8,
+        "action": "Click ‘Add time estimates’ button of columnName of taskName",
+        "data": "columnName: Multi-team planning (Time estimates)\n\ntaskName: Task 2",
+        "result": "Dialog appeared. Warning banner is visible with text: \n\n\"You don’t have any teams yet. Create a team to add estimates.\"\n\nSelect team dropdown and Time estimates field are blocked."
+      },
+      {
+        "step": 9,
+        "action": "Click linkName",
+        "data": "linkName: Create a team",
+        "result": "Teams module is loaded. Three tiles are visible:\n\n* Assign existing\n* Create new team\n* Duplicate & edit existing"
+      },
+      {
+        "step": 10,
+        "action": "Click tileName.",
+        "data": "tileName: Create new team",
+        "result": "Dialog to creating new team appeared."
+      },
+      {
+        "step": 11,
+        "action": "Fill nameTeam and codeTeam.\n\nClick Create",
+        "data": "nameTeam: Team 2\n\ncodeTeam: T2",
+        "result": "New team is created."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-6037",
+    "text": "Test: TC-6037 — TC-6037 Multi-team - Creating team by modal\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/Multi-team Assignment\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-6037 Multi-team - Creating team by modal\n   Expected: Gantt module is loaded correctly.\n2. Click ‘Add time estimates’ button of columnName of taskName\n   Data: columnName: Multi-team planning (Story Points)\n\ntaskName: Task 1\n   Expected: Dialog appeared. Warning banner is visible with text: \n\n\"You don’t have any teams yet. Create a team to add estimates.\"\n\nSelect team dropdown and Time estimates field are blocked.\n3. Click linkName\n   Data: linkName: Create a team\n   Expected: Teams module is loaded. Three tiles are visible:\n\n* Assign existing\n* Create new team\n* Duplicate & edit existing\n4. Click tileName.\n   Data: tileName: Create new team\n   Expected: Dialog to creating new team appeared.\n5. Fill nameTeam and codeTeam.\n\nClick Create\n   Data: nameTeam: Team 1\n\ncodeTeam: T1\n   Expected: New team is created.\n6. Delete teamName.\n   Data: teamName: Team 1\n   Expected: Team is deleted. Three tiles are visible:\n\n* Assign existing\n* Create new team\n* Duplicate & edit existing\n7. Back to Gantt module\n   Expected: Gantt module is loaded correctly.\n8. Click ‘Add time estimates’ button of columnName of taskName\n   Data: columnName: Multi-team planning (Time estimates)\n\ntaskName: Task 2\n   Expected: Dialog appeared. Warning banner is visible with text: \n\n\"You don’t have any teams yet. Create a team to add estimates.\"\n\nSelect team dropdown and Time estimates field are blocked.\n9. Click linkName\n   Data: linkName: Create a team\n   Expected: Teams module is loaded. Three tiles are visible:\n\n* Assign existing\n* Create new team\n* Duplicate & edit existing\n10. Click tileName.\n   Data: tileName: Create new team\n   Expected: Dialog to creating new team appeared.\n11. Fill nameTeam and codeTeam.\n\nClick Create\n   Data: nameTeam: Team 2\n\ncodeTeam: T2\n   Expected: New team is created.",
+    "metadata": {
+      "jira_key": "TC-6037",
+      "issue_id": "1607437",
+      "summary": "TC-6037 Multi-team - Creating team by modal",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/Multi-team Assignment",
+      "labels": [],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

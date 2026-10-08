@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-541",
+    "issue_id": "359517",
+    "url": "https://appfire.atlassian.net/browse/TC-541",
+    "summary": "Global - Skills - Resynchronization with Tempo",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2020-10-06T08:12:26.437-0400",
+    "updated": "2026-05-05T09:14:49.457-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-9 Global - Skills",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Tempo -> Settings -> Staff/Roles",
+        "data": "_Tempo_ should be installed",
+        "result": "Team Roles tab is displayed."
+      },
+      {
+        "step": 2,
+        "action": "Add new team role passing this set of data",
+        "data": "skillName1: TC-541 Tempo Skill 1",
+        "result": "New team role is added"
+      },
+      {
+        "step": 3,
+        "action": "Add another team role passing this set of data",
+        "data": "skillName2: TC-541 Tempo Skill 2",
+        "result": "New team role is added"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to BP Administration -> Skills tab and click Synchronize with Tempo button",
+        "data": "",
+        "result": "Skills tab is displayed.\n\n\"TC-541 Tempo Skill 1\" and \"TC-541 Tempo Skill 2\" are displayed on the list with green Tempo lozenge"
+      },
+      {
+        "step": 5,
+        "action": "Hover over Resynchronize button next to skillName",
+        "data": "skillName1: TC-541 Tempo Skill 1",
+        "result": "Resynchronize button is grayed out. Tooltip with message \"Skill cannot be re-synchronized with Tempo\" is displayed."
+      },
+      {
+        "step": 6,
+        "action": "Edit skill with this set of data",
+        "data": "skillName1: TC-541 Tempo Skill edited\ndescription: TC-541 Tempo Skill edited",
+        "result": "Skill TC-541 Tempo Skill 1 is changed to new name TC-541 Tempo Skill edited and description is set to  TC-541 Tempo Skill edited \n\n\n\nTempo sync status is changed from Synced to Overwritten"
+      },
+      {
+        "step": 7,
+        "action": "Edit skill with this set of data",
+        "data": "skillName2: TC-541 Tempo Skill 2 edited on BP level",
+        "result": "Skill TC-541 Tempo Skill 2 is changed to new name TC-541 Tempo Skill 2 edited on BP level\n\nTempo sync status is changed from Synced to Overwritten"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Tempo -> Settings -> Staff/Roles",
+        "data": "",
+        "result": "Team Roles tab is displayed.\n\nRoles  \"TC-541 Tempo Skill 1\" and \"TC-541 Tempo Skill 2\" are still displayed on the list. Changes made in BP level are not displayed in Tempo."
+      },
+      {
+        "step": 9,
+        "action": "Click on roleName and set newName",
+        "data": "roleName: TC-541 Tempo Skill 1\nnewName: TC-541 Tempo Skill resynchronized",
+        "result": "Changes are saved"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to BP Administration -> Skills tab",
+        "data": "",
+        "result": "Skills tab is displayed.\n\n\"TC-541 Tempo Skill edited\" is displayed on the list"
+      },
+      {
+        "step": 11,
+        "action": "Click Resynchronize button next to skillName",
+        "data": "skillName: TC-541 Tempo Skill edited",
+        "result": "Synchronization is completed.\n\n\"TC-541 Tempo Skill resynchronized\" is displayed on the list with green Tempo lozenge"
+      },
+      {
+        "step": 12,
+        "action": "Click Synchronize with Tempo button",
+        "data": "",
+        "result": "FolLowing skills are displayed:\n\n* \"TC-541 Tempo Skill resynchronized\" is displayed on the list with green Tempo lozenge 'Synced'\n* \"TC-541 Tempo Skill 2 edited on BP level\" is displayed on the list with violet tempo lozenge 'Overwritten'"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-541",
+    "text": "Test: TC-541 — Global - Skills - Resynchronization with Tempo\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-9 Global - Skills\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Tempo -> Settings -> Staff/Roles\n   Data: _Tempo_ should be installed\n   Expected: Team Roles tab is displayed.\n2. Add new team role passing this set of data\n   Data: skillName1: TC-541 Tempo Skill 1\n   Expected: New team role is added\n3. Add another team role passing this set of data\n   Data: skillName2: TC-541 Tempo Skill 2\n   Expected: New team role is added\n4. Navigate to BP Administration -> Skills tab and click Synchronize with Tempo button\n   Expected: Skills tab is displayed.\n\n\"TC-541 Tempo Skill 1\" and \"TC-541 Tempo Skill 2\" are displayed on the list with green Tempo lozenge\n5. Hover over Resynchronize button next to skillName\n   Data: skillName1: TC-541 Tempo Skill 1\n   Expected: Resynchronize button is grayed out. Tooltip with message \"Skill cannot be re-synchronized with Tempo\" is displayed.\n6. Edit skill with this set of data\n   Data: skillName1: TC-541 Tempo Skill edited\ndescription: TC-541 Tempo Skill edited\n   Expected: Skill TC-541 Tempo Skill 1 is changed to new name TC-541 Tempo Skill edited and description is set to  TC-541 Tempo Skill edited \n\n\n\nTempo sync status is changed from Synced to Overwritten\n7. Edit skill with this set of data\n   Data: skillName2: TC-541 Tempo Skill 2 edited on BP level\n   Expected: Skill TC-541 Tempo Skill 2 is changed to new name TC-541 Tempo Skill 2 edited on BP level\n\nTempo sync status is changed from Synced to Overwritten\n8. Navigate to Tempo -> Settings -> Staff/Roles\n   Expected: Team Roles tab is displayed.\n\nRoles  \"TC-541 Tempo Skill 1\" and \"TC-541 Tempo Skill 2\" are still displayed on the list. Changes made in BP level are not displayed in Tempo.\n9. Click on roleName and set newName\n   Data: roleName: TC-541 Tempo Skill 1\nnewName: TC-541 Tempo Skill resynchronized\n   Expected: Changes are saved\n10. Navigate to BP Administration -> Skills tab\n   Expected: Skills tab is displayed.\n\n\"TC-541 Tempo Skill edited\" is displayed on the list\n11. Click Resynchronize button next to skillName\n   Data: skillName: TC-541 Tempo Skill edited\n   Expected: Synchronization is completed.\n\n\"TC-541 Tempo Skill resynchronized\" is displayed on the list with green Tempo lozenge\n12. Click Synchronize with Tempo button\n   Expected: FolLowing skills are displayed:\n\n* \"TC-541 Tempo Skill resynchronized\" is displayed on the list with green Tempo lozenge 'Synced'\n* \"TC-541 Tempo Skill 2 edited on BP level\" is displayed on the list with violet tempo lozenge 'Overwritten'",
+    "metadata": {
+      "jira_key": "TC-541",
+      "issue_id": "359517",
+      "summary": "Global - Skills - Resynchronization with Tempo",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-9 Global - Skills",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

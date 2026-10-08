@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-2963",
+    "issue_id": "358290",
+    "url": "https://appfire.atlassian.net/browse/TC-2963",
+    "summary": "Box Module - Overview - Column Views - Default Column Views for Program Box Type",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Artur Sędzik",
+    "reporter": "Artur Sędzik",
+    "created": "2022-02-07T09:30:27.133-0500",
+    "updated": "2026-03-04T09:15:08.742-0500",
+    "labels": [
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-59 Box Module - Overview",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Overview module of boxName in Hierarchy mode.",
+        "data": "boxName: TC-2963 Box Module - Overview - Column Views - Default Column Views for Program Box Type",
+        "result": "Overview module in Hierarchy mode loads and boxes are displayed.\nThe Current View is set to Essentials.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Start Date\n- End Date\n- Status\n- Status (tasks)[status categories in %]\n- Description"
+      },
+      {
+        "step": 2,
+        "action": "Switch the Current View to Financial.",
+        "data": "",
+        "result": "Current View is set to Financial.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Status\n- Budget\n- Estimated Cost (tasks)[sum]\n- Actual Cost (tasks)[sum]\n- Time Spent (tasks)[sum]\n- Capacity (teams)"
+      },
+      {
+        "step": 3,
+        "action": "Switch the Current View to Time Tracking.",
+        "data": "",
+        "result": "Current View is set to Time Tracking.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Status (tasks)[status categories in %]\n- Original Estimate (tasks)[sum]\n- Time tracking (tasks)[sum]\n- Time Spent (tasks)[sum]\n- Remaining Estimate (tasks)[sum]"
+      },
+      {
+        "step": 4,
+        "action": "Switch the Current View to Agile.",
+        "data": "",
+        "result": "Current View is set to Agile.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Start Date\n- End Date\n- Status\n- Status (tasks)[status categories in %]\n- Story Points (tasks)[status categories in %]"
+      },
+      {
+        "step": 5,
+        "action": "Switch View mode to Timeline in header and expand WBS to 2/3 of the page width",
+        "data": "",
+        "result": "View mode is set to Timeline.\n\nWBS is visible same as empty timeline on the right.\n\nThe folLowing columns are present on WBS:\n- Icon\n- Name\n- Leader\n- Status (Tasks)[Status categories in %]"
+      },
+      {
+        "step": 6,
+        "action": "Switch Current View to Financial",
+        "data": "",
+        "result": "Current View is set to Financial.\nThe folLowing columns are present on WBS:\n- Icon\n- Name\n- Budget\n- Estimated Cost (tasks)[sum]\n- Actual Cost (tasks)[sum]"
+      },
+      {
+        "step": 7,
+        "action": "Switch Current View to Time tracking",
+        "data": "",
+        "result": "Current View is set to Time Tracking.\nThe folLowing columns are present:\n- Icon\n- Name\n- Time tracking (tasks)[sum]\n- Time Spent (tasks)[sum]\n- Remaining Estimate (tasks)[sum]"
+      },
+      {
+        "step": 8,
+        "action": "Switch Current View to Agile",
+        "data": "",
+        "result": "Current View is set to Agile.\nThe folLowing columns are present:\n- Icon\n- Name\n- Status\n- Story Points (tasks)[status categories in %]"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-2963",
+    "text": "Test: TC-2963 — Box Module - Overview - Column Views - Default Column Views for Program Box Type\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-59 Box Module - Overview\nLabels: teamboxes\n\nSteps:\n1. Navigate to Overview module of boxName in Hierarchy mode.\n   Data: boxName: TC-2963 Box Module - Overview - Column Views - Default Column Views for Program Box Type\n   Expected: Overview module in Hierarchy mode loads and boxes are displayed.\nThe Current View is set to Essentials.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Start Date\n- End Date\n- Status\n- Status (tasks)[status categories in %]\n- Description\n2. Switch the Current View to Financial.\n   Expected: Current View is set to Financial.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Status\n- Budget\n- Estimated Cost (tasks)[sum]\n- Actual Cost (tasks)[sum]\n- Time Spent (tasks)[sum]\n- Capacity (teams)\n3. Switch the Current View to Time Tracking.\n   Expected: Current View is set to Time Tracking.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Status (tasks)[status categories in %]\n- Original Estimate (tasks)[sum]\n- Time tracking (tasks)[sum]\n- Time Spent (tasks)[sum]\n- Remaining Estimate (tasks)[sum]\n4. Switch the Current View to Agile.\n   Expected: Current View is set to Agile.\nThe folLowing columns are present:\n- Fav\n- Type\n- Name\n- Leader\n- Start Date\n- End Date\n- Status\n- Status (tasks)[status categories in %]\n- Story Points (tasks)[status categories in %]\n5. Switch View mode to Timeline in header and expand WBS to 2/3 of the page width\n   Expected: View mode is set to Timeline.\n\nWBS is visible same as empty timeline on the right.\n\nThe folLowing columns are present on WBS:\n- Icon\n- Name\n- Leader\n- Status (Tasks)[Status categories in %]\n6. Switch Current View to Financial\n   Expected: Current View is set to Financial.\nThe folLowing columns are present on WBS:\n- Icon\n- Name\n- Budget\n- Estimated Cost (tasks)[sum]\n- Actual Cost (tasks)[sum]\n7. Switch Current View to Time tracking\n   Expected: Current View is set to Time Tracking.\nThe folLowing columns are present:\n- Icon\n- Name\n- Time tracking (tasks)[sum]\n- Time Spent (tasks)[sum]\n- Remaining Estimate (tasks)[sum]\n8. Switch Current View to Agile\n   Expected: Current View is set to Agile.\nThe folLowing columns are present:\n- Icon\n- Name\n- Status\n- Story Points (tasks)[status categories in %]",
+    "metadata": {
+      "jira_key": "TC-2963",
+      "issue_id": "358290",
+      "summary": "Box Module - Overview - Column Views - Default Column Views for Program Box Type",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-59 Box Module - Overview",
+      "labels": [
+        "teamboxes"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

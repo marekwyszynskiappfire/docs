@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-4290",
+    "issue_id": "814436",
+    "url": "https://appfire.atlassian.net/browse/TC-4290",
+    "summary": "Feature area - Task Dependency - Deleting dependency via context menu",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2024-07-22T09:59:46.458-0400",
+    "updated": "2026-05-06T02:44:43.371-0400",
+    "labels": [
+      "can_be_automated",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-54 Feature area - Task Dependency",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName",
+        "data": "boxName: TC-4290 Feature area - Task Dependency - Deleting dependency via context menu",
+        "result": "Board module is loaded correctly.\n\nThere are visible two timeboxes:\n\n* TC-4290 PI1\n* TC-4290 PI2\n\nWith two swimlanes:\n\n* Team unassigned\n* TC-4290 Team 1\n\nAnd following tasks visible:\n\n* Task1\n* Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2\n* Task3\n* Task4\n* Task5\n* Task6"
+      },
+      {
+        "step": 2,
+        "action": "Hover over taskName and click on dot which appeared on the right side of the task card.",
+        "data": "taskName: Task1",
+        "result": "Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task5\n* Task6\n\nIn each row there is ellipsis button (three dots) visible."
+      },
+      {
+        "step": 3,
+        "action": "Hover over taskName on Task dependencies modal dialog and click on ellipsis button.",
+        "data": "taskName: Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2",
+        "result": "After hovering over taskName Snipe to task button is appearing.\n\nAfter clicking on ellipsis button context menu is displayed. FolLowing options are available:\n\n* Edit\n* Delete"
+      },
+      {
+        "step": 4,
+        "action": "Click on Delete button.",
+        "data": "",
+        "result": "Dialog:\n\nAre you sure you want to delete?\n\nis displaying.\n\nAt bottom of the dialog there are two buttons:\n\n* Delete\n* Cancel"
+      },
+      {
+        "step": 5,
+        "action": "Click on Cancel button.",
+        "data": "",
+        "result": "Dialog:\n\nAre you sure you want to delete?\n\nis closed."
+      },
+      {
+        "step": 6,
+        "action": "Click again on Delete button and confirm by clicking on Delete button.",
+        "data": "taskName: Task1",
+        "result": "Dialog:\n\nAre you sure you want to delete?\n\nis closed.\n\nTask dependencies modal dialog is closed.\n\nCounter on dot next to taskName is equal 4."
+      },
+      {
+        "step": 7,
+        "action": "Click on dot next to taskName.",
+        "data": "taskName: Task1",
+        "result": "Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task5\n* Task6\n\nIn each row there is ellipsis button (three dots) visible."
+      },
+      {
+        "step": 8,
+        "action": "Click on arrow next to timeBoxName to navigate to Iteration level.",
+        "data": "timeBoxName: TC-4290 PI1",
+        "result": "There are visible two timeboxes:\n\n* TC-4290 Iteration1\n* TC-4290 Iteration2\n\nWith two swimlanes:\n\n* Team unassigned\n* TC-4290 Team 1\n\nAnd following tasks visible:\n\n* Task1\n* Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2\n* Task5"
+      },
+      {
+        "step": 9,
+        "action": "Click on dot next to taskName.",
+        "data": "taskName: Task1",
+        "result": "Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task5\n* Task6\n\nIn each row there is ellipsis button (three dots) visible."
+      },
+      {
+        "step": 10,
+        "action": "Hover over taskName on Task dependencies modal dialog and click on ellipsis button.",
+        "data": "taskName: Task5",
+        "result": "After hovering over taskName Snipe to task button is appearing.\n\nAfter clicking on ellipsis button context menu is displayed. FolLowing options are available:\n\n* Edit\n* Delete"
+      },
+      {
+        "step": 11,
+        "action": "Click on Delete button and confirm by clicking on Delete button.",
+        "data": "taskName: Task1",
+        "result": "Dialog:\n\nAre you sure you want to delete?\n\nis closed.\n\nTask dependencies modal dialog is closed.\n\nCounter on dot next to taskName is equal 3."
+      },
+      {
+        "step": 12,
+        "action": "Click on dot next to taskName.",
+        "data": "taskName: Task1",
+        "result": "Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task6\n\nIn each row there is ellipsis button (three dots) visible."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-4290",
+    "text": "Test: TC-4290 — Feature area - Task Dependency - Deleting dependency via context menu\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-54 Feature area - Task Dependency\nLabels: can_be_automated, teamsmile\n\nSteps:\n1. Navigate to Board module of boxName\n   Data: boxName: TC-4290 Feature area - Task Dependency - Deleting dependency via context menu\n   Expected: Board module is loaded correctly.\n\nThere are visible two timeboxes:\n\n* TC-4290 PI1\n* TC-4290 PI2\n\nWith two swimlanes:\n\n* Team unassigned\n* TC-4290 Team 1\n\nAnd following tasks visible:\n\n* Task1\n* Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2\n* Task3\n* Task4\n* Task5\n* Task6\n2. Hover over taskName and click on dot which appeared on the right side of the task card.\n   Data: taskName: Task1\n   Expected: Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task5\n* Task6\n\nIn each row there is ellipsis button (three dots) visible.\n3. Hover over taskName on Task dependencies modal dialog and click on ellipsis button.\n   Data: taskName: Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2\n   Expected: After hovering over taskName Snipe to task button is appearing.\n\nAfter clicking on ellipsis button context menu is displayed. FolLowing options are available:\n\n* Edit\n* Delete\n4. Click on Delete button.\n   Expected: Dialog:\n\nAre you sure you want to delete?\n\nis displaying.\n\nAt bottom of the dialog there are two buttons:\n\n* Delete\n* Cancel\n5. Click on Cancel button.\n   Expected: Dialog:\n\nAre you sure you want to delete?\n\nis closed.\n6. Click again on Delete button and confirm by clicking on Delete button.\n   Data: taskName: Task1\n   Expected: Dialog:\n\nAre you sure you want to delete?\n\nis closed.\n\nTask dependencies modal dialog is closed.\n\nCounter on dot next to taskName is equal 4.\n7. Click on dot next to taskName.\n   Data: taskName: Task1\n   Expected: Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task5\n* Task6\n\nIn each row there is ellipsis button (three dots) visible.\n8. Click on arrow next to timeBoxName to navigate to Iteration level.\n   Data: timeBoxName: TC-4290 PI1\n   Expected: There are visible two timeboxes:\n\n* TC-4290 Iteration1\n* TC-4290 Iteration2\n\nWith two swimlanes:\n\n* Team unassigned\n* TC-4290 Team 1\n\nAnd following tasks visible:\n\n* Task1\n* Task2Task2Task2Task2Task2Task2Task2Task2Task2Task2\n* Task5\n9. Click on dot next to taskName.\n   Data: taskName: Task1\n   Expected: Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task5\n* Task6\n\nIn each row there is ellipsis button (three dots) visible.\n10. Hover over taskName on Task dependencies modal dialog and click on ellipsis button.\n   Data: taskName: Task5\n   Expected: After hovering over taskName Snipe to task button is appearing.\n\nAfter clicking on ellipsis button context menu is displayed. FolLowing options are available:\n\n* Edit\n* Delete\n11. Click on Delete button and confirm by clicking on Delete button.\n   Data: taskName: Task1\n   Expected: Dialog:\n\nAre you sure you want to delete?\n\nis closed.\n\nTask dependencies modal dialog is closed.\n\nCounter on dot next to taskName is equal 3.\n12. Click on dot next to taskName.\n   Data: taskName: Task1\n   Expected: Task dependencies modal dialog is displaying.\n\nList of outgoing dependencies:\n\n* Task3\n\nList of incoming dependencies:\n\n* Task4\n* Task6\n\nIn each row there is ellipsis button (three dots) visible.",
+    "metadata": {
+      "jira_key": "TC-4290",
+      "issue_id": "814436",
+      "summary": "Feature area - Task Dependency - Deleting dependency via context menu",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-54 Feature area - Task Dependency",
+      "labels": [
+        "can_be_automated",
+        "teamsmile"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

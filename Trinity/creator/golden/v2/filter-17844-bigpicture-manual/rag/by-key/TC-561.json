@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-561",
+    "issue_id": "358146",
+    "url": "https://appfire.atlassian.net/browse/TC-561",
+    "summary": "Feature area - Resource - Team - Resynchronize with Tempo",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2020-10-08T04:09:59.471-0400",
+    "updated": "2026-05-05T08:00:55.818-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-86 Feature area - Resource - Team",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Tempo -> Teams",
+        "data": "_Tempo_ should be installed",
+        "result": "Teams tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click +Create team button",
+        "data": "",
+        "result": "Additional window to create team appears"
+      },
+      {
+        "step": 3,
+        "action": "Create new team passing this set of data",
+        "data": "name: TC-561 Team to resynchronize",
+        "result": "Team is created"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Global Teams module of BP Main Box",
+        "data": "",
+        "result": "Global Teams module is displayed"
+      },
+      {
+        "step": 5,
+        "action": "Click on Teams button in the header menu, hover over Synchronize, select Synhronize with Tempo, accept by clicking on Proceed button and check visibility",
+        "data": "",
+        "result": "Team \"TC-561 Team to resynchronize\" is displayed with green Tempo lozenge"
+      },
+      {
+        "step": 6,
+        "action": "Click on the teamName and in Details tab of sidebar set newName\nClick on Save button",
+        "data": "teamName: TC-561 Team to resynchronize\nnewName: TC-561 Team edited on BP level",
+        "result": "Changes are saved. \n\nTeam is overwritten on BP level."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Tempo -> Teams",
+        "data": "",
+        "result": "Teams tab is displayed. \"TC-561 Team to resynchronize\" is displayed. \n\nChanges made in BP level are not visible in Tempo."
+      },
+      {
+        "step": 8,
+        "action": "Click on teamName",
+        "data": "",
+        "result": "Detail view of \"TC-561 Team to resynchronize\" is displayed"
+      },
+      {
+        "step": 9,
+        "action": "Click on Name field and set newName\n\nClick Enter",
+        "data": "newName: TC-561 Team resynchronized",
+        "result": "Changes are saved"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Global Teams module of BP Main Box",
+        "data": "",
+        "result": "Global Teams module is displayed"
+      },
+      {
+        "step": 11,
+        "action": "Click on Teams button in the header menu, hover over Synchronize, select Synhronize with Tempo, accept by clicking on Proceed button and check visibility",
+        "data": "",
+        "result": "\"TC-561 Team edited on BP level\" is still displayed on the list. \n\nAdditional resynchronize icon is displayed next to team name."
+      },
+      {
+        "step": 12,
+        "action": "Click Resynchronize button and check visibility after refresh",
+        "data": "",
+        "result": "Teams are resynchronized. \"TC-561 Team resynchronized\" is now displayed on the list with green Tempo lozenge"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-561",
+    "text": "Test: TC-561 — Feature area - Resource - Team - Resynchronize with Tempo\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-86 Feature area - Resource - Team\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Tempo -> Teams\n   Data: _Tempo_ should be installed\n   Expected: Teams tab is displayed\n2. Click +Create team button\n   Expected: Additional window to create team appears\n3. Create new team passing this set of data\n   Data: name: TC-561 Team to resynchronize\n   Expected: Team is created\n4. Navigate to Global Teams module of BP Main Box\n   Expected: Global Teams module is displayed\n5. Click on Teams button in the header menu, hover over Synchronize, select Synhronize with Tempo, accept by clicking on Proceed button and check visibility\n   Expected: Team \"TC-561 Team to resynchronize\" is displayed with green Tempo lozenge\n6. Click on the teamName and in Details tab of sidebar set newName\nClick on Save button\n   Data: teamName: TC-561 Team to resynchronize\nnewName: TC-561 Team edited on BP level\n   Expected: Changes are saved. \n\nTeam is overwritten on BP level.\n7. Navigate to Tempo -> Teams\n   Expected: Teams tab is displayed. \"TC-561 Team to resynchronize\" is displayed. \n\nChanges made in BP level are not visible in Tempo.\n8. Click on teamName\n   Expected: Detail view of \"TC-561 Team to resynchronize\" is displayed\n9. Click on Name field and set newName\n\nClick Enter\n   Data: newName: TC-561 Team resynchronized\n   Expected: Changes are saved\n10. Navigate to Global Teams module of BP Main Box\n   Expected: Global Teams module is displayed\n11. Click on Teams button in the header menu, hover over Synchronize, select Synhronize with Tempo, accept by clicking on Proceed button and check visibility\n   Expected: \"TC-561 Team edited on BP level\" is still displayed on the list. \n\nAdditional resynchronize icon is displayed next to team name.\n12. Click Resynchronize button and check visibility after refresh\n   Expected: Teams are resynchronized. \"TC-561 Team resynchronized\" is now displayed on the list with green Tempo lozenge",
+    "metadata": {
+      "jira_key": "TC-561",
+      "issue_id": "358146",
+      "summary": "Feature area - Resource - Team - Resynchronize with Tempo",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-86 Feature area - Resource - Team",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

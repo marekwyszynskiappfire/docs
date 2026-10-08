@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-4451",
+    "issue_id": "814609",
+    "url": "https://appfire.atlassian.net/browse/TC-4451",
+    "summary": "Feature area - Risk - Adding existing task on Risk matrix with active quick filter (matrixCell)",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:01:58.489-0400",
+    "updated": "2026-03-04T09:12:41.708-0500",
+    "labels": [
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-83 Feature area - Risk",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Risks module of boxName",
+        "data": "boxName: TC-4451 Feature area - Risk - Adding existing task on Risk matrix with active quick filter (matrixCell)",
+        "result": "Risk matrix loads. No issues are visible on the matrix."
+      },
+      {
+        "step": 2,
+        "action": "Click on Quick Filters and apply filterName.",
+        "data": "filterName: Not started tasks",
+        "result": "Not started tasks Quick filter is selected."
+      },
+      {
+        "step": 3,
+        "action": "Click on matrixCell",
+        "data": "matrixCell: Medium/Low",
+        "result": "Additional window to add task is displayed."
+      },
+      {
+        "step": 4,
+        "action": "Select \"Add existing task\" option",
+        "data": "",
+        "result": "Add existing task modal appears."
+      },
+      {
+        "step": 5,
+        "action": "Click on task field and input taskSummary",
+        "data": "taskSummary: Bug",
+        "result": "Three of the folLowing issues are visible in the select menu:\n\n* Bug 1\n* Bug 2\n* Bug 3"
+      },
+      {
+        "step": 6,
+        "action": "Select issueName and click on \"Add another\" option.",
+        "data": "issueName: Bug 1",
+        "result": "Bug 1 is visible in tasks field and \"Add another\" option is selected."
+      },
+      {
+        "step": 7,
+        "action": "Click \"Add\" button",
+        "data": "",
+        "result": "Add existing task modal remains on screen."
+      },
+      {
+        "step": 8,
+        "action": "Search and select issueName",
+        "data": "issueName: Bug 2",
+        "result": "Bug 2 is visible in tasks field and \"Add another\" option remains selected."
+      },
+      {
+        "step": 9,
+        "action": "Click \"Add\" button",
+        "data": "",
+        "result": "Add existing task modal remains on screen."
+      },
+      {
+        "step": 10,
+        "action": "Search and select issueName and uncheck \"Add another\" option.",
+        "data": "issueName: Bug 3",
+        "result": "Bug 3 is visible in tasks field and \"Add another\" option is not selected anymore."
+      },
+      {
+        "step": 11,
+        "action": "Click \"Add\" button",
+        "data": "",
+        "result": "Add existing task modal disappears. Three added issues cards are visible on the Risk matrix."
+      },
+      {
+        "step": 12,
+        "action": "Refresh the page.",
+        "data": "",
+        "result": "Risk matrix loads. No issues are visible on the matrix."
+      },
+      {
+        "step": 13,
+        "action": "Click on Quick Filters and uncheck filterName.",
+        "data": "filterName: Not started tasks",
+        "result": "Quick filter is no longer applied. Three issues cards are visible on the Risk matrix."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-4451",
+    "text": "Test: TC-4451 — Feature area - Risk - Adding existing task on Risk matrix with active quick filter (matrixCell)\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-83 Feature area - Risk\nLabels: teamsource\n\nSteps:\n1. Navigate to Risks module of boxName\n   Data: boxName: TC-4451 Feature area - Risk - Adding existing task on Risk matrix with active quick filter (matrixCell)\n   Expected: Risk matrix loads. No issues are visible on the matrix.\n2. Click on Quick Filters and apply filterName.\n   Data: filterName: Not started tasks\n   Expected: Not started tasks Quick filter is selected.\n3. Click on matrixCell\n   Data: matrixCell: Medium/Low\n   Expected: Additional window to add task is displayed.\n4. Select \"Add existing task\" option\n   Expected: Add existing task modal appears.\n5. Click on task field and input taskSummary\n   Data: taskSummary: Bug\n   Expected: Three of the folLowing issues are visible in the select menu:\n\n* Bug 1\n* Bug 2\n* Bug 3\n6. Select issueName and click on \"Add another\" option.\n   Data: issueName: Bug 1\n   Expected: Bug 1 is visible in tasks field and \"Add another\" option is selected.\n7. Click \"Add\" button\n   Expected: Add existing task modal remains on screen.\n8. Search and select issueName\n   Data: issueName: Bug 2\n   Expected: Bug 2 is visible in tasks field and \"Add another\" option remains selected.\n9. Click \"Add\" button\n   Expected: Add existing task modal remains on screen.\n10. Search and select issueName and uncheck \"Add another\" option.\n   Data: issueName: Bug 3\n   Expected: Bug 3 is visible in tasks field and \"Add another\" option is not selected anymore.\n11. Click \"Add\" button\n   Expected: Add existing task modal disappears. Three added issues cards are visible on the Risk matrix.\n12. Refresh the page.\n   Expected: Risk matrix loads. No issues are visible on the matrix.\n13. Click on Quick Filters and uncheck filterName.\n   Data: filterName: Not started tasks\n   Expected: Quick filter is no longer applied. Three issues cards are visible on the Risk matrix.",
+    "metadata": {
+      "jira_key": "TC-4451",
+      "issue_id": "814609",
+      "summary": "Feature area - Risk - Adding existing task on Risk matrix with active quick filter (matrixCell)",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-83 Feature area - Risk",
+      "labels": [
+        "teamsource"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-530",
+    "issue_id": "358795",
+    "url": "https://appfire.atlassian.net/browse/TC-530",
+    "summary": "Global - Holiday plans - Editing holiday plans synchronized with Tempo",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2020-10-06T05:53:09.392-0400",
+    "updated": "2026-05-05T09:20:58.343-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-26 Global - Holiday plans",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Tempo -> Settings -> Holidays",
+        "data": "_Tempo_ should be installed",
+        "result": "Holidays tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Add new Holiday plan passing this set of data",
+        "data": "name: TC-530 Holiday Plan to edit",
+        "result": "Holiday plan is added"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to BP Administration -> Holiday plans tab and click Synchronize with Tempo button",
+        "data": "",
+        "result": "\"TC-530 Holiday Plan to edit\" is displayed on the list with green Tempo lozenge."
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Tempo -> Settings -> Holidays",
+        "data": "",
+        "result": "Holidays tab is displayed"
+      },
+      {
+        "step": 5,
+        "action": "Click on name of holidayScheme and set newName",
+        "data": "holidayScheme: TC-530 Holiday Plan to edit\nnewName: TC-530 Holiday Plan edited",
+        "result": "Changes are saved"
+      },
+      {
+        "step": 6,
+        "action": "Navigate to BP Administration -> Holiday plans tab",
+        "data": "",
+        "result": "Holiday plans tab is displayed\n\n\"TC-530 Holiday Plan to edit\" is still displayed on the list."
+      },
+      {
+        "step": 7,
+        "action": "Click Synchronize with Tempo and check visibility after refresh",
+        "data": "",
+        "result": "\"TC-530 Holiday Plan edited\" is now displayed on the list with green Tempo lozenge."
+      },
+      {
+        "step": 8,
+        "action": "Click on Edit button next to holidayPlanName and set newName and description",
+        "data": "holidayPlanName: TC-530 Holiday Plan edited\nnewName: TC-530 Holiday Plan edited on BP level",
+        "result": "Changes are saved.\n\nHoliday plan synchronized from Tempo is overwrited in BP level. Blue pencil icon is displayed next to holiday plan name."
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Tempo -> Settings -> Holidays",
+        "data": "",
+        "result": "Holidays tab is displayed\n\n\"TC-530 Holiday Plan edited\" is still displayed on the list. Changes made in BP level are not visible in Tempo."
+      },
+      {
+        "step": 10,
+        "action": "Click on name of holidayScheme and set newName",
+        "data": "holidayScheme: TC-530 Holiday Plan edited\nnewName: TC-530 Holiday Plan 2",
+        "result": "Changes are saved"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to BP Administration -> Holiday plans tab and click Synchronize with Tempo button\n\nCheck visibility after refresh",
+        "data": "",
+        "result": "\"TC-530 Holiday Plan edited on BP level\" is still displayed on the list with green Tempo lozenge.\n\nChanges made in Tempo are not visible in BP Administration after overwrite Holiday Plan in step 8."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-530",
+    "text": "Test: TC-530 — Global - Holiday plans - Editing holiday plans synchronized with Tempo\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-26 Global - Holiday plans\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Tempo -> Settings -> Holidays\n   Data: _Tempo_ should be installed\n   Expected: Holidays tab is displayed\n2. Add new Holiday plan passing this set of data\n   Data: name: TC-530 Holiday Plan to edit\n   Expected: Holiday plan is added\n3. Navigate to BP Administration -> Holiday plans tab and click Synchronize with Tempo button\n   Expected: \"TC-530 Holiday Plan to edit\" is displayed on the list with green Tempo lozenge.\n4. Navigate to Tempo -> Settings -> Holidays\n   Expected: Holidays tab is displayed\n5. Click on name of holidayScheme and set newName\n   Data: holidayScheme: TC-530 Holiday Plan to edit\nnewName: TC-530 Holiday Plan edited\n   Expected: Changes are saved\n6. Navigate to BP Administration -> Holiday plans tab\n   Expected: Holiday plans tab is displayed\n\n\"TC-530 Holiday Plan to edit\" is still displayed on the list.\n7. Click Synchronize with Tempo and check visibility after refresh\n   Expected: \"TC-530 Holiday Plan edited\" is now displayed on the list with green Tempo lozenge.\n8. Click on Edit button next to holidayPlanName and set newName and description\n   Data: holidayPlanName: TC-530 Holiday Plan edited\nnewName: TC-530 Holiday Plan edited on BP level\n   Expected: Changes are saved.\n\nHoliday plan synchronized from Tempo is overwrited in BP level. Blue pencil icon is displayed next to holiday plan name.\n9. Navigate to Tempo -> Settings -> Holidays\n   Expected: Holidays tab is displayed\n\n\"TC-530 Holiday Plan edited\" is still displayed on the list. Changes made in BP level are not visible in Tempo.\n10. Click on name of holidayScheme and set newName\n   Data: holidayScheme: TC-530 Holiday Plan edited\nnewName: TC-530 Holiday Plan 2\n   Expected: Changes are saved\n11. Navigate to BP Administration -> Holiday plans tab and click Synchronize with Tempo button\n\nCheck visibility after refresh\n   Expected: \"TC-530 Holiday Plan edited on BP level\" is still displayed on the list with green Tempo lozenge.\n\nChanges made in Tempo are not visible in BP Administration after overwrite Holiday Plan in step 8.",
+    "metadata": {
+      "jira_key": "TC-530",
+      "issue_id": "358795",
+      "summary": "Global - Holiday plans - Editing holiday plans synchronized with Tempo",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-26 Global - Holiday plans",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

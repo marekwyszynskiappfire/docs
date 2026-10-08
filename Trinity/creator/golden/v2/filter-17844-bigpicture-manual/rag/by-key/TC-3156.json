@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-3156",
+    "issue_id": "358694",
+    "url": "https://appfire.atlassian.net/browse/TC-3156",
+    "summary": "Box Module - Scope - Basic operations - Greyed out tasks can be hidden on task structure",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Mateusz Maniak",
+    "created": "2022-03-30T16:56:42.937-0400",
+    "updated": "2026-08-06T11:20:50.555-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-106 Box Module - Scope - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the boxName and go to the 'Scope' module",
+        "data": "boxName: TC-3156 Greyed out tasks can be hidden on task structure",
+        "result": "Scope' module is loaded. There are the folLowing tasks in the box in order:\n- Source 1\n- subtask1\n- subtask2\n- task3\n- subtask4\n- subtask3\n- task1\n- subtask7\n- subtask6\n- subtask5"
+      },
+      {
+        "step": 2,
+        "action": "Expand Filter panel and apply quickFiltersName",
+        "data": "quickFiltersName: Not started tasks",
+        "result": "Quick Filter is selected and applied.\n\nOn Scope module folLowing tasks are visible in order:\n\n* Source 1 (greyed out)\n* subtask1\n* task3\n* task1\n* subtask7\n* subtask6\n* subtask5"
+      },
+      {
+        "step": 3,
+        "action": "Click on three dots symbol right next to filtering options in header",
+        "data": "",
+        "result": "Filter options menu is displayed with checkboxes:\n\n* Show basic tasks (filters don’t apply)\n* \"Show all children tasks in results\" unchecked\n* \"Apply current filters to all modules\" unchecked\n* \"Hide parent tasks\" unchecked\n\n\"Clear all active filters\" is displayed beLow the checkboxes"
+      },
+      {
+        "step": 4,
+        "action": "Mark a checkboxName",
+        "data": "checkboxName: Hide parent tasks",
+        "result": "Checkbox is selected and applied.\n\nOn Scope module folLowing tasks are visible in order:\n\n* subtask1\n* task3\n* task1\n* subtask7\n* subtask6\n* subtask5\n\nButtons in the header \n\n* Move up\n* Move down\n* Indent\n* Outdent\nare greyed and inactive"
+      },
+      {
+        "step": 5,
+        "action": "Drag&Drop nameTask to the top of the list",
+        "data": "nameTask: subtask5",
+        "result": "Pop-up appear :\"The task cannot be moved\n\n\nIt was impossible to move this task due to the applied filters. To perform the action uncheck “Hide parent tasks” filter option.\"\nwith:\n- \"X\" button\n- \"Uncheck\" button\n- \"Copy message to clipboard\" button"
+      },
+      {
+        "step": 6,
+        "action": "Hover over the \"left arrow\", \"right arrow\", \"up arrow\", \"down arrow\"",
+        "data": "",
+        "result": "Tooltip appears:\n\"The task cannot be moved due to the applied filters. Uncheck \"Hide parent tasks\" filter option.\""
+      },
+      {
+        "step": 7,
+        "action": "Change START DATE of the taskName",
+        "data": "taskName: task1\nold date: 05/APR/22\nnew date: 05/APR/24",
+        "result": "Date is changed"
+      },
+      {
+        "step": 8,
+        "action": "Click on \"Data\" on the header\nClick on \"Organize tasks A-Z\" by \"Summary\"\n\nOn modale choose Organize anyway.",
+        "data": "",
+        "result": "Modale  \"Organize tasks for all users?\" appears.\n\nOn Scope module folLowing tasks are visible in order:\n\n* subtask1\n* subtask5\n* subtask7\n* subtask6\n* task3\n* task1"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-3156",
+    "text": "Test: TC-3156 — Box Module - Scope - Basic operations - Greyed out tasks can be hidden on task structure\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-106 Box Module - Scope - Basic operations\n\nSteps:\n1. Navigate to the boxName and go to the 'Scope' module\n   Data: boxName: TC-3156 Greyed out tasks can be hidden on task structure\n   Expected: Scope' module is loaded. There are the folLowing tasks in the box in order:\n- Source 1\n- subtask1\n- subtask2\n- task3\n- subtask4\n- subtask3\n- task1\n- subtask7\n- subtask6\n- subtask5\n2. Expand Filter panel and apply quickFiltersName\n   Data: quickFiltersName: Not started tasks\n   Expected: Quick Filter is selected and applied.\n\nOn Scope module folLowing tasks are visible in order:\n\n* Source 1 (greyed out)\n* subtask1\n* task3\n* task1\n* subtask7\n* subtask6\n* subtask5\n3. Click on three dots symbol right next to filtering options in header\n   Expected: Filter options menu is displayed with checkboxes:\n\n* Show basic tasks (filters don’t apply)\n* \"Show all children tasks in results\" unchecked\n* \"Apply current filters to all modules\" unchecked\n* \"Hide parent tasks\" unchecked\n\n\"Clear all active filters\" is displayed beLow the checkboxes\n4. Mark a checkboxName\n   Data: checkboxName: Hide parent tasks\n   Expected: Checkbox is selected and applied.\n\nOn Scope module folLowing tasks are visible in order:\n\n* subtask1\n* task3\n* task1\n* subtask7\n* subtask6\n* subtask5\n\nButtons in the header \n\n* Move up\n* Move down\n* Indent\n* Outdent\nare greyed and inactive\n5. Drag&Drop nameTask to the top of the list\n   Data: nameTask: subtask5\n   Expected: Pop-up appear :\"The task cannot be moved\n\n\nIt was impossible to move this task due to the applied filters. To perform the action uncheck “Hide parent tasks” filter option.\"\nwith:\n- \"X\" button\n- \"Uncheck\" button\n- \"Copy message to clipboard\" button\n6. Hover over the \"left arrow\", \"right arrow\", \"up arrow\", \"down arrow\"\n   Expected: Tooltip appears:\n\"The task cannot be moved due to the applied filters. Uncheck \"Hide parent tasks\" filter option.\"\n7. Change START DATE of the taskName\n   Data: taskName: task1\nold date: 05/APR/22\nnew date: 05/APR/24\n   Expected: Date is changed\n8. Click on \"Data\" on the header\nClick on \"Organize tasks A-Z\" by \"Summary\"\n\nOn modale choose Organize anyway.\n   Expected: Modale  \"Organize tasks for all users?\" appears.\n\nOn Scope module folLowing tasks are visible in order:\n\n* subtask1\n* subtask5\n* subtask7\n* subtask6\n* task3\n* task1",
+    "metadata": {
+      "jira_key": "TC-3156",
+      "issue_id": "358694",
+      "summary": "Box Module - Scope - Basic operations - Greyed out tasks can be hidden on task structure",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-106 Box Module - Scope - Basic operations",
+      "labels": [],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

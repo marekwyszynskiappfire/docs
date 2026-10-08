@@ -1,0 +1,107 @@
+{
+  "test": {
+    "key": "TC-3824",
+    "issue_id": "358375",
+    "url": "https://appfire.atlassian.net/browse/TC-3824",
+    "summary": "Feature area - Box scope - New task creating - Creating Basic Tasks via shortcuts - Scope module",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Aneta Wójcik",
+    "reporter": "Aneta Wójcik",
+    "created": "2023-01-30T10:57:58.736-0500",
+    "updated": "2026-04-10T06:07:39.108-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-67 Feature area - Box scope - New task creating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Scope module of the box with boxName",
+        "data": "boxName: TC-3824 Feature area - Box scope - New task creating - Creating Basic Tasks via shortcuts",
+        "result": "Scope module with WBS is displayed\n\nFolLowing tasks are visible:\n* TC-3824 Jira issue\n* TC-3824 Basic task"
+      },
+      {
+        "step": 2,
+        "action": "Select taskSummary1",
+        "data": "taskSummary1: TC-3824 Jira issue",
+        "result": "TC-3824 Jira issue is selected"
+      },
+      {
+        "step": 3,
+        "action": "Press shortcut CTRL/CMD+Enter",
+        "data": "",
+        "result": "Create basic task window is open"
+      },
+      {
+        "step": 4,
+        "action": "Fill in taskSummary2 and click Create button",
+        "data": "taskSummary2: TC-3824 Jira issue basic sibling",
+        "result": "TC-3824 Jira issue basic sibling is created as a sibling for TC-3824 Jira issue"
+      },
+      {
+        "step": 5,
+        "action": "Select taskSummary1 and press shortcut CTRL/CMD+Shift+Enter",
+        "data": "taskSummary1: TC-3824 Jira issue",
+        "result": "Create basic task window is open"
+      },
+      {
+        "step": 6,
+        "action": "Fill in taskSummary3 and click Create button",
+        "data": "taskSummary3: TC-3824 Jira issue basic child",
+        "result": "TC-3824 Jira issue basic child is created as a child for TC-3824 Jira issue"
+      },
+      {
+        "step": 7,
+        "action": "Select taskSummary4 and press shortcut CTRL/CMD+Enter",
+        "data": "taskSummary4: TC-3824 Basic task",
+        "result": "Create basic task window is open"
+      },
+      {
+        "step": 8,
+        "action": "Fill in taskSummary5 and click Create button",
+        "data": "taskSummary5: TC-3824 Basic task sibling",
+        "result": "TC-3824 Basic tasks sibling is created as a sibling for TC-3824 Basic task"
+      },
+      {
+        "step": 9,
+        "action": "Select taskSummary4 and press shortcut CTRL/CMD+Shift+Enter",
+        "data": "taskSummary4: TC-3824 Basic task",
+        "result": "Create basic task window is open"
+      },
+      {
+        "step": 10,
+        "action": "Fill in taskSummary6 and click Create button",
+        "data": "taskSummary5: TC-3824 Basic task child",
+        "result": "TC-3824 Basic tasks child is created as a child for TC-3824 Basic task"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-3824",
+    "text": "Test: TC-3824 — Feature area - Box scope - New task creating - Creating Basic Tasks via shortcuts - Scope module\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-67 Feature area - Box scope - New task creating\nLabels: teamspace\n\nSteps:\n1. Navigate to Scope module of the box with boxName\n   Data: boxName: TC-3824 Feature area - Box scope - New task creating - Creating Basic Tasks via shortcuts\n   Expected: Scope module with WBS is displayed\n\nFolLowing tasks are visible:\n* TC-3824 Jira issue\n* TC-3824 Basic task\n2. Select taskSummary1\n   Data: taskSummary1: TC-3824 Jira issue\n   Expected: TC-3824 Jira issue is selected\n3. Press shortcut CTRL/CMD+Enter\n   Expected: Create basic task window is open\n4. Fill in taskSummary2 and click Create button\n   Data: taskSummary2: TC-3824 Jira issue basic sibling\n   Expected: TC-3824 Jira issue basic sibling is created as a sibling for TC-3824 Jira issue\n5. Select taskSummary1 and press shortcut CTRL/CMD+Shift+Enter\n   Data: taskSummary1: TC-3824 Jira issue\n   Expected: Create basic task window is open\n6. Fill in taskSummary3 and click Create button\n   Data: taskSummary3: TC-3824 Jira issue basic child\n   Expected: TC-3824 Jira issue basic child is created as a child for TC-3824 Jira issue\n7. Select taskSummary4 and press shortcut CTRL/CMD+Enter\n   Data: taskSummary4: TC-3824 Basic task\n   Expected: Create basic task window is open\n8. Fill in taskSummary5 and click Create button\n   Data: taskSummary5: TC-3824 Basic task sibling\n   Expected: TC-3824 Basic tasks sibling is created as a sibling for TC-3824 Basic task\n9. Select taskSummary4 and press shortcut CTRL/CMD+Shift+Enter\n   Data: taskSummary4: TC-3824 Basic task\n   Expected: Create basic task window is open\n10. Fill in taskSummary6 and click Create button\n   Data: taskSummary5: TC-3824 Basic task child\n   Expected: TC-3824 Basic tasks child is created as a child for TC-3824 Basic task",
+    "metadata": {
+      "jira_key": "TC-3824",
+      "issue_id": "358375",
+      "summary": "Feature area - Box scope - New task creating - Creating Basic Tasks via shortcuts - Scope module",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-67 Feature area - Box scope - New task creating",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

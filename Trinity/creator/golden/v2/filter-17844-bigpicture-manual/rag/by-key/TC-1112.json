@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-1112",
+    "issue_id": "358664",
+    "url": "https://appfire.atlassian.net/browse/TC-1112",
+    "summary": "Box module - Roadmap - Basic operations - Displaying Roadmap reports – Bar charts",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Michał Bucholc",
+    "reporter": "Michał Bucholc",
+    "created": "2019-07-26T07:25:03.329-0400",
+    "updated": "2026-03-13T06:16:47.654-0400",
+    "labels": [
+      "can_be_automated",
+      "teamagile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-30 Box module - Roadmap - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Objectives module of boxName",
+        "data": "boxName: TC-1112 Box module - Roadmap - Basic operations - Displaying Roadmap reports – Bar charts",
+        "result": "Two sub-boxes are visible:\n- PI1\n- PI2\n\nTeamA swimlane is visible. 9 objectives are visible under the PI1"
+      },
+      {
+        "step": 2,
+        "action": "Click on Reports button in header",
+        "data": "",
+        "result": "Reports button is highlighted. Cog button is visible next to the Reports button. Objectives are transformed into pie charts by default"
+      },
+      {
+        "step": 3,
+        "action": "Click on cog wheel next to Reports button and select Bar option",
+        "data": "",
+        "result": "Reports are displayed as Bar charts. Every status has its own color:\n\n* Open - blue\n* Completed - green\n* Failed - red\n* Abandoned - grey"
+      },
+      {
+        "step": 4,
+        "action": "Hover over each Bar in containerName",
+        "data": "containerName: PI1 Main objectives",
+        "result": "Objective status, color and number of objectives in the status is visible on each tooltip. All bars are equal to 1"
+      },
+      {
+        "step": 5,
+        "action": "Hover over each Bar in containerName1",
+        "data": "containerName1: PI1 TeamA",
+        "result": "Objective status, color and number of objectives in the status is visible on each tooltip. Open bar is equal to 2. All others bars are equal to 1"
+      },
+      {
+        "step": 6,
+        "action": "Check chart in containerName2",
+        "data": "containerName2: PI2 TeamA",
+        "result": "Chart is not displayed, because containerName has no objective. FolLowing information is visible:\n\"No objectives to report. Add the first one to display a chart.\""
+      },
+      {
+        "step": 7,
+        "action": "Click on linkName in containerName2",
+        "data": "containerName2: PI2 TeamA\nlinkName: Add the first one",
+        "result": "Reports button became inactive and Bar charts turned off. All 9 objectives under the PI1 are visible again"
+      },
+      {
+        "step": 8,
+        "action": "Click on Reports button on header and go down to Iterations level in PI1",
+        "data": "",
+        "result": "Roadmap goes down to Iteration level along with active Reports button. Two charts are visible under the Iteration"
+      },
+      {
+        "step": 9,
+        "action": "Hover over each Bar in containerName3",
+        "data": "containerName3: Iteration Main objectives",
+        "result": "Only 3 bars are visible. Bar chart represent folLowing values:\n- Completed - 2.0\n- Failed - 1.0\n- Abandoned - 1.0"
+      },
+      {
+        "step": 10,
+        "action": "Hover over each Bar in containerName4",
+        "data": "containerName4: Iteration TeamA",
+        "result": "Bar chart represent folLowing values:\n- Abandoned - 2.0\n- Completed - 1.0\n- Failed - 1.0\n- Open - 1.0"
+      },
+      {
+        "step": 11,
+        "action": "Check chart in containerName5",
+        "data": "containerName5: Iteration 2 TeamA",
+        "result": "Chart is not displayed, because containerName5 has no objective. FolLowing information is visible:\n\"No objectives to report. Add the first one to display a chart.\""
+      },
+      {
+        "step": 12,
+        "action": "Click on linkName in containerName5",
+        "data": "containerName5: Iteration 2 TeamA\nlinkName: Add the first one",
+        "result": "Reports button became inactive and Bar charts turned off. 9 objectives under the Iteration are visible"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-1112",
+    "text": "Test: TC-1112 — Box module - Roadmap - Basic operations - Displaying Roadmap reports – Bar charts\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-30 Box module - Roadmap - Basic operations\nLabels: can_be_automated, teamagile\n\nSteps:\n1. Navigate to the Objectives module of boxName\n   Data: boxName: TC-1112 Box module - Roadmap - Basic operations - Displaying Roadmap reports – Bar charts\n   Expected: Two sub-boxes are visible:\n- PI1\n- PI2\n\nTeamA swimlane is visible. 9 objectives are visible under the PI1\n2. Click on Reports button in header\n   Expected: Reports button is highlighted. Cog button is visible next to the Reports button. Objectives are transformed into pie charts by default\n3. Click on cog wheel next to Reports button and select Bar option\n   Expected: Reports are displayed as Bar charts. Every status has its own color:\n\n* Open - blue\n* Completed - green\n* Failed - red\n* Abandoned - grey\n4. Hover over each Bar in containerName\n   Data: containerName: PI1 Main objectives\n   Expected: Objective status, color and number of objectives in the status is visible on each tooltip. All bars are equal to 1\n5. Hover over each Bar in containerName1\n   Data: containerName1: PI1 TeamA\n   Expected: Objective status, color and number of objectives in the status is visible on each tooltip. Open bar is equal to 2. All others bars are equal to 1\n6. Check chart in containerName2\n   Data: containerName2: PI2 TeamA\n   Expected: Chart is not displayed, because containerName has no objective. FolLowing information is visible:\n\"No objectives to report. Add the first one to display a chart.\"\n7. Click on linkName in containerName2\n   Data: containerName2: PI2 TeamA\nlinkName: Add the first one\n   Expected: Reports button became inactive and Bar charts turned off. All 9 objectives under the PI1 are visible again\n8. Click on Reports button on header and go down to Iterations level in PI1\n   Expected: Roadmap goes down to Iteration level along with active Reports button. Two charts are visible under the Iteration\n9. Hover over each Bar in containerName3\n   Data: containerName3: Iteration Main objectives\n   Expected: Only 3 bars are visible. Bar chart represent folLowing values:\n- Completed - 2.0\n- Failed - 1.0\n- Abandoned - 1.0\n10. Hover over each Bar in containerName4\n   Data: containerName4: Iteration TeamA\n   Expected: Bar chart represent folLowing values:\n- Abandoned - 2.0\n- Completed - 1.0\n- Failed - 1.0\n- Open - 1.0\n11. Check chart in containerName5\n   Data: containerName5: Iteration 2 TeamA\n   Expected: Chart is not displayed, because containerName5 has no objective. FolLowing information is visible:\n\"No objectives to report. Add the first one to display a chart.\"\n12. Click on linkName in containerName5\n   Data: containerName5: Iteration 2 TeamA\nlinkName: Add the first one\n   Expected: Reports button became inactive and Bar charts turned off. 9 objectives under the Iteration are visible",
+    "metadata": {
+      "jira_key": "TC-1112",
+      "issue_id": "358664",
+      "summary": "Box module - Roadmap - Basic operations - Displaying Roadmap reports – Bar charts",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-30 Box module - Roadmap - Basic operations",
+      "labels": [
+        "can_be_automated",
+        "teamagile"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

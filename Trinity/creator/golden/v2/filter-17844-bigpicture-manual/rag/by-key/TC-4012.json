@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-4012",
+    "issue_id": "360205",
+    "url": "https://appfire.atlassian.net/browse/TC-4012",
+    "summary": "Global - Widget - WBS - Displaying WBS Widget for newly created Jira issue",
+    "description": "This TC check if WBS Widget is correctly loaded after the Clear Cache action, for the newly created task by Jira without entering BP/BG application.",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Adrian Rybak",
+    "created": "2023-03-30T09:25:07.876-0400",
+    "updated": "2026-08-06T11:20:43.507-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-181 Global - Widget - WBS",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of the boxName",
+        "data": "boxName: TC-4012 Widget- WBS - Displaying WBS Widget for newly created Jira issue",
+        "result": "Gantt module is correctly loaded with project and one issue under it:\n- Task 1"
+      },
+      {
+        "step": 2,
+        "action": "Click on the key of taskName",
+        "data": "taskName: Task 1",
+        "result": "Jira issue view is opened in new tab"
+      },
+      {
+        "step": 3,
+        "action": "Go back to the first tab and Navigate to the App Configuration > Advanced and perform Clear Cache (For Atlassian Cloud - perform Fix Integrity Checker errors)",
+        "data": "",
+        "result": "Clear Cache / Fix Integrity Checker errors is performed successfully"
+      },
+      {
+        "step": 4,
+        "action": "Go back to the second tab with Jira issue view and Navigate to the Backlog of the project",
+        "data": "",
+        "result": "Backlog with one Jira issue: Task 1 is loaded."
+      },
+      {
+        "step": 5,
+        "action": "Create issue with issueName and navigate to the Issue view of it",
+        "data": "issueName: Task 2",
+        "result": "Task is created successfully and Jira issue view is loaded"
+      },
+      {
+        "step": 6,
+        "action": "After 10 seconds refresh the page\nTurn on WBS Widget if needed (for Cloud expand Apps button)",
+        "data": "",
+        "result": "WBS Widget is loaded and Task 2 is visible in the structure under Project issue."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4012",
+    "text": "Test: TC-4012 — Global - Widget - WBS - Displaying WBS Widget for newly created Jira issue\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-181 Global - Widget - WBS\n\nDescription:\nThis TC check if WBS Widget is correctly loaded after the Clear Cache action, for the newly created task by Jira without entering BP/BG application.\n\nSteps:\n1. Navigate to the Gantt module of the boxName\n   Data: boxName: TC-4012 Widget- WBS - Displaying WBS Widget for newly created Jira issue\n   Expected: Gantt module is correctly loaded with project and one issue under it:\n- Task 1\n2. Click on the key of taskName\n   Data: taskName: Task 1\n   Expected: Jira issue view is opened in new tab\n3. Go back to the first tab and Navigate to the App Configuration > Advanced and perform Clear Cache (For Atlassian Cloud - perform Fix Integrity Checker errors)\n   Expected: Clear Cache / Fix Integrity Checker errors is performed successfully\n4. Go back to the second tab with Jira issue view and Navigate to the Backlog of the project\n   Expected: Backlog with one Jira issue: Task 1 is loaded.\n5. Create issue with issueName and navigate to the Issue view of it\n   Data: issueName: Task 2\n   Expected: Task is created successfully and Jira issue view is loaded\n6. After 10 seconds refresh the page\nTurn on WBS Widget if needed (for Cloud expand Apps button)\n   Expected: WBS Widget is loaded and Task 2 is visible in the structure under Project issue.",
+    "metadata": {
+      "jira_key": "TC-4012",
+      "issue_id": "360205",
+      "summary": "Global - Widget - WBS - Displaying WBS Widget for newly created Jira issue",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-181 Global - Widget - WBS",
+      "labels": [],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

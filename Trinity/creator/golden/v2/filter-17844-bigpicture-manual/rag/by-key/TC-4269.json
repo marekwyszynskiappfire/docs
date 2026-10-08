@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-4269",
+    "issue_id": "814415",
+    "url": "https://appfire.atlassian.net/browse/TC-4269",
+    "summary": "Feature area - Task - Filtering - Risks - Date filtering - Task has no Start Date and End Date",
+    "description": "Test Case should be performed on 8.16 version and higher.",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Mateusz Koman",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T09:59:31.664-0400",
+    "updated": "2026-08-06T11:20:09.310-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-53 Feature area - Task - Filtering",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Risk module of boxName",
+        "data": "boxName: TC-4269 Feature area - Task - Filtering - Risks - Date filtering - Task has no Start Date and End Date",
+        "result": "Risk module opened with one task on matrix:\n\nTC-4269 Task\n\nThis task has empty Start Date and End Date"
+      },
+      {
+        "step": 2,
+        "action": "Set Start Date of Date range filter to startDateFilter",
+        "data": "startDateFilter: 01/May/23",
+        "result": "Task is *not* visible on matrix"
+      },
+      {
+        "step": 3,
+        "action": "Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter",
+        "data": "startDateFilter: 01/May/25",
+        "result": "Task is *not* visible on matrix"
+      },
+      {
+        "step": 4,
+        "action": "Delete Start Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter",
+        "data": "endDateFilter: 01/May/23",
+        "result": "Task is *not* visible on matrix"
+      },
+      {
+        "step": 5,
+        "action": "Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter",
+        "data": "endDateFilter: 01/May/25",
+        "result": "Task is *not* visible on matrix"
+      },
+      {
+        "step": 6,
+        "action": "Delete End Date of Date range filter\n\nSet Start Date to startDateFilter of Date range filter and End Date of Date range filter to endDateFilter",
+        "data": "startDateFilter: 01/May/23\n\nendDateFilter: 01/May/25",
+        "result": "Task is *not* visible on matrix"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4269",
+    "text": "Test: TC-4269 — Feature area - Task - Filtering - Risks - Date filtering - Task has no Start Date and End Date\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-53 Feature area - Task - Filtering\n\nDescription:\nTest Case should be performed on 8.16 version and higher.\n\nSteps:\n1. Navigate to Risk module of boxName\n   Data: boxName: TC-4269 Feature area - Task - Filtering - Risks - Date filtering - Task has no Start Date and End Date\n   Expected: Risk module opened with one task on matrix:\n\nTC-4269 Task\n\nThis task has empty Start Date and End Date\n2. Set Start Date of Date range filter to startDateFilter\n   Data: startDateFilter: 01/May/23\n   Expected: Task is *not* visible on matrix\n3. Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter\n   Data: startDateFilter: 01/May/25\n   Expected: Task is *not* visible on matrix\n4. Delete Start Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter\n   Data: endDateFilter: 01/May/23\n   Expected: Task is *not* visible on matrix\n5. Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter\n   Data: endDateFilter: 01/May/25\n   Expected: Task is *not* visible on matrix\n6. Delete End Date of Date range filter\n\nSet Start Date to startDateFilter of Date range filter and End Date of Date range filter to endDateFilter\n   Data: startDateFilter: 01/May/23\n\nendDateFilter: 01/May/25\n   Expected: Task is *not* visible on matrix",
+    "metadata": {
+      "jira_key": "TC-4269",
+      "issue_id": "814415",
+      "summary": "Feature area - Task - Filtering - Risks - Date filtering - Task has no Start Date and End Date",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-53 Feature area - Task - Filtering",
+      "labels": [],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

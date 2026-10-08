@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-2795",
+    "issue_id": "356912",
+    "url": "https://appfire.atlassian.net/browse/TC-2795",
+    "summary": "Global - Widget - WBS - Displaying tasks when QF is active on Gantt",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2021-12-22T05:57:16.097-0500",
+    "updated": "2026-06-18T05:56:29.496-0400",
+    "labels": [
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-181 Global - Widget - WBS",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-2795 Global - Widget - WBS - Displaying tasks when QF is active on Gantt",
+        "result": "Gantt module is displayed and\n4 tasks are visible:\n\n* Project task\n* TC2795-1\n* TC2795-2\n* TC2795-3\n\nTC2795-1 is a parent of TC2795-2\nand TC2795-3 is a child of TC2795-2."
+      },
+      {
+        "step": 2,
+        "action": "Click on Quick filter field\n\nChoose quickfilterName",
+        "data": "quickFilterName: Świąt nie będzie",
+        "result": "Quick filter is active. On Gantt there are visible tasks:\n\n* Project task is greyed out\n* TC2795-1\n* TC2795-2"
+      },
+      {
+        "step": 3,
+        "action": "Click on key of taskName to open issue detail page",
+        "data": "taskName: Rozchmurz się, stary.",
+        "result": "Issue page for TC2795-1 is displayed in new tab"
+      },
+      {
+        "step": 4,
+        "action": "Change issueKey of task in address url to the one excluded from scope",
+        "data": "issueKey: TC2795-3",
+        "result": "Issue page for TC2795-3 is displayed"
+      },
+      {
+        "step": 5,
+        "action": "Check if Big Picture - Work Breakdown Structure is displayed on issue page",
+        "data": "",
+        "result": "Big Picture - Work Breakdown Structure is displayed on issue page"
+      },
+      {
+        "step": 6,
+        "action": "Check if all elements are displayed in Big Picture - Work Breakdown Structure",
+        "data": "",
+        "result": "FolLowing elements are displayed in Big Picture - Work Breakdown Structure:\n\n* Box switcher dropdown\n* \"Show on Gantt\" button\n* \"Load data\" button\n* Wrench button that redirects to WBS widget settings\n* Cog icon for Column View settings\n\n4 tasks are displayed on WBS:\n\n* TC2795 (Project task)\n* TC2795-1\n* TC2795-2\n* TC2795-3\n\nTC2795-1 is a parent of TC2795-2\n\nand TC2795-3 is a child of TC2795-2."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-2795",
+    "text": "Test: TC-2795 — Global - Widget - WBS - Displaying tasks when QF is active on Gantt\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-181 Global - Widget - WBS\nLabels: teamtree\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-2795 Global - Widget - WBS - Displaying tasks when QF is active on Gantt\n   Expected: Gantt module is displayed and\n4 tasks are visible:\n\n* Project task\n* TC2795-1\n* TC2795-2\n* TC2795-3\n\nTC2795-1 is a parent of TC2795-2\nand TC2795-3 is a child of TC2795-2.\n2. Click on Quick filter field\n\nChoose quickfilterName\n   Data: quickFilterName: Świąt nie będzie\n   Expected: Quick filter is active. On Gantt there are visible tasks:\n\n* Project task is greyed out\n* TC2795-1\n* TC2795-2\n3. Click on key of taskName to open issue detail page\n   Data: taskName: Rozchmurz się, stary.\n   Expected: Issue page for TC2795-1 is displayed in new tab\n4. Change issueKey of task in address url to the one excluded from scope\n   Data: issueKey: TC2795-3\n   Expected: Issue page for TC2795-3 is displayed\n5. Check if Big Picture - Work Breakdown Structure is displayed on issue page\n   Expected: Big Picture - Work Breakdown Structure is displayed on issue page\n6. Check if all elements are displayed in Big Picture - Work Breakdown Structure\n   Expected: FolLowing elements are displayed in Big Picture - Work Breakdown Structure:\n\n* Box switcher dropdown\n* \"Show on Gantt\" button\n* \"Load data\" button\n* Wrench button that redirects to WBS widget settings\n* Cog icon for Column View settings\n\n4 tasks are displayed on WBS:\n\n* TC2795 (Project task)\n* TC2795-1\n* TC2795-2\n* TC2795-3\n\nTC2795-1 is a parent of TC2795-2\n\nand TC2795-3 is a child of TC2795-2.",
+    "metadata": {
+      "jira_key": "TC-2795",
+      "issue_id": "356912",
+      "summary": "Global - Widget - WBS - Displaying tasks when QF is active on Gantt",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-181 Global - Widget - WBS",
+      "labels": [
+        "teamtree"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

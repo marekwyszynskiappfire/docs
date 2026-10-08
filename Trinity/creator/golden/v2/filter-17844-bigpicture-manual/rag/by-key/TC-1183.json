@@ -1,0 +1,89 @@
+{
+  "test": {
+    "key": "TC-1183",
+    "issue_id": "358439",
+    "url": "https://appfire.atlassian.net/browse/TC-1183",
+    "summary": "Box Module - Reports - Creating new pie chart",
+    "description": "",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Patryk Pesta",
+    "created": "2021-01-22T04:37:57.677-0500",
+    "updated": "2026-03-13T06:16:20.934-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "rocksolid",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Reports module of boxName",
+        "data": "boxName: TC-1183 Creating new pie chart",
+        "result": "Reports module is opened correctly"
+      },
+      {
+        "step": 2,
+        "action": "Click on the Edit button",
+        "data": "",
+        "result": "Edit button is highlighted, edit mode is open. There is Add report button next to the clicked Edit button. Charts borders are dashed. Buttons to change chart type are replaced with Edit report size / Edit report configuration / Remove report buttons."
+      },
+      {
+        "step": 3,
+        "action": "Click on the Add report button",
+        "data": "",
+        "result": "Modal appeared, folLowing buttons are visible:\n- Task report\n- Risks matrix\n- Team dependencies\n- Dependencies\n- Milestones & Markers\n- Velocity\n- Plan delays\n- Capacity\n\nOn bottom right hand side there is a Create button that should remain inactive until one of above is selected"
+      },
+      {
+        "step": 4,
+        "action": "Select Task report button and click Create",
+        "data": "",
+        "result": "Report configuration modal should appear. It should have folLowing fields:\n\n* Name\n* Chart type\n* Formula\n* Field\n* Group by\n* Date filter\n* Start date\n* End date\n* Narrow down\n\nBeLow that there should be Cancel and Add buttons.\n\nOn the bottom left side of the dialog there is a link Read more."
+      },
+      {
+        "step": 5,
+        "action": "In the Name field put reportName, change Chart type to chartType in the Group by* selector pick groupBy and click on the Add button",
+        "data": "reportName: TC-1183 Pie chart\nchartType: Pie chart\ngroupBy: Status",
+        "result": "The modal should close. New pie report is added at the end of the reports list."
+      },
+      {
+        "step": 6,
+        "action": "Verify the data from step 5 is added to the generated report",
+        "data": "reportName: TC-1183 Pie chart\ngroupBy: Status",
+        "result": "Name of the report should be reportName. There is a pie chart with three sections:\n\n* To Do\n* In Progress\n* Done\n\nAnd a legend on the right hand side.\n\nColours of the sections are:\n\n* To Do = blue\n* In Progress = green\n* Done = orange\n\nHovering over each section will show its value which is:\n\n* To Do = 50% 5/10\n* In progress = 30% 3/10\n* Done = 20% 2/10"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-1183",
+    "text": "Test: TC-1183 — Box Module - Reports - Creating new pie chart\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: Sanity, can_be_automated, rocksolid, teamsmile\n\nSteps:\n1. Navigate to Reports module of boxName\n   Data: boxName: TC-1183 Creating new pie chart\n   Expected: Reports module is opened correctly\n2. Click on the Edit button\n   Expected: Edit button is highlighted, edit mode is open. There is Add report button next to the clicked Edit button. Charts borders are dashed. Buttons to change chart type are replaced with Edit report size / Edit report configuration / Remove report buttons.\n3. Click on the Add report button\n   Expected: Modal appeared, folLowing buttons are visible:\n- Task report\n- Risks matrix\n- Team dependencies\n- Dependencies\n- Milestones & Markers\n- Velocity\n- Plan delays\n- Capacity\n\nOn bottom right hand side there is a Create button that should remain inactive until one of above is selected\n4. Select Task report button and click Create\n   Expected: Report configuration modal should appear. It should have folLowing fields:\n\n* Name\n* Chart type\n* Formula\n* Field\n* Group by\n* Date filter\n* Start date\n* End date\n* Narrow down\n\nBeLow that there should be Cancel and Add buttons.\n\nOn the bottom left side of the dialog there is a link Read more.\n5. In the Name field put reportName, change Chart type to chartType in the Group by* selector pick groupBy and click on the Add button\n   Data: reportName: TC-1183 Pie chart\nchartType: Pie chart\ngroupBy: Status\n   Expected: The modal should close. New pie report is added at the end of the reports list.\n6. Verify the data from step 5 is added to the generated report\n   Data: reportName: TC-1183 Pie chart\ngroupBy: Status\n   Expected: Name of the report should be reportName. There is a pie chart with three sections:\n\n* To Do\n* In Progress\n* Done\n\nAnd a legend on the right hand side.\n\nColours of the sections are:\n\n* To Do = blue\n* In Progress = green\n* Done = orange\n\nHovering over each section will show its value which is:\n\n* To Do = 50% 5/10\n* In progress = 30% 3/10\n* Done = 20% 2/10",
+    "metadata": {
+      "jira_key": "TC-1183",
+      "issue_id": "358439",
+      "summary": "Box Module - Reports - Creating new pie chart",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "rocksolid",
+        "teamsmile"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

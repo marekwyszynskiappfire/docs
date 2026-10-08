@@ -1,0 +1,141 @@
+{
+  "test": {
+    "key": "TC-4566",
+    "issue_id": "814728",
+    "url": "https://appfire.atlassian.net/browse/TC-4566",
+    "summary": "new Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Monika Cecot",
+    "reporter": "Monika Cecot",
+    "created": "2024-07-22T10:05:47.844-0400",
+    "updated": "2026-08-10T03:49:22.236-0400",
+    "labels": [
+      "NRGdone",
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view",
+        "result": "Resources module is displayed.\n\nTimeline starts from 01/Jul/22\n\nThe individual view is set by default.\n\nFollowing tasks are displayed in the Resource Grid:\n\n* Task 4 is assigned to user TC4740-U1\n* Task 1 is assigned to user TC4740-U2\n* Task 2 and Task 3 are assigned to user TC4740-U3\n\nTime period is set to Month/Weekly."
+      },
+      {
+        "step": 2,
+        "action": "Click on View in the header and deselect Workload and Capacity options",
+        "data": "",
+        "result": "Workload and Capacity are unselected"
+      },
+      {
+        "step": 3,
+        "action": "Click on filter button in the left header, expand ‘Teams,’ click on ‘Select team’ dropdown menu, and select values",
+        "data": "values:\nTeam A\nTeam C",
+        "result": "Team A and Team C are selected. \n\nFollowing values are displayed in Remaining Capacity for week 27:\n\n* TC4566-U1 - 40.0h\n* TC4566-U3 - 40.0h\n* Summary - 80.0h"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Teams module of boxName",
+        "data": "boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view",
+        "result": "Teams module is loaded.\n\nFollowing Teams are displayed:\n\n* Team A\n* Team B\n* Team C"
+      },
+      {
+        "step": 5,
+        "action": "Click on teamName and add user in members tab",
+        "data": "teamName: Team A\nuserName: TC4740-U2\navailability: 50 \nstartDate: 01/Jul/22",
+        "result": "The TC4740-U2 is added to Team A. \n\nYellow border appeared over TC4740-U2 with a tooltip 'Total availability of this resource (calculated for all Boxes and Teams they are a member of) exceeds 100%. To review teams a resource is assigned to go to resource details page (Administration > Resources > Individuals > select a resource from the list). '"
+      },
+      {
+        "step": 6,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view",
+        "result": "Team A and Team C are selected. \n\nFollowing values are displayed in Remaining Capacity for week 27:\n\n* TC4740-U1 - 40.0h\n* TC4740-U2 - 60.0h \n* TC4740-U3 - 40.0h\n\nSummary - 140.0h"
+      },
+      {
+        "step": 7,
+        "action": "Change view to Teams \nClick on filter button in the left header, expand ‘Teams’, click on ‘Select team’, and click on ‘Select all’",
+        "data": "",
+        "result": "Following tasks are displayed in Resource Grid:\n\n* Task 3 assigned to Team A\n* Task 4 assigned to Team B\n* Task 2 and Task 1 assigned to Team C\n\nFollowing values are displayed in Remaining Capacity for week 27:\n\n* Team A - 60.0h\n* Team B - 40.0h\n* Team C - 40.0h\n\nSummary - 140.0h"
+      },
+      {
+        "step": 8,
+        "action": "Click on filter button in the left header, expand ‘Teams’, click on ‘Select team’, click on ‘Deselect all’, and select values",
+        "data": "values: \nTeam B\nTeam C",
+        "result": "Team B and Team C are selected \n\nFollowing values in Remaining Capacity are displayed for week 27: \n\n* Team B - 40.0h\n* Team C - 40.0h\n\nSummary - 80.0h"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Teams module of boxName",
+        "data": "boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view",
+        "result": "Teams module is loaded.\n\nFollowing Teams are displayed:\n\n* Team A\n* Team B\n* Team C"
+      },
+      {
+        "step": 10,
+        "action": "Click on teamName and add user in members tab",
+        "data": "teamName: Team C\nuserName: TC4740-U2\navailability: 20\nstartDate: 01/Jul/22",
+        "result": "User TC4740-U2 is added to members list"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view",
+        "result": "Team B and Team C are displayed on Resource Grid\n\nFollowing values in Remaining Capacity are displayed for week 27:\n\n* Team B - 40.0h\n* Team C - 48.0h\n\nSummary - 88.0h"
+      },
+      {
+        "step": 12,
+        "action": "Click the ‘Weekly’ dropdown menu button and select newAggregation.",
+        "data": "newAggregation: Daily",
+        "result": "The aggregation is changed to Daily\n\nFollowing values are displayed on Remaining Capacity for the following teams on dates 4/07/2022 - 8/07/2022:\n\n* Team B - 8.0h\n* Team C - 9.6h\n\nSummary 17.6h"
+      },
+      {
+        "step": 13,
+        "action": "Change to Individuals mode and select teams from filter",
+        "data": "teams: \nTeam A \nTeam C",
+        "result": "Team A and Team C are selected. \n\nFollowing values are displayed on Remaining capacity on dates 04/07/2022 - 08/07/2022:\n\n* User TC4740-U1 - 8.0h\n* User TC4740-U2 - 13.6h\n* User TC4740-U3 - 8.0h\n\nSummary - 29.6h"
+      },
+      {
+        "step": 14,
+        "action": "Click on View in the header and select Capacity option",
+        "data": "",
+        "result": "Capacity is selected"
+      },
+      {
+        "step": 15,
+        "action": "Click on Capacity Details lozenge (gray) of userName of date and then click on a toggler of Team Memberships",
+        "data": "userName: TC4740-U2\ndate: 06/Jul/22",
+        "result": "Capacity Details dialog is displayed. \n\nDefault Workload Plan has 8.0h value.\n\nTeam Membership has 170% value.\nTeam B - 100%\nTeam A - 50% \nTeam C - 20%"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 15
+  },
+  "rag": {
+    "id": "TC-4566",
+    "text": "Test: TC-4566 — new Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: NRGdone, be-enterprise, can_be_automated\n\nSteps:\n1. Navigate to Resources module of boxName\n   Data: boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view\n   Expected: Resources module is displayed.\n\nTimeline starts from 01/Jul/22\n\nThe individual view is set by default.\n\nFollowing tasks are displayed in the Resource Grid:\n\n* Task 4 is assigned to user TC4740-U1\n* Task 1 is assigned to user TC4740-U2\n* Task 2 and Task 3 are assigned to user TC4740-U3\n\nTime period is set to Month/Weekly.\n2. Click on View in the header and deselect Workload and Capacity options\n   Expected: Workload and Capacity are unselected\n3. Click on filter button in the left header, expand ‘Teams,’ click on ‘Select team’ dropdown menu, and select values\n   Data: values:\nTeam A\nTeam C\n   Expected: Team A and Team C are selected. \n\nFollowing values are displayed in Remaining Capacity for week 27:\n\n* TC4566-U1 - 40.0h\n* TC4566-U3 - 40.0h\n* Summary - 80.0h\n4. Navigate to Teams module of boxName\n   Data: boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view\n   Expected: Teams module is loaded.\n\nFollowing Teams are displayed:\n\n* Team A\n* Team B\n* Team C\n5. Click on teamName and add user in members tab\n   Data: teamName: Team A\nuserName: TC4740-U2\navailability: 50 \nstartDate: 01/Jul/22\n   Expected: The TC4740-U2 is added to Team A. \n\nYellow border appeared over TC4740-U2 with a tooltip 'Total availability of this resource (calculated for all Boxes and Teams they are a member of) exceeds 100%. To review teams a resource is assigned to go to resource details page (Administration > Resources > Individuals > select a resource from the list). '\n6. Navigate to Resources module of boxName\n   Data: boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view\n   Expected: Team A and Team C are selected. \n\nFollowing values are displayed in Remaining Capacity for week 27:\n\n* TC4740-U1 - 40.0h\n* TC4740-U2 - 60.0h \n* TC4740-U3 - 40.0h\n\nSummary - 140.0h\n7. Change view to Teams \nClick on filter button in the left header, expand ‘Teams’, click on ‘Select team’, and click on ‘Select all’\n   Expected: Following tasks are displayed in Resource Grid:\n\n* Task 3 assigned to Team A\n* Task 4 assigned to Team B\n* Task 2 and Task 1 assigned to Team C\n\nFollowing values are displayed in Remaining Capacity for week 27:\n\n* Team A - 60.0h\n* Team B - 40.0h\n* Team C - 40.0h\n\nSummary - 140.0h\n8. Click on filter button in the left header, expand ‘Teams’, click on ‘Select team’, click on ‘Deselect all’, and select values\n   Data: values: \nTeam B\nTeam C\n   Expected: Team B and Team C are selected \n\nFollowing values in Remaining Capacity are displayed for week 27: \n\n* Team B - 40.0h\n* Team C - 40.0h\n\nSummary - 80.0h\n9. Navigate to Teams module of boxName\n   Data: boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view\n   Expected: Teams module is loaded.\n\nFollowing Teams are displayed:\n\n* Team A\n* Team B\n* Team C\n10. Click on teamName and add user in members tab\n   Data: teamName: Team C\nuserName: TC4740-U2\navailability: 20\nstartDate: 01/Jul/22\n   Expected: User TC4740-U2 is added to members list\n11. Navigate to Resources module of boxName\n   Data: boxName:\nTC-4566 Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view\n   Expected: Team B and Team C are displayed on Resource Grid\n\nFollowing values in Remaining Capacity are displayed for week 27:\n\n* Team B - 40.0h\n* Team C - 48.0h\n\nSummary - 88.0h\n12. Click the ‘Weekly’ dropdown menu button and select newAggregation.\n   Data: newAggregation: Daily\n   Expected: The aggregation is changed to Daily\n\nFollowing values are displayed on Remaining Capacity for the following teams on dates 4/07/2022 - 8/07/2022:\n\n* Team B - 8.0h\n* Team C - 9.6h\n\nSummary 17.6h\n13. Change to Individuals mode and select teams from filter\n   Data: teams: \nTeam A \nTeam C\n   Expected: Team A and Team C are selected. \n\nFollowing values are displayed on Remaining capacity on dates 04/07/2022 - 08/07/2022:\n\n* User TC4740-U1 - 8.0h\n* User TC4740-U2 - 13.6h\n* User TC4740-U3 - 8.0h\n\nSummary - 29.6h\n14. Click on View in the header and select Capacity option\n   Expected: Capacity is selected\n15. Click on Capacity Details lozenge (gray) of userName of date and then click on a toggler of Team Memberships\n   Data: userName: TC4740-U2\ndate: 06/Jul/22\n   Expected: Capacity Details dialog is displayed. \n\nDefault Workload Plan has 8.0h value.\n\nTeam Membership has 170% value.\nTeam B - 100%\nTeam A - 50% \nTeam C - 20%",
+    "metadata": {
+      "jira_key": "TC-4566",
+      "issue_id": "814728",
+      "summary": "new Box Module - Resources - Resource Grid - Capacity calculation when filtering by Name or Multiselect in Individual and Team view",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "NRGdone",
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 15,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

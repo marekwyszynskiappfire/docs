@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-5413",
+    "issue_id": "1163844",
+    "url": "https://appfire.atlassian.net/browse/TC-5413",
+    "summary": "Timebox schedule - Generation of timebox schedule based on Jira sprints",
+    "description": "",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2025-03-04T04:53:05.482-0500",
+    "updated": "2026-07-06T05:48:18.247-0400",
+    "labels": [
+      "Sanity"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-503 Timebox Schedule",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Settings → Administration → Timebox schedules.\n\nClick on Create Timebox schedule tile.",
+        "data": "",
+        "result": "Create new timebox schedule dialog is appearing.\n\nThere are following fields:\n\n* Name (no placeholder)\n* Description (no placeholder)\n* Timebox levels (placeholder: Select timebox levels)\n* Start date (filled with today’s date)\n* Connect Global Teams (placeholder: Select global teams)\n\nBetween Description and Timebox levels fields there is turned off toggle button: Use existing Jira sprints to generate a timebox schedule\n\nAll fields besides Description and Connect Global Teams are required and are marked by red star.\n\nAt the bottom there are two buttons: Cancel (enabled) and Create (disabled)"
+      },
+      {
+        "step": 2,
+        "action": "Click on toggle button: Use existing Jira sprints to generate a timebox schedule",
+        "data": "timeboxLevel: Iteration",
+        "result": "Start date field is not displaying anymore.\n\nIn Timebox levels is displaying timeboxLevel.\n\nTimebox levels field is disabled and greyed out.\n\nUnder the field there is communicate:\n\nOnly one timebox level is allowed when Jira sync is enabled"
+      },
+      {
+        "step": 3,
+        "action": "Provide scheduleName1 in Name field and click on Create.",
+        "data": "scheduleName1: TC-5413 Schedule 1",
+        "result": "User navigate to the timebox schedule details.\n\nSynchronize sprints page is visible.\n\nThere are Board selector and disabled Save button."
+      },
+      {
+        "step": 4,
+        "action": "Click on Board selector, search and select jiraBoard.",
+        "data": "jiraBoard: TC5413 board",
+        "result": "jiraBoard is selected.\n\nSprints table is appeared.\n\nThe table contains following columns:\n\n* Name\n* Start date\n* End date\n* Sprint status\n* Ready to synchronize\n\nSave button is enabled."
+      },
+      {
+        "step": 5,
+        "action": "Verify data in columns:\n\n* Name\n* Start date\n* End date\n* Sprint status\n* Ready to synchronize",
+        "data": "* sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3\n* startDate1: 31/Mar/25\n* startDate2: 7/Apr/25\n* startDate3: 14/Apr/25\n* endDate1: 7/Apr/25\n* endDate2: 14/Apr/25\n* endDate3: 21/Apr/25\n* status1: Done\n* status2: In progress\n* status3: Not started",
+        "result": "In the first row there are follwing data:\n\n* Name: sprintName1\n* Start date: startDate1\n* End date: endDate1\n* Sprint status: status1\n* Ready to synchronize: Check icon with tooltip: Sprint is ready to synchronize\n\n\n\nIn the second row there are follwing data:\n\n* Name: sprintName2\n* Start date: startDate2\n* End date: endDate2\n* Sprint status: status2\n* Ready to synchronize: Check icon with tooltip: Sprint is ready to synchronize\n\n\n\nIn the third row there are follwing data:\n\n* Name: sprintName3\n* Start date: startDate3\n* End date: endDate3\n* Sprint status: status3\n* Ready to synchronize: Check icon with tooltip: Sprint is ready to synchronize"
+      },
+      {
+        "step": 6,
+        "action": "Click on Save button.",
+        "data": "jiraBoard: TC5413 board",
+        "result": "Schedule structure and Timeboxes field mapping tabs are appearing.\n\nSchedule structure tab is selected.\n\nThere is communication banner visible with text:\n\nJira sprints from jiraBoard sync automatically. Read more\n\nUnder the banner there is table with following columns:\n\n* Name\n* Start date\n* End date\n* Status\n\nThere is no trash and pencil icons in rows. User can’t edit timeboxes."
+      },
+      {
+        "step": 7,
+        "action": "Verify data in columns:\n\n* Name\n* Start date\n* End date\n* Status",
+        "data": "* sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3\n* startDate1: 31/Mar/25\n* startDate2: 7/Apr/25\n* startDate3: 14/Apr/25\n* endDate1: 7/Apr/25\n* endDate2: 14/Apr/25\n* endDate3: 21/Apr/25\n* status1: Closed\n* status2: In progress\n* status3: Not started",
+        "result": "In the first row there are follwing data:\n\n* Name: sprintName1\n* Start date: startDate1\n* End date: endDate1\n* Status: status1\n\nIn the second row there are follwing data:\n\n* Name: sprintName2\n* Start date: startDate2\n* End date: endDate2\n* Status: status2\n\nIn the third row there are follwing data:\n\n* Name: sprintName3\n* Start date: startDate3\n* End date: endDate3\n* Status: status3"
+      },
+      {
+        "step": 8,
+        "action": "Hover over under sprintName1 row.",
+        "data": "",
+        "result": "No plus icon is displaying. User can’t add new timeboxes."
+      },
+      {
+        "step": 9,
+        "action": "Click on Timeboxes field mapping tab.\n\nZoom out to see all created timeboxes.",
+        "data": "* sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3",
+        "result": "sprintName1 has green header.\n\nConnected Jira Field is Sprint.\n\nValue is sprintName1.\n\nsprintName2 has blue header.\n\nConnected Jira Field is Sprint.\n\nValue is sprintName2.\n\nsprintName3 has grey header.\n\nConnected Jira Field is Sprint.\n\nValue is sprintName4.\n\nAll Connected Jira Fields, Board selectors, Value fields and checkboxes Each team has a different mapping with value are disabled and greyed out.\n\nSave button is disabled."
+      },
+      {
+        "step": 10,
+        "action": "Click on Assign to boxes button.\n\nSearch and select boxName.\n\nClick on Save.",
+        "data": "* boxName: TC-5413 Timebox schedule - Generation of timebox schedule based on Jira sprints\n* scheduleName1: TC-5413 Schedule",
+        "result": "boxName is assigned to scheduleName1"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Board module of boxName.\n\nZoom out view to see all three timeboxes.\n\nOpen backlog.",
+        "data": "* boxName: TC-5413 Timebox schedule - Generation of timebox schedule based on Jira sprints\n* sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3",
+        "result": "There is no tasks in sprintName1.\n\nThere are following tasks in sprintName2:\n\n* Task 1\n* Task 2\n\nThere is task in sprintName3:\n\n* Task 3\n\nThere is task in backlog:\n\n* Task 4"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-5413",
+    "text": "Test: TC-5413 — Timebox schedule - Generation of timebox schedule based on Jira sprints\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-503 Timebox Schedule\nLabels: Sanity\n\nSteps:\n1. Navigate to App Settings → Administration → Timebox schedules.\n\nClick on Create Timebox schedule tile.\n   Expected: Create new timebox schedule dialog is appearing.\n\nThere are following fields:\n\n* Name (no placeholder)\n* Description (no placeholder)\n* Timebox levels (placeholder: Select timebox levels)\n* Start date (filled with today’s date)\n* Connect Global Teams (placeholder: Select global teams)\n\nBetween Description and Timebox levels fields there is turned off toggle button: Use existing Jira sprints to generate a timebox schedule\n\nAll fields besides Description and Connect Global Teams are required and are marked by red star.\n\nAt the bottom there are two buttons: Cancel (enabled) and Create (disabled)\n2. Click on toggle button: Use existing Jira sprints to generate a timebox schedule\n   Data: timeboxLevel: Iteration\n   Expected: Start date field is not displaying anymore.\n\nIn Timebox levels is displaying timeboxLevel.\n\nTimebox levels field is disabled and greyed out.\n\nUnder the field there is communicate:\n\nOnly one timebox level is allowed when Jira sync is enabled\n3. Provide scheduleName1 in Name field and click on Create.\n   Data: scheduleName1: TC-5413 Schedule 1\n   Expected: User navigate to the timebox schedule details.\n\nSynchronize sprints page is visible.\n\nThere are Board selector and disabled Save button.\n4. Click on Board selector, search and select jiraBoard.\n   Data: jiraBoard: TC5413 board\n   Expected: jiraBoard is selected.\n\nSprints table is appeared.\n\nThe table contains following columns:\n\n* Name\n* Start date\n* End date\n* Sprint status\n* Ready to synchronize\n\nSave button is enabled.\n5. Verify data in columns:\n\n* Name\n* Start date\n* End date\n* Sprint status\n* Ready to synchronize\n   Data: * sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3\n* startDate1: 31/Mar/25\n* startDate2: 7/Apr/25\n* startDate3: 14/Apr/25\n* endDate1: 7/Apr/25\n* endDate2: 14/Apr/25\n* endDate3: 21/Apr/25\n* status1: Done\n* status2: In progress\n* status3: Not started\n   Expected: In the first row there are follwing data:\n\n* Name: sprintName1\n* Start date: startDate1\n* End date: endDate1\n* Sprint status: status1\n* Ready to synchronize: Check icon with tooltip: Sprint is ready to synchronize\n\n\n\nIn the second row there are follwing data:\n\n* Name: sprintName2\n* Start date: startDate2\n* End date: endDate2\n* Sprint status: status2\n* Ready to synchronize: Check icon with tooltip: Sprint is ready to synchronize\n\n\n\nIn the third row there are follwing data:\n\n* Name: sprintName3\n* Start date: startDate3\n* End date: endDate3\n* Sprint status: status3\n* Ready to synchronize: Check icon with tooltip: Sprint is ready to synchronize\n6. Click on Save button.\n   Data: jiraBoard: TC5413 board\n   Expected: Schedule structure and Timeboxes field mapping tabs are appearing.\n\nSchedule structure tab is selected.\n\nThere is communication banner visible with text:\n\nJira sprints from jiraBoard sync automatically. Read more\n\nUnder the banner there is table with following columns:\n\n* Name\n* Start date\n* End date\n* Status\n\nThere is no trash and pencil icons in rows. User can’t edit timeboxes.\n7. Verify data in columns:\n\n* Name\n* Start date\n* End date\n* Status\n   Data: * sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3\n* startDate1: 31/Mar/25\n* startDate2: 7/Apr/25\n* startDate3: 14/Apr/25\n* endDate1: 7/Apr/25\n* endDate2: 14/Apr/25\n* endDate3: 21/Apr/25\n* status1: Closed\n* status2: In progress\n* status3: Not started\n   Expected: In the first row there are follwing data:\n\n* Name: sprintName1\n* Start date: startDate1\n* End date: endDate1\n* Status: status1\n\nIn the second row there are follwing data:\n\n* Name: sprintName2\n* Start date: startDate2\n* End date: endDate2\n* Status: status2\n\nIn the third row there are follwing data:\n\n* Name: sprintName3\n* Start date: startDate3\n* End date: endDate3\n* Status: status3\n8. Hover over under sprintName1 row.\n   Expected: No plus icon is displaying. User can’t add new timeboxes.\n9. Click on Timeboxes field mapping tab.\n\nZoom out to see all created timeboxes.\n   Data: * sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3\n   Expected: sprintName1 has green header.\n\nConnected Jira Field is Sprint.\n\nValue is sprintName1.\n\nsprintName2 has blue header.\n\nConnected Jira Field is Sprint.\n\nValue is sprintName2.\n\nsprintName3 has grey header.\n\nConnected Jira Field is Sprint.\n\nValue is sprintName4.\n\nAll Connected Jira Fields, Board selectors, Value fields and checkboxes Each team has a different mapping with value are disabled and greyed out.\n\nSave button is disabled.\n10. Click on Assign to boxes button.\n\nSearch and select boxName.\n\nClick on Save.\n   Data: * boxName: TC-5413 Timebox schedule - Generation of timebox schedule based on Jira sprints\n* scheduleName1: TC-5413 Schedule\n   Expected: boxName is assigned to scheduleName1\n11. Navigate to Board module of boxName.\n\nZoom out view to see all three timeboxes.\n\nOpen backlog.\n   Data: * boxName: TC-5413 Timebox schedule - Generation of timebox schedule based on Jira sprints\n* sprintName1:  Sprint 1\n* sprintName2:  Sprint 2\n* sprintName3:  Sprint 3\n   Expected: There is no tasks in sprintName1.\n\nThere are following tasks in sprintName2:\n\n* Task 1\n* Task 2\n\nThere is task in sprintName3:\n\n* Task 3\n\nThere is task in backlog:\n\n* Task 4",
+    "metadata": {
+      "jira_key": "TC-5413",
+      "issue_id": "1163844",
+      "summary": "Timebox schedule - Generation of timebox schedule based on Jira sprints",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-503 Timebox Schedule",
+      "labels": [
+        "Sanity"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

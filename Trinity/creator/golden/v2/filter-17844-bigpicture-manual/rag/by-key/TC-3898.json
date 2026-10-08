@@ -1,0 +1,127 @@
+{
+  "test": {
+    "key": "TC-3898",
+    "issue_id": "359116",
+    "url": "https://appfire.atlassian.net/browse/TC-3898",
+    "summary": "Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Removing dates from issue view",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2023-02-24T11:01:27.300-0500",
+    "updated": "2026-03-30T09:56:47.553-0400",
+    "labels": [
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of boxName",
+        "data": "boxName: TC-3898 Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Removing dates from issue view",
+        "result": "Two Jira tasks are displayed on WBS."
+      },
+      {
+        "step": 2,
+        "action": "Click on issue key of taskName",
+        "data": "taskName: FirstRemovedStartDate",
+        "result": "New tab with Jira issue view of FirstRemovedStartDate is opened"
+      },
+      {
+        "step": 3,
+        "action": "Click on start date field and remove its value",
+        "data": "",
+        "result": "The start date of the FirstRemovedStartDate have been removed"
+      },
+      {
+        "step": 4,
+        "action": "Go back to Gantt module.",
+        "data": "",
+        "result": "On Gantt timeline task FirstRemovedStartDate ends on 18 of November, 2024, and has no start date. On WBS only end date is displayed."
+      },
+      {
+        "step": 5,
+        "action": "Click on issue key of taskName",
+        "data": "taskName: FirstRemovedStartDate",
+        "result": "New tab with Jira issue view of FirstRemovedStartDate is opened"
+      },
+      {
+        "step": 6,
+        "action": "Click on end date field and remove its value",
+        "data": "",
+        "result": "The end date of the FirstRemovedStartDate have been removed"
+      },
+      {
+        "step": 7,
+        "action": "Go back to Gantt module.",
+        "data": "",
+        "result": "On Gantt timeline task FirstRemovedStartDate is not displayed. On WBS start & end dates are empty."
+      },
+      {
+        "step": 8,
+        "action": "Click on issue key of taskName",
+        "data": "taskName: FirstRemovedEndDate",
+        "result": "New tab with Jira issue view of FirstRemovedEndDate is opened"
+      },
+      {
+        "step": 9,
+        "action": "Click on end date field and remove its value",
+        "data": "",
+        "result": "The end date of the FirstRemovedEndDate have been removed"
+      },
+      {
+        "step": 10,
+        "action": "Go back to Gantt module.",
+        "data": "",
+        "result": "On Gantt timeline task FirstRemovedEndDate starts on 18 of November, 2024, and has no end date. On WBS only start date is displayed."
+      },
+      {
+        "step": 11,
+        "action": "Click on issue key of taskName",
+        "data": "taskName: FirstRemovedEndDate",
+        "result": "New tab with Jira issue view of FirstRemovedEndDate is opened"
+      },
+      {
+        "step": 12,
+        "action": "Remove the startDate and click Update",
+        "data": "",
+        "result": "The start date of the StartDateRemovedSecond have been removed."
+      },
+      {
+        "step": 13,
+        "action": "Go back to Gantt module.",
+        "data": "",
+        "result": "On Gantt timeline task FirstRemovedEndDate is not displayed. On WBS start & end dates are empty"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-3898",
+    "text": "Test: TC-3898 — Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Removing dates from issue view\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-88 Feature area - Box - Attributes displaying and editing\nLabels: teamembers, teamtree\n\nSteps:\n1. Navigate to the Gantt module of boxName\n   Data: boxName: TC-3898 Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Removing dates from issue view\n   Expected: Two Jira tasks are displayed on WBS.\n2. Click on issue key of taskName\n   Data: taskName: FirstRemovedStartDate\n   Expected: New tab with Jira issue view of FirstRemovedStartDate is opened\n3. Click on start date field and remove its value\n   Expected: The start date of the FirstRemovedStartDate have been removed\n4. Go back to Gantt module.\n   Expected: On Gantt timeline task FirstRemovedStartDate ends on 18 of November, 2024, and has no start date. On WBS only end date is displayed.\n5. Click on issue key of taskName\n   Data: taskName: FirstRemovedStartDate\n   Expected: New tab with Jira issue view of FirstRemovedStartDate is opened\n6. Click on end date field and remove its value\n   Expected: The end date of the FirstRemovedStartDate have been removed\n7. Go back to Gantt module.\n   Expected: On Gantt timeline task FirstRemovedStartDate is not displayed. On WBS start & end dates are empty.\n8. Click on issue key of taskName\n   Data: taskName: FirstRemovedEndDate\n   Expected: New tab with Jira issue view of FirstRemovedEndDate is opened\n9. Click on end date field and remove its value\n   Expected: The end date of the FirstRemovedEndDate have been removed\n10. Go back to Gantt module.\n   Expected: On Gantt timeline task FirstRemovedEndDate starts on 18 of November, 2024, and has no end date. On WBS only start date is displayed.\n11. Click on issue key of taskName\n   Data: taskName: FirstRemovedEndDate\n   Expected: New tab with Jira issue view of FirstRemovedEndDate is opened\n12. Remove the startDate and click Update\n   Expected: The start date of the StartDateRemovedSecond have been removed.\n13. Go back to Gantt module.\n   Expected: On Gantt timeline task FirstRemovedEndDate is not displayed. On WBS start & end dates are empty",
+    "metadata": {
+      "jira_key": "TC-3898",
+      "issue_id": "359116",
+      "summary": "Feature are - Task - Attributes displaying and editing - Tasks Without Dates - Removing dates from issue view",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+      "labels": [
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

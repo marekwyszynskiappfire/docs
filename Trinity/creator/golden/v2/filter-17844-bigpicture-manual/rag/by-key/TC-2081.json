@@ -1,0 +1,115 @@
+{
+  "test": {
+    "key": "TC-2081",
+    "issue_id": "357881",
+    "url": "https://appfire.atlassian.net/browse/TC-2081",
+    "summary": "Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Patryk Pesta",
+    "created": "2021-06-17T06:16:43.364-0400",
+    "updated": "2025-01-23T09:33:52.107-0500",
+    "labels": [
+      "manual",
+      "team#Enigma"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-70 Feature area - Box scope - Existing tasks cloning",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Go to box configuration of the boxName > Scope definition \nAdd private Trello integration (or use team-qa Trello account)",
+        "data": "boxName: TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Alpha\n\n*IMPORTANT*\nTrello account with at least one Board and couple of cards in that board.",
+        "result": "Scope definition page is displayed. No Warning Log dialog is displayed. Two sections are displayed in Scope configuration:\n\n* connection to Jira\n* connection to Trello"
+      },
+      {
+        "step": 2,
+        "action": "In Trello integration, set automatic rules by adding a Trello board and save changes",
+        "data": "",
+        "result": "Changes are saved. Tasks are added to scope."
+      },
+      {
+        "step": 3,
+        "action": "Navigate to the Gantt module of boxName.",
+        "data": "boxName: TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Beta",
+        "result": "Gantt module is displayed. Splash screen is displayed with two tiles:  Create new, Define scope"
+      },
+      {
+        "step": 4,
+        "action": "Click on the + (Add task) button and select Clone existing scope.",
+        "data": "",
+        "result": "Modal window with Clone existing scope header is displayed."
+      },
+      {
+        "step": 5,
+        "action": "Click on \"Clone the scope from...\" selector",
+        "data": "",
+        "result": "Search field and list of boxes are displayed. Each box is displayed in form: $BoxID (bold), $BoxName and $BoxTypeName (italic)"
+      },
+      {
+        "step": 6,
+        "action": "Type in boxName into the search field and select this box.",
+        "data": "boxName: TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Alpha",
+        "result": "TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Alpha is selected."
+      },
+      {
+        "step": 7,
+        "action": "Click on Select Jira Project selector.",
+        "data": "",
+        "result": "Search field and list of projects are displayed."
+      },
+      {
+        "step": 8,
+        "action": "Type in the projectName into the search field and select this project.",
+        "data": "projectName: TC-2081 Clone existing scope with Trello tasks on Gantt",
+        "result": "TC-2081 Clone existing scope with Trello tasks on Gantt is selected."
+      },
+      {
+        "step": 9,
+        "action": "Click on the Clone button.",
+        "data": "",
+        "result": "Confirm dialog is displayed: Cloned tasks will be added gradually. Refresh the page so that you can observe the results.\n\nTwo buttons are displayed beLow:\n- Proceed\n- Cancel"
+      },
+      {
+        "step": 10,
+        "action": "Click on the Proceed button",
+        "data": "",
+        "result": "Confirm dialog and Modal window are disappeared. A message appears stating the folLowing: \"Tasks have been successfully cloned. Now you can refresh the page to see your tasks.\""
+      },
+      {
+        "step": 11,
+        "action": "Refresh the page.",
+        "data": "",
+        "result": "Cloned Trello tasks are displayed on Gantt as basic tasks. The task structure of the box is maintained."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-2081",
+    "text": "Test: TC-2081 — Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-70 Feature area - Box scope - Existing tasks cloning\nLabels: manual, team#Enigma\n\nSteps:\n1. Go to box configuration of the boxName > Scope definition \nAdd private Trello integration (or use team-qa Trello account)\n   Data: boxName: TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Alpha\n\n*IMPORTANT*\nTrello account with at least one Board and couple of cards in that board.\n   Expected: Scope definition page is displayed. No Warning Log dialog is displayed. Two sections are displayed in Scope configuration:\n\n* connection to Jira\n* connection to Trello\n2. In Trello integration, set automatic rules by adding a Trello board and save changes\n   Expected: Changes are saved. Tasks are added to scope.\n3. Navigate to the Gantt module of boxName.\n   Data: boxName: TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Beta\n   Expected: Gantt module is displayed. Splash screen is displayed with two tiles:  Create new, Define scope\n4. Click on the + (Add task) button and select Clone existing scope.\n   Expected: Modal window with Clone existing scope header is displayed.\n5. Click on \"Clone the scope from...\" selector\n   Expected: Search field and list of boxes are displayed. Each box is displayed in form: $BoxID (bold), $BoxName and $BoxTypeName (italic)\n6. Type in boxName into the search field and select this box.\n   Data: boxName: TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Alpha\n   Expected: TC-2081 Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt - Alpha is selected.\n7. Click on Select Jira Project selector.\n   Expected: Search field and list of projects are displayed.\n8. Type in the projectName into the search field and select this project.\n   Data: projectName: TC-2081 Clone existing scope with Trello tasks on Gantt\n   Expected: TC-2081 Clone existing scope with Trello tasks on Gantt is selected.\n9. Click on the Clone button.\n   Expected: Confirm dialog is displayed: Cloned tasks will be added gradually. Refresh the page so that you can observe the results.\n\nTwo buttons are displayed beLow:\n- Proceed\n- Cancel\n10. Click on the Proceed button\n   Expected: Confirm dialog and Modal window are disappeared. A message appears stating the folLowing: \"Tasks have been successfully cloned. Now you can refresh the page to see your tasks.\"\n11. Refresh the page.\n   Expected: Cloned Trello tasks are displayed on Gantt as basic tasks. The task structure of the box is maintained.",
+    "metadata": {
+      "jira_key": "TC-2081",
+      "issue_id": "357881",
+      "summary": "Feature area - Box scope - Existing tasks cloning - Clone existing scope with Trello tasks on Gantt",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-70 Feature area - Box scope - Existing tasks cloning",
+      "labels": [
+        "manual",
+        "team#Enigma"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

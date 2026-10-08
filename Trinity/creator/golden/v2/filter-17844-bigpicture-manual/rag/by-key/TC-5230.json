@@ -1,0 +1,173 @@
+{
+  "test": {
+    "key": "TC-5230",
+    "issue_id": "1092953",
+    "url": "https://appfire.atlassian.net/browse/TC-5230",
+    "summary": "Timebox schedule - Configuration of timeboxes field mapping",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2025-01-10T05:14:03.331-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "Sanity"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-503 Timebox Schedule",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Settings → Timebox schedules.\n\nCreate new timebox schedule providing data:\n\n* Name: name\n* Timebox levels: timeboxLevels\n* Start date: startDate\n* Connect Global Teams: connectGlobalTeams",
+        "data": "* name: TC-5230 Schedule\n* timeboxLevels: Program Increment, Iteration\n* startDate: 01/Nov/24\n* connectGlobalTeams:  TC-5230 Team 1",
+        "result": "Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page."
+      },
+      {
+        "step": 2,
+        "action": "Expand view in schedule structure tab by clicking on chevron button.\n\nThen hover over under subboxName and click on + button.",
+        "data": "subboxName: Iteration",
+        "result": "Create timeboxes modal dialog is displaying."
+      },
+      {
+        "step": 3,
+        "action": "Click on +Add more button and click on Create.",
+        "data": "* subboxName2: Iteration 2\n* subboxName3: Iteration 3",
+        "result": "subboxName2 and subboxName3 are created successfully and visible in schedule structure."
+      },
+      {
+        "step": 4,
+        "action": "Click on pencil icon next to subboxName, change its Status to status and click on Apply changes.",
+        "data": "* subboxName: Iteration\n* status: Closed",
+        "result": "Status of subboxName is changed to Closed."
+      },
+      {
+        "step": 5,
+        "action": "Click on pencil icon next to subboxName2, change its Status to status2 and click on Apply changes.",
+        "data": "* subboxName2: Iteration 2\n* status2: In progress",
+        "result": "Status of subboxName is changed to In progress."
+      },
+      {
+        "step": 6,
+        "action": "Change tab to Timeboxes field mapping.",
+        "data": "boxName: Program Increment 1",
+        "result": "boxName is visible on page.\n\nUnder the header there are fields:\n\n* Connected Jira Field (with default value: Program Increment)\n* Value (empty field with placeholder: Enter the value)\n\nThere is unchecked checkbox Each team has a different mapping with value.\n\nAll fields and checkbox are editable.\n\nAt the bottom there is Save button which is disabled."
+      },
+      {
+        "step": 7,
+        "action": "Check checkbox Each team has a different mapping with value.",
+        "data": "* team1: Team unassigned\n* team2: TC-5230 Team 1",
+        "result": "List of teams is displaying. There are two columns: Team Name and Value.\n\nIn column Team Name there are two teams:\n\n* team1\n* team2\n\nValue fields are empty, only placeholder: Enter the value is displaying.\n\nThere are two additional buttons:\n\n* Generate the default configuration\n* Copy the configuration to all teams below (placed in team1 row)\n\n\n\nSave button is disabled."
+      },
+      {
+        "step": 8,
+        "action": "Click on Generate the default configuration button.",
+        "data": "* value1: BOX-ID\n* value2: BOX-ID Team TC-5230T1\n* team1: Team unassigned\n* team2: TC-5230 Team 1",
+        "result": "value1 is displaying for team1\n\nvalue2 is displaying for team2\n\nSave button is enabled."
+      },
+      {
+        "step": 9,
+        "action": "Click on Connect Global Teams field in sidebar, search and select team3.",
+        "data": "team3: TC-5230 Team 2",
+        "result": "Pop up with message: Changes saved automatically is displaying.\n\nteam3 is visible in Team Name column.\n\nAll fields in Value column are empty.\n\nSave button is disabled."
+      },
+      {
+        "step": 10,
+        "action": "Provide values:\n\n* value1 for team1\n* value2 for team2\n* value3 for team3\n\nClick on Save button.",
+        "data": "* value1: PI1\n* value2: PI2\n* value3: PI3\n* team1: Team unassigned\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2",
+        "result": "Values are correctly displaying in fields.\n\nDuring saving Save button changes its state to loading state.\n\nAfter successful saving Save button changes its color to green and text to Saved for a few seconds.\n\nChanges are saved."
+      },
+      {
+        "step": 11,
+        "action": "Click on arrow down to navigate to Iteration level.",
+        "data": "subboxName: Iteration",
+        "result": "subboxName is visible.\n\nsubboxName header has green color.\n\nUnder the header there are disabled fields:\n\n* Connected Jira Field\n* Value\n\nand disabled checkbox Each team has a different mapping with value.\n\nSave button is displaying at the bottom of page and it’s also disabled."
+      },
+      {
+        "step": 12,
+        "action": "Click on right arrow on timeline.",
+        "data": "subboxName2: Iteration 2",
+        "result": "View is changed.\n\nsubboxName2 is visible.\n\nsubboxName2 header has blue color.\n\nUnder the header there are fields:\n\n* Connected Jira Field (with selected Sprint value)\n* Jira board selector\n* Value field (empty with placeholder: Select or create Jira Sprint)\n\nThere is also checkbox Each team has a different mapping with value.\n\nAll these fields are editable.\n\nSave button is displaying at the bottom of page and it’s disabled."
+      },
+      {
+        "step": 13,
+        "action": "Click on Zoom out button.",
+        "data": "* subboxName2: Iteration 2\n* subboxName3: Iteration 3",
+        "result": "View is changed.\n\nsubboxName2 and subboxName3 are visible.\n\nsubboxName3 header has grey color.\n\nUnder the header there are fields:\n\n* Connected Jira Field (with selected Sprint value)\n* Jira board selector\n* Value field (empty with placeholder: Select or create Jira Sprint)\n\nThere is also checkbox Each team has a different mapping with value.\n\nAll these fields are editable.\n\nSave button is displaying at the bottom of page and it’s disabled."
+      },
+      {
+        "step": 14,
+        "action": "Click on Jira board selector under subboxName2. Search jiraBoard and select it. \n\nThen click on Select or create Jira Sprint. Search jiraSprint1 and select it.",
+        "data": "* subboxName2: Iteration 2\n* jiraBoard: TC5230 Board\n* jiraSprint1: TC5230 Sprint 1",
+        "result": "Values are correctly displaying in fields.\n\nSave button is enabled."
+      },
+      {
+        "step": 15,
+        "action": "Click on Jira board selector under subboxName3. Search jiraBoard and select it. \n\nThen click on Select or create Jira Sprint. Search jiraSprint2 and select it.\n\nClick Save button.",
+        "data": "* subboxName3: Iteration 3\n* jiraBoard: TC5230 Board\n* jiraSprint2: TC5230 Sprint 2",
+        "result": "Values are correctly displaying in fields.\n\nChanges are saved."
+      },
+      {
+        "step": 16,
+        "action": "Click on Assign to boxes button. Search boxName, select it and click on Save button.",
+        "data": "boxName: TC-5230 Timebox schedule - Configuration of timeboxes field mapping",
+        "result": "Assign timebox schedule to boxes dialog is closed.\n\nUser navigates back to timebox schedule details page.\n\nIn side bar there is new section named: Assigned boxes.\n\nIn the section there is boxName displaying."
+      },
+      {
+        "step": 17,
+        "action": "Navigate to Teams module of boxName.\n\nClick on Assign existing tile.\n\nSearch team2 and team3, select them and click on Assign.",
+        "data": "* boxName: TC-5230 Timebox schedule - Configuration of timeboxes field mapping\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2",
+        "result": "team3 and team2 are successfully assigned to the box."
+      },
+      {
+        "step": 18,
+        "action": "Navigate to Board module of boxName",
+        "data": "* boxName: TC-5230 Timebox schedule - Configuration of timeboxes field mapping\n* team1: Team unassigned\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2",
+        "result": "Program Increment 1 timebox is displaying.\n\nThere are three swimlanes:\n\n* team1\n* team2\n* team3\n\nIn team1 are four tasks:\n\n* Bug 1\n* Story 1\n* Story 2\n* Story 3\n\nIn backlog there is one task:\n\n* Task 1"
+      },
+      {
+        "step": 19,
+        "action": "Click on arrow down to navigate to Iteration level. Zoom out a view to see three Iteration timeboxes.",
+        "data": "* team1: Team unassigned\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2\n* subboxName1: Iteration\n* subboxName2: Iteration 2\n* subboxName3: Iteration 3",
+        "result": "subboxName1, subboxName2 and subboxName3 are displaying.\n\nThere are three swimlanes:\n\n* team1\n* team2\n* team3\n\nIn subboxName1 there are no tasks.\n\nIn subboxName2, team1 there are 3 tasks.\n\n* Story 1\n* Story 2\n* Story 3\n\nIn subboxName3, team1 there is 1 task.\n\n* Bug 1\n\nIn backlog there is one task:\n\n* Task 1"
+      },
+      {
+        "step": 20,
+        "action": "D&D taskName to subboxName3, team3.",
+        "data": "* taskName: Story 1\n* subboxName3: Iteration 3\n* team3: TC-5230 Team 2",
+        "result": "taskName is succesfully moved and placed in subboxName3, team3."
+      },
+      {
+        "step": 21,
+        "action": "Click on key of taskName to navigate to issue page in Jira.\n\nVerify Labels and Sprint fields.",
+        "data": "* taskName: Story 1\n* label: team#TC-5230T2\n* Sprint: TC5230 Sprint 2",
+        "result": "In Labels field label is displaying.\n\nIn Sprint field sprint is displaying."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 21
+  },
+  "rag": {
+    "id": "TC-5230",
+    "text": "Test: TC-5230 — Timebox schedule - Configuration of timeboxes field mapping\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-503 Timebox Schedule\nLabels: Sanity\n\nSteps:\n1. Navigate to App Settings → Timebox schedules.\n\nCreate new timebox schedule providing data:\n\n* Name: name\n* Timebox levels: timeboxLevels\n* Start date: startDate\n* Connect Global Teams: connectGlobalTeams\n   Data: * name: TC-5230 Schedule\n* timeboxLevels: Program Increment, Iteration\n* startDate: 01/Nov/24\n* connectGlobalTeams:  TC-5230 Team 1\n   Expected: Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page.\n2. Expand view in schedule structure tab by clicking on chevron button.\n\nThen hover over under subboxName and click on + button.\n   Data: subboxName: Iteration\n   Expected: Create timeboxes modal dialog is displaying.\n3. Click on +Add more button and click on Create.\n   Data: * subboxName2: Iteration 2\n* subboxName3: Iteration 3\n   Expected: subboxName2 and subboxName3 are created successfully and visible in schedule structure.\n4. Click on pencil icon next to subboxName, change its Status to status and click on Apply changes.\n   Data: * subboxName: Iteration\n* status: Closed\n   Expected: Status of subboxName is changed to Closed.\n5. Click on pencil icon next to subboxName2, change its Status to status2 and click on Apply changes.\n   Data: * subboxName2: Iteration 2\n* status2: In progress\n   Expected: Status of subboxName is changed to In progress.\n6. Change tab to Timeboxes field mapping.\n   Data: boxName: Program Increment 1\n   Expected: boxName is visible on page.\n\nUnder the header there are fields:\n\n* Connected Jira Field (with default value: Program Increment)\n* Value (empty field with placeholder: Enter the value)\n\nThere is unchecked checkbox Each team has a different mapping with value.\n\nAll fields and checkbox are editable.\n\nAt the bottom there is Save button which is disabled.\n7. Check checkbox Each team has a different mapping with value.\n   Data: * team1: Team unassigned\n* team2: TC-5230 Team 1\n   Expected: List of teams is displaying. There are two columns: Team Name and Value.\n\nIn column Team Name there are two teams:\n\n* team1\n* team2\n\nValue fields are empty, only placeholder: Enter the value is displaying.\n\nThere are two additional buttons:\n\n* Generate the default configuration\n* Copy the configuration to all teams below (placed in team1 row)\n\n\n\nSave button is disabled.\n8. Click on Generate the default configuration button.\n   Data: * value1: BOX-ID\n* value2: BOX-ID Team TC-5230T1\n* team1: Team unassigned\n* team2: TC-5230 Team 1\n   Expected: value1 is displaying for team1\n\nvalue2 is displaying for team2\n\nSave button is enabled.\n9. Click on Connect Global Teams field in sidebar, search and select team3.\n   Data: team3: TC-5230 Team 2\n   Expected: Pop up with message: Changes saved automatically is displaying.\n\nteam3 is visible in Team Name column.\n\nAll fields in Value column are empty.\n\nSave button is disabled.\n10. Provide values:\n\n* value1 for team1\n* value2 for team2\n* value3 for team3\n\nClick on Save button.\n   Data: * value1: PI1\n* value2: PI2\n* value3: PI3\n* team1: Team unassigned\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2\n   Expected: Values are correctly displaying in fields.\n\nDuring saving Save button changes its state to loading state.\n\nAfter successful saving Save button changes its color to green and text to Saved for a few seconds.\n\nChanges are saved.\n11. Click on arrow down to navigate to Iteration level.\n   Data: subboxName: Iteration\n   Expected: subboxName is visible.\n\nsubboxName header has green color.\n\nUnder the header there are disabled fields:\n\n* Connected Jira Field\n* Value\n\nand disabled checkbox Each team has a different mapping with value.\n\nSave button is displaying at the bottom of page and it’s also disabled.\n12. Click on right arrow on timeline.\n   Data: subboxName2: Iteration 2\n   Expected: View is changed.\n\nsubboxName2 is visible.\n\nsubboxName2 header has blue color.\n\nUnder the header there are fields:\n\n* Connected Jira Field (with selected Sprint value)\n* Jira board selector\n* Value field (empty with placeholder: Select or create Jira Sprint)\n\nThere is also checkbox Each team has a different mapping with value.\n\nAll these fields are editable.\n\nSave button is displaying at the bottom of page and it’s disabled.\n13. Click on Zoom out button.\n   Data: * subboxName2: Iteration 2\n* subboxName3: Iteration 3\n   Expected: View is changed.\n\nsubboxName2 and subboxName3 are visible.\n\nsubboxName3 header has grey color.\n\nUnder the header there are fields:\n\n* Connected Jira Field (with selected Sprint value)\n* Jira board selector\n* Value field (empty with placeholder: Select or create Jira Sprint)\n\nThere is also checkbox Each team has a different mapping with value.\n\nAll these fields are editable.\n\nSave button is displaying at the bottom of page and it’s disabled.\n14. Click on Jira board selector under subboxName2. Search jiraBoard and select it. \n\nThen click on Select or create Jira Sprint. Search jiraSprint1 and select it.\n   Data: * subboxName2: Iteration 2\n* jiraBoard: TC5230 Board\n* jiraSprint1: TC5230 Sprint 1\n   Expected: Values are correctly displaying in fields.\n\nSave button is enabled.\n15. Click on Jira board selector under subboxName3. Search jiraBoard and select it. \n\nThen click on Select or create Jira Sprint. Search jiraSprint2 and select it.\n\nClick Save button.\n   Data: * subboxName3: Iteration 3\n* jiraBoard: TC5230 Board\n* jiraSprint2: TC5230 Sprint 2\n   Expected: Values are correctly displaying in fields.\n\nChanges are saved.\n16. Click on Assign to boxes button. Search boxName, select it and click on Save button.\n   Data: boxName: TC-5230 Timebox schedule - Configuration of timeboxes field mapping\n   Expected: Assign timebox schedule to boxes dialog is closed.\n\nUser navigates back to timebox schedule details page.\n\nIn side bar there is new section named: Assigned boxes.\n\nIn the section there is boxName displaying.\n17. Navigate to Teams module of boxName.\n\nClick on Assign existing tile.\n\nSearch team2 and team3, select them and click on Assign.\n   Data: * boxName: TC-5230 Timebox schedule - Configuration of timeboxes field mapping\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2\n   Expected: team3 and team2 are successfully assigned to the box.\n18. Navigate to Board module of boxName\n   Data: * boxName: TC-5230 Timebox schedule - Configuration of timeboxes field mapping\n* team1: Team unassigned\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2\n   Expected: Program Increment 1 timebox is displaying.\n\nThere are three swimlanes:\n\n* team1\n* team2\n* team3\n\nIn team1 are four tasks:\n\n* Bug 1\n* Story 1\n* Story 2\n* Story 3\n\nIn backlog there is one task:\n\n* Task 1\n19. Click on arrow down to navigate to Iteration level. Zoom out a view to see three Iteration timeboxes.\n   Data: * team1: Team unassigned\n* team2: TC-5230 Team 1\n* team3: TC-5230 Team 2\n* subboxName1: Iteration\n* subboxName2: Iteration 2\n* subboxName3: Iteration 3\n   Expected: subboxName1, subboxName2 and subboxName3 are displaying.\n\nThere are three swimlanes:\n\n* team1\n* team2\n* team3\n\nIn subboxName1 there are no tasks.\n\nIn subboxName2, team1 there are 3 tasks.\n\n* Story 1\n* Story 2\n* Story 3\n\nIn subboxName3, team1 there is 1 task.\n\n* Bug 1\n\nIn backlog there is one task:\n\n* Task 1\n20. D&D taskName to subboxName3, team3.\n   Data: * taskName: Story 1\n* subboxName3: Iteration 3\n* team3: TC-5230 Team 2\n   Expected: taskName is succesfully moved and placed in subboxName3, team3.\n21. Click on key of taskName to navigate to issue page in Jira.\n\nVerify Labels and Sprint fields.\n   Data: * taskName: Story 1\n* label: team#TC-5230T2\n* Sprint: TC5230 Sprint 2\n   Expected: In Labels field label is displaying.\n\nIn Sprint field sprint is displaying.",
+    "metadata": {
+      "jira_key": "TC-5230",
+      "issue_id": "1092953",
+      "summary": "Timebox schedule - Configuration of timeboxes field mapping",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-503 Timebox Schedule",
+      "labels": [
+        "Sanity"
+      ],
+      "step_count": 21,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

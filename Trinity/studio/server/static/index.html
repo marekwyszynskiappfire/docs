@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QA Studio</title>
+  <link rel="stylesheet" href="/static/studio.css" />
+  <style>
+    /* Inlined fallback if /static/studio.css is stale or missing — keep in sync with studio.css */
+    :root{color-scheme:dark;--bg:#0f1115;--panel:#1a1d24;--border:#2d3340;--text:#e8eaed;--muted:#9aa3b2;--accent:#6ea8fe;--ok:#3dd68c;--high:#ff9b7b;--med:#f0b429;font-family:system-ui,-apple-system,sans-serif;line-height:1.5}
+    *{box-sizing:border-box}body{margin:0;padding:1.25rem 1.5rem 3rem;max-width:920px;background:var(--bg);color:var(--text)}
+    a{color:var(--accent);cursor:pointer;text-decoration:none}a:hover{text-decoration:underline}
+    input,button,textarea,select{font:inherit;padding:.45rem .65rem;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+    button{background:var(--accent);color:#0b0d10;border:none;font-weight:600;cursor:pointer}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1rem 1.15rem;margin:1rem 0}
+    .err{color:#ff7b7b}.ok{color:var(--ok)}.muted{color:var(--muted);font-size:.9rem}.hide{display:none}
+    .btnrow{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0}
+    table{width:100%;border-collapse:collapse;font-size:.875rem}th,td{border-bottom:1px solid var(--border);padding:.5rem .4rem;text-align:left;vertical-align:top}th{color:var(--muted);font-weight:500}
+    h1{font-size:1.35rem;margin:0 0 .5rem}h2{font-size:1.15rem;margin:0 0 .75rem}h3{font-size:1rem;margin:0 0 .5rem;font-weight:600}
+    .section{margin:1.5rem 0}.section-hint{margin:0 0 1rem}.card-list{display:flex;flex-direction:column;gap:1rem}
+    .review-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1rem 1.15rem}
+    .review-card-head{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin-bottom:.65rem}
+    .mono{font-family:ui-monospace,monospace;font-size:.85rem}
+    .badge{display:inline-block;padding:.12rem .45rem;border-radius:4px;font-size:.72rem;background:var(--border);color:var(--text)}
+    .badge.sev-high{background:#3d2218;color:var(--high)}.badge.sev-med{background:#3d3218;color:var(--med)}.badge.sev-low{background:#1e2a38;color:var(--muted)}.badge.owner{background:#1e2a38}
+    .prose{margin:0 0 .75rem;white-space:pre-wrap;word-break:break-word}.question-body{font-size:1rem}
+    .field-block{margin:.5rem 0 .75rem}.field-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:.25rem}
+    .muted-block{color:#c5cdd8}blockquote.excerpt{margin:.5rem 0 .75rem;padding:.65rem .85rem;border-left:3px solid var(--accent);background:#12151c;color:var(--muted);font-size:.9rem}
+    .review-card-actions{display:grid;gap:.75rem;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+    .inline-label{display:flex;align-items:center;gap:.5rem;font-size:.875rem}.inline-label select{width:auto;min-width:8rem}
+    .stack-label{display:flex;flex-direction:column;gap:.35rem;font-size:.875rem}.stack-label textarea{width:100%;min-height:5rem;resize:vertical}
+    .app-header{border-bottom:1px solid var(--border);padding-bottom:.75rem;margin-bottom:1rem}
+    .app-header p{margin:.25rem 0 0;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <h1>QA Studio</h1>
+    <p class="muted">Review and approve Reviewer payloads · API on <strong>http://127.0.0.1:8765</strong></p>
+  </header>
+  <nav class="muted" id="topNav"><a href="#/" data-nav="/">Dashboard</a></nav>
+
+  <div id="view-dashboard">
+    <div id="stats" class="panel">Loading…</div>
+    <div class="panel">
+      <h2 style="margin-top:0">Import Reviewer run</h2>
+      <input id="path" style="width:100%" value="Trinity/reviewer/runs/your-run-folder" />
+      <div class="btnrow"><button type="button" id="importBtn">Import</button></div>
+      <p id="importMsg" class="muted"></p>
+    </div>
+    <div class="panel"><h2 style="margin-top:0">Runs</h2><div id="runs"></div></div>
+  </div>
+
+  <div id="view-run" class="hide">
+    <h2 id="runTitle"></h2>
+    <div class="panel"><pre id="handoffJql" class="muted" style="white-space:pre-wrap;margin:0"></pre></div>
+    <div class="panel"><div id="units"></div></div>
+  </div>
+
+  <div id="view-unit" class="hide">
+    <h2 id="unitTitle"></h2>
+    <p id="unitMeta" class="muted"></p>
+    <div class="btnrow">
+      <button type="button" id="saveBtn">Save draft</button>
+      <button type="button" id="epicFeedbackBtn" class="sec">Download epic feedback</button>
+      <button type="button" id="approveBtn">Approve &amp; export for Creator</button>
+    </div>
+    <p id="unitMsg" class="muted"></p>
+    <div id="reportDetail"></div>
+    <div id="reportSummary"></div>
+    <div class="section">
+      <h3>Clarification questions</h3>
+      <p class="muted section-hint">Mark each item: valid (send to epic), do not ask, or discuss. Add your own questions below.</p>
+      <div id="questions"></div>
+    </div>
+    <div class="section">
+      <h3>Findings</h3>
+      <div id="findings"></div>
+    </div>
+  </div>
+
+  <script>
+/** Epic review UI — inlined in index.html; keep in sync. */
+
+function esc(s) {
+  const d = document.createElement("div");
+  d.textContent = s ?? "";
+  return d.innerHTML;
+}
+
+function questionBody(q) {
+  return (q.question || q.text || "").trim();
+}
+
+function ensureStudioQa(payload) {
+  if (!payload.studio_qa || typeof payload.studio_qa !== "object") {
+    payload.studio_qa = { version: 1, decisions: {}, added_questions: [] };
+  }
+  if (!payload.studio_qa.decisions) payload.studio_qa.decisions = {};
+  if (!payload.studio_qa.added_questions) payload.studio_qa.added_questions = [];
+  return payload.studio_qa;
+}
+
+function getDecision(studio, itemId) {
+  const d = studio.decisions[itemId];
+  return d
+    ? { validity: d.validity || "pending", send_to_epic: !!d.send_to_epic, comment: d.comment || "" }
+    : { validity: "pending", send_to_epic: false, comment: "" };
+}
+
+function setDecisionField(payload, itemId, patch) {
+  const studio = ensureStudioQa(payload);
+  const prev = getDecision(studio, itemId);
+  const next = Object.assign({}, prev, patch);
+  if (patch.validity === "valid" && patch.send_to_epic === undefined) next.send_to_epic = true;
+  if (patch.validity === "invalid" && patch.send_to_epic === undefined) next.send_to_epic = false;
+  studio.decisions[itemId] = next;
+}
+
+function severityClass(sev) {
+  if (!sev) return "badge";
+  const s = String(sev).toUpperCase();
+  if (s === "CRITICAL" || s === "HIGH") return "badge sev-high";
+  if (s === "MEDIUM") return "badge sev-med";
+  return "badge sev-low";
+}
+
+function qaDecisionBlock(payload, itemId, label) {
+  const d = getDecision(ensureStudioQa(payload), itemId);
+  const v = d.validity;
+  return `<div class="qa-review" data-item-id="${esc(itemId)}">
+    <div class="field-label">${esc(label)}</div>
+    <div class="decision-actions">
+      <button type="button" class="dec-btn${v === "valid" ? " active-valid" : ""}" data-validity="valid">Valid — send to epic</button>
+      <button type="button" class="dec-btn${v === "invalid" ? " active-invalid" : ""}" data-validity="invalid">Do not ask</button>
+      <button type="button" class="dec-btn${v === "discuss" ? " active-discuss" : ""}" data-validity="discuss">Discuss</button>
+    </div>
+    <label class="inline-label send-epic-row${v === "invalid" ? " muted" : ""}">
+      <input type="checkbox" class="send-epic" ${d.send_to_epic ? "checked" : ""} ${v === "invalid" ? "disabled" : ""} />
+      Include in epic feedback
+    </label>
+    <label class="stack-label">QA comment
+      <textarea class="qa-comment" rows="3" placeholder="Rationale, wording tweaks, or why this should not go to the epic…">${esc(d.comment)}</textarea>
+    </label>
+  </div>`;
+}
+
+const SOURCE_STATUS_LABEL = {
+  analyzed: "Analyzed",
+  unavailable: "Unavailable",
+  failed: "Could not read",
+  not_applicable: "Not applicable",
+};
+
+function sourceStatusClass(st) {
+  if (st === "analyzed") return "pill-analyzed";
+  if (st === "unavailable") return "pill-unavailable";
+  if (st === "failed") return "pill-failed";
+  return "pill-na";
+}
+
+function renderDataSources(payload) {
+  const entries = payload.context_loaded || [];
+  if (!entries.length) return "";
+  const analyzed = entries.filter((s) => s.status === "analyzed").length;
+  const problems = entries.filter((s) => s.status === "unavailable" || s.status === "failed").length;
+  const rows = entries
+    .map((s) => {
+      const detail =
+        s.status === "unavailable" || s.status === "failed" ? s.reason || "" : s.detail || "";
+      const label = SOURCE_STATUS_LABEL[s.status] || s.status;
+      return `<tr>
+        <td>${esc(s.source)}</td>
+        <td><span class="status-pill ${sourceStatusClass(s.status)}">${esc(label)}</span></td>
+        <td class="muted detail-cell">${esc(detail)}</td>
+      </tr>`;
+    })
+    .join("");
+  const note =
+    problems === 0
+      ? '<p class="muted" style="margin-top:0.75rem;margin-bottom:0">No sources were unavailable or failed in this run.</p>'
+      : "";
+  return `<div class="panel data-sources">
+    <details open class="report-block">
+      <summary>Data sources (${analyzed} analyzed · ${problems} unavailable or failed)</summary>
+      <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Source</th><th>Status</th><th>Detail</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${note}
+    </details>
+  </div>`;
+}
+
+function renderSourcedList(items) {
+  if (!items || !items.length) return "";
+  return (
+    '<ul class="prose-list">' +
+    items
+      .map((it) => {
+        if (typeof it === "string") return `<li>${esc(it)}</li>`;
+        const src = it.source ? ` <span class="muted">(${esc(it.source)})</span>` : "";
+        return `<li>${esc(it.text || "")}${src}</li>`;
+      })
+      .join("") +
+    "</ul>"
+  );
+}
+
+function renderReportDetail(payload) {
+  const report = payload.report || {};
+  const parts = [];
+  if (report.facts && report.facts.length) {
+    parts.push(
+      `<details open class="report-block"><summary>Information identified</summary>${renderSourcedList(report.facts)}</details>`
+    );
+  }
+  if (report.not_stated && report.not_stated.length) {
+    parts.push(
+      `<details class="report-block"><summary>Not stated</summary><ul class="prose-list">${report.not_stated
+        .map((t) => `<li>${esc(t)}</li>`)
+        .join("")}</ul></details>`
+    );
+  }
+  if (report.risks && report.risks.length) {
+    parts.push(
+      `<details class="report-block"><summary>Risks</summary>${renderSourcedList(report.risks)}</details>`
+    );
+  }
+  if (report.testing_focus && report.testing_focus.length) {
+    parts.push(
+      `<details class="report-block"><summary>Testing focus</summary><ul class="prose-list">${report.testing_focus
+        .map((t) => `<li>${esc(t.text || "")}</li>`)
+        .join("")}</ul></details>`
+    );
+  }
+  if (!parts.length) return "";
+  return `<div class="panel report-detail">${parts.join("")}</div>`;
+}
+
+function renderReportSummary(payload) {
+  const report = payload.report || {};
+  const gate = payload.gate && payload.gate.status;
+  if (!report.readiness_line && !gate) return "";
+  let html = '<div class="panel report-summary">';
+  if (gate) {
+    html += `<p class="gate-line">Gate <span class="badge">${esc(gate)}</span>`;
+    if (report.qa_planning_fit) {
+      html += ` · Planning fit <span class="badge">${esc(report.qa_planning_fit)}</span>`;
+    }
+    html += "</p>";
+  }
+  if (report.readiness_line) html += `<p class="readiness">${esc(report.readiness_line)}</p>`;
+  if (report.next_action) {
+    html += `<p class="muted"><strong>Next action:</strong> ${esc(report.next_action)}</p>`;
+  }
+  html += "</div>";
+  return html;
+}
+
+function renderQuestionCard(payload, q, i, itemId, isQaAdded) {
+  const unblocks =
+    q.unblocks && q.unblocks.length
+      ? `<div class="field-block"><div class="field-label">Unblocks</div><p class="mono unblocks">${esc(
+          q.unblocks.join(" · ")
+        )}</p></div>`
+      : "";
+  const addedBadge = isQaAdded ? '<span class="badge">QA-added</span>' : "";
+  return `<article class="review-card${isQaAdded ? " qa-added" : ""}" data-q-index="${i}" data-item-id="${esc(itemId)}">
+    <header class="review-card-head">
+      <span class="mono">${esc(q.question_id || "Q" + (i + 1))}</span>
+      ${addedBadge}
+      ${q.topic ? `<span class="badge">${esc(q.topic)}</span>` : ""}
+      ${q.priority ? `<span class="badge">${esc(q.priority)}</span>` : ""}
+      ${q.owner_hint ? `<span class="badge owner">${esc(q.owner_hint)}</span>` : ""}
+    </header>
+    <p class="prose question-body">${esc(questionBody(q) || "—")}</p>
+    ${
+      q.context
+        ? `<div class="field-block"><div class="field-label">Why</div><p class="prose muted-block">${esc(q.context)}</p></div>`
+        : ""
+    }
+    ${
+      q.source
+        ? `<div class="field-block"><div class="field-label">Source</div><p class="prose">${esc(q.source)}</p></div>`
+        : ""
+    }
+    ${unblocks}
+    ${qaDecisionBlock(payload, itemId, "QA review")}
+  </article>`;
+}
+
+function renderQuestions(payload) {
+  const qs = payload.questions || [];
+  const studio = ensureStudioQa(payload);
+  const added = studio.added_questions || [];
+  if (!qs.length && !added.length) return '<p class="muted">No questions in this payload.</p>';
+  let html = '<div class="card-list">';
+  qs.forEach((q, i) => {
+    const id = q.question_id || "Q" + (i + 1);
+    html += renderQuestionCard(payload, q, i, id, false);
+  });
+  added.forEach((q, i) => {
+    const id = q.question_id || "QA-" + (i + 1);
+    html += renderQuestionCard(payload, q, "a" + i, id, true);
+  });
+  html += "</div>";
+  html += `<div class="btnrow"><button type="button" id="addQaQuestionBtn" class="sec">Add QA question</button></div>`;
+  html += `<div id="newQaQuestionForm" class="panel hide">
+    <h3 style="margin-top:0">New question for the epic</h3>
+    <label class="stack-label">Question<textarea id="newQText" rows="4"></textarea></label>
+    <label class="stack-label">Why (context)<textarea id="newQContext" rows="3"></textarea></label>
+    <label class="stack-label">Topic<input id="newQTopic" value="Scope" /></label>
+    <label class="stack-label">Owner<select id="newQOwner"><option>PM</option><option>PO</option><option>UX</option><option>EM</option></select></label>
+    <div class="btnrow"><button type="button" id="saveNewQBtn">Add to list</button><button type="button" id="cancelNewQBtn" class="sec">Cancel</button></div>
+  </div>`;
+  return html;
+}
+
+function renderFindings(payload) {
+  const fs = payload.findings || [];
+  if (!fs.length) return '<p class="muted">No findings.</p>';
+  return (
+    '<div class="card-list">' +
+    fs
+      .map((f, i) => {
+        const fid = f.finding_id || "F" + i;
+        return `<article class="review-card" data-f-index="${i}" data-item-id="${esc(fid)}">
+          <header class="review-card-head">
+            <span class="mono">${esc(f.finding_id)}</span>
+            <span class="${severityClass(f.severity)}">${esc(f.severity)}</span>
+            ${f.category ? `<span class="badge">${esc(f.category)}</span>` : ""}
+            ${f.checklist_ref ? `<span class="badge mono">${esc(f.checklist_ref)}</span>` : ""}
+            ${f.owner_hint ? `<span class="badge owner">${esc(f.owner_hint)}</span>` : ""}
+          </header>
+          <p class="prose">${esc(f.finding_summary)}</p>
+          ${
+            f.testing_impact
+              ? `<div class="field-block"><div class="field-label">Testing impact</div><p class="prose">${esc(
+                  f.testing_impact
+                )}</p></div>`
+              : ""
+          }
+          ${f.excerpt_quote ? `<blockquote class="excerpt">${esc(f.excerpt_quote)}</blockquote>` : ""}
+          ${f.source ? `<p class="muted source-line">Source: ${esc(f.source)}</p>` : ""}
+          ${qaDecisionBlock(payload, fid, "QA review (finding)")}
+        </article>`;
+      })
+      .join("") +
+    "</div>"
+  );
+}
+
+function bindQaHandlers(payload) {
+  document.querySelectorAll(".qa-review").forEach((root) => {
+    const itemId = root.getAttribute("data-item-id");
+    root.querySelectorAll(".dec-btn").forEach((btn) => {
+      btn.onclick = () => {
+        const validity = btn.getAttribute("data-validity");
+        setDecisionField(payload, itemId, { validity });
+        paintUnitReview(payload);
+      };
+    });
+    const send = root.querySelector(".send-epic");
+    if (send) {
+      send.onchange = () => setDecisionField(payload, itemId, { send_to_epic: send.checked });
+    }
+    const comment = root.querySelector(".qa-comment");
+    if (comment) {
+      comment.oninput = () => setDecisionField(payload, itemId, { comment: comment.value });
+    }
+  });
+
+  const addBtn = document.getElementById("addQaQuestionBtn");
+  const form = document.getElementById("newQaQuestionForm");
+  const cancelBtn = document.getElementById("cancelNewQBtn");
+  const saveBtn = document.getElementById("saveNewQBtn");
+  if (addBtn && form) {
+    addBtn.onclick = () => form.classList.remove("hide");
+  }
+  if (cancelBtn && form) {
+    cancelBtn.onclick = () => form.classList.add("hide");
+  }
+  if (saveBtn && form) {
+    saveBtn.onclick = () => {
+      const studio = ensureStudioQa(payload);
+      const n = (studio.added_questions.length || 0) + 1;
+      const qid = "QA-" + n;
+      const question = document.getElementById("newQText").value.trim();
+      if (!question) return;
+      studio.added_questions.push({
+        question_id: qid,
+        topic: document.getElementById("newQTopic").value.trim() || "Scope",
+        question,
+        context: document.getElementById("newQContext").value.trim(),
+        source: "QA Studio review",
+        priority: "High",
+        owner_hint: document.getElementById("newQOwner").value,
+        origin: "qa_studio",
+        send_to_epic: true,
+        status: "open",
+      });
+      setDecisionField(payload, qid, { validity: "valid", send_to_epic: true });
+      form.classList.add("hide");
+      document.getElementById("newQText").value = "";
+      document.getElementById("newQContext").value = "";
+      paintUnitReview(payload);
+    };
+  }
+}
+
+function paintUnitReview(payload) {
+  const detailEl = document.getElementById("reportDetail");
+  if (detailEl) detailEl.innerHTML = renderDataSources(payload) + renderReportDetail(payload);
+  const summaryEl = document.getElementById("reportSummary");
+  if (summaryEl) summaryEl.innerHTML = renderReportSummary(payload);
+  document.getElementById("questions").innerHTML = renderQuestions(payload);
+  document.getElementById("findings").innerHTML = renderFindings(payload);
+  bindQaHandlers(payload);
+}
+
+function buildEpicFeedbackDownload(payload, jiraKey) {
+  const studio = ensureStudioQa(payload);
+  const decisions = studio.decisions || {};
+  const lines = [];
+  function pushItem(type, id, body, why, extra) {
+    const d = decisions[id] || {};
+    if (!d.send_to_epic) return;
+    lines.push({ type, id, validity: d.validity, comment: d.comment || "", body, why, ...extra });
+  }
+  (payload.questions || []).forEach((q) => {
+    const id = q.question_id;
+    pushItem("question", id, questionBody(q), q.context, { topic: q.topic, owner_hint: q.owner_hint });
+  });
+  (studio.added_questions || []).forEach((q) => {
+    pushItem("question", q.question_id, q.question, q.context, {
+      topic: q.topic,
+      owner_hint: q.owner_hint,
+      origin: "qa_studio",
+    });
+  });
+  (payload.findings || []).forEach((f) => {
+    pushItem("finding", f.finding_id, f.finding_summary, f.testing_impact, {
+      severity: f.severity,
+      checklist_ref: f.checklist_ref,
+    });
+  });
+  return {
+    run_id: payload.run_id,
+    jira_key: jiraKey,
+    exported_at: new Date().toISOString(),
+    items: lines,
+  };
+}
+
+</script>
+  <script>
+    let state = { payload: null, unitId: null, runId: null, jiraKey: '' };
+
+    async function api(path, opts) {
+      const r = await fetch(path, { ...opts, headers: { 'Content-Type': 'application/json', ...(opts && opts.headers) } });
+      if (!r.ok) throw new Error(await r.text() || r.statusText);
+      return r.json();
+    }
+
+    function studioRoute(path) {
+      location.hash = path;
+      route();
+    }
+
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('[data-nav]');
+      if (!link) return;
+      e.preventDefault();
+      studioRoute(link.getAttribute('data-nav'));
+    });
+
+    function updateTopNav(h) {
+      const el = document.getElementById('topNav');
+      if (h === '/') {
+        el.innerHTML = '<a href="#/" data-nav="/">Dashboard</a>';
+      } else if (h.startsWith('/run/')) {
+        el.innerHTML = '<a href="#/" data-nav="/">Dashboard</a> · <a href="#' + h + '" data-nav="' + h + '">Run</a>';
+      } else if (h.startsWith('/unit/')) {
+        const run = state.runId ? '<a href="#/run/' + encodeURIComponent(state.runId) + '" data-nav="/run/' + encodeURIComponent(state.runId) + '">Run</a> · ' : '';
+        el.innerHTML = '<a href="#/" data-nav="/">Dashboard</a> · ' + run + '<span>Epic</span>';
+      }
+    }
+
+    function route() {
+      const h = location.hash.slice(1) || '/';
+      updateTopNav(h);
+      document.getElementById('view-dashboard').classList.toggle('hide', h !== '/');
+      document.getElementById('view-run').classList.toggle('hide', !h.startsWith('/run/'));
+      document.getElementById('view-unit').classList.toggle('hide', !h.startsWith('/unit/'));
+      if (h === '/') loadDashboard();
+      else if (h.startsWith('/run/')) loadRun(decodeURIComponent(h.slice(5)));
+      else if (h.startsWith('/unit/')) loadUnit(decodeURIComponent(h.slice(6)));
+    }
+
+    async function loadDashboard() {
+      try {
+        const s = await api('/api/stats');
+        document.getElementById('stats').innerHTML =
+          `Runs <strong>${s.pipeline_runs}</strong> · units <strong>${s.review_units}</strong> · approved <strong>${s.review_units_approved}</strong> · open findings <strong>${s.open_findings_latest}</strong> · open questions <strong>${s.open_questions_latest}</strong>`;
+        const runs = await api('/api/runs');
+        document.getElementById('runs').innerHTML = runs.length
+          ? '<table><thead><tr><th>Run</th><th>Units</th><th></th></tr></thead><tbody>' +
+            runs.map(r => `<tr><td>${escapeHtml(r.label)}</td><td>${r.unit_count ?? '—'}</td><td><a href="#" data-nav="/run/${encodeURIComponent(r.id)}">Open</a></td></tr>`).join('') +
+            '</tbody></table>'
+          : '<p class="muted">No runs yet — import a Reviewer run folder above.</p>';
+      } catch (e) {
+        document.getElementById('stats').innerHTML = `<span class="err">${escapeHtml(String(e))}. Start the API: <code>cd Trinity/studio/server && PYTHONPATH=.. ../.venv/bin/python -m uvicorn app:app --host 127.0.0.1 --port 8765</code></span>`;
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    async function loadRun(runId) {
+      state.runId = runId;
+      try {
+        const data = await api('/api/runs/' + encodeURIComponent(runId));
+        document.getElementById('runTitle').textContent = runId;
+        const handoff = await api('/api/runs/' + encodeURIComponent(runId) + '/creator-handoff');
+        document.getElementById('handoffJql').textContent = handoff.creator_jql || '';
+        document.getElementById('units').innerHTML =
+          '<table><thead><tr><th>Epic</th><th>Gate</th><th>Fit</th><th>Approved</th><th></th></tr></thead><tbody>' +
+          data.units.map(u => `<tr>
+            <td><strong>${escapeHtml(u.jira_key)}</strong><div class="muted">${escapeHtml(u.summary || '')}</div></td>
+            <td>${escapeHtml(u.gate_status || '—')}</td>
+            <td>${escapeHtml(u.qa_planning_fit || '—')}</td>
+            <td>${u.approved_revision_id ? 'yes' : 'no'}</td>
+            <td><a href="#" data-nav="/unit/${encodeURIComponent(u.id)}">Edit</a></td>
+          </tr>`).join('') +
+          '</tbody></table>';
+      } catch (e) {
+        document.getElementById('runTitle').textContent = 'Error loading run';
+        document.getElementById('units').innerHTML = `<p class="err">${escapeHtml(String(e))}</p>`;
+      }
+    }
+
+    function renderUnitPanels() {
+      if (typeof paintUnitReview !== 'function') {
+        document.getElementById('unitMsg').innerHTML = '<span class="err">Editor script failed to load. Restart the API server and hard-refresh (Cmd+Shift+R).</span>';
+        return;
+      }
+      paintUnitReview(state.payload);
+    }
+
+    async function loadUnit(unitId) {
+      state.unitId = unitId;
+      document.getElementById('unitMsg').textContent = '';
+      try {
+        const d = await api('/api/units/' + encodeURIComponent(unitId));
+        state.payload = d.payload;
+        if (d.unit.run_id) state.runId = d.unit.run_id;
+        state.jiraKey = d.unit.jira_key;
+        document.getElementById('unitTitle').textContent = d.unit.jira_key;
+        const summary = d.unit.summary ? ' — ' + d.unit.summary : '';
+        document.getElementById('unitMeta').textContent =
+          `Revision ${d.revision ?? '—'} · approved: ${d.approved_revision ? 'yes' : 'no'}${summary}`;
+        renderUnitPanels();
+        updateTopNav(location.hash.slice(1) || '/');
+      } catch (e) {
+        document.getElementById('unitTitle').textContent = 'Error';
+        document.getElementById('unitMsg').innerHTML = `<span class="err">${escapeHtml(String(e))}</span>`;
+      }
+    }
+
+    document.getElementById('importBtn').onclick = async () => {
+      const msg = document.getElementById('importMsg');
+      msg.textContent = 'Importing…';
+      try {
+        const r = await api('/api/import/reviewer-run', { method: 'POST', body: JSON.stringify({ path: document.getElementById('path').value }) });
+        msg.innerHTML = `<span class="ok">Imported ${r.units_imported} units.</span>`;
+        loadDashboard();
+      } catch (e) { msg.innerHTML = `<span class="err">${escapeHtml(String(e))}</span>`; }
+    };
+
+    document.getElementById('saveBtn').onclick = async () => {
+      const msg = document.getElementById('unitMsg');
+      try {
+        const r = await api('/api/units/' + encodeURIComponent(state.unitId) + '/payload', { method: 'PUT', body: JSON.stringify({ payload: state.payload }) });
+        msg.innerHTML = `<span class="ok">Saved revision ${r.revision}</span>`;
+      } catch (e) { msg.innerHTML = `<span class="err">${escapeHtml(String(e))}</span>`; }
+    };
+
+    document.getElementById('epicFeedbackBtn').onclick = () => {
+      const msg = document.getElementById('unitMsg');
+      if (!state.payload || typeof buildEpicFeedbackDownload !== 'function') {
+        msg.innerHTML = '<span class="err">Nothing to export.</span>';
+        return;
+      }
+      const data = buildEpicFeedbackDownload(state.payload, state.jiraKey || state.payload.scope?.value || 'epic');
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = (state.jiraKey || 'epic') + '-epic-feedback.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      msg.innerHTML = `<span class="ok">Downloaded ${data.items.length} item(s) marked for epic feedback. Save draft first if you changed decisions.</span>`;
+    };
+
+    document.getElementById('approveBtn').onclick = async () => {
+      const msg = document.getElementById('unitMsg');
+      try {
+        await api('/api/units/' + encodeURIComponent(state.unitId) + '/payload', { method: 'PUT', body: JSON.stringify({ payload: state.payload }) });
+        await api('/api/units/' + encodeURIComponent(state.unitId) + '/approve', { method: 'POST' });
+        const ex = await api('/api/units/' + encodeURIComponent(state.unitId) + '/export', { method: 'POST' });
+        msg.innerHTML = `<span class="ok">Exported: ${escapeHtml(ex.path)}</span>`;
+      } catch (e) { msg.innerHTML = `<span class="err">${escapeHtml(String(e))}</span>`; }
+    };
+
+    window.addEventListener('hashchange', route);
+    route();
+  </script>
+</body>
+</html>

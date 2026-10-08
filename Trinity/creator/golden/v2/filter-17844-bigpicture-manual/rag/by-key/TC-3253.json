@@ -1,0 +1,103 @@
+{
+  "test": {
+    "key": "TC-3253",
+    "issue_id": "356872",
+    "url": "https://appfire.atlassian.net/browse/TC-3253",
+    "summary": "Box Module - Gantt - InfoBar - Change history tab - Basics",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Tomasz Wyrwa",
+    "reporter": "Tomasz Wyrwa",
+    "created": "2022-04-27T06:24:26.433-0400",
+    "updated": "2026-03-30T09:57:08.782-0400",
+    "labels": [
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-133 Box Module - Gantt - InfoBar",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open Gantt module of box with boxName",
+        "data": "boxName: TC-3253 Box Module - Gantt - InfoBar - Change history tab - Basics",
+        "result": "Gantt chart, wbs are visible.\nfollowing tasks are displayed on Gantt chart and WBS with : \n\n* Task 1"
+      },
+      {
+        "step": 2,
+        "action": "Expand Infobar to the right of the Gantt chart",
+        "data": "",
+        "result": "Infobar opens, hiding the right part of the chart.\n\nINFOBAR text is replaced with an arrow pointing to the right.\n\nInfobar has 5 visible sections: Dependencies, Overdue tasks, Milestones, Critical path and Change history"
+      },
+      {
+        "step": 3,
+        "action": "Click in to  Change history icon in Infobar",
+        "data": "",
+        "result": "Change history is displayed in Infobar.\nFollowing details of Change history are displayed: \n\n* Current Date\n* Refresh data button\n* Date Range search bar + Date Range Button + Search Button\n* Splash screen with information displayed: \n\n\"Changes are easy to follow\nAny update to a task's start date, end date, or duration will appear here. Search or filter by date range to quickly find changes.\""
+      },
+      {
+        "step": 4,
+        "action": "Make sure that parent of Task 1 has Manual scheduling mode set.\n\nClick on End Date on Gantt WBS for task with taskName and select newDate\n\nClick Save",
+        "data": "taskName: Task 1 \nnewDate: 03/Jun/2022",
+        "result": "End date of Task 1 is changed. New task end date is 03/Jun/2022."
+      },
+      {
+        "step": 5,
+        "action": "Click Refresh Data button in Infobar on Change history tab",
+        "data": "",
+        "result": "New record in Change history tab appear.\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3253-1 New date set by\n** Author: (user) JiraAdmin (with circle profile picture) \n** Date of change : actual date of change\n** Total number of changes : 1"
+      },
+      {
+        "step": 6,
+        "action": "Click on chevron next to new \"New date set by\"",
+        "data": "",
+        "result": "\"NEW\" icon disappear.\nRecord raw expand, table with details is displayed: \n\n* ICON: Task \n* KEY: TC3253-1\n* SUMMARY: Task 1\n* START DATE: 2022-06-01\n* END DATE: 2022-06-01 -> 2022-06-03\n* DURATION: 1->3"
+      },
+      {
+        "step": 7,
+        "action": "Click on taskbar of taskName and click on taskKey",
+        "data": "taskName: Task1\ntaskKey: TC3253-1",
+        "result": "Jira issue page is displayed in new window"
+      },
+      {
+        "step": 8,
+        "action": "Change Start date field to the newDate and Update",
+        "data": "newDate: 05/Jun/2022",
+        "result": "Start and End date of Task 1 are changed. New task start and end date is 05/Jun/2022."
+      },
+      {
+        "step": 9,
+        "action": "Go back to Gantt module and click Refresh Data button in Infobar on Change history tab",
+        "data": "",
+        "result": "New record in Change history tab appear.\n2 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : (Jira) The date set by\n** Author: System User (with circle profile picture)\n** Date of change : actual date of change\n** Total number of changes : 1\n* 2\n** Chevron\n** Reason of change : TC3253-1 New date set by\n** Author: (user) JiraAdmin (with circle profile picture)\n** Date of change : actual date of change\n** Total number of changes : 1"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-3253",
+    "text": "Test: TC-3253 — Box Module - Gantt - InfoBar - Change history tab - Basics\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-133 Box Module - Gantt - InfoBar\nLabels: teamembers, teamscheduling\n\nSteps:\n1. Open Gantt module of box with boxName\n   Data: boxName: TC-3253 Box Module - Gantt - InfoBar - Change history tab - Basics\n   Expected: Gantt chart, wbs are visible.\nfollowing tasks are displayed on Gantt chart and WBS with : \n\n* Task 1\n2. Expand Infobar to the right of the Gantt chart\n   Expected: Infobar opens, hiding the right part of the chart.\n\nINFOBAR text is replaced with an arrow pointing to the right.\n\nInfobar has 5 visible sections: Dependencies, Overdue tasks, Milestones, Critical path and Change history\n3. Click in to  Change history icon in Infobar\n   Expected: Change history is displayed in Infobar.\nFollowing details of Change history are displayed: \n\n* Current Date\n* Refresh data button\n* Date Range search bar + Date Range Button + Search Button\n* Splash screen with information displayed: \n\n\"Changes are easy to follow\nAny update to a task's start date, end date, or duration will appear here. Search or filter by date range to quickly find changes.\"\n4. Make sure that parent of Task 1 has Manual scheduling mode set.\n\nClick on End Date on Gantt WBS for task with taskName and select newDate\n\nClick Save\n   Data: taskName: Task 1 \nnewDate: 03/Jun/2022\n   Expected: End date of Task 1 is changed. New task end date is 03/Jun/2022.\n5. Click Refresh Data button in Infobar on Change history tab\n   Expected: New record in Change history tab appear.\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3253-1 New date set by\n** Author: (user) JiraAdmin (with circle profile picture) \n** Date of change : actual date of change\n** Total number of changes : 1\n6. Click on chevron next to new \"New date set by\"\n   Expected: \"NEW\" icon disappear.\nRecord raw expand, table with details is displayed: \n\n* ICON: Task \n* KEY: TC3253-1\n* SUMMARY: Task 1\n* START DATE: 2022-06-01\n* END DATE: 2022-06-01 -> 2022-06-03\n* DURATION: 1->3\n7. Click on taskbar of taskName and click on taskKey\n   Data: taskName: Task1\ntaskKey: TC3253-1\n   Expected: Jira issue page is displayed in new window\n8. Change Start date field to the newDate and Update\n   Data: newDate: 05/Jun/2022\n   Expected: Start and End date of Task 1 are changed. New task start and end date is 05/Jun/2022.\n9. Go back to Gantt module and click Refresh Data button in Infobar on Change history tab\n   Expected: New record in Change history tab appear.\n2 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : (Jira) The date set by\n** Author: System User (with circle profile picture)\n** Date of change : actual date of change\n** Total number of changes : 1\n* 2\n** Chevron\n** Reason of change : TC3253-1 New date set by\n** Author: (user) JiraAdmin (with circle profile picture)\n** Date of change : actual date of change\n** Total number of changes : 1",
+    "metadata": {
+      "jira_key": "TC-3253",
+      "issue_id": "356872",
+      "summary": "Box Module - Gantt - InfoBar - Change history tab - Basics",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-133 Box Module - Gantt - InfoBar",
+      "labels": [
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "test": {
+    "key": "TC-3910",
+    "issue_id": "359841",
+    "url": "https://appfire.atlassian.net/browse/TC-3910",
+    "summary": "Box Module - Reports - Grouping tasks with the same ID in Plan Delays report",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2023-03-01T09:03:09.485-0500",
+    "updated": "2026-03-12T09:01:26.457-0400",
+    "labels": [
+      "can_be_automated",
+      "teamreports"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Reports module of boxName.",
+        "data": "boxName: TC-3910\nBox Module - Reports - Grouping tasks with the same ID in Plan Delays report",
+        "result": "Reports module loaded correctly. There is Plan delays report displaying."
+      },
+      {
+        "step": 2,
+        "action": "Check data on reportName.",
+        "data": "reportName: Plan delays",
+        "result": "There are 4 columns: \nNAME, END DATE, DELAY, SOURCE.\n\nTasks are displayed in the folLowing order:\n\n* Task1 / 24/Aug/28 /-10d / (empty)\n* Task2 / 24/May/29 /-283d / (empty)\n\nTree nodes are collapsed."
+      },
+      {
+        "step": 3,
+        "action": "Click on tree node button next to taskName.",
+        "data": "taskName: Task2",
+        "result": "The tasks located under the node are presented:\n\n* Task2 / 24/May/29 /-283d / Program Box\n* Task2 / 24/May/29 /-283d / Program Box 2\n* Task2 / 24/May/29 /-283d / Program Box 3\n\nThe parent's row has the columns NAME, END DATE, DELAY filled in the same way as its children.\n\nThe exception is the SOURCE column - it’s empty for the parent, but each child keeps its original Source field."
+      },
+      {
+        "step": 4,
+        "action": "Click again on tree node button next to taskName.",
+        "data": "taskName: Task2",
+        "result": "View is collapsed. \nOnly parent row is visible."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 4
+  },
+  "rag": {
+    "id": "TC-3910",
+    "text": "Test: TC-3910 — Box Module - Reports - Grouping tasks with the same ID in Plan Delays report\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: can_be_automated, teamreports\n\nSteps:\n1. Navigate to the Reports module of boxName.\n   Data: boxName: TC-3910\nBox Module - Reports - Grouping tasks with the same ID in Plan Delays report\n   Expected: Reports module loaded correctly. There is Plan delays report displaying.\n2. Check data on reportName.\n   Data: reportName: Plan delays\n   Expected: There are 4 columns: \nNAME, END DATE, DELAY, SOURCE.\n\nTasks are displayed in the folLowing order:\n\n* Task1 / 24/Aug/28 /-10d / (empty)\n* Task2 / 24/May/29 /-283d / (empty)\n\nTree nodes are collapsed.\n3. Click on tree node button next to taskName.\n   Data: taskName: Task2\n   Expected: The tasks located under the node are presented:\n\n* Task2 / 24/May/29 /-283d / Program Box\n* Task2 / 24/May/29 /-283d / Program Box 2\n* Task2 / 24/May/29 /-283d / Program Box 3\n\nThe parent's row has the columns NAME, END DATE, DELAY filled in the same way as its children.\n\nThe exception is the SOURCE column - it’s empty for the parent, but each child keeps its original Source field.\n4. Click again on tree node button next to taskName.\n   Data: taskName: Task2\n   Expected: View is collapsed. \nOnly parent row is visible.",
+    "metadata": {
+      "jira_key": "TC-3910",
+      "issue_id": "359841",
+      "summary": "Box Module - Reports - Grouping tasks with the same ID in Plan Delays report",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "can_be_automated",
+        "teamreports"
+      ],
+      "step_count": 4,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

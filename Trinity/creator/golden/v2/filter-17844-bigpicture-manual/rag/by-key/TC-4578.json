@@ -1,0 +1,123 @@
+{
+  "test": {
+    "key": "TC-4578",
+    "issue_id": "814740",
+    "url": "https://appfire.atlassian.net/browse/TC-4578",
+    "summary": "Feature area - Task Scheduling - Estimates creating - End date mapped to Time Spent + Remaining Estimate",
+    "description": "Field sync configuration:\n\nStart date > Start date\n\nEnd date > Time Spent + Remaining Estimate",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:05:54.497-0400",
+    "updated": "2026-07-20T11:40:50.081-0400",
+    "labels": [
+      "tc-tasks-no-dates",
+      "teamembers",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-453 Feature area - Task Scheduling - Period creating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of boxName.",
+        "data": "boxName: TC-4578 Estimates creating - End date mapped to Time Spent + Remaining Estimate",
+        "result": "Gantt module is loaded."
+      },
+      {
+        "step": 2,
+        "action": "Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.",
+        "data": "issueName: TC-4578 Task-1",
+        "result": "* Start date is set to 21/Aug/23.\n* End date does not changed and is set to 23/Aug/23.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d"
+      },
+      {
+        "step": 3,
+        "action": "Click on the Data and select Resynchronize option.",
+        "data": "",
+        "result": "A window with two buttons Resynchronize and Reload the page is loaded."
+      },
+      {
+        "step": 4,
+        "action": "Confirm with Resynchronize button",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 5,
+        "action": "Click on the Remaining Estimate Jira field of issueName and set the value to 3d.",
+        "data": "issueName: TC-4578 Task-5",
+        "result": "* Start date is set to 21/Aug/23.\n* End date does not changed and is set to 23/Aug/23.\n* Remaining Estimate BigPicture field value is set to 3d.\n* Remaining Estimate Jira field value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d"
+      },
+      {
+        "step": 6,
+        "action": "Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.",
+        "data": "issueName: TC-4578 Task-2",
+        "result": "* Start date does not changed and is set to 23/Aug/23.\n* End date is set to 25/Aug/23.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d"
+      },
+      {
+        "step": 7,
+        "action": "Click on the Remaining Estimate Jira field of issueName and set the value to 3d.",
+        "data": "issueName: TC-4578 Task-6",
+        "result": "* Start date does not changed and is set to 23/Aug/23.\n* End date is set to 25/Aug/23.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d"
+      },
+      {
+        "step": 8,
+        "action": "Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.",
+        "data": "issueName: TC-4578 Task-3",
+        "result": "* Start date remains empty.\n* End date remains empty.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days is empty.\n* Time Spent + Remaining Estimate value is set to 3d"
+      },
+      {
+        "step": 9,
+        "action": "Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.",
+        "data": "issueName: TC-4578 Task-4",
+        "result": "* Start date remains empty.\n* End date remains empty.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days is empty.\n* Time Spent value does not changed and equals 2d\n* Time Spent + Remaining Estimate value is set to 1w"
+      },
+      {
+        "step": 10,
+        "action": "Click on the Remaining Estimate Jira field of issueName and set the value to 3d.",
+        "data": "issueName: TC-4578 Task-7",
+        "result": "* Start date remains empty.\n* End date remains empty.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days is empty.\n* Time Spent value does not changed and equals 2d\n* Time Spent + Remaining Estimate value is set to 1w"
+      },
+      {
+        "step": 11,
+        "action": "Click on the Data and select Resynchronize option.",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 12,
+        "action": "Confirm with Resynchronize button",
+        "data": "",
+        "result": ""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-4578",
+    "text": "Test: TC-4578 — Feature area - Task Scheduling - Estimates creating - End date mapped to Time Spent + Remaining Estimate\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-453 Feature area - Task Scheduling - Period creating\nLabels: tc-tasks-no-dates, teamembers, teamscheduling\n\nDescription:\nField sync configuration:\n\nStart date > Start date\n\nEnd date > Time Spent + Remaining Estimate\n\nSteps:\n1. Navigate to the Gantt module of boxName.\n   Data: boxName: TC-4578 Estimates creating - End date mapped to Time Spent + Remaining Estimate\n   Expected: Gantt module is loaded.\n2. Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.\n   Data: issueName: TC-4578 Task-1\n   Expected: * Start date is set to 21/Aug/23.\n* End date does not changed and is set to 23/Aug/23.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d\n3. Click on the Data and select Resynchronize option.\n   Expected: A window with two buttons Resynchronize and Reload the page is loaded.\n4. Confirm with Resynchronize button\n   Expected: \n5. Click on the Remaining Estimate Jira field of issueName and set the value to 3d.\n   Data: issueName: TC-4578 Task-5\n   Expected: * Start date is set to 21/Aug/23.\n* End date does not changed and is set to 23/Aug/23.\n* Remaining Estimate BigPicture field value is set to 3d.\n* Remaining Estimate Jira field value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d\n6. Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.\n   Data: issueName: TC-4578 Task-2\n   Expected: * Start date does not changed and is set to 23/Aug/23.\n* End date is set to 25/Aug/23.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d\n7. Click on the Remaining Estimate Jira field of issueName and set the value to 3d.\n   Data: issueName: TC-4578 Task-6\n   Expected: * Start date does not changed and is set to 23/Aug/23.\n* End date is set to 25/Aug/23.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days value is set to 3.\n* Time Spent + Remaining Estimate value is set to 3d\n8. Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.\n   Data: issueName: TC-4578 Task-3\n   Expected: * Start date remains empty.\n* End date remains empty.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days is empty.\n* Time Spent + Remaining Estimate value is set to 3d\n9. Click on the Remaining Estimate BigPicture field of issueName and set the value to 3d.\n   Data: issueName: TC-4578 Task-4\n   Expected: * Start date remains empty.\n* End date remains empty.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days is empty.\n* Time Spent value does not changed and equals 2d\n* Time Spent + Remaining Estimate value is set to 1w\n10. Click on the Remaining Estimate Jira field of issueName and set the value to 3d.\n   Data: issueName: TC-4578 Task-7\n   Expected: * Start date remains empty.\n* End date remains empty.\n* Remaining Estimate value is set to 3d.\n* Duration Working Days is empty.\n* Time Spent value does not changed and equals 2d\n* Time Spent + Remaining Estimate value is set to 1w\n11. Click on the Data and select Resynchronize option.\n   Expected: \n12. Confirm with Resynchronize button\n   Expected:",
+    "metadata": {
+      "jira_key": "TC-4578",
+      "issue_id": "814740",
+      "summary": "Feature area - Task Scheduling - Estimates creating - End date mapped to Time Spent + Remaining Estimate",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-453 Feature area - Task Scheduling - Period creating",
+      "labels": [
+        "tc-tasks-no-dates",
+        "teamembers",
+        "teamscheduling"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

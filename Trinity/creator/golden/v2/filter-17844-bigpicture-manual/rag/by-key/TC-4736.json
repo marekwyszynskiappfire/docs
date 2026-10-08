@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-4736",
+    "issue_id": "814899",
+    "url": "https://appfire.atlassian.net/browse/TC-4736",
+    "summary": "Box Module - Gantt - Baselines - Managing multiple baselines",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Patryk Watras",
+    "reporter": "Bartosz Drążewski",
+    "created": "2024-07-22T10:07:56.084-0400",
+    "updated": "2026-06-02T05:39:31.646-0400",
+    "labels": [
+      "teamspace"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-131 Box Module - Gantt - Baselines",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of the boxName\nCheck if baselineColumnView is selected",
+        "data": "boxName: TC-4736 Box Module - Gantt - Baselines - Managing mutliple baselines\n\nbaselineColumnView: Baseline",
+        "result": "Gantt (WBS and Gantt chart) module is displayed.\nFollowing tasks are visible:\nProject task: TC-4736 Box Module - Gantt - Baselines - Managing mutliple baselines\n4 project's task child tasks:\n\n* Task A\n* Task B\n* Task C\n* Task D\n\nThere is a baseline under every taskbar with Start Date: 27.05.2024 and End Date: 31.05.2024"
+      },
+      {
+        "step": 2,
+        "action": "In header menu click Data > hover over Baselines (Current baseline dropdown)> hover over Version history (Show on timeline dropdown)",
+        "data": "",
+        "result": "There is a dropdown visible with title: \nShow on Timeline \nand 5 radio buttons visible:\n\n* Lowest\n* Baseline 4 to restore\n* Baseline 3 to delete\n* Baseline 2 to edit\n* Baseline 1"
+      },
+      {
+        "step": 3,
+        "action": "In Current Baseline dropdown click on Manage Baselines",
+        "data": "",
+        "result": "Baselines box configuration page is opened with folLowing elements visible:\n\n- Title: Baseline\n- Text: Baselines help track deviations from the initial schedule.\n\n*Permissions section*\n- Permissions title\n- Text: Decide who can create, delete and save baselines.\n- dropdown with selected option: Box Admin and Box Editors\n- Save button\n\n*Version history section*\nTable with list of saved baselines with visible Name, Creation Date, Created By, Color\n\nEach saved baseline, in the last column of the table, has also 3 buttons available:\n- Restore to current baseline button with history icon\n- Edit details button with edit icon\n- Delete button with trash icon"
+      },
+      {
+        "step": 4,
+        "action": "In Version history section click on the Edit details button for baselineToEdit saved baseline",
+        "data": "baselineToEdit: Baseline 2 to edit",
+        "result": "Edit details modal window is visible with baseline name input and color picker.\nThere are buttons Save and Cancel visible and active."
+      },
+      {
+        "step": 5,
+        "action": "Change baseline name from baselineToEdit to baselineEdited and click Save button",
+        "data": "baselineToEdit: Baseline 2 to edit\nbaselineEdited: Baseline 2 EDITED",
+        "result": "Baseline name is changed to Baseline 2 EDITED in Version history section."
+      },
+      {
+        "step": 6,
+        "action": "In Version history section click on the Delete button for baselineToDelete",
+        "data": "baselineToDelete: Baseline 3 to delete",
+        "result": "There is a confirmation dialog visible with text:\nDelete from version history? This baseline will be gone for good.\nand 2 active buttons: Confirm button and Cancel button"
+      },
+      {
+        "step": 7,
+        "action": "Click Confirm button",
+        "data": "",
+        "result": "Baseline 2 to delete is removed and is not visible on the saved baselines list.\nThere are now 3 saved baselines visible in the Version history section:\n\n* Baseline 4 to restore\n* Baseline 2 to edit\n* Baseline 1"
+      },
+      {
+        "step": 8,
+        "action": "Back to Gantt module (Back to Gantt button)  \nIn header menu click Data > hover over Baselines (Current baseline dropdown)> hover over Version history (Show on timeline dropdown)",
+        "data": "",
+        "result": "There is a dropdown visible with title: \nShow on Timeline \nand now 4 radio buttons are visible:\n\n* Lowest\n* Baseline 4 to restore\n* Baseline 2 EDITED\n* Baseline 1"
+      },
+      {
+        "step": 9,
+        "action": "In Show on Timeline dropdown select baselineCheckboxRestore",
+        "data": "baselineCheckboxRestore: Baseline 4 to restore",
+        "result": "Checkbox Baseline 4 to restore is checked.\n\nSaved baselines are visible on Gantt chart with Start Date: 20.05.2024 and End Date: 24.05.2024\n\nTasks are visible on Gantt chart with current baseline with Start Date: 27.05.2024 and End Date: 31.05.2024"
+      },
+      {
+        "step": 10,
+        "action": "In Current Baseline dropdown click on Manage Baselines and in Version history section click on Restore button for baseline with baselineToRestore name",
+        "data": "baselineToRestore: Baseline 4 to restore",
+        "result": "There is a warning dialog visible with text:\nRestore to current baseline?\n\nIt will replace the current baseline you use now. Make sure to save your baselines to the version history in case you need them later.\n\n2 active buttons are visible: Cancel button and Restore and Replace button"
+      },
+      {
+        "step": 11,
+        "action": "Click on Restore and Replace button and after that Back to Gantt module",
+        "data": "",
+        "result": "On Gantt chart there are now 2 baselines for each task visible. \nCurrent Baseline with Start Date: 20.05.2024 and End Date: 24.05.2024\nand\nSaved Baseline: Baseline 4 to restore with the same dates."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-4736",
+    "text": "Test: TC-4736 — Box Module - Gantt - Baselines - Managing multiple baselines\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-131 Box Module - Gantt - Baselines\nLabels: teamspace\n\nSteps:\n1. Navigate to Gantt module of the boxName\nCheck if baselineColumnView is selected\n   Data: boxName: TC-4736 Box Module - Gantt - Baselines - Managing mutliple baselines\n\nbaselineColumnView: Baseline\n   Expected: Gantt (WBS and Gantt chart) module is displayed.\nFollowing tasks are visible:\nProject task: TC-4736 Box Module - Gantt - Baselines - Managing mutliple baselines\n4 project's task child tasks:\n\n* Task A\n* Task B\n* Task C\n* Task D\n\nThere is a baseline under every taskbar with Start Date: 27.05.2024 and End Date: 31.05.2024\n2. In header menu click Data > hover over Baselines (Current baseline dropdown)> hover over Version history (Show on timeline dropdown)\n   Expected: There is a dropdown visible with title: \nShow on Timeline \nand 5 radio buttons visible:\n\n* Lowest\n* Baseline 4 to restore\n* Baseline 3 to delete\n* Baseline 2 to edit\n* Baseline 1\n3. In Current Baseline dropdown click on Manage Baselines\n   Expected: Baselines box configuration page is opened with folLowing elements visible:\n\n- Title: Baseline\n- Text: Baselines help track deviations from the initial schedule.\n\n*Permissions section*\n- Permissions title\n- Text: Decide who can create, delete and save baselines.\n- dropdown with selected option: Box Admin and Box Editors\n- Save button\n\n*Version history section*\nTable with list of saved baselines with visible Name, Creation Date, Created By, Color\n\nEach saved baseline, in the last column of the table, has also 3 buttons available:\n- Restore to current baseline button with history icon\n- Edit details button with edit icon\n- Delete button with trash icon\n4. In Version history section click on the Edit details button for baselineToEdit saved baseline\n   Data: baselineToEdit: Baseline 2 to edit\n   Expected: Edit details modal window is visible with baseline name input and color picker.\nThere are buttons Save and Cancel visible and active.\n5. Change baseline name from baselineToEdit to baselineEdited and click Save button\n   Data: baselineToEdit: Baseline 2 to edit\nbaselineEdited: Baseline 2 EDITED\n   Expected: Baseline name is changed to Baseline 2 EDITED in Version history section.\n6. In Version history section click on the Delete button for baselineToDelete\n   Data: baselineToDelete: Baseline 3 to delete\n   Expected: There is a confirmation dialog visible with text:\nDelete from version history? This baseline will be gone for good.\nand 2 active buttons: Confirm button and Cancel button\n7. Click Confirm button\n   Expected: Baseline 2 to delete is removed and is not visible on the saved baselines list.\nThere are now 3 saved baselines visible in the Version history section:\n\n* Baseline 4 to restore\n* Baseline 2 to edit\n* Baseline 1\n8. Back to Gantt module (Back to Gantt button)  \nIn header menu click Data > hover over Baselines (Current baseline dropdown)> hover over Version history (Show on timeline dropdown)\n   Expected: There is a dropdown visible with title: \nShow on Timeline \nand now 4 radio buttons are visible:\n\n* Lowest\n* Baseline 4 to restore\n* Baseline 2 EDITED\n* Baseline 1\n9. In Show on Timeline dropdown select baselineCheckboxRestore\n   Data: baselineCheckboxRestore: Baseline 4 to restore\n   Expected: Checkbox Baseline 4 to restore is checked.\n\nSaved baselines are visible on Gantt chart with Start Date: 20.05.2024 and End Date: 24.05.2024\n\nTasks are visible on Gantt chart with current baseline with Start Date: 27.05.2024 and End Date: 31.05.2024\n10. In Current Baseline dropdown click on Manage Baselines and in Version history section click on Restore button for baseline with baselineToRestore name\n   Data: baselineToRestore: Baseline 4 to restore\n   Expected: There is a warning dialog visible with text:\nRestore to current baseline?\n\nIt will replace the current baseline you use now. Make sure to save your baselines to the version history in case you need them later.\n\n2 active buttons are visible: Cancel button and Restore and Replace button\n11. Click on Restore and Replace button and after that Back to Gantt module\n   Expected: On Gantt chart there are now 2 baselines for each task visible. \nCurrent Baseline with Start Date: 20.05.2024 and End Date: 24.05.2024\nand\nSaved Baseline: Baseline 4 to restore with the same dates.",
+    "metadata": {
+      "jira_key": "TC-4736",
+      "issue_id": "814899",
+      "summary": "Box Module - Gantt - Baselines - Managing multiple baselines",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-131 Box Module - Gantt - Baselines",
+      "labels": [
+        "teamspace"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

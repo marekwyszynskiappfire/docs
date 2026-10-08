@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-1656",
+    "issue_id": "357867",
+    "url": "https://appfire.atlassian.net/browse/TC-1656",
+    "summary": "Feature area - Exporting - Exporting Calendar",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Ilya Rybakou",
+    "reporter": "Ilya Rybakou",
+    "created": "2021-03-25T06:37:45.565-0400",
+    "updated": "2026-08-20T05:19:54.083-0400",
+    "labels": [
+      "Sanity",
+      "teamrocket"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Proceed to Calendar module of boxName",
+        "data": "boxName: TC-1656 Feature area - Exporting - Exporting Calendar",
+        "result": "Calendar module opens, October of 2020 is visible\n\nTasks for 12nd October:\n* TS-108 Box Module - Calendar\n* TS108-1\n\nTasks for 13th October:\n* TS-108 Box Module - Calendar\n* TS108-2\n\nTasks for 14th October:\n* TS-108 Box Module - Calendar\n* TS108-3\n\nTasks for 15th, 16th, 17th, 18th, 19th October:\n* TS-108 Box Module - Calendar\n* TS108-4"
+      },
+      {
+        "step": 2,
+        "action": "Make sure that assignee is visible next to task",
+        "data": "",
+        "result": "Assignee icons are visible."
+      },
+      {
+        "step": 3,
+        "action": "Add task without dates",
+        "data": "",
+        "result": "Task without dates is added"
+      },
+      {
+        "step": 4,
+        "action": "Click the Export button in the module's header",
+        "data": "",
+        "result": "Export manager is displayed with text:\n\nExport manager\n\nExport data to a specified file size. Some data may result in a large file size.\n\nFile type field is Export to image (PDF). \n\nExport button is active."
+      },
+      {
+        "step": 5,
+        "action": "Click Export button and check if data in file are correct",
+        "data": "",
+        "result": "Downloaded files' names are folLowing the filename schema:\n_calendar_<current-date>_<current-time>_<chosen-format>_\n\nImage presents the entire chosen month, with all the tasks and assignee icons. \n\nImage is complete and not cut off in any way."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-1656",
+    "text": "Test: TC-1656 — Feature area - Exporting - Exporting Calendar\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\nLabels: Sanity, teamrocket\n\nSteps:\n1. Proceed to Calendar module of boxName\n   Data: boxName: TC-1656 Feature area - Exporting - Exporting Calendar\n   Expected: Calendar module opens, October of 2020 is visible\n\nTasks for 12nd October:\n* TS-108 Box Module - Calendar\n* TS108-1\n\nTasks for 13th October:\n* TS-108 Box Module - Calendar\n* TS108-2\n\nTasks for 14th October:\n* TS-108 Box Module - Calendar\n* TS108-3\n\nTasks for 15th, 16th, 17th, 18th, 19th October:\n* TS-108 Box Module - Calendar\n* TS108-4\n2. Make sure that assignee is visible next to task\n   Expected: Assignee icons are visible.\n3. Add task without dates\n   Expected: Task without dates is added\n4. Click the Export button in the module's header\n   Expected: Export manager is displayed with text:\n\nExport manager\n\nExport data to a specified file size. Some data may result in a large file size.\n\nFile type field is Export to image (PDF). \n\nExport button is active.\n5. Click Export button and check if data in file are correct\n   Expected: Downloaded files' names are folLowing the filename schema:\n_calendar_<current-date>_<current-time>_<chosen-format>_\n\nImage presents the entire chosen month, with all the tasks and assignee icons. \n\nImage is complete and not cut off in any way.",
+    "metadata": {
+      "jira_key": "TC-1656",
+      "issue_id": "357867",
+      "summary": "Feature area - Exporting - Exporting Calendar",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [
+        "Sanity",
+        "teamrocket"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

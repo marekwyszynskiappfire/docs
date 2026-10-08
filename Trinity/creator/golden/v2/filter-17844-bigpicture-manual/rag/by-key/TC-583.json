@@ -1,0 +1,77 @@
+{
+  "test": {
+    "key": "TC-583",
+    "issue_id": "358841",
+    "url": "https://appfire.atlassian.net/browse/TC-583",
+    "summary": "Feature area - Box - Box parent changing - Creating sequential Sub-box",
+    "description": "!https://qtm4j-cloud-prod-4.s3.amazonaws.com/client/5201/project/10356/TESTCASE/adbGsRjDcLMRb9/7257089/TC-583_1681704868684_COJiR8ieJZ_JNwYUhq8Td.png",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Krzysztof Luczak",
+    "reporter": "Krzysztof Luczak",
+    "created": "2020-10-09T06:02:35.202-0400",
+    "updated": "2026-03-04T09:19:53.430-0500",
+    "labels": [
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-90 Feature area - Box - Box parent changing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Overview module of Home root box in Hierarchy mode and search for boxName.",
+        "data": "boxName: TC-583 Feature area - Box - Box parent changing - Creating sequential Sub-box",
+        "result": "Home root box is displayed on the Box switcher.\nThe Overview module name is marked as active on the header grid.\nThe Hierarchy mode icon is active.\n\"TC-583 Feature area - Box - Box parent changing - Creating sequential Sub-box\" is displayed on the Overview of Home root box as a sub-box of Home."
+      },
+      {
+        "step": 2,
+        "action": "Click on the + button (Add new) beLow boxName",
+        "data": "boxName: TC-583 Feature area - Box - Box parent changing - Creating sequential Sub-box",
+        "result": "Add dialog on Box level is opened."
+      },
+      {
+        "step": 3,
+        "action": "Click on the Indent the level button.",
+        "data": "",
+        "result": "Add dialog is switched to the Sub-box level."
+      },
+      {
+        "step": 4,
+        "action": "Select boxType, fill boxName, select startDate and endDate.",
+        "data": "boxType: TC-583 Child\nboxName: TC-583 Child 2\nstartDate: 01/Jan/23\nendDate: 31/Jan/23",
+        "result": "Box type is set to TC-583 Child. Box name is TC-583 Child 2. Start date is 01/Jan/23. End date is 31/Jan/23."
+      },
+      {
+        "step": 5,
+        "action": "Click on the Create button.",
+        "data": "",
+        "result": "Sub-box is not created. A validation error is displayed with the folLowing message: \n\"TC-584 Child 2 period cannot overlap with TC-583 Child\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-583",
+    "text": "Test: TC-583 — Feature area - Box - Box parent changing - Creating sequential Sub-box\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-90 Feature area - Box - Box parent changing\nLabels: teamboxes\n\nDescription:\n!https://qtm4j-cloud-prod-4.s3.amazonaws.com/client/5201/project/10356/TESTCASE/adbGsRjDcLMRb9/7257089/TC-583_1681704868684_COJiR8ieJZ_JNwYUhq8Td.png Navigate to the Overview module of Home root box in Hierarchy mode and search for boxName.\n   Data: boxName: TC-583 Feature area - Box - Box parent changing - Creating sequential Sub-box\n   Expected: Home root box is displayed on the Box switcher.\nThe Overview module name is marked as active on the header grid.\nThe Hierarchy mode icon is active.\n\"TC-583 Feature area - Box - Box parent changing - Creating sequential Sub-box\" is displayed on the Overview of Home root box as a sub-box of Home.\n2. Click on the + button (Add new) beLow boxName\n   Data: boxName: TC-583 Feature area - Box - Box parent changing - Creating sequential Sub-box\n   Expected: Add dialog on Box level is opened.\n3. Click on the Indent the level button.\n   Expected: Add dialog is switched to the Sub-box level.\n4. Select boxType, fill boxName, select startDate and endDate.\n   Data: boxType: TC-583 Child\nboxName: TC-583 Child 2\nstartDate: 01/Jan/23\nendDate: 31/Jan/23\n   Expected: Box type is set to TC-583 Child. Box name is TC-583 Child 2. Start date is 01/Jan/23. End date is 31/Jan/23.\n5. Click on the Create button.\n   Expected: Sub-box is not created. A validation error is displayed with the folLowing message: \n\"TC-584 Child 2 period cannot overlap with TC-583 Child\"",
+    "metadata": {
+      "jira_key": "TC-583",
+      "issue_id": "358841",
+      "summary": "Feature area - Box - Box parent changing - Creating sequential Sub-box",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-90 Feature area - Box - Box parent changing",
+      "labels": [
+        "teamboxes"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

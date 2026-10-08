@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-5564",
+    "issue_id": "1207395",
+    "url": "https://appfire.atlassian.net/browse/TC-5564",
+    "summary": "Feature area - Task - Attributes displaying and editing - Inline editing of task on Calendar module",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": null,
+    "reporter": "Martyna Turowska",
+    "created": "2025-05-19T11:21:09.301-0400",
+    "updated": "2026-07-13T07:04:36.187-0400",
+    "labels": [
+      "teamrocket"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Calendar module of boxName",
+        "data": "boxName: TC-5564 Feature area - Task - Attributes displaying and editing - Inline editing of task on Calendar module",
+        "result": "Calendar module is displayed. September 2025 is current month. \nTC-5564 Task is visible on the 05/Sep/2025 cell."
+      },
+      {
+        "step": 2,
+        "action": "Click left mouse button on the taskName",
+        "data": "taskName: TC-5564 Task",
+        "result": "Inline dialog is displayed with following elements:\n\n* Summary: TC-5564 Task\n* Progress in %: empty \n* Start date: 05/Sep/25\n* End date: 05/Sep/25 \n* Assignee: JiraAdmin\n* Status: Done"
+      },
+      {
+        "step": 3,
+        "action": "Click twice on the Summary, type the textSummary and click Enter",
+        "data": "textSummary: TC-5564 After editing",
+        "result": "Summary is changed to TC-5564 After editing in inline dialog and on the taskbar on calendar cell."
+      },
+      {
+        "step": 4,
+        "action": "Click twice on the field next to the %, type newValue and click Enter",
+        "data": "newValue: 50",
+        "result": "50% is displayed. Progress bar is colored halfway."
+      },
+      {
+        "step": 5,
+        "action": "Click twice on the Start date, select the newDate and click Enter",
+        "data": "newDate: 02/Sep/25",
+        "result": "Start date is changed in inline dialog and on the calendar. \nStart date of taskbar is 02/Sep/25. End date is 05/Sep/25."
+      },
+      {
+        "step": 6,
+        "action": "Click twice on the End date, select the newDate and click Enter",
+        "data": "newDate: 04/Sep/25",
+        "result": "Date is changed in inline dialog and on the calendar. \nEnd date of taskbar is 04/Sep/25. Start date is 02/Sep/25."
+      },
+      {
+        "step": 7,
+        "action": "Click twice Assignee field, type text, click on the newValue and click Enter",
+        "data": "text: Unassigned\nnewValue: Unassigned",
+        "result": "Assignee is changed to the Unassigned."
+      },
+      {
+        "step": 8,
+        "action": "Click twice on the Status lozenge, select newStatus from the dropdown and click Enter",
+        "data": "newStatus: In progress",
+        "result": "Status is changed to In progress in inline dialog. Taskbar is blue."
+      },
+      {
+        "step": 9,
+        "action": "Click outside the inline dialog",
+        "data": "",
+        "result": "Inline dialog is closed. All changes remain on the calendar."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-5564",
+    "text": "Test: TC-5564 — Feature area - Task - Attributes displaying and editing - Inline editing of task on Calendar module\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/TS-66 Feature area - Task - Attributes displaying and editing\nLabels: teamrocket\n\nSteps:\n1. Navigate to the Calendar module of boxName\n   Data: boxName: TC-5564 Feature area - Task - Attributes displaying and editing - Inline editing of task on Calendar module\n   Expected: Calendar module is displayed. September 2025 is current month. \nTC-5564 Task is visible on the 05/Sep/2025 cell.\n2. Click left mouse button on the taskName\n   Data: taskName: TC-5564 Task\n   Expected: Inline dialog is displayed with following elements:\n\n* Summary: TC-5564 Task\n* Progress in %: empty \n* Start date: 05/Sep/25\n* End date: 05/Sep/25 \n* Assignee: JiraAdmin\n* Status: Done\n3. Click twice on the Summary, type the textSummary and click Enter\n   Data: textSummary: TC-5564 After editing\n   Expected: Summary is changed to TC-5564 After editing in inline dialog and on the taskbar on calendar cell.\n4. Click twice on the field next to the %, type newValue and click Enter\n   Data: newValue: 50\n   Expected: 50% is displayed. Progress bar is colored halfway.\n5. Click twice on the Start date, select the newDate and click Enter\n   Data: newDate: 02/Sep/25\n   Expected: Start date is changed in inline dialog and on the calendar. \nStart date of taskbar is 02/Sep/25. End date is 05/Sep/25.\n6. Click twice on the End date, select the newDate and click Enter\n   Data: newDate: 04/Sep/25\n   Expected: Date is changed in inline dialog and on the calendar. \nEnd date of taskbar is 04/Sep/25. Start date is 02/Sep/25.\n7. Click twice Assignee field, type text, click on the newValue and click Enter\n   Data: text: Unassigned\nnewValue: Unassigned\n   Expected: Assignee is changed to the Unassigned.\n8. Click twice on the Status lozenge, select newStatus from the dropdown and click Enter\n   Data: newStatus: In progress\n   Expected: Status is changed to In progress in inline dialog. Taskbar is blue.\n9. Click outside the inline dialog\n   Expected: Inline dialog is closed. All changes remain on the calendar.",
+    "metadata": {
+      "jira_key": "TC-5564",
+      "issue_id": "1207395",
+      "summary": "Feature area - Task - Attributes displaying and editing - Inline editing of task on Calendar module",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+      "labels": [
+        "teamrocket"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

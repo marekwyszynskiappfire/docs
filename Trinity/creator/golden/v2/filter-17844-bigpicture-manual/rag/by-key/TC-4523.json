@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-4523",
+    "issue_id": "814685",
+    "url": "https://appfire.atlassian.net/browse/TC-4523",
+    "summary": "Feature area - Task Scheduling - Period creating - End date mapped to Original Estimate",
+    "description": "Field sync configuration:\n\nStart date > Start date\n\nEnd date > Original Estimate",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:05:17.983-0400",
+    "updated": "2026-08-07T08:25:29.386-0400",
+    "labels": [
+      "tc-tasks-no-dates",
+      "teamembers"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-453 Feature area - Task Scheduling - Period creating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Gantt module of boxName.",
+        "data": "boxName: TC-4523 Period creating - End date mapped to Original Estimate",
+        "result": "Gantt module is loaded."
+      },
+      {
+        "step": 2,
+        "action": "Click on the Start date field of issueName and select the startDate from date picker.",
+        "data": "issueName: TC-4523 Task-1\n\nstartDate: 23/Aug/23",
+        "result": "Start date and End date are calculated.\n\n* Start date is set to 23/Aug/23.\n* End date is set to 25/Aug/23.\n* Original Estimate value does not changed and equals 3d.\n* Duration Working Days value is set to 3."
+      },
+      {
+        "step": 3,
+        "action": "Click on the End date field of issueName and select the endDate from date picker.",
+        "data": "issueName: TC-4523 Task-2\n\nendDate: 23/Aug/23",
+        "result": "Start date and End date are calculated.\n\n* Start date is set to 21/Aug/23.\n* End date is set to 23/Aug/23.\n* Original Estimate value does not changed and equals 3d.\n* Duration Working Days value is set to 3."
+      },
+      {
+        "step": 4,
+        "action": "Click on the Start date field of issueName and select the startDate from date picker.",
+        "data": "issueName: TC-4523 Task-3\n\nstartDate: 23/Aug/23",
+        "result": "* Start date is set to 23/Aug/23.\n* End date is set empty.\n* Original Estimate value is empty.\n* Duration Working Days value is set empty."
+      },
+      {
+        "step": 5,
+        "action": "Click on the End date field of issueName and select the endDate from date picker.",
+        "data": "issueName: TC-4523 Task-3\n\nendDate: 25/Aug/23",
+        "result": "* Start date is empty.\n* End date is set to 25/Aug/23.\n* Original Estimate value is empty.\n* Duration Working Days value is set empty."
+      },
+      {
+        "step": 6,
+        "action": "Click on the Start date field of issueName and select the startDate from date picker.",
+        "data": "issueName: TC-4523 Task-4\n\nstartDate: 22/Aug/23",
+        "result": "Task has been moved.\n\n* Start date is set to 22/Aug/23.\n* End date is set to 24/Aug/23.\n* Original Estimate value does not changed and equals 3d.\n* Duration Working Days value does not changed and equals 3."
+      },
+      {
+        "step": 7,
+        "action": "Click on the End date field of issueName and select the endDate from date picker.",
+        "data": "issueName: TC-4523 Task-4\n\nendDate: 25/Aug/23",
+        "result": "Task has been resized.\n\n* Start date does not changed and is set to 22/Aug/23.\n* End date is set to 25/Aug/23.\n* Original Estimate value is set to 4d.\n* Duration Working Days value is set to 4."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-4523",
+    "text": "Test: TC-4523 — Feature area - Task Scheduling - Period creating - End date mapped to Original Estimate\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-453 Feature area - Task Scheduling - Period creating\nLabels: tc-tasks-no-dates, teamembers\n\nDescription:\nField sync configuration:\n\nStart date > Start date\n\nEnd date > Original Estimate\n\nSteps:\n1. Navigate to the Gantt module of boxName.\n   Data: boxName: TC-4523 Period creating - End date mapped to Original Estimate\n   Expected: Gantt module is loaded.\n2. Click on the Start date field of issueName and select the startDate from date picker.\n   Data: issueName: TC-4523 Task-1\n\nstartDate: 23/Aug/23\n   Expected: Start date and End date are calculated.\n\n* Start date is set to 23/Aug/23.\n* End date is set to 25/Aug/23.\n* Original Estimate value does not changed and equals 3d.\n* Duration Working Days value is set to 3.\n3. Click on the End date field of issueName and select the endDate from date picker.\n   Data: issueName: TC-4523 Task-2\n\nendDate: 23/Aug/23\n   Expected: Start date and End date are calculated.\n\n* Start date is set to 21/Aug/23.\n* End date is set to 23/Aug/23.\n* Original Estimate value does not changed and equals 3d.\n* Duration Working Days value is set to 3.\n4. Click on the Start date field of issueName and select the startDate from date picker.\n   Data: issueName: TC-4523 Task-3\n\nstartDate: 23/Aug/23\n   Expected: * Start date is set to 23/Aug/23.\n* End date is set empty.\n* Original Estimate value is empty.\n* Duration Working Days value is set empty.\n5. Click on the End date field of issueName and select the endDate from date picker.\n   Data: issueName: TC-4523 Task-3\n\nendDate: 25/Aug/23\n   Expected: * Start date is empty.\n* End date is set to 25/Aug/23.\n* Original Estimate value is empty.\n* Duration Working Days value is set empty.\n6. Click on the Start date field of issueName and select the startDate from date picker.\n   Data: issueName: TC-4523 Task-4\n\nstartDate: 22/Aug/23\n   Expected: Task has been moved.\n\n* Start date is set to 22/Aug/23.\n* End date is set to 24/Aug/23.\n* Original Estimate value does not changed and equals 3d.\n* Duration Working Days value does not changed and equals 3.\n7. Click on the End date field of issueName and select the endDate from date picker.\n   Data: issueName: TC-4523 Task-4\n\nendDate: 25/Aug/23\n   Expected: Task has been resized.\n\n* Start date does not changed and is set to 22/Aug/23.\n* End date is set to 25/Aug/23.\n* Original Estimate value is set to 4d.\n* Duration Working Days value is set to 4.",
+    "metadata": {
+      "jira_key": "TC-4523",
+      "issue_id": "814685",
+      "summary": "Feature area - Task Scheduling - Period creating - End date mapped to Original Estimate",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-453 Feature area - Task Scheduling - Period creating",
+      "labels": [
+        "tc-tasks-no-dates",
+        "teamembers"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

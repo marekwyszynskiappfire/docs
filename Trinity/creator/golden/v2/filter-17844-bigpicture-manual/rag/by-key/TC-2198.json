@@ -1,0 +1,97 @@
+{
+  "test": {
+    "key": "TC-2198",
+    "issue_id": "358573",
+    "url": "https://appfire.atlassian.net/browse/TC-2198",
+    "summary": "Global - Gadget - Risks - Adding gadget to Jira dashboard",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2021-07-08T18:00:43.911-0400",
+    "updated": "2026-04-10T08:07:37.545-0400",
+    "labels": [
+      "rocksolid",
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-162 Global - Gadget",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to dashboardName",
+        "data": "dashboardName: TC-2198 Global - Gadget - Risks - Adding gadget to Jira dashboard",
+        "result": "Jira dashboard page is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click Add gadget button\n\nOn Atlassian Cloud first click Edit button to add gadget.",
+        "data": "",
+        "result": "Add gadget window appears"
+      },
+      {
+        "step": 3,
+        "action": "Click Load all gadgets",
+        "data": "",
+        "result": "List of gadgets is visible"
+      },
+      {
+        "step": 4,
+        "action": "Search for gadgetName",
+        "data": "gadgetName: BigPicture Risks",
+        "result": "BigPicture Risks gadget is found"
+      },
+      {
+        "step": 5,
+        "action": "Click on Add gadget button",
+        "data": "",
+        "result": "Gadget window is visible in the dashboard"
+      },
+      {
+        "step": 6,
+        "action": "Close Add gadget window",
+        "data": "",
+        "result": "Add gadget window disappears"
+      },
+      {
+        "step": 7,
+        "action": "In field Box find boxName",
+        "data": "boxName: TC-2198 Global - Gadget - Risks - Adding gadget to Jira dashboard",
+        "result": "boxName is added to Box field"
+      },
+      {
+        "step": 8,
+        "action": "Click on Save button",
+        "data": "",
+        "result": "In dashboard appears BigPicture Risks gadget. Gadget has following elements:\n\nHeader BigPicture Risks\n\nRisk heat map and risk list is displayed on dashboard."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-2198",
+    "text": "Test: TC-2198 — Global - Gadget - Risks - Adding gadget to Jira dashboard\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-162 Global - Gadget\nLabels: rocksolid, teamsource\n\nSteps:\n1. Navigate to dashboardName\n   Data: dashboardName: TC-2198 Global - Gadget - Risks - Adding gadget to Jira dashboard\n   Expected: Jira dashboard page is displayed\n2. Click Add gadget button\n\nOn Atlassian Cloud first click Edit button to add gadget.\n   Expected: Add gadget window appears\n3. Click Load all gadgets\n   Expected: List of gadgets is visible\n4. Search for gadgetName\n   Data: gadgetName: BigPicture Risks\n   Expected: BigPicture Risks gadget is found\n5. Click on Add gadget button\n   Expected: Gadget window is visible in the dashboard\n6. Close Add gadget window\n   Expected: Add gadget window disappears\n7. In field Box find boxName\n   Data: boxName: TC-2198 Global - Gadget - Risks - Adding gadget to Jira dashboard\n   Expected: boxName is added to Box field\n8. Click on Save button\n   Expected: In dashboard appears BigPicture Risks gadget. Gadget has following elements:\n\nHeader BigPicture Risks\n\nRisk heat map and risk list is displayed on dashboard.",
+    "metadata": {
+      "jira_key": "TC-2198",
+      "issue_id": "358573",
+      "summary": "Global - Gadget - Risks - Adding gadget to Jira dashboard",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-162 Global - Gadget",
+      "labels": [
+        "rocksolid",
+        "teamsource"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "test": {
+    "key": "TC-4333",
+    "issue_id": "814479",
+    "url": "https://appfire.atlassian.net/browse/TC-4333",
+    "summary": "new Box Module - Resources - Resource Grid - Editing Status and Assignee in Task Details Dialog",
+    "description": "Ze względu na ograniczoną liczbę użytkowników na cloudzie, user TC4333-user1 nie ma uprawnień do Jiry, więc nie można mu przypisać taska. Na potrzeby przejścia przez TC należy dodać usera do grupy Jira Setting → User management → Groups → search jira-users-(instanceName) → Show details → Add group members. Usuń usera z grupy po wykonanym teście",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2024-07-22T10:00:15.823-0400",
+    "updated": "2026-05-05T08:01:58.643-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources Module of the boxName.\n\nExpand ‘Backlog’ sidebar.",
+        "data": "boxName: TC-4333 Box Module - Resources - Resource Grid - Editing Status and Assignee in Task Details Dialog",
+        "result": "Resources module is successfully loaded and displayed.\nThe beginning of Timeline is set to 01/Mar/2022.\nIndividuals view - All is selected in the left top corner.\nEffort mode is set to Original estimate and Units to Hours.\nScale is set to Month/Weekly.\nAll rows are expanded.\n\nFollowing tasks are visible:\n\n* Task 1 in Unassigned row\n* Task 2 assigned to TC4333-user1\n\nOne unassigned task ‘Task 1’ is visible in the 'Backlog' sidebar."
+      },
+      {
+        "step": 2,
+        "action": "Collapse the 'Backlog' sidebar.\nClick on taskbar of the taskName.",
+        "data": "taskName: Task 1",
+        "result": "The sidebar is collapsed.\n\nTask Details Dialog is displayed.\nTask details dialog is divided into sections:\n\n* Basic info\n* Resources\n* Scheduling\n* Agile\n* Time estimates\n* Technical info\n* Workload contouring\n* Warnings\n* Multi-team planning (Time estimates)\n* Multi-team planning (Story points)"
+      },
+      {
+        "step": 3,
+        "action": "In Technical info section hover over ‘In scope of’ value",
+        "data": "Jira Server\nvalue: PROG-3202\n\nJira Cloud\nvalue: PROG-2907",
+        "result": "Tooltip appears: \"Main > TC-4333 Box Module - Resources - Resource Grid - Editing Status and Assignee in Task Details Dialog\""
+      },
+      {
+        "step": 4,
+        "action": "Go to Basic info section.",
+        "data": "",
+        "result": "Basic info is display\nFollowing informations are visible:\n\nProgress in %\nStatus\nPriority"
+      },
+      {
+        "step": 5,
+        "action": "Click on Status.",
+        "data": "",
+        "result": "Dropdown menu appears with the options:\n\n* To Do\n* In Progress\n* Done"
+      },
+      {
+        "step": 6,
+        "action": "Change the Status to newStatus.",
+        "data": "newStatus: In Progress",
+        "result": "Status is changed. Task colour changed from grey to blue."
+      },
+      {
+        "step": 7,
+        "action": "Go to Resources section and click on Unassigned in Assignee row.",
+        "data": "",
+        "result": "Dropdown menu dialog appears. The search field with placeholder \"Search by name (at least 2 characters)\" is on the top of the dialog. Under its is the list of users."
+      },
+      {
+        "step": 8,
+        "action": "Fill in userName in the search field, select it from the list, and click outside the Task details dialog.",
+        "data": "FOR Atlassian Cloud read description first.\n\nuserName: TC4333-user1",
+        "result": "The task details dialog is closed.\n\nTask 'Task 1' is assigned to user 'TC4333-user1' and is displayed in user row on Resource Grid."
+      },
+      {
+        "step": 9,
+        "action": "Expand the 'Backlog' sidebar.",
+        "data": "",
+        "result": "The ‘Backlog' sidebar is expanded.￼\nThe splash screen with information is displayed:￼\n\"No tasks matching your filters\nYou have filters enabled that result in hidden tasks.\"￼\n’Clear active filters' button is visible under the information"
+      },
+      {
+        "step": 10,
+        "action": "Collapse the 'Backlog sidebar.\nClick on taskbar of the taskName and change the Status to newStatus.",
+        "data": "taskName: Task 1\nnewStatus: Done",
+        "result": "The sidebar is collapsed.\n\nStatus is changed. Task colour changed from blue to green."
+      },
+      {
+        "step": 11,
+        "action": "Click on userName in Assignee row.",
+        "data": "userName: TC4333-user1",
+        "result": "Dropdown menu dialog appears. The search field with placeholder \"Search by name (at least 2 characters)\" is on the top of the dialog. Under its is the list of users."
+      },
+      {
+        "step": 12,
+        "action": "Select newUserName in the search field and click outside the Task details dialog.",
+        "data": "newUserName: Unassigned",
+        "result": "The task details dialog is closed.\n\nTask 'Task 1' is unassigned and is displayed in Unassigned row on Resource Grid."
+      },
+      {
+        "step": 13,
+        "action": "Click on taskbar of the taskName.",
+        "data": "taskName: Task 2",
+        "result": "Task Details Dialog is displayed.\nTask details dialog is divided into sections:\n\n* Basic info\n* Resources\n* Scheduling\n* Agile\n* Time estimates\n* Technical info\n* Workload contouring\n* Warnings\n* Multi-team planning (Time estimates)\n* Multi-team planning (Story points)"
+      },
+      {
+        "step": 14,
+        "action": "Click on userName in Assignee row.",
+        "data": "userName: TC4333-user1",
+        "result": "Dropdown menu dialog appears. The search field with placeholder \"Search by name (at least 2 characters)\" is on the top of the dialog. Under its is the list of users."
+      },
+      {
+        "step": 15,
+        "action": "Fill in userName in the search field, select it from the list, and click outside the Task details dialog.",
+        "data": "userName: TC4333-user2",
+        "result": "The task details dialog is closed.\n\nFOR Atlassian Server:\nTask 'Task 2' is assigned to user 'TC4333-user2' and is displayed in user row on Resource Grid.\n\nFOR Atlassian Cloud:\nWarning dialog appears with the message:\n\"Error\\!\nIt looks like user TC4333-user2 might not have Assignable user permission granted in Jira. If that's not the case, please contact our Support.\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 15
+  },
+  "rag": {
+    "id": "TC-4333",
+    "text": "Test: TC-4333 — new Box Module - Resources - Resource Grid - Editing Status and Assignee in Task Details Dialog\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: be-enterprise, can_be_automated\n\nDescription:\nZe względu na ograniczoną liczbę użytkowników na cloudzie, user TC4333-user1 nie ma uprawnień do Jiry, więc nie można mu przypisać taska. Na potrzeby przejścia przez TC należy dodać usera do grupy Jira Setting → User management → Groups → search jira-users-(instanceName) → Show details → Add group members. Usuń usera z grupy po wykonanym teście\n\nSteps:\n1. Navigate to Resources Module of the boxName.\n\nExpand ‘Backlog’ sidebar.\n   Data: boxName: TC-4333 Box Module - Resources - Resource Grid - Editing Status and Assignee in Task Details Dialog\n   Expected: Resources module is successfully loaded and displayed.\nThe beginning of Timeline is set to 01/Mar/2022.\nIndividuals view - All is selected in the left top corner.\nEffort mode is set to Original estimate and Units to Hours.\nScale is set to Month/Weekly.\nAll rows are expanded.\n\nFollowing tasks are visible:\n\n* Task 1 in Unassigned row\n* Task 2 assigned to TC4333-user1\n\nOne unassigned task ‘Task 1’ is visible in the 'Backlog' sidebar.\n2. Collapse the 'Backlog' sidebar.\nClick on taskbar of the taskName.\n   Data: taskName: Task 1\n   Expected: The sidebar is collapsed.\n\nTask Details Dialog is displayed.\nTask details dialog is divided into sections:\n\n* Basic info\n* Resources\n* Scheduling\n* Agile\n* Time estimates\n* Technical info\n* Workload contouring\n* Warnings\n* Multi-team planning (Time estimates)\n* Multi-team planning (Story points)\n3. In Technical info section hover over ‘In scope of’ value\n   Data: Jira Server\nvalue: PROG-3202\n\nJira Cloud\nvalue: PROG-2907\n   Expected: Tooltip appears: \"Main > TC-4333 Box Module - Resources - Resource Grid - Editing Status and Assignee in Task Details Dialog\"\n4. Go to Basic info section.\n   Expected: Basic info is display\nFollowing informations are visible:\n\nProgress in %\nStatus\nPriority\n5. Click on Status.\n   Expected: Dropdown menu appears with the options:\n\n* To Do\n* In Progress\n* Done\n6. Change the Status to newStatus.\n   Data: newStatus: In Progress\n   Expected: Status is changed. Task colour changed from grey to blue.\n7. Go to Resources section and click on Unassigned in Assignee row.\n   Expected: Dropdown menu dialog appears. The search field with placeholder \"Search by name (at least 2 characters)\" is on the top of the dialog. Under its is the list of users.\n8. Fill in userName in the search field, select it from the list, and click outside the Task details dialog.\n   Data: FOR Atlassian Cloud read description first.\n\nuserName: TC4333-user1\n   Expected: The task details dialog is closed.\n\nTask 'Task 1' is assigned to user 'TC4333-user1' and is displayed in user row on Resource Grid.\n9. Expand the 'Backlog' sidebar.\n   Expected: The ‘Backlog' sidebar is expanded.￼\nThe splash screen with information is displayed:￼\n\"No tasks matching your filters\nYou have filters enabled that result in hidden tasks.\"￼\n’Clear active filters' button is visible under the information\n10. Collapse the 'Backlog sidebar.\nClick on taskbar of the taskName and change the Status to newStatus.\n   Data: taskName: Task 1\nnewStatus: Done\n   Expected: The sidebar is collapsed.\n\nStatus is changed. Task colour changed from blue to green.\n11. Click on userName in Assignee row.\n   Data: userName: TC4333-user1\n   Expected: Dropdown menu dialog appears. The search field with placeholder \"Search by name (at least 2 characters)\" is on the top of the dialog. Under its is the list of users.\n12. Select newUserName in the search field and click outside the Task details dialog.\n   Data: newUserName: Unassigned\n   Expected: The task details dialog is closed.\n\nTask 'Task 1' is unassigned and is displayed in Unassigned row on Resource Grid.\n13. Click on taskbar of the taskName.\n   Data: taskName: Task 2\n   Expected: Task Details Dialog is displayed.\nTask details dialog is divided into sections:\n\n* Basic info\n* Resources\n* Scheduling\n* Agile\n* Time estimates\n* Technical info\n* Workload contouring\n* Warnings\n* Multi-team planning (Time estimates)\n* Multi-team planning (Story points)\n14. Click on userName in Assignee row.\n   Data: userName: TC4333-user1\n   Expected: Dropdown menu dialog appears. The search field with placeholder \"Search by name (at least 2 characters)\" is on the top of the dialog. Under its is the list of users.\n15. Fill in userName in the search field, select it from the list, and click outside the Task details dialog.\n   Data: userName: TC4333-user2\n   Expected: The task details dialog is closed.\n\nFOR Atlassian Server:\nTask 'Task 2' is assigned to user 'TC4333-user2' and is displayed in user row on Resource Grid.\n\nFOR Atlassian Cloud:\nWarning dialog appears with the message:\n\"Error\\!\nIt looks like user TC4333-user2 might not have Assignable user permission granted in Jira. If that's not the case, please contact our Support.\"",
+    "metadata": {
+      "jira_key": "TC-4333",
+      "issue_id": "814479",
+      "summary": "new Box Module - Resources - Resource Grid - Editing Status and Assignee in Task Details Dialog",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated"
+      ],
+      "step_count": 15,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

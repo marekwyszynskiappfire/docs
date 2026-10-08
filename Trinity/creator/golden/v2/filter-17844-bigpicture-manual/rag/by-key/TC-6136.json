@@ -1,0 +1,127 @@
+{
+  "test": {
+    "key": "TC-6136",
+    "issue_id": "1679933",
+    "url": "https://appfire.atlassian.net/browse/TC-6136",
+    "summary": "SPM - Priorities - Deleting metrics for tasks on Gantt module",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2026-05-07T04:22:27.415-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "paulina-q2-2026",
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Priorities module of a boxName",
+        "data": "boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module",
+        "result": "Priorities module is displayed\n\nTasks tab is selected\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 2,
+        "action": "Set following values for taskName",
+        "data": "taskName: Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low",
+        "result": "Following values are set for Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n\nScore is 80"
+      },
+      {
+        "step": 3,
+        "action": "Set following values for taskName",
+        "data": "taskName: Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High",
+        "result": "Following values are set for Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High\n\nScore is 240"
+      },
+      {
+        "step": 4,
+        "action": "Set following values for taskName",
+        "data": "taskName: Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence",
+        "result": "Following values are set for Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence\n\nScore is 6"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module",
+        "result": "Following values are displayed for each task\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 6,
+        "action": "Click on add or edit column and add columnName",
+        "data": "columnName: Priority score",
+        "result": "Following values are displayed for each task\n\n* Task 1 - 80 in gray lozenge\n* Task 2 - 240 in gray lozenge\n* Task 3 - 6 in gray lozenge\n* Task 4 - Empty field\n* Task 5 - Empty field"
+      },
+      {
+        "step": 7,
+        "action": "Click on taskName score",
+        "data": "taskName: Task 1",
+        "result": "Priority score details modal is displayed\n\nFollowing values are displayed:\n\nImpact: Low\nEase: Medium\nConfidence: Low"
+      },
+      {
+        "step": 8,
+        "action": "Hover over Ease value and click on it",
+        "data": "",
+        "result": "Dropdown with options is displayed\n\n\"X\" button is displayed"
+      },
+      {
+        "step": 9,
+        "action": "Click on \"X\" button next to Ease value",
+        "data": "",
+        "result": "Value of Ease is deleted \n\nModal window is closed\n\nValue of Priority score for Task 1 is empty"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Priorities module of a boxName",
+        "data": "boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module",
+        "result": "Priorities module is displayed\n\nFollowing tasks are displayed with values:\n\n* Task 1 - Empty\n* Task 2 - 240\n* Task 3 - 6\n* Task 4 - Empty\n* Task 5 - Empty"
+      },
+      {
+        "step": 11,
+        "action": "Hover over Ease value and click on it",
+        "data": "taskName: Task 2",
+        "result": "Dropdown with options is displayed\n\n\"X\" button is displayed"
+      },
+      {
+        "step": 12,
+        "action": "Click on \"X\" button next to Ease value",
+        "data": "",
+        "result": "Value of Ease is deleted\n\nValue of Priority score for Task 2 is empty"
+      },
+      {
+        "step": 13,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module",
+        "result": "Following tasks are displayed with values:\n\n* Task 1 - Empty\n* Task 2 - Empty\n* Task 3 - 6\n* Task 4 - Empty\n* Task 5 - Empty"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-6136",
+    "text": "Test: TC-6136 — SPM - Priorities - Deleting metrics for tasks on Gantt module\nPriority: High | Status: Done | Type: Manual\nFolder: /\nLabels: paulina-q2-2026, spm-paulina-tc\n\nSteps:\n1. Navigate to Priorities module of a boxName\n   Data: boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module\n   Expected: Priorities module is displayed\n\nTasks tab is selected\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n2. Set following values for taskName\n   Data: taskName: Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n   Expected: Following values are set for Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n\nScore is 80\n3. Set following values for taskName\n   Data: taskName: Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High\n   Expected: Following values are set for Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High\n\nScore is 240\n4. Set following values for taskName\n   Data: taskName: Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence\n   Expected: Following values are set for Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence\n\nScore is 6\n5. Navigate to Gantt module of a boxName\n   Data: boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module\n   Expected: Following values are displayed for each task\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n6. Click on add or edit column and add columnName\n   Data: columnName: Priority score\n   Expected: Following values are displayed for each task\n\n* Task 1 - 80 in gray lozenge\n* Task 2 - 240 in gray lozenge\n* Task 3 - 6 in gray lozenge\n* Task 4 - Empty field\n* Task 5 - Empty field\n7. Click on taskName score\n   Data: taskName: Task 1\n   Expected: Priority score details modal is displayed\n\nFollowing values are displayed:\n\nImpact: Low\nEase: Medium\nConfidence: Low\n8. Hover over Ease value and click on it\n   Expected: Dropdown with options is displayed\n\n\"X\" button is displayed\n9. Click on \"X\" button next to Ease value\n   Expected: Value of Ease is deleted \n\nModal window is closed\n\nValue of Priority score for Task 1 is empty\n10. Navigate to Priorities module of a boxName\n   Data: boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module\n   Expected: Priorities module is displayed\n\nFollowing tasks are displayed with values:\n\n* Task 1 - Empty\n* Task 2 - 240\n* Task 3 - 6\n* Task 4 - Empty\n* Task 5 - Empty\n11. Hover over Ease value and click on it\n   Data: taskName: Task 2\n   Expected: Dropdown with options is displayed\n\n\"X\" button is displayed\n12. Click on \"X\" button next to Ease value\n   Expected: Value of Ease is deleted\n\nValue of Priority score for Task 2 is empty\n13. Navigate to Gantt module of a boxName\n   Data: boxName: TC-6136 SPM - Priorities - Deleting metrics for tasks on Gantt module\n   Expected: Following tasks are displayed with values:\n\n* Task 1 - Empty\n* Task 2 - Empty\n* Task 3 - 6\n* Task 4 - Empty\n* Task 5 - Empty",
+    "metadata": {
+      "jira_key": "TC-6136",
+      "issue_id": "1679933",
+      "summary": "SPM - Priorities - Deleting metrics for tasks on Gantt module",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "paulina-q2-2026",
+        "spm-paulina-tc"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

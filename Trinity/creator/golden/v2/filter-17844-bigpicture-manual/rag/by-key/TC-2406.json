@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-2406",
+    "issue_id": "360049",
+    "url": "https://appfire.atlassian.net/browse/TC-2406",
+    "summary": "Feature area - Box scope - New task creating - Creating new task with original estimate & end date mappings",
+    "description": "Test case testing result of different value combinations of Original estimate and End date fields, on newly created task. \r\n\r\nFor additional info, please refer to documentation [https://wiki.softwareplant.com/display/DOC/Scheduling+business+input] , point A7B",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Tomasz Wyrwa",
+    "reporter": "bartosz.dabrowski",
+    "created": "2021-08-12T09:58:26.233-0400",
+    "updated": "2026-06-18T05:55:12.359-0400",
+    "labels": [
+      "teamscheduling"
+    ],
+    "test_type": "Automated",
+    "folder": "/BP/TS-67 Feature area - Box scope - New task creating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open Gantt module of boxName",
+        "data": "TC-2406 - Feature area - Box scope - New task creating - Creating new task with original estimate & end date mappings",
+        "result": "Gantt module is displayed with statement \"Fill your box with the first tasks\n\nYou can create them from scratch or define the scope to sync existing, e.g., projects or boards.\""
+      },
+      {
+        "step": 2,
+        "action": "Click + button, expand Create task section\nand click on Jira issue",
+        "data": "",
+        "result": "Create task jira window is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue",
+        "data": "projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task A",
+        "result": "Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled"
+      },
+      {
+        "step": 4,
+        "action": "Fill up Original Estimate field with originalEstimateValue and End date field with endDateValue and click Create button",
+        "data": "originalEstimateValue: 3d \nendDateValue: 13/Aug/2021",
+        "result": "Original estimate and End date values are filled up.\nTask is created and visible on WBS and Gantt chart with folLowing dates:\n - Start Date: 11/Aug/2021\n - End Date: 13/Aug/2021\n - Original estimate: 3d"
+      },
+      {
+        "step": 5,
+        "action": "Click + button, expand Create task section\nand click on Jira issue",
+        "data": "",
+        "result": "Create task jira window is displayed"
+      },
+      {
+        "step": 6,
+        "action": "Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue",
+        "data": "projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task B",
+        "result": "Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled"
+      },
+      {
+        "step": 7,
+        "action": "Fill up End date field with endDateValue and click Create button",
+        "data": "endDateValue: 20/Sep/23",
+        "result": "End date value is filled up.\nTask is created and visible on WBS and Gantt chart , start of Task is in form of \"Ghost\" with folLowing dates:\n\n* Start Date: No Start Date\n* End Date: 20/Sep/23"
+      },
+      {
+        "step": 8,
+        "action": "Click + button, expand Create task section\nand click on Jira issue",
+        "data": "",
+        "result": "Create task jira window is displayed"
+      },
+      {
+        "step": 9,
+        "action": "Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue",
+        "data": "projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task C",
+        "result": "Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled"
+      },
+      {
+        "step": 10,
+        "action": "Fill up Original Estimate field with originalEstimateValue and click Create button",
+        "data": "originalEstimateValue: 6d",
+        "result": "Task is created and it is visible on WBS, \nOriginal estimate : 1w 1d\nTask bar is not visible on Gantt Chart"
+      },
+      {
+        "step": 11,
+        "action": "Click on End Date on Gantt WBS for task with taskSummary and select newEndDate",
+        "data": "taskSummary: OriginalEstimatePresent\nnewEndDate: 15/Sep/23",
+        "result": "Task became visible on Gantt chart with falLowing details:\n\n* Start Date: 08/Sep/23\n* End Date: 15/Sep/23\n* Original estimate: 1w 1d"
+      },
+      {
+        "step": 12,
+        "action": "Click + button, expand Create task section\nand click on Jira issue",
+        "data": "",
+        "result": "Create task jira window is displayed"
+      },
+      {
+        "step": 13,
+        "action": "Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue",
+        "data": "projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task D",
+        "result": "Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled"
+      },
+      {
+        "step": 14,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Task is created and it is visible on WBS, \nTask bar is not visible on Gantt Chart"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-2406",
+    "text": "Test: TC-2406 — Feature area - Box scope - New task creating - Creating new task with original estimate & end date mappings\nPriority: Medium | Status: Done | Type: Automated\nFolder: /BP/TS-67 Feature area - Box scope - New task creating\nLabels: teamscheduling\n\nDescription:\nTest case testing result of different value combinations of Original estimate and End date fields, on newly created task. \r\n\r\nFor additional info, please refer to documentation [https://wiki.softwareplant.com/display/DOC/Scheduling+business+input] , point A7B\n\nSteps:\n1. Open Gantt module of boxName\n   Data: TC-2406 - Feature area - Box scope - New task creating - Creating new task with original estimate & end date mappings\n   Expected: Gantt module is displayed with statement \"Fill your box with the first tasks\n\nYou can create them from scratch or define the scope to sync existing, e.g., projects or boards.\"\n2. Click + button, expand Create task section\nand click on Jira issue\n   Expected: Create task jira window is displayed\n3. Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue\n   Data: projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task A\n   Expected: Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled\n4. Fill up Original Estimate field with originalEstimateValue and End date field with endDateValue and click Create button\n   Data: originalEstimateValue: 3d \nendDateValue: 13/Aug/2021\n   Expected: Original estimate and End date values are filled up.\nTask is created and visible on WBS and Gantt chart with folLowing dates:\n - Start Date: 11/Aug/2021\n - End Date: 13/Aug/2021\n - Original estimate: 3d\n5. Click + button, expand Create task section\nand click on Jira issue\n   Expected: Create task jira window is displayed\n6. Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue\n   Data: projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task B\n   Expected: Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled\n7. Fill up End date field with endDateValue and click Create button\n   Data: endDateValue: 20/Sep/23\n   Expected: End date value is filled up.\nTask is created and visible on WBS and Gantt chart , start of Task is in form of \"Ghost\" with folLowing dates:\n\n* Start Date: No Start Date\n* End Date: 20/Sep/23\n8. Click + button, expand Create task section\nand click on Jira issue\n   Expected: Create task jira window is displayed\n9. Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue\n   Data: projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task C\n   Expected: Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled\n10. Fill up Original Estimate field with originalEstimateValue and click Create button\n   Data: originalEstimateValue: 6d\n   Expected: Task is created and it is visible on WBS, \nOriginal estimate : 1w 1d\nTask bar is not visible on Gantt Chart\n11. Click on End Date on Gantt WBS for task with taskSummary and select newEndDate\n   Data: taskSummary: OriginalEstimatePresent\nnewEndDate: 15/Sep/23\n   Expected: Task became visible on Gantt chart with falLowing details:\n\n* Start Date: 08/Sep/23\n* End Date: 15/Sep/23\n* Original estimate: 1w 1d\n12. Click + button, expand Create task section\nand click on Jira issue\n   Expected: Create task jira window is displayed\n13. Fill up field project with value projectName\nSelect jiraIssueType\nFill up field summary with value summaryJiraIssue\n   Data: projectName: TC-2406 - Original estimate & end date mappings\n\njiraIssueType: Task\n\nsummaryJiraIssue: Task D\n   Expected: Project field is filled up\nIssue type is set to Task\nSummary of an issue is filled\n14. Click Create button\n   Expected: Task is created and it is visible on WBS, \nTask bar is not visible on Gantt Chart",
+    "metadata": {
+      "jira_key": "TC-2406",
+      "issue_id": "360049",
+      "summary": "Feature area - Box scope - New task creating - Creating new task with original estimate & end date mappings",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Automated",
+      "folder": "/BP/TS-67 Feature area - Box scope - New task creating",
+      "labels": [
+        "teamscheduling"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

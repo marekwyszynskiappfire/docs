@@ -1,0 +1,103 @@
+{
+  "test": {
+    "key": "TC-4853",
+    "issue_id": "825540",
+    "url": "https://appfire.atlassian.net/browse/TC-4853",
+    "summary": " Feature area - Exporting - Exporting tasks without dates from the Gantt module",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2024-08-09T02:42:21.188-0400",
+    "updated": "2026-08-06T11:19:58.647-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-4853 Feature area - Exporting - Exporting tasks without dates from the Gantt module",
+        "result": "Gantt module is displayed. 9 tasks are displayed on gantt chart and WBS.\n\n* Bug1 - no start date\n* Bug2 - no end date\n* Bug3 - no start & end date\n* Story1 - no start date\n* Story2 - no end date\n* Story3 - no start & end date\n* Task1 - no start date\n* Task2 - no end date\n* Task3 - no start & end date"
+      },
+      {
+        "step": 2,
+        "action": "Click Scale to fit button",
+        "data": "",
+        "result": "Gantt chart is fully displayed"
+      },
+      {
+        "step": 3,
+        "action": "Click the Export button in the module's header",
+        "data": "",
+        "result": "Export manager is displayed, with following options available:\n\n* Export to image (PDF) Range dropdown (\"Full scope\" option is displayed as default)\n* Export to CSV (CSV)\n* MS Excel export (XLSX)\n* MS Project Empty Template - MPP, MPX, PDF, XML"
+      },
+      {
+        "step": 4,
+        "action": "Export to image (PDF) and check if data in file are correct",
+        "data": "",
+        "result": "Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\nImage is a faithful representation of the chart and WBS displayed in MS Project. \n\nImage is complete, with 9 tasks present, and not cut off in any way."
+      },
+      {
+        "step": 5,
+        "action": "Export to CSV and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks are properly exported, with their basic data:\n\n* Key\n* Parent Row\n* Issue Type\n* Summary\n* Start Date\n* End Date\n* Parent Key \n* Link"
+      },
+      {
+        "step": 6,
+        "action": "Export to MS Excel (XLSX) file and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks are properly exported, with their basic data:\n\n* Key\n* Parent Row\n* Issue Type\n* Summary\n* Start Date\n* End Date\n* Parent Key \n* Link"
+      },
+      {
+        "step": 7,
+        "action": "Export to MS Project (PDF) file and check if data in file is correct",
+        "data": "",
+        "result": "Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\nImage is a faithful representation of the chart and WBS displayed in MS Project. \n\nImage is complete, with 9 tasks present, and not cut off in any way."
+      },
+      {
+        "step": 8,
+        "action": "Export to MS Project (XML) formats and check if data in file is correct",
+        "data": "Use MS Project or similar solution to open the files.",
+        "result": "_Downloaded files' names are following the filename schema:_\n_module<current-date><current-time>.<chosen-format>_\n\n9 tasks and their data are properly exported."
+      },
+      {
+        "step": 9,
+        "action": "Export to MS Project (MPX) formats and check if data in file are correct",
+        "data": "Use MS Project or similar solution to open the files.",
+        "result": "Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks and their data are properly exported."
+      },
+      {
+        "step": 10,
+        "action": "Export to MS Project (MPP) formats and check if data in file are correct",
+        "data": "Use MS Project or similar solution to open the files.",
+        "result": "Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks and their data are properly exported."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-4853",
+    "text": "Test: TC-4853 —  Feature area - Exporting - Exporting tasks without dates from the Gantt module\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-4853 Feature area - Exporting - Exporting tasks without dates from the Gantt module\n   Expected: Gantt module is displayed. 9 tasks are displayed on gantt chart and WBS.\n\n* Bug1 - no start date\n* Bug2 - no end date\n* Bug3 - no start & end date\n* Story1 - no start date\n* Story2 - no end date\n* Story3 - no start & end date\n* Task1 - no start date\n* Task2 - no end date\n* Task3 - no start & end date\n2. Click Scale to fit button\n   Expected: Gantt chart is fully displayed\n3. Click the Export button in the module's header\n   Expected: Export manager is displayed, with following options available:\n\n* Export to image (PDF) Range dropdown (\"Full scope\" option is displayed as default)\n* Export to CSV (CSV)\n* MS Excel export (XLSX)\n* MS Project Empty Template - MPP, MPX, PDF, XML\n4. Export to image (PDF) and check if data in file are correct\n   Expected: Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\nImage is a faithful representation of the chart and WBS displayed in MS Project. \n\nImage is complete, with 9 tasks present, and not cut off in any way.\n5. Export to CSV and check if data in file is correct\n   Expected: Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks are properly exported, with their basic data:\n\n* Key\n* Parent Row\n* Issue Type\n* Summary\n* Start Date\n* End Date\n* Parent Key \n* Link\n6. Export to MS Excel (XLSX) file and check if data in file is correct\n   Expected: Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks are properly exported, with their basic data:\n\n* Key\n* Parent Row\n* Issue Type\n* Summary\n* Start Date\n* End Date\n* Parent Key \n* Link\n7. Export to MS Project (PDF) file and check if data in file is correct\n   Expected: Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\nImage is a faithful representation of the chart and WBS displayed in MS Project. \n\nImage is complete, with 9 tasks present, and not cut off in any way.\n8. Export to MS Project (XML) formats and check if data in file is correct\n   Data: Use MS Project or similar solution to open the files.\n   Expected: _Downloaded files' names are following the filename schema:_\n_module<current-date><current-time>.<chosen-format>_\n\n9 tasks and their data are properly exported.\n9. Export to MS Project (MPX) formats and check if data in file are correct\n   Data: Use MS Project or similar solution to open the files.\n   Expected: Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks and their data are properly exported.\n10. Export to MS Project (MPP) formats and check if data in file are correct\n   Data: Use MS Project or similar solution to open the files.\n   Expected: Downloaded files' names are following the filename schema:\n_module_<current-date>_<current-time>.<chosen-format>_\n\n9 tasks and their data are properly exported.",
+    "metadata": {
+      "jira_key": "TC-4853",
+      "issue_id": "825540",
+      "summary": " Feature area - Exporting - Exporting tasks without dates from the Gantt module",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "test": {
+    "key": "TC-5187",
+    "issue_id": "1072524",
+    "url": "https://appfire.atlassian.net/browse/TC-5187",
+    "summary": "SPM - Priorities- Priorities column view on Gantt",
+    "description": "Data is added as project with 5 tasks on images",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2024-12-12T09:59:05.589-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc",
+      "teamace",
+      "teamresources"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/Priorities",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Priorities module of boxName",
+        "data": "boxName: TC-5187 SPM - Foxly - Priorities column view on Gantt",
+        "result": "Priorities module is displayed\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4 \n* Task 5"
+      },
+      {
+        "step": 2,
+        "action": "Set following values for taskName",
+        "data": "taskName: Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low",
+        "result": "Following values are set for Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n\nScore is 80"
+      },
+      {
+        "step": 3,
+        "action": "Set following values for taskName",
+        "data": "taskName: Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High",
+        "result": "Following values are set for Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High\n\nScore is 240"
+      },
+      {
+        "step": 4,
+        "action": "Set following values for taskName",
+        "data": "taskName: Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence",
+        "result": "Following values are set for Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence\n\nScore is 6"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Gantt module of a boxName",
+        "data": "boxName: TC-5187 SPM - Foxly - Priorities column view on Gantt",
+        "result": "Gantt module is displayed\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5"
+      },
+      {
+        "step": 6,
+        "action": "Click on Current View",
+        "data": "",
+        "result": "Following views are visible: \n\n* Task scheduling \n* Resources\n* Objective and Key results (if okrs are active)\n* Priorites\n* Task scheduling"
+      },
+      {
+        "step": 7,
+        "action": "Select Priorities view",
+        "data": "",
+        "result": "Priorities view is selected\n\nFollowing columns are displayed: \n\n* Icon\n* Key\n* Summary\n* Status\n* Priority score\n* Start date\n* End date"
+      },
+      {
+        "step": 8,
+        "action": "Check Priority score column values",
+        "data": "",
+        "result": "Following values are displayed for each task\n\n* Task 1    -   80 in gray lozenge\n* Task 2    -   240 in gray lozenge\n* Task 3    -   6 in gray lozenge\n* Task 4    -   Empty field\n* Task 5    -   Empty field"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Configuration of a boxName",
+        "data": "boxName: TC-5187 SPM - Foxly - Priorities column view on Gantt",
+        "result": "Following options are displayed:\n\n* General\n* Tasks\n* Resources\n* Security\n* Overview\n* Gantt\n* Scope\n* Board\n* Risks"
+      },
+      {
+        "step": 10,
+        "action": "Click on Gantt → Column Views",
+        "data": "",
+        "result": "Following Column views are displayed:\n\n* Essentials PUBLIC\n\nA view with primary attributes of presented scope\n\n* Teams PUBLIC\n\nA view concentrates on people and components involved\n\n* Agile PUBLIC\n\nA view supporting an agile approach (Sprints, Epic links, Story Points)\n\n* Resources PUBLIC\n\nA view that helps you manage resources and task estimates\n\n* Objectives and Key Results PUBLIC\n\nA view that helps you manage objectives and key results\n\n* Task scheduling PRIVATE\n\nA view that helps you manage dates of your tasks\n\n* Priorities ACTIVE PRIVATE\n\nPrioritize your backlog and easily choose what to work on next."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-5187",
+    "text": "Test: TC-5187 — SPM - Priorities- Priorities column view on Gantt\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/Priorities\nLabels: spm-paulina-tc, teamace, teamresources\n\nDescription:\nData is added as project with 5 tasks on images\n\nSteps:\n1. Navigate to Priorities module of boxName\n   Data: boxName: TC-5187 SPM - Foxly - Priorities column view on Gantt\n   Expected: Priorities module is displayed\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4 \n* Task 5\n2. Set following values for taskName\n   Data: taskName: Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n   Expected: Following values are set for Task 1\n\nImpact: Low\n\nEase: Medium\n\nConfidence: Low\n\nScore is 80\n3. Set following values for taskName\n   Data: taskName: Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High\n   Expected: Following values are set for Task 2\n\nImpact: Very high\n\nEase: Hard\n\nConfidence: High\n\nScore is 240\n4. Set following values for taskName\n   Data: taskName: Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence\n   Expected: Following values are set for Task 3\n\nImpact: Medium\n\nEase: Extremely Hard\n\nConfidence: No Confidence\n\nScore is 6\n5. Navigate to Gantt module of a boxName\n   Data: boxName: TC-5187 SPM - Foxly - Priorities column view on Gantt\n   Expected: Gantt module is displayed\n\nFollowing tasks are displayed:\n\n* Task 1\n* Task 2\n* Task 3\n* Task 4\n* Task 5\n6. Click on Current View\n   Expected: Following views are visible: \n\n* Task scheduling \n* Resources\n* Objective and Key results (if okrs are active)\n* Priorites\n* Task scheduling\n7. Select Priorities view\n   Expected: Priorities view is selected\n\nFollowing columns are displayed: \n\n* Icon\n* Key\n* Summary\n* Status\n* Priority score\n* Start date\n* End date\n8. Check Priority score column values\n   Expected: Following values are displayed for each task\n\n* Task 1    -   80 in gray lozenge\n* Task 2    -   240 in gray lozenge\n* Task 3    -   6 in gray lozenge\n* Task 4    -   Empty field\n* Task 5    -   Empty field\n9. Navigate to Configuration of a boxName\n   Data: boxName: TC-5187 SPM - Foxly - Priorities column view on Gantt\n   Expected: Following options are displayed:\n\n* General\n* Tasks\n* Resources\n* Security\n* Overview\n* Gantt\n* Scope\n* Board\n* Risks\n10. Click on Gantt → Column Views\n   Expected: Following Column views are displayed:\n\n* Essentials PUBLIC\n\nA view with primary attributes of presented scope\n\n* Teams PUBLIC\n\nA view concentrates on people and components involved\n\n* Agile PUBLIC\n\nA view supporting an agile approach (Sprints, Epic links, Story Points)\n\n* Resources PUBLIC\n\nA view that helps you manage resources and task estimates\n\n* Objectives and Key Results PUBLIC\n\nA view that helps you manage objectives and key results\n\n* Task scheduling PRIVATE\n\nA view that helps you manage dates of your tasks\n\n* Priorities ACTIVE PRIVATE\n\nPrioritize your backlog and easily choose what to work on next.",
+    "metadata": {
+      "jira_key": "TC-5187",
+      "issue_id": "1072524",
+      "summary": "SPM - Priorities- Priorities column view on Gantt",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/Priorities",
+      "labels": [
+        "spm-paulina-tc",
+        "teamace",
+        "teamresources"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

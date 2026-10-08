@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-6150",
+    "issue_id": "1688169",
+    "url": "https://appfire.atlassian.net/browse/TC-6150",
+    "summary": "SPM - OKR - Updating custom field name and description in Settings",
+    "description": "This test verifies updating custom field name and description in Settings.\n\nCovered areas:\n\n* Settings → Fields\n* OKR Detail page\n* Overview (inline editing)\n* Side panel\n* Tree view\n* Column layout\n\nValidation scope:\n\n* Editing and saving custom field name\n* Verifying validation for custom field names exceeding 40 characters\n* Editing and saving custom field description\n* Verifying long custom field descriptions are displayed correctly with tooltip \n* Verifying Type, Used in and Allow multiple users fields are read-only during custom field editing\n* Verifying updated custom field name is displayed correctly across all supported OKR views\n* Verifying updated custom field description is saved correctly in Settings",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-05-11T06:47:25.743-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Preconditions:*\n\n* User custom field is created and assigned to Strategic Theme, Objective and Key Result (used-in)\n* Existing OKRs contain predefined values for User fields",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Open OKR Overview of boxName",
+        "data": "boxName: TC-6150 SPM - OKR - Updating custom field name and description in Settings",
+        "result": "Overview module is opened. The following OKRs are visible:\n\n* Strategic theme 1\n* Objective 1\n* Key result 1"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to User field",
+        "data": "",
+        "result": "User custom field is visible for Strategic Theme, Objective and Key Result.\n\nThe following text field values are displayed correctly for each item:\n\n* Strategic Theme - \"Admin 1\"\n* Objective - \"Admin 2\"\n* Key Result - \"Admin 3\""
+      },
+      {
+        "step": 4,
+        "action": "Navigate to OKR settings → Fields",
+        "data": "",
+        "result": "List of fields are displayed"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to fieldName",
+        "data": "fieldName: User field",
+        "result": "Field is visible in fields list. The following field parameters are visible:\n\n* Field name: User field\n* Type: User\n* Description: Responsible users assigned to the OKR item\n* Used in: Objective / ST/ Key Result"
+      },
+      {
+        "step": 6,
+        "action": "Click in tree dots button → Edit",
+        "data": "",
+        "result": "\"Edit custom field\" modal is displayed. \nField name and Description fields are editable. \nType, Allow multiple users and Used in fields are displayed as read-only\nTooltip \"This can’t be changed after the field is created\" is displayed after hovering to field\n\n!xray-attachment://3659fbc7-47ee-4f42-a804-86bef8bf4aa0|width=622,height=551!"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to field name and change to newName",
+        "data": "fieldName: Responsible users for quarterly OKR reviews",
+        "result": "Message \"{color:#bf2600}Field name must not exceed 40 characters.{color}\" is displayed"
+      },
+      {
+        "step": 8,
+        "action": "Change fieldName and description and click Save",
+        "data": "fieldName: User field update\n\ndescription: Users responsible for reviewing, updating and validating quarterly OKR progress across strategic themes, objectives and key results during planning and execution phases",
+        "result": "Updated custom field name and description are saved successfully and displayed correctly on the Fields page"
+      },
+      {
+        "step": 9,
+        "action": "Hover over to description",
+        "data": "",
+        "result": "Tooltip with full description is displayed"
+      },
+      {
+        "step": 10,
+        "action": "Open OKR Overview and navigate to User field",
+        "data": "",
+        "result": "User field is visible with correct name and values"
+      },
+      {
+        "step": 11,
+        "action": "Click on the grey area of the Key result row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Key result. User field is visible with correct name and value."
+      },
+      {
+        "step": 12,
+        "action": "Open Key result in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. User field is visible with correct name and value."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-6150",
+    "text": "Test: TC-6150 — SPM - OKR - Updating custom field name and description in Settings\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-512 OKR - OKR module\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies updating custom field name and description in Settings.\n\nCovered areas:\n\n* Settings → Fields\n* OKR Detail page\n* Overview (inline editing)\n* Side panel\n* Tree view\n* Column layout\n\nValidation scope:\n\n* Editing and saving custom field name\n* Verifying validation for custom field names exceeding 40 characters\n* Editing and saving custom field description\n* Verifying long custom field descriptions are displayed correctly with tooltip \n* Verifying Type, Used in and Allow multiple users fields are read-only during custom field editing\n* Verifying updated custom field name is displayed correctly across all supported OKR views\n* Verifying updated custom field description is saved correctly in Settings\n\nSteps:\n1. *Preconditions:*\n\n* User custom field is created and assigned to Strategic Theme, Objective and Key Result (used-in)\n* Existing OKRs contain predefined values for User fields\n   Expected: \n2. Open OKR Overview of boxName\n   Data: boxName: TC-6150 SPM - OKR - Updating custom field name and description in Settings\n   Expected: Overview module is opened. The following OKRs are visible:\n\n* Strategic theme 1\n* Objective 1\n* Key result 1\n3. Navigate to User field\n   Expected: User custom field is visible for Strategic Theme, Objective and Key Result.\n\nThe following text field values are displayed correctly for each item:\n\n* Strategic Theme - \"Admin 1\"\n* Objective - \"Admin 2\"\n* Key Result - \"Admin 3\"\n4. Navigate to OKR settings → Fields\n   Expected: List of fields are displayed\n5. Navigate to fieldName\n   Data: fieldName: User field\n   Expected: Field is visible in fields list. The following field parameters are visible:\n\n* Field name: User field\n* Type: User\n* Description: Responsible users assigned to the OKR item\n* Used in: Objective / ST/ Key Result\n6. Click in tree dots button → Edit\n   Expected: \"Edit custom field\" modal is displayed. \nField name and Description fields are editable. \nType, Allow multiple users and Used in fields are displayed as read-only\nTooltip \"This can’t be changed after the field is created\" is displayed after hovering to field\n\n!xray-attachment://3659fbc7-47ee-4f42-a804-86bef8bf4aa0|width=622,height=551!\n7. Navigate to field name and change to newName\n   Data: fieldName: Responsible users for quarterly OKR reviews\n   Expected: Message \"{color:#bf2600}Field name must not exceed 40 characters.{color}\" is displayed\n8. Change fieldName and description and click Save\n   Data: fieldName: User field update\n\ndescription: Users responsible for reviewing, updating and validating quarterly OKR progress across strategic themes, objectives and key results during planning and execution phases\n   Expected: Updated custom field name and description are saved successfully and displayed correctly on the Fields page\n9. Hover over to description\n   Expected: Tooltip with full description is displayed\n10. Open OKR Overview and navigate to User field\n   Expected: User field is visible with correct name and values\n11. Click on the grey area of the Key result row\n   Expected: Side panel is opened on the right side and displays details of the selected Key result. User field is visible with correct name and value.\n12. Open Key result in the detail page and navigate to the Info section\n   Expected: Detail page is opened. User field is visible with correct name and value.",
+    "metadata": {
+      "jira_key": "TC-6150",
+      "issue_id": "1688169",
+      "summary": "SPM - OKR - Updating custom field name and description in Settings",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "test": {
+    "key": "TC-3261",
+    "issue_id": "359384",
+    "url": "https://appfire.atlassian.net/browse/TC-3261",
+    "summary": "Box Module - Teams - Creating new team based on Jira Group ",
+    "description": "BPE must be installed",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Monika Cecot",
+    "reporter": "Paulina Sendecka",
+    "created": "2022-05-02T06:00:15.109-0400",
+    "updated": "2026-03-17T15:10:49.041-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-112 Box Module - Teams",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Teams module of a boxName",
+        "data": "boxName: TC-3261 Box Module - Teams - Creating new team based on Jira Group",
+        "result": "Teams module is displayed\n\nWizard menu appeared with 3 tiles:\n\n* Create new team (dropdown)\n* Assign existing \n* Duplicate & edit existing"
+      },
+      {
+        "step": 2,
+        "action": "Select Create new team dropdown menu",
+        "data": "",
+        "result": "Three options appear on the list:\n\n* regular\n* based on Jira Group\n* based on Jira Team"
+      },
+      {
+        "step": 3,
+        "action": "Select ‘based on Jira Group’ option",
+        "data": "",
+        "result": "‘Create new team based on Jira group’ modal window is displayed with the following fields to create a team:\n\n* Jira Cloud group\n* Team code\n* Color picker\n* Board dropdown with \"Select board\" placeholder \n* Start date of Team memberships with today's date placeholder\n* Create button\n* Cancel button"
+      },
+      {
+        "step": 4,
+        "action": "Select jiraGroup from dropdown menu, select startDate of Team memberships",
+        "data": "jiraGroup: TC-3261\nteamCode: TC3261\nstartDate: 01/Jun/22",
+        "result": "Jira Group TC-3261 is selected\n\nTeam name is set automatically to TC-3261\n\nTeam code is TC3261\n\nStart date of Team memberships is 01/Jun/22  with a \"i\" icon next to the name and tooltip 'Start date must be specified - this allows the app to include members in team planning and calculations'\n\nCancel button and Create button are displayed"
+      },
+      {
+        "step": 5,
+        "action": "Click Create button",
+        "data": "",
+        "result": "Team TC-3261 based on Jira Group is created and it's visible on the list"
+      },
+      {
+        "step": 6,
+        "action": "Click on teamName and select the Details tab.",
+        "data": "teamName: TC-3261",
+        "result": "Sidebar is expanded and displayed. Team name and code is displayed at the top of the sidebar. Violet lozenge JIRA CLOUD GROUP is displayed with a tooltip 'TC-3261 is based on and synchronized with Jira Cloud group'\n\nDetails tab is displayed.\n\nFollowing fields are displayed: \n\n* Based on Jira Cloud group (red asterisk) with a placeholder TC-3261\n* Name (red asterisk): TC-3261 \n* Code and color: TC3261 and violet color\n* Jira Board with \"Select board\" placeholder and information below: \"Use the Board link to specify which Jira Scrum Boards are used by your Teams. This way, each time you add a new synchronized Box, the App can automatically create sprints on that Board.\""
+      },
+      {
+        "step": 7,
+        "action": "Click on Members tab",
+        "data": "",
+        "result": "Members tab is loaded and displayed. The following users are displayed on the list:\n\n* TC-3261-01\n* TC-3261-02\n* TC-3261-03\n* TC-3261-04\n\nTheir active membership starts from 01/Jun/22, availability is 100% and skills are empty\n\nUser selector is greyed out and non-clickable"
+      },
+      {
+        "step": 8,
+        "action": "Hover over Remove button (trash icon) in teamMember row",
+        "data": "teamMember: TC-3261-01",
+        "result": "Remove button is greyed out and non-clickable with a tooltip 'The team member cannot be deleted because the team is synced with the Jira Cloud'"
+      },
+      {
+        "step": 9,
+        "action": "Hover over Plus icon",
+        "data": "",
+        "result": "Plus icon is greyed out and non-clickable with a tooltip 'Any new team member cannot be added because the team is synchronized with the Jira Cloud group'"
+      },
+      {
+        "step": 10,
+        "action": "Click on Plus button dropdown menu, select Create new Team based on Jira Group, pass the data and click Create",
+        "data": "jiraGroup: TC-3261\nteamName: TC-3261-Test\nteamCode: 3261Test\nstartDate: today",
+        "result": "Error appeared with the following message:\n\n\"Failed to create a team\n\nThe \"TC-3261\" group is already used as a source for another team\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 10
+  },
+  "rag": {
+    "id": "TC-3261",
+    "text": "Test: TC-3261 — Box Module - Teams - Creating new team based on Jira Group \nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-112 Box Module - Teams\nLabels: be-enterprise\n\nDescription:\nBPE must be installed\n\nSteps:\n1. Navigate to Teams module of a boxName\n   Data: boxName: TC-3261 Box Module - Teams - Creating new team based on Jira Group\n   Expected: Teams module is displayed\n\nWizard menu appeared with 3 tiles:\n\n* Create new team (dropdown)\n* Assign existing \n* Duplicate & edit existing\n2. Select Create new team dropdown menu\n   Expected: Three options appear on the list:\n\n* regular\n* based on Jira Group\n* based on Jira Team\n3. Select ‘based on Jira Group’ option\n   Expected: ‘Create new team based on Jira group’ modal window is displayed with the following fields to create a team:\n\n* Jira Cloud group\n* Team code\n* Color picker\n* Board dropdown with \"Select board\" placeholder \n* Start date of Team memberships with today's date placeholder\n* Create button\n* Cancel button\n4. Select jiraGroup from dropdown menu, select startDate of Team memberships\n   Data: jiraGroup: TC-3261\nteamCode: TC3261\nstartDate: 01/Jun/22\n   Expected: Jira Group TC-3261 is selected\n\nTeam name is set automatically to TC-3261\n\nTeam code is TC3261\n\nStart date of Team memberships is 01/Jun/22  with a \"i\" icon next to the name and tooltip 'Start date must be specified - this allows the app to include members in team planning and calculations'\n\nCancel button and Create button are displayed\n5. Click Create button\n   Expected: Team TC-3261 based on Jira Group is created and it's visible on the list\n6. Click on teamName and select the Details tab.\n   Data: teamName: TC-3261\n   Expected: Sidebar is expanded and displayed. Team name and code is displayed at the top of the sidebar. Violet lozenge JIRA CLOUD GROUP is displayed with a tooltip 'TC-3261 is based on and synchronized with Jira Cloud group'\n\nDetails tab is displayed.\n\nFollowing fields are displayed: \n\n* Based on Jira Cloud group (red asterisk) with a placeholder TC-3261\n* Name (red asterisk): TC-3261 \n* Code and color: TC3261 and violet color\n* Jira Board with \"Select board\" placeholder and information below: \"Use the Board link to specify which Jira Scrum Boards are used by your Teams. This way, each time you add a new synchronized Box, the App can automatically create sprints on that Board.\"\n7. Click on Members tab\n   Expected: Members tab is loaded and displayed. The following users are displayed on the list:\n\n* TC-3261-01\n* TC-3261-02\n* TC-3261-03\n* TC-3261-04\n\nTheir active membership starts from 01/Jun/22, availability is 100% and skills are empty\n\nUser selector is greyed out and non-clickable\n8. Hover over Remove button (trash icon) in teamMember row\n   Data: teamMember: TC-3261-01\n   Expected: Remove button is greyed out and non-clickable with a tooltip 'The team member cannot be deleted because the team is synced with the Jira Cloud'\n9. Hover over Plus icon\n   Expected: Plus icon is greyed out and non-clickable with a tooltip 'Any new team member cannot be added because the team is synchronized with the Jira Cloud group'\n10. Click on Plus button dropdown menu, select Create new Team based on Jira Group, pass the data and click Create\n   Data: jiraGroup: TC-3261\nteamName: TC-3261-Test\nteamCode: 3261Test\nstartDate: today\n   Expected: Error appeared with the following message:\n\n\"Failed to create a team\n\nThe \"TC-3261\" group is already used as a source for another team\"",
+    "metadata": {
+      "jira_key": "TC-3261",
+      "issue_id": "359384",
+      "summary": "Box Module - Teams - Creating new team based on Jira Group ",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-112 Box Module - Teams",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 10,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

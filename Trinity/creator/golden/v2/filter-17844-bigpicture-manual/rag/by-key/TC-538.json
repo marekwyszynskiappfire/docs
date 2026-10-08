@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-538",
+    "issue_id": "356640",
+    "url": "https://appfire.atlassian.net/browse/TC-538",
+    "summary": "Global - Workload plans - Resynchronize with Tempo",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2020-10-06T07:16:35.118-0400",
+    "updated": "2026-05-05T09:13:15.654-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-39 Global - Workload plans",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Tempo -> Settings -> Workload",
+        "data": "_Tempo_ should be installed",
+        "result": "Workload tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Add new Workload scheme passing this set of data",
+        "data": "name: TC-538 Workload Plan to edit\ndescription: TC-538 Workload Plan to edit\nMon: 4h\nTue: 8h\nWed: 8h\nThu: 8h\nFri: 4h\nSat: 0h\nSun: 0h",
+        "result": "Workload scheme is added"
+      },
+      {
+        "step": 3,
+        "action": "Add new Workload scheme passing this set of data",
+        "data": "name: TC-538 Workload Plan to edit 2 \ndescription: TC-538 Workload Plan to edit 2\nMon: 4h\nTue: 8h\nWed: 8h\nThu: 8h\nFri: 4h\nSat: 0h\nSun: 0h",
+        "result": "Workload scheme is added"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to BP Administration -> Workload plans tab and click Synchronize with Tempo button",
+        "data": "",
+        "result": "\"TC-538 Workload Plan to edit\" is displayed on the list with green Tempo lozenge."
+      },
+      {
+        "step": 5,
+        "action": "Click on workloadPlan name",
+        "data": "workloadPlan: TC-538 Workload Plan to edit",
+        "result": "Details page of workload plan is displayed:\n\n* 4h on Monday\n* 8h on Tuedsay\n* 8h on Wednesday\n* 8h on Thursday\n* 4h on Friday\n* 0h on Saturday and Sunday"
+      },
+      {
+        "step": 6,
+        "action": "Navigate back to Workload plan list and click on Edit button next to workloadPlan1 and workloadPlan2 and set newName and description",
+        "data": "workloadPlan1: TC-538 Workload Plan to edit\nnewName: TC-538 Workload Plan edited on BP level\n\nworkloadPlan2: TC-538 Workload Plan to edit 2\nnewName: TC-538 Workload Plan edited on BP level 2",
+        "result": "Changes are saved.\n\nWorkload plan synchronized from Tempo is overwritten in BP level. Blue pencil icon is displayed next to workload plan name."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Tempo -> Settings -> Workload",
+        "data": "",
+        "result": "Workload tab is displayed\n\n\"TC-538 Workload Plan to edit\" is still displayed on the list. Changes made in BP level are not visible in Tempo."
+      },
+      {
+        "step": 8,
+        "action": "Click on name of workloadScheme1 and workloadScheme2 and set newName",
+        "data": "workloadScheme1: TC-538 Workload Plan to edit\nnewName: TC-538 Workload Plan resynchronized\n\n\n\nworkloadScheme2: TC-538 Workload Plan to edit 2\nnewName: TC-538 Workload Plan resynchronized 2",
+        "result": "Changes are saved"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to BP Administration -> Workload plans tab",
+        "data": "",
+        "result": "Workload plans tab is displayed\n\n\"TC-538 Workload Plan edited on BP level\" and \"TC-538 Workload Plan edited on BP level 2\" are still displayed on the list"
+      },
+      {
+        "step": 10,
+        "action": "Click on workloadName1 to open details page",
+        "data": "workloadName1: TC-538 Workload Plan edited on BP level",
+        "result": "Workload details page is displayed. \n\nAdditional \"Resynchronize with Tempo\" button is displayed in right header"
+      },
+      {
+        "step": 11,
+        "action": "Click on Resynchronize with Tempo button",
+        "data": "",
+        "result": "Workload plan is resynchronized. \n\nWorkload name \"TC-538 Workload Plan resynchronized\" is displayed in left header."
+      },
+      {
+        "step": 12,
+        "action": "Go back to Workload plans tab, click on Synchronize button and refresh",
+        "data": "",
+        "result": "\"TC-538 Workload Plan resynchronized\" is displayed on the list with green Tempo lozenge\n\n\"TC-538 Workload Plan edited on BP level 2\" is displayed on the list with green Tempo lozenge and blue pencil next to it"
+      },
+      {
+        "step": 13,
+        "action": "Click on workloadName1 to open details page and edit name to newWorkloadName1 and change it again to workloadName1",
+        "data": "workloadName1: TC-538 Workload Plan edited on BP level\n\nnewWorkloadName1:  TC-538 Workload Plan edited on BP level 2",
+        "result": "Name of workload plan 'TC-538 Workload Plan edited on BP level' is still the same. \n\nResynchronize button is active\n\n'Pencil' icon is visible"
+      },
+      {
+        "step": 14,
+        "action": "Click Resynchronize button",
+        "data": "",
+        "result": "Pencil icon disappeared \n\n'TC-538 Workload Plan edited on BP level' has SYNCED status"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-538",
+    "text": "Test: TC-538 — Global - Workload plans - Resynchronize with Tempo\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-39 Global - Workload plans\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Tempo -> Settings -> Workload\n   Data: _Tempo_ should be installed\n   Expected: Workload tab is displayed\n2. Add new Workload scheme passing this set of data\n   Data: name: TC-538 Workload Plan to edit\ndescription: TC-538 Workload Plan to edit\nMon: 4h\nTue: 8h\nWed: 8h\nThu: 8h\nFri: 4h\nSat: 0h\nSun: 0h\n   Expected: Workload scheme is added\n3. Add new Workload scheme passing this set of data\n   Data: name: TC-538 Workload Plan to edit 2 \ndescription: TC-538 Workload Plan to edit 2\nMon: 4h\nTue: 8h\nWed: 8h\nThu: 8h\nFri: 4h\nSat: 0h\nSun: 0h\n   Expected: Workload scheme is added\n4. Navigate to BP Administration -> Workload plans tab and click Synchronize with Tempo button\n   Expected: \"TC-538 Workload Plan to edit\" is displayed on the list with green Tempo lozenge.\n5. Click on workloadPlan name\n   Data: workloadPlan: TC-538 Workload Plan to edit\n   Expected: Details page of workload plan is displayed:\n\n* 4h on Monday\n* 8h on Tuedsay\n* 8h on Wednesday\n* 8h on Thursday\n* 4h on Friday\n* 0h on Saturday and Sunday\n6. Navigate back to Workload plan list and click on Edit button next to workloadPlan1 and workloadPlan2 and set newName and description\n   Data: workloadPlan1: TC-538 Workload Plan to edit\nnewName: TC-538 Workload Plan edited on BP level\n\nworkloadPlan2: TC-538 Workload Plan to edit 2\nnewName: TC-538 Workload Plan edited on BP level 2\n   Expected: Changes are saved.\n\nWorkload plan synchronized from Tempo is overwritten in BP level. Blue pencil icon is displayed next to workload plan name.\n7. Navigate to Tempo -> Settings -> Workload\n   Expected: Workload tab is displayed\n\n\"TC-538 Workload Plan to edit\" is still displayed on the list. Changes made in BP level are not visible in Tempo.\n8. Click on name of workloadScheme1 and workloadScheme2 and set newName\n   Data: workloadScheme1: TC-538 Workload Plan to edit\nnewName: TC-538 Workload Plan resynchronized\n\n\n\nworkloadScheme2: TC-538 Workload Plan to edit 2\nnewName: TC-538 Workload Plan resynchronized 2\n   Expected: Changes are saved\n9. Navigate to BP Administration -> Workload plans tab\n   Expected: Workload plans tab is displayed\n\n\"TC-538 Workload Plan edited on BP level\" and \"TC-538 Workload Plan edited on BP level 2\" are still displayed on the list\n10. Click on workloadName1 to open details page\n   Data: workloadName1: TC-538 Workload Plan edited on BP level\n   Expected: Workload details page is displayed. \n\nAdditional \"Resynchronize with Tempo\" button is displayed in right header\n11. Click on Resynchronize with Tempo button\n   Expected: Workload plan is resynchronized. \n\nWorkload name \"TC-538 Workload Plan resynchronized\" is displayed in left header.\n12. Go back to Workload plans tab, click on Synchronize button and refresh\n   Expected: \"TC-538 Workload Plan resynchronized\" is displayed on the list with green Tempo lozenge\n\n\"TC-538 Workload Plan edited on BP level 2\" is displayed on the list with green Tempo lozenge and blue pencil next to it\n13. Click on workloadName1 to open details page and edit name to newWorkloadName1 and change it again to workloadName1\n   Data: workloadName1: TC-538 Workload Plan edited on BP level\n\nnewWorkloadName1:  TC-538 Workload Plan edited on BP level 2\n   Expected: Name of workload plan 'TC-538 Workload Plan edited on BP level' is still the same. \n\nResynchronize button is active\n\n'Pencil' icon is visible\n14. Click Resynchronize button\n   Expected: Pencil icon disappeared \n\n'TC-538 Workload Plan edited on BP level' has SYNCED status",
+    "metadata": {
+      "jira_key": "TC-538",
+      "issue_id": "356640",
+      "summary": "Global - Workload plans - Resynchronize with Tempo",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-39 Global - Workload plans",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

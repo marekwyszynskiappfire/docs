@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-5461",
+    "issue_id": "1180566",
+    "url": "https://appfire.atlassian.net/browse/TC-5461",
+    "summary": "Timebox schedule - Overview - Displaying preview of a timebox schedule configuration",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2025-04-03T08:38:04.744-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "Sanity"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-503 Timebox Schedule",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Settings → Timebox schedules.\n\nCreate new timebox schedule providing data:\n\n* Name: name\n* Description: description\n* Timebox levels: timeboxLevels\n* Start date: startDate\n* Connect Global Teams: connectGlobalTeams",
+        "data": "* name: TC-5461 Schedule\n* description: TC-5461 Description\n* timeboxLevels: Program Increment, Iteration\n* startDate: 01/Jan/25\n* connectGlobalTeams:  TC-5461 Team",
+        "result": "Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page."
+      },
+      {
+        "step": 2,
+        "action": "Click on back arrow to navigate back to Timebox schedules page.\n\nCreate a second timebox schedule providing data:\n\n* Name: name\n* Timebox levels: timeboxLevels\n* Start date: startDate",
+        "data": "* name: TC-5461 Schedule 2\n* timeboxLevels: Program Increment\n* startDate: 01/Jan/25",
+        "result": "Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page."
+      },
+      {
+        "step": 3,
+        "action": "Click on Assign to boxes button.\n\nSearch and select boxName.\n\nClick Save.",
+        "data": "boxName: TC-5461 Timebox schedule - Displaying preview of a timebox schedule configuration",
+        "result": "Assigned to boxes section is displayed in sidebar.\n\nboxName is successfully assigned to the schedule."
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Home Overview module and click on Add new + button in header. Change type for boxType.",
+        "data": "boxType: Program",
+        "result": "Dialog for box creation is displaying.\n\nThere are fields:\n\n* Type \n* Name \n* Start date \n* End date\n* Jira Projects\n\nThere is turned off Use timebox schedule toggle button.\n\nAt the bottom of the dialog there are two buttons: Create and Cancel."
+      },
+      {
+        "step": 5,
+        "action": "Turn on toggle Use timebox schedule",
+        "data": "scheduleName: TC-5461 Schedule",
+        "result": "Selector: Select timebox schedule is displaying.\n\nLink: Preview of the Timebox Schedules is displaying."
+      },
+      {
+        "step": 6,
+        "action": "Click on link: Preview of the Timebox Schedules",
+        "data": "* scheduleName: TC-5461 Schedule\n* scheduleName2: TC-5461 Schedule 2\n* description: TC-5461 Description\n* timeboxLevel1: Program Increment\n* timeboxLevel2: Iteration",
+        "result": "Timebox schedules list is displaying in preview dialog.\n\nUnder the title there is description: \n\nLeverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.\n\nUnder the description there is table with columns:\n\n* Name\n* Boxes\n* Levels\n* Description\n\nIn the first row:\n\n* scheduleName is displayed in Name column\n* timeboxLevel1 and timeboxLevel2 are displaying in Levels column\n* description is displaying in Description column\n* boxes field is empty\n\nIn the second row:\n\n* scheduleName2 is displayed in Name column\n* timeboxLevel1 is displaying in Levels column\n* description and boxes fields are empty\n\nThere is X button in upper right corner of the dialog."
+      },
+      {
+        "step": 7,
+        "action": "Click on scheduleName",
+        "data": "* scheduleName: TC-5461 Schedule\n* description: TC-5461 Description\n* timeboxLevels: Program Increment, Iteration\n* connectGlobalTeams:  TC-5461 Team\n* timeboxName1: Program Increment 1\n* timeboxName2: Iteration 1\n* startDate: 01/Jan/25\n* endDate1: 11/Mar/25\n* endDate2: 14/Jan/25\n* status: Not started",
+        "result": "User navigate to scheduleName details page.\n\nIn the header there are:\n\n* back arrow button\n* scheduleName timebox schedule title\n* Select this timebox schedule button\n* X button \n\nIn sidebar there are fields:\n\n* Name with scheduleName value\n* Description with description value\n* Timebox levels with timeboxLevels \n* Connect Global Teams with connectGlobalTeams \n\nThere are no Assigned to boxes section.\n\nOn the right side of the dialog there are two tabs:\n\n* Schedule structure\n* Timeboxes field mapping\n\nSchedule structure tab is selected by default.\n\nIn the tab there is schedule structure with following values:\n\nIn the first row:\n\n* timeboxName1 in Name column\n* startDate in Start Date column\n* endDate1 in End Date column\n* status in Status column\n\nIn the second row:\n\n* timeboxName2 in Name column\n* startDate in Start Date column\n* endDate2 in End Date column\n* status in Status column"
+      },
+      {
+        "step": 8,
+        "action": "Close sidebar and change tab to Timeboxes field mapping.",
+        "data": "",
+        "result": "Sidebar is closed.\n\nTab is changed to Timeboxes field mapping.\n\nThere is Program Increment 1 timebox.\n\nFollowing fields and buttons:\n\n* Connected Jira field\n* Value\n* Checkbox Each team has a different mapping with value"
+      },
+      {
+        "step": 9,
+        "action": "Click on level down arrow.",
+        "data": "",
+        "result": "Iteration 1 timebox is visible.\n\nFollowing fields and buttons:\n\n* Connected Jira field\n* Value\n* Jira board selector\n* Checkbox Each team has a different mapping with value"
+      },
+      {
+        "step": 10,
+        "action": "Click on back arrow",
+        "data": "",
+        "result": "User navigates back to Timebox schedules list"
+      },
+      {
+        "step": 11,
+        "action": "Click on X button",
+        "data": "",
+        "result": "Dialog is closed. \n\nUser is back to Home Overview module.\n\nBox creation dialog is still opened.\n\nUse timebox schedule toggle is turned off."
+      },
+      {
+        "step": 12,
+        "action": "Turn on toggle Use timebox schedule and click again on link: Preview of the details of the Timebox Schedules.",
+        "data": "",
+        "result": "TImebox schedules list is displaying in opened preview dialog."
+      },
+      {
+        "step": 13,
+        "action": "Click on scheduleName2 to navigate to its details and next click on Select this timebox schedule button.",
+        "data": "scheduleName: TC-5461 Schedule 2",
+        "result": "Preview dialog is closed.\n\nBox creation dialog is still visible.\n\nUse timebox schedule toggle button is turned ON.\n\nscheduleName2 is displaying in Select timebox schedule selector."
+      },
+      {
+        "step": 14,
+        "action": "Provide boxName in Name field and click Create button.",
+        "data": "* scheduleName2: TC-5461 Schedule 2\n* boxName: TC-5461 Timebox schedule - Displaying preview of a timebox schedule configuration 2",
+        "result": "Created boxName is automatically assigned to scheduleName2."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-5461",
+    "text": "Test: TC-5461 — Timebox schedule - Overview - Displaying preview of a timebox schedule configuration\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-503 Timebox Schedule\nLabels: Sanity\n\nSteps:\n1. Navigate to App Settings → Timebox schedules.\n\nCreate new timebox schedule providing data:\n\n* Name: name\n* Description: description\n* Timebox levels: timeboxLevels\n* Start date: startDate\n* Connect Global Teams: connectGlobalTeams\n   Data: * name: TC-5461 Schedule\n* description: TC-5461 Description\n* timeboxLevels: Program Increment, Iteration\n* startDate: 01/Jan/25\n* connectGlobalTeams:  TC-5461 Team\n   Expected: Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page.\n2. Click on back arrow to navigate back to Timebox schedules page.\n\nCreate a second timebox schedule providing data:\n\n* Name: name\n* Timebox levels: timeboxLevels\n* Start date: startDate\n   Data: * name: TC-5461 Schedule 2\n* timeboxLevels: Program Increment\n* startDate: 01/Jan/25\n   Expected: Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page.\n3. Click on Assign to boxes button.\n\nSearch and select boxName.\n\nClick Save.\n   Data: boxName: TC-5461 Timebox schedule - Displaying preview of a timebox schedule configuration\n   Expected: Assigned to boxes section is displayed in sidebar.\n\nboxName is successfully assigned to the schedule.\n4. Navigate to Home Overview module and click on Add new + button in header. Change type for boxType.\n   Data: boxType: Program\n   Expected: Dialog for box creation is displaying.\n\nThere are fields:\n\n* Type \n* Name \n* Start date \n* End date\n* Jira Projects\n\nThere is turned off Use timebox schedule toggle button.\n\nAt the bottom of the dialog there are two buttons: Create and Cancel.\n5. Turn on toggle Use timebox schedule\n   Data: scheduleName: TC-5461 Schedule\n   Expected: Selector: Select timebox schedule is displaying.\n\nLink: Preview of the Timebox Schedules is displaying.\n6. Click on link: Preview of the Timebox Schedules\n   Data: * scheduleName: TC-5461 Schedule\n* scheduleName2: TC-5461 Schedule 2\n* description: TC-5461 Description\n* timeboxLevel1: Program Increment\n* timeboxLevel2: Iteration\n   Expected: Timebox schedules list is displaying in preview dialog.\n\nUnder the title there is description: \n\nLeverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.\n\nUnder the description there is table with columns:\n\n* Name\n* Boxes\n* Levels\n* Description\n\nIn the first row:\n\n* scheduleName is displayed in Name column\n* timeboxLevel1 and timeboxLevel2 are displaying in Levels column\n* description is displaying in Description column\n* boxes field is empty\n\nIn the second row:\n\n* scheduleName2 is displayed in Name column\n* timeboxLevel1 is displaying in Levels column\n* description and boxes fields are empty\n\nThere is X button in upper right corner of the dialog.\n7. Click on scheduleName\n   Data: * scheduleName: TC-5461 Schedule\n* description: TC-5461 Description\n* timeboxLevels: Program Increment, Iteration\n* connectGlobalTeams:  TC-5461 Team\n* timeboxName1: Program Increment 1\n* timeboxName2: Iteration 1\n* startDate: 01/Jan/25\n* endDate1: 11/Mar/25\n* endDate2: 14/Jan/25\n* status: Not started\n   Expected: User navigate to scheduleName details page.\n\nIn the header there are:\n\n* back arrow button\n* scheduleName timebox schedule title\n* Select this timebox schedule button\n* X button \n\nIn sidebar there are fields:\n\n* Name with scheduleName value\n* Description with description value\n* Timebox levels with timeboxLevels \n* Connect Global Teams with connectGlobalTeams \n\nThere are no Assigned to boxes section.\n\nOn the right side of the dialog there are two tabs:\n\n* Schedule structure\n* Timeboxes field mapping\n\nSchedule structure tab is selected by default.\n\nIn the tab there is schedule structure with following values:\n\nIn the first row:\n\n* timeboxName1 in Name column\n* startDate in Start Date column\n* endDate1 in End Date column\n* status in Status column\n\nIn the second row:\n\n* timeboxName2 in Name column\n* startDate in Start Date column\n* endDate2 in End Date column\n* status in Status column\n8. Close sidebar and change tab to Timeboxes field mapping.\n   Expected: Sidebar is closed.\n\nTab is changed to Timeboxes field mapping.\n\nThere is Program Increment 1 timebox.\n\nFollowing fields and buttons:\n\n* Connected Jira field\n* Value\n* Checkbox Each team has a different mapping with value\n9. Click on level down arrow.\n   Expected: Iteration 1 timebox is visible.\n\nFollowing fields and buttons:\n\n* Connected Jira field\n* Value\n* Jira board selector\n* Checkbox Each team has a different mapping with value\n10. Click on back arrow\n   Expected: User navigates back to Timebox schedules list\n11. Click on X button\n   Expected: Dialog is closed. \n\nUser is back to Home Overview module.\n\nBox creation dialog is still opened.\n\nUse timebox schedule toggle is turned off.\n12. Turn on toggle Use timebox schedule and click again on link: Preview of the details of the Timebox Schedules.\n   Expected: TImebox schedules list is displaying in opened preview dialog.\n13. Click on scheduleName2 to navigate to its details and next click on Select this timebox schedule button.\n   Data: scheduleName: TC-5461 Schedule 2\n   Expected: Preview dialog is closed.\n\nBox creation dialog is still visible.\n\nUse timebox schedule toggle button is turned ON.\n\nscheduleName2 is displaying in Select timebox schedule selector.\n14. Provide boxName in Name field and click Create button.\n   Data: * scheduleName2: TC-5461 Schedule 2\n* boxName: TC-5461 Timebox schedule - Displaying preview of a timebox schedule configuration 2\n   Expected: Created boxName is automatically assigned to scheduleName2.",
+    "metadata": {
+      "jira_key": "TC-5461",
+      "issue_id": "1180566",
+      "summary": "Timebox schedule - Overview - Displaying preview of a timebox schedule configuration",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-503 Timebox Schedule",
+      "labels": [
+        "Sanity"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

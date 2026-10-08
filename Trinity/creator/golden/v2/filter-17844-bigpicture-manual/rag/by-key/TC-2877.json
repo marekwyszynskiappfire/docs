@@ -1,0 +1,197 @@
+{
+  "test": {
+    "key": "TC-2877",
+    "issue_id": "358646",
+    "url": "https://appfire.atlassian.net/browse/TC-2877",
+    "summary": "Global - Tempo Integration - Automatic Tempo Synchronization",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Bartosz Drążewski",
+    "created": "2022-01-14T06:20:16.703-0500",
+    "updated": "2026-04-02T13:11:50.980-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-397 Global - Tempo Integration",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Jira User management and check if such a user already exists, if not then create a new user",
+        "data": "UserName: TC2877",
+        "result": "New user is created and visable on the list of Jira users."
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Tempo->Teams and create a new team",
+        "data": "TeamName: TC2877",
+        "result": "Team is created and visable on the list of teams."
+      },
+      {
+        "step": 3,
+        "action": "Click on team and add member",
+        "data": "TemName: TC2877\nMemberName: TC2877",
+        "result": "User is available on the list"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Tempo->Settings->Staff/Roles and create a new role",
+        "data": "RoleName: TC2877",
+        "result": "Role is created and visable on the list of roles."
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Tempo->Settings->Staff/Workload and create a new workload",
+        "data": "WorkloadName: TC2877",
+        "result": "Workload is created and visable on the list of workloads."
+      },
+      {
+        "step": 6,
+        "action": "Navigate to Tempo->Settings->Staff/Holidays and create a new holiday",
+        "data": "HolidayName: TC2877",
+        "result": "Holiday is created and visable on the list of holidays."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to App Configuration->Intergations->Tempo->Synchronization tab",
+        "data": "",
+        "result": "Tempo intergation tab is displayed.\n\nAutomatic Tempo Synchronization switcher is off.\n\nSave button is displayed."
+      },
+      {
+        "step": 8,
+        "action": "Switch on the \nAutomatic Tempo Synchronization switcher.",
+        "data": "",
+        "result": "Automatic Tempo Synchronization switcher is green.\n\nAdditional options are displayed:\n- Indiviudals\n- Workload plans\n- Holiday plans\n- Skills\n- Teams\n\n\nSynchronization time field is displayed.\nPlaceholder in the field says \"e.g. 0 0 * * * (every day at midnight, 12 am)\"\n\nSave button is disabled."
+      },
+      {
+        "step": 9,
+        "action": "Check the Workload plans checkbox",
+        "data": "",
+        "result": "Workload plans checkbox is selected."
+      },
+      {
+        "step": 10,
+        "action": "In Synchronization time field type a cronExpression and click Save",
+        "data": "cronExpression: use a cron expression that set automatic synchronization time in next few minutes.\nFor example cron expression \"20 * * * *\" will activate sync with Tempo 20 minutes past every hour.\n\nMore examples here: https://crontab.guru/",
+        "result": "Setting is successfully saved."
+      },
+      {
+        "step": 11,
+        "action": "Switch the tab to API tokens and go back to Tempo -> Synchronization tab",
+        "data": "",
+        "result": "Automatic Tempo Synchronization button is green and active"
+      },
+      {
+        "step": 12,
+        "action": "Wait till scheduled synchronization time and navigate to Administration->Resources->Workload Plans",
+        "data": "",
+        "result": "Workload Plans tab is displayed.\n\nWorkload plan TC-2877 with lozenge \"Tempo\" is on the list."
+      },
+      {
+        "step": 13,
+        "action": "Navigate to App Configuration->Intergations->Tempo",
+        "data": "",
+        "result": "Tempo intergation tab is displayed.\n\nWorkload plans checkbox is selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time."
+      },
+      {
+        "step": 14,
+        "action": "Check the Holiday plans checkbox",
+        "data": "",
+        "result": "Holiday plans and Workload plns  checkboxs are selected."
+      },
+      {
+        "step": 15,
+        "action": "In Synchronization time field type a new cronExpression and click Save",
+        "data": "cronExpression: use a cron expression that set automatic synchronization time in next few minutes.\nFor example cron expression \"10 14 * * *\" will activate sync with Tempo every day at 14:10.\n\nMore examples here: [https://crontab.guru/|https://crontab.guru/]",
+        "result": "Setting is successfully saved."
+      },
+      {
+        "step": 16,
+        "action": "Wait till scheduled synchronization time and navigate to Administration->Resources->Holiday Plans",
+        "data": "",
+        "result": "Holiday Plans tab is displayed.\n\nHoliday plan TC-2877 with lozenge \"Tempo\" is on the list."
+      },
+      {
+        "step": 17,
+        "action": "Navigate to App Configuration->Intergations->Tempo",
+        "data": "",
+        "result": "Tempo intergation tab is displayed.\n\nWorkload plans and Holiday Plans checkbox are selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time."
+      },
+      {
+        "step": 18,
+        "action": "Check the Skills checkbox\nClick on the Save buttton",
+        "data": "",
+        "result": "Skills, Holiday plans and Workload plns checkboxs are selected."
+      },
+      {
+        "step": 19,
+        "action": "Wait till scheduled synchronization time and navigate to Administration->Resources->Skills",
+        "data": "",
+        "result": "Skills tab is displayed.\n\nSkill TC-2877 with Tempo Sync Status - Synced is on the list."
+      },
+      {
+        "step": 20,
+        "action": "Navigate to App Configuration->Intergations->Tempo",
+        "data": "",
+        "result": "Tempo intergation tab is displayed.\n\nSkills, Workload plans and Holiday Plans checkbox are selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time."
+      },
+      {
+        "step": 21,
+        "action": "Check the Individuals checkbox\nClick on the Save button",
+        "data": "",
+        "result": "Individuals, Skills, Holiday plans and Workload plans checkboxs are selected."
+      },
+      {
+        "step": 22,
+        "action": "Wait till scheduled synchronization time and navigate to Administration->Resources->Individuals",
+        "data": "",
+        "result": "Individuals tab is displayed.\n\nUser TC-2877 with Tempo Sync Status - Synced is on the list."
+      },
+      {
+        "step": 23,
+        "action": "Navigate to App Configuration->Intergations->Tempo",
+        "data": "",
+        "result": "Tempo intergation tab is displayed.\n\nIndividuals, Skills, Workload plans and Holiday Plans checkbox are selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time."
+      },
+      {
+        "step": 24,
+        "action": "Check the Teams checkbox\nClick on the Save button",
+        "data": "",
+        "result": "Individuals, Skills, Holiday plans, Workload plans and Teams checkboxs are selected."
+      },
+      {
+        "step": 25,
+        "action": "Wait till scheduled synchronization time and navigate to Main->Global Teams module",
+        "data": "",
+        "result": "Global teams module is displayed.\n\nTeam TC-2877 with Tempo Sync Status - Synced is on the list."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 25
+  },
+  "rag": {
+    "id": "TC-2877",
+    "text": "Test: TC-2877 — Global - Tempo Integration - Automatic Tempo Synchronization\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-397 Global - Tempo Integration\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Jira User management and check if such a user already exists, if not then create a new user\n   Data: UserName: TC2877\n   Expected: New user is created and visable on the list of Jira users.\n2. Navigate to Tempo->Teams and create a new team\n   Data: TeamName: TC2877\n   Expected: Team is created and visable on the list of teams.\n3. Click on team and add member\n   Data: TemName: TC2877\nMemberName: TC2877\n   Expected: User is available on the list\n4. Navigate to Tempo->Settings->Staff/Roles and create a new role\n   Data: RoleName: TC2877\n   Expected: Role is created and visable on the list of roles.\n5. Navigate to Tempo->Settings->Staff/Workload and create a new workload\n   Data: WorkloadName: TC2877\n   Expected: Workload is created and visable on the list of workloads.\n6. Navigate to Tempo->Settings->Staff/Holidays and create a new holiday\n   Data: HolidayName: TC2877\n   Expected: Holiday is created and visable on the list of holidays.\n7. Navigate to App Configuration->Intergations->Tempo->Synchronization tab\n   Expected: Tempo intergation tab is displayed.\n\nAutomatic Tempo Synchronization switcher is off.\n\nSave button is displayed.\n8. Switch on the \nAutomatic Tempo Synchronization switcher.\n   Expected: Automatic Tempo Synchronization switcher is green.\n\nAdditional options are displayed:\n- Indiviudals\n- Workload plans\n- Holiday plans\n- Skills\n- Teams\n\n\nSynchronization time field is displayed.\nPlaceholder in the field says \"e.g. 0 0 * * * (every day at midnight, 12 am)\"\n\nSave button is disabled.\n9. Check the Workload plans checkbox\n   Expected: Workload plans checkbox is selected.\n10. In Synchronization time field type a cronExpression and click Save\n   Data: cronExpression: use a cron expression that set automatic synchronization time in next few minutes.\nFor example cron expression \"20 * * * *\" will activate sync with Tempo 20 minutes past every hour.\n\nMore examples here: https://crontab.guru/\n   Expected: Setting is successfully saved.\n11. Switch the tab to API tokens and go back to Tempo -> Synchronization tab\n   Expected: Automatic Tempo Synchronization button is green and active\n12. Wait till scheduled synchronization time and navigate to Administration->Resources->Workload Plans\n   Expected: Workload Plans tab is displayed.\n\nWorkload plan TC-2877 with lozenge \"Tempo\" is on the list.\n13. Navigate to App Configuration->Intergations->Tempo\n   Expected: Tempo intergation tab is displayed.\n\nWorkload plans checkbox is selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time.\n14. Check the Holiday plans checkbox\n   Expected: Holiday plans and Workload plns  checkboxs are selected.\n15. In Synchronization time field type a new cronExpression and click Save\n   Data: cronExpression: use a cron expression that set automatic synchronization time in next few minutes.\nFor example cron expression \"10 14 * * *\" will activate sync with Tempo every day at 14:10.\n\nMore examples here: [https://crontab.guru/|https://crontab.guru/]\n   Expected: Setting is successfully saved.\n16. Wait till scheduled synchronization time and navigate to Administration->Resources->Holiday Plans\n   Expected: Holiday Plans tab is displayed.\n\nHoliday plan TC-2877 with lozenge \"Tempo\" is on the list.\n17. Navigate to App Configuration->Intergations->Tempo\n   Expected: Tempo intergation tab is displayed.\n\nWorkload plans and Holiday Plans checkbox are selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time.\n18. Check the Skills checkbox\nClick on the Save buttton\n   Expected: Skills, Holiday plans and Workload plns checkboxs are selected.\n19. Wait till scheduled synchronization time and navigate to Administration->Resources->Skills\n   Expected: Skills tab is displayed.\n\nSkill TC-2877 with Tempo Sync Status - Synced is on the list.\n20. Navigate to App Configuration->Intergations->Tempo\n   Expected: Tempo intergation tab is displayed.\n\nSkills, Workload plans and Holiday Plans checkbox are selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time.\n21. Check the Individuals checkbox\nClick on the Save button\n   Expected: Individuals, Skills, Holiday plans and Workload plans checkboxs are selected.\n22. Wait till scheduled synchronization time and navigate to Administration->Resources->Individuals\n   Expected: Individuals tab is displayed.\n\nUser TC-2877 with Tempo Sync Status - Synced is on the list.\n23. Navigate to App Configuration->Intergations->Tempo\n   Expected: Tempo intergation tab is displayed.\n\nIndividuals, Skills, Workload plans and Holiday Plans checkbox are selected.\n\nSave button is displayed.\n\nCronExpression is displayed in the field Scynchronization time.\n24. Check the Teams checkbox\nClick on the Save button\n   Expected: Individuals, Skills, Holiday plans, Workload plans and Teams checkboxs are selected.\n25. Wait till scheduled synchronization time and navigate to Main->Global Teams module\n   Expected: Global teams module is displayed.\n\nTeam TC-2877 with Tempo Sync Status - Synced is on the list.",
+    "metadata": {
+      "jira_key": "TC-2877",
+      "issue_id": "358646",
+      "summary": "Global - Tempo Integration - Automatic Tempo Synchronization",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-397 Global - Tempo Integration",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 25,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

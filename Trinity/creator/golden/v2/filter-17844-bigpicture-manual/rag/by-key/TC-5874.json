@@ -1,0 +1,89 @@
+{
+  "test": {
+    "key": "TC-5874",
+    "issue_id": "1455407",
+    "url": "https://appfire.atlassian.net/browse/TC-5874",
+    "summary": "SPM - OKR - Opening linked box key in multiple views",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2025-12-15T03:26:59.053-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-513 OKR - Linking Boxes To KR",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open OKR module in boxName",
+        "data": "boxName: TC-5874 SPM - OKR - Opening linked box key in multiple views",
+        "result": "OKR module is opened. No OKR connected to this box message is visible"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to OKR settings → General and enable \"*Displaying connected boxes in the OKR Overview*\"",
+        "data": "",
+        "result": "Displaying connected boxes in the OKR Overview is enabled"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to OKR Overview → Layout → Display settings and enable *Show connected Boxes*",
+        "data": "",
+        "result": "Showing connected boxes is enabled"
+      },
+      {
+        "step": 4,
+        "action": "Create Objective and Key-result",
+        "data": "* Objective 1\n* KR-1",
+        "result": "Objective and Key-result are created and visible in OKR Overview"
+      },
+      {
+        "step": 5,
+        "action": "Open Key-result → click *Edit linked boxes* button → in box name field find boxNames, select and click save",
+        "data": "boxName: TC-5874 SPM - OKR - Opening linked box key in multiple views",
+        "result": "Boxes are linked to Key-result. Linked box is visible in *Linked issues & boxes* in KR detail"
+      },
+      {
+        "step": 6,
+        "action": "Being in *Linked issues & boxes* section click on linked box key",
+        "data": "",
+        "result": "Gantt module is opened"
+      },
+      {
+        "step": 7,
+        "action": "Open OKR module → OKR Overview →  hover over to KR-1 and click on linked box key",
+        "data": "boxName: TC-5874 SPM - OKR - Opening linked box key in multiple views",
+        "result": "Gantt module is opened"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-5874",
+    "text": "Test: TC-5874 — SPM - OKR - Opening linked box key in multiple views\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-513 OKR - Linking Boxes To KR\nLabels: spm-mikolaj-tc\n\nSteps:\n1. Open OKR module in boxName\n   Data: boxName: TC-5874 SPM - OKR - Opening linked box key in multiple views\n   Expected: OKR module is opened. No OKR connected to this box message is visible\n2. Navigate to OKR settings → General and enable \"*Displaying connected boxes in the OKR Overview*\"\n   Expected: Displaying connected boxes in the OKR Overview is enabled\n3. Navigate to OKR Overview → Layout → Display settings and enable *Show connected Boxes*\n   Expected: Showing connected boxes is enabled\n4. Create Objective and Key-result\n   Data: * Objective 1\n* KR-1\n   Expected: Objective and Key-result are created and visible in OKR Overview\n5. Open Key-result → click *Edit linked boxes* button → in box name field find boxNames, select and click save\n   Data: boxName: TC-5874 SPM - OKR - Opening linked box key in multiple views\n   Expected: Boxes are linked to Key-result. Linked box is visible in *Linked issues & boxes* in KR detail\n6. Being in *Linked issues & boxes* section click on linked box key\n   Expected: Gantt module is opened\n7. Open OKR module → OKR Overview →  hover over to KR-1 and click on linked box key\n   Data: boxName: TC-5874 SPM - OKR - Opening linked box key in multiple views\n   Expected: Gantt module is opened",
+    "metadata": {
+      "jira_key": "TC-5874",
+      "issue_id": "1455407",
+      "summary": "SPM - OKR - Opening linked box key in multiple views",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-513 OKR - Linking Boxes To KR",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

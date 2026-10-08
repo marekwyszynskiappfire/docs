@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-3211",
+    "issue_id": "357213",
+    "url": "https://appfire.atlassian.net/browse/TC-3211",
+    "summary": "Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date",
+    "description": "Zmiana Start/End Date na tasku:\r\n * resize na Gantt \r\n * zmiana w Jira Issue\r\n\r\nZmiana przez Inline edycje - osobny TC",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Piotr Zadora {Appfire}",
+    "created": "2022-04-13T06:49:44.480-0400",
+    "updated": "2026-06-18T05:56:50.094-0400",
+    "labels": [
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-117 Global - Task configuration",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date",
+        "result": "Gantt module is displayed. Column View is set to \"TC3211\". FolLowing tasks are visible on WBS and Gantt chart:\n- TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date (project task)\n- Task_1\n- Task_2\n- Task_3"
+      },
+      {
+        "step": 2,
+        "action": "Grab the end of taskName and move it 2 days to the future. Refresh the page",
+        "data": "taskName: Task_1",
+        "result": "Task_1 is resized on Chart to 3 days. \nStart date is 13/Apr/22, End date is 15/Apr/22.\nThe value of End Date (Jira and Built-in) fields in WBS are correctly updated to 15/Apr/22."
+      },
+      {
+        "step": 3,
+        "action": "Grab the start of taskName and move it 2 days back. Refresh the page",
+        "data": "taskName: Task_1",
+        "result": "Task_1 is resized on Chart to 5 days. \nStart date is 11/Apr/22, End date is 15/Apr/22.\nThe value of Start Date (Jira and Built-in) fields in WBS are correctly updated to 11/Apr/22."
+      },
+      {
+        "step": 4,
+        "action": "Click on task key of taskName to open jira issue view",
+        "data": "taskName: Task_2",
+        "result": "Jira issue view of Task_2 is opened in the new tab"
+      },
+      {
+        "step": 5,
+        "action": "Change Start date value",
+        "data": "date value:11/Apr/22",
+        "result": "Start date is changed to 11/Apr/22"
+      },
+      {
+        "step": 6,
+        "action": "Go back to Gantt module of boxName",
+        "data": "boxName: TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date",
+        "result": "Gantt module is displayed. Task_2 is resized on Chart to 3 days. \nStart date is 11/Apr/22, End date is 13/Apr/22. \nThe value of Start Date (Jira and Built-in) fields in WBS are correctly updated to 11/Apr/22."
+      },
+      {
+        "step": 7,
+        "action": "Click on task key of taskName to open jira issue view",
+        "data": "taskName: Task_3",
+        "result": "Jira issue view of Task_3 is opened in the new tab"
+      },
+      {
+        "step": 8,
+        "action": "Change End date value",
+        "data": "date value:15/Apr/22",
+        "result": "End date is changed to 15/Apr/22"
+      },
+      {
+        "step": 9,
+        "action": "Go back to Gantt module of boxName",
+        "data": "boxName: TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date",
+        "result": "Gantt module is displayed. Task_3 is resized on Chart to 3 days. \nStart date is 13/Apr/22, End date is 15/Apr/22.\nThe value of End Date (Jira and Built-in) fields in WBS are correctly updated to 15/Apr/22."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-3211",
+    "text": "Test: TC-3211 — Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-117 Global - Task configuration\nLabels: teamtree\n\nDescription:\nZmiana Start/End Date na tasku:\r\n * resize na Gantt \r\n * zmiana w Jira Issue\r\n\r\nZmiana przez Inline edycje - osobny TC\n\nSteps:\n1. Navigate to Gantt module of boxName\n   Data: boxName: TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date\n   Expected: Gantt module is displayed. Column View is set to \"TC3211\". FolLowing tasks are visible on WBS and Gantt chart:\n- TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date (project task)\n- Task_1\n- Task_2\n- Task_3\n2. Grab the end of taskName and move it 2 days to the future. Refresh the page\n   Data: taskName: Task_1\n   Expected: Task_1 is resized on Chart to 3 days. \nStart date is 13/Apr/22, End date is 15/Apr/22.\nThe value of End Date (Jira and Built-in) fields in WBS are correctly updated to 15/Apr/22.\n3. Grab the start of taskName and move it 2 days back. Refresh the page\n   Data: taskName: Task_1\n   Expected: Task_1 is resized on Chart to 5 days. \nStart date is 11/Apr/22, End date is 15/Apr/22.\nThe value of Start Date (Jira and Built-in) fields in WBS are correctly updated to 11/Apr/22.\n4. Click on task key of taskName to open jira issue view\n   Data: taskName: Task_2\n   Expected: Jira issue view of Task_2 is opened in the new tab\n5. Change Start date value\n   Data: date value:11/Apr/22\n   Expected: Start date is changed to 11/Apr/22\n6. Go back to Gantt module of boxName\n   Data: boxName: TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date\n   Expected: Gantt module is displayed. Task_2 is resized on Chart to 3 days. \nStart date is 11/Apr/22, End date is 13/Apr/22. \nThe value of Start Date (Jira and Built-in) fields in WBS are correctly updated to 11/Apr/22.\n7. Click on task key of taskName to open jira issue view\n   Data: taskName: Task_3\n   Expected: Jira issue view of Task_3 is opened in the new tab\n8. Change End date value\n   Data: date value:15/Apr/22\n   Expected: End date is changed to 15/Apr/22\n9. Go back to Gantt module of boxName\n   Data: boxName: TC-3211 Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date\n   Expected: Gantt module is displayed. Task_3 is resized on Chart to 3 days. \nStart date is 13/Apr/22, End date is 15/Apr/22.\nThe value of End Date (Jira and Built-in) fields in WBS are correctly updated to 15/Apr/22.",
+    "metadata": {
+      "jira_key": "TC-3211",
+      "issue_id": "357213",
+      "summary": "Global - Task configuration - Editing start/end date on Gantt and Jira side - Start/End Date fields mapped to Start/End Date",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-117 Global - Task configuration",
+      "labels": [
+        "teamtree"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

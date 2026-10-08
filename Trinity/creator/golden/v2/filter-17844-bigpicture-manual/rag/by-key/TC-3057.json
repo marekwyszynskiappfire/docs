@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-3057",
+    "issue_id": "358299",
+    "url": "https://appfire.atlassian.net/browse/TC-3057",
+    "summary": "Feature area - Task Scheduling - Period modes - Extra Task default period mode",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Tomasz Wyrwa",
+    "reporter": "Tomasz Wyrwa",
+    "created": "2022-03-09T09:10:08.077-0500",
+    "updated": "2026-06-18T05:56:39.302-0400",
+    "labels": [
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Configuration of boxName ->  Task -> Scheduling",
+        "data": "boxName: TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default period mode",
+        "result": "Configuration page is displayed correctly.\n\nUnder Period mode exceptions folLowing message is displayed : \n\"Jira sprint, version, component and project always have default period mode set to manual. Read more\""
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Task Structure -> Advanced configuration and add Version , Component and Jira Sprint to structure builder. Click Save",
+        "data": "",
+        "result": "Version , Component and Jira Sprint are added to Structure builder"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "",
+        "result": "Gantt module is displayed  with Statement: There's nothing to display... yet Create new task, set the automatic rules to define the scope or clear active filters"
+      },
+      {
+        "step": 4,
+        "action": "Create 3 new Jira Issues with any start date, end date and \nissueType1, summaryName1\nissueType2, summaryName2\nissueType3, summaryName3",
+        "data": "issueType1: Task\nsummaryName1: Task 1\n\nissueType2: Task\nsummaryName2: Task 2\n\nissueType3: Task\nsummaryName3: Task 3",
+        "result": "New Jira issue is created.\n\nFolLowing Jira issues are displayed on Gantt chart :\n- Project: \n -- TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default with Period mode set to Manual\n- Task:\n -- Task 1 with period mode set to Auto bottom-up\n -- Task 2 with period mode set to Auto bottom-up\n -- Task 3 with period mode set to Auto bottom-up"
+      },
+      {
+        "step": 5,
+        "action": "Click on key of projectName on Gantt WBS",
+        "data": "projectName: TC3057",
+        "result": "Backlog board of project TC3057 is displayed in new window.\n\nFolLowing issues are displayed in Backlog section:\n- Task 1\n- Task 2\n- Task 3"
+      },
+      {
+        "step": 6,
+        "action": "Click on Create Sprint button in top-right corner of Backlog section -> in Create Sprint modal set Sprint Name as sprintName -> click Create button",
+        "data": "sprintName: TC3057 Sprint 1",
+        "result": "TC3057 Sprint 1 is created and is displayed as section in Backlog page.\nSprint section is empty."
+      },
+      {
+        "step": 7,
+        "action": "Grab task of taskName from backlog section and add it to sprint section of sprintName",
+        "data": "taskName: Task 1\nsprintName: TC3057 Sprint 1",
+        "result": "Task 1 is added do TC3057 Sprint 1 section."
+      },
+      {
+        "step": 8,
+        "action": "Click on key of taskName on Backlog section",
+        "data": "taskName: Task 2",
+        "result": "Issue details of TC3037-1 sidebar is displayed on right-side."
+      },
+      {
+        "step": 9,
+        "action": "Click on Component/s edit button in Details section and select Component of componentName ( create component if necessary)",
+        "data": "componentName: Component TC3057",
+        "result": "Component is set to Component TC3057"
+      },
+      {
+        "step": 10,
+        "action": "Click on key of taskName on Backlog section",
+        "data": "taskName: Task 3",
+        "result": "Issue details of TC3057-2 sidebar is displayed on right-side."
+      },
+      {
+        "step": 11,
+        "action": "Click on Fix version/s edit button in Details section and select Fix version of versionName",
+        "data": "versionName: Version TC3057",
+        "result": "Fix version is set to Version TC3057"
+      },
+      {
+        "step": 12,
+        "action": "Navigate to Gantt module of the box with boxName ->  expand all issues in Gantt WBS. Hover over time line for Version TC3057, component TC3057 and TC3057 Sprint 1. And for every single one click on timeline (add dates for them)",
+        "data": "boxName: TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default period mode",
+        "result": "Gantt module is loaded, folLowing tasks and extra task are displayed on Gantt chart and WBS, period option icon is displayed on the left side of task bar: \n- Project TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default with Period mode set to Manual\n -- Task 1 with Period mode set to auto bottom-up\n -- Component TC3057 with Period mode set to Manual\n --- Task 2 with Period mode set to auto bottom-up\n -- Version TC3057 with Period mode set to Manual\n --- Task 3 with Period mode set to auto bottom-up\n- TC3057 Sprint 1 with Period mode set to Manual"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-3057",
+    "text": "Test: TC-3057 — Feature area - Task Scheduling - Period modes - Extra Task default period mode\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-80 Feature area - Task Scheduling - Period modes\nLabels: teamscheduling\n\nSteps:\n1. Navigate to Configuration of boxName ->  Task -> Scheduling\n   Data: boxName: TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default period mode\n   Expected: Configuration page is displayed correctly.\n\nUnder Period mode exceptions folLowing message is displayed : \n\"Jira sprint, version, component and project always have default period mode set to manual. Read more\"\n2. Navigate to Task Structure -> Advanced configuration and add Version , Component and Jira Sprint to structure builder. Click Save\n   Expected: Version , Component and Jira Sprint are added to Structure builder\n3. Navigate to Gantt module of boxName\n   Expected: Gantt module is displayed  with Statement: There's nothing to display... yet Create new task, set the automatic rules to define the scope or clear active filters\n4. Create 3 new Jira Issues with any start date, end date and \nissueType1, summaryName1\nissueType2, summaryName2\nissueType3, summaryName3\n   Data: issueType1: Task\nsummaryName1: Task 1\n\nissueType2: Task\nsummaryName2: Task 2\n\nissueType3: Task\nsummaryName3: Task 3\n   Expected: New Jira issue is created.\n\nFolLowing Jira issues are displayed on Gantt chart :\n- Project: \n -- TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default with Period mode set to Manual\n- Task:\n -- Task 1 with period mode set to Auto bottom-up\n -- Task 2 with period mode set to Auto bottom-up\n -- Task 3 with period mode set to Auto bottom-up\n5. Click on key of projectName on Gantt WBS\n   Data: projectName: TC3057\n   Expected: Backlog board of project TC3057 is displayed in new window.\n\nFolLowing issues are displayed in Backlog section:\n- Task 1\n- Task 2\n- Task 3\n6. Click on Create Sprint button in top-right corner of Backlog section -> in Create Sprint modal set Sprint Name as sprintName -> click Create button\n   Data: sprintName: TC3057 Sprint 1\n   Expected: TC3057 Sprint 1 is created and is displayed as section in Backlog page.\nSprint section is empty.\n7. Grab task of taskName from backlog section and add it to sprint section of sprintName\n   Data: taskName: Task 1\nsprintName: TC3057 Sprint 1\n   Expected: Task 1 is added do TC3057 Sprint 1 section.\n8. Click on key of taskName on Backlog section\n   Data: taskName: Task 2\n   Expected: Issue details of TC3037-1 sidebar is displayed on right-side.\n9. Click on Component/s edit button in Details section and select Component of componentName ( create component if necessary)\n   Data: componentName: Component TC3057\n   Expected: Component is set to Component TC3057\n10. Click on key of taskName on Backlog section\n   Data: taskName: Task 3\n   Expected: Issue details of TC3057-2 sidebar is displayed on right-side.\n11. Click on Fix version/s edit button in Details section and select Fix version of versionName\n   Data: versionName: Version TC3057\n   Expected: Fix version is set to Version TC3057\n12. Navigate to Gantt module of the box with boxName ->  expand all issues in Gantt WBS. Hover over time line for Version TC3057, component TC3057 and TC3057 Sprint 1. And for every single one click on timeline (add dates for them)\n   Data: boxName: TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default period mode\n   Expected: Gantt module is loaded, folLowing tasks and extra task are displayed on Gantt chart and WBS, period option icon is displayed on the left side of task bar: \n- Project TC-3057 Feature area - Task Scheduling - Period modes - Extra Task default with Period mode set to Manual\n -- Task 1 with Period mode set to auto bottom-up\n -- Component TC3057 with Period mode set to Manual\n --- Task 2 with Period mode set to auto bottom-up\n -- Version TC3057 with Period mode set to Manual\n --- Task 3 with Period mode set to auto bottom-up\n- TC3057 Sprint 1 with Period mode set to Manual",
+    "metadata": {
+      "jira_key": "TC-3057",
+      "issue_id": "358299",
+      "summary": "Feature area - Task Scheduling - Period modes - Extra Task default period mode",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+      "labels": [
+        "teamscheduling"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

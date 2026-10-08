@@ -1,0 +1,83 @@
+{
+  "test": {
+    "key": "TC-3830",
+    "issue_id": "359394",
+    "url": "https://appfire.atlassian.net/browse/TC-3830",
+    "summary": "Feature area - Task Dependency - Creating dependencies by d&d when collapsed mode is enabled ",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2023-02-01T05:47:17.593-0500",
+    "updated": "2026-03-12T09:07:55.623-0400",
+    "labels": [
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-54 Feature area - Task Dependency",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName.",
+        "data": "boxName: TC-3830 Feature area - Task Dependency - Creating dependencies by d&d when collapsed mode is enabled",
+        "result": "Module opened correctly. PI1 and PI2 are visible with 8 tasks."
+      },
+      {
+        "step": 2,
+        "action": "Grab dot of taskName1 and drop link to taskName2.",
+        "data": "taskName1: Link 1\ntaskName2: Link 2",
+        "result": "Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 1 and Link 2 have orange dot with '1' inside."
+      },
+      {
+        "step": 3,
+        "action": "Grab dot of taskName1 and drop link to taskName2.",
+        "data": "taskName1: Link 1\ntaskName2: Link 5",
+        "result": "Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 1 has orange dot with '2' inside. \nLink 5 has green dot with '1' inside."
+      },
+      {
+        "step": 4,
+        "action": "Grab dot of taskName1 and drop link to taskName2.",
+        "data": "taskName1: Link 3\ntaskName2: Link 4",
+        "result": "Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 3 and Link 4 have green dot with '1' inside."
+      },
+      {
+        "step": 5,
+        "action": "Grab dot of taskName1 and drop link to taskName2.",
+        "data": "taskName1: Link 7\ntaskName2: Link 8",
+        "result": "Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 7 and Link 8 have red dot with '1' inside."
+      },
+      {
+        "step": 6,
+        "action": "Grab dot of taskName1 and drop link to taskName2.",
+        "data": "taskName1: Link 6\ntaskName2: Link 3",
+        "result": "Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 3 has red dot with '2' inside. \nLink 6 has red dot with '1' inside."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-3830",
+    "text": "Test: TC-3830 — Feature area - Task Dependency - Creating dependencies by d&d when collapsed mode is enabled \nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-54 Feature area - Task Dependency\nLabels: teamsmile\n\nSteps:\n1. Navigate to Board module of boxName.\n   Data: boxName: TC-3830 Feature area - Task Dependency - Creating dependencies by d&d when collapsed mode is enabled\n   Expected: Module opened correctly. PI1 and PI2 are visible with 8 tasks.\n2. Grab dot of taskName1 and drop link to taskName2.\n   Data: taskName1: Link 1\ntaskName2: Link 2\n   Expected: Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 1 and Link 2 have orange dot with '1' inside.\n3. Grab dot of taskName1 and drop link to taskName2.\n   Data: taskName1: Link 1\ntaskName2: Link 5\n   Expected: Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 1 has orange dot with '2' inside. \nLink 5 has green dot with '1' inside.\n4. Grab dot of taskName1 and drop link to taskName2.\n   Data: taskName1: Link 3\ntaskName2: Link 4\n   Expected: Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 3 and Link 4 have green dot with '1' inside.\n5. Grab dot of taskName1 and drop link to taskName2.\n   Data: taskName1: Link 7\ntaskName2: Link 8\n   Expected: Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 7 and Link 8 have red dot with '1' inside.\n6. Grab dot of taskName1 and drop link to taskName2.\n   Data: taskName1: Link 6\ntaskName2: Link 3\n   Expected: Dependency is created but is not visible. \n\nMessage appeared:\n\"Dependency created successfully\n\nDependency has been handled successfully, but it is hidden due to the filter settings.\"\n\nLink 3 has red dot with '2' inside. \nLink 6 has red dot with '1' inside.",
+    "metadata": {
+      "jira_key": "TC-3830",
+      "issue_id": "359394",
+      "summary": "Feature area - Task Dependency - Creating dependencies by d&d when collapsed mode is enabled ",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-54 Feature area - Task Dependency",
+      "labels": [
+        "teamsmile"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

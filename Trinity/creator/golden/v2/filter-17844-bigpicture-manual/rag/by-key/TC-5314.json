@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-5314",
+    "issue_id": "1122803",
+    "url": "https://appfire.atlassian.net/browse/TC-5314",
+    "summary": "Jira Team - Global teams - Team creation, synchronization and re-synchronization",
+    "description": "TC includes steps that allow verifying the creation, synchronization, and re-synchronization of a team based on Jira Team.",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Tomasz Guzik",
+    "reporter": "Tomasz Guzik",
+    "created": "2025-01-27T14:19:18.670-0500",
+    "updated": "2026-03-30T08:19:37.206-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/Jira Team",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Create a connection using TC-5310 as a guide and prepare a Jira team consisting of at least 3 members",
+        "data": "teamNameJira: TC-5314 Team",
+        "result": "The connection is successfully established, the team has been created."
+      },
+      {
+        "step": 2,
+        "action": "Navigate to 'Global Teams' and select 'Create new team based on Jira Team' (the option visible after expanding the dropdown).",
+        "data": "",
+        "result": "A modal will open with the option to select a Jira Team"
+      },
+      {
+        "step": 3,
+        "action": "Select a Jira Team",
+        "data": "teamNameJira: TC-5314 Team",
+        "result": "The following fields are automatically filled: BP team name, team code, and the start date of Team memberships with the date on which you perform the test"
+      },
+      {
+        "step": 4,
+        "action": "Select the 'Create' button",
+        "data": "",
+        "result": "The team has been created, and the 'Jira Team' label is now visible"
+      },
+      {
+        "step": 5,
+        "action": "Click on the created team and verify the data",
+        "data": "teamNameJira: TC-5314 Team",
+        "result": "The team member list matches the list of team members in Jira"
+      },
+      {
+        "step": 6,
+        "action": "On a separate tab, add a new member to the team in Jira",
+        "data": "",
+        "result": "The new team member has been added"
+      },
+      {
+        "step": 7,
+        "action": "Return to BP and perform the synchronization",
+        "data": "",
+        "result": "The team member list has been updated and is now consistent with the team member list in Jira"
+      },
+      {
+        "step": 8,
+        "action": "Add a new member to the team in BP",
+        "data": "",
+        "result": "The new team member is visible on the list in BP. The option for re-synchronization has appeared, along with an additional ‘pen' icon. Hovering over the 'pen icon’ shows information about the possibility of performing re-synchronization"
+      },
+      {
+        "step": 9,
+        "action": "Check if the user added from BP to the team member list appears on the team member list in Jira",
+        "data": "",
+        "result": "The user is not visible on the team member list in Jira"
+      },
+      {
+        "step": 10,
+        "action": "Perform the re-synchronization in BP",
+        "data": "",
+        "result": "The user added from BP disappears from the team member list in BP"
+      },
+      {
+        "step": 11,
+        "action": "On a separate tab, add a new member to the team in Jira",
+        "data": "",
+        "result": "The new team member has been added"
+      },
+      {
+        "step": 12,
+        "action": "Return to BP and perform the synchronization",
+        "data": "",
+        "result": "The team member list has been updated and is now consistent with the team member list in Jira"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-5314",
+    "text": "Test: TC-5314 — Jira Team - Global teams - Team creation, synchronization and re-synchronization\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/Jira Team\nLabels: teamextplatform\n\nDescription:\nTC includes steps that allow verifying the creation, synchronization, and re-synchronization of a team based on Jira Team.\n\nSteps:\n1. Create a connection using TC-5310 as a guide and prepare a Jira team consisting of at least 3 members\n   Data: teamNameJira: TC-5314 Team\n   Expected: The connection is successfully established, the team has been created.\n2. Navigate to 'Global Teams' and select 'Create new team based on Jira Team' (the option visible after expanding the dropdown).\n   Expected: A modal will open with the option to select a Jira Team\n3. Select a Jira Team\n   Data: teamNameJira: TC-5314 Team\n   Expected: The following fields are automatically filled: BP team name, team code, and the start date of Team memberships with the date on which you perform the test\n4. Select the 'Create' button\n   Expected: The team has been created, and the 'Jira Team' label is now visible\n5. Click on the created team and verify the data\n   Data: teamNameJira: TC-5314 Team\n   Expected: The team member list matches the list of team members in Jira\n6. On a separate tab, add a new member to the team in Jira\n   Expected: The new team member has been added\n7. Return to BP and perform the synchronization\n   Expected: The team member list has been updated and is now consistent with the team member list in Jira\n8. Add a new member to the team in BP\n   Expected: The new team member is visible on the list in BP. The option for re-synchronization has appeared, along with an additional ‘pen' icon. Hovering over the 'pen icon’ shows information about the possibility of performing re-synchronization\n9. Check if the user added from BP to the team member list appears on the team member list in Jira\n   Expected: The user is not visible on the team member list in Jira\n10. Perform the re-synchronization in BP\n   Expected: The user added from BP disappears from the team member list in BP\n11. On a separate tab, add a new member to the team in Jira\n   Expected: The new team member has been added\n12. Return to BP and perform the synchronization\n   Expected: The team member list has been updated and is now consistent with the team member list in Jira",
+    "metadata": {
+      "jira_key": "TC-5314",
+      "issue_id": "1122803",
+      "summary": "Jira Team - Global teams - Team creation, synchronization and re-synchronization",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/Jira Team",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

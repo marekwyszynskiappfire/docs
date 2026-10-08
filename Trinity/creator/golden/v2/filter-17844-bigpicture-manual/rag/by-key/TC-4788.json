@@ -1,0 +1,143 @@
+{
+  "test": {
+    "key": "TC-4788",
+    "issue_id": "820374",
+    "url": "https://appfire.atlassian.net/browse/TC-4788",
+    "summary": "Global - Resources - Individuals - Bulk assignment in Individuals tab",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2024-07-31T06:18:34.746-0400",
+    "updated": "2026-03-17T15:15:29.743-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-63 Global - Resources Manager",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Administration → Resources → Individuals",
+        "data": "",
+        "result": "Individuals tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on Assign to dropdown",
+        "data": "",
+        "result": "Following options are displayed in the dropdown:\n\nWorkload plan\n\nHoliday plan"
+      },
+      {
+        "step": 3,
+        "action": "Click on Workload plan",
+        "data": "",
+        "result": "Modal window Assign individuals to workload plan is displayed with following options:\n\n* Workload plan (red asterisk) with ‘Select workload plan’ placeholder\n* Efficiency (red asterisk) is set to 1 by default\n* Start date (red asterisk) tooltip 'End date will be adjusted automatically' below\n* Users (red asterisk) with ‘Select user’ placeholder"
+      },
+      {
+        "step": 4,
+        "action": "Select workloadPlan, startDate and then click on Users dropdown",
+        "data": "workloadPlan: TC-4788A\n\nstartDate: 01/Jul/24",
+        "result": "List of users is displayed\n\nSelect all and Deselect all is displayed at the top of the list. Extplatform icon is displayed next to user names."
+      },
+      {
+        "step": 5,
+        "action": "Type userName in selector",
+        "data": "userName: TC-4788",
+        "result": "Following users are displayed on the list: \n\n* TC-4788\n* TC-4788user\n* TC-4788user2"
+      },
+      {
+        "step": 6,
+        "action": "Click on the checkboxes next to userNames, click out of the window",
+        "data": "userNames: TC-4788, TC-4788user, TC-4788user2",
+        "result": "Users are selected and displayed in Users selector"
+      },
+      {
+        "step": 7,
+        "action": "Click on (x) icon next to userName",
+        "data": "userName: TC-4788",
+        "result": "User TC-4788 is deleted. Users TC-4788user and TC-4788user2 are displayed in the Users selector"
+      },
+      {
+        "step": 8,
+        "action": "Click assign",
+        "data": "",
+        "result": "Modal window is closed"
+      },
+      {
+        "step": 9,
+        "action": "Click on Assign to dropdown",
+        "data": "",
+        "result": "Following options are displayed in the dropdown:\n\nWorkload plan\n\nHoliday plan"
+      },
+      {
+        "step": 10,
+        "action": "Click on Holiday plan",
+        "data": "",
+        "result": "Modal window Assign individuals to holiday plan is displayed with following options:\n\n* Holiday plan (red asterisk) with ‘Select holiday plan’ placeholder\n* Start date (red asterisk) tooltip ‘End date will be adjusted automatically based on start date of the previous plan’ below\n* Users (red asterisk) with ‘Select user’ placeholder"
+      },
+      {
+        "step": 11,
+        "action": "Select holidayPlan, startDate and then click on Users dropdown",
+        "data": "holidayPlan: TC-4788A\n\nstartDate: 01/Jul/24",
+        "result": "List of users is displayed\n\nSelect all and Deselect all is displayed at the top of the list. Extplatform icon is displayed next to user names."
+      },
+      {
+        "step": 12,
+        "action": "Type userName in selector",
+        "data": "userName: TC-4788",
+        "result": "Following users are displayed on the list: \n\n* TC-4788\n* TC-4788user\n* TC-4788user2"
+      },
+      {
+        "step": 13,
+        "action": "Click on the checkboxes next to userNames, click out of the window",
+        "data": "userNames: TC-4788user, TC-4788user2",
+        "result": "Users are selected and displayed in Users selector"
+      },
+      {
+        "step": 14,
+        "action": "Click assign",
+        "data": "",
+        "result": "Modal window is closed"
+      },
+      {
+        "step": 15,
+        "action": "Refresh the page.\nClick on three dots next to Full Name, type userName and select",
+        "data": "userName: TC-4788user",
+        "result": "USer TC-4788user is selected"
+      },
+      {
+        "step": 16,
+        "action": "Click on userName",
+        "data": "userName: TC-4788user",
+        "result": "Following data is displayed in Resource Details:\n\nHoliday plan TC-4788A starts at 01/Jul/2024\n\nWorkload plan TC-4788A starts at 01/Jul/2024"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-4788",
+    "text": "Test: TC-4788 — Global - Resources - Individuals - Bulk assignment in Individuals tab\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-63 Global - Resources Manager\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Administration → Resources → Individuals\n   Expected: Individuals tab is displayed\n2. Click on Assign to dropdown\n   Expected: Following options are displayed in the dropdown:\n\nWorkload plan\n\nHoliday plan\n3. Click on Workload plan\n   Expected: Modal window Assign individuals to workload plan is displayed with following options:\n\n* Workload plan (red asterisk) with ‘Select workload plan’ placeholder\n* Efficiency (red asterisk) is set to 1 by default\n* Start date (red asterisk) tooltip 'End date will be adjusted automatically' below\n* Users (red asterisk) with ‘Select user’ placeholder\n4. Select workloadPlan, startDate and then click on Users dropdown\n   Data: workloadPlan: TC-4788A\n\nstartDate: 01/Jul/24\n   Expected: List of users is displayed\n\nSelect all and Deselect all is displayed at the top of the list. Extplatform icon is displayed next to user names.\n5. Type userName in selector\n   Data: userName: TC-4788\n   Expected: Following users are displayed on the list: \n\n* TC-4788\n* TC-4788user\n* TC-4788user2\n6. Click on the checkboxes next to userNames, click out of the window\n   Data: userNames: TC-4788, TC-4788user, TC-4788user2\n   Expected: Users are selected and displayed in Users selector\n7. Click on (x) icon next to userName\n   Data: userName: TC-4788\n   Expected: User TC-4788 is deleted. Users TC-4788user and TC-4788user2 are displayed in the Users selector\n8. Click assign\n   Expected: Modal window is closed\n9. Click on Assign to dropdown\n   Expected: Following options are displayed in the dropdown:\n\nWorkload plan\n\nHoliday plan\n10. Click on Holiday plan\n   Expected: Modal window Assign individuals to holiday plan is displayed with following options:\n\n* Holiday plan (red asterisk) with ‘Select holiday plan’ placeholder\n* Start date (red asterisk) tooltip ‘End date will be adjusted automatically based on start date of the previous plan’ below\n* Users (red asterisk) with ‘Select user’ placeholder\n11. Select holidayPlan, startDate and then click on Users dropdown\n   Data: holidayPlan: TC-4788A\n\nstartDate: 01/Jul/24\n   Expected: List of users is displayed\n\nSelect all and Deselect all is displayed at the top of the list. Extplatform icon is displayed next to user names.\n12. Type userName in selector\n   Data: userName: TC-4788\n   Expected: Following users are displayed on the list: \n\n* TC-4788\n* TC-4788user\n* TC-4788user2\n13. Click on the checkboxes next to userNames, click out of the window\n   Data: userNames: TC-4788user, TC-4788user2\n   Expected: Users are selected and displayed in Users selector\n14. Click assign\n   Expected: Modal window is closed\n15. Refresh the page.\nClick on three dots next to Full Name, type userName and select\n   Data: userName: TC-4788user\n   Expected: USer TC-4788user is selected\n16. Click on userName\n   Data: userName: TC-4788user\n   Expected: Following data is displayed in Resource Details:\n\nHoliday plan TC-4788A starts at 01/Jul/2024\n\nWorkload plan TC-4788A starts at 01/Jul/2024",
+    "metadata": {
+      "jira_key": "TC-4788",
+      "issue_id": "820374",
+      "summary": "Global - Resources - Individuals - Bulk assignment in Individuals tab",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-63 Global - Resources Manager",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

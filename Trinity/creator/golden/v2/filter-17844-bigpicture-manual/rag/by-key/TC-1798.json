@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-1798",
+    "issue_id": "360063",
+    "url": "https://appfire.atlassian.net/browse/TC-1798",
+    "summary": "Feature area - Security - AppAdmin - Visibility of the License tab in Technical Configuration- log as AppAdmin",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Michał Dysput (Inactive)",
+    "created": "2021-04-26T03:29:15.367-0400",
+    "updated": "2026-06-18T05:54:55.226-0400",
+    "labels": [
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-47 Feature area - Security",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Jira Administration - User Management tab",
+        "data": "",
+        "result": "User management tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Search for userName and click on it",
+        "data": "Atlassian Server\nuserName = appadmin\n\nAtlassian Cloud\nuserName = testlab.1@softwareplant.com",
+        "result": "Account information is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Click Manage groups button",
+        "data": "",
+        "result": "Additional window to manage gropus is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Search for jira-administrators group and click Join selected groups button",
+        "data": "",
+        "result": "User is added to selected group. Jira-administrators group is displayed in Applications and groups section"
+      },
+      {
+        "step": 5,
+        "action": "In new tab log in as appAdmin",
+        "data": "Atlassian Server:\nlogin = appadmin\npassword = sdfoijj\n\nAtlassian Cloud:\nlogin = testlab.1@softwareplant.com\npassword = alamakota123",
+        "result": "The user can be logged on successfully."
+      },
+      {
+        "step": 6,
+        "action": "Navigate to Jira Administration > Manage Apps > BigTemplate configuration > License",
+        "data": "",
+        "result": "The License page loads. The folLowing information is displayed:\n - Feature Plan\n - Status\n - License ID"
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Jira Administration > Manage Apps > BigPicture configuration > License",
+        "data": "",
+        "result": "The License page loads. The folLowing information is displayed:\n - Feature Plan\n - Status\n - License ID"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Jira Administration > Manage Apps > BigGantt configuration > License",
+        "data": "",
+        "result": "The License page loads. The folLowing information is displayed:\n - Feature Plan\n - Status\n - License ID"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-1798",
+    "text": "Test: TC-1798 — Feature area - Security - AppAdmin - Visibility of the License tab in Technical Configuration- log as AppAdmin\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-47 Feature area - Security\nLabels: teamtree\n\nSteps:\n1. Navigate to Jira Administration - User Management tab\n   Expected: User management tab is displayed\n2. Search for userName and click on it\n   Data: Atlassian Server\nuserName = appadmin\n\nAtlassian Cloud\nuserName = testlab.1@softwareplant.com\n   Expected: Account information is displayed\n3. Click Manage groups button\n   Expected: Additional window to manage gropus is displayed\n4. Search for jira-administrators group and click Join selected groups button\n   Expected: User is added to selected group. Jira-administrators group is displayed in Applications and groups section\n5. In new tab log in as appAdmin\n   Data: Atlassian Server:\nlogin = appadmin\npassword = sdfoijj\n\nAtlassian Cloud:\nlogin = testlab.1@softwareplant.com\npassword = alamakota123\n   Expected: The user can be logged on successfully.\n6. Navigate to Jira Administration > Manage Apps > BigTemplate configuration > License\n   Expected: The License page loads. The folLowing information is displayed:\n - Feature Plan\n - Status\n - License ID\n7. Navigate to Jira Administration > Manage Apps > BigPicture configuration > License\n   Expected: The License page loads. The folLowing information is displayed:\n - Feature Plan\n - Status\n - License ID\n8. Navigate to Jira Administration > Manage Apps > BigGantt configuration > License\n   Expected: The License page loads. The folLowing information is displayed:\n - Feature Plan\n - Status\n - License ID",
+    "metadata": {
+      "jira_key": "TC-1798",
+      "issue_id": "360063",
+      "summary": "Feature area - Security - AppAdmin - Visibility of the License tab in Technical Configuration- log as AppAdmin",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-47 Feature area - Security",
+      "labels": [
+        "teamtree"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "test": {
+    "key": "TC-4527",
+    "issue_id": "814689",
+    "url": "https://appfire.atlassian.net/browse/TC-4527",
+    "summary": "Box Module - Board - Backlog - Inline task creation additional menu",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:05:21.968-0400",
+    "updated": "2026-04-14T06:39:11.722-0400",
+    "labels": [
+      "teamsmile",
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-101 Box Module - Board - Backlog",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName",
+        "data": "boxName: TC-4527 Box Module - Board - Backlog - Inline task creation additional menu",
+        "result": "Board module is loaded correctly. Issues are visible in backlog:\n\n* Task A\n* Task B (Sub-task of Task A)\n* Task C\n* Task D"
+      },
+      {
+        "step": 2,
+        "action": "Under issueName click on plus",
+        "data": "issueName: Task A",
+        "result": "Context dialog menu has the header \"Create new subtask\" in the context dialog, with options: \n\n* Jira work item\n* Jira subtask\n* BigPicture task"
+      },
+      {
+        "step": 3,
+        "action": "Choose Jira work item and fill the form with data",
+        "data": "Project: TC-4527 - Box Module - Board - Backlog - Inline task creation additional menu\n\ntaskName: Jira subtask",
+        "result": "Jira work item creating form exists"
+      },
+      {
+        "step": 4,
+        "action": "Save",
+        "data": "",
+        "result": "New issue is a child of Task A"
+      },
+      {
+        "step": 5,
+        "action": "Under issueName click on plus",
+        "data": "issueName: Task C",
+        "result": "Context dialog menu has the header \"Create new task\" in the context dialog, with options: \n\n* Jira work item\n* BigPicture task"
+      },
+      {
+        "step": 6,
+        "action": "Choose Jira work item and fill the form with data adn click on Save button",
+        "data": "Project: TC-4527 - Box Module - Board - Backlog - Inline task creation additional menu\n\ntaskName: Jira task",
+        "result": "New issue isn't a child of any task"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-4527",
+    "text": "Test: TC-4527 — Box Module - Board - Backlog - Inline task creation additional menu\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-101 Box Module - Board - Backlog\nLabels: teamsmile, teamsource\n\nSteps:\n1. Navigate to Board module of boxName\n   Data: boxName: TC-4527 Box Module - Board - Backlog - Inline task creation additional menu\n   Expected: Board module is loaded correctly. Issues are visible in backlog:\n\n* Task A\n* Task B (Sub-task of Task A)\n* Task C\n* Task D\n2. Under issueName click on plus\n   Data: issueName: Task A\n   Expected: Context dialog menu has the header \"Create new subtask\" in the context dialog, with options: \n\n* Jira work item\n* Jira subtask\n* BigPicture task\n3. Choose Jira work item and fill the form with data\n   Data: Project: TC-4527 - Box Module - Board - Backlog - Inline task creation additional menu\n\ntaskName: Jira subtask\n   Expected: Jira work item creating form exists\n4. Save\n   Expected: New issue is a child of Task A\n5. Under issueName click on plus\n   Data: issueName: Task C\n   Expected: Context dialog menu has the header \"Create new task\" in the context dialog, with options: \n\n* Jira work item\n* BigPicture task\n6. Choose Jira work item and fill the form with data adn click on Save button\n   Data: Project: TC-4527 - Box Module - Board - Backlog - Inline task creation additional menu\n\ntaskName: Jira task\n   Expected: New issue isn't a child of any task",
+    "metadata": {
+      "jira_key": "TC-4527",
+      "issue_id": "814689",
+      "summary": "Box Module - Board - Backlog - Inline task creation additional menu",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-101 Box Module - Board - Backlog",
+      "labels": [
+        "teamsmile",
+        "teamsource"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

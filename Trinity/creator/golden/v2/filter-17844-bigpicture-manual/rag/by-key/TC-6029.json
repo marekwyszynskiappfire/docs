@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-6029",
+    "issue_id": "1581114",
+    "url": "https://appfire.atlassian.net/browse/TC-6029",
+    "summary": "BP/BG- Verification of functionality on an instance without BPE license",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Tomasz Guzik",
+    "reporter": "Tomasz Guzik",
+    "created": "2026-03-18T11:22:39.524-0400",
+    "updated": "2026-08-10T11:34:18.263-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the BP/BG application on an instance without BPE installed",
+        "data": "",
+        "result": "App launches correctly\nThe onboarding screen is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Complete the onboarding process",
+        "data": "",
+        "result": "App correctly displays the Overview module"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to *App configuration > General*",
+        "data": "",
+        "result": "Blue icon for BP or green icon for BG are visible"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to *App configuration > License*",
+        "data": "",
+        "result": "Standard license is displayed"
+      },
+      {
+        "step": 5,
+        "action": "Go to Overview and add a new Program Box",
+        "data": "boxName: TC-6029 Box",
+        "result": "The newly created Box is visible in Overview module"
+      },
+      {
+        "step": 6,
+        "action": "Go to the Box configuration of boxName, add any space with projects, and navigate to the Gantt module",
+        "data": "boxName: TC-6029 Box",
+        "result": "Tasks from the selected space are correctly displayed on the Gantt chart"
+      },
+      {
+        "step": 7,
+        "action": "Add a new item",
+        "data": "itemName: TC-6029 Item",
+        "result": "item is created and displayed properly"
+      },
+      {
+        "step": 8,
+        "action": "Rename itemName",
+        "data": "itemName: TC-6029 Item *->* TC-6029 Item_edited",
+        "result": "The itemNameNew is updated successfully in the BP/BG interface"
+      },
+      {
+        "step": 9,
+        "action": "Verify the issue name in Jira",
+        "data": "itemName: TC-6029 Item_edited",
+        "result": "The name change is correctly reflected in Jira, item looks properly"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-6029",
+    "text": "Test: TC-6029 — BP/BG- Verification of functionality on an instance without BPE license\nPriority: Medium | Status: Done | Type: Manual\nFolder: /\nLabels: teamextplatform\n\nSteps:\n1. Launch the BP/BG application on an instance without BPE installed\n   Expected: App launches correctly\nThe onboarding screen is displayed\n2. Complete the onboarding process\n   Expected: App correctly displays the Overview module\n3. Navigate to *App configuration > General*\n   Expected: Blue icon for BP or green icon for BG are visible\n4. Navigate to *App configuration > License*\n   Expected: Standard license is displayed\n5. Go to Overview and add a new Program Box\n   Data: boxName: TC-6029 Box\n   Expected: The newly created Box is visible in Overview module\n6. Go to the Box configuration of boxName, add any space with projects, and navigate to the Gantt module\n   Data: boxName: TC-6029 Box\n   Expected: Tasks from the selected space are correctly displayed on the Gantt chart\n7. Add a new item\n   Data: itemName: TC-6029 Item\n   Expected: item is created and displayed properly\n8. Rename itemName\n   Data: itemName: TC-6029 Item *->* TC-6029 Item_edited\n   Expected: The itemNameNew is updated successfully in the BP/BG interface\n9. Verify the issue name in Jira\n   Data: itemName: TC-6029 Item_edited\n   Expected: The name change is correctly reflected in Jira, item looks properly",
+    "metadata": {
+      "jira_key": "TC-6029",
+      "issue_id": "1581114",
+      "summary": "BP/BG- Verification of functionality on an instance without BPE license",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-5876",
+    "issue_id": "1458464",
+    "url": "https://appfire.atlassian.net/browse/TC-5876",
+    "summary": "SPM - Strategic areas  - Entering OKRs tab",
+    "description": "",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2025-12-15T07:50:47.200-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of a boxName",
+        "data": "boxName: TC-5876 SPM - Strategic areas  - Entering OKRs tab",
+        "result": "OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context"
+      },
+      {
+        "step": 2,
+        "action": "Click on \"Create Strategic Theme\" button",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Type Strategic Theme name and select period and click Create",
+        "data": "name: TC-5876\n\nperiod: Y2026",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 4,
+        "action": "Click on Plus button, select Add sub-objective and click Create",
+        "data": "name: TC-5876 Objective",
+        "result": "Period is automatically populated as Y2025\n\nTC-5876 Objective is created under Strategic Theme TC-5876"
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button, select Key result and click Create",
+        "data": "name: TC-5876 Key result",
+        "result": "Period is automatically populated as Y2025\n\nTC-5876 Key result is created under TC-5876 Objective"
+      },
+      {
+        "step": 6,
+        "action": "Click on Finish & go back",
+        "data": "",
+        "result": "Modal is closed\n\nStrategic Theme TC-5876 is displayed on the list with its children\n\nFollowing columns are displayed on the left\n\n* OKR Overview\n* OKR Hierarchy\n* Progress Dashboard\n* Strategic Areas\n* Settings"
+      },
+      {
+        "step": 7,
+        "action": "Click on Strategic Areas",
+        "data": "",
+        "result": "*Strategic theme* TC-5876 is displayed\n\nOwner: currentAccount\n\nStatus: Not Started\n\nProgress 0%\n\nSub-Theme 0\n\nObjectives 1\n\nKey Results 1\n\nPeriod Y2026"
+      },
+      {
+        "step": 8,
+        "action": "Click on Strategic theme name",
+        "data": "Strategic theme: TC-5876",
+        "result": "Two filters are displayed at the top:\n\n* Period filter with placeholder ‘No Period selected’\n* OKR owner field with person icon and ‘OKR owner’ as placeholder\n\nOKRs tab is displayed and highlighted blue. Initiatives tab is displayed next to it/\n\nThree widgets are displayed on the left side as apex charts:\n\n* Strategic Themes with values 1 and 0% closed\n* Objectives with values 1 and 0% closed\n* Key Results with values 1 and 0% closed\n\nFollowing filter tiles are displayed:\n\n*  0%   - ON TRACK - 0/3\n*  0%   - AT RISK - 0/3\n*  0%   - OFF TRACK - 0/3\n*  100%   - NOT STARTED - 3/3\n*  0%   - CLOSED - 0/3\n\nFollowing Columns are displayed on the list\n\nOKR NAME: Strategic Theme TC-5876, Objective TC-5876 and Key Result TC-5876 in hierarchy\n\nSTATUS: NOT STARTED for all three OKRs\n\nPROGRESS: 0% for all three OKRs\n\nINITIATIVES: 0 for all three OKRS\n\nOKR PERIOD: Y2026 for all three OKRs\n\nOKR OWNER: user assigned to OKRs \n\nDATE OF LAST UPDATE: today’s date for all three OKRS"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-5876",
+    "text": "Test: TC-5876 — SPM - Strategic areas  - Entering OKRs tab\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of a boxName\n   Data: boxName: TC-5876 SPM - Strategic areas  - Entering OKRs tab\n   Expected: OKR module is displayed with a splashscreen\n\n\"No OKRs connected to this box\nIt looks like there are no OKRs connected with this box yet. You can create new Objective to track your progress on tasks within this box or connect existing OKRs from your organization.\"\n\nButtons are displayed:\n\nLink existing OKRs\nCreate Strategic theme\nCreate Objective\n\nLink to documentation:\nRead more about OKRs in a box context\n2. Click on \"Create Strategic Theme\" button\n   Expected: New Strategic theme modal is displayed\n3. Type Strategic Theme name and select period and click Create\n   Data: name: TC-5876\n\nperiod: Y2026\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n4. Click on Plus button, select Add sub-objective and click Create\n   Data: name: TC-5876 Objective\n   Expected: Period is automatically populated as Y2025\n\nTC-5876 Objective is created under Strategic Theme TC-5876\n5. Click on Plus button, select Key result and click Create\n   Data: name: TC-5876 Key result\n   Expected: Period is automatically populated as Y2025\n\nTC-5876 Key result is created under TC-5876 Objective\n6. Click on Finish & go back\n   Expected: Modal is closed\n\nStrategic Theme TC-5876 is displayed on the list with its children\n\nFollowing columns are displayed on the left\n\n* OKR Overview\n* OKR Hierarchy\n* Progress Dashboard\n* Strategic Areas\n* Settings\n7. Click on Strategic Areas\n   Expected: *Strategic theme* TC-5876 is displayed\n\nOwner: currentAccount\n\nStatus: Not Started\n\nProgress 0%\n\nSub-Theme 0\n\nObjectives 1\n\nKey Results 1\n\nPeriod Y2026\n8. Click on Strategic theme name\n   Data: Strategic theme: TC-5876\n   Expected: Two filters are displayed at the top:\n\n* Period filter with placeholder ‘No Period selected’\n* OKR owner field with person icon and ‘OKR owner’ as placeholder\n\nOKRs tab is displayed and highlighted blue. Initiatives tab is displayed next to it/\n\nThree widgets are displayed on the left side as apex charts:\n\n* Strategic Themes with values 1 and 0% closed\n* Objectives with values 1 and 0% closed\n* Key Results with values 1 and 0% closed\n\nFollowing filter tiles are displayed:\n\n*  0%   - ON TRACK - 0/3\n*  0%   - AT RISK - 0/3\n*  0%   - OFF TRACK - 0/3\n*  100%   - NOT STARTED - 3/3\n*  0%   - CLOSED - 0/3\n\nFollowing Columns are displayed on the list\n\nOKR NAME: Strategic Theme TC-5876, Objective TC-5876 and Key Result TC-5876 in hierarchy\n\nSTATUS: NOT STARTED for all three OKRs\n\nPROGRESS: 0% for all three OKRs\n\nINITIATIVES: 0 for all three OKRS\n\nOKR PERIOD: Y2026 for all three OKRs\n\nOKR OWNER: user assigned to OKRs \n\nDATE OF LAST UPDATE: today’s date for all three OKRS",
+    "metadata": {
+      "jira_key": "TC-5876",
+      "issue_id": "1458464",
+      "summary": "SPM - Strategic areas  - Entering OKRs tab",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

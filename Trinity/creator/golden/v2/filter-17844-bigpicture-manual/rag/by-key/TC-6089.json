@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-6089",
+    "issue_id": "1658653",
+    "url": "https://appfire.atlassian.net/browse/TC-6089",
+    "summary": "SPM - OKR - Inline editing of Collaborators field",
+    "description": "This test verifies inline editing of the *Collaboration field* in both *Overview* and *Side Panel*.\n\n\n* Editing the Collaboration field in *Overview* and *Side Panel*\n* Removing selected values\n* Data consistency between Overview and Side Panel",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-04-28T06:13:42.784-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Prerequisites:* 5x teams are created in OKR module",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Open OKR Overview of boxName and create Objective and Key-result",
+        "data": "boxName: TC-6089 SPM - OKR - Inline editing of Collaborators field\n\n* objectiveName: Objective 1\n* key-resultName: Key-result 1",
+        "result": "Objective and Key-result are created and visible in OKR overview"
+      },
+      {
+        "step": 3,
+        "action": "Hover over the Objective and Key-result Collaboration fields",
+        "data": "",
+        "result": "The row is highlighted (grey background) when the user hovers over it\n+ button and tooltip \"Add Collaborators \" is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Click on + button next to Objective Collaborators field",
+        "data": "",
+        "result": "Dropdown is displayed with lists of teams."
+      },
+      {
+        "step": 5,
+        "action": "Add teamName",
+        "data": "teamName: Team 1, Team 2, Team 3, Team 4, Team 5",
+        "result": "Collaborators field display 5 team with icons"
+      },
+      {
+        "step": 6,
+        "action": "Click on the grey area of the Objective row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Objective. The Objective Collaborators field is consistent with the value in Overview. Field display all list with full teams names and icons"
+      },
+      {
+        "step": 7,
+        "action": "Click in Collaborators field in Side panel",
+        "data": "",
+        "result": "Dropdown is displayed with lists of teams."
+      },
+      {
+        "step": 8,
+        "action": "Click on clear x button",
+        "data": "",
+        "result": "Field is empty - all values disappear from Side panel and Overview"
+      },
+      {
+        "step": 9,
+        "action": "Go to Overview and hover over the Key-result Collaborators fields",
+        "data": "",
+        "result": "The row is highlighted (grey background) when the user hovers over it\n+ button and tooltip \"Add Collaborators \" is displayed"
+      },
+      {
+        "step": 10,
+        "action": "Click add and add teams and users",
+        "data": "* teamName: Team 1, Team 2, Team 3, Team 4, Team 5\n* userName: Admin 1, Admin 2",
+        "result": "Users and teams are added"
+      },
+      {
+        "step": 11,
+        "action": "Hover over to Collaborators field",
+        "data": "",
+        "result": "Tooltips with userNames and teamsNames are displayed. Admin 1 is displayed as first in field. +2 button is visible"
+      },
+      {
+        "step": 12,
+        "action": "Click in +2 button",
+        "data": "",
+        "result": "Popup is displayed showing the remaining two teams:\nTeam 4, Team 5"
+      },
+      {
+        "step": 13,
+        "action": "Click on the grey area of the Key-result row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Key-result. The Key-result Collaborators is consistent with the value in Overview"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-6089",
+    "text": "Test: TC-6089 — SPM - OKR - Inline editing of Collaborators field\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-512 OKR - OKR module\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies inline editing of the *Collaboration field* in both *Overview* and *Side Panel*.\n\n\n* Editing the Collaboration field in *Overview* and *Side Panel*\n* Removing selected values\n* Data consistency between Overview and Side Panel\n\nSteps:\n1. *Prerequisites:* 5x teams are created in OKR module\n   Expected: \n2. Open OKR Overview of boxName and create Objective and Key-result\n   Data: boxName: TC-6089 SPM - OKR - Inline editing of Collaborators field\n\n* objectiveName: Objective 1\n* key-resultName: Key-result 1\n   Expected: Objective and Key-result are created and visible in OKR overview\n3. Hover over the Objective and Key-result Collaboration fields\n   Expected: The row is highlighted (grey background) when the user hovers over it\n+ button and tooltip \"Add Collaborators \" is displayed\n4. Click on + button next to Objective Collaborators field\n   Expected: Dropdown is displayed with lists of teams.\n5. Add teamName\n   Data: teamName: Team 1, Team 2, Team 3, Team 4, Team 5\n   Expected: Collaborators field display 5 team with icons\n6. Click on the grey area of the Objective row\n   Expected: Side panel is opened on the right side and displays details of the selected Objective. The Objective Collaborators field is consistent with the value in Overview. Field display all list with full teams names and icons\n7. Click in Collaborators field in Side panel\n   Expected: Dropdown is displayed with lists of teams.\n8. Click on clear x button\n   Expected: Field is empty - all values disappear from Side panel and Overview\n9. Go to Overview and hover over the Key-result Collaborators fields\n   Expected: The row is highlighted (grey background) when the user hovers over it\n+ button and tooltip \"Add Collaborators \" is displayed\n10. Click add and add teams and users\n   Data: * teamName: Team 1, Team 2, Team 3, Team 4, Team 5\n* userName: Admin 1, Admin 2\n   Expected: Users and teams are added\n11. Hover over to Collaborators field\n   Expected: Tooltips with userNames and teamsNames are displayed. Admin 1 is displayed as first in field. +2 button is visible\n12. Click in +2 button\n   Expected: Popup is displayed showing the remaining two teams:\nTeam 4, Team 5\n13. Click on the grey area of the Key-result row\n   Expected: Side panel is opened on the right side and displays details of the selected Key-result. The Key-result Collaborators is consistent with the value in Overview",
+    "metadata": {
+      "jira_key": "TC-6089",
+      "issue_id": "1658653",
+      "summary": "SPM - OKR - Inline editing of Collaborators field",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

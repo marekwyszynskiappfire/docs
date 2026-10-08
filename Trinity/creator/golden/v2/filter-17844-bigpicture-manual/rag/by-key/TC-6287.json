@@ -1,0 +1,151 @@
+{
+  "test": {
+    "key": "TC-6287",
+    "issue_id": "1769406",
+    "url": "https://appfire.atlassian.net/browse/TC-6287",
+    "summary": "SPM - OKR - Creating Text type custom field",
+    "description": "SPM - OKR - Creating Text type custom field\n\n*Preconditions:* Per step 1; dedicated test box; appropriate role\n\n*Pre-test data setup:* No custom field or OKR data required beforehand. Environment only: OKR Admin account (or role noted below), staging tenant, feature flag {FLAG_KEY} enabled unless flag test. Create empty dedicated test box (boxName in step 1).\n\n*Customer impact:* Customers cannot create or use Text custom fields across OKR views — core Part 2 deliverable\n\n*Catalog:* CAT-CREATE-TEXT (P0)\n\n*AC/goal ids:* GOAL-01, GOAL-02-TYPES\n\n*Requirements:* ONE-232514\n\n*Draft id:* TC-001\n\n*Import run:* 2026-06-10-tc-one-232514-comprehensive\n\n*Benchmark / possible duplicate:* TC-6117",
+    "status": "To Do",
+    "priority": "High",
+    "assignee": null,
+    "reporter": "Marek Wyszynski",
+    "created": "2026-06-11T05:14:58.770-0400",
+    "updated": "2026-09-15T04:44:09.123-0400",
+    "labels": [
+      "ai-import",
+      "journey",
+      "one-232514",
+      "p0",
+      "tc-001"
+    ],
+    "test_type": "Manual",
+    "folder": "/Ignite 2026",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR settings → Fields of boxName",
+        "data": "boxName: TC-6117 SPM - OKR - Creating Text type custom field",
+        "result": "Fields settings page is displayed. The page contains: Table with columns: Field name, Type, Used in, Description, Visibility \"Create new\" button visible in the top right corner"
+      },
+      {
+        "step": 2,
+        "action": "Click on \"Create new\" button",
+        "data": "",
+        "result": "\"Create custom field\" modal is displayed. The modal contains: * Field name field * \"Type\" dropdown with default value set to \"Text\" * \"Max length (optional)\" * \"Used in\" section with selectable options selected by default ** Objective / Strategic theme ** Key results * \"Description\"  field * \"Create\" button (disabled by default) * \"Cancel\" button"
+      },
+      {
+        "step": 3,
+        "action": "Type name, description. Click *Create* button",
+        "data": "* fieldName: Text field * description: new created field",
+        "result": "Custom field is successfully created. New field appears in the \"Your custom fields\" list. Field name, type, description and \"Used in\" values are displayed correctly"
+      },
+      {
+        "step": 4,
+        "action": "Open Overview → click Add → Create strategic theme",
+        "data": "",
+        "result": "Creation modal is displayed. Custom field is visible in the OKR creation modal with default value \"Not set\""
+      },
+      {
+        "step": 5,
+        "action": "Enter strategic theme name, set period and Enter value in custom Text field. Click Create",
+        "data": "* stName: Strategic theme 1 * period: Y2026 * text field value: Sample1234",
+        "result": "Strategic theme is created and visible in tree view. Custom Text field is visible in the right-side with correct value."
+      },
+      {
+        "step": 6,
+        "action": "Click Add + button next to strategic theme and add objective",
+        "data": "",
+        "result": "Creation modal is displayed. Custom field is visible in the OKR creation modal with default value \"Not set\""
+      },
+      {
+        "step": 7,
+        "action": "Enter objective name, set period and enter value in custom Text field. Click Create",
+        "data": "* objectiveName: Objective 1 * period: Y2026 * text field value: Sample5678",
+        "result": "Objective is created and visible in tree view. Custom Text field is visible in the right-side with correct value."
+      },
+      {
+        "step": 8,
+        "action": "Click Add + button next to Objective and add Key result",
+        "data": "",
+        "result": "Creation modal is displayed. Custom field is visible in the OKR creation modal with default value \"Not set\""
+      },
+      {
+        "step": 9,
+        "action": "Enter key-result name, set period and enter value in custom Text field. Click Create",
+        "data": "* key-resultName: KR 1 * period: Y2026 * text field value: Sample999",
+        "result": "Key-result is created and visible in tree view. Custom Text field is visible in the right-side with correct value."
+      },
+      {
+        "step": 10,
+        "action": "Open Overview and navigate to text field",
+        "data": "",
+        "result": "Custom field is visible in the Overview table for Strategic Theme, Objective, and Key Result with correct name and values."
+      },
+      {
+        "step": 11,
+        "action": "Click on the grey area of the Strategic theme row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected strategic theme. Custom field is visible with correct name and value."
+      },
+      {
+        "step": 12,
+        "action": "Click on the grey area of the Objective row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Objective. Custom field is visible with correct name and value."
+      },
+      {
+        "step": 13,
+        "action": "Click on the grey area of the Key-result row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Key-result. Custom field is visible with correct name and value."
+      },
+      {
+        "step": 14,
+        "action": "Open Strategic theme in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Custom field is visible with correct name and value."
+      },
+      {
+        "step": 15,
+        "action": "Open Objective in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Custom field is visible with correct name and value."
+      },
+      {
+        "step": 16,
+        "action": "Open Key-result in the detail page and navigate to the Info section",
+        "data": "",
+        "result": "Detail page is opened. Custom field is visible with correct name and value."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-6287",
+    "text": "Test: TC-6287 — SPM - OKR - Creating Text type custom field\nPriority: High | Status: To Do | Type: Manual\nFolder: /Ignite 2026\nLabels: ai-import, journey, one-232514, p0, tc-001\n\nDescription:\nSPM - OKR - Creating Text type custom field\n\n*Preconditions:* Per step 1; dedicated test box; appropriate role\n\n*Pre-test data setup:* No custom field or OKR data required beforehand. Environment only: OKR Admin account (or role noted below), staging tenant, feature flag {FLAG_KEY} enabled unless flag test. Create empty dedicated test box (boxName in step 1).\n\n*Customer impact:* Customers cannot create or use Text custom fields across OKR views — core Part 2 deliverable\n\n*Catalog:* CAT-CREATE-TEXT (P0)\n\n*AC/goal ids:* GOAL-01, GOAL-02-TYPES\n\n*Requirements:* ONE-232514\n\n*Draft id:* TC-001\n\n*Import run:* 2026-06-10-tc-one-232514-comprehensive\n\n*Benchmark / possible duplicate:* TC-6117\n\nSteps:\n1. Navigate to OKR settings → Fields of boxName\n   Data: boxName: TC-6117 SPM - OKR - Creating Text type custom field\n   Expected: Fields settings page is displayed. The page contains: Table with columns: Field name, Type, Used in, Description, Visibility \"Create new\" button visible in the top right corner\n2. Click on \"Create new\" button\n   Expected: \"Create custom field\" modal is displayed. The modal contains: * Field name field * \"Type\" dropdown with default value set to \"Text\" * \"Max length (optional)\" * \"Used in\" section with selectable options selected by default ** Objective / Strategic theme ** Key results * \"Description\"  field * \"Create\" button (disabled by default) * \"Cancel\" button\n3. Type name, description. Click *Create* button\n   Data: * fieldName: Text field * description: new created field\n   Expected: Custom field is successfully created. New field appears in the \"Your custom fields\" list. Field name, type, description and \"Used in\" values are displayed correctly\n4. Open Overview → click Add → Create strategic theme\n   Expected: Creation modal is displayed. Custom field is visible in the OKR creation modal with default value \"Not set\"\n5. Enter strategic theme name, set period and Enter value in custom Text field. Click Create\n   Data: * stName: Strategic theme 1 * period: Y2026 * text field value: Sample1234\n   Expected: Strategic theme is created and visible in tree view. Custom Text field is visible in the right-side with correct value.\n6. Click Add + button next to strategic theme and add objective\n   Expected: Creation modal is displayed. Custom field is visible in the OKR creation modal with default value \"Not set\"\n7. Enter objective name, set period and enter value in custom Text field. Click Create\n   Data: * objectiveName: Objective 1 * period: Y2026 * text field value: Sample5678\n   Expected: Objective is created and visible in tree view. Custom Text field is visible in the right-side with correct value.\n8. Click Add + button next to Objective and add Key result\n   Expected: Creation modal is displayed. Custom field is visible in the OKR creation modal with default value \"Not set\"\n9. Enter key-result name, set period and enter value in custom Text field. Click Create\n   Data: * key-resultName: KR 1 * period: Y2026 * text field value: Sample999\n   Expected: Key-result is created and visible in tree view. Custom Text field is visible in the right-side with correct value.\n10. Open Overview and navigate to text field\n   Expected: Custom field is visible in the Overview table for Strategic Theme, Objective, and Key Result with correct name and values.\n11. Click on the grey area of the Strategic theme row\n   Expected: Side panel is opened on the right side and displays details of the selected strategic theme. Custom field is visible with correct name and value.\n12. Click on the grey area of the Objective row\n   Expected: Side panel is opened on the right side and displays details of the selected Objective. Custom field is visible with correct name and value.\n13. Click on the grey area of the Key-result row\n   Expected: Side panel is opened on the right side and displays details of the selected Key-result. Custom field is visible with correct name and value.\n14. Open Strategic theme in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Custom field is visible with correct name and value.\n15. Open Objective in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Custom field is visible with correct name and value.\n16. Open Key-result in the detail page and navigate to the Info section\n   Expected: Detail page is opened. Custom field is visible with correct name and value.",
+    "metadata": {
+      "jira_key": "TC-6287",
+      "issue_id": "1769406",
+      "summary": "SPM - OKR - Creating Text type custom field",
+      "priority": "High",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/Ignite 2026",
+      "labels": [
+        "ai-import",
+        "journey",
+        "one-232514",
+        "p0",
+        "tc-001"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

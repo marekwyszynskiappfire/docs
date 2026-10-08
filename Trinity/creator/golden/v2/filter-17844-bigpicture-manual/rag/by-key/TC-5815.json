@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-5815",
+    "issue_id": "1400423",
+    "url": "https://appfire.atlassian.net/browse/TC-5815",
+    "summary": "SPM - Strategic areas  - Checking links on Strategic Areas module",
+    "description": "Project with few tasks",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2025-11-12T07:33:43.311-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of ROOT (Main) box",
+        "data": "",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on Add button",
+        "data": "",
+        "result": "Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)"
+      },
+      {
+        "step": 3,
+        "action": "Click Create strategic theme",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5815\n\nperiod: Y2025",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button, add newObjective and add newKeyResult",
+        "data": "newObjective: TC-5815\n\nnewKeyResult: TC-5815",
+        "result": "Periods are automatically populated. New Objective TC-5815 is created under Strategic Theme TC-5815. New Key result is created under Objective"
+      },
+      {
+        "step": 6,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5815 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 7,
+        "action": "Expand the list and click on keyResult",
+        "data": "",
+        "result": "Key Result details page is displayed\n\nAt the bottom of this page there are following buttons \n\n* Edit linked issues\n* Edit linked boxes\n* Trigger refresh"
+      },
+      {
+        "step": 8,
+        "action": "Click on Edit linked boxes button, add boxName and click Save",
+        "data": "boxName: TC-5815 SPM - Strategic areas - Checking links on Strategic Areas module",
+        "result": "Box TC-5815 is linked to KR TC-5815"
+      },
+      {
+        "step": 9,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "Strategic Themes list is displayed with following columns are values:\n\n* Key: values varies depending on instance\n* Strategic Theme: TC-5815\n* Owner: currentUser\n* Status: Not started\n* Progress: 0%\n* Sub-Theme: 0\n* Objectives: 1\n* Key Results: 1\n* Period Y2025\n\n\"Go to OKR\" button is placed on the top-right corner\n\n\"Back to Home\" button is placer above \"Go to OKR\" button"
+      },
+      {
+        "step": 10,
+        "action": "Click on link of your Key",
+        "data": "",
+        "result": "User is redirected to OKRs tab of TC-5815 Strategic Theme in Strategic areas module"
+      },
+      {
+        "step": 11,
+        "action": "Click on back button in your browser",
+        "data": "",
+        "result": "Strategic Theme list is displayed"
+      },
+      {
+        "step": 12,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5815",
+        "result": "User is redirected to OKRs tab of TC-5815 Strategic Theme in Strategic areas module"
+      },
+      {
+        "step": 13,
+        "action": "Click on Initatives tab",
+        "data": "",
+        "result": "Following columns are displayed with values:\n\n* Initative - TC-5815 SPM - Strategic areas - Checking links on Strategic Areas module\n* Status - NOT STARTED\n* Progress - 0 %\n* Leader - Paulina Sendecka\n* KR Name - KR key as a link and TC-5815\n* KR Period - Y2025\n* Budget - empty\n* Actucal cost - empty\n* Remaining cost - empty\n* Start date - 2025-11-12\n* End date - 2025-11-12"
+      },
+      {
+        "step": 14,
+        "action": "Click on krNameKey",
+        "data": "krNameKey: depends on the instance",
+        "result": "User is redirected to Details page of KR TC-5815 of a box TC-5815 in OKR module"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-5815",
+    "text": "Test: TC-5815 — SPM - Strategic areas  - Checking links on Strategic Areas module\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: spm-paulina-tc\n\nDescription:\nProject with few tasks\n\nSteps:\n1. Navigate to OKR module of ROOT (Main) box\n   Expected: OKR module is displayed\n2. Click on Add button\n   Expected: Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)\n3. Click Create strategic theme\n   Expected: New Strategic theme modal is displayed\n4. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5815\n\nperiod: Y2025\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n5. Click on Plus button, add newObjective and add newKeyResult\n   Data: newObjective: TC-5815\n\nnewKeyResult: TC-5815\n   Expected: Periods are automatically populated. New Objective TC-5815 is created under Strategic Theme TC-5815. New Key result is created under Objective\n6. Click Finish & go back\n   Expected: Strategic Theme TC-5815 is displayed on the list with expand button next to it\n7. Expand the list and click on keyResult\n   Expected: Key Result details page is displayed\n\nAt the bottom of this page there are following buttons \n\n* Edit linked issues\n* Edit linked boxes\n* Trigger refresh\n8. Click on Edit linked boxes button, add boxName and click Save\n   Data: boxName: TC-5815 SPM - Strategic areas - Checking links on Strategic Areas module\n   Expected: Box TC-5815 is linked to KR TC-5815\n9. Click Strategic Areas on the left panel (above Settings)\n   Expected: Strategic Themes list is displayed with following columns are values:\n\n* Key: values varies depending on instance\n* Strategic Theme: TC-5815\n* Owner: currentUser\n* Status: Not started\n* Progress: 0%\n* Sub-Theme: 0\n* Objectives: 1\n* Key Results: 1\n* Period Y2025\n\n\"Go to OKR\" button is placed on the top-right corner\n\n\"Back to Home\" button is placer above \"Go to OKR\" button\n10. Click on link of your Key\n   Expected: User is redirected to OKRs tab of TC-5815 Strategic Theme in Strategic areas module\n11. Click on back button in your browser\n   Expected: Strategic Theme list is displayed\n12. Click on strategicThemeName\n   Data: strategicThemeName: TC-5815\n   Expected: User is redirected to OKRs tab of TC-5815 Strategic Theme in Strategic areas module\n13. Click on Initatives tab\n   Expected: Following columns are displayed with values:\n\n* Initative - TC-5815 SPM - Strategic areas - Checking links on Strategic Areas module\n* Status - NOT STARTED\n* Progress - 0 %\n* Leader - Paulina Sendecka\n* KR Name - KR key as a link and TC-5815\n* KR Period - Y2025\n* Budget - empty\n* Actucal cost - empty\n* Remaining cost - empty\n* Start date - 2025-11-12\n* End date - 2025-11-12\n14. Click on krNameKey\n   Data: krNameKey: depends on the instance\n   Expected: User is redirected to Details page of KR TC-5815 of a box TC-5815 in OKR module",
+    "metadata": {
+      "jira_key": "TC-5815",
+      "issue_id": "1400423",
+      "summary": "SPM - Strategic areas  - Checking links on Strategic Areas module",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "spm-paulina-tc"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

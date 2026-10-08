@@ -1,0 +1,119 @@
+{
+  "test": {
+    "key": "TC-3714",
+    "issue_id": "359040",
+    "url": "https://appfire.atlassian.net/browse/TC-3714",
+    "summary": "Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2022-11-28T05:57:22.887-0500",
+    "updated": "2026-06-18T05:47:36.877-0400",
+    "labels": [
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Overview module of Root Box.",
+        "data": "",
+        "result": "Overview module loads and boxes are displayed."
+      },
+      {
+        "step": 2,
+        "action": "Open the \"View\" dropdown menu and select \"Show Archived boxes\" option.",
+        "data": "",
+        "result": "Option is selected and archived Boxes are displayed in the Hierarchy."
+      },
+      {
+        "step": 3,
+        "action": "Navigate to the Gantt module of the boxName.",
+        "data": "boxName: TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box",
+        "result": "Gantt module is displayed with 3 tasks:\n\n- TC3714-1 Summary to change\n- TC3714-2 Status TO DO to change\n- TC3714-3 Status DONE to change"
+      },
+      {
+        "step": 4,
+        "action": "Click on key of taskName",
+        "data": "taskName: Summary to change",
+        "result": "Jira issue view is opened"
+      },
+      {
+        "step": 5,
+        "action": "Change summary to newSummary and go back to Gantt",
+        "data": "newSummary: Highway to hell",
+        "result": "No change is visible on Gantt"
+      },
+      {
+        "step": 6,
+        "action": "Click on key of taskName",
+        "data": "taskName: Status TO DO to change",
+        "result": "Jira issue view is opened"
+      },
+      {
+        "step": 7,
+        "action": "Change status to newStatus and go back to Gantt",
+        "data": "newStatus: IN PROGRESS",
+        "result": "No change is visible on Gantt"
+      },
+      {
+        "step": 8,
+        "action": "Click on key of taskName",
+        "data": "taskName: Status DONE to change",
+        "result": "Jira issue view is opened"
+      },
+      {
+        "step": 9,
+        "action": "# Change status to newStatus and go back to Gantt",
+        "data": "newStatus: TO DO",
+        "result": "No change is visible on Gantt"
+      },
+      {
+        "step": 10,
+        "action": "In new tab navigate to Overview module of Root Box in the Hierarchy mode and search for the boxName",
+        "data": "TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box",
+        "result": "Overview module loads and boxes are displayed."
+      },
+      {
+        "step": 11,
+        "action": "Click on the wrench button of the boxName and click on Restore button",
+        "data": "TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box",
+        "result": "Box is restored"
+      },
+      {
+        "step": 12,
+        "action": "Navigate to the tab with Gantt module of the boxName (do not refresh page)",
+        "data": "boxName: TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box",
+        "result": "Gantt module is displayed with 3 tasks:\n\n- TC3714-1 Highway to hell\n- TC3714-2 Status TO DO to change in DONE status\n- TC3714-3 Status DONE to change in TO DO status"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-3714",
+    "text": "Test: TC-3714 — Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-66 Feature area - Task - Attributes displaying and editing\nLabels: teamtree\n\nSteps:\n1. Navigate to Overview module of Root Box.\n   Expected: Overview module loads and boxes are displayed.\n2. Open the \"View\" dropdown menu and select \"Show Archived boxes\" option.\n   Expected: Option is selected and archived Boxes are displayed in the Hierarchy.\n3. Navigate to the Gantt module of the boxName.\n   Data: boxName: TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box\n   Expected: Gantt module is displayed with 3 tasks:\n\n- TC3714-1 Summary to change\n- TC3714-2 Status TO DO to change\n- TC3714-3 Status DONE to change\n4. Click on key of taskName\n   Data: taskName: Summary to change\n   Expected: Jira issue view is opened\n5. Change summary to newSummary and go back to Gantt\n   Data: newSummary: Highway to hell\n   Expected: No change is visible on Gantt\n6. Click on key of taskName\n   Data: taskName: Status TO DO to change\n   Expected: Jira issue view is opened\n7. Change status to newStatus and go back to Gantt\n   Data: newStatus: IN PROGRESS\n   Expected: No change is visible on Gantt\n8. Click on key of taskName\n   Data: taskName: Status DONE to change\n   Expected: Jira issue view is opened\n9. # Change status to newStatus and go back to Gantt\n   Data: newStatus: TO DO\n   Expected: No change is visible on Gantt\n10. In new tab navigate to Overview module of Root Box in the Hierarchy mode and search for the boxName\n   Data: TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box\n   Expected: Overview module loads and boxes are displayed.\n11. Click on the wrench button of the boxName and click on Restore button\n   Data: TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box\n   Expected: Box is restored\n12. Navigate to the tab with Gantt module of the boxName (do not refresh page)\n   Data: boxName: TC-3714 Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box\n   Expected: Gantt module is displayed with 3 tasks:\n\n- TC3714-1 Highway to hell\n- TC3714-2 Status TO DO to change in DONE status\n- TC3714-3 Status DONE to change in TO DO status",
+    "metadata": {
+      "jira_key": "TC-3714",
+      "issue_id": "359040",
+      "summary": "Feature area - Task - Attributes displaying and editing - Live sync - Editing task in restored box",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-66 Feature area - Task - Attributes displaying and editing",
+      "labels": [
+        "teamtree"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

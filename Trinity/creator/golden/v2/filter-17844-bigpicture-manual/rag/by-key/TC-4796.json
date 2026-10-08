@@ -1,0 +1,127 @@
+{
+  "test": {
+    "key": "TC-4796",
+    "issue_id": "821636",
+    "url": "https://appfire.atlassian.net/browse/TC-4796",
+    "summary": "Global - Online Presence (live sync) - Checking Online Presence on different modules",
+    "description": "On BigGantt please perform first 7 steps of this Test Case",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Mateusz Koman",
+    "reporter": "Mateusz Koman",
+    "created": "2024-08-01T04:59:17.198-0400",
+    "updated": "2026-04-10T07:57:03.407-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-118 Global - Online Presence (live sync)",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App settings > Performance > Live sync and scroll down to the bottom of the page",
+        "data": "",
+        "result": "Live sync tab in App configuration is opened. \n\nOnline presence section is visible with following text:\n\nWondering who's with you on PI Planning session? With the brand new presence feature, it's super-easy to meet up with your teammates online! Their avatars will show up at the top of the page. Soon, you’ll chat with each other!\n\nAn inactive toogle. Next to toggle there is following text: Enable online presence"
+      },
+      {
+        "step": 2,
+        "action": "Click on toggle next to text and then click Save",
+        "data": "text: Enable online presence",
+        "result": "Toggle turns green"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Overview module of boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Overview module displayed"
+      },
+      {
+        "step": 4,
+        "action": "Open incognito browser window. Log in the same instance as userName and navigate to Overview module of boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\nuserName: boxadmin (On JC - testlab.10)",
+        "result": "Overview module is displayed\n\nAfter a while in both windows avatar shows up next to module switcher"
+      },
+      {
+        "step": 5,
+        "action": "Hover over this avatar in both browser windows",
+        "data": "",
+        "result": "*On Jira Cloud*\n\n# In window where you logged as boxAdmin during hover shows up tooltip with testlab.1\n# In window where you logged as JiraAdmin during hover shows up tooltip with testlab.10\n\n*On Jira Server:*\n\n# In window where you logged as boxadmin during hover shows up tooltip with admin\n# In window where you logged as admin during hover shows up tooltip with boxadmin"
+      },
+      {
+        "step": 6,
+        "action": "In one of the browser window navigate to Gantt module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 7,
+        "action": "In one of the browser window navigate to Scope module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 8,
+        "action": "In one of the browser window navigate to Board module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 9,
+        "action": "In one of the browser window navigate to Objectives module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 10,
+        "action": "In one of the browser window navigate to Resources module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 11,
+        "action": "In one of the browser window navigate to Teams module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 12,
+        "action": "In one of the browser window navigate to Risks module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 13,
+        "action": "In one of the browser window navigate to Calendar module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      },
+      {
+        "step": 14,
+        "action": "In one of the browser window navigate to Reports module of the boxName",
+        "data": "boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules",
+        "result": "Avatar is still visible next to module switcher in both browser's window"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-4796",
+    "text": "Test: TC-4796 — Global - Online Presence (live sync) - Checking Online Presence on different modules\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-118 Global - Online Presence (live sync)\n\nDescription:\nOn BigGantt please perform first 7 steps of this Test Case\n\nSteps:\n1. Navigate to App settings > Performance > Live sync and scroll down to the bottom of the page\n   Expected: Live sync tab in App configuration is opened. \n\nOnline presence section is visible with following text:\n\nWondering who's with you on PI Planning session? With the brand new presence feature, it's super-easy to meet up with your teammates online! Their avatars will show up at the top of the page. Soon, you’ll chat with each other!\n\nAn inactive toogle. Next to toggle there is following text: Enable online presence\n2. Click on toggle next to text and then click Save\n   Data: text: Enable online presence\n   Expected: Toggle turns green\n3. Navigate to Overview module of boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Overview module displayed\n4. Open incognito browser window. Log in the same instance as userName and navigate to Overview module of boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\nuserName: boxadmin (On JC - testlab.10)\n   Expected: Overview module is displayed\n\nAfter a while in both windows avatar shows up next to module switcher\n5. Hover over this avatar in both browser windows\n   Expected: *On Jira Cloud*\n\n# In window where you logged as boxAdmin during hover shows up tooltip with testlab.1\n# In window where you logged as JiraAdmin during hover shows up tooltip with testlab.10\n\n*On Jira Server:*\n\n# In window where you logged as boxadmin during hover shows up tooltip with admin\n# In window where you logged as admin during hover shows up tooltip with boxadmin\n6. In one of the browser window navigate to Gantt module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n7. In one of the browser window navigate to Scope module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n8. In one of the browser window navigate to Board module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n9. In one of the browser window navigate to Objectives module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n10. In one of the browser window navigate to Resources module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n11. In one of the browser window navigate to Teams module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n12. In one of the browser window navigate to Risks module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n13. In one of the browser window navigate to Calendar module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window\n14. In one of the browser window navigate to Reports module of the boxName\n   Data: boxName: TC-4356 Global - Online Presence (live sync) - Checking Online Presence on different modules\n   Expected: Avatar is still visible next to module switcher in both browser's window",
+    "metadata": {
+      "jira_key": "TC-4796",
+      "issue_id": "821636",
+      "summary": "Global - Online Presence (live sync) - Checking Online Presence on different modules",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-118 Global - Online Presence (live sync)",
+      "labels": [],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

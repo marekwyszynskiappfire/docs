@@ -1,0 +1,137 @@
+{
+  "test": {
+    "key": "TC-4565",
+    "issue_id": "814727",
+    "url": "https://appfire.atlassian.net/browse/TC-4565",
+    "summary": "Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2024-07-22T10:05:47.262-0400",
+    "updated": "2026-05-19T17:40:18.779-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Resources module of a boxName",
+        "data": "boxName: TC-4739  Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived",
+        "result": "Resources module is displayed\n\nTimeline starts at 01/June/2024\n\nFollowing users are displayed:\n\n* TC-4739A\n* TC-4739B\n\nTask 1 is assigned to user TC-4739A"
+      },
+      {
+        "step": 2,
+        "action": "Click on Weekly dropdown menu button and select newAggregation",
+        "data": "newAggregation: Daily",
+        "result": "Daily aggregation is selected"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Administration -> Resources -> Individuals and click on three dots next to Full name column, type userName and select",
+        "data": "userName: TC-4739A",
+        "result": "User TC-4739A is selected"
+      },
+      {
+        "step": 4,
+        "action": "Click on Archive button",
+        "data": "",
+        "result": "Following message is displayed: \n\n'After archiving, this resource's capacity will be zero, and team’s availability will be set as Unavailable from the archive date. You can restore it anytime, but team availability must be manually adjusted'\n\nArchive and Cancel button is displayed"
+      },
+      {
+        "step": 5,
+        "action": "Click Archive",
+        "data": "",
+        "result": "Resource TC-4739A is archived"
+      },
+      {
+        "step": 6,
+        "action": "Click on three dots next to Archived column and select Archived",
+        "data": "",
+        "result": "Both Empty value and Archived options are selected"
+      },
+      {
+        "step": 7,
+        "action": "Go back to Resources module of a boxName and click Today on timeline",
+        "data": "boxName: TC-4739  Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived",
+        "result": "Resources module is displayed\n\nUser TC-4739A dissapears"
+      },
+      {
+        "step": 8,
+        "action": "Click the filter panel on the left header menu. Expand the Individuals section and uncheck the Hide archived individuals option",
+        "data": "",
+        "result": "User TC-4739A appears with 'Archived' label"
+      },
+      {
+        "step": 9,
+        "action": "Hover over Archived label",
+        "data": "",
+        "result": "Tooltip 'Since archivization date (current date) this resource capacity is set to zero' is displayed"
+      },
+      {
+        "step": 10,
+        "action": "Click on capacity lozenge of date of userName",
+        "data": "userName: TC-4739A\n\ndate: Today's date",
+        "result": "Capacity details dialog is displayed\n\n'Archived' label is displayed next to userName TC-4739A\n\nFollowing data is displayed:\n\n'Resource Archived' in cursive in 'Factor' column\n\n'Since (today's date)' in 'Details' column"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to Administration -> Resources -> Individuals and click on Restore resource button next to userName",
+        "data": "userName: TC-4739A",
+        "result": "Following message is displayed \n\n'After restoration, the resource's capacity will return if a resource is not assigned to any team. Teams availability will remain Unavailable, and you can manually adjust it in the Teams module.'\n\nRestore and Cancel button is displayed"
+      },
+      {
+        "step": 12,
+        "action": "Click on Restore button",
+        "data": "",
+        "result": "Resource TC-4739A is restored"
+      },
+      {
+        "step": 13,
+        "action": "Navigate back to Resources module of a boxName",
+        "data": "boxName: TC-4739  Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived",
+        "result": "Resource module is displayed"
+      },
+      {
+        "step": 14,
+        "action": "Click on Calendar and set newStartDate of timeline",
+        "data": "newStartDate: 01/Jun/24",
+        "result": "Timeline is changed to 01/Jun/24"
+      },
+      {
+        "step": 15,
+        "action": "Click on capacity lozenge of userName date",
+        "data": "userName: TC-4739A\n\ndate: 14/Jun/2024",
+        "result": "Team membership is 100%"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 15
+  },
+  "rag": {
+    "id": "TC-4565",
+    "text": "Test: TC-4565 — Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-471 Box Module - Resources - New Resource Grid\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Resources module of a boxName\n   Data: boxName: TC-4739  Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived\n   Expected: Resources module is displayed\n\nTimeline starts at 01/June/2024\n\nFollowing users are displayed:\n\n* TC-4739A\n* TC-4739B\n\nTask 1 is assigned to user TC-4739A\n2. Click on Weekly dropdown menu button and select newAggregation\n   Data: newAggregation: Daily\n   Expected: Daily aggregation is selected\n3. Navigate to Administration -> Resources -> Individuals and click on three dots next to Full name column, type userName and select\n   Data: userName: TC-4739A\n   Expected: User TC-4739A is selected\n4. Click on Archive button\n   Expected: Following message is displayed: \n\n'After archiving, this resource's capacity will be zero, and team’s availability will be set as Unavailable from the archive date. You can restore it anytime, but team availability must be manually adjusted'\n\nArchive and Cancel button is displayed\n5. Click Archive\n   Expected: Resource TC-4739A is archived\n6. Click on three dots next to Archived column and select Archived\n   Expected: Both Empty value and Archived options are selected\n7. Go back to Resources module of a boxName and click Today on timeline\n   Data: boxName: TC-4739  Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived\n   Expected: Resources module is displayed\n\nUser TC-4739A dissapears\n8. Click the filter panel on the left header menu. Expand the Individuals section and uncheck the Hide archived individuals option\n   Expected: User TC-4739A appears with 'Archived' label\n9. Hover over Archived label\n   Expected: Tooltip 'Since archivization date (current date) this resource capacity is set to zero' is displayed\n10. Click on capacity lozenge of date of userName\n   Data: userName: TC-4739A\n\ndate: Today's date\n   Expected: Capacity details dialog is displayed\n\n'Archived' label is displayed next to userName TC-4739A\n\nFollowing data is displayed:\n\n'Resource Archived' in cursive in 'Factor' column\n\n'Since (today's date)' in 'Details' column\n11. Navigate to Administration -> Resources -> Individuals and click on Restore resource button next to userName\n   Data: userName: TC-4739A\n   Expected: Following message is displayed \n\n'After restoration, the resource's capacity will return if a resource is not assigned to any team. Teams availability will remain Unavailable, and you can manually adjust it in the Teams module.'\n\nRestore and Cancel button is displayed\n12. Click on Restore button\n   Expected: Resource TC-4739A is restored\n13. Navigate back to Resources module of a boxName\n   Data: boxName: TC-4739  Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived\n   Expected: Resource module is displayed\n14. Click on Calendar and set newStartDate of timeline\n   Data: newStartDate: 01/Jun/24\n   Expected: Timeline is changed to 01/Jun/24\n15. Click on capacity lozenge of userName date\n   Data: userName: TC-4739A\n\ndate: 14/Jun/2024\n   Expected: Team membership is 100%",
+    "metadata": {
+      "jira_key": "TC-4565",
+      "issue_id": "814727",
+      "summary": "Box Module - Resources - Resource Grid - Memberships availability is automatically changed to 0 when the user is set as archived",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-471 Box Module - Resources - New Resource Grid",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 15,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

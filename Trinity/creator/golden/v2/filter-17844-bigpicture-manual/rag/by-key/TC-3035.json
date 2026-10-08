@@ -1,0 +1,115 @@
+{
+  "test": {
+    "key": "TC-3035",
+    "issue_id": "360139",
+    "url": "https://appfire.atlassian.net/browse/TC-3035",
+    "summary": "Box Module - Overview - Manual sorting of Boxes",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Artur Sędzik",
+    "reporter": "Artur Sędzik",
+    "created": "2022-02-25T09:54:46.544-0500",
+    "updated": "2026-10-06T09:11:40.681-0400",
+    "labels": [
+      "ppm-e2e-cloud",
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-59 Box Module - Overview",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Overview module of boxName",
+        "data": "boxName: TC-3035 Main Box",
+        "result": "Overview module loads and the boxes are displayed in the folLowing order:\n- Bishop\n- Knight\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 2,
+        "action": "Open the \"Sort by\" dropdown and select the \"Manual\" option.",
+        "data": "",
+        "result": "\"Manual\" option is selected. \n\"Direction\" area disappears."
+      },
+      {
+        "step": 3,
+        "action": "Drag the \"Bishop\" Box and drop it between \"Knight\" and \"Pawn\" Boxes.",
+        "data": "",
+        "result": "The Boxes are displayed in the folLowing order:\n- Knight\n- Bishop\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 4,
+        "action": "Open the \"Sort by\" dropdown and select the \"Name\" option.",
+        "data": "",
+        "result": "The Boxes are displayed in the folLowing order:\n- Bishop\n- Knight\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 5,
+        "action": "Open the \"Sort by\" dropdown and select the \"Manual\" option.",
+        "data": "",
+        "result": "The Boxes are displayed in the folLowing order:\n- Knight\n- Bishop\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 6,
+        "action": "Hover the cursor between the \"Knight\" Box and the \"Bishop\" Box, click on the \"+\" button and create a new Box passing the folLowing data:",
+        "data": "boxName: King\nstartDate: 17/Mar/22\nendDate: 20/Mar/22",
+        "result": "The \"King\" Box is created and the Boxes are displayed in the folLowing order:\n- Knight\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 7,
+        "action": "In incognito mode navigate to Overview module of boxName, open the \"Sort by\" dropdown and select the \"Manual\" option.",
+        "data": "boxName: TC-3035 Main Box",
+        "result": "Overview module loads and the boxes are displayed in the folLowing order:\n- Knight\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 8,
+        "action": "Login as adminbox and navigate to Overview module of boxName",
+        "data": "login: adminbox\npassword: sdfoijj\nboxName: TC-3035 Main Box",
+        "result": "Overview module loads and the boxes are displayed in the folLowing order:\n- Bishop\n- Knight\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 9,
+        "action": "Create a new Box passing the folLowing set of data:",
+        "data": "boxName: ImOutOfPieces\nstartDate: 21/Mar/22\nendDate: 24/Mar/22",
+        "result": "The \"ImOutOfPieces\" Box is created and the Boxes are displayed in the folLowing order:\n- Bishop\n- ImOutOfPieces\n- Knight\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 10,
+        "action": "Login as Admin and navigate to Overview module of boxName",
+        "data": "login: Admin\npassword: sdfoijj\nboxName: TC-3035 Main Box",
+        "result": "Overview module loads and the boxes are displayed in the folLowing order:\n- ImOutOfPieces\n- Knight\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook"
+      },
+      {
+        "step": 11,
+        "action": "Drag the \"Knight\" Box and drop it under the \"Rook\" Box.",
+        "data": "",
+        "result": "The Boxes are displayed in the folLowing order:\n- ImOutOfPieces\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook\n- Knight"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-3035",
+    "text": "Test: TC-3035 — Box Module - Overview - Manual sorting of Boxes\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-59 Box Module - Overview\nLabels: ppm-e2e-cloud, teamboxes\n\nSteps:\n1. Navigate to Overview module of boxName\n   Data: boxName: TC-3035 Main Box\n   Expected: Overview module loads and the boxes are displayed in the folLowing order:\n- Bishop\n- Knight\n- Pawn\n- Queen\n- Rook\n2. Open the \"Sort by\" dropdown and select the \"Manual\" option.\n   Expected: \"Manual\" option is selected. \n\"Direction\" area disappears.\n3. Drag the \"Bishop\" Box and drop it between \"Knight\" and \"Pawn\" Boxes.\n   Expected: The Boxes are displayed in the folLowing order:\n- Knight\n- Bishop\n- Pawn\n- Queen\n- Rook\n4. Open the \"Sort by\" dropdown and select the \"Name\" option.\n   Expected: The Boxes are displayed in the folLowing order:\n- Bishop\n- Knight\n- Pawn\n- Queen\n- Rook\n5. Open the \"Sort by\" dropdown and select the \"Manual\" option.\n   Expected: The Boxes are displayed in the folLowing order:\n- Knight\n- Bishop\n- Pawn\n- Queen\n- Rook\n6. Hover the cursor between the \"Knight\" Box and the \"Bishop\" Box, click on the \"+\" button and create a new Box passing the folLowing data:\n   Data: boxName: King\nstartDate: 17/Mar/22\nendDate: 20/Mar/22\n   Expected: The \"King\" Box is created and the Boxes are displayed in the folLowing order:\n- Knight\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook\n7. In incognito mode navigate to Overview module of boxName, open the \"Sort by\" dropdown and select the \"Manual\" option.\n   Data: boxName: TC-3035 Main Box\n   Expected: Overview module loads and the boxes are displayed in the folLowing order:\n- Knight\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook\n8. Login as adminbox and navigate to Overview module of boxName\n   Data: login: adminbox\npassword: sdfoijj\nboxName: TC-3035 Main Box\n   Expected: Overview module loads and the boxes are displayed in the folLowing order:\n- Bishop\n- Knight\n- Pawn\n- Queen\n- Rook\n9. Create a new Box passing the folLowing set of data:\n   Data: boxName: ImOutOfPieces\nstartDate: 21/Mar/22\nendDate: 24/Mar/22\n   Expected: The \"ImOutOfPieces\" Box is created and the Boxes are displayed in the folLowing order:\n- Bishop\n- ImOutOfPieces\n- Knight\n- Pawn\n- Queen\n- Rook\n10. Login as Admin and navigate to Overview module of boxName\n   Data: login: Admin\npassword: sdfoijj\nboxName: TC-3035 Main Box\n   Expected: Overview module loads and the boxes are displayed in the folLowing order:\n- ImOutOfPieces\n- Knight\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook\n11. Drag the \"Knight\" Box and drop it under the \"Rook\" Box.\n   Expected: The Boxes are displayed in the folLowing order:\n- ImOutOfPieces\n- King\n- Bishop\n- Pawn\n- Queen\n- Rook\n- Knight",
+    "metadata": {
+      "jira_key": "TC-3035",
+      "issue_id": "360139",
+      "summary": "Box Module - Overview - Manual sorting of Boxes",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-59 Box Module - Overview",
+      "labels": [
+        "ppm-e2e-cloud",
+        "teamboxes"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

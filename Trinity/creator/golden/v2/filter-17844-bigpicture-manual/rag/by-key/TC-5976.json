@@ -1,0 +1,46 @@
+{
+  "test": {
+    "key": "TC-5976",
+    "issue_id": "1526928",
+    "url": "https://appfire.atlassian.net/browse/TC-5976",
+    "summary": "SPM - Dashboardhub - Configuration of Project Health report",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2026-02-10T09:28:20.041-0500",
+    "updated": "2026-04-13T03:51:32.711-0400",
+    "labels": [
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-504 Dashboardhub",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 0
+  },
+  "rag": {
+    "id": "TC-5976",
+    "text": "Test: TC-5976 — SPM - Dashboardhub - Configuration of Project Health report\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/SPM/TS-504 Dashboardhub\nLabels: teamsmile",
+    "metadata": {
+      "jira_key": "TC-5976",
+      "issue_id": "1526928",
+      "summary": "SPM - Dashboardhub - Configuration of Project Health report",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-504 Dashboardhub",
+      "labels": [
+        "teamsmile"
+      ],
+      "step_count": 0,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

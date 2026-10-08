@@ -1,0 +1,89 @@
+{
+  "test": {
+    "key": "TC-2942",
+    "issue_id": "358289",
+    "url": "https://appfire.atlassian.net/browse/TC-2942",
+    "summary": "Global - Dashboard Item - Calendar - Adding gadget to Jira dashboard",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Ilya Rybakou",
+    "created": "2022-02-02T10:13:04.933-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "teamrocket"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-400 Global - Dashboard Item",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to dashboardName",
+        "data": "dashboardName: TC-2942 Global - Dashboard Item - Calendar - Adding gadget to Jira dashboard",
+        "result": "Empty Jira dashboard page is displayed."
+      },
+      {
+        "step": 2,
+        "action": "Click Edit button to add gadget",
+        "data": "",
+        "result": "Add a Gadget window appears.\n\nList of available gadgets is visible."
+      },
+      {
+        "step": 3,
+        "action": "Search for dashboardItemName",
+        "data": "dashboardItemName: BigPicture Calendar",
+        "result": "BigPicture Calendar gadget is displayed on the list."
+      },
+      {
+        "step": 4,
+        "action": "Click on Add button next to BigPicture Calendar",
+        "data": "",
+        "result": "Dashboard item BigPicture Calendar is added to the dashboard.\nFollowing elements are displayed:\n\n* Box: Main\n* Height: 400 px\n* Layout: Regular\n* Advanced option collapsed accordion\n* Save button inactive"
+      },
+      {
+        "step": 5,
+        "action": "Select boxName from the Box dropdown",
+        "data": "boxName: TC-2942 Global - Dashboard Item - Calendar",
+        "result": "Name of box is displayed as selected box. Save button is active."
+      },
+      {
+        "step": 6,
+        "action": "Click Save button",
+        "data": "",
+        "result": "BigPicture Calendar gadget is displayed.\nFollowing elements are displayed:\n\n* name: BigPicture Gantt\n* info banner with current box: TC-2942 Global - Dashboard Item - Calendar and filter icon\n* *June 20, 2033* with one task below \nTC-2942 Story"
+      },
+      {
+        "step": 7,
+        "action": "Click Done",
+        "data": "",
+        "result": "BigPicture Calendar gadget is displayed.\nFollowing elements are displayed:\n\n* name: BigPicture Gantt\n* info banner with current box: TC-2942 Global - Dashboard Item - Calendar and filter icon\n* *June 20, 2033* with one task below \nTC-2942 Story"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-2942",
+    "text": "Test: TC-2942 — Global - Dashboard Item - Calendar - Adding gadget to Jira dashboard\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-400 Global - Dashboard Item\nLabels: teamrocket\n\nSteps:\n1. Navigate to dashboardName\n   Data: dashboardName: TC-2942 Global - Dashboard Item - Calendar - Adding gadget to Jira dashboard\n   Expected: Empty Jira dashboard page is displayed.\n2. Click Edit button to add gadget\n   Expected: Add a Gadget window appears.\n\nList of available gadgets is visible.\n3. Search for dashboardItemName\n   Data: dashboardItemName: BigPicture Calendar\n   Expected: BigPicture Calendar gadget is displayed on the list.\n4. Click on Add button next to BigPicture Calendar\n   Expected: Dashboard item BigPicture Calendar is added to the dashboard.\nFollowing elements are displayed:\n\n* Box: Main\n* Height: 400 px\n* Layout: Regular\n* Advanced option collapsed accordion\n* Save button inactive\n5. Select boxName from the Box dropdown\n   Data: boxName: TC-2942 Global - Dashboard Item - Calendar\n   Expected: Name of box is displayed as selected box. Save button is active.\n6. Click Save button\n   Expected: BigPicture Calendar gadget is displayed.\nFollowing elements are displayed:\n\n* name: BigPicture Gantt\n* info banner with current box: TC-2942 Global - Dashboard Item - Calendar and filter icon\n* *June 20, 2033* with one task below \nTC-2942 Story\n7. Click Done\n   Expected: BigPicture Calendar gadget is displayed.\nFollowing elements are displayed:\n\n* name: BigPicture Gantt\n* info banner with current box: TC-2942 Global - Dashboard Item - Calendar and filter icon\n* *June 20, 2033* with one task below \nTC-2942 Story",
+    "metadata": {
+      "jira_key": "TC-2942",
+      "issue_id": "358289",
+      "summary": "Global - Dashboard Item - Calendar - Adding gadget to Jira dashboard",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-400 Global - Dashboard Item",
+      "labels": [
+        "teamrocket"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

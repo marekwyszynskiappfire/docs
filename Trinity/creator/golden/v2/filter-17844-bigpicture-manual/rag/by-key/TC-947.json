@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-947",
+    "issue_id": "357710",
+    "url": "https://appfire.atlassian.net/browse/TC-947",
+    "summary": "Feature area - Box scope - Scope definition - Modules view after revoke trello permissions",
+    "description": "For this test case please *don't use* team-qa trello account.\n\nYou can create your own trello account for free on trello.com according to this [*instruction.*|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+create+Trello+account]\n\nIf you don't know how to add trello to scope definition you can read it [*here*|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+add+Trello+extPlatform]\n\n ",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Piotr Zadora {Appfire}",
+    "created": "2020-12-24T07:33:49.397-0500",
+    "updated": "2026-06-18T05:52:58.743-0400",
+    "labels": [
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "In Overview module of box HOME create a new box with scope type OWN with boxName",
+        "data": "boxName: TC-947 Revoke Trello",
+        "result": "New box with boxName is created"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to the Gantt module and  add taskName basic task",
+        "data": "taskName: Basic",
+        "result": "Basic task is created"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Box Configration -> Tasks -> Scope definition tab of boxName",
+        "data": "boxName: TC-947 Revoke Trello",
+        "result": "Scope definition tab is displayed with JIRA section and button [add new integration] on the right from [save] button."
+      },
+      {
+        "step": 4,
+        "action": "Click on [add new integration] button and add trello extplatform then click save",
+        "data": "Please *don't use* team-qa trello account for this TC\n\ninstruction how to add trello is *[here|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+add+Trello+extPlatform]*",
+        "result": "Trello extplatform is added to scope definition"
+      },
+      {
+        "step": 5,
+        "action": "Add any Board from Trello at the Automatic rules\nClick Save button",
+        "data": "",
+        "result": "Tasks successfully added to the scope of the box"
+      },
+      {
+        "step": 6,
+        "action": "Navigate to the Gantt module",
+        "data": "",
+        "result": "Tasks from Trello are visible on the Gantt chart and at the WBS"
+      },
+      {
+        "step": 7,
+        "action": "In new tab open trello account from step 3 then click on your avatar on the right top corner of the screen",
+        "data": "",
+        "result": "Drop down list is displayed."
+      },
+      {
+        "step": 8,
+        "action": "Click on settings option then under [Aplication] setting next to BigPicture click on *[REVOKE]* button",
+        "data": "",
+        "result": "BigPicture dissappears form the list"
+      },
+      {
+        "step": 9,
+        "action": "Go back to BigPicture app Gantt module",
+        "data": "boxName: TC-947 Revoke Trello",
+        "result": "All tasks are visible and treated as \"no access\" when extPlatform is invalid."
+      },
+      {
+        "step": 10,
+        "action": "Click wrench icon in Status column and change aggregation to Children statuses in %",
+        "data": "",
+        "result": "Aggregation has changed"
+      },
+      {
+        "step": 11,
+        "action": "Go to the Board module.",
+        "data": "",
+        "result": "All tasks are visible and treated as \"no access\" when extPlatform is invalid."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-947",
+    "text": "Test: TC-947 — Feature area - Box scope - Scope definition - Modules view after revoke trello permissions\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-25 Feature area - Box scope - Own scope definition\nLabels: teamtree\n\nDescription:\nFor this test case please *don't use* team-qa trello account.\n\nYou can create your own trello account for free on trello.com according to this [*instruction.*|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+create+Trello+account]\n\nIf you don't know how to add trello to scope definition you can read it [*here*|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+add+Trello+extPlatform]\n\n \n\nSteps:\n1. In Overview module of box HOME create a new box with scope type OWN with boxName\n   Data: boxName: TC-947 Revoke Trello\n   Expected: New box with boxName is created\n2. Navigate to the Gantt module and  add taskName basic task\n   Data: taskName: Basic\n   Expected: Basic task is created\n3. Navigate to Box Configration -> Tasks -> Scope definition tab of boxName\n   Data: boxName: TC-947 Revoke Trello\n   Expected: Scope definition tab is displayed with JIRA section and button [add new integration] on the right from [save] button.\n4. Click on [add new integration] button and add trello extplatform then click save\n   Data: Please *don't use* team-qa trello account for this TC\n\ninstruction how to add trello is *[here|https://wiki.softwareplant.com/display/SOFTWAREPLANT/How+to+add+Trello+extPlatform]*\n   Expected: Trello extplatform is added to scope definition\n5. Add any Board from Trello at the Automatic rules\nClick Save button\n   Expected: Tasks successfully added to the scope of the box\n6. Navigate to the Gantt module\n   Expected: Tasks from Trello are visible on the Gantt chart and at the WBS\n7. In new tab open trello account from step 3 then click on your avatar on the right top corner of the screen\n   Expected: Drop down list is displayed.\n8. Click on settings option then under [Aplication] setting next to BigPicture click on *[REVOKE]* button\n   Expected: BigPicture dissappears form the list\n9. Go back to BigPicture app Gantt module\n   Data: boxName: TC-947 Revoke Trello\n   Expected: All tasks are visible and treated as \"no access\" when extPlatform is invalid.\n10. Click wrench icon in Status column and change aggregation to Children statuses in %\n   Expected: Aggregation has changed\n11. Go to the Board module.\n   Expected: All tasks are visible and treated as \"no access\" when extPlatform is invalid.",
+    "metadata": {
+      "jira_key": "TC-947",
+      "issue_id": "357710",
+      "summary": "Feature area - Box scope - Scope definition - Modules view after revoke trello permissions",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+      "labels": [
+        "teamtree"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

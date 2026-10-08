@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-4417",
+    "issue_id": "814575",
+    "url": "https://appfire.atlassian.net/browse/TC-4417",
+    "summary": "Box module - Gantt - Basic operations - Scheduling tasks without dates using phantom task",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Małgorzata Szkudlarek",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:01:37.016-0400",
+    "updated": "2026-04-10T06:07:48.301-0400",
+    "labels": [
+      "tc-tasks-no-dates"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Go to the Gantt module of boxName",
+        "data": "boxName: TC-4417 Box module - Gantt - Basic operations - Scheduling tasks without dates using phantom task",
+        "result": "Gantt module is loaded. There are 5 tasks on WBS:\n\n* TC4417 Task 1\n* TC4417 Basic Task\n* TC4417 Milestone\n* TC4417 Parent Task\n** TC4417 Child Task\n\nLowest of tasks is visible on the Gantt chart. Column view Task scheduling is active"
+      },
+      {
+        "step": 2,
+        "action": "Hover on the chart over the row corresponding with taskName",
+        "data": "taskName: TC4417 Task 1",
+        "result": "One-day-long phantom task is displayed while hovering over the chart. Dates next to the taskbar are changing according to the position on the timeline."
+      },
+      {
+        "step": 3,
+        "action": "Move the cursor so dates next to the taskbar display date1 and click on the chart",
+        "data": "date1: 01/Sep/2023",
+        "result": "TC4417 Task 1 is scheduled. Task is constantly displayed on the chart. Start date and end date columns on the WBS have value \"01/Sep/2023\""
+      },
+      {
+        "step": 4,
+        "action": "Click \"Zoom out\" button above the timeline on the right side.",
+        "data": "",
+        "result": "Scale on the chart is changed. Months are visible as Lowest interval."
+      },
+      {
+        "step": 5,
+        "action": "Hover on the chart over the row corresponding with taskName",
+        "data": "taskName: TC4417 Basic Task",
+        "result": "One-month-long phantom task is displayed while hovering over the chart. Dates next to the taskbar are changing according to the position on the timeline."
+      },
+      {
+        "step": 6,
+        "action": "Move the cursor so date on the left side of the taskbar display startDate1 and click on the chart",
+        "data": "startDate: 01/Aug/2023",
+        "result": "TC4417 Basic Task is scheduled. Task is constantly displayed on the chart. Start date has value \"01/Aug/2023\"  and end date is \"31Aug/2023\""
+      },
+      {
+        "step": 7,
+        "action": "Click \"Zoom out\" button three times.",
+        "data": "",
+        "result": "Scale on the chart is changed. Quarters are visible as Lowest interval."
+      },
+      {
+        "step": 8,
+        "action": "Hover on the chart over the row corresponding with taskName",
+        "data": "taskName: TC4417 Milestone",
+        "result": "Phantom task shaped like milestone is displayed while hovering over the chart. Date is displayed only on the left side of the taskbar. Date is changing according to the position on the timeline."
+      },
+      {
+        "step": 9,
+        "action": "Move the cursor so the date on the left side of the taskbar display startDate1 and click on the chart",
+        "data": "startDate: 15/Sep/2023",
+        "result": "TC4417 Milestone is scheduled. Task is constantly displayed on the chart. Start date and end date have value \"15/Sep/2023\""
+      },
+      {
+        "step": 10,
+        "action": "Hover on the chart over the row corresponding with taskName",
+        "data": "taskName: TC4417 Child Task",
+        "result": "One-quarter-long phantom task is displayed while hovering over the chart. Dates next to the taskbar are changing according to the position on the timeline."
+      },
+      {
+        "step": 11,
+        "action": "Move the cursor so date on the left side of the taskbar display startDate1 and click on the chart",
+        "data": "startDate: 01/Sep/2023",
+        "result": "TC4417 Child Task and TC4417 Parent Task are scheduled. Both task are constantly displayed on the chart. Start date has value \"01/Sep/2023\"  and end date is \"30/Nov/2023\" for both tasks"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-4417",
+    "text": "Test: TC-4417 — Box module - Gantt - Basic operations - Scheduling tasks without dates using phantom task\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-52 Box Module - Gantt - Basic operations\nLabels: tc-tasks-no-dates\n\nSteps:\n1. Go to the Gantt module of boxName\n   Data: boxName: TC-4417 Box module - Gantt - Basic operations - Scheduling tasks without dates using phantom task\n   Expected: Gantt module is loaded. There are 5 tasks on WBS:\n\n* TC4417 Task 1\n* TC4417 Basic Task\n* TC4417 Milestone\n* TC4417 Parent Task\n** TC4417 Child Task\n\nLowest of tasks is visible on the Gantt chart. Column view Task scheduling is active\n2. Hover on the chart over the row corresponding with taskName\n   Data: taskName: TC4417 Task 1\n   Expected: One-day-long phantom task is displayed while hovering over the chart. Dates next to the taskbar are changing according to the position on the timeline.\n3. Move the cursor so dates next to the taskbar display date1 and click on the chart\n   Data: date1: 01/Sep/2023\n   Expected: TC4417 Task 1 is scheduled. Task is constantly displayed on the chart. Start date and end date columns on the WBS have value \"01/Sep/2023\"\n4. Click \"Zoom out\" button above the timeline on the right side.\n   Expected: Scale on the chart is changed. Months are visible as Lowest interval.\n5. Hover on the chart over the row corresponding with taskName\n   Data: taskName: TC4417 Basic Task\n   Expected: One-month-long phantom task is displayed while hovering over the chart. Dates next to the taskbar are changing according to the position on the timeline.\n6. Move the cursor so date on the left side of the taskbar display startDate1 and click on the chart\n   Data: startDate: 01/Aug/2023\n   Expected: TC4417 Basic Task is scheduled. Task is constantly displayed on the chart. Start date has value \"01/Aug/2023\"  and end date is \"31Aug/2023\"\n7. Click \"Zoom out\" button three times.\n   Expected: Scale on the chart is changed. Quarters are visible as Lowest interval.\n8. Hover on the chart over the row corresponding with taskName\n   Data: taskName: TC4417 Milestone\n   Expected: Phantom task shaped like milestone is displayed while hovering over the chart. Date is displayed only on the left side of the taskbar. Date is changing according to the position on the timeline.\n9. Move the cursor so the date on the left side of the taskbar display startDate1 and click on the chart\n   Data: startDate: 15/Sep/2023\n   Expected: TC4417 Milestone is scheduled. Task is constantly displayed on the chart. Start date and end date have value \"15/Sep/2023\"\n10. Hover on the chart over the row corresponding with taskName\n   Data: taskName: TC4417 Child Task\n   Expected: One-quarter-long phantom task is displayed while hovering over the chart. Dates next to the taskbar are changing according to the position on the timeline.\n11. Move the cursor so date on the left side of the taskbar display startDate1 and click on the chart\n   Data: startDate: 01/Sep/2023\n   Expected: TC4417 Child Task and TC4417 Parent Task are scheduled. Both task are constantly displayed on the chart. Start date has value \"01/Sep/2023\"  and end date is \"30/Nov/2023\" for both tasks",
+    "metadata": {
+      "jira_key": "TC-4417",
+      "issue_id": "814575",
+      "summary": "Box module - Gantt - Basic operations - Scheduling tasks without dates using phantom task",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+      "labels": [
+        "tc-tasks-no-dates"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

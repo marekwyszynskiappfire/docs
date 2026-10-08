@@ -1,0 +1,139 @@
+{
+  "test": {
+    "key": "TC-1052",
+    "issue_id": "357022",
+    "url": "https://appfire.atlassian.net/browse/TC-1052",
+    "summary": "Feature area - Exporting - Exporting Risks",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Mateusz Maniak",
+    "created": "2019-07-11T10:36:26.795-0400",
+    "updated": "2026-08-20T05:19:45.282-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Risks module of boxName",
+        "data": "TS-94 Feature area - Exporting",
+        "result": "Risks module is successfully loaded."
+      },
+      {
+        "step": 2,
+        "action": "Click on Table button",
+        "data": "",
+        "result": "Risk table is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Click the Export button in the module's header",
+        "data": "",
+        "result": "Export manager is displayed, with folLowing options available:\n- Export to image - PDF\n- MS Excel Basic Template - XLSX"
+      },
+      {
+        "step": 4,
+        "action": "Export to MS Excel Basic Template  - XLSX file and check if data in file are correct",
+        "data": "",
+        "result": "Downloaded files' names are folLowing the filename schema:\n_module name_<current-date>_<current-time>.<chosen-format>_\n\nAll tasks are exported with their data:\n\n* Type\n* Issue Type\n* Status\n* Summary\n* Modification Time\n* Risk consequence probability\n* Risk probability\n* Key\n\nCells of risk probability and consequence are colored, depending on their value."
+      },
+      {
+        "step": 5,
+        "action": "Export to image  - PDF file and check if data in file are correct",
+        "data": "",
+        "result": "Downloaded files' names are folLowing the filename schema:\n_module name\\_<current-time>\\_<current-date>.<chosen-format>_\n\nImage presents the entire risk matrix, with all the task cards.\n\nImage is complete and not cut off in any way.\n\nTasks' keys are clickable and lead to pages with task details."
+      },
+      {
+        "step": 6,
+        "action": "Close Export manager",
+        "data": "",
+        "result": "Export manager is closed"
+      },
+      {
+        "step": 7,
+        "action": "Click Matrix button",
+        "data": "",
+        "result": "Risk matrix is displayed"
+      },
+      {
+        "step": 8,
+        "action": "Open View menu and select all options except Compact mode",
+        "data": "",
+        "result": "Matrix is transposed, inverted and the cards on it are colored."
+      },
+      {
+        "step": 9,
+        "action": "Export to MS Excel Basic Template  - XLSX file and check if data in file are correct",
+        "data": "",
+        "result": "Downloaded files' names are folLowing the filename schema:\n_module name_<current-date>_<current-time>.<chosen-format>_\n\nAll tasks are exported with their data:\n\n* Type\n* Issue Type\n* Status\n* Summary\n* Modification Time\n* Risk consequence\n* Risk probability\n* Key\n\nCells of risk probability and consequence are colored, depending on their value."
+      },
+      {
+        "step": 10,
+        "action": "Export to image  - PDF file and check if data in file are correct",
+        "data": "",
+        "result": "Downloaded files' names are folLowing the filename schema:\n_module name\\_<current-time>\\_<current-date>.<chosen-format>_\n\nImage presents the entire risk matrix, with all the task cards.\n\nImage is complete and not cut off in any way.\n\nTasks' keys are clickable and lead to pages with task details."
+      },
+      {
+        "step": 11,
+        "action": "Close Export manager",
+        "data": "",
+        "result": "Export manager is closed"
+      },
+      {
+        "step": 12,
+        "action": "If necessary, add the Risk Consequence and Risk probability fields to the table",
+        "data": "",
+        "result": "Risk consequence and Risk probability fields are added to Risk table"
+      },
+      {
+        "step": 13,
+        "action": "Click the Export button in the module's header and export to MS Excel Basic Template - XLSX file and close export manager",
+        "data": "",
+        "result": "The export processing is starting, the export manager window is closed."
+      },
+      {
+        "step": 14,
+        "action": "Navigate to the Gantt module",
+        "data": "",
+        "result": "Gantt module is presented. Wait till exporting process is finish. \nDownloaded files' names are folLowing the filename schema and module name - \"risk\":\n_module name_<current-date>_<current-time>.<chosen-format>_\n\nAll tasks are exported with their data:\n\n* Type\n* Issue Type\n* Status\n* Summary\n* Modification Time\n* Risk consequence\n* Risk probability\n* Key\n\nCells of risk probability and consequence are colored, depending on their value."
+      },
+      {
+        "step": 15,
+        "action": "Back to Risk module and change the boxStatus",
+        "data": "boxStatus: Closed",
+        "result": "The status is changed"
+      },
+      {
+        "step": 16,
+        "action": "Hover over Export button in module's header",
+        "data": "",
+        "result": "Export button is disabled. Tooltip appears: \"This action is unavailable in the read-only mode\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-1052",
+    "text": "Test: TC-1052 — Feature area - Exporting - Exporting Risks\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\n\nSteps:\n1. Navigate to Risks module of boxName\n   Data: TS-94 Feature area - Exporting\n   Expected: Risks module is successfully loaded.\n2. Click on Table button\n   Expected: Risk table is displayed\n3. Click the Export button in the module's header\n   Expected: Export manager is displayed, with folLowing options available:\n- Export to image - PDF\n- MS Excel Basic Template - XLSX\n4. Export to MS Excel Basic Template  - XLSX file and check if data in file are correct\n   Expected: Downloaded files' names are folLowing the filename schema:\n_module name_<current-date>_<current-time>.<chosen-format>_\n\nAll tasks are exported with their data:\n\n* Type\n* Issue Type\n* Status\n* Summary\n* Modification Time\n* Risk consequence probability\n* Risk probability\n* Key\n\nCells of risk probability and consequence are colored, depending on their value.\n5. Export to image  - PDF file and check if data in file are correct\n   Expected: Downloaded files' names are folLowing the filename schema:\n_module name\\_<current-time>\\_<current-date>.<chosen-format>_\n\nImage presents the entire risk matrix, with all the task cards.\n\nImage is complete and not cut off in any way.\n\nTasks' keys are clickable and lead to pages with task details.\n6. Close Export manager\n   Expected: Export manager is closed\n7. Click Matrix button\n   Expected: Risk matrix is displayed\n8. Open View menu and select all options except Compact mode\n   Expected: Matrix is transposed, inverted and the cards on it are colored.\n9. Export to MS Excel Basic Template  - XLSX file and check if data in file are correct\n   Expected: Downloaded files' names are folLowing the filename schema:\n_module name_<current-date>_<current-time>.<chosen-format>_\n\nAll tasks are exported with their data:\n\n* Type\n* Issue Type\n* Status\n* Summary\n* Modification Time\n* Risk consequence\n* Risk probability\n* Key\n\nCells of risk probability and consequence are colored, depending on their value.\n10. Export to image  - PDF file and check if data in file are correct\n   Expected: Downloaded files' names are folLowing the filename schema:\n_module name\\_<current-time>\\_<current-date>.<chosen-format>_\n\nImage presents the entire risk matrix, with all the task cards.\n\nImage is complete and not cut off in any way.\n\nTasks' keys are clickable and lead to pages with task details.\n11. Close Export manager\n   Expected: Export manager is closed\n12. If necessary, add the Risk Consequence and Risk probability fields to the table\n   Expected: Risk consequence and Risk probability fields are added to Risk table\n13. Click the Export button in the module's header and export to MS Excel Basic Template - XLSX file and close export manager\n   Expected: The export processing is starting, the export manager window is closed.\n14. Navigate to the Gantt module\n   Expected: Gantt module is presented. Wait till exporting process is finish. \nDownloaded files' names are folLowing the filename schema and module name - \"risk\":\n_module name_<current-date>_<current-time>.<chosen-format>_\n\nAll tasks are exported with their data:\n\n* Type\n* Issue Type\n* Status\n* Summary\n* Modification Time\n* Risk consequence\n* Risk probability\n* Key\n\nCells of risk probability and consequence are colored, depending on their value.\n15. Back to Risk module and change the boxStatus\n   Data: boxStatus: Closed\n   Expected: The status is changed\n16. Hover over Export button in module's header\n   Expected: Export button is disabled. Tooltip appears: \"This action is unavailable in the read-only mode\"",
+    "metadata": {
+      "jira_key": "TC-1052",
+      "issue_id": "357022",
+      "summary": "Feature area - Exporting - Exporting Risks",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

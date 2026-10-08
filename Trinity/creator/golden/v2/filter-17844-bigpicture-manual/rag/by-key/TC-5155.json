@@ -1,0 +1,135 @@
+{
+  "test": {
+    "key": "TC-5155",
+    "issue_id": "1068678",
+    "url": "https://appfire.atlassian.net/browse/TC-5155",
+    "summary": "SPM - Workday - Removing Integration with BP",
+    "description": "In order to execute this test, first execute Workday Integration [https://appfire.atlassian.net/browse/TC-5064|https://appfire.atlassian.net/browse/TC-5064|smart-link] ",
+    "status": "In Review",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2024-12-04T11:19:04.312-0500",
+    "updated": "2026-05-05T09:39:08.120-0400",
+    "labels": [
+      "spm-paulina-tc",
+      "teamace",
+      "teamresources"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-505 Workday",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Administration → Resources → Individuals",
+        "data": "",
+        "result": "Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To\n* Add new Individual"
+      },
+      {
+        "step": 2,
+        "action": "Click on Refresh Workday absences",
+        "data": "",
+        "result": "Refresh Workday absences button is gray and has a loading icon\n\nIn the left corner there’s blue message\n\n'Synchronization with Workday in progress\n\nThe synchronization of absences from Workday is currently in progress. We will notify you once it has been completed'\n\nAfter few seconds, green message is displayed ‘Synchronization with Workday finished’"
+      },
+      {
+        "step": 3,
+        "action": "Click on three dots on Full Name column, type userName and select",
+        "data": "userName: paulina.sendecka",
+        "result": ""
+      },
+      {
+        "step": 4,
+        "action": "Click on userName to open Resource details page",
+        "data": "userName: paulina.sendecka",
+        "result": "Green Label ‘Workday’ is displayed next to userName\n\nAbsences are displayed in Absences tab\n\n+ Add new button is grayed out next to Absences tab"
+      },
+      {
+        "step": 5,
+        "action": "Click on userName to open Resource details page",
+        "data": "userName: paulina.sendecka",
+        "result": "Green Label ‘Workday’ is displayed next to userName\n\nAbsences are displayed in Absences tab\n\n+ Add new button is grayed out next to Absences tab"
+      },
+      {
+        "step": 6,
+        "action": "Hover over Add new in Absences tab and click on it",
+        "data": "",
+        "result": "Tooltip ‘Absences are managed automatically by Workday and cannot be modified manually’ is displayed\n\nNothing happens after clicking on it"
+      },
+      {
+        "step": 7,
+        "action": "Hover over Edit pencil icon  in Absences tab and click on it",
+        "data": "",
+        "result": "Tooltip ‘Absences are managed automatically by Workday and cannot be modified manually’ is displayed\n\nNothing happens after clicking on it"
+      },
+      {
+        "step": 8,
+        "action": "Hover over Delete button in Absences tab and click on it",
+        "data": "",
+        "result": "Tooltip ‘Absences are managed automatically by Workday and cannot be modified manually’ is displayed\n\nNothing happens after clicking on it"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to App configuration → Integrations → Workday",
+        "data": "",
+        "result": "Workday absences integration tab is displayed\n\nAll fields are filled out with data and not editable\n\n‘Save’ button is grayed out\n\n‘Remove integration’ button is active"
+      },
+      {
+        "step": 10,
+        "action": "Click on Remove Integration button",
+        "data": "",
+        "result": "Following message is displayed:\n\n'Remove the Workday integration?\n\nThe absences already synchronized will remain in the app, so none of your data will be lost. However, the integration will be removed, and new data will no longer be synchronized.'\n\nRemove and Cancel button are displayed"
+      },
+      {
+        "step": 11,
+        "action": "Click Remove",
+        "data": "",
+        "result": "All data is wiped from fields\n\nFields are blank\n\nSave button is grayed out"
+      },
+      {
+        "step": 12,
+        "action": "Navigate to Administration → Resources → Individuals",
+        "data": "",
+        "result": "Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To\n* Add new Individual"
+      },
+      {
+        "step": 13,
+        "action": "Click on three dots on Full Name column, type userName and select",
+        "data": "userName: paulina.sendecka",
+        "result": "'Workday sync column' disappeared"
+      },
+      {
+        "step": 14,
+        "action": "Click on userName to open Resource details page",
+        "data": "userName: paulina.sendecka",
+        "result": "Green Label ‘Workday’ disappeared next to userName\n\nAbsences are still displayed in Absences tab but add, edit and delete buttons are editable"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-5155",
+    "text": "Test: TC-5155 — SPM - Workday - Removing Integration with BP\nPriority: High | Status: In Review | Type: Manual\nFolder: /BP/SPM/TS-505 Workday\nLabels: spm-paulina-tc, teamace, teamresources\n\nDescription:\nIn order to execute this test, first execute Workday Integration [https://appfire.atlassian.net/browse/TC-5064|https://appfire.atlassian.net/browse/TC-5064|smart-link] \n\nSteps:\n1. Navigate to Administration → Resources → Individuals\n   Expected: Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To\n* Add new Individual\n2. Click on Refresh Workday absences\n   Expected: Refresh Workday absences button is gray and has a loading icon\n\nIn the left corner there’s blue message\n\n'Synchronization with Workday in progress\n\nThe synchronization of absences from Workday is currently in progress. We will notify you once it has been completed'\n\nAfter few seconds, green message is displayed ‘Synchronization with Workday finished’\n3. Click on three dots on Full Name column, type userName and select\n   Data: userName: paulina.sendecka\n   Expected: \n4. Click on userName to open Resource details page\n   Data: userName: paulina.sendecka\n   Expected: Green Label ‘Workday’ is displayed next to userName\n\nAbsences are displayed in Absences tab\n\n+ Add new button is grayed out next to Absences tab\n5. Click on userName to open Resource details page\n   Data: userName: paulina.sendecka\n   Expected: Green Label ‘Workday’ is displayed next to userName\n\nAbsences are displayed in Absences tab\n\n+ Add new button is grayed out next to Absences tab\n6. Hover over Add new in Absences tab and click on it\n   Expected: Tooltip ‘Absences are managed automatically by Workday and cannot be modified manually’ is displayed\n\nNothing happens after clicking on it\n7. Hover over Edit pencil icon  in Absences tab and click on it\n   Expected: Tooltip ‘Absences are managed automatically by Workday and cannot be modified manually’ is displayed\n\nNothing happens after clicking on it\n8. Hover over Delete button in Absences tab and click on it\n   Expected: Tooltip ‘Absences are managed automatically by Workday and cannot be modified manually’ is displayed\n\nNothing happens after clicking on it\n9. Navigate to App configuration → Integrations → Workday\n   Expected: Workday absences integration tab is displayed\n\nAll fields are filled out with data and not editable\n\n‘Save’ button is grayed out\n\n‘Remove integration’ button is active\n10. Click on Remove Integration button\n   Expected: Following message is displayed:\n\n'Remove the Workday integration?\n\nThe absences already synchronized will remain in the app, so none of your data will be lost. However, the integration will be removed, and new data will no longer be synchronized.'\n\nRemove and Cancel button are displayed\n11. Click Remove\n   Expected: All data is wiped from fields\n\nFields are blank\n\nSave button is grayed out\n12. Navigate to Administration → Resources → Individuals\n   Expected: Individuals list is displayed\n\nFollowing buttons are displayed at the top-right:\n\n* Refresh Workday absences\n* Synchronize with Tempo\n* Assign To\n* Add new Individual\n13. Click on three dots on Full Name column, type userName and select\n   Data: userName: paulina.sendecka\n   Expected: 'Workday sync column' disappeared\n14. Click on userName to open Resource details page\n   Data: userName: paulina.sendecka\n   Expected: Green Label ‘Workday’ disappeared next to userName\n\nAbsences are still displayed in Absences tab but add, edit and delete buttons are editable",
+    "metadata": {
+      "jira_key": "TC-5155",
+      "issue_id": "1068678",
+      "summary": "SPM - Workday - Removing Integration with BP",
+      "priority": "High",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-505 Workday",
+      "labels": [
+        "spm-paulina-tc",
+        "teamace",
+        "teamresources"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

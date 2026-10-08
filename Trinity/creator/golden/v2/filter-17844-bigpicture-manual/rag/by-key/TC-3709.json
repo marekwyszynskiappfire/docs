@@ -1,0 +1,97 @@
+{
+  "test": {
+    "key": "TC-3709",
+    "issue_id": "358706",
+    "url": "https://appfire.atlassian.net/browse/TC-3709",
+    "summary": "Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders ",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2022-11-25T07:53:35.672-0500",
+    "updated": "2026-06-18T05:58:25.235-0400",
+    "labels": [
+      "rocksolid",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-75 Feature area - Task structure - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Task structure tab in Tasks tab in Box Configuration of boxName",
+        "data": "boxName:TC-3709 Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders",
+        "result": "Task structure tab in Tasks tab in Box configuration is displayed. Only Project, Epic and Sub-tasks structure builders are enabled"
+      },
+      {
+        "step": 2,
+        "action": "Turn on \n\"Parent-child\" ,\"Problem/Incident\", \"\nDuplicate\" \nstructure builder in Tasks structure tab in Tasks tab in Box Configuration -> Save",
+        "data": "",
+        "result": "Structure builders:\n\"Parent-child\" \"Problem/Incident\"\n\"Duplicate\"\n\nare enabled"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName:TC-3709 Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders",
+        "result": "Gantt module is displayed with 4 tasks with dependencies:\n\nStory A is a parent of Task A,\nStory B is a parent of Task B"
+      },
+      {
+        "step": 4,
+        "action": "Drag&drop taskName1 to another taskName2",
+        "data": "taskName1:Task B \ntaskName2:Story A",
+        "result": "Modal \"Select the link type\" window is appear"
+      },
+      {
+        "step": 5,
+        "action": "Expand dropdown menu and choose \"Parent-child\" -> Save",
+        "data": "",
+        "result": "Relation link are saved.\nGantt module is displayed with 4 tasks with dependencies:\nStory A is a parent of Task A and Task B;\nStory B - without a child"
+      },
+      {
+        "step": 6,
+        "action": "Navigate to Board module of boxName",
+        "data": "boxName:TC-3709 Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders",
+        "result": "Board module is displayed with 4 tasks with dependencies:\nStory A is a parent of Task A and Task B;\nStory B - without"
+      },
+      {
+        "step": 7,
+        "action": "Drag&drop taskName1 to another taskName2",
+        "data": "taskName1:Task B \ntaskName3:Story B",
+        "result": "Modal \"Select the link type\" window is appear"
+      },
+      {
+        "step": 8,
+        "action": "Expand dropdown menu and choose \"Parent-child\" -> Save",
+        "data": "",
+        "result": "Relation link are saved.\nBoard module is displayed with 4 tasks with dependencies:\nStory A is a parent of Task A;\nStory B is a parent ofTask B"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-3709",
+    "text": "Test: TC-3709 — Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders \nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-75 Feature area - Task structure - Basic operations\nLabels: rocksolid, teamtree\n\nSteps:\n1. Navigate to Task structure tab in Tasks tab in Box Configuration of boxName\n   Data: boxName:TC-3709 Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders\n   Expected: Task structure tab in Tasks tab in Box configuration is displayed. Only Project, Epic and Sub-tasks structure builders are enabled\n2. Turn on \n\"Parent-child\" ,\"Problem/Incident\", \"\nDuplicate\" \nstructure builder in Tasks structure tab in Tasks tab in Box Configuration -> Save\n   Expected: Structure builders:\n\"Parent-child\" \"Problem/Incident\"\n\"Duplicate\"\n\nare enabled\n3. Navigate to Gantt module of boxName\n   Data: boxName:TC-3709 Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders\n   Expected: Gantt module is displayed with 4 tasks with dependencies:\n\nStory A is a parent of Task A,\nStory B is a parent of Task B\n4. Drag&drop taskName1 to another taskName2\n   Data: taskName1:Task B \ntaskName2:Story A\n   Expected: Modal \"Select the link type\" window is appear\n5. Expand dropdown menu and choose \"Parent-child\" -> Save\n   Expected: Relation link are saved.\nGantt module is displayed with 4 tasks with dependencies:\nStory A is a parent of Task A and Task B;\nStory B - without a child\n6. Navigate to Board module of boxName\n   Data: boxName:TC-3709 Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders\n   Expected: Board module is displayed with 4 tasks with dependencies:\nStory A is a parent of Task A and Task B;\nStory B - without\n7. Drag&drop taskName1 to another taskName2\n   Data: taskName1:Task B \ntaskName3:Story B\n   Expected: Modal \"Select the link type\" window is appear\n8. Expand dropdown menu and choose \"Parent-child\" -> Save\n   Expected: Relation link are saved.\nBoard module is displayed with 4 tasks with dependencies:\nStory A is a parent of Task A;\nStory B is a parent ofTask B",
+    "metadata": {
+      "jira_key": "TC-3709",
+      "issue_id": "358706",
+      "summary": "Feature area - Task structure - Basic operations - Checking tasks order after enabling link structure builders ",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-75 Feature area - Task structure - Basic operations",
+      "labels": [
+        "rocksolid",
+        "teamtree"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

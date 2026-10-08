@@ -1,0 +1,117 @@
+{
+  "test": {
+    "key": "TC-4015",
+    "issue_id": "359798",
+    "url": "https://appfire.atlassian.net/browse/TC-4015",
+    "summary": "Feature area - Goals - CRUD operations - Taking actions after setting objectives to Continue",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Michał Bucholc",
+    "reporter": "Michał Bucholc",
+    "created": "2023-03-31T05:38:22.663-0400",
+    "updated": "2026-08-10T11:07:25.748-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-1 Feature area - Objective - CRUD operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Goals module of the boxName",
+        "data": "boxName: TC-4015 Feature area - Objective - CRUD operations - Taking actions after setting objectives to Continue",
+        "result": "PI1 TC-4015 and PI2 TC-4015 are visible. Two objectives are visible under the PI1 TC-4015"
+      },
+      {
+        "step": 2,
+        "action": "Right-click on the objectiveName in subBox",
+        "data": "objectiveName: Objective 1\nsubBox: PI1 TC-4015",
+        "result": "Dialog with available operations on objective is visible"
+      },
+      {
+        "step": 3,
+        "action": "Select Failed option",
+        "data": "",
+        "result": "\"What now\" confirmation dialog is visible"
+      },
+      {
+        "step": 4,
+        "action": "Select Continue option",
+        "data": "objectiveName: Objective 1\nsubBox: PI1 TC-4015\nsubBox2: PI2 TC-4015",
+        "result": "The objectiveName is visible in subBox as failed and in subBox2 as open"
+      },
+      {
+        "step": 5,
+        "action": "Right-click on the objectiveName2 in subBox",
+        "data": "objectiveName2: TC4015-1 objective 2\nsubBox: PI1 TC-4015",
+        "result": "Dialog with available operations on objective is visible"
+      },
+      {
+        "step": 6,
+        "action": "Select Continue option",
+        "data": "objectiveName2: TC4015-1 objective 2\nsubBox: PI1 TC-4015\nsubBox2: PI2 TC-4015",
+        "result": "The objectiveName 2is visible in both subBox and subBox2 as open"
+      },
+      {
+        "step": 7,
+        "action": "Zoom in and change timeline to see only the subBox2 timebox",
+        "data": "subBox2: PI2 TC-4015\nobjectiveName: Objective 1\nobjectiveName2: TC4015-1 objective 2",
+        "result": "objectiveName and objectiveName2 are visible under the subBox2"
+      },
+      {
+        "step": 8,
+        "action": "Change both objectives PBV and ABV to newPBV and newABV",
+        "data": "newPBV: 6\nnewABV: 6",
+        "result": "Both objectives PBV and ABV are changed to newPBV and newABV"
+      },
+      {
+        "step": 9,
+        "action": "Change both objectives progress to newProgress",
+        "data": "newProgress: 77%",
+        "result": "Both objectives progress is changed to newProgress"
+      },
+      {
+        "step": 10,
+        "action": "Right click on both objectives and set them as uncommitted",
+        "data": "",
+        "result": "Both objectives are set to uncommitted"
+      },
+      {
+        "step": 11,
+        "action": "Change both objectives status to newStatus",
+        "data": "newStatus: Completed",
+        "result": "Both objectives status is changed to newStatus. Progress is 100%."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-4015",
+    "text": "Test: TC-4015 — Feature area - Goals - CRUD operations - Taking actions after setting objectives to Continue\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-1 Feature area - Objective - CRUD operations\nLabels: Sanity, can_be_automated, teamsmile\n\nSteps:\n1. Navigate to the Goals module of the boxName\n   Data: boxName: TC-4015 Feature area - Objective - CRUD operations - Taking actions after setting objectives to Continue\n   Expected: PI1 TC-4015 and PI2 TC-4015 are visible. Two objectives are visible under the PI1 TC-4015\n2. Right-click on the objectiveName in subBox\n   Data: objectiveName: Objective 1\nsubBox: PI1 TC-4015\n   Expected: Dialog with available operations on objective is visible\n3. Select Failed option\n   Expected: \"What now\" confirmation dialog is visible\n4. Select Continue option\n   Data: objectiveName: Objective 1\nsubBox: PI1 TC-4015\nsubBox2: PI2 TC-4015\n   Expected: The objectiveName is visible in subBox as failed and in subBox2 as open\n5. Right-click on the objectiveName2 in subBox\n   Data: objectiveName2: TC4015-1 objective 2\nsubBox: PI1 TC-4015\n   Expected: Dialog with available operations on objective is visible\n6. Select Continue option\n   Data: objectiveName2: TC4015-1 objective 2\nsubBox: PI1 TC-4015\nsubBox2: PI2 TC-4015\n   Expected: The objectiveName 2is visible in both subBox and subBox2 as open\n7. Zoom in and change timeline to see only the subBox2 timebox\n   Data: subBox2: PI2 TC-4015\nobjectiveName: Objective 1\nobjectiveName2: TC4015-1 objective 2\n   Expected: objectiveName and objectiveName2 are visible under the subBox2\n8. Change both objectives PBV and ABV to newPBV and newABV\n   Data: newPBV: 6\nnewABV: 6\n   Expected: Both objectives PBV and ABV are changed to newPBV and newABV\n9. Change both objectives progress to newProgress\n   Data: newProgress: 77%\n   Expected: Both objectives progress is changed to newProgress\n10. Right click on both objectives and set them as uncommitted\n   Expected: Both objectives are set to uncommitted\n11. Change both objectives status to newStatus\n   Data: newStatus: Completed\n   Expected: Both objectives status is changed to newStatus. Progress is 100%.",
+    "metadata": {
+      "jira_key": "TC-4015",
+      "issue_id": "359798",
+      "summary": "Feature area - Goals - CRUD operations - Taking actions after setting objectives to Continue",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-1 Feature area - Objective - CRUD operations",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "teamsmile"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

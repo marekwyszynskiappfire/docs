@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-4746",
+    "issue_id": "814910",
+    "url": "https://appfire.atlassian.net/browse/TC-4746",
+    "summary": "Global - Workload Plans - Multiselect in assigned resources in Workload Plan",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2024-07-22T10:08:07.603-0400",
+    "updated": "2026-07-20T06:51:31.810-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-39 Global - Workload plans",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Administration -> Resources -> Workload plans tab",
+        "data": "",
+        "result": "Workload plans tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on workloadPlanName",
+        "data": "workloadPlanName: TC-4756",
+        "result": "Details of workload plan TC-4756 are displayed"
+      },
+      {
+        "step": 3,
+        "action": "Click on 'Assigned resources' button",
+        "data": "",
+        "result": "List of users is empty"
+      },
+      {
+        "step": 4,
+        "action": "Click on selector and type userName in search bar",
+        "data": "userName: TC-4756",
+        "result": "List of following users is displayed:\n\n* TC-4756A\n* TC-4756B\n* TC-4756C\n\nCheckboxes are displayed next to userNames\n\n'Select all' and 'Deselect all' are displayed above list of users"
+      },
+      {
+        "step": 5,
+        "action": "Click 'Select all' and click outside of selector",
+        "data": "",
+        "result": "Checkboxes next userNames are ticked\n\nIn the selector button there are 2 userNames: TC-4756A and TC-4... and 'X' button next to userName and +1 icon"
+      },
+      {
+        "step": 6,
+        "action": "Select startDate and click Plus button and then assign",
+        "data": "startDate: 01/Jul/24",
+        "result": "Users: TC-4756A, TC-4756B and TC-4756C are added to the list of assigned resources"
+      },
+      {
+        "step": 7,
+        "action": "Click on selector and type userName in search bar",
+        "data": "userName: TC-4756",
+        "result": "List of following users is displayed:\n\n* TC-4756A\n* TC-4756B\n* TC-4756C\n\nCheckboxes are displayed next to userNames\n\n'Select all' and 'Deselect all' are displayed above list of users"
+      },
+      {
+        "step": 8,
+        "action": "Select userName, startDate date and click Plus button to assign",
+        "data": "userName: TC-4756A\n\nstartDate: 15/Jul/24",
+        "result": "New period is added for user TC-4756A\n\nFollowing list is displayed:\n\nTC-4756A with efficiency 1 and two periods:\n\n* Period 1 starts at 01/Jul/24\n* Period 2 starts at 15/Jul/24\n\nTC-4756B with efficiency 1 and start date 01/Jul/24\n\nTC-4756C with efficiency 1 and start date 01/Jul/24"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-4746",
+    "text": "Test: TC-4746 — Global - Workload Plans - Multiselect in assigned resources in Workload Plan\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-39 Global - Workload plans\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Administration -> Resources -> Workload plans tab\n   Expected: Workload plans tab is displayed\n2. Click on workloadPlanName\n   Data: workloadPlanName: TC-4756\n   Expected: Details of workload plan TC-4756 are displayed\n3. Click on 'Assigned resources' button\n   Expected: List of users is empty\n4. Click on selector and type userName in search bar\n   Data: userName: TC-4756\n   Expected: List of following users is displayed:\n\n* TC-4756A\n* TC-4756B\n* TC-4756C\n\nCheckboxes are displayed next to userNames\n\n'Select all' and 'Deselect all' are displayed above list of users\n5. Click 'Select all' and click outside of selector\n   Expected: Checkboxes next userNames are ticked\n\nIn the selector button there are 2 userNames: TC-4756A and TC-4... and 'X' button next to userName and +1 icon\n6. Select startDate and click Plus button and then assign\n   Data: startDate: 01/Jul/24\n   Expected: Users: TC-4756A, TC-4756B and TC-4756C are added to the list of assigned resources\n7. Click on selector and type userName in search bar\n   Data: userName: TC-4756\n   Expected: List of following users is displayed:\n\n* TC-4756A\n* TC-4756B\n* TC-4756C\n\nCheckboxes are displayed next to userNames\n\n'Select all' and 'Deselect all' are displayed above list of users\n8. Select userName, startDate date and click Plus button to assign\n   Data: userName: TC-4756A\n\nstartDate: 15/Jul/24\n   Expected: New period is added for user TC-4756A\n\nFollowing list is displayed:\n\nTC-4756A with efficiency 1 and two periods:\n\n* Period 1 starts at 01/Jul/24\n* Period 2 starts at 15/Jul/24\n\nTC-4756B with efficiency 1 and start date 01/Jul/24\n\nTC-4756C with efficiency 1 and start date 01/Jul/24",
+    "metadata": {
+      "jira_key": "TC-4746",
+      "issue_id": "814910",
+      "summary": "Global - Workload Plans - Multiselect in assigned resources in Workload Plan",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-39 Global - Workload plans",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

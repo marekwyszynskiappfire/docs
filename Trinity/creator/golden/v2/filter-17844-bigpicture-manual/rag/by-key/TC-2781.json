@@ -1,0 +1,85 @@
+{
+  "test": {
+    "key": "TC-2781",
+    "issue_id": "358004",
+    "url": "https://appfire.atlassian.net/browse/TC-2781",
+    "summary": "Box Module - Board - Card Views - Resizing card view fields",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2021-12-16T09:22:40.893-0500",
+    "updated": "2026-03-31T08:42:41.938-0400",
+    "labels": [
+      "can_be_automated",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-24 Box Module - Board - Card Views",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Box configuration of boxName and go to Card Views page under Board tab.",
+        "data": "boxName: TC-2781 Box Module - Board - Card Views - Resizing card view fields",
+        "result": "Card Views page is opened correctly. Card views are visible:\n- Essentials\n- Agile\n- Teams"
+      },
+      {
+        "step": 2,
+        "action": "Click on cardViewName.",
+        "data": "cardViewName: Essentials",
+        "result": "Card view creator page for Essentials is opened. Buttons 'Save', 'Discard changes' and 'Delete' are inactive.\nFields are displayed:\n- Icon\n- Key\n- Status\n- Assignee\n- Priority\n- Summary\n- Reporter"
+      },
+      {
+        "step": 3,
+        "action": "Hover over the space on the bottom side of the fieldName on the task card and click on the ellipsis icon. Drag the cursor down to the point where the original size of the field is doubled and drop it.",
+        "data": "fieldName: Summary",
+        "result": "Summary field has doubled its original size. Buttons 'Save' and  'Discard changes' are active. 'Delete' button is still inactive. \nFields are displayed:\n- Icon\n- Key\n- Status\n- Assignee\n- Priority\n- Summary\n- Reporter"
+      },
+      {
+        "step": 4,
+        "action": "Click Save button",
+        "data": "",
+        "result": "The change has been saved. Buttons 'Save', 'Discard changes' and 'Delete' are inactive."
+      },
+      {
+        "step": 5,
+        "action": "Hover over the space on the bottom side of the fieldName on the task card and click on the ellipsis icon. Drag the cursor up to the point where the size of the field is half of the previous size and drop it.",
+        "data": "fieldName: Summary",
+        "result": "Summary field is half of the previous size. Buttons 'Save' and  'Discard changes' are active. 'Delete' button is still inactive."
+      },
+      {
+        "step": 6,
+        "action": "Click Discard changes",
+        "data": "",
+        "result": "The change has been discarded. Buttons 'Save', 'Discard changes' and 'Delete' are inactive."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-2781",
+    "text": "Test: TC-2781 — Box Module - Board - Card Views - Resizing card view fields\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-24 Box Module - Board - Card Views\nLabels: can_be_automated, teamsmile\n\nSteps:\n1. Navigate to Box configuration of boxName and go to Card Views page under Board tab.\n   Data: boxName: TC-2781 Box Module - Board - Card Views - Resizing card view fields\n   Expected: Card Views page is opened correctly. Card views are visible:\n- Essentials\n- Agile\n- Teams\n2. Click on cardViewName.\n   Data: cardViewName: Essentials\n   Expected: Card view creator page for Essentials is opened. Buttons 'Save', 'Discard changes' and 'Delete' are inactive.\nFields are displayed:\n- Icon\n- Key\n- Status\n- Assignee\n- Priority\n- Summary\n- Reporter\n3. Hover over the space on the bottom side of the fieldName on the task card and click on the ellipsis icon. Drag the cursor down to the point where the original size of the field is doubled and drop it.\n   Data: fieldName: Summary\n   Expected: Summary field has doubled its original size. Buttons 'Save' and  'Discard changes' are active. 'Delete' button is still inactive. \nFields are displayed:\n- Icon\n- Key\n- Status\n- Assignee\n- Priority\n- Summary\n- Reporter\n4. Click Save button\n   Expected: The change has been saved. Buttons 'Save', 'Discard changes' and 'Delete' are inactive.\n5. Hover over the space on the bottom side of the fieldName on the task card and click on the ellipsis icon. Drag the cursor up to the point where the size of the field is half of the previous size and drop it.\n   Data: fieldName: Summary\n   Expected: Summary field is half of the previous size. Buttons 'Save' and  'Discard changes' are active. 'Delete' button is still inactive.\n6. Click Discard changes\n   Expected: The change has been discarded. Buttons 'Save', 'Discard changes' and 'Delete' are inactive.",
+    "metadata": {
+      "jira_key": "TC-2781",
+      "issue_id": "358004",
+      "summary": "Box Module - Board - Card Views - Resizing card view fields",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-24 Box Module - Board - Card Views",
+      "labels": [
+        "can_be_automated",
+        "teamsmile"
+      ],
+      "step_count": 6,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

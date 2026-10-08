@@ -1,0 +1,121 @@
+{
+  "test": {
+    "key": "TC-3423",
+    "issue_id": "356866",
+    "url": "https://appfire.atlassian.net/browse/TC-3423",
+    "summary": "Box Module - Gantt - InfoBar - Change history tab - Undo basic operations",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Patryk Pesta",
+    "reporter": "Patryk Pesta",
+    "created": "2022-06-24T07:36:16.120-0400",
+    "updated": "2026-06-18T05:58:14.330-0400",
+    "labels": [
+      "schedulingsanity",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-133 Box Module - Gantt - InfoBar",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open Gantt module of box with boxName",
+        "data": "boxName: TC-3423 Box Module - Gantt - InfoBar - Change history tab - Undo",
+        "result": "Gantt chart, wbs are visible.\nfolLowing tasks are displayed on Gantt chart and WBS with : \n\n* Task 1 (Parent)\n* Task 2 (Child)\nBoth task are in Auto top-down period mode\n\nUndo button is displayed in header next to Save column view.Undo Button is inactive."
+      },
+      {
+        "step": 2,
+        "action": "Click the toggle bar to the right of the Gantt chart",
+        "data": "",
+        "result": "Infobar opens, hiding the right part of the chart.\n\nINFOBAR text is replaced with an arrow pointing to the right.\n\nInfobar has 5 visible sections: Dependencies, Overdue tasks, Milestones, Critical path and Change history"
+      },
+      {
+        "step": 3,
+        "action": "Click in to  Change history icon in Infobar",
+        "data": "",
+        "result": "Change history is displayed in Infobar.\nFollowing details of Change history are displayed: \n\n* Current Date\n* Refresh data button\n* Date Range search bar + Date Range Button + Search Button + Export change history data\n* Splash screen with information displayed: \n\"Changes are easy to follow\nAny update to a task's start date, end date, or duration will appear here. Search or filter by date range to quickly find changes.\""
+      },
+      {
+        "step": 4,
+        "action": "Grab the end of the taskbar with taskName  and and move it to newDate.\n\nDrop the end of the task",
+        "data": "taskName: Task 1\n\nnewdate: 04/Jul/2022",
+        "result": "End date of Task 1 is changed. New task end date is 04/Jul/2022.\nUndo button turns active."
+      },
+      {
+        "step": 5,
+        "action": "Click Refresh Data button in Infobar on Change history tab",
+        "data": "",
+        "result": "New record in Change history tab appear.\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3423-1 New date set by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1"
+      },
+      {
+        "step": 6,
+        "action": "Click on Undo button",
+        "data": "",
+        "result": "Confirmation modal is displayed with following details:\n\"Undo the following?\n\nTASK ID + New date set by + (user) JiraAdmin  + date of change in format: \nDD/MM/YY 0:00 PM\n\nCancel and Undo button are displayed."
+      },
+      {
+        "step": 7,
+        "action": "Click Cancel button",
+        "data": "",
+        "result": "Gantt module with\nChange history tab is displayed in Infobar.\n\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3423-1 New date set by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1"
+      },
+      {
+        "step": 8,
+        "action": "Click on Undo button",
+        "data": "",
+        "result": "Confirmation modal is displayed with folLowing details:\n\"Undo the following?\n\nTASK ID + New date set by + (user) JiraAdmin + date of change in format: \nDD/MM/YY 0:00 PM\n\nCancel and Confirm button are displayed."
+      },
+      {
+        "step": 9,
+        "action": "Click on Undo button in the header once again.",
+        "data": "",
+        "result": "Confirmation modal will be displayed again"
+      },
+      {
+        "step": 10,
+        "action": "Click confirm button (Undo).",
+        "data": "",
+        "result": "Change history tab is displayed in Infobar.\n\nUndo button is inactive.\n\nTask 1 changed its end date to 01/06/2022\n\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3423-1 Date was change by\n** Author: admin\n** Date of change : actual date of change\n** Total number of changes : 1"
+      },
+      {
+        "step": 11,
+        "action": "Click Refresh Data button in Infobar on Change history tab",
+        "data": "",
+        "result": "New record in Change history tab appear.\n2 changes are displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : The scheduling action undone by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1\n* 2 \n** Chevron\n** Reason of change : TC3423-1 New date was set by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1"
+      },
+      {
+        "step": 12,
+        "action": "Grab the the taskbar of taskName and move it forward 5 days to the new period (newStartDate, newEndDate)\n\nDrop the task",
+        "data": "taskName: Task 2\nnewStartDate: 6/Jul/22\nnewEndDate: 7/Jul/22",
+        "result": "After dropping task bar, task come back to it previous time period and yellow warning appears in the left bottom corner: Unable to change dates\nUndo button is greyed out and inactive."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 12
+  },
+  "rag": {
+    "id": "TC-3423",
+    "text": "Test: TC-3423 — Box Module - Gantt - InfoBar - Change history tab - Undo basic operations\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-133 Box Module - Gantt - InfoBar\nLabels: schedulingsanity, teamscheduling\n\nSteps:\n1. Open Gantt module of box with boxName\n   Data: boxName: TC-3423 Box Module - Gantt - InfoBar - Change history tab - Undo\n   Expected: Gantt chart, wbs are visible.\nfolLowing tasks are displayed on Gantt chart and WBS with : \n\n* Task 1 (Parent)\n* Task 2 (Child)\nBoth task are in Auto top-down period mode\n\nUndo button is displayed in header next to Save column view.Undo Button is inactive.\n2. Click the toggle bar to the right of the Gantt chart\n   Expected: Infobar opens, hiding the right part of the chart.\n\nINFOBAR text is replaced with an arrow pointing to the right.\n\nInfobar has 5 visible sections: Dependencies, Overdue tasks, Milestones, Critical path and Change history\n3. Click in to  Change history icon in Infobar\n   Expected: Change history is displayed in Infobar.\nFollowing details of Change history are displayed: \n\n* Current Date\n* Refresh data button\n* Date Range search bar + Date Range Button + Search Button + Export change history data\n* Splash screen with information displayed: \n\"Changes are easy to follow\nAny update to a task's start date, end date, or duration will appear here. Search or filter by date range to quickly find changes.\"\n4. Grab the end of the taskbar with taskName  and and move it to newDate.\n\nDrop the end of the task\n   Data: taskName: Task 1\n\nnewdate: 04/Jul/2022\n   Expected: End date of Task 1 is changed. New task end date is 04/Jul/2022.\nUndo button turns active.\n5. Click Refresh Data button in Infobar on Change history tab\n   Expected: New record in Change history tab appear.\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3423-1 New date set by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1\n6. Click on Undo button\n   Expected: Confirmation modal is displayed with following details:\n\"Undo the following?\n\nTASK ID + New date set by + (user) JiraAdmin  + date of change in format: \nDD/MM/YY 0:00 PM\n\nCancel and Undo button are displayed.\n7. Click Cancel button\n   Expected: Gantt module with\nChange history tab is displayed in Infobar.\n\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3423-1 New date set by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1\n8. Click on Undo button\n   Expected: Confirmation modal is displayed with folLowing details:\n\"Undo the following?\n\nTASK ID + New date set by + (user) JiraAdmin + date of change in format: \nDD/MM/YY 0:00 PM\n\nCancel and Confirm button are displayed.\n9. Click on Undo button in the header once again.\n   Expected: Confirmation modal will be displayed again\n10. Click confirm button (Undo).\n   Expected: Change history tab is displayed in Infobar.\n\nUndo button is inactive.\n\nTask 1 changed its end date to 01/06/2022\n\n1 change is displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : TC3423-1 Date was change by\n** Author: admin\n** Date of change : actual date of change\n** Total number of changes : 1\n11. Click Refresh Data button in Infobar on Change history tab\n   Expected: New record in Change history tab appear.\n2 changes are displayed on Change history tab:\n\n* 1 \n** Chevron\n** NEW icon \n** Reason of change : The scheduling action undone by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1\n* 2 \n** Chevron\n** Reason of change : TC3423-1 New date was set by\n** Author: JiraAdmin\n** Date of change : actual date of change\n** Total number of changes : 1\n12. Grab the the taskbar of taskName and move it forward 5 days to the new period (newStartDate, newEndDate)\n\nDrop the task\n   Data: taskName: Task 2\nnewStartDate: 6/Jul/22\nnewEndDate: 7/Jul/22\n   Expected: After dropping task bar, task come back to it previous time period and yellow warning appears in the left bottom corner: Unable to change dates\nUndo button is greyed out and inactive.",
+    "metadata": {
+      "jira_key": "TC-3423",
+      "issue_id": "356866",
+      "summary": "Box Module - Gantt - InfoBar - Change history tab - Undo basic operations",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-133 Box Module - Gantt - InfoBar",
+      "labels": [
+        "schedulingsanity",
+        "teamscheduling"
+      ],
+      "step_count": 12,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

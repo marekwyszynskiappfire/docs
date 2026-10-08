@@ -1,0 +1,115 @@
+{
+  "test": {
+    "key": "TC-3733",
+    "issue_id": "357287",
+    "url": "https://appfire.atlassian.net/browse/TC-3733",
+    "summary": "Feature area - Box scope - Existing task(s) planning - Gantt - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint",
+    "description": "",
+    "status": "In Review",
+    "priority": "High",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2022-12-08T09:22:03.107-0500",
+    "updated": "2026-03-30T09:57:34.324-0400",
+    "labels": [
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-71 Feature area - Box scope - Existing task(s) planning",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName.",
+        "data": "boxName: TC-3726 Feature area - Box scope - Existing task(s) planning - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint",
+        "result": "Board module is opened correctly. In the center of the page the folLowing text appears: Configure timeboxes to start working on this module\nChoose the way you want to add timeboxes to this box\nThe folLowing two buttons are underneath the text:\n1. Create new timeboxes dropdown on the left\n2. Synchronize Jira Sprints link on the right"
+      },
+      {
+        "step": 2,
+        "action": "Click on Synchronize Jira Sprints.",
+        "data": "",
+        "result": "Synchronize based on Jira Board tab is displayed with two drop-down lists:\n- Board\n- Box type"
+      },
+      {
+        "step": 3,
+        "action": "Click on Board drop-down and choose boardName.",
+        "data": "boardName: TC3726 board",
+        "result": "A list with the folLowing Jira sprint has appeared:\n- TC3726 Sprint 1 with start date and end date\n\nGreen mark with tooltip \"Sprint is ready to synchronize\" is displayed next to TC3726 Sprint 1."
+      },
+      {
+        "step": 4,
+        "action": "Click on Box type drop-down. Choose boxType.",
+        "data": "boxType: Iteration",
+        "result": "Iteration is selected as box type."
+      },
+      {
+        "step": 5,
+        "action": "Click Create button.",
+        "data": "",
+        "result": "Board module is displayed with a timebox: TC3726 Sprint 1 with Team unassigned swimlane. One issue is visible underneath Team unassigned."
+      },
+      {
+        "step": 6,
+        "action": "Proceed to Active sprints tab in projectName board in Jira",
+        "data": "projectName: TC-3726 Feature area - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint",
+        "result": "TC3726 Sprint 1 name is displayed. Three columns are visible:\n* TO DO\n* IN PROGRESS\n* DONE\n\nOne story is visible in the TO DO column."
+      },
+      {
+        "step": 7,
+        "action": "Click on Complete sprint button",
+        "data": "",
+        "result": "Different modal windows with messages are displayed:\n[Atlassian Server]\n\"Complete sprint\nSprint TC3726 Sprint 1 contains:\n* 0 completed issue\n* 1 incomplete issues\n\nMove open issues to:\nBacklog\n\nSub-tasks will be moved together with their parent issues.\"\n\nTwo buttons are active:\nComplete and Cancel\n\n[Atlassian Cloud]\n\n\"Complete sprint: TC3572 Sprint 1\n* 0 issues were done\n* 1 issue was incomplete\n\nSelect where all the incomplete issues should be moved:\n\nMove to dropdown is displayed underneath.\n\nSub-tasks are not included in the total(s) above, and are always included in the same sprint as their parent issue.\"\n\nTwo buttons are active:\nComplete and Cancel"
+      },
+      {
+        "step": 8,
+        "action": "Click on selector under \"Move open issues to\" and choose newOption",
+        "data": "newOption: New sprint",
+        "result": "New sprint appears in the Move to dropdown."
+      },
+      {
+        "step": 9,
+        "action": "Click Complete button.",
+        "data": "",
+        "result": "Sprint is correctly completed."
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Backlog tab in projectName board in Jira",
+        "data": "projectName: TC-3726 Feature area - Displaying tasks when synchronized Sprint is closed",
+        "result": "TC3726 Sprint 2 is visible with one story."
+      },
+      {
+        "step": 11,
+        "action": "Navigate to the Board module of boxName.",
+        "data": "boxName: TC-3726 Feature area - Box scope - Existing task(s) planning - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint",
+        "result": "Board module is displayed with two timeboxes:\n* TC3726 Sprint 1 which has a green header\n* TC3726 Sprint 2  which has one story underneath Team unassigned"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-3733",
+    "text": "Test: TC-3733 — Feature area - Box scope - Existing task(s) planning - Gantt - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint\nPriority: High | Status: In Review | Type: Manual\nFolder: /BP/TS-71 Feature area - Box scope - Existing task(s) planning\nLabels: teamembers, teamtree\n\nSteps:\n1. Navigate to Board module of boxName.\n   Data: boxName: TC-3726 Feature area - Box scope - Existing task(s) planning - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint\n   Expected: Board module is opened correctly. In the center of the page the folLowing text appears: Configure timeboxes to start working on this module\nChoose the way you want to add timeboxes to this box\nThe folLowing two buttons are underneath the text:\n1. Create new timeboxes dropdown on the left\n2. Synchronize Jira Sprints link on the right\n2. Click on Synchronize Jira Sprints.\n   Expected: Synchronize based on Jira Board tab is displayed with two drop-down lists:\n- Board\n- Box type\n3. Click on Board drop-down and choose boardName.\n   Data: boardName: TC3726 board\n   Expected: A list with the folLowing Jira sprint has appeared:\n- TC3726 Sprint 1 with start date and end date\n\nGreen mark with tooltip \"Sprint is ready to synchronize\" is displayed next to TC3726 Sprint 1.\n4. Click on Box type drop-down. Choose boxType.\n   Data: boxType: Iteration\n   Expected: Iteration is selected as box type.\n5. Click Create button.\n   Expected: Board module is displayed with a timebox: TC3726 Sprint 1 with Team unassigned swimlane. One issue is visible underneath Team unassigned.\n6. Proceed to Active sprints tab in projectName board in Jira\n   Data: projectName: TC-3726 Feature area - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint\n   Expected: TC3726 Sprint 1 name is displayed. Three columns are visible:\n* TO DO\n* IN PROGRESS\n* DONE\n\nOne story is visible in the TO DO column.\n7. Click on Complete sprint button\n   Expected: Different modal windows with messages are displayed:\n[Atlassian Server]\n\"Complete sprint\nSprint TC3726 Sprint 1 contains:\n* 0 completed issue\n* 1 incomplete issues\n\nMove open issues to:\nBacklog\n\nSub-tasks will be moved together with their parent issues.\"\n\nTwo buttons are active:\nComplete and Cancel\n\n[Atlassian Cloud]\n\n\"Complete sprint: TC3572 Sprint 1\n* 0 issues were done\n* 1 issue was incomplete\n\nSelect where all the incomplete issues should be moved:\n\nMove to dropdown is displayed underneath.\n\nSub-tasks are not included in the total(s) above, and are always included in the same sprint as their parent issue.\"\n\nTwo buttons are active:\nComplete and Cancel\n8. Click on selector under \"Move open issues to\" and choose newOption\n   Data: newOption: New sprint\n   Expected: New sprint appears in the Move to dropdown.\n9. Click Complete button.\n   Expected: Sprint is correctly completed.\n10. Navigate to Backlog tab in projectName board in Jira\n   Data: projectName: TC-3726 Feature area - Displaying tasks when synchronized Sprint is closed\n   Expected: TC3726 Sprint 2 is visible with one story.\n11. Navigate to the Board module of boxName.\n   Data: boxName: TC-3726 Feature area - Box scope - Existing task(s) planning - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint\n   Expected: Board module is displayed with two timeboxes:\n* TC3726 Sprint 1 which has a green header\n* TC3726 Sprint 2  which has one story underneath Team unassigned",
+    "metadata": {
+      "jira_key": "TC-3733",
+      "issue_id": "357287",
+      "summary": "Feature area - Box scope - Existing task(s) planning - Gantt - Displaying tasks when synchronized Sprint is closed and tasks are moved to new Sprint",
+      "priority": "High",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-71 Feature area - Box scope - Existing task(s) planning",
+      "labels": [
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-5766",
+    "issue_id": "1316875",
+    "url": "https://appfire.atlassian.net/browse/TC-5766",
+    "summary": "SPM - OKR - Unlinking boxes from KR",
+    "description": "Checking ulinking boxes to key-result in OKR module",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2025-10-01T08:34:02.339-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-513 OKR - Linking Boxes To KR",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open OKR module in boxName",
+        "data": "boxName: TC-5766 SPM - OKR - Unlinking boxes from KR",
+        "result": "OKR module is opened. No OKR connected to this box message is visible"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to OKR settings → General and enable \"*Displaying connected boxes in the OKR Overview*\"",
+        "data": "",
+        "result": "Displaying connected boxes in the OKR Overview is enabled"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to OKR Overview → Layout → Display settings and enable *Show connected Boxes*",
+        "data": "",
+        "result": "Showing connected boxes is enabled"
+      },
+      {
+        "step": 4,
+        "action": "Create Objective and Key-result",
+        "data": "* Objective 1\n* KR-1",
+        "result": "Objective and Key-result are created and visible in OKR Overview"
+      },
+      {
+        "step": 5,
+        "action": "Open Key-result → click *Edit linked boxes* button → in box name field find boxName, select and click save",
+        "data": "boxName: TC-5766 SPM - OKR - Unlinking boxes from KR",
+        "result": "Box is linked to Key-result. Linked box is visible in *Linked issues & boxes* in KR detail"
+      },
+      {
+        "step": 6,
+        "action": "Open OKR Overview",
+        "data": "",
+        "result": "OKR Overview is Opened. Objective, Key-result and linked box under KR is displayed\n\n* Objective 1\n** KR-1\n*** boxName: TC-5766 SPM - OKR - Unlinking boxes from KR"
+      },
+      {
+        "step": 7,
+        "action": "Open Key-result and click *Edit linked boxes* button",
+        "data": "",
+        "result": "BoxName is selected and visible"
+      },
+      {
+        "step": 8,
+        "action": "Unselect boxName and click Save",
+        "data": "boxName: TC-5766 SPM - OKR - Unlinking boxes from KR",
+        "result": "Box is not visible in Linked issues & boxes section in Key result"
+      },
+      {
+        "step": 9,
+        "action": "Open OKR Overview in boxName and refresh the page",
+        "data": "boxName: TC-5766 SPM - OKR - Unlinking boxes from KR",
+        "result": "Linked Box is not visible\n\nOnly Objective and Key-result is displayed\n\n* Objective 1\n** KR-1"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-5766",
+    "text": "Test: TC-5766 — SPM - OKR - Unlinking boxes from KR\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-513 OKR - Linking Boxes To KR\nLabels: spm-mikolaj-tc\n\nDescription:\nChecking ulinking boxes to key-result in OKR module\n\nSteps:\n1. Open OKR module in boxName\n   Data: boxName: TC-5766 SPM - OKR - Unlinking boxes from KR\n   Expected: OKR module is opened. No OKR connected to this box message is visible\n2. Navigate to OKR settings → General and enable \"*Displaying connected boxes in the OKR Overview*\"\n   Expected: Displaying connected boxes in the OKR Overview is enabled\n3. Navigate to OKR Overview → Layout → Display settings and enable *Show connected Boxes*\n   Expected: Showing connected boxes is enabled\n4. Create Objective and Key-result\n   Data: * Objective 1\n* KR-1\n   Expected: Objective and Key-result are created and visible in OKR Overview\n5. Open Key-result → click *Edit linked boxes* button → in box name field find boxName, select and click save\n   Data: boxName: TC-5766 SPM - OKR - Unlinking boxes from KR\n   Expected: Box is linked to Key-result. Linked box is visible in *Linked issues & boxes* in KR detail\n6. Open OKR Overview\n   Expected: OKR Overview is Opened. Objective, Key-result and linked box under KR is displayed\n\n* Objective 1\n** KR-1\n*** boxName: TC-5766 SPM - OKR - Unlinking boxes from KR\n7. Open Key-result and click *Edit linked boxes* button\n   Expected: BoxName is selected and visible\n8. Unselect boxName and click Save\n   Data: boxName: TC-5766 SPM - OKR - Unlinking boxes from KR\n   Expected: Box is not visible in Linked issues & boxes section in Key result\n9. Open OKR Overview in boxName and refresh the page\n   Data: boxName: TC-5766 SPM - OKR - Unlinking boxes from KR\n   Expected: Linked Box is not visible\n\nOnly Objective and Key-result is displayed\n\n* Objective 1\n** KR-1",
+    "metadata": {
+      "jira_key": "TC-5766",
+      "issue_id": "1316875",
+      "summary": "SPM - OKR - Unlinking boxes from KR",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-513 OKR - Linking Boxes To KR",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

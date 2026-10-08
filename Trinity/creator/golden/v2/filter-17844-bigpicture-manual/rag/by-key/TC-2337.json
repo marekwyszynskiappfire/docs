@@ -1,0 +1,145 @@
+{
+  "test": {
+    "key": "TC-2337",
+    "issue_id": "360042",
+    "url": "https://appfire.atlassian.net/browse/TC-2337",
+    "summary": "Feature area - Box scope - Existing task(s) planning - D&D Tasks between Sub-Boxes with different status",
+    "description": "",
+    "status": "Done",
+    "priority": "Highest",
+    "assignee": "Robert Włodarczyk",
+    "reporter": "Robert Włodarczyk",
+    "created": "2021-07-28T04:49:52.802-0400",
+    "updated": "2026-03-13T06:28:05.010-0400",
+    "labels": [
+      "Sanity",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-71 Feature area - Box scope - Existing task(s) planning",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of boxName.",
+        "data": "boxName: TC-2337 Feature area - Box scope - Existing task(s) planning - D&D Tasks between Sub-Boxes with different status",
+        "result": "Board module is loaded and displayed. Three Sub Box skeletons are visible:\n\n- Program Increment with status Not started\n- Program Increment 2 with status In progress\n- Program Increment 3 with status Closed"
+      },
+      {
+        "step": 2,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 1\nsubBoxName: Program Increment 2",
+        "result": "Task is successfully moved into new Sub Box. Its task card is displayed in Program Increment 2 skeleton and it is no longer displayed in Program Increment skeleton."
+      },
+      {
+        "step": 3,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 2\nsubBoxName: Program Increment 3",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Program Increment skeleton and it is not displayed in Program Increment 3 skeleton."
+      },
+      {
+        "step": 4,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 3\nsubBoxName: Program Increment",
+        "result": "Task is successfully moved into new Sub Box. Its task card is displayed in Program Increment skeleton and it is no longer displayed in Program Increment 2 skeleton."
+      },
+      {
+        "step": 5,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 4\nsubBoxName: Program Increment 3",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Program Increment 2 skeleton and it is not displayed in Program Increment 3 skeleton."
+      },
+      {
+        "step": 6,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 5\nsubBoxName: Program Increment",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Program Increment 3 skeleton and it is not displayed in Program Increment skeleton."
+      },
+      {
+        "step": 7,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 6\nsubBoxName: Program Increment 2",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Program Increment 3 skeleton and it is not displayed in Program Increment 2 skeleton."
+      },
+      {
+        "step": 8,
+        "action": "Refresh the page.",
+        "data": "",
+        "result": "Webpage is reloaded. Task cards are displayed are displayed in the same cells as before the refresh."
+      },
+      {
+        "step": 9,
+        "action": "Click on Level down button in subBoxName header.",
+        "data": "subBoxName: Program Increment",
+        "result": "Board module is loaded and displayed for Iteration level. Three Sub Box skeletons are visible:\n\n- Iteration with status Not started\n- Iteration 2 with status In progress\n- Iteration 3 with status Closed"
+      },
+      {
+        "step": 10,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 7\nsubBoxName: Iteration 2",
+        "result": "Task is successfully moved into new Sub Box. Its task card is displayed in Iteration 2 skeleton and it is no longer displayed in Iteration skeleton."
+      },
+      {
+        "step": 11,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 8\nsubBoxName: Iteration 3",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Iteration skeleton and it is not displayed in Iteration 3 skeleton."
+      },
+      {
+        "step": 12,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 9\nsubBoxName: Iteration",
+        "result": "Task is successfully moved into new Sub Box. Its task card is displayed in Iteration skeleton and it is no longer displayed in Iteration 2 skeleton."
+      },
+      {
+        "step": 13,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 10\nsubBoxName: Iteration 3",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Iteration skeleton and it is not displayed in Iteration 3 skeleton."
+      },
+      {
+        "step": 14,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 11\nsubBoxName: Iteration",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Iteration 3 skeleton and it is not displayed in Iteration skeleton."
+      },
+      {
+        "step": 15,
+        "action": "Drag and drop taskName card into subBoxName.",
+        "data": "taskName: Task 12\nsubBoxName: Iteration 2",
+        "result": "Task is not moved into new Sub Box. Its task card is still displayed in Iteration 3 skeleton and it is not displayed in Iteration 2 skeleton."
+      },
+      {
+        "step": 16,
+        "action": "Refresh the page.",
+        "data": "",
+        "result": "Webpage is reloaded. Task cards are displayed are displayed in the same cells as before the refresh."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-2337",
+    "text": "Test: TC-2337 — Feature area - Box scope - Existing task(s) planning - D&D Tasks between Sub-Boxes with different status\nPriority: Highest | Status: Done | Type: Manual\nFolder: /BP/TS-71 Feature area - Box scope - Existing task(s) planning\nLabels: Sanity, teamsmile\n\nSteps:\n1. Navigate to Board module of boxName.\n   Data: boxName: TC-2337 Feature area - Box scope - Existing task(s) planning - D&D Tasks between Sub-Boxes with different status\n   Expected: Board module is loaded and displayed. Three Sub Box skeletons are visible:\n\n- Program Increment with status Not started\n- Program Increment 2 with status In progress\n- Program Increment 3 with status Closed\n2. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 1\nsubBoxName: Program Increment 2\n   Expected: Task is successfully moved into new Sub Box. Its task card is displayed in Program Increment 2 skeleton and it is no longer displayed in Program Increment skeleton.\n3. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 2\nsubBoxName: Program Increment 3\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Program Increment skeleton and it is not displayed in Program Increment 3 skeleton.\n4. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 3\nsubBoxName: Program Increment\n   Expected: Task is successfully moved into new Sub Box. Its task card is displayed in Program Increment skeleton and it is no longer displayed in Program Increment 2 skeleton.\n5. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 4\nsubBoxName: Program Increment 3\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Program Increment 2 skeleton and it is not displayed in Program Increment 3 skeleton.\n6. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 5\nsubBoxName: Program Increment\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Program Increment 3 skeleton and it is not displayed in Program Increment skeleton.\n7. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 6\nsubBoxName: Program Increment 2\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Program Increment 3 skeleton and it is not displayed in Program Increment 2 skeleton.\n8. Refresh the page.\n   Expected: Webpage is reloaded. Task cards are displayed are displayed in the same cells as before the refresh.\n9. Click on Level down button in subBoxName header.\n   Data: subBoxName: Program Increment\n   Expected: Board module is loaded and displayed for Iteration level. Three Sub Box skeletons are visible:\n\n- Iteration with status Not started\n- Iteration 2 with status In progress\n- Iteration 3 with status Closed\n10. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 7\nsubBoxName: Iteration 2\n   Expected: Task is successfully moved into new Sub Box. Its task card is displayed in Iteration 2 skeleton and it is no longer displayed in Iteration skeleton.\n11. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 8\nsubBoxName: Iteration 3\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Iteration skeleton and it is not displayed in Iteration 3 skeleton.\n12. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 9\nsubBoxName: Iteration\n   Expected: Task is successfully moved into new Sub Box. Its task card is displayed in Iteration skeleton and it is no longer displayed in Iteration 2 skeleton.\n13. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 10\nsubBoxName: Iteration 3\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Iteration skeleton and it is not displayed in Iteration 3 skeleton.\n14. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 11\nsubBoxName: Iteration\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Iteration 3 skeleton and it is not displayed in Iteration skeleton.\n15. Drag and drop taskName card into subBoxName.\n   Data: taskName: Task 12\nsubBoxName: Iteration 2\n   Expected: Task is not moved into new Sub Box. Its task card is still displayed in Iteration 3 skeleton and it is not displayed in Iteration 2 skeleton.\n16. Refresh the page.\n   Expected: Webpage is reloaded. Task cards are displayed are displayed in the same cells as before the refresh.",
+    "metadata": {
+      "jira_key": "TC-2337",
+      "issue_id": "360042",
+      "summary": "Feature area - Box scope - Existing task(s) planning - D&D Tasks between Sub-Boxes with different status",
+      "priority": "Highest",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-71 Feature area - Box scope - Existing task(s) planning",
+      "labels": [
+        "Sanity",
+        "teamsmile"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

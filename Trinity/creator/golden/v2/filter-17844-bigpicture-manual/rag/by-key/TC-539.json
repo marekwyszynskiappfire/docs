@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-539",
+    "issue_id": "358145",
+    "url": "https://appfire.atlassian.net/browse/TC-539",
+    "summary": "Global - Holiday plans - Resynchronize with Tempo",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Monika Cecot",
+    "created": "2020-10-06T07:42:52.352-0400",
+    "updated": "2026-05-05T09:21:12.173-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-26 Global - Holiday plans",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Tempo -> Settings -> Holidays",
+        "data": "_Tempo_ should be installed",
+        "result": "Holidays tab is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Add new Holiday scheme passing this set of data",
+        "data": "name: TC-539 Holiday Plan to edit\ndescription: TC-539 Holiday Plan to edit",
+        "result": "Holiday plan is added"
+      },
+      {
+        "step": 3,
+        "action": "Click Configure option next to holidayPlanName",
+        "data": "holidayPlanName: TC-539 Holiday Plan to edit",
+        "result": "Configuration page is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Add new fixedHoliday and floatingHoliday passing this set of data",
+        "data": "fixedHoliday: Fixed 1\nduration: 1d\ndate: 01/Oct/20\n\n\n\nname: Floating 1\nduration: 1d\ndate: 08/Oct/20",
+        "result": "Floating  and Fixed Holidays are added"
+      },
+      {
+        "step": 5,
+        "action": "Navigate to BP Administration -> Holiday plans tab and click Synchronize with Tempo button",
+        "data": "",
+        "result": "\"TC-539 Holiday Plan to edit\" is displayed on the list with green Tempo lozenge."
+      },
+      {
+        "step": 6,
+        "action": "Click on holidayPlanName",
+        "data": "holidayPlanName: TC-539 Holiday Plan to edit",
+        "result": "Details page of TC-539 Holiday Plan to edit is displayed\n\n\"Fixed 1\" holiday is displayed on Calendar on 01/Oct\n\n\"Floating 1\" holiday is displayed on Calendar on 08/Oct/20"
+      },
+      {
+        "step": 7,
+        "action": "Navigate back to Holiday plan list and click on Edit button next to holidayPlan and set newName and description",
+        "data": "workloadPlan: TC-539 Holiday Plan to edit\nnewName: TC-539 Holiday Plan edited on BP level",
+        "result": "Changes are saved.\n\nHoliday plan synchronized from Tempo is overwritten in BP level. Blue pencil icon is displayed next to holiday plan name."
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Tempo -> Settings -> Holidays",
+        "data": "",
+        "result": "Holidays tab is displayed\n\n\"TC-539 Holiday Plan to edit\" is still displayed on the list. Changes made in BP level are not visible in Tempo."
+      },
+      {
+        "step": 9,
+        "action": "Click on name of holidayScheme and set newName",
+        "data": "holidayScheme: TC-539 Holiday Plan to edit\nnewName: TC-539 Holiday Plan resynchronized",
+        "result": "Changes are saved"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to BP Administration -> Holiday plans tab",
+        "data": "",
+        "result": "Holiday plans tab is displayed\n\n\"TC-539 Holiday Plan edited on BP level\" is still displayed on the list"
+      },
+      {
+        "step": 11,
+        "action": "Click on holidayName to open details page",
+        "data": "holidayName: TC-539 Holiday Plan edited on BP level",
+        "result": "Holiday details page is displayed. \n\nAdditional \"Resynchronize with Tempo\" button is displayed in right header"
+      },
+      {
+        "step": 12,
+        "action": "Click on Resynchronize with Tempo button",
+        "data": "",
+        "result": "Holiday plan is resynchronized. \n\nHoliday plan name \"TC-539 Holiday Plan resynchronized\" is displayed in left header."
+      },
+      {
+        "step": 13,
+        "action": "Go back to Holiday plans tab and check visibility after refresh",
+        "data": "",
+        "result": "\"TC-539 Holiday Plan resynchronized\" is displayed on the list with green Tempo lozenge"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-539",
+    "text": "Test: TC-539 — Global - Holiday plans - Resynchronize with Tempo\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-26 Global - Holiday plans\nLabels: be-enterprise\n\nSteps:\n1. Navigate to Tempo -> Settings -> Holidays\n   Data: _Tempo_ should be installed\n   Expected: Holidays tab is displayed\n2. Add new Holiday scheme passing this set of data\n   Data: name: TC-539 Holiday Plan to edit\ndescription: TC-539 Holiday Plan to edit\n   Expected: Holiday plan is added\n3. Click Configure option next to holidayPlanName\n   Data: holidayPlanName: TC-539 Holiday Plan to edit\n   Expected: Configuration page is displayed\n4. Add new fixedHoliday and floatingHoliday passing this set of data\n   Data: fixedHoliday: Fixed 1\nduration: 1d\ndate: 01/Oct/20\n\n\n\nname: Floating 1\nduration: 1d\ndate: 08/Oct/20\n   Expected: Floating  and Fixed Holidays are added\n5. Navigate to BP Administration -> Holiday plans tab and click Synchronize with Tempo button\n   Expected: \"TC-539 Holiday Plan to edit\" is displayed on the list with green Tempo lozenge.\n6. Click on holidayPlanName\n   Data: holidayPlanName: TC-539 Holiday Plan to edit\n   Expected: Details page of TC-539 Holiday Plan to edit is displayed\n\n\"Fixed 1\" holiday is displayed on Calendar on 01/Oct\n\n\"Floating 1\" holiday is displayed on Calendar on 08/Oct/20\n7. Navigate back to Holiday plan list and click on Edit button next to holidayPlan and set newName and description\n   Data: workloadPlan: TC-539 Holiday Plan to edit\nnewName: TC-539 Holiday Plan edited on BP level\n   Expected: Changes are saved.\n\nHoliday plan synchronized from Tempo is overwritten in BP level. Blue pencil icon is displayed next to holiday plan name.\n8. Navigate to Tempo -> Settings -> Holidays\n   Expected: Holidays tab is displayed\n\n\"TC-539 Holiday Plan to edit\" is still displayed on the list. Changes made in BP level are not visible in Tempo.\n9. Click on name of holidayScheme and set newName\n   Data: holidayScheme: TC-539 Holiday Plan to edit\nnewName: TC-539 Holiday Plan resynchronized\n   Expected: Changes are saved\n10. Navigate to BP Administration -> Holiday plans tab\n   Expected: Holiday plans tab is displayed\n\n\"TC-539 Holiday Plan edited on BP level\" is still displayed on the list\n11. Click on holidayName to open details page\n   Data: holidayName: TC-539 Holiday Plan edited on BP level\n   Expected: Holiday details page is displayed. \n\nAdditional \"Resynchronize with Tempo\" button is displayed in right header\n12. Click on Resynchronize with Tempo button\n   Expected: Holiday plan is resynchronized. \n\nHoliday plan name \"TC-539 Holiday Plan resynchronized\" is displayed in left header.\n13. Go back to Holiday plans tab and check visibility after refresh\n   Expected: \"TC-539 Holiday Plan resynchronized\" is displayed on the list with green Tempo lozenge",
+    "metadata": {
+      "jira_key": "TC-539",
+      "issue_id": "358145",
+      "summary": "Global - Holiday plans - Resynchronize with Tempo",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-26 Global - Holiday plans",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

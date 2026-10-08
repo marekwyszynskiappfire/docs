@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-3911",
+    "issue_id": "360194",
+    "url": "https://appfire.atlassian.net/browse/TC-3911",
+    "summary": "Feature area - Box - Modules - Displaying loaders for a big box",
+    "description": "Please note if sync is finished by the time the Test Steps are not, clear cache.",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2023-03-02T04:14:40.506-0500",
+    "updated": "2026-04-10T06:06:53.933-0400",
+    "labels": [
+      "teamHotShots"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-213 Feature area - Box - Modules",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Execute this TC with network throttling set to SLow 3G for reliable results.",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Gantt module.\nInstead of a box icon, a loading icon is displayed."
+      },
+      {
+        "step": 3,
+        "action": "Navigate to Scope module of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Scope module.\nInstead of a box icon, a loading icon is displayed."
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Board module of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Board module.\nInstead of a box icon, a loading icon is displayed."
+      },
+      {
+        "step": 5,
+        "action": "Navigate to Objectives module of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Objectives module.\nInstead of a box icon, a loading icon is displayed."
+      },
+      {
+        "step": 6,
+        "action": "Navigate to Risks module of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Risks module.\nInstead of a box icon, a loading icon is displayed."
+      },
+      {
+        "step": 7,
+        "action": "Navigate to Resources module of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Resources module.\nInstead of a box icon, a loading icon is displayed."
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Calendar module of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Calendar module.\nInstead of a box icon, a loading icon is displayed."
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Configuration of boxName",
+        "data": "boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box",
+        "result": "General Basics tab is opened of TC-3911 Feature area - Box - Modules - Displaying loaders for a big box. Instead of a box icon, a loading icon is displayed."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-3911",
+    "text": "Test: TC-3911 — Feature area - Box - Modules - Displaying loaders for a big box\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-213 Feature area - Box - Modules\nLabels: teamHotShots\n\nDescription:\nPlease note if sync is finished by the time the Test Steps are not, clear cache.\n\nSteps:\n1. Execute this TC with network throttling set to SLow 3G for reliable results.\n   Expected: \n2. Navigate to Gantt module of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Gantt module.\nInstead of a box icon, a loading icon is displayed.\n3. Navigate to Scope module of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Scope module.\nInstead of a box icon, a loading icon is displayed.\n4. Navigate to Board module of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Board module.\nInstead of a box icon, a loading icon is displayed.\n5. Navigate to Objectives module of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Objectives module.\nInstead of a box icon, a loading icon is displayed.\n6. Navigate to Risks module of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Risks module.\nInstead of a box icon, a loading icon is displayed.\n7. Navigate to Resources module of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Resources module.\nInstead of a box icon, a loading icon is displayed.\n8. Navigate to Calendar module of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box opens on the Calendar module.\nInstead of a box icon, a loading icon is displayed.\n9. Navigate to Configuration of boxName\n   Data: boxName: TC-3911 Feature area - Box - Modules - Displaying loaders for a big box\n   Expected: General Basics tab is opened of TC-3911 Feature area - Box - Modules - Displaying loaders for a big box. Instead of a box icon, a loading icon is displayed.",
+    "metadata": {
+      "jira_key": "TC-3911",
+      "issue_id": "360194",
+      "summary": "Feature area - Box - Modules - Displaying loaders for a big box",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-213 Feature area - Box - Modules",
+      "labels": [
+        "teamHotShots"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

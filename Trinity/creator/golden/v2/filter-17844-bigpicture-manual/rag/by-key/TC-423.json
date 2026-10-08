@@ -1,0 +1,101 @@
+{
+  "test": {
+    "key": "TC-423",
+    "issue_id": "359850",
+    "url": "https://appfire.atlassian.net/browse/TC-423",
+    "summary": "Box Module - Risk - Column View - Risk Table Column display options",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Kinga Kiepas (Inactive)",
+    "created": "2020-07-09T02:52:43.141-0400",
+    "updated": "2026-03-04T09:20:45.503-0500",
+    "labels": [
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-105 Box Module - Risk - Column Views",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Risks module in boxName",
+        "data": "boxName: TC-423 View modes in Risks matrix",
+        "result": "Risks module is displayed. Essentials Column View is selected."
+      },
+      {
+        "step": 2,
+        "action": "Click on Table button",
+        "data": "",
+        "result": "Risk table is displayed."
+      },
+      {
+        "step": 3,
+        "action": "Grab the border between column1 and column2, move to the right  and release it\n\nRefresh the page",
+        "data": "column1: Key\ncolumn2: Summary",
+        "result": "Border is moved and columns are resized"
+      },
+      {
+        "step": 4,
+        "action": "Grab the border between column1 and column2 and narrow the column1 to the minimum",
+        "data": "column1: Assignee\ncolumn2: Status",
+        "result": "Columns are resized."
+      },
+      {
+        "step": 5,
+        "action": "Hover over columnName",
+        "data": "columnName: Assignee",
+        "result": "Tooltip with whole column name is displayed above the column."
+      },
+      {
+        "step": 6,
+        "action": "Grab the column1 and release it between column2 and column3.",
+        "data": "column1: Assignee\ncolumn2: Issue type\ncolumn3: Key",
+        "result": "Column is displayed between Risk robability and Risk consequence"
+      },
+      {
+        "step": 7,
+        "action": "Hover over columnName",
+        "data": "columnName: Risk probability",
+        "result": "Customize column wrench icon appears next to column name"
+      },
+      {
+        "step": 8,
+        "action": "Click on wrench icon",
+        "data": "",
+        "result": "Additional window to change display setting appears"
+      },
+      {
+        "step": 9,
+        "action": "Select displayOption",
+        "data": "displayOption: Text",
+        "result": "Display settings are changed. Risk probability values are displayed as plain text"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-423",
+    "text": "Test: TC-423 — Box Module - Risk - Column View - Risk Table Column display options\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-105 Box Module - Risk - Column Views\nLabels: teamsource\n\nSteps:\n1. Navigate to Risks module in boxName\n   Data: boxName: TC-423 View modes in Risks matrix\n   Expected: Risks module is displayed. Essentials Column View is selected.\n2. Click on Table button\n   Expected: Risk table is displayed.\n3. Grab the border between column1 and column2, move to the right  and release it\n\nRefresh the page\n   Data: column1: Key\ncolumn2: Summary\n   Expected: Border is moved and columns are resized\n4. Grab the border between column1 and column2 and narrow the column1 to the minimum\n   Data: column1: Assignee\ncolumn2: Status\n   Expected: Columns are resized.\n5. Hover over columnName\n   Data: columnName: Assignee\n   Expected: Tooltip with whole column name is displayed above the column.\n6. Grab the column1 and release it between column2 and column3.\n   Data: column1: Assignee\ncolumn2: Issue type\ncolumn3: Key\n   Expected: Column is displayed between Risk robability and Risk consequence\n7. Hover over columnName\n   Data: columnName: Risk probability\n   Expected: Customize column wrench icon appears next to column name\n8. Click on wrench icon\n   Expected: Additional window to change display setting appears\n9. Select displayOption\n   Data: displayOption: Text\n   Expected: Display settings are changed. Risk probability values are displayed as plain text",
+    "metadata": {
+      "jira_key": "TC-423",
+      "issue_id": "359850",
+      "summary": "Box Module - Risk - Column View - Risk Table Column display options",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-105 Box Module - Risk - Column Views",
+      "labels": [
+        "teamsource"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

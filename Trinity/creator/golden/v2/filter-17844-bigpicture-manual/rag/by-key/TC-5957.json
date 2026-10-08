@@ -1,0 +1,97 @@
+{
+  "test": {
+    "key": "TC-5957",
+    "issue_id": "1507319",
+    "url": "https://appfire.atlassian.net/browse/TC-5957",
+    "summary": "New Homepage - Quick links",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": null,
+    "reporter": "Robert Włodarczyk",
+    "created": "2026-01-27T06:29:21.327-0500",
+    "updated": "2026-08-06T11:17:21.080-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/New Homepage",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to New Homepage",
+        "data": "",
+        "result": "New Homepage screen is visible. There are seven tiles in quick links section:\n\n* Overview\n* Gantt\n* OKR\n* Startegic Areas\n* Priorities\n* Financials\n* +"
+      },
+      {
+        "step": 2,
+        "action": "Click nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.",
+        "data": "nameTile: Overview\n\nboxName: TC-5957\n\nbuttonName: Overview",
+        "result": "Overview module of TC-5957 box is visible."
+      },
+      {
+        "step": 3,
+        "action": "Click BigPicture logo from left upper corner.\n\nClick nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.",
+        "data": "nameTile: Gantt\n\nboxName: TC-5957\n\nbuttonName: Gantt",
+        "result": "Gantt module of TC-5957 box is visible."
+      },
+      {
+        "step": 4,
+        "action": "Click BigPicture logo from left upper corner.\n\nClick nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.",
+        "data": "nameTile: OKR\n\nboxName: TC-5957\n\nbuttonName: OKR",
+        "result": "OKR module of TC-5957 box is visible."
+      },
+      {
+        "step": 5,
+        "action": "Click BigPicture logo from left upper corner.\n\nClick nameTile.",
+        "data": "nameTile: Strategic Areas",
+        "result": "Strategic areas module is visible."
+      },
+      {
+        "step": 6,
+        "action": "Click BigPicture logo from left upper corner.\n\nClick nameTile.\n\nSelect moduleName.\n\nClick ‘Pin to navigation’ button.",
+        "data": "nameTile: +\n\nmoduleName: Teams",
+        "result": "Teams tile is appeared in Quick links section."
+      },
+      {
+        "step": 7,
+        "action": "Click nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.",
+        "data": "nameTile: Teams\n\nboxName: TC-5957\n\nbuttonName: Gantt",
+        "result": "Gantt module of TC-5957 box is visible."
+      },
+      {
+        "step": 8,
+        "action": "Click BigPicture logo from left upper corner.\n\nHover over tileName and click 'x' icon.",
+        "data": "tileName: Teams",
+        "result": "Teams tile is removed from Quick links."
+      },
+      {
+        "step": 9,
+        "action": "Drag and drop tileName one spot on the left.",
+        "data": "tileName: OKR",
+        "result": "OKR tile is between Overview tile and Gantt tile."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-5957",
+    "text": "Test: TC-5957 — New Homepage - Quick links\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/New Homepage\n\nSteps:\n1. Navigate to New Homepage\n   Expected: New Homepage screen is visible. There are seven tiles in quick links section:\n\n* Overview\n* Gantt\n* OKR\n* Startegic Areas\n* Priorities\n* Financials\n* +\n2. Click nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.\n   Data: nameTile: Overview\n\nboxName: TC-5957\n\nbuttonName: Overview\n   Expected: Overview module of TC-5957 box is visible.\n3. Click BigPicture logo from left upper corner.\n\nClick nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.\n   Data: nameTile: Gantt\n\nboxName: TC-5957\n\nbuttonName: Gantt\n   Expected: Gantt module of TC-5957 box is visible.\n4. Click BigPicture logo from left upper corner.\n\nClick nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.\n   Data: nameTile: OKR\n\nboxName: TC-5957\n\nbuttonName: OKR\n   Expected: OKR module of TC-5957 box is visible.\n5. Click BigPicture logo from left upper corner.\n\nClick nameTile.\n   Data: nameTile: Strategic Areas\n   Expected: Strategic areas module is visible.\n6. Click BigPicture logo from left upper corner.\n\nClick nameTile.\n\nSelect moduleName.\n\nClick ‘Pin to navigation’ button.\n   Data: nameTile: +\n\nmoduleName: Teams\n   Expected: Teams tile is appeared in Quick links section.\n7. Click nameTile.\n\nFind boxName in the Navigator.\n\nClick buttonName of boxName.\n   Data: nameTile: Teams\n\nboxName: TC-5957\n\nbuttonName: Gantt\n   Expected: Gantt module of TC-5957 box is visible.\n8. Click BigPicture logo from left upper corner.\n\nHover over tileName and click 'x' icon.\n   Data: tileName: Teams\n   Expected: Teams tile is removed from Quick links.\n9. Drag and drop tileName one spot on the left.\n   Data: tileName: OKR\n   Expected: OKR tile is between Overview tile and Gantt tile.",
+    "metadata": {
+      "jira_key": "TC-5957",
+      "issue_id": "1507319",
+      "summary": "New Homepage - Quick links",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/New Homepage",
+      "labels": [],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

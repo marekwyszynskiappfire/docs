@@ -1,0 +1,135 @@
+{
+  "test": {
+    "key": "TC-2674",
+    "issue_id": "359981",
+    "url": "https://appfire.atlassian.net/browse/TC-2674",
+    "summary": "Feature area - Exporting - Exporting Reports",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2021-11-18T09:29:50.754-0500",
+    "updated": "2026-03-12T09:13:33.609-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "teamreports"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-94 Feature area - Exporting",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Reports module of boxName.",
+        "data": "boxName: TC-2674 Feature area - Exporting - Exporting Reports",
+        "result": "Module is open correctly. User see seven charts. Three in a top row (3 pie charts). Three in the bottom row (One column chart, one pie chart and Team dependencies report). At the third row there is one Dependencies report."
+      },
+      {
+        "step": 2,
+        "action": "Click on the cell in reportName on the TC-2674 Beta > TC-2674 Alpha axis.",
+        "data": "reportName: Team dependencies",
+        "result": "Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close"
+      },
+      {
+        "step": 3,
+        "action": "Click on the Export button.",
+        "data": "",
+        "result": "Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button."
+      },
+      {
+        "step": 4,
+        "action": "Click on the File type dropdown",
+        "data": "",
+        "result": "There is only one option available:\n\n* MS Excel Export (XLSX)"
+      },
+      {
+        "step": 5,
+        "action": "Click on the Export button to export the file and verify the data in the exported file.",
+        "data": "",
+        "result": "Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Team name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Team name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)"
+      },
+      {
+        "step": 6,
+        "action": "Close Export data window.\n\nClick on the cell in reportName on the TC-2674 Alpha > TC-2674 Alpha axis.",
+        "data": "reportName: Team dependencies",
+        "result": "Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close"
+      },
+      {
+        "step": 7,
+        "action": "Click on the Export button.",
+        "data": "",
+        "result": "Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button."
+      },
+      {
+        "step": 8,
+        "action": "Click on the Export button to export the file and verify the data in the exported file.",
+        "data": "",
+        "result": "Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Team name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Team name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)"
+      },
+      {
+        "step": 9,
+        "action": "Close Export data window.\n\nClick on the cell in reportName on the PI 2 > PI 1 axis.",
+        "data": "reportName: Dependencies",
+        "result": "Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close"
+      },
+      {
+        "step": 10,
+        "action": "Click on the Export button.",
+        "data": "",
+        "result": "Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button."
+      },
+      {
+        "step": 11,
+        "action": "Click on the Export button to export the file and verify the data in the exported file.",
+        "data": "",
+        "result": "Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Box name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Box name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)"
+      },
+      {
+        "step": 12,
+        "action": "Close Export data window.\n\nClick on the cell in reportName on the PI 2 > PI 2 axis.",
+        "data": "reportName: Dependencies",
+        "result": "Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close"
+      },
+      {
+        "step": 13,
+        "action": "Click on the Export button.",
+        "data": "",
+        "result": "Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button."
+      },
+      {
+        "step": 14,
+        "action": "Click on the Export button to export the file and verify the data in the exported file.",
+        "data": "",
+        "result": "Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Box name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Box name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-2674",
+    "text": "Test: TC-2674 — Feature area - Exporting - Exporting Reports\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-94 Feature area - Exporting\nLabels: Sanity, can_be_automated, teamreports\n\nSteps:\n1. Navigate to the Reports module of boxName.\n   Data: boxName: TC-2674 Feature area - Exporting - Exporting Reports\n   Expected: Module is open correctly. User see seven charts. Three in a top row (3 pie charts). Three in the bottom row (One column chart, one pie chart and Team dependencies report). At the third row there is one Dependencies report.\n2. Click on the cell in reportName on the TC-2674 Beta > TC-2674 Alpha axis.\n   Data: reportName: Team dependencies\n   Expected: Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close\n3. Click on the Export button.\n   Expected: Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button.\n4. Click on the File type dropdown\n   Expected: There is only one option available:\n\n* MS Excel Export (XLSX)\n5. Click on the Export button to export the file and verify the data in the exported file.\n   Expected: Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Team name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Team name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)\n6. Close Export data window.\n\nClick on the cell in reportName on the TC-2674 Alpha > TC-2674 Alpha axis.\n   Data: reportName: Team dependencies\n   Expected: Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close\n7. Click on the Export button.\n   Expected: Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button.\n8. Click on the Export button to export the file and verify the data in the exported file.\n   Expected: Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Team name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Team name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)\n9. Close Export data window.\n\nClick on the cell in reportName on the PI 2 > PI 1 axis.\n   Data: reportName: Dependencies\n   Expected: Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close\n10. Click on the Export button.\n   Expected: Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button.\n11. Click on the Export button to export the file and verify the data in the exported file.\n   Expected: Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Box name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Box name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)\n12. Close Export data window.\n\nClick on the cell in reportName on the PI 2 > PI 2 axis.\n   Data: reportName: Dependencies\n   Expected: Inline dialog is loaded. On the top-right corner there are three buttons:\n- Export\n- Expand\n- Close\n13. Click on the Export button.\n   Expected: Export data dialog is displayed. There is a header Export data at the top and the exit (X) button at the top-right corner.\nBeLow there is File type dropdown with MS Excel Export (XLSX) chosen.\n\nIn the bottom right corner there is blue, active Export button.\n14. Click on the Export button to export the file and verify the data in the exported file.\n   Expected: Downloaded file name folLows the filename schema:\nreport-<current-date>T<current-time>.<chosen-format>\n\nAll tasks are exported with their data:\n\n* Box name (source)\n* KeyID (source)\n* Status (source)\n* Summary (source)\n* Dependency type\n* Box name (target)\n* KeyID (target)\n* Status (target)\n* Summary (target)",
+    "metadata": {
+      "jira_key": "TC-2674",
+      "issue_id": "359981",
+      "summary": "Feature area - Exporting - Exporting Reports",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-94 Feature area - Exporting",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "teamreports"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

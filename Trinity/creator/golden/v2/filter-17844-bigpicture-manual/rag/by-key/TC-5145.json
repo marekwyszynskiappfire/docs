@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-5145",
+    "issue_id": "1058651",
+    "url": "https://appfire.atlassian.net/browse/TC-5145",
+    "summary": "Timebox schedule - Editing parameters of timebox schedule in sidebar",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2024-11-25T08:21:44.545-0500",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "Sanity"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-503 Timebox Schedule",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Settings → Timebox schedules.\n\nCreate new timebox schedule providing data:\n\n* Name: name\n* Timebox levels: timeboxLevels\n* Start date: startDate\n* Connect Global Teams: globalTeam",
+        "data": "* name: TC-5145 Schedule\n* timeboxLevels: Program Increment, Iteration\n* startDate: 01/Jan/25\n* globalTeam:  TC-5145 Team 1",
+        "result": "Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page.\n\nSidebar is opened.\n\nSchedule structure tab is selected."
+      },
+      {
+        "step": 2,
+        "action": "Click on Name field.\n\nRemove text and click besides the field.",
+        "data": "",
+        "result": "Red border is displaying for Name field.\n\nIn the right bottom corner there is red exclamation mark with tooltip:\n\nThis field cannot be empty"
+      },
+      {
+        "step": 3,
+        "action": "Provide text in Name field and click besides it.",
+        "data": "text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit ame",
+        "result": "Red border is displaying for Name field.\n\nIn the right bottom corner there is red exclamation mark with tooltip:\n\nMax. 255 characters"
+      },
+      {
+        "step": 4,
+        "action": "Provide text in Name field and click besides it.",
+        "data": "text: Edited schedule",
+        "result": "Red border and exclamation mark are not displayed.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears.\n\ntext is displayed in Name field and is updated in header."
+      },
+      {
+        "step": 5,
+        "action": "Provide text in Description field and click besides it.",
+        "data": "text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit ame",
+        "result": "Red border is displaying for Description field.\n\nIn the right bottom corner there is red exclamation mark with tooltip:\n\nMax. 255 characters"
+      },
+      {
+        "step": 6,
+        "action": "Remove text from Description field and click besides it.",
+        "data": "",
+        "result": "Red border is not displaying for Description field.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears.\n\nDescription field is empty."
+      },
+      {
+        "step": 7,
+        "action": "Provide text in Description field and click besides it.",
+        "data": "text: Edited description",
+        "result": "Pop up with mesage:\n\nChanges saved automatically\n\nappears.\n\ntext is correctly displayed in Description field."
+      },
+      {
+        "step": 8,
+        "action": "Click on right bottom corner of the Description field and drag down to enlarge the field.",
+        "data": "",
+        "result": "Height of description field is increased."
+      },
+      {
+        "step": 9,
+        "action": "Hover over Timebox levels field.\n\nClick on X button next to timeboxName.",
+        "data": "timeboxName: Program Increment",
+        "result": "After hovering over Timebox levels field there is tooltip displaying:\n\nTimebox levels can’t be changed once created\n\nClicking on X button is not removing timebox levels."
+      },
+      {
+        "step": 10,
+        "action": "Click on X button next to globalTeam.",
+        "data": "globalTeam:  TC-5145 Team 1",
+        "result": "globalTeam is removed.\n\nConnect Global Teams is empty.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears."
+      },
+      {
+        "step": 11,
+        "action": "Click on Connect Global Teams.\n\nSearch globalTeam2 and add it.",
+        "data": "globalTeam2: TC-5145 Team 2",
+        "result": "globalTeam2 is correctly displayed in Connect Global Teams field.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears."
+      },
+      {
+        "step": 12,
+        "action": "Click on arrow button to close sidebar.",
+        "data": "",
+        "result": "Sidebar is closed. \n\nInstead of arrow there is:\n\nDetails \n\ntext displayed."
+      },
+      {
+        "step": 13,
+        "action": "Refresh page and open sidebar.",
+        "data": "name: Edited schedule\n\ndescription: Edited description\n\ntimeboxLevel1: Program Increment\n\ntimeboxLevel2: Iteration\n\nglobalTeam2: TC-5145 Team 2",
+        "result": "name is displaying in Name field.\n\ndescription is displaying in Description field.\n\ntimeboxLevel1 and timeboxLevel2 are displaying in Timebox levels field.\n\nglobalTeam2 is displaying in Connect Global Teams."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-5145",
+    "text": "Test: TC-5145 — Timebox schedule - Editing parameters of timebox schedule in sidebar\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-503 Timebox Schedule\nLabels: Sanity\n\nSteps:\n1. Navigate to App Settings → Timebox schedules.\n\nCreate new timebox schedule providing data:\n\n* Name: name\n* Timebox levels: timeboxLevels\n* Start date: startDate\n* Connect Global Teams: globalTeam\n   Data: * name: TC-5145 Schedule\n* timeboxLevels: Program Increment, Iteration\n* startDate: 01/Jan/25\n* globalTeam:  TC-5145 Team 1\n   Expected: Timebox schedule is created successfully.\n\nUser navigates to timebox schedule details page.\n\nSidebar is opened.\n\nSchedule structure tab is selected.\n2. Click on Name field.\n\nRemove text and click besides the field.\n   Expected: Red border is displaying for Name field.\n\nIn the right bottom corner there is red exclamation mark with tooltip:\n\nThis field cannot be empty\n3. Provide text in Name field and click besides it.\n   Data: text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit ame\n   Expected: Red border is displaying for Name field.\n\nIn the right bottom corner there is red exclamation mark with tooltip:\n\nMax. 255 characters\n4. Provide text in Name field and click besides it.\n   Data: text: Edited schedule\n   Expected: Red border and exclamation mark are not displayed.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears.\n\ntext is displayed in Name field and is updated in header.\n5. Provide text in Description field and click besides it.\n   Data: text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit ame\n   Expected: Red border is displaying for Description field.\n\nIn the right bottom corner there is red exclamation mark with tooltip:\n\nMax. 255 characters\n6. Remove text from Description field and click besides it.\n   Expected: Red border is not displaying for Description field.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears.\n\nDescription field is empty.\n7. Provide text in Description field and click besides it.\n   Data: text: Edited description\n   Expected: Pop up with mesage:\n\nChanges saved automatically\n\nappears.\n\ntext is correctly displayed in Description field.\n8. Click on right bottom corner of the Description field and drag down to enlarge the field.\n   Expected: Height of description field is increased.\n9. Hover over Timebox levels field.\n\nClick on X button next to timeboxName.\n   Data: timeboxName: Program Increment\n   Expected: After hovering over Timebox levels field there is tooltip displaying:\n\nTimebox levels can’t be changed once created\n\nClicking on X button is not removing timebox levels.\n10. Click on X button next to globalTeam.\n   Data: globalTeam:  TC-5145 Team 1\n   Expected: globalTeam is removed.\n\nConnect Global Teams is empty.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears.\n11. Click on Connect Global Teams.\n\nSearch globalTeam2 and add it.\n   Data: globalTeam2: TC-5145 Team 2\n   Expected: globalTeam2 is correctly displayed in Connect Global Teams field.\n\nPop up with mesage:\n\nChanges saved automatically\n\nappears.\n12. Click on arrow button to close sidebar.\n   Expected: Sidebar is closed. \n\nInstead of arrow there is:\n\nDetails \n\ntext displayed.\n13. Refresh page and open sidebar.\n   Data: name: Edited schedule\n\ndescription: Edited description\n\ntimeboxLevel1: Program Increment\n\ntimeboxLevel2: Iteration\n\nglobalTeam2: TC-5145 Team 2\n   Expected: name is displaying in Name field.\n\ndescription is displaying in Description field.\n\ntimeboxLevel1 and timeboxLevel2 are displaying in Timebox levels field.\n\nglobalTeam2 is displaying in Connect Global Teams.",
+    "metadata": {
+      "jira_key": "TC-5145",
+      "issue_id": "1058651",
+      "summary": "Timebox schedule - Editing parameters of timebox schedule in sidebar",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-503 Timebox Schedule",
+      "labels": [
+        "Sanity"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

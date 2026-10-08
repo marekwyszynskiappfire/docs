@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run-config.schema.json",
+  "title": "ReviewerPortfolioRunConfig",
+  "type": "object",
+  "required": [
+    "config_version",
+    "portfolio_id",
+    "persona_id",
+    "product_id",
+    "scope",
+    "pass_type",
+    "child_scan",
+    "creator_handoff_exclude_not_fit"
+  ],
+  "properties": {
+    "config_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "portfolio_id": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Stable id for this review program (subsequent runs load this file)"
+    },
+    "label": {
+      "type": "string",
+      "description": "Human label for portfolio title / MANIFEST"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "persona_id": {
+      "type": "string",
+      "description": "Path under Trinity/personas/, e.g. reviewer-expert-qa-automation.md"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Selects config/{product_id}.json"
+    },
+    "scope": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["filter_url", "jql", "epic_keys", "epic_url"]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "description": "URL, JQL, comma-separated keys, or single epic browse URL"
+        }
+      }
+    },
+    "pass_type": {
+      "type": "string",
+      "enum": ["full_sweep", "rescan_delta", "new_epics_only"]
+    },
+    "child_scan": {
+      "type": "string",
+      "enum": ["epic_only_inventory", "include_child_checklists"],
+      "description": "Wizard asks each run; default epic_only_inventory when omitted on first create"
+    },
+    "planning_dates": {
+      "type": "string",
+      "const": "jira_due_then_end"
+    },
+    "artifacts_dir": {
+      "type": "string",
+      "default": "Trinity/reviewer/runs"
+    },
+    "creator_handoff_exclude_not_fit": {
+      "type": "boolean",
+      "default": true
+    },
+    "jira_comment_policy": {
+      "type": "string",
+      "enum": ["generate_review_before_post"],
+      "description": "Always generate comment files; post only after operator approves"
+    },
+    "notes": { "type": "string" },
+    "resolved_epic_keys": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9]+-[0-9]+$"
+      },
+      "description": "Epic keys from JQL/filter resolution (paste in Studio or inline epic_keys)"
+    },
+    "resolved_at": { "type": "string", "format": "date-time" },
+    "resolved_source": {
+      "type": "string",
+      "enum": ["paste", "scope_inline", "jira_rest"]
+    }
+  }
+}

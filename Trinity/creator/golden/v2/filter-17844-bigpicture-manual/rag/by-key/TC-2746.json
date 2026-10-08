@@ -1,0 +1,157 @@
+{
+  "test": {
+    "key": "TC-2746",
+    "issue_id": "359700",
+    "url": "https://appfire.atlassian.net/browse/TC-2746",
+    "summary": "Feature area - Box Scope - Scope Definition - Atlassian Cloud Primary Webhooks - Issue, Issuelinks & Worklogs",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Testarnold (Inactive)",
+    "created": "2021-12-06T05:35:35.230-0500",
+    "updated": "2026-04-17T05:45:51.178-0400",
+    "labels": [
+      "manual",
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to boxName -> Box Configuration -> Scope Definition -> Add any project from Atlassian Cloud primary with some example tasks",
+        "data": "boxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs",
+        "result": "Verify that project has been successfully added  to the scope and tasks appear on BigPicture"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to Atlassian Cloud -> Projects -> Backlog -> Create new Issue",
+        "data": "",
+        "result": "Confirm that new issue appears under backlog"
+      },
+      {
+        "step": 3,
+        "action": "Drag & Drop the newly created issue from Backlog tab up under Sprint tab",
+        "data": "On the pop up window \"Move Issue\" hit confirm",
+        "result": "Verify that pop up with  \"Selection Successfully moved\" appears"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Gantt module of BoxName",
+        "data": "BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs",
+        "result": "Verify that newly created Issue appears on Gantt Module"
+      },
+      {
+        "step": 5,
+        "action": "On the Gantt Module -> Hit add task -> Create task -> Jira Issue",
+        "data": "On the form make any name that is easily recognizable",
+        "result": "Verify That newly created issue appears on Gantt Module"
+      },
+      {
+        "step": 6,
+        "action": "Head To Jira -> Projects -> Backlog",
+        "data": "",
+        "result": "Verify that the task created on Gantt appears"
+      },
+      {
+        "step": 7,
+        "action": "Being in Backlog -> Change name of any Jira Issue",
+        "data": "",
+        "result": "Confirm the name Changed"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Gantt module of BoxName",
+        "data": "BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs",
+        "result": "Verify that name of the task was updated"
+      },
+      {
+        "step": 9,
+        "action": "Bein on Gantt module -> Update name of any task -> Head to Jira -> Projects -> Backlog",
+        "data": "",
+        "result": "Verify that the name of the task has been changed"
+      },
+      {
+        "step": 10,
+        "action": "Being in Backlog -> Delete any issue -> head back to BigPicture -> Open the boxName -> Go to Gantt module",
+        "data": "BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs",
+        "result": "Verify that the task has been removed"
+      },
+      {
+        "step": 11,
+        "action": "Bein on Gantt module ->  delete any task -> Head to Jira -> Projects -> Backlog",
+        "data": "",
+        "result": "Verify that the task has been removed from Backlog"
+      },
+      {
+        "step": 12,
+        "action": "Being on Backlog -> Open any issue -> hit 3 dots -> hit Log Work -> Log any time spent",
+        "data": "",
+        "result": "Verify that under \"More Fields\" new field \"Time Tracking\" appears and the bar is filled"
+      },
+      {
+        "step": 13,
+        "action": "Navigate to Gantt module of BoxName -> Manage Columns -> Add new Column -> Time Tracking (Spent)",
+        "data": "BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs",
+        "result": "Verify that the number of time spent is correctly appearing"
+      },
+      {
+        "step": 14,
+        "action": "Bein on Gantt Module -> Create a link between tasks",
+        "data": "Make sure to make all types of links:\n1. has to be finished together with\n2. has to be finished Before\n3. has to be finished After \n4. has to be started together with\n5. has to be started Before\n6. has to be started After",
+        "result": "Verify that lines correctly appear on Gantt module"
+      },
+      {
+        "step": 15,
+        "action": "Navigate to Projects -> Backlog -> Open the tasks on which links were created",
+        "data": "",
+        "result": "On Jira Verify that the correct links appeared on tasks"
+      },
+      {
+        "step": 16,
+        "action": "Being in backlog on Jira -> Remove all the links created in previous steps",
+        "data": "",
+        "result": "head to BigPicture -> Gantt module Verify that all the links disappeared"
+      },
+      {
+        "step": 17,
+        "action": "Navigate to Jira -> Projects -> Backlog -> Create link between 2 tasks",
+        "data": "Any of the folLowing will do: \n1. has to be finished together with\n2. has to be finished Before\n3. has to be finished After \n4. has to be started together with\n5. has to be started Before\n6. has to be started After",
+        "result": "Verify that the tasks were correctly linked"
+      },
+      {
+        "step": 18,
+        "action": "Go to Gantt module of Boxname -> Remove all links created from the previous step",
+        "data": "BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs",
+        "result": "Navigate to Projects -> Backlog -> Verify that all the links disappeared"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 18
+  },
+  "rag": {
+    "id": "TC-2746",
+    "text": "Test: TC-2746 — Feature area - Box Scope - Scope Definition - Atlassian Cloud Primary Webhooks - Issue, Issuelinks & Worklogs\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/TS-25 Feature area - Box scope - Own scope definition\nLabels: manual, teamextplatform\n\nSteps:\n1. Navigate to boxName -> Box Configuration -> Scope Definition -> Add any project from Atlassian Cloud primary with some example tasks\n   Data: boxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs\n   Expected: Verify that project has been successfully added  to the scope and tasks appear on BigPicture\n2. Navigate to Atlassian Cloud -> Projects -> Backlog -> Create new Issue\n   Expected: Confirm that new issue appears under backlog\n3. Drag & Drop the newly created issue from Backlog tab up under Sprint tab\n   Data: On the pop up window \"Move Issue\" hit confirm\n   Expected: Verify that pop up with  \"Selection Successfully moved\" appears\n4. Navigate to Gantt module of BoxName\n   Data: BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs\n   Expected: Verify that newly created Issue appears on Gantt Module\n5. On the Gantt Module -> Hit add task -> Create task -> Jira Issue\n   Data: On the form make any name that is easily recognizable\n   Expected: Verify That newly created issue appears on Gantt Module\n6. Head To Jira -> Projects -> Backlog\n   Expected: Verify that the task created on Gantt appears\n7. Being in Backlog -> Change name of any Jira Issue\n   Expected: Confirm the name Changed\n8. Navigate to Gantt module of BoxName\n   Data: BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs\n   Expected: Verify that name of the task was updated\n9. Bein on Gantt module -> Update name of any task -> Head to Jira -> Projects -> Backlog\n   Expected: Verify that the name of the task has been changed\n10. Being in Backlog -> Delete any issue -> head back to BigPicture -> Open the boxName -> Go to Gantt module\n   Data: BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs\n   Expected: Verify that the task has been removed\n11. Bein on Gantt module ->  delete any task -> Head to Jira -> Projects -> Backlog\n   Expected: Verify that the task has been removed from Backlog\n12. Being on Backlog -> Open any issue -> hit 3 dots -> hit Log Work -> Log any time spent\n   Expected: Verify that under \"More Fields\" new field \"Time Tracking\" appears and the bar is filled\n13. Navigate to Gantt module of BoxName -> Manage Columns -> Add new Column -> Time Tracking (Spent)\n   Data: BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs\n   Expected: Verify that the number of time spent is correctly appearing\n14. Bein on Gantt Module -> Create a link between tasks\n   Data: Make sure to make all types of links:\n1. has to be finished together with\n2. has to be finished Before\n3. has to be finished After \n4. has to be started together with\n5. has to be started Before\n6. has to be started After\n   Expected: Verify that lines correctly appear on Gantt module\n15. Navigate to Projects -> Backlog -> Open the tasks on which links were created\n   Expected: On Jira Verify that the correct links appeared on tasks\n16. Being in backlog on Jira -> Remove all the links created in previous steps\n   Expected: head to BigPicture -> Gantt module Verify that all the links disappeared\n17. Navigate to Jira -> Projects -> Backlog -> Create link between 2 tasks\n   Data: Any of the folLowing will do: \n1. has to be finished together with\n2. has to be finished Before\n3. has to be finished After \n4. has to be started together with\n5. has to be started Before\n6. has to be started After\n   Expected: Verify that the tasks were correctly linked\n18. Go to Gantt module of Boxname -> Remove all links created from the previous step\n   Data: BoxName: TC-2746 Feature area - Box Scope - Scope Definition - Atlassian Cloud Webhooks - Issue, Issuelinks & Worklogs\n   Expected: Navigate to Projects -> Backlog -> Verify that all the links disappeared",
+    "metadata": {
+      "jira_key": "TC-2746",
+      "issue_id": "359700",
+      "summary": "Feature area - Box Scope - Scope Definition - Atlassian Cloud Primary Webhooks - Issue, Issuelinks & Worklogs",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+      "labels": [
+        "manual",
+        "teamextplatform"
+      ],
+      "step_count": 18,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

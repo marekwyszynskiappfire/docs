@@ -1,0 +1,7 @@
+# Copy to .npmrc in this folder (gitignored) if corporate TLS blocks registry.npmjs.org:
+#   cp .npmrc.example .npmrc
+#
+# Prefer cafile with your org root CA instead of strict-ssl=false when IT provides one:
+# cafile=/path/to/corporate-root.pem
+
+strict-ssl=false

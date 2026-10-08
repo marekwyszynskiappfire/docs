@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-2199",
+    "issue_id": "358930",
+    "url": "https://appfire.atlassian.net/browse/TC-2199",
+    "summary": "Global - Gadget - Overview - Adding gadget to Jira dashboard",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Ilya Rybakou",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2021-07-08T18:01:28.411-0400",
+    "updated": "2026-04-10T08:07:34.584-0400",
+    "labels": [
+      "rocksolid",
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-162 Global - Gadget",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to dashboardName",
+        "data": "dashboardName: TC-2199 Global - Gadget - Overview - Adding gadget to Jira dashboard",
+        "result": "Jira dashboard page is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click Add gadget button\n\nOn Atlassian Cloud first click Edit button to add gadget.",
+        "data": "",
+        "result": "Add gadget window appears"
+      },
+      {
+        "step": 3,
+        "action": "Click Load all gadgets",
+        "data": "",
+        "result": "List of gadgets is visible"
+      },
+      {
+        "step": 4,
+        "action": "Search for gadgetName",
+        "data": "gadgetName: TC-2199 Global - Gadget - Overview - Adding gadget to Jira dashboard",
+        "result": "In the list of gadgets appears BigPicture Overview gadget"
+      },
+      {
+        "step": 5,
+        "action": "Click on Add gadget button. Close Add a gadget window",
+        "data": "",
+        "result": "Add gadget window dissappears. In dashboard appears BigPicture Overview gadget. Gadget has folLowing elements: \n- Header BigPicture Overview\n- Columns: Icon, Name, Status, Start date, End date, Leader, Type\n- List of boxes"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-2199",
+    "text": "Test: TC-2199 — Global - Gadget - Overview - Adding gadget to Jira dashboard\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-162 Global - Gadget\nLabels: rocksolid, teamboxes\n\nSteps:\n1. Navigate to dashboardName\n   Data: dashboardName: TC-2199 Global - Gadget - Overview - Adding gadget to Jira dashboard\n   Expected: Jira dashboard page is displayed\n2. Click Add gadget button\n\nOn Atlassian Cloud first click Edit button to add gadget.\n   Expected: Add gadget window appears\n3. Click Load all gadgets\n   Expected: List of gadgets is visible\n4. Search for gadgetName\n   Data: gadgetName: TC-2199 Global - Gadget - Overview - Adding gadget to Jira dashboard\n   Expected: In the list of gadgets appears BigPicture Overview gadget\n5. Click on Add gadget button. Close Add a gadget window\n   Expected: Add gadget window dissappears. In dashboard appears BigPicture Overview gadget. Gadget has folLowing elements: \n- Header BigPicture Overview\n- Columns: Icon, Name, Status, Start date, End date, Leader, Type\n- List of boxes",
+    "metadata": {
+      "jira_key": "TC-2199",
+      "issue_id": "358930",
+      "summary": "Global - Gadget - Overview - Adding gadget to Jira dashboard",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-162 Global - Gadget",
+      "labels": [
+        "rocksolid",
+        "teamboxes"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

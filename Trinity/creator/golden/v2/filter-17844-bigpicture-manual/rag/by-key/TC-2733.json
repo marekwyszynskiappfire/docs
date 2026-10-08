@@ -1,0 +1,143 @@
+{
+  "test": {
+    "key": "TC-2733",
+    "issue_id": "359346",
+    "url": "https://appfire.atlassian.net/browse/TC-2733",
+    "summary": "Global - Application dumps migrating - Upselling BigGantt to BigPicture by migrating application data",
+    "description": "Preconditions:\r\n\r\nServer/Cloud instance with BP/BG\r\n\r\nMake sure that BPE is also installed and running to properly test snapshots",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Bartosz Drążewski",
+    "reporter": "Lukasz Michalak (Inactive)",
+    "created": "2021-12-02T02:55:37.514-0500",
+    "updated": "2026-03-17T15:09:04.614-0400",
+    "labels": [
+      "be-enterprise"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-386 Global - Application dumps migrating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "CAUTION Do not perform this TC on instances shared to TR\n\nGo to BigGantt and create space with 3 tasks \nCreate new Program box with the scope",
+        "data": "taskName1: migrationTask1\ntaskName2: migrationTask2\ntaskName3: migrationTask3",
+        "result": "Box is visible on boxes list under root"
+      },
+      {
+        "step": 2,
+        "action": "Open Gantt module of the box, plan the tasks on chart and set tasks status and dependencies for taskName",
+        "data": "taskName1: migrationTask1, startDate: status1: TO DO\ntaskName2: migrationTask2, status2: IN PROGRESS\ntaskName3: migrationTask3, status3: DONE\n\nEND-START dependency between migrationTask3 -> migrationTask2\nEND-START dependency between migrationTask2 -> migrationTask1",
+        "result": "Gantt module is visible. Task in extended list are:\n - migrationTask1 (TO DO)\n - migrationTask2 (IN PROGRESS)\n - migrationTask3 (DONE)\n\nThere are END-START dependencies between migrationTask3 -> migrationTask2 and migrationTask2 -> migrationTask1"
+      },
+      {
+        "step": 3,
+        "action": "Navigate to BigGantt configuration -> Advanced -> Database dumps",
+        "data": "",
+        "result": "BigGantt configuration is correctly displayed, in Database dumps tab there are two buttons on the right side:\n- Import\n- New dump"
+      },
+      {
+        "step": 4,
+        "action": "Click 'New dump' button",
+        "data": "",
+        "result": "'New database dump' modal appears with description input field - for name purpose.There is an information below: 'Creating a database dump will restart the App and may take a significant amount of time and resources, so we recommend running it during non-business hours. Do not interrupt the process or disable the App until the dump is complete.'"
+      },
+      {
+        "step": 5,
+        "action": "Fill in description input with dumpName and click 'Create dump' button",
+        "data": "dumpName: BG-dumpTC2733",
+        "result": "Splash screen appears with information:'BigPicture is loading... Please wait. Creating database dump. Do not uninstall or close the BigPicture app until the process is finished.Meanwhile, let’s chill out and play the Appfire Game. Press Shift + Control + G to start.'"
+      },
+      {
+        "step": 6,
+        "action": "After the process of making snapshot is done go back to Manage Apps -> BigGantt configuration -> Advanced -> Database dumps",
+        "data": "",
+        "result": "There is a list of snapshots includes one you've made with: Date, Description, Database Version, Status field and three icon for: download, restore and delete snapshot"
+      },
+      {
+        "step": 7,
+        "action": "Click download button next to dumpName",
+        "data": "dumpName: BG-dumpTC2733",
+        "result": "Dump file started and finished downloading. It is located in your Downloads local folder and it is called databaseSnapshotXXXXX.zip"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Manage Apps -> BigPicture configuration -> Advanced -> Database dumps",
+        "data": "",
+        "result": "BigPicture configuration is correctly displayed, in Database dumps tab there are two buttons on the right side:\n- Import\n- New dump"
+      },
+      {
+        "step": 9,
+        "action": "Click 'Import' button on the right side of page",
+        "data": "",
+        "result": "‘Import database dump' pop-up appears. There is file input field with ‘Select file…' placeholdrer ‘Select file’ button and two buttons at the bottom: 'Cancel’ and ' Upload’"
+      },
+      {
+        "step": 10,
+        "action": "Click 'Select file' button. Choose dump file created on BigGantt and downloaded then click 'Upload' button",
+        "data": "",
+        "result": "'Uploading... Please Wait' pop-up appears. \nAfter a while there will be another pop-up with \"dump imported Database dump has been successfully imported. You can restore it now.\" information. \nBGdump-TC2733 file appears on dumps list"
+      },
+      {
+        "step": 11,
+        "action": "Click 'Restore' button next to dumpName",
+        "data": "dumpName: BG-dumpTC2733",
+        "result": "‘Database dump restore' pop-up appears with description and one radio-button option:\n\"Database dump restore\nRestoring the dump will restart the App and may take a significant amount of time and resources, so we recommend running it during non-business hours. Do not interrupt the process or disable the App until the restore is complete. Choose restoring scenario below:\n-Upselling from one Application to another\"\n’Next' button is Under the statement \n\n\n(System knows itself that dump is from other app so this is only option and it is already marked)"
+      },
+      {
+        "step": 12,
+        "action": "Click on ‘Next’ button",
+        "data": "",
+        "result": "Pop-up named 'Dump restore: upselling' appears. There is also warning request for creating backups and checkbox that confirms all those actions\n\n\"Dump restore: upselling\n\nBefore you proceed, please read the following instruction carefully and copy all steps to the clipboard to keep it on hand. Make sure all checked actions are done, and you will complete all recurring steps:\n\n*  Create BigGantt backup\n*  Download the BigGantt backup file to your machine\n*  Turn off BigGantt\n*  Install BigPicture\n* BigGantt backup in BigPicture\n\nI confirm that all checked actions are already done _*\"_\n\nTwo button are at the bottom: ‘Previous’ and ‘Next’"
+      },
+      {
+        "step": 13,
+        "action": "Mark confirmation checkbox and click on ‘Next’ button",
+        "data": "",
+        "result": "Another pop-up appears - there are informations about restoring. Below that there is a text input for 'RESTORE' text which is final conformation for restore process\n\n\"Dump restore: upselling\n\n Before you proceed, be aware that:\n\n* all data will be overwritten;\n* all configurations will be restored;\n* tasks' data will not be restored (it will be fetched from the original source, and when the scheduling is done, task structure may differ from the dump moment; scheduling process impacts original tasks' data, but it is irreversible);\n* before each restore process, a dump is automatically created.\n\nType \"RESTORE\" in the input below to confirm you understand all implications:\"\n\nTwo button are at the bottom: ‘Previous’ and ‘Restore'"
+      },
+      {
+        "step": 14,
+        "action": "Fill in text input with: 'RESTORE' nad click 'Restore' button below",
+        "data": "",
+        "result": "Splash screen appears. Firstly there is 'Creating database dump' information with % progress bar and then 'App restore in progress'"
+      },
+      {
+        "step": 15,
+        "action": "After restore process is done go to BigPicture overview and search for boxName",
+        "data": "boxName: BG-dumpBoxTC2733",
+        "result": "Box is visible on boxes list under Main box"
+      },
+      {
+        "step": 16,
+        "action": "Open Gantt module of boxName and expand tasks list",
+        "data": "",
+        "result": "Gantt module is visible. Task in extended list are:\n - migrationTask1 (TO DO)\n - migrationTask2 (IN PROGRESS)\n - migrationTask3 (DONE)\n\nThere are END-START dependencies between migrationTask3 -> migrationTask2 and migrationTask2 -> migrationTask1"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 16
+  },
+  "rag": {
+    "id": "TC-2733",
+    "text": "Test: TC-2733 — Global - Application dumps migrating - Upselling BigGantt to BigPicture by migrating application data\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-386 Global - Application dumps migrating\nLabels: be-enterprise\n\nDescription:\nPreconditions:\r\n\r\nServer/Cloud instance with BP/BG\r\n\r\nMake sure that BPE is also installed and running to properly test snapshots\n\nSteps:\n1. CAUTION Do not perform this TC on instances shared to TR\n\nGo to BigGantt and create space with 3 tasks \nCreate new Program box with the scope\n   Data: taskName1: migrationTask1\ntaskName2: migrationTask2\ntaskName3: migrationTask3\n   Expected: Box is visible on boxes list under root\n2. Open Gantt module of the box, plan the tasks on chart and set tasks status and dependencies for taskName\n   Data: taskName1: migrationTask1, startDate: status1: TO DO\ntaskName2: migrationTask2, status2: IN PROGRESS\ntaskName3: migrationTask3, status3: DONE\n\nEND-START dependency between migrationTask3 -> migrationTask2\nEND-START dependency between migrationTask2 -> migrationTask1\n   Expected: Gantt module is visible. Task in extended list are:\n - migrationTask1 (TO DO)\n - migrationTask2 (IN PROGRESS)\n - migrationTask3 (DONE)\n\nThere are END-START dependencies between migrationTask3 -> migrationTask2 and migrationTask2 -> migrationTask1\n3. Navigate to BigGantt configuration -> Advanced -> Database dumps\n   Expected: BigGantt configuration is correctly displayed, in Database dumps tab there are two buttons on the right side:\n- Import\n- New dump\n4. Click 'New dump' button\n   Expected: 'New database dump' modal appears with description input field - for name purpose.There is an information below: 'Creating a database dump will restart the App and may take a significant amount of time and resources, so we recommend running it during non-business hours. Do not interrupt the process or disable the App until the dump is complete.'\n5. Fill in description input with dumpName and click 'Create dump' button\n   Data: dumpName: BG-dumpTC2733\n   Expected: Splash screen appears with information:'BigPicture is loading... Please wait. Creating database dump. Do not uninstall or close the BigPicture app until the process is finished.Meanwhile, let’s chill out and play the Appfire Game. Press Shift + Control + G to start.'\n6. After the process of making snapshot is done go back to Manage Apps -> BigGantt configuration -> Advanced -> Database dumps\n   Expected: There is a list of snapshots includes one you've made with: Date, Description, Database Version, Status field and three icon for: download, restore and delete snapshot\n7. Click download button next to dumpName\n   Data: dumpName: BG-dumpTC2733\n   Expected: Dump file started and finished downloading. It is located in your Downloads local folder and it is called databaseSnapshotXXXXX.zip\n8. Navigate to Manage Apps -> BigPicture configuration -> Advanced -> Database dumps\n   Expected: BigPicture configuration is correctly displayed, in Database dumps tab there are two buttons on the right side:\n- Import\n- New dump\n9. Click 'Import' button on the right side of page\n   Expected: ‘Import database dump' pop-up appears. There is file input field with ‘Select file…' placeholdrer ‘Select file’ button and two buttons at the bottom: 'Cancel’ and ' Upload’\n10. Click 'Select file' button. Choose dump file created on BigGantt and downloaded then click 'Upload' button\n   Expected: 'Uploading... Please Wait' pop-up appears. \nAfter a while there will be another pop-up with \"dump imported Database dump has been successfully imported. You can restore it now.\" information. \nBGdump-TC2733 file appears on dumps list\n11. Click 'Restore' button next to dumpName\n   Data: dumpName: BG-dumpTC2733\n   Expected: ‘Database dump restore' pop-up appears with description and one radio-button option:\n\"Database dump restore\nRestoring the dump will restart the App and may take a significant amount of time and resources, so we recommend running it during non-business hours. Do not interrupt the process or disable the App until the restore is complete. Choose restoring scenario below:\n-Upselling from one Application to another\"\n’Next' button is Under the statement \n\n\n(System knows itself that dump is from other app so this is only option and it is already marked)\n12. Click on ‘Next’ button\n   Expected: Pop-up named 'Dump restore: upselling' appears. There is also warning request for creating backups and checkbox that confirms all those actions\n\n\"Dump restore: upselling\n\nBefore you proceed, please read the following instruction carefully and copy all steps to the clipboard to keep it on hand. Make sure all checked actions are done, and you will complete all recurring steps:\n\n*  Create BigGantt backup\n*  Download the BigGantt backup file to your machine\n*  Turn off BigGantt\n*  Install BigPicture\n* BigGantt backup in BigPicture\n\nI confirm that all checked actions are already done _*\"_\n\nTwo button are at the bottom: ‘Previous’ and ‘Next’\n13. Mark confirmation checkbox and click on ‘Next’ button\n   Expected: Another pop-up appears - there are informations about restoring. Below that there is a text input for 'RESTORE' text which is final conformation for restore process\n\n\"Dump restore: upselling\n\n Before you proceed, be aware that:\n\n* all data will be overwritten;\n* all configurations will be restored;\n* tasks' data will not be restored (it will be fetched from the original source, and when the scheduling is done, task structure may differ from the dump moment; scheduling process impacts original tasks' data, but it is irreversible);\n* before each restore process, a dump is automatically created.\n\nType \"RESTORE\" in the input below to confirm you understand all implications:\"\n\nTwo button are at the bottom: ‘Previous’ and ‘Restore'\n14. Fill in text input with: 'RESTORE' nad click 'Restore' button below\n   Expected: Splash screen appears. Firstly there is 'Creating database dump' information with % progress bar and then 'App restore in progress'\n15. After restore process is done go to BigPicture overview and search for boxName\n   Data: boxName: BG-dumpBoxTC2733\n   Expected: Box is visible on boxes list under Main box\n16. Open Gantt module of boxName and expand tasks list\n   Expected: Gantt module is visible. Task in extended list are:\n - migrationTask1 (TO DO)\n - migrationTask2 (IN PROGRESS)\n - migrationTask3 (DONE)\n\nThere are END-START dependencies between migrationTask3 -> migrationTask2 and migrationTask2 -> migrationTask1",
+    "metadata": {
+      "jira_key": "TC-2733",
+      "issue_id": "359346",
+      "summary": "Global - Application dumps migrating - Upselling BigGantt to BigPicture by migrating application data",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-386 Global - Application dumps migrating",
+      "labels": [
+        "be-enterprise"
+      ],
+      "step_count": 16,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

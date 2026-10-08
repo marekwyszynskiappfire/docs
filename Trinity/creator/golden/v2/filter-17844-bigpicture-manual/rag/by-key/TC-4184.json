@@ -1,0 +1,139 @@
+{
+  "test": {
+    "key": "TC-4184",
+    "issue_id": "585714",
+    "url": "https://appfire.atlassian.net/browse/TC-4184",
+    "summary": "Feature area - Task - Filtering - Risks - Date filtering - Task has Start Date and End Date",
+    "description": "Test Case should be performed on 8.16 version and higher.\n\nFeature for tasks without dates is hidden behind FF: TasksWithoutPeriodFeatureFlag, but it's unnecessary to switch on this FF to perform this TC",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Mateusz Koman",
+    "reporter": "Patryk Watras",
+    "created": "2023-09-28T02:00:06.984-0400",
+    "updated": "2026-08-06T11:20:20.213-0400",
+    "labels": [
+      "Amplitude",
+      "amplitude_event_gantt"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-53 Feature area - Task - Filtering",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Risk module of boxName",
+        "data": "boxName: TC-4184 Feature area - Task - Filtering - Risks - Date filtering - Task has Start Date and End Date",
+        "result": "Risk module opened with one task on matrix:\n\nTC-4184 Task \n\nThis task has Start Date set to 08/May/23 and End Date set to 10/May/23"
+      },
+      {
+        "step": 2,
+        "action": "Set Start Date of Date range filter to startDateFilter",
+        "data": "startDateFilter: 09/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 3,
+        "action": "Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter",
+        "data": "startDateFilter: 01/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 4,
+        "action": "Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter",
+        "data": "startDateFilter: 08/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 5,
+        "action": "Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter",
+        "data": "startDateFilter: 10/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 6,
+        "action": "Delete Start Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter",
+        "data": "endDateFilter: 09/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 7,
+        "action": "Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter",
+        "data": "endDateFilter: 02/May/23",
+        "result": "Task is *not* visible on matrix"
+      },
+      {
+        "step": 8,
+        "action": "Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter",
+        "data": "endDateFilter: 08/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 9,
+        "action": "Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter",
+        "data": "endDateFilter: 10/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 10,
+        "action": "Delete End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter",
+        "data": "startDateFilter: 06/May/23\n\nendDateFilter: 12/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 11,
+        "action": "Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter",
+        "data": "startDateFilter: 09/May/23\n\nendDateFilter: 12/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 12,
+        "action": "Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter",
+        "data": "startDateFilter: 01/May/23\n\nendDateFilter: 08/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 13,
+        "action": "Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter",
+        "data": "startDateFilter: 09/May/23\n\nendDateFilter: 12/May/23",
+        "result": "Task is visible on matrix"
+      },
+      {
+        "step": 14,
+        "action": "Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter",
+        "data": "startDateFilter: 12/May/23\n\nendDateFilter: 15/May/23",
+        "result": "Task is *not* visible on matrix"
+      },
+      {
+        "step": 15,
+        "action": "Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter",
+        "data": "startDateFilter: 01/May/23\n\nendDateFilter: 03/May/23",
+        "result": "Task is *not* visible on matrix"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 15
+  },
+  "rag": {
+    "id": "TC-4184",
+    "text": "Test: TC-4184 — Feature area - Task - Filtering - Risks - Date filtering - Task has Start Date and End Date\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-53 Feature area - Task - Filtering\nLabels: Amplitude, amplitude_event_gantt\n\nDescription:\nTest Case should be performed on 8.16 version and higher.\n\nFeature for tasks without dates is hidden behind FF: TasksWithoutPeriodFeatureFlag, but it's unnecessary to switch on this FF to perform this TC\n\nSteps:\n1. Navigate to Risk module of boxName\n   Data: boxName: TC-4184 Feature area - Task - Filtering - Risks - Date filtering - Task has Start Date and End Date\n   Expected: Risk module opened with one task on matrix:\n\nTC-4184 Task \n\nThis task has Start Date set to 08/May/23 and End Date set to 10/May/23\n2. Set Start Date of Date range filter to startDateFilter\n   Data: startDateFilter: 09/May/23\n   Expected: Task is visible on matrix\n3. Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter\n   Data: startDateFilter: 01/May/23\n   Expected: Task is visible on matrix\n4. Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter\n   Data: startDateFilter: 08/May/23\n   Expected: Task is visible on matrix\n5. Delete Start Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter\n   Data: startDateFilter: 10/May/23\n   Expected: Task is visible on matrix\n6. Delete Start Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter\n   Data: endDateFilter: 09/May/23\n   Expected: Task is visible on matrix\n7. Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter\n   Data: endDateFilter: 02/May/23\n   Expected: Task is *not* visible on matrix\n8. Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter\n   Data: endDateFilter: 08/May/23\n   Expected: Task is visible on matrix\n9. Delete End Date of Date range filter\n\nSet End Date of Date range filter to endDateFilter\n   Data: endDateFilter: 10/May/23\n   Expected: Task is visible on matrix\n10. Delete End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter\n   Data: startDateFilter: 06/May/23\n\nendDateFilter: 12/May/23\n   Expected: Task is visible on matrix\n11. Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter\n   Data: startDateFilter: 09/May/23\n\nendDateFilter: 12/May/23\n   Expected: Task is visible on matrix\n12. Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter\n   Data: startDateFilter: 01/May/23\n\nendDateFilter: 08/May/23\n   Expected: Task is visible on matrix\n13. Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter\n   Data: startDateFilter: 09/May/23\n\nendDateFilter: 12/May/23\n   Expected: Task is visible on matrix\n14. Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter\n   Data: startDateFilter: 12/May/23\n\nendDateFilter: 15/May/23\n   Expected: Task is *not* visible on matrix\n15. Delete Start Date and End Date of Date range filter\n\nSet Start Date of Date range filter to startDateFilter and End Date of Date range filter to endDateFilter\n   Data: startDateFilter: 01/May/23\n\nendDateFilter: 03/May/23\n   Expected: Task is *not* visible on matrix",
+    "metadata": {
+      "jira_key": "TC-4184",
+      "issue_id": "585714",
+      "summary": "Feature area - Task - Filtering - Risks - Date filtering - Task has Start Date and End Date",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-53 Feature area - Task - Filtering",
+      "labels": [
+        "Amplitude",
+        "amplitude_event_gantt"
+      ],
+      "step_count": 15,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

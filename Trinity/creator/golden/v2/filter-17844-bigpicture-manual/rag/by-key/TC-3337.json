@@ -1,0 +1,117 @@
+{
+  "test": {
+    "key": "TC-3337",
+    "issue_id": "359821",
+    "url": "https://appfire.atlassian.net/browse/TC-3337",
+    "summary": "Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status",
+    "description": "Changing status and name in Jira works for any BP module with visible sub-boxes",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Michał Bucholc",
+    "reporter": "Michał Bucholc",
+    "created": "2022-06-01T08:38:33.076-0400",
+    "updated": "2026-03-12T09:02:35.233-0400",
+    "labels": [
+      "can_be_automated",
+      "rocksolid",
+      "teamagile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Jira projectName backlog",
+        "data": "projectName: TC-3337 Changing Jira sprint name and status",
+        "result": "Backlog of the projectName is visible. Three sprints are visible. Start sprint button is visible next to the sprint TC3337 Sprint 1"
+      },
+      {
+        "step": 2,
+        "action": "Click on the Start sprint button and click Start button in the modal window",
+        "data": "",
+        "result": "Active sprint screen of 'TC3337 Sprint 1' is visible. Complete sprint button in the top right corner is visible."
+      },
+      {
+        "step": 3,
+        "action": "Click on the Complete sprint button in the top right corner and click Complete button in the modal window",
+        "data": "",
+        "result": "Sprint report screen is visible"
+      },
+      {
+        "step": 4,
+        "action": "Click on the Backlog button from the left side Jira menu\n*On Cloud:*\n\nClick Back to project and then click on Backlog button from the left side of Jira menu",
+        "data": "",
+        "result": "Two sprints are visible. Start sprint button is visible next to the sprint TC3337 Sprint 2"
+      },
+      {
+        "step": 5,
+        "action": "Click on the Start sprint button and click Start button in the modal window",
+        "data": "",
+        "result": "Active sprint screen of 'TC3337 Sprint 2' is visible.\nComplete sprint button in the top right corner is visible."
+      },
+      {
+        "step": 6,
+        "action": "Navigate to the Overview module  of the boxName and expand the hierarchy tree\n\n*NOTE*\nOn cloud it may take more time to display updated boxes status",
+        "data": "boxName: TC-3337 Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status",
+        "result": "Three iterations are visible:\n- TC3337 Sprint 1 - with status \"closed\"\n- TC3337 Sprint 2 - with status \"in progress\"\n- TC3337 Sprint 3 - with status \"not started\""
+      },
+      {
+        "step": 7,
+        "action": "Navigate to the Jira projectName backlog again",
+        "data": "projectName: TC-3337 Changing Jira sprint name and status",
+        "result": "Two sprints are visible. Three dots button is visible next to each sprint"
+      },
+      {
+        "step": 8,
+        "action": "Click on the Three dots button next to TC3337 Sprint 3",
+        "data": "",
+        "result": "Dropdown menu is visible with Edit sprint option"
+      },
+      {
+        "step": 9,
+        "action": "Click on Edit sprint option",
+        "data": "",
+        "result": "Edit modal is visible"
+      },
+      {
+        "step": 10,
+        "action": "Change the Sprint Name to sprintName and save",
+        "data": "sprintName: Changed name",
+        "result": "The name of the sprint is changed to 'Changed name'"
+      },
+      {
+        "step": 11,
+        "action": "Navigate to the Board module  of the boxName\n*NOTE*\nOn cloud it may take more time to display updated boxes status",
+        "data": "boxName: TC-3337 Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status",
+        "result": "Three sub-boxes are visible:\n- TC3337 Sprint 1 - with status \"closed\"\n- TC3337 Sprint 2 - with status \"in progress\"\n- Changed name - with status \"not started\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-3337",
+    "text": "Test: TC-3337 — Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/TS-88 Feature area - Box - Attributes displaying and editing\nLabels: can_be_automated, rocksolid, teamagile\n\nDescription:\nChanging status and name in Jira works for any BP module with visible sub-boxes\n\nSteps:\n1. Navigate to the Jira projectName backlog\n   Data: projectName: TC-3337 Changing Jira sprint name and status\n   Expected: Backlog of the projectName is visible. Three sprints are visible. Start sprint button is visible next to the sprint TC3337 Sprint 1\n2. Click on the Start sprint button and click Start button in the modal window\n   Expected: Active sprint screen of 'TC3337 Sprint 1' is visible. Complete sprint button in the top right corner is visible.\n3. Click on the Complete sprint button in the top right corner and click Complete button in the modal window\n   Expected: Sprint report screen is visible\n4. Click on the Backlog button from the left side Jira menu\n*On Cloud:*\n\nClick Back to project and then click on Backlog button from the left side of Jira menu\n   Expected: Two sprints are visible. Start sprint button is visible next to the sprint TC3337 Sprint 2\n5. Click on the Start sprint button and click Start button in the modal window\n   Expected: Active sprint screen of 'TC3337 Sprint 2' is visible.\nComplete sprint button in the top right corner is visible.\n6. Navigate to the Overview module  of the boxName and expand the hierarchy tree\n\n*NOTE*\nOn cloud it may take more time to display updated boxes status\n   Data: boxName: TC-3337 Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status\n   Expected: Three iterations are visible:\n- TC3337 Sprint 1 - with status \"closed\"\n- TC3337 Sprint 2 - with status \"in progress\"\n- TC3337 Sprint 3 - with status \"not started\"\n7. Navigate to the Jira projectName backlog again\n   Data: projectName: TC-3337 Changing Jira sprint name and status\n   Expected: Two sprints are visible. Three dots button is visible next to each sprint\n8. Click on the Three dots button next to TC3337 Sprint 3\n   Expected: Dropdown menu is visible with Edit sprint option\n9. Click on Edit sprint option\n   Expected: Edit modal is visible\n10. Change the Sprint Name to sprintName and save\n   Data: sprintName: Changed name\n   Expected: The name of the sprint is changed to 'Changed name'\n11. Navigate to the Board module  of the boxName\n*NOTE*\nOn cloud it may take more time to display updated boxes status\n   Data: boxName: TC-3337 Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status\n   Expected: Three sub-boxes are visible:\n- TC3337 Sprint 1 - with status \"closed\"\n- TC3337 Sprint 2 - with status \"in progress\"\n- Changed name - with status \"not started\"",
+    "metadata": {
+      "jira_key": "TC-3337",
+      "issue_id": "359821",
+      "summary": "Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-88 Feature area - Box - Attributes displaying and editing",
+      "labels": [
+        "can_be_automated",
+        "rocksolid",
+        "teamagile"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

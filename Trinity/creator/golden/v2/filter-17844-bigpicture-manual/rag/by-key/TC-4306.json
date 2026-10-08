@@ -1,0 +1,81 @@
+{
+  "test": {
+    "key": "TC-4306",
+    "issue_id": "814452",
+    "url": "https://appfire.atlassian.net/browse/TC-4306",
+    "summary": "Box Module - Gantt - Basic operations - Sorting tasks by Rank when adding new Project to the Scope definition",
+    "description": "When adding new Project to the Scope definition of the box, it should be sorted by Rank (Global Rank).\nNOTE: There is difference between Ranking in Jira.\nJS: tasks from Backlog have higher Rank than tasks from Sprint\nJC: tasks from Sprint have higher Rank than tasks from Backlog",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T09:59:57.123-0400",
+    "updated": "2026-03-30T09:57:51.882-0400",
+    "labels": [
+      "rocksolid",
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate the Gantt module of the boxName",
+        "data": "boxName: TC-4306 Box Module - Gantt - Basic operations - Sorting tasks by Rank",
+        "result": "WBS is empty"
+      },
+      {
+        "step": 2,
+        "action": "Navigate to the Box Configuration > Tasks > Scope definition",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 3,
+        "action": "Add projectName to the Scope definition of this box",
+        "data": "projectName: TC-4306 Box Module - Gantt - Basic operations - Sorting tasks by Rank",
+        "result": ""
+      },
+      {
+        "step": 4,
+        "action": "Click buttonName",
+        "data": "buttonName: Save",
+        "result": "Save is proceed correctly"
+      },
+      {
+        "step": 5,
+        "action": "Navigate back to the Gantt module of this box",
+        "data": "",
+        "result": "WBS is visible with folLowing structure:\nProject: TC-4306 Box Module - Gantt - Basic operations - Sorting tasks by Rank\nwith children tasks under it:\n\n* Rank 1\n* Rank 2\n* Rank 3\n* Rank 4\n* Rank 5\n* Rank 6\n* Rank 7\n* Rank 8"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-4306",
+    "text": "Test: TC-4306 — Box Module - Gantt - Basic operations - Sorting tasks by Rank when adding new Project to the Scope definition\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-52 Box Module - Gantt - Basic operations\nLabels: rocksolid, teamembers, teamtree\n\nDescription:\nWhen adding new Project to the Scope definition of the box, it should be sorted by Rank (Global Rank).\nNOTE: There is difference between Ranking in Jira.\nJS: tasks from Backlog have higher Rank than tasks from Sprint\nJC: tasks from Sprint have higher Rank than tasks from Backlog\n\nSteps:\n1. Navigate the Gantt module of the boxName\n   Data: boxName: TC-4306 Box Module - Gantt - Basic operations - Sorting tasks by Rank\n   Expected: WBS is empty\n2. Navigate to the Box Configuration > Tasks > Scope definition\n   Expected: \n3. Add projectName to the Scope definition of this box\n   Data: projectName: TC-4306 Box Module - Gantt - Basic operations - Sorting tasks by Rank\n   Expected: \n4. Click buttonName\n   Data: buttonName: Save\n   Expected: Save is proceed correctly\n5. Navigate back to the Gantt module of this box\n   Expected: WBS is visible with folLowing structure:\nProject: TC-4306 Box Module - Gantt - Basic operations - Sorting tasks by Rank\nwith children tasks under it:\n\n* Rank 1\n* Rank 2\n* Rank 3\n* Rank 4\n* Rank 5\n* Rank 6\n* Rank 7\n* Rank 8",
+    "metadata": {
+      "jira_key": "TC-4306",
+      "issue_id": "814452",
+      "summary": "Box Module - Gantt - Basic operations - Sorting tasks by Rank when adding new Project to the Scope definition",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-52 Box Module - Gantt - Basic operations",
+      "labels": [
+        "rocksolid",
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

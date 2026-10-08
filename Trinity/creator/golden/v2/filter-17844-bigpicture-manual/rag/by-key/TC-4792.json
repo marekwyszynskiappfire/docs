@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-4792",
+    "issue_id": "821632",
+    "url": "https://appfire.atlassian.net/browse/TC-4792",
+    "summary": "Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Katarzyna Rajchert",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2024-08-01T04:59:14.849-0400",
+    "updated": "2026-03-30T09:57:26.360-0400",
+    "labels": [
+      "teamembers",
+      "teamtree"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-67 Feature area - Box scope - New task creating",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Board module of the boxName.",
+        "data": "boxName: TC-4226 Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields",
+        "result": "Board module opens. TC-4226 PI1 and TC-4226 PI2 are timeboxes visible with 3 of the following teams:\n\n* Team unassigned\n* TC-4226 T1\n* Test\n\nTC-4226 is the default card view selected.\n\nIn the backlog the following splashscreen is visible: Awaiting the first task. Sync existing projects, boards, etc., or try out Board on a single issue first. Two buttons are visible underneath - Define scope, Create Jira issue."
+      },
+      {
+        "step": 2,
+        "action": "Click on the Create Jira work item button in backlog. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.",
+        "data": "projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Story Test\n\nissueType: Story\n\nTC-4226 Team:  TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 1",
+        "result": "Story Test is created successfully. It appears in the backlog for a brief moment, and is then moved over to Unknown Team of TC-4226 PI1.\nValue on task card for TC-4226 Team is TC-4226T2. Value on task card for TC-4226 Sub-scope is TC-4226 Option 1."
+      },
+      {
+        "step": 3,
+        "action": "Hover over Unknown team tooltip.",
+        "data": "",
+        "result": "The following information is visible: \nSome tasks within this scope belong to teams outside the TC-4226 Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields . Add teams (codes: TC-4226T2) to TC-4226 Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields to move tasks from the Unknown team to the dedicated sections."
+      },
+      {
+        "step": 4,
+        "action": "Click on the \"+\" button in header on Board module and Create Jira issue. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.",
+        "data": "projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: NEW BUG\n\nissueType: Bug\n\nTC-4226 Team: TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 2",
+        "result": "NEW BUG is created successfully. It appears in Unknown Team of TC-4226 PI2. Value on task card for TC-4226 Team is TC-4226T2. Value on task card for TC-4226 Sub-scope is TC-4226 Option 2."
+      },
+      {
+        "step": 5,
+        "action": "Click on the Create button in Jira header. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.",
+        "data": "projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Bug Test\n\nissueType: Bug\n\nTC-4226 Team:  TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 2",
+        "result": "Bug Test is created successfully. It appears in Unknown Team of TC-4226 PI2. Value on task card for TC-4226 Team is TC-4226T2. Value on task card for TC-4226 Sub-scope is TC-4226 Option 2."
+      },
+      {
+        "step": 6,
+        "action": "Click on the + in Team unassigned swimlane of TC-4226 PI1. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.",
+        "data": "projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Task Test\n\nissueType: Task\n\nTC-4226 Team:  TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 1",
+        "result": "Task Test is created successfully. It appears in Team unassigned swimlane of TC-4226 PI1. Values on task card for TC-4226 Team are empty. Values on task card for TC-4226 Sub-scope are TC-4226 Option 1."
+      },
+      {
+        "step": 7,
+        "action": "Click on the + in TC-4226 T1 swimlane of TC-4226 PI2. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.",
+        "data": "projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Correct placement\n\nissueType: Task\n\nTC-4226 Team:  TC-4226T1\n\nTC-4226 Sub-scope: TC-4226 Option 2",
+        "result": "Correct placement task is created successfully. It appears in TC-4226 T1 swimlane of TC-4226 PI2. Value on task card for TC-4226 Team is TC-4226T1. Value on task card for TC-4226 Sub-scope is TC-4226 Option 2."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 7
+  },
+  "rag": {
+    "id": "TC-4792",
+    "text": "Test: TC-4792 — Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields\nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-67 Feature area - Box scope - New task creating\nLabels: teamembers, teamtree\n\nSteps:\n1. Navigate to Board module of the boxName.\n   Data: boxName: TC-4226 Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields\n   Expected: Board module opens. TC-4226 PI1 and TC-4226 PI2 are timeboxes visible with 3 of the following teams:\n\n* Team unassigned\n* TC-4226 T1\n* Test\n\nTC-4226 is the default card view selected.\n\nIn the backlog the following splashscreen is visible: Awaiting the first task. Sync existing projects, boards, etc., or try out Board on a single issue first. Two buttons are visible underneath - Define scope, Create Jira issue.\n2. Click on the Create Jira work item button in backlog. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.\n   Data: projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Story Test\n\nissueType: Story\n\nTC-4226 Team:  TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 1\n   Expected: Story Test is created successfully. It appears in the backlog for a brief moment, and is then moved over to Unknown Team of TC-4226 PI1.\nValue on task card for TC-4226 Team is TC-4226T2. Value on task card for TC-4226 Sub-scope is TC-4226 Option 1.\n3. Hover over Unknown team tooltip.\n   Expected: The following information is visible: \nSome tasks within this scope belong to teams outside the TC-4226 Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields . Add teams (codes: TC-4226T2) to TC-4226 Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields to move tasks from the Unknown team to the dedicated sections.\n4. Click on the \"+\" button in header on Board module and Create Jira issue. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.\n   Data: projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: NEW BUG\n\nissueType: Bug\n\nTC-4226 Team: TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 2\n   Expected: NEW BUG is created successfully. It appears in Unknown Team of TC-4226 PI2. Value on task card for TC-4226 Team is TC-4226T2. Value on task card for TC-4226 Sub-scope is TC-4226 Option 2.\n5. Click on the Create button in Jira header. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.\n   Data: projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Bug Test\n\nissueType: Bug\n\nTC-4226 Team:  TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 2\n   Expected: Bug Test is created successfully. It appears in Unknown Team of TC-4226 PI2. Value on task card for TC-4226 Team is TC-4226T2. Value on task card for TC-4226 Sub-scope is TC-4226 Option 2.\n6. Click on the + in Team unassigned swimlane of TC-4226 PI1. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.\n   Data: projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Task Test\n\nissueType: Task\n\nTC-4226 Team:  TC-4226T2\n\nTC-4226 Sub-scope: TC-4226 Option 1\n   Expected: Task Test is created successfully. It appears in Team unassigned swimlane of TC-4226 PI1. Values on task card for TC-4226 Team are empty. Values on task card for TC-4226 Sub-scope are TC-4226 Option 1.\n7. Click on the + in TC-4226 T1 swimlane of TC-4226 PI2. Select projectName, input Summary, set issueType, select TC-4226 Team and select TC-4226 Sub-scope. Create the issue.\n   Data: projectName: TC-4226 Creating tasks when Team and sub-scope sync are mapped to custom field\n\nSummary: Correct placement\n\nissueType: Task\n\nTC-4226 Team:  TC-4226T1\n\nTC-4226 Sub-scope: TC-4226 Option 2\n   Expected: Correct placement task is created successfully. It appears in TC-4226 T1 swimlane of TC-4226 PI2. Value on task card for TC-4226 Team is TC-4226T1. Value on task card for TC-4226 Sub-scope is TC-4226 Option 2.",
+    "metadata": {
+      "jira_key": "TC-4792",
+      "issue_id": "821632",
+      "summary": "Feature area - Box scope - New task creating - Creating tasks when both Team and sub-scope sync are mapped to custom fields",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-67 Feature area - Box scope - New task creating",
+      "labels": [
+        "teamembers",
+        "teamtree"
+      ],
+      "step_count": 7,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

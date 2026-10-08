@@ -1,0 +1,131 @@
+{
+  "test": {
+    "key": "TC-630",
+    "issue_id": "359572",
+    "url": "https://appfire.atlassian.net/browse/TC-630",
+    "summary": "Feature area - Task Scheduling - Period modes -  Recalculations in Lock mode set for a task structure",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Illia Mishkin",
+    "reporter": "Martyna Turowska",
+    "created": "2020-04-15T10:12:03.256-0400",
+    "updated": "2026-06-18T05:50:28.790-0400",
+    "labels": [
+      "automated",
+      "bsbchecked",
+      "gmodule",
+      "teamscheduling"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Gantt module of boxName.",
+        "data": "boxName: TC-630 Feature area - Task Scheduling - Period modes - Recalculations in Lock mode set for a task structure",
+        "result": "Gantt chart is successfully loaded and displayed. Two project tasks and four Jira issues are visible."
+      },
+      {
+        "step": 2,
+        "action": "Open View dropdown menu in the module's header.\nSelect Period warnings option",
+        "data": "",
+        "result": "Period warnings option is selected."
+      },
+      {
+        "step": 3,
+        "action": "Move issueName (children task) outside its parent dates.",
+        "data": "issueName: TC-630-1A\nstartDate: 26/Oct/20\nendDate: 28/Oct/20",
+        "result": "Task TC-630-1A cannot be moved.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20"
+      },
+      {
+        "step": 4,
+        "action": "Resize issueName (children task) by making it shorter",
+        "data": "issueName: TC-630-1A\nstartDate: 21/Oct/20\nendDate: 22/Oct/20",
+        "result": "Task TC-630-1A cannot be resized.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20"
+      },
+      {
+        "step": 5,
+        "action": "Move issueName (parent task)",
+        "data": "issueName: TC-630-1\nstartDate: 26/Oct/20\nendDate: 28/Oct/20",
+        "result": "Task issueName: TC-630-1 cannot be moved.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20"
+      },
+      {
+        "step": 6,
+        "action": "Resize issueName (parent task)",
+        "data": "issueName: TC-630-1\nstartDate: 21/Oct/20\nendDate: 26/Oct/20",
+        "result": "Task issueName: TC-630-1 cannot be resized.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20"
+      },
+      {
+        "step": 7,
+        "action": "Select the parent task TC-630-2. Click on the Add task button and select Create subtask > Jira issue.\nFill the fields with the data (start and end date shout be sometime before or after its parent task)",
+        "data": "projectName: TC-630-2 Locked mode\nissueName: TC-630-2B\nstartDate: 21/Oct/20\nendDate: 26/Oct/20",
+        "result": "Task TC-630-2B is created beLow its parent TC-630-2.\n\nCreated task's length is not affected on parent task TC-630-2. \n\nTask TC-630-2 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-2B current dates:\n- start date: 21/Oct/20\n- end date: 26/Oct/20\n\nOn the TC-630-2 Locked mode and on the TC-630-2 period warnings yelLow frames appears."
+      },
+      {
+        "step": 8,
+        "action": "Right click on created issueName and set Scheduling mode → Locked",
+        "data": "issueName: TC-630-2B",
+        "result": "Task mode is changed to Locked"
+      },
+      {
+        "step": 9,
+        "action": "Delete issueName (children task)",
+        "data": "issueName:TC-630-2B",
+        "result": "Parent's period is not changed.\nPeriod warnings disappears.\n\n\nTask TC-630-2 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-2A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20"
+      },
+      {
+        "step": 10,
+        "action": "Select the parent task TC-630-2. Click on the Add task button and select Create subtask > Jira issue.\nFill the fields with the data (start and end date shout be sometime before or after its parent task)",
+        "data": "projectName: TC-630-2 Locked mode\nissueName: TC-630-2C\nstartDate: 19/Oct/20\nendDate: 28/Oct/20",
+        "result": "Task TC-630-2C is added as a child of the TC-630-2.\nTask TC-630-2C current dates:\n\n* start date: 21/Oct/20\n* end date: 30/Oct/20\n\nOn the TC-630-2 Locked mode and on the TC-630-2 period warnings yelLow frames appears."
+      },
+      {
+        "step": 11,
+        "action": "Right click on created issueName and set Scheduling mode → Manual",
+        "data": "IssueName: TC-630-2C",
+        "result": "taskMode is changed to Manual"
+      },
+      {
+        "step": 12,
+        "action": "Click on issueName and click on 'Indent' button",
+        "data": "issueName: TC-630-2C",
+        "result": "New parent's period is not changed.\n\nThe period warnings (yelLow bar with orange dashed border line) is displayed on the TC-630-2 Locked mode and TC-630-2 taskbars and match the TC-630-2C period.\n\nTask TC-630-2 current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2A current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2C current dates:\n\n* start date: 21/Oct/20\n* end date: 30/Oct/20"
+      },
+      {
+        "step": 13,
+        "action": "Click on issueName on click 'Outdent' button",
+        "data": "issueName: TC-630-2C",
+        "result": "The period warning on task TC-630-2A disappears.\n\nTask TC-630-2 current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2A current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2C current dates:\n\n* start date: 21/Oct/20\n* end date: 30/Oct/20"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-630",
+    "text": "Test: TC-630 — Feature area - Task Scheduling - Period modes -  Recalculations in Lock mode set for a task structure\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-80 Feature area - Task Scheduling - Period modes\nLabels: automated, bsbchecked, gmodule, teamscheduling\n\nSteps:\n1. Navigate to Gantt module of boxName.\n   Data: boxName: TC-630 Feature area - Task Scheduling - Period modes - Recalculations in Lock mode set for a task structure\n   Expected: Gantt chart is successfully loaded and displayed. Two project tasks and four Jira issues are visible.\n2. Open View dropdown menu in the module's header.\nSelect Period warnings option\n   Expected: Period warnings option is selected.\n3. Move issueName (children task) outside its parent dates.\n   Data: issueName: TC-630-1A\nstartDate: 26/Oct/20\nendDate: 28/Oct/20\n   Expected: Task TC-630-1A cannot be moved.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n4. Resize issueName (children task) by making it shorter\n   Data: issueName: TC-630-1A\nstartDate: 21/Oct/20\nendDate: 22/Oct/20\n   Expected: Task TC-630-1A cannot be resized.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n5. Move issueName (parent task)\n   Data: issueName: TC-630-1\nstartDate: 26/Oct/20\nendDate: 28/Oct/20\n   Expected: Task issueName: TC-630-1 cannot be moved.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n6. Resize issueName (parent task)\n   Data: issueName: TC-630-1\nstartDate: 21/Oct/20\nendDate: 26/Oct/20\n   Expected: Task issueName: TC-630-1 cannot be resized.\n\nTask TC-630-1 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-1A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n7. Select the parent task TC-630-2. Click on the Add task button and select Create subtask > Jira issue.\nFill the fields with the data (start and end date shout be sometime before or after its parent task)\n   Data: projectName: TC-630-2 Locked mode\nissueName: TC-630-2B\nstartDate: 21/Oct/20\nendDate: 26/Oct/20\n   Expected: Task TC-630-2B is created beLow its parent TC-630-2.\n\nCreated task's length is not affected on parent task TC-630-2. \n\nTask TC-630-2 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-2B current dates:\n- start date: 21/Oct/20\n- end date: 26/Oct/20\n\nOn the TC-630-2 Locked mode and on the TC-630-2 period warnings yelLow frames appears.\n8. Right click on created issueName and set Scheduling mode → Locked\n   Data: issueName: TC-630-2B\n   Expected: Task mode is changed to Locked\n9. Delete issueName (children task)\n   Data: issueName:TC-630-2B\n   Expected: Parent's period is not changed.\nPeriod warnings disappears.\n\n\nTask TC-630-2 current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n\nTask TC-630-2A current dates:\n- start date: 21/Oct/20\n- end date: 23/Oct/20\n10. Select the parent task TC-630-2. Click on the Add task button and select Create subtask > Jira issue.\nFill the fields with the data (start and end date shout be sometime before or after its parent task)\n   Data: projectName: TC-630-2 Locked mode\nissueName: TC-630-2C\nstartDate: 19/Oct/20\nendDate: 28/Oct/20\n   Expected: Task TC-630-2C is added as a child of the TC-630-2.\nTask TC-630-2C current dates:\n\n* start date: 21/Oct/20\n* end date: 30/Oct/20\n\nOn the TC-630-2 Locked mode and on the TC-630-2 period warnings yelLow frames appears.\n11. Right click on created issueName and set Scheduling mode → Manual\n   Data: IssueName: TC-630-2C\n   Expected: taskMode is changed to Manual\n12. Click on issueName and click on 'Indent' button\n   Data: issueName: TC-630-2C\n   Expected: New parent's period is not changed.\n\nThe period warnings (yelLow bar with orange dashed border line) is displayed on the TC-630-2 Locked mode and TC-630-2 taskbars and match the TC-630-2C period.\n\nTask TC-630-2 current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2A current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2C current dates:\n\n* start date: 21/Oct/20\n* end date: 30/Oct/20\n13. Click on issueName on click 'Outdent' button\n   Data: issueName: TC-630-2C\n   Expected: The period warning on task TC-630-2A disappears.\n\nTask TC-630-2 current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2A current dates:\n\n* start date: 21/Oct/20\n* end date: 23/Oct/20\n\nTask TC-630-2C current dates:\n\n* start date: 21/Oct/20\n* end date: 30/Oct/20",
+    "metadata": {
+      "jira_key": "TC-630",
+      "issue_id": "359572",
+      "summary": "Feature area - Task Scheduling - Period modes -  Recalculations in Lock mode set for a task structure",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-80 Feature area - Task Scheduling - Period modes",
+      "labels": [
+        "automated",
+        "bsbchecked",
+        "gmodule",
+        "teamscheduling"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

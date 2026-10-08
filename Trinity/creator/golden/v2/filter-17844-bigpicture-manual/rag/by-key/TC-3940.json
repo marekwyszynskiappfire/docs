@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-3940",
+    "issue_id": "358329",
+    "url": "https://appfire.atlassian.net/browse/TC-3940",
+    "summary": "Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2023-03-08T06:49:17.255-0500",
+    "updated": "2026-04-17T05:43:01.832-0400",
+    "labels": [
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Jira Filters -> click \"Create Filter\" button",
+        "data": "",
+        "result": "New filter is created"
+      },
+      {
+        "step": 2,
+        "action": "Being in newly created filter In Project field click Project -> All and choose projectName",
+        "data": "projectName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event",
+        "result": "Three issue appear:\n- Bug\n- Task\n- Story"
+      },
+      {
+        "step": 3,
+        "action": "Click Save us button and fill up filterName",
+        "data": "filterName: 3940 test",
+        "result": "Filter 3940 test is created in Jira"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to boxName -> Box Configuration -> Scope Definition -> and add filterName",
+        "data": "boxName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event\nfilterName: 3940 test",
+        "result": "Filter is added to the scope\n3 tasks in the scope is visible in scope definition window"
+      },
+      {
+        "step": 5,
+        "action": "Open Gantt module of boxName",
+        "data": "boxName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event",
+        "result": "Three issues are visible in WBS:\n- Bug\n- Task\n- Story"
+      },
+      {
+        "step": 6,
+        "action": "Open webhooks.log and verify if webhook \"filter_created\" is logged",
+        "data": "Verify webhooks log in GCP or Kibana",
+        "result": "\"filter_created\" webhook is logged"
+      },
+      {
+        "step": 7,
+        "action": "Click in Jira Filters -> and open filterName",
+        "data": "filterName: 3940 test",
+        "result": "Filter 3940 test is opened.\nThree issue appear:\n- Bug\n- Task\n- Story"
+      },
+      {
+        "step": 8,
+        "action": "Click in \"type\" and choose Bug.\nClick Save button",
+        "data": "",
+        "result": "Only Bug is visible in filter"
+      },
+      {
+        "step": 9,
+        "action": "Open webhooks.log and verify if webhook \"filter_updated\" is logged",
+        "data": "",
+        "result": "\"filter_updated\" webhook is logged"
+      },
+      {
+        "step": 10,
+        "action": "Open Gantt module of boxName and refresh the page",
+        "data": "boxName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event",
+        "result": "1 issue \"Bug\" is visible in WBS"
+      },
+      {
+        "step": 11,
+        "action": "Click in Jira Filters -> View all filters and delete filterName",
+        "data": "filterName: 3940 test",
+        "result": "filter 3940 test is deleted from Jira"
+      },
+      {
+        "step": 12,
+        "action": "Open webhooks.log and verify if webhook \"filter_deleted\" is logged",
+        "data": "",
+        "result": "\"filter_deleted\" webhook is logged"
+      },
+      {
+        "step": 13,
+        "action": "Open Gantt module of boxName and refresh the page",
+        "data": "",
+        "result": "The scope is corrupted massage appear. \nThe warning log with message appear:\n- Error in scope for Jira:FolLowing elements: ID (jira_filter) are unavailable for plugin or inaccessible by Scope Owner"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-3940",
+    "text": "Test: TC-3940 — Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-25 Feature area - Box scope - Own scope definition\nLabels: teamextplatform\n\nSteps:\n1. Navigate to Jira Filters -> click \"Create Filter\" button\n   Expected: New filter is created\n2. Being in newly created filter In Project field click Project -> All and choose projectName\n   Data: projectName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event\n   Expected: Three issue appear:\n- Bug\n- Task\n- Story\n3. Click Save us button and fill up filterName\n   Data: filterName: 3940 test\n   Expected: Filter 3940 test is created in Jira\n4. Navigate to boxName -> Box Configuration -> Scope Definition -> and add filterName\n   Data: boxName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event\nfilterName: 3940 test\n   Expected: Filter is added to the scope\n3 tasks in the scope is visible in scope definition window\n5. Open Gantt module of boxName\n   Data: boxName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event\n   Expected: Three issues are visible in WBS:\n- Bug\n- Task\n- Story\n6. Open webhooks.log and verify if webhook \"filter_created\" is logged\n   Data: Verify webhooks log in GCP or Kibana\n   Expected: \"filter_created\" webhook is logged\n7. Click in Jira Filters -> and open filterName\n   Data: filterName: 3940 test\n   Expected: Filter 3940 test is opened.\nThree issue appear:\n- Bug\n- Task\n- Story\n8. Click in \"type\" and choose Bug.\nClick Save button\n   Expected: Only Bug is visible in filter\n9. Open webhooks.log and verify if webhook \"filter_updated\" is logged\n   Expected: \"filter_updated\" webhook is logged\n10. Open Gantt module of boxName and refresh the page\n   Data: boxName: TC-3940 Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event\n   Expected: 1 issue \"Bug\" is visible in WBS\n11. Click in Jira Filters -> View all filters and delete filterName\n   Data: filterName: 3940 test\n   Expected: filter 3940 test is deleted from Jira\n12. Open webhooks.log and verify if webhook \"filter_deleted\" is logged\n   Expected: \"filter_deleted\" webhook is logged\n13. Open Gantt module of boxName and refresh the page\n   Expected: The scope is corrupted massage appear. \nThe warning log with message appear:\n- Error in scope for Jira:FolLowing elements: ID (jira_filter) are unavailable for plugin or inaccessible by Scope Owner",
+    "metadata": {
+      "jira_key": "TC-3940",
+      "issue_id": "358329",
+      "summary": "Feature area - Box scope - Own scope definition - Checking Filter Webhooks Event",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+      "labels": [
+        "teamextplatform"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

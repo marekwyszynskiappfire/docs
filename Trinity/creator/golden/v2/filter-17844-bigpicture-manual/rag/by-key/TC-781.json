@@ -1,0 +1,46 @@
+{
+  "test": {
+    "key": "TC-781",
+    "issue_id": "359185",
+    "url": "https://appfire.atlassian.net/browse/TC-781",
+    "summary": "Feature area - Box - Box scheduling - Auto Bottom Up is adjusting to sub-Box's move/resize",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": "Krzysztof Luczak",
+    "reporter": "Krzysztof Luczak",
+    "created": "2020-12-04T09:19:03.643-0500",
+    "updated": "2026-03-04T09:19:27.055-0500",
+    "labels": [
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-91 Feature area - Box - Box scheduling",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 0
+  },
+  "rag": {
+    "id": "TC-781",
+    "text": "Test: TC-781 — Feature area - Box - Box scheduling - Auto Bottom Up is adjusting to sub-Box's move/resize\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /BP/TS-91 Feature area - Box - Box scheduling\nLabels: teamboxes",
+    "metadata": {
+      "jira_key": "TC-781",
+      "issue_id": "359185",
+      "summary": "Feature area - Box - Box scheduling - Auto Bottom Up is adjusting to sub-Box's move/resize",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-91 Feature area - Box - Box scheduling",
+      "labels": [
+        "teamboxes"
+      ],
+      "step_count": 0,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

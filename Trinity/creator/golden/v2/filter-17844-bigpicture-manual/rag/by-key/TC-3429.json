@@ -1,0 +1,65 @@
+{
+  "test": {
+    "key": "TC-3429",
+    "issue_id": "360117",
+    "url": "https://appfire.atlassian.net/browse/TC-3429",
+    "summary": "Feature area - Risk - Risks Matrix Drag and Drop to cell outside rendered viewport ",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Piotr Kraszewski (Inactive)",
+    "created": "2022-07-01T10:28:54.646-0400",
+    "updated": "2026-03-04T09:14:13.978-0500",
+    "labels": [
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-83 Feature area - Risk",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open Risks module in boxName",
+        "data": "boxName: TC-3429 Feature area - Risk - Risks Matrix Drag and Drop to cell outside rendered viewport",
+        "result": "Risk matrix load properly. There are 20 tasks.\n\n* 10 tasks are visible in Severe Consequence/Very High Probability cell:\n-TC-3429 1\n-TC-3429 2\n-TC-3429 3\n-TC-3429 4\n-TC-3429 5\n-TC-3429 6\n-TC-3429 7\n-TC-3429 8\n-TC-3429 9\n-TC-3429 10\n* 10 tasks are visible in None Consequence/Almost None Probability cell:\n-TC-3429 11\n-TC-3429 12\n-TC-3429 13\n-TC-3429 14\n-TC-3429 15\n-TC-3429 16\n-TC-3429 17\n-TC-3429 18\n-TC-3429 19\n-TC-3429 20"
+      },
+      {
+        "step": 2,
+        "action": "Drag and drop taskCard to matrixCell from the top to the bottom to use the scroll on the matrix",
+        "data": "taskCard: TC-3429 1\nmatrixCell: Trivial Consequence/Almost None Probability",
+        "result": "Task TC-3429 1 is moved to Trivial Consequence/Almost None Probability cell"
+      },
+      {
+        "step": 3,
+        "action": "Drag and drop taskCard to matrixCell from the top to the bottom to use the scroll on the matrix",
+        "data": "taskCard: TC-3429 20\nmatrixCell: Severe Consequence/Very High Probability",
+        "result": "Task TC-3429 20 is moved to Severe Consequence/Very High Probability cell"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 3
+  },
+  "rag": {
+    "id": "TC-3429",
+    "text": "Test: TC-3429 — Feature area - Risk - Risks Matrix Drag and Drop to cell outside rendered viewport \nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-83 Feature area - Risk\nLabels: teamsource\n\nSteps:\n1. Open Risks module in boxName\n   Data: boxName: TC-3429 Feature area - Risk - Risks Matrix Drag and Drop to cell outside rendered viewport\n   Expected: Risk matrix load properly. There are 20 tasks.\n\n* 10 tasks are visible in Severe Consequence/Very High Probability cell:\n-TC-3429 1\n-TC-3429 2\n-TC-3429 3\n-TC-3429 4\n-TC-3429 5\n-TC-3429 6\n-TC-3429 7\n-TC-3429 8\n-TC-3429 9\n-TC-3429 10\n* 10 tasks are visible in None Consequence/Almost None Probability cell:\n-TC-3429 11\n-TC-3429 12\n-TC-3429 13\n-TC-3429 14\n-TC-3429 15\n-TC-3429 16\n-TC-3429 17\n-TC-3429 18\n-TC-3429 19\n-TC-3429 20\n2. Drag and drop taskCard to matrixCell from the top to the bottom to use the scroll on the matrix\n   Data: taskCard: TC-3429 1\nmatrixCell: Trivial Consequence/Almost None Probability\n   Expected: Task TC-3429 1 is moved to Trivial Consequence/Almost None Probability cell\n3. Drag and drop taskCard to matrixCell from the top to the bottom to use the scroll on the matrix\n   Data: taskCard: TC-3429 20\nmatrixCell: Severe Consequence/Very High Probability\n   Expected: Task TC-3429 20 is moved to Severe Consequence/Very High Probability cell",
+    "metadata": {
+      "jira_key": "TC-3429",
+      "issue_id": "360117",
+      "summary": "Feature area - Risk - Risks Matrix Drag and Drop to cell outside rendered viewport ",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-83 Feature area - Risk",
+      "labels": [
+        "teamsource"
+      ],
+      "step_count": 3,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "test": {
+    "key": "TC-2939",
+    "issue_id": "358650",
+    "url": "https://appfire.atlassian.net/browse/TC-2939",
+    "summary": "Global - Dashboard Item - Overview - Adding gadget to Jira dashboard",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Ilya Rybakou",
+    "reporter": "Ilya Rybakou",
+    "created": "2022-02-02T04:47:55.404-0500",
+    "updated": "2026-03-04T09:15:14.122-0500",
+    "labels": [
+      "teamboxes"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-400 Global - Dashboard Item",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to dashboardName",
+        "data": "dashboardName: TC-2939 Global - Dashboard Item - Overview - Adding gadget to Jira dashboard",
+        "result": "Jira dashboard page is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click click Edit button to add gadget.",
+        "data": "",
+        "result": "Add a Gadget window appears\n\nList of gadgets is visible"
+      },
+      {
+        "step": 3,
+        "action": "Search for dashboardItemName",
+        "data": "dashboardItemName: BigPicture Overview",
+        "result": "In the list of gadgets appears BigPicture Gantt gadget"
+      },
+      {
+        "step": 4,
+        "action": "Click on Add button and Save",
+        "data": "",
+        "result": "Dashboard item is added to the dashboard, it has folLowing elements: \n- Header BigPicture Overview\n- Columns: Icon, Name, Status, Start date, End date, Leader, Type\n- List of boxes"
+      },
+      {
+        "step": 5,
+        "action": "Click on Done button",
+        "data": "",
+        "result": "Dashboard is saved \n\nDashboard item is still displayed on the dashboard"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-2939",
+    "text": "Test: TC-2939 — Global - Dashboard Item - Overview - Adding gadget to Jira dashboard\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-400 Global - Dashboard Item\nLabels: teamboxes\n\nSteps:\n1. Navigate to dashboardName\n   Data: dashboardName: TC-2939 Global - Dashboard Item - Overview - Adding gadget to Jira dashboard\n   Expected: Jira dashboard page is displayed\n2. Click click Edit button to add gadget.\n   Expected: Add a Gadget window appears\n\nList of gadgets is visible\n3. Search for dashboardItemName\n   Data: dashboardItemName: BigPicture Overview\n   Expected: In the list of gadgets appears BigPicture Gantt gadget\n4. Click on Add button and Save\n   Expected: Dashboard item is added to the dashboard, it has folLowing elements: \n- Header BigPicture Overview\n- Columns: Icon, Name, Status, Start date, End date, Leader, Type\n- List of boxes\n5. Click on Done button\n   Expected: Dashboard is saved \n\nDashboard item is still displayed on the dashboard",
+    "metadata": {
+      "jira_key": "TC-2939",
+      "issue_id": "358650",
+      "summary": "Global - Dashboard Item - Overview - Adding gadget to Jira dashboard",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-400 Global - Dashboard Item",
+      "labels": [
+        "teamboxes"
+      ],
+      "step_count": 5,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

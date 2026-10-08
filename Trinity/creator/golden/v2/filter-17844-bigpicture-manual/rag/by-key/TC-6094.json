@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-6094",
+    "issue_id": "1670494",
+    "url": "https://appfire.atlassian.net/browse/TC-6094",
+    "summary": "SPM - OKR - Inline editing of Label field",
+    "description": "This test verifies inline editing of the *Label field* in both *Overview* and *Side Panel*.\n\n* Editing the Label field in *Overview* and *Side Panel*\n* Selecting a single value\n* Selecting multiple values\n* Creating a new Label\n* Removing selected values\n* Data consistency between Overview and Side Panel",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Mikołaj Maruniak",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2026-05-04T04:48:28.703-0400",
+    "updated": "2026-09-16T04:00:27.056-0400",
+    "labels": [
+      "spm-mikolaj-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "*Prerequisites:* 5x Labels are created in OKR module",
+        "data": "labelsName: Label 1, Label 2, Label 3, Label 4, Label 5",
+        "result": ""
+      },
+      {
+        "step": 2,
+        "action": "Open OKR Overview of boxName and create Objective and Key-result",
+        "data": "boxName: TC-6094 SPM - OKR - Inline editing of Label field\n\n* objectiveName: Objective 1\n* key-resultName: Key-result 1",
+        "result": "Objective and Key-result are created and visible in OKR overview"
+      },
+      {
+        "step": 3,
+        "action": "Hover over the Objective and Key-result Label fields",
+        "data": "",
+        "result": "The row is highlighted (grey background) when the user hovers over it\n+ button and tooltip \"Add Labels\" is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Click on + button next to Objective Label field",
+        "data": "",
+        "result": "Dropdown is displayed with lists of Labels. Create Label button visible in dropdown"
+      },
+      {
+        "step": 5,
+        "action": "Add labelName",
+        "data": "labelName: Label 1",
+        "result": "Label 1 is displayed in Label field for Objective"
+      },
+      {
+        "step": 6,
+        "action": "Click on the grey area of the Objective row",
+        "data": "",
+        "result": "Side panel is opened on the right side and displays details of the selected Objective. The Objective Label is consistent with the value in Overview"
+      },
+      {
+        "step": 7,
+        "action": "Click in Label field in Side panel",
+        "data": "",
+        "result": "Dropdown is displayed with lists of Labels. Create Label button visible in dropdown"
+      },
+      {
+        "step": 8,
+        "action": "Add next labelsName",
+        "data": "labelName: Label 2, Label 3, Label 4, Label 5",
+        "result": "The list of labelName ( 5x labels with full name and icons) is displayed in Label field in Side panel"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to Overview and hover over to Team field next to Objective",
+        "data": "",
+        "result": "Label field display 5x labels"
+      },
+      {
+        "step": 10,
+        "action": "Select Label field and click X Clear button",
+        "data": "",
+        "result": "Field is empty, all labels disappear from Overview"
+      },
+      {
+        "step": 11,
+        "action": "Hover over the Key-result Label fields → Click on + button",
+        "data": "",
+        "result": "Dropdown is displayed with lists of Labels. Create Label button visible in dropdown"
+      },
+      {
+        "step": 12,
+        "action": "Click Create label",
+        "data": "",
+        "result": "Create label modal is displayed"
+      },
+      {
+        "step": 13,
+        "action": "fill in the name, select background color (green) and click Create",
+        "data": "labelName: Label 6",
+        "result": "Label is created and visible"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-6094",
+    "text": "Test: TC-6094 — SPM - OKR - Inline editing of Label field\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/SPM/OKR/TS-512 OKR - OKR module\nLabels: spm-mikolaj-tc\n\nDescription:\nThis test verifies inline editing of the *Label field* in both *Overview* and *Side Panel*.\n\n* Editing the Label field in *Overview* and *Side Panel*\n* Selecting a single value\n* Selecting multiple values\n* Creating a new Label\n* Removing selected values\n* Data consistency between Overview and Side Panel\n\nSteps:\n1. *Prerequisites:* 5x Labels are created in OKR module\n   Data: labelsName: Label 1, Label 2, Label 3, Label 4, Label 5\n   Expected: \n2. Open OKR Overview of boxName and create Objective and Key-result\n   Data: boxName: TC-6094 SPM - OKR - Inline editing of Label field\n\n* objectiveName: Objective 1\n* key-resultName: Key-result 1\n   Expected: Objective and Key-result are created and visible in OKR overview\n3. Hover over the Objective and Key-result Label fields\n   Expected: The row is highlighted (grey background) when the user hovers over it\n+ button and tooltip \"Add Labels\" is displayed\n4. Click on + button next to Objective Label field\n   Expected: Dropdown is displayed with lists of Labels. Create Label button visible in dropdown\n5. Add labelName\n   Data: labelName: Label 1\n   Expected: Label 1 is displayed in Label field for Objective\n6. Click on the grey area of the Objective row\n   Expected: Side panel is opened on the right side and displays details of the selected Objective. The Objective Label is consistent with the value in Overview\n7. Click in Label field in Side panel\n   Expected: Dropdown is displayed with lists of Labels. Create Label button visible in dropdown\n8. Add next labelsName\n   Data: labelName: Label 2, Label 3, Label 4, Label 5\n   Expected: The list of labelName ( 5x labels with full name and icons) is displayed in Label field in Side panel\n9. Navigate to Overview and hover over to Team field next to Objective\n   Expected: Label field display 5x labels\n10. Select Label field and click X Clear button\n   Expected: Field is empty, all labels disappear from Overview\n11. Hover over the Key-result Label fields → Click on + button\n   Expected: Dropdown is displayed with lists of Labels. Create Label button visible in dropdown\n12. Click Create label\n   Expected: Create label modal is displayed\n13. fill in the name, select background color (green) and click Create\n   Data: labelName: Label 6\n   Expected: Label is created and visible",
+    "metadata": {
+      "jira_key": "TC-6094",
+      "issue_id": "1670494",
+      "summary": "SPM - OKR - Inline editing of Label field",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/OKR/TS-512 OKR - OKR module",
+      "labels": [
+        "spm-mikolaj-tc"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

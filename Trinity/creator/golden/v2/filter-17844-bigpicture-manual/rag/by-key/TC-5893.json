@@ -1,0 +1,175 @@
+{
+  "test": {
+    "key": "TC-5893",
+    "issue_id": "1476261",
+    "url": "https://appfire.atlassian.net/browse/TC-5893",
+    "summary": "SPM - Strategic areas  - Filtering OKRs tab by statuses",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Paulina Sendecka",
+    "created": "2025-12-29T07:56:52.388-0500",
+    "updated": "2026-10-06T09:09:13.527-0400",
+    "labels": [
+      "ppm-e2e-cloud",
+      "spm-paulina-tc"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/SPM/TS-519 Strategic Areas",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to OKR module of ROOT (Main) box",
+        "data": "",
+        "result": "OKR module is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Click on Add button",
+        "data": "",
+        "result": "Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)"
+      },
+      {
+        "step": 3,
+        "action": "Click Create strategic theme",
+        "data": "",
+        "result": "New Strategic theme modal is displayed"
+      },
+      {
+        "step": 4,
+        "action": "Type strategicThemeName, select period and click Create",
+        "data": "strategicThemeName: TC-5893\n\nperiod: Y2025",
+        "result": "Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme"
+      },
+      {
+        "step": 5,
+        "action": "Click on Plus button next to Strategic Theme, add newObjective",
+        "data": "newObjective: TC-5893 A",
+        "result": "New Objective TC-5893 A is created under Strategic Theme TC-5893."
+      },
+      {
+        "step": 6,
+        "action": "Click on Plus button next to Strategic Theme and add newObjective",
+        "data": "newObjective: TC-5893 B",
+        "result": "New Objective TC-5893 B is created under Strategic Theme TC-5893."
+      },
+      {
+        "step": 7,
+        "action": "Click on Plus button next to Objective TC-5893 A and add newKeyResult",
+        "data": "keyResult: TC-5877 C",
+        "result": "New Key Result TC-5893 C is created under Objective TC-5893 A"
+      },
+      {
+        "step": 8,
+        "action": "Click on Plus button next to TC-5893 A objective and add keyResult with period",
+        "data": "keyResult: TC-5893 D\n\nperiod: Q2 Y2026",
+        "result": "New Key Result TC-5893 C is created under Objective TC-5893 A."
+      },
+      {
+        "step": 9,
+        "action": "Click on Plus button next to TC-5893 B objective and add keyResult",
+        "data": "keyResult: TC-5893 E",
+        "result": "New Key Result TC-5893 E is created under Objective TC-5893 B."
+      },
+      {
+        "step": 10,
+        "action": "Click Finish & go back",
+        "data": "",
+        "result": "Strategic Theme TC-5893 is displayed on the list with expand button next to it"
+      },
+      {
+        "step": 11,
+        "action": "Click Expand next to Strategic Theme TC-5893 and click on objective",
+        "data": "objective: TC-5888 A",
+        "result": "Details of TC-5888 A are displayed"
+      },
+      {
+        "step": 12,
+        "action": "Click update, set newStatus,  updateCurrentProgress and click Submit",
+        "data": "newStatus: ON TRACK\n\nupdateCurrentProgress: 80",
+        "result": "Modal window is displayed\n\n\"The parent objective of the objective you've updated is *NOT STARTED*\n\nWould you like to update its status?\"\n\nNo and Yes button are displayed"
+      },
+      {
+        "step": 13,
+        "action": "Click NO",
+        "data": "",
+        "result": "Modal window disappeared\n\nObjective's status changes:\n\nStatus: On Track \n\nProgress: 80%"
+      },
+      {
+        "step": 14,
+        "action": "Go back, click on keyResult, update status, updateCurrentProgress and click Submit",
+        "data": "keyResult: TC-5893 D\n\nstatus: AT RISK\n\nupdateCurrentProgress: 0.2",
+        "result": "Modal window is closed\n\nChanges are visible on \n\nStatus: AT RISK\n\nCurrent value: 20%"
+      },
+      {
+        "step": 15,
+        "action": "Go back, click on keyResult, select Close & grade, select status and Close key result",
+        "data": "keyResult: TC-5893 C\n\nstatus: FAILED",
+        "result": "'Success!\n\nKey result completed' pop up  is displayed\n\nModal window is closed\n\nStatus: Failed"
+      },
+      {
+        "step": 16,
+        "action": "Click Strategic Areas on the left panel (above Settings)",
+        "data": "",
+        "result": "List of Strategic themes is displayed"
+      },
+      {
+        "step": 17,
+        "action": "Click on strategicThemeName",
+        "data": "strategicThemeName: TC-5893",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5893\n* 2 Objectives: TC-5893 A, TC-5893 B\n* 3 Key results: TC-5893 C, TC-5893 D, TC-5893 E\n\nWidgets on the left shows\n\n* Strategic Theme: 1 and grey lozenge - 0% closed\n* Objectives: 2 divided in 1 grey and 1 green lozenges - 0% closed\n* Key results: 3 dividied in 1 grey, 1 red and 1 yellow lozenges - 33% closed"
+      },
+      {
+        "step": 18,
+        "action": "Click on tile",
+        "data": "tile: OFF TRACK",
+        "result": "Splashscreen is displayed with information \n\n\"No results found\n\nYour filter criteria did not match any items. Try adjusting your filters to broaden the search or reset them to view all available options.\""
+      },
+      {
+        "step": 19,
+        "action": "Refresh website",
+        "data": "",
+        "result": "OFF track filter disappeared \n\nAll status tiles are deselected"
+      },
+      {
+        "step": 20,
+        "action": "Click on statusTile",
+        "data": "statusTile: AT RISK",
+        "result": "OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5893 (grayed out)\n* Objective: TC-5893 A (grayed out)\n* Key Result: TC-5893 D"
+      },
+      {
+        "step": 21,
+        "action": "Click on Initatives tab and go back to OKRs tab",
+        "data": "",
+        "result": "AT RISK status file is still displayed"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 21
+  },
+  "rag": {
+    "id": "TC-5893",
+    "text": "Test: TC-5893 — SPM - Strategic areas  - Filtering OKRs tab by statuses\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/SPM/TS-519 Strategic Areas\nLabels: ppm-e2e-cloud, spm-paulina-tc\n\nSteps:\n1. Navigate to OKR module of ROOT (Main) box\n   Expected: OKR module is displayed\n2. Click on Add button\n   Expected: Following options are displayed:\n\n* Create objective\n* Create strategic theme\n* Link to box (grayed out)\n3. Click Create strategic theme\n   Expected: New Strategic theme modal is displayed\n4. Type strategicThemeName, select period and click Create\n   Data: strategicThemeName: TC-5893\n\nperiod: Y2025\n   Expected: Strategic Theme is created and Tree view is displayed\n\nPlus button is displayed next to Strategic Theme\n5. Click on Plus button next to Strategic Theme, add newObjective\n   Data: newObjective: TC-5893 A\n   Expected: New Objective TC-5893 A is created under Strategic Theme TC-5893.\n6. Click on Plus button next to Strategic Theme and add newObjective\n   Data: newObjective: TC-5893 B\n   Expected: New Objective TC-5893 B is created under Strategic Theme TC-5893.\n7. Click on Plus button next to Objective TC-5893 A and add newKeyResult\n   Data: keyResult: TC-5877 C\n   Expected: New Key Result TC-5893 C is created under Objective TC-5893 A\n8. Click on Plus button next to TC-5893 A objective and add keyResult with period\n   Data: keyResult: TC-5893 D\n\nperiod: Q2 Y2026\n   Expected: New Key Result TC-5893 C is created under Objective TC-5893 A.\n9. Click on Plus button next to TC-5893 B objective and add keyResult\n   Data: keyResult: TC-5893 E\n   Expected: New Key Result TC-5893 E is created under Objective TC-5893 B.\n10. Click Finish & go back\n   Expected: Strategic Theme TC-5893 is displayed on the list with expand button next to it\n11. Click Expand next to Strategic Theme TC-5893 and click on objective\n   Data: objective: TC-5888 A\n   Expected: Details of TC-5888 A are displayed\n12. Click update, set newStatus,  updateCurrentProgress and click Submit\n   Data: newStatus: ON TRACK\n\nupdateCurrentProgress: 80\n   Expected: Modal window is displayed\n\n\"The parent objective of the objective you've updated is *NOT STARTED*\n\nWould you like to update its status?\"\n\nNo and Yes button are displayed\n13. Click NO\n   Expected: Modal window disappeared\n\nObjective's status changes:\n\nStatus: On Track \n\nProgress: 80%\n14. Go back, click on keyResult, update status, updateCurrentProgress and click Submit\n   Data: keyResult: TC-5893 D\n\nstatus: AT RISK\n\nupdateCurrentProgress: 0.2\n   Expected: Modal window is closed\n\nChanges are visible on \n\nStatus: AT RISK\n\nCurrent value: 20%\n15. Go back, click on keyResult, select Close & grade, select status and Close key result\n   Data: keyResult: TC-5893 C\n\nstatus: FAILED\n   Expected: 'Success!\n\nKey result completed' pop up  is displayed\n\nModal window is closed\n\nStatus: Failed\n16. Click Strategic Areas on the left panel (above Settings)\n   Expected: List of Strategic themes is displayed\n17. Click on strategicThemeName\n   Data: strategicThemeName: TC-5893\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5893\n* 2 Objectives: TC-5893 A, TC-5893 B\n* 3 Key results: TC-5893 C, TC-5893 D, TC-5893 E\n\nWidgets on the left shows\n\n* Strategic Theme: 1 and grey lozenge - 0% closed\n* Objectives: 2 divided in 1 grey and 1 green lozenges - 0% closed\n* Key results: 3 dividied in 1 grey, 1 red and 1 yellow lozenges - 33% closed\n18. Click on tile\n   Data: tile: OFF TRACK\n   Expected: Splashscreen is displayed with information \n\n\"No results found\n\nYour filter criteria did not match any items. Try adjusting your filters to broaden the search or reset them to view all available options.\"\n19. Refresh website\n   Expected: OFF track filter disappeared \n\nAll status tiles are deselected\n20. Click on statusTile\n   Data: statusTile: AT RISK\n   Expected: OKRs tab is displayed with following OKRs:\n\n* Strategic Theme: TC-5893 (grayed out)\n* Objective: TC-5893 A (grayed out)\n* Key Result: TC-5893 D\n21. Click on Initatives tab and go back to OKRs tab\n   Expected: AT RISK status file is still displayed",
+    "metadata": {
+      "jira_key": "TC-5893",
+      "issue_id": "1476261",
+      "summary": "SPM - Strategic areas  - Filtering OKRs tab by statuses",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/SPM/TS-519 Strategic Areas",
+      "labels": [
+        "ppm-e2e-cloud",
+        "spm-paulina-tc"
+      ],
+      "step_count": 21,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "test": {
+    "key": "TC-5424",
+    "issue_id": "1171550",
+    "url": "https://appfire.atlassian.net/browse/TC-5424",
+    "summary": "One task can be displayed in multiple groups",
+    "description": "",
+    "status": "To Do",
+    "priority": "Medium",
+    "assignee": null,
+    "reporter": "Robert Włodarczyk",
+    "created": "2025-03-14T07:06:52.911-0400",
+    "updated": "2026-04-10T06:09:46.778-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 0
+  },
+  "rag": {
+    "id": "TC-5424",
+    "text": "Test: TC-5424 — One task can be displayed in multiple groups\nPriority: Medium | Status: To Do | Type: Manual\nFolder: /",
+    "metadata": {
+      "jira_key": "TC-5424",
+      "issue_id": "1171550",
+      "summary": "One task can be displayed in multiple groups",
+      "priority": "Medium",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/",
+      "labels": [],
+      "step_count": 0,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

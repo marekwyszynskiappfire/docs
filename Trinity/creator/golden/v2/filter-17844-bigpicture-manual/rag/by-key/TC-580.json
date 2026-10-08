@@ -1,0 +1,105 @@
+{
+  "test": {
+    "key": "TC-580",
+    "issue_id": "356646",
+    "url": "https://appfire.atlassian.net/browse/TC-580",
+    "summary": "Box Module - Teams - Duplicate team",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Monika Cecot",
+    "reporter": "Paulina Sendecka",
+    "created": "2020-10-09T05:35:26.037-0400",
+    "updated": "2026-08-10T09:35:56.335-0400",
+    "labels": [
+      "be-enterprise",
+      "can_be_automated",
+      "rocksolid"
+    ],
+    "test_type": "Automated",
+    "folder": "/BP/TS-112 Box Module - Teams",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to Teams module of boxName",
+        "data": "boxName: TC-580 Box Module - Teams - Duplicate team",
+        "result": "Teams module is displayed\n\nWizard menu appeared with 3 tiles:\n\n* Create new \n* Assign existing \n* Duplicate & edit existing"
+      },
+      {
+        "step": 2,
+        "action": "Select Duplicate & edit existing tile",
+        "data": "",
+        "result": "Modal window 'Duplicate existing Teams' is displayed. \n\nFields to duplicate team appears:\n\n* Teams selector\n* Cancel button\n* Duplicate button (greyed out)"
+      },
+      {
+        "step": 3,
+        "action": "Click Cancel button",
+        "data": "",
+        "result": "Additional fields to duplicate team disappeared."
+      },
+      {
+        "step": 4,
+        "action": "Select Duplicate & edit existing tile",
+        "data": "",
+        "result": "Modal window is displayed. Fields to duplicate team appears:\n\n* Teams selector\n* Cancel button\n* Duplicate button (greyed out)"
+      },
+      {
+        "step": 5,
+        "action": "Click on Teams selector and select teamName",
+        "data": "teamName: TC-580 Team to duplicate",
+        "result": "Upper level team is selected"
+      },
+      {
+        "step": 6,
+        "action": "Click Duplicate button",
+        "data": "",
+        "result": "Upper-level team is duplicated. \"TC-580 Team to duplicate\" is displayed on the screen"
+      },
+      {
+        "step": 7,
+        "action": "Click on Plus button dropdown menu",
+        "data": "",
+        "result": "Following options appeared on the list:\n\n* Create new team\n* Create new team based on Jira Team\n* Create new team based on Jira group\n* Assign existing teams\n* Duplicate existing teams"
+      },
+      {
+        "step": 8,
+        "action": "Select Duplicate existing teams",
+        "data": "",
+        "result": "Modal window is displayed. Fields to duplicate team appears:\n\n* Teams selector\n* Cancel button\n* Duplicate button (greyed out)"
+      },
+      {
+        "step": 9,
+        "action": "Click on Teams selector and select teamName and click Duplicate",
+        "data": "teamName: TC-580 Team to duplicate",
+        "result": "Team TC-580 Team to duplicate is not visible on the list"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-580",
+    "text": "Test: TC-580 — Box Module - Teams - Duplicate team\nPriority: Medium | Status: Done | Type: Automated\nFolder: /BP/TS-112 Box Module - Teams\nLabels: be-enterprise, can_be_automated, rocksolid\n\nSteps:\n1. Navigate to Teams module of boxName\n   Data: boxName: TC-580 Box Module - Teams - Duplicate team\n   Expected: Teams module is displayed\n\nWizard menu appeared with 3 tiles:\n\n* Create new \n* Assign existing \n* Duplicate & edit existing\n2. Select Duplicate & edit existing tile\n   Expected: Modal window 'Duplicate existing Teams' is displayed. \n\nFields to duplicate team appears:\n\n* Teams selector\n* Cancel button\n* Duplicate button (greyed out)\n3. Click Cancel button\n   Expected: Additional fields to duplicate team disappeared.\n4. Select Duplicate & edit existing tile\n   Expected: Modal window is displayed. Fields to duplicate team appears:\n\n* Teams selector\n* Cancel button\n* Duplicate button (greyed out)\n5. Click on Teams selector and select teamName\n   Data: teamName: TC-580 Team to duplicate\n   Expected: Upper level team is selected\n6. Click Duplicate button\n   Expected: Upper-level team is duplicated. \"TC-580 Team to duplicate\" is displayed on the screen\n7. Click on Plus button dropdown menu\n   Expected: Following options appeared on the list:\n\n* Create new team\n* Create new team based on Jira Team\n* Create new team based on Jira group\n* Assign existing teams\n* Duplicate existing teams\n8. Select Duplicate existing teams\n   Expected: Modal window is displayed. Fields to duplicate team appears:\n\n* Teams selector\n* Cancel button\n* Duplicate button (greyed out)\n9. Click on Teams selector and select teamName and click Duplicate\n   Data: teamName: TC-580 Team to duplicate\n   Expected: Team TC-580 Team to duplicate is not visible on the list",
+    "metadata": {
+      "jira_key": "TC-580",
+      "issue_id": "356646",
+      "summary": "Box Module - Teams - Duplicate team",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Automated",
+      "folder": "/BP/TS-112 Box Module - Teams",
+      "labels": [
+        "be-enterprise",
+        "can_be_automated",
+        "rocksolid"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

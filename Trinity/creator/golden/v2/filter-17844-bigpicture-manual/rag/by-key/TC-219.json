@@ -1,0 +1,125 @@
+{
+  "test": {
+    "key": "TC-219",
+    "issue_id": "359145",
+    "url": "https://appfire.atlassian.net/browse/TC-219",
+    "summary": "Global - App start - Displaying SP Tour on every module",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Martyna Turowska",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2020-08-20T08:29:14.786-0400",
+    "updated": "2024-07-25T02:53:12.712-0400",
+    "labels": [
+      "teamlego"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-226 Global - App start",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "In Incognito mode navigate to Overview module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Overview module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      },
+      {
+        "step": 2,
+        "action": "In Incognito mode navigate to Gantt module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Gantt module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      },
+      {
+        "step": 3,
+        "action": "Click the Next button in tooltip",
+        "data": "",
+        "result": "The next feature of the module is highlighted and a tooltip is displayed."
+      },
+      {
+        "step": 4,
+        "action": "Click the Back button in tooltip",
+        "data": "",
+        "result": "Previous feature of the module is highlighted and a tooltip is displayed"
+      },
+      {
+        "step": 5,
+        "action": "Click \"n\" letter on the keyboard",
+        "data": "",
+        "result": "The next feature of the module is highlighted and a tooltip is displayed."
+      },
+      {
+        "step": 6,
+        "action": "Click the Back button in tooltip",
+        "data": "",
+        "result": "Previous feature of the module is highlighted and a tooltip is displayed"
+      },
+      {
+        "step": 7,
+        "action": "Click Skip button in tooltip or click \"s\" letter on the keyboard",
+        "data": "",
+        "result": "Tooltip disappears. Gantt module is correctly displayed"
+      },
+      {
+        "step": 8,
+        "action": "In Incognito mode navigate to Scope module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Scope module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      },
+      {
+        "step": 9,
+        "action": "In Incognito mode navigate to Board module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Board module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      },
+      {
+        "step": 10,
+        "action": "In Incognito mode navigate to Roadmap module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Roadmap module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      },
+      {
+        "step": 11,
+        "action": "In Incognito mode navigate to Resources module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Resources module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      },
+      {
+        "step": 12,
+        "action": "In Incognito mode navigate to Risks module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Risks module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      },
+      {
+        "step": 13,
+        "action": "In Incognito mode navigate to Calendar module of boxName \n\nIn pop-up window click Explore the features option",
+        "data": "boxName: TC-219 Displaying SP Tour on every module",
+        "result": "Calendar module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 13
+  },
+  "rag": {
+    "id": "TC-219",
+    "text": "Test: TC-219 — Global - App start - Displaying SP Tour on every module\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-226 Global - App start\nLabels: teamlego\n\nSteps:\n1. In Incognito mode navigate to Overview module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Overview module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed\n2. In Incognito mode navigate to Gantt module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Gantt module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed\n3. Click the Next button in tooltip\n   Expected: The next feature of the module is highlighted and a tooltip is displayed.\n4. Click the Back button in tooltip\n   Expected: Previous feature of the module is highlighted and a tooltip is displayed\n5. Click \"n\" letter on the keyboard\n   Expected: The next feature of the module is highlighted and a tooltip is displayed.\n6. Click the Back button in tooltip\n   Expected: Previous feature of the module is highlighted and a tooltip is displayed\n7. Click Skip button in tooltip or click \"s\" letter on the keyboard\n   Expected: Tooltip disappears. Gantt module is correctly displayed\n8. In Incognito mode navigate to Scope module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Scope module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed\n9. In Incognito mode navigate to Board module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Board module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed\n10. In Incognito mode navigate to Roadmap module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Roadmap module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed\n11. In Incognito mode navigate to Resources module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Resources module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed\n12. In Incognito mode navigate to Risks module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Risks module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed\n13. In Incognito mode navigate to Calendar module of boxName \n\nIn pop-up window click Explore the features option\n   Data: boxName: TC-219 Displaying SP Tour on every module\n   Expected: Calendar module is displayed. Pop-up window offering an onboarding tour is displayed.\n\nAfter choosing \"Explore the features\" option, main features of the module are highlighted, a tooltip for each feature is displayed",
+    "metadata": {
+      "jira_key": "TC-219",
+      "issue_id": "359145",
+      "summary": "Global - App start - Displaying SP Tour on every module",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-226 Global - App start",
+      "labels": [
+        "teamlego"
+      ],
+      "step_count": 13,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

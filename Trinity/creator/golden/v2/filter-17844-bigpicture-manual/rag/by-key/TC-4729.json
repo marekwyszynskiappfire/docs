@@ -1,0 +1,95 @@
+{
+  "test": {
+    "key": "TC-4729",
+    "issue_id": "814892",
+    "url": "https://appfire.atlassian.net/browse/TC-4729",
+    "summary": "Global - Gadget - Risks - Adding gadget to Jira dashboard for Root box",
+    "description": "",
+    "status": "To Do",
+    "priority": "High",
+    "assignee": "Alona Adamska",
+    "reporter": "Karolina Dajos-Krawczyńska",
+    "created": "2024-07-22T10:07:51.066-0400",
+    "updated": "2026-03-04T09:11:59.000-0500",
+    "labels": [
+      "teamsource"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-162 Global - Gadget",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Overview module of root box",
+        "data": "",
+        "result": "Overview module is presented with root box"
+      },
+      {
+        "step": 2,
+        "action": "Click the \"More actions\" ellipsis",
+        "data": "",
+        "result": "A list of actions is opened"
+      },
+      {
+        "step": 3,
+        "action": "Choose Configure option",
+        "data": "",
+        "result": "Box configuration page is opened"
+      },
+      {
+        "step": 4,
+        "action": "On the General section choose Modules",
+        "data": "",
+        "result": "List of Modules appear"
+      },
+      {
+        "step": 5,
+        "action": "Activate Risks module",
+        "data": "",
+        "result": "Risks module is activated, toggle button is setup on green"
+      },
+      {
+        "step": 6,
+        "action": "Expand Dashboards menu on the top and Create dashboard with dashboardName",
+        "data": "dashboardName: Adding Risks gadget to Jira dashboard for Root box",
+        "result": "New Dashboard is created"
+      },
+      {
+        "step": 7,
+        "action": "In Search gadgets field provide gadgetName and add gadget",
+        "data": "gadgetName: Risks",
+        "result": "Risks gadget is added to dashboard. \n\nEntering configuration gadget screen appear. Default Box  is Home, Height -400px, Refresh interval - Never."
+      },
+      {
+        "step": 8,
+        "action": "Save default configuration",
+        "data": "",
+        "result": "Risks gadget show Matrix cell of Root box with risk data"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-4729",
+    "text": "Test: TC-4729 — Global - Gadget - Risks - Adding gadget to Jira dashboard for Root box\nPriority: High | Status: To Do | Type: Manual\nFolder: /BP/TS-162 Global - Gadget\nLabels: teamsource\n\nSteps:\n1. Navigate to the Overview module of root box\n   Expected: Overview module is presented with root box\n2. Click the \"More actions\" ellipsis\n   Expected: A list of actions is opened\n3. Choose Configure option\n   Expected: Box configuration page is opened\n4. On the General section choose Modules\n   Expected: List of Modules appear\n5. Activate Risks module\n   Expected: Risks module is activated, toggle button is setup on green\n6. Expand Dashboards menu on the top and Create dashboard with dashboardName\n   Data: dashboardName: Adding Risks gadget to Jira dashboard for Root box\n   Expected: New Dashboard is created\n7. In Search gadgets field provide gadgetName and add gadget\n   Data: gadgetName: Risks\n   Expected: Risks gadget is added to dashboard. \n\nEntering configuration gadget screen appear. Default Box  is Home, Height -400px, Refresh interval - Never.\n8. Save default configuration\n   Expected: Risks gadget show Matrix cell of Root box with risk data",
+    "metadata": {
+      "jira_key": "TC-4729",
+      "issue_id": "814892",
+      "summary": "Global - Gadget - Risks - Adding gadget to Jira dashboard for Root box",
+      "priority": "High",
+      "status": "To Do",
+      "test_type": "Manual",
+      "folder": "/BP/TS-162 Global - Gadget",
+      "labels": [
+        "teamsource"
+      ],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

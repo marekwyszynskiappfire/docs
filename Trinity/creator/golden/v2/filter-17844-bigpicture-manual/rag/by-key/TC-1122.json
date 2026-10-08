@@ -1,0 +1,103 @@
+{
+  "test": {
+    "key": "TC-1122",
+    "issue_id": "358419",
+    "url": "https://appfire.atlassian.net/browse/TC-1122",
+    "summary": "Feature area - Box scope - Trello - Add new connection",
+    "description": "",
+    "status": "Done",
+    "priority": "Medium",
+    "assignee": "Kamil Harasimiuk",
+    "reporter": "Mikołaj Maruniak",
+    "created": "2020-03-17T07:36:00.255-0400",
+    "updated": "2026-03-31T08:27:33.569-0400",
+    "labels": [
+      "manual",
+      "teamextplatform"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to configuration -> tasks -> scope definition of boxName",
+        "data": "boxName: TC-1122 Feature area - Box scope - Trello - Add new connection",
+        "result": "Scope definition tab is opened and visible"
+      },
+      {
+        "step": 2,
+        "action": "Click on the \"Add new integration\" button",
+        "data": "",
+        "result": "\"Add new integration\" dialogue opens"
+      },
+      {
+        "step": 3,
+        "action": "Expend \"Integration\", select Trello and click on add new connection",
+        "data": "",
+        "result": "A new tab opens with Trello authorization page\n\nNOTE: This step requires alLowing pop-ups in the browser"
+      },
+      {
+        "step": 4,
+        "action": "Log in to Trello using your Trello account and select \"AlLow\" to permit the connection",
+        "data": "",
+        "result": "The Trello tab closes and the user is back on the Scope definition"
+      },
+      {
+        "step": 5,
+        "action": "Select  Workspace which you want to connect and click \"Connect\" button",
+        "data": "",
+        "result": "The Field mapping configuration tab is opened"
+      },
+      {
+        "step": 6,
+        "action": "Click on \" start working\" button",
+        "data": "",
+        "result": "The scope definition of box is opened, the Trello connection is visible"
+      },
+      {
+        "step": 7,
+        "action": "Expend section with Trello connection -> and add any available board to the scope -> click save buton",
+        "data": "",
+        "result": "The Trello board is added to the scope and visible"
+      },
+      {
+        "step": 8,
+        "action": "Navigate to Gantt module of boxName",
+        "data": "boxName: TC-1122 Feature area - Box scope - Trello - Add new connection",
+        "result": "Gantt module is opened correctly. Trello tasks are visible in WBS"
+      },
+      {
+        "step": 9,
+        "action": "Navigate to App settings -> integrations -> connections",
+        "data": "",
+        "result": "Connections section is opened, Trello integrations is visible and have status \"OPERATIONAL\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 9
+  },
+  "rag": {
+    "id": "TC-1122",
+    "text": "Test: TC-1122 — Feature area - Box scope - Trello - Add new connection\nPriority: Medium | Status: Done | Type: Manual\nFolder: /BP/TS-25 Feature area - Box scope - Own scope definition\nLabels: manual, teamextplatform\n\nSteps:\n1. Navigate to configuration -> tasks -> scope definition of boxName\n   Data: boxName: TC-1122 Feature area - Box scope - Trello - Add new connection\n   Expected: Scope definition tab is opened and visible\n2. Click on the \"Add new integration\" button\n   Expected: \"Add new integration\" dialogue opens\n3. Expend \"Integration\", select Trello and click on add new connection\n   Expected: A new tab opens with Trello authorization page\n\nNOTE: This step requires alLowing pop-ups in the browser\n4. Log in to Trello using your Trello account and select \"AlLow\" to permit the connection\n   Expected: The Trello tab closes and the user is back on the Scope definition\n5. Select  Workspace which you want to connect and click \"Connect\" button\n   Expected: The Field mapping configuration tab is opened\n6. Click on \" start working\" button\n   Expected: The scope definition of box is opened, the Trello connection is visible\n7. Expend section with Trello connection -> and add any available board to the scope -> click save buton\n   Expected: The Trello board is added to the scope and visible\n8. Navigate to Gantt module of boxName\n   Data: boxName: TC-1122 Feature area - Box scope - Trello - Add new connection\n   Expected: Gantt module is opened correctly. Trello tasks are visible in WBS\n9. Navigate to App settings -> integrations -> connections\n   Expected: Connections section is opened, Trello integrations is visible and have status \"OPERATIONAL\"",
+    "metadata": {
+      "jira_key": "TC-1122",
+      "issue_id": "358419",
+      "summary": "Feature area - Box scope - Trello - Add new connection",
+      "priority": "Medium",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+      "labels": [
+        "manual",
+        "teamextplatform"
+      ],
+      "step_count": 9,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

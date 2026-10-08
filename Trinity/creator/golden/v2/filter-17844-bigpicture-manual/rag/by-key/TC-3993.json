@@ -1,0 +1,113 @@
+{
+  "test": {
+    "key": "TC-3993",
+    "issue_id": "357051",
+    "url": "https://appfire.atlassian.net/browse/TC-3993",
+    "summary": "Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture",
+    "description": "",
+    "status": "In Review",
+    "priority": "High",
+    "assignee": "Kacper Wołoszyn",
+    "reporter": "Kacper Wołoszyn",
+    "created": "2023-03-24T09:31:43.788-0400",
+    "updated": "2026-03-04T09:13:13.907-0500",
+    "labels": [
+      "team#Enigma"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Box Configuration > Tasks > Scope definition of the boxName",
+        "data": "boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture",
+        "result": "Scope definition tab is displayed. The folLowing fields are visible:\n\n* Project\n* Board\n* Filter\n* Narrow down\n* Advanced configuration (With collapsed chevron)\n\nOn Atlassian Cloud Underneath Filter field, Refresh button is visible with message: \"Can't find your project, board or filter?\""
+      },
+      {
+        "step": 2,
+        "action": "Search for filterName and select it.",
+        "data": "filterName: FILTER FOR TC-3993",
+        "result": "FILTER FOR TC-3993 is inputed into Filter field."
+      },
+      {
+        "step": 3,
+        "action": "Click the Save button.",
+        "data": "",
+        "result": "Scope definition is saved. 20 tasks are in the scope."
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Gantt module of boxName.",
+        "data": "boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture",
+        "result": "Gantt module opens and 20 tasks are visible."
+      },
+      {
+        "step": 5,
+        "action": "*Atlassian Server*\nNavigate to Issues -> Manage Filters\n\n*Atlassian Cloud*\nNavigate to Filters -> View all filters",
+        "data": "",
+        "result": ""
+      },
+      {
+        "step": 6,
+        "action": "Search for filterName.",
+        "data": "filterName: FILTER FOR TC-3993",
+        "result": "FILTER FOR TC-3993 is found."
+      },
+      {
+        "step": 7,
+        "action": "Click on filterName.",
+        "data": "filterName: FILTER FOR TC-3993",
+        "result": "The filter opens correctly and a search bar is visible."
+      },
+      {
+        "step": 8,
+        "action": "Input newJQLQuery inside of the search bar.",
+        "data": "newJQLQuery: project = tc3993 or project = tc3993A",
+        "result": "Additional issues appear within the filter."
+      },
+      {
+        "step": 9,
+        "action": "Save the filter.",
+        "data": "",
+        "result": "Filter is saved."
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Gantt module of boxName and refresh.",
+        "data": "boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture",
+        "result": "Gantt module opens and synchronization is visible. After synchronization more than 20 issues are visible."
+      },
+      {
+        "step": 11,
+        "action": "Navigate to the Box Configuration > Tasks > Scope definition of the boxName",
+        "data": "boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture",
+        "result": "Scope definition tab is displayed. The folLowing fields are visible:\n\n* Project\n* Board\n* Filter\n* Narrow down\n* Advanced configuration (With collapsed chevron)\n\nAt the bottom of the page beside the save button the folLowing message is visible:\n\n\"35 tasks in the scope\""
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 11
+  },
+  "rag": {
+    "id": "TC-3993",
+    "text": "Test: TC-3993 — Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture\nPriority: High | Status: In Review | Type: Manual\nFolder: /BP/TS-25 Feature area - Box scope - Own scope definition\nLabels: team#Enigma\n\nSteps:\n1. Navigate to the Box Configuration > Tasks > Scope definition of the boxName\n   Data: boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture\n   Expected: Scope definition tab is displayed. The folLowing fields are visible:\n\n* Project\n* Board\n* Filter\n* Narrow down\n* Advanced configuration (With collapsed chevron)\n\nOn Atlassian Cloud Underneath Filter field, Refresh button is visible with message: \"Can't find your project, board or filter?\"\n2. Search for filterName and select it.\n   Data: filterName: FILTER FOR TC-3993\n   Expected: FILTER FOR TC-3993 is inputed into Filter field.\n3. Click the Save button.\n   Expected: Scope definition is saved. 20 tasks are in the scope.\n4. Navigate to Gantt module of boxName.\n   Data: boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture\n   Expected: Gantt module opens and 20 tasks are visible.\n5. *Atlassian Server*\nNavigate to Issues -> Manage Filters\n\n*Atlassian Cloud*\nNavigate to Filters -> View all filters\n   Expected: \n6. Search for filterName.\n   Data: filterName: FILTER FOR TC-3993\n   Expected: FILTER FOR TC-3993 is found.\n7. Click on filterName.\n   Data: filterName: FILTER FOR TC-3993\n   Expected: The filter opens correctly and a search bar is visible.\n8. Input newJQLQuery inside of the search bar.\n   Data: newJQLQuery: project = tc3993 or project = tc3993A\n   Expected: Additional issues appear within the filter.\n9. Save the filter.\n   Expected: Filter is saved.\n10. Navigate to Gantt module of boxName and refresh.\n   Data: boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture\n   Expected: Gantt module opens and synchronization is visible. After synchronization more than 20 issues are visible.\n11. Navigate to the Box Configuration > Tasks > Scope definition of the boxName\n   Data: boxName: TC-3993 Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture\n   Expected: Scope definition tab is displayed. The folLowing fields are visible:\n\n* Project\n* Board\n* Filter\n* Narrow down\n* Advanced configuration (With collapsed chevron)\n\nAt the bottom of the page beside the save button the folLowing message is visible:\n\n\"35 tasks in the scope\"",
+    "metadata": {
+      "jira_key": "TC-3993",
+      "issue_id": "357051",
+      "summary": "Feature area - Box scope - Own scope definition - Updating Filter within Jira and verifying if changes are visible within BigPicture",
+      "priority": "High",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-25 Feature area - Box scope - Own scope definition",
+      "labels": [
+        "team#Enigma"
+      ],
+      "step_count": 11,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

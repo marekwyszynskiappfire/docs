@@ -1,0 +1,151 @@
+{
+  "test": {
+    "key": "TC-2936",
+    "issue_id": "356940",
+    "url": "https://appfire.atlassian.net/browse/TC-2936",
+    "summary": "Global - Tempo Integration - Integration with Tempo on JC",
+    "description": "Install Timesheets by Tempo - Jira Time Tracking and Tempo Core | Project Tracking for Jira",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Paulina Sendecka",
+    "reporter": "Bartosz Drążewski",
+    "created": "2022-02-01T11:39:33.654-0500",
+    "updated": "2026-10-06T09:10:39.180-0400",
+    "labels": [
+      "be-enterprise",
+      "ppm-e2e-cloud"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-397 Global - Tempo Integration",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to App Configuration->Intergations->Tempo",
+        "data": "",
+        "result": "Credentials tab is displayed.\n\nThere are displayed:\n\n* Dropdown \"How to get credentials?\"\n* Empty form \"Client ID\"\n* Empty form \"Client secret\"\n* Save button"
+      },
+      {
+        "step": 2,
+        "action": "Click dropdown \"How to get credentials?\"",
+        "data": "",
+        "result": "Help \"How to get credentials?\" is displayed:\n\nGo to Tempo Cloud settings and add a new application. Enter the folLowing information:\nName of your application: BigPicture\nRedirect URL: *Redirect URL is your instance cloudmanager URL + rest/oauth2/authorization/accept-code*\nClient type: Confidential\nAuthorization grant type: Authorization code\nAfter confirmation, you will get the credentials that have to be provided on this screen."
+      },
+      {
+        "step": 3,
+        "action": "Click on the icon next to Redirect URL to copy it.",
+        "data": "",
+        "result": "The URL is copied to clipboard."
+      },
+      {
+        "step": 4,
+        "action": "Navigate to Tempo->Settings->OAuth 2.0 Applications in a new tab of your browser",
+        "data": "",
+        "result": "OAuth 2.0 Applications screen is displayed with button \"+ New Application\""
+      },
+      {
+        "step": 5,
+        "action": "Click the button \"+ New Application\"",
+        "data": "",
+        "result": "Modal window \"Create Application\" is displayed."
+      },
+      {
+        "step": 6,
+        "action": "Fill the forms with Test Data and click Create Application",
+        "data": "Name: BigPicture\nRedirect URIs: Paste URL copied to clipboard\nClient type: Confidential\nAuthorization grant type: Authorization code",
+        "result": "New modal window is displayed with Credentials"
+      },
+      {
+        "step": 7,
+        "action": "Copy Client ID and then move back to first tab and paste Client ID to into Client ID form",
+        "data": "",
+        "result": "\"Client ID\" form is filled. The credentials are not displayed, hidden with \"*\""
+      },
+      {
+        "step": 8,
+        "action": "Copy Client secret from the other tab into form \"Client secret\"",
+        "data": "",
+        "result": "\"Client secret\" form is filled. The credentials are not displayed, hidden with \"*\""
+      },
+      {
+        "step": 9,
+        "action": "Click Save",
+        "data": "",
+        "result": "Changes are successfully saved"
+      },
+      {
+        "step": 10,
+        "action": "Navigate to Administration->Resources",
+        "data": "",
+        "result": "Individuals tab is displayed."
+      },
+      {
+        "step": 11,
+        "action": "Click Synchronize with Tempo in the right top corner",
+        "data": "",
+        "result": "Popup appears:\n\n\"This process may take a while if there is a significant number of users to sync.\"\n\nThere are two buttons:\n\"Proceed\" and \"Cancel\""
+      },
+      {
+        "step": 12,
+        "action": "Click \"Proceed\"",
+        "data": "",
+        "result": "New tab is opened with text:\n\n*BigPicture would like to:*\nAccess your Tempo Data\n\nTwo buttons are displayed:\n\"Authorize Access\" and \"Deny Access\""
+      },
+      {
+        "step": 13,
+        "action": "Click \"Authorize Access\"",
+        "data": "",
+        "result": "Message is displayed:\n\nSuccess!\nClick ''Onwards!'' to connect BP with Tempo"
+      },
+      {
+        "step": 14,
+        "action": "Click \"Onwards!\"",
+        "data": "",
+        "result": "The second tab is closed and first tab with Indiviuals tab is displayed again.\n\nModal window is displayed:\n\"Authorization in progress...\nTempo requires authorization. Make sure that your browser alLows pop-ups. Once the authorization process is completed, you will be able to proceed with Tempo synchronization.\"\n\nButton \"Synchronize with Tempo\" is grayed out."
+      },
+      {
+        "step": 15,
+        "action": "Wait for authorization process to be completed.",
+        "data": "",
+        "result": "Modal window is displayed:\n\"Authorization completed\n\nTempo can be synchronized now.\"\n\nButton \"Synchronize with Tempo\" is active."
+      },
+      {
+        "step": 16,
+        "action": "Click \"Synchronize with Tempo\"",
+        "data": "",
+        "result": "\"Authorization completed\" windows is closed.\n\nNew modal window in the top right corner is displayed:\n\"Sync in progress\nThe items are currently being synchronized. We will inform you when the process is completed\""
+      },
+      {
+        "step": 17,
+        "action": "Wait for synchronization process to be completed.",
+        "data": "",
+        "result": "New modal window in the top right corner is displayed:\n\"Synchronization finished\nSynchronization with Tempo was successfully finished.\"\n\nOn the list of resources users from Tempo are displayed with SYNCED label in Tempo Sync Status column."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 17
+  },
+  "rag": {
+    "id": "TC-2936",
+    "text": "Test: TC-2936 — Global - Tempo Integration - Integration with Tempo on JC\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/TS-397 Global - Tempo Integration\nLabels: be-enterprise, ppm-e2e-cloud\n\nDescription:\nInstall Timesheets by Tempo - Jira Time Tracking and Tempo Core | Project Tracking for Jira\n\nSteps:\n1. Navigate to App Configuration->Intergations->Tempo\n   Expected: Credentials tab is displayed.\n\nThere are displayed:\n\n* Dropdown \"How to get credentials?\"\n* Empty form \"Client ID\"\n* Empty form \"Client secret\"\n* Save button\n2. Click dropdown \"How to get credentials?\"\n   Expected: Help \"How to get credentials?\" is displayed:\n\nGo to Tempo Cloud settings and add a new application. Enter the folLowing information:\nName of your application: BigPicture\nRedirect URL: *Redirect URL is your instance cloudmanager URL + rest/oauth2/authorization/accept-code*\nClient type: Confidential\nAuthorization grant type: Authorization code\nAfter confirmation, you will get the credentials that have to be provided on this screen.\n3. Click on the icon next to Redirect URL to copy it.\n   Expected: The URL is copied to clipboard.\n4. Navigate to Tempo->Settings->OAuth 2.0 Applications in a new tab of your browser\n   Expected: OAuth 2.0 Applications screen is displayed with button \"+ New Application\"\n5. Click the button \"+ New Application\"\n   Expected: Modal window \"Create Application\" is displayed.\n6. Fill the forms with Test Data and click Create Application\n   Data: Name: BigPicture\nRedirect URIs: Paste URL copied to clipboard\nClient type: Confidential\nAuthorization grant type: Authorization code\n   Expected: New modal window is displayed with Credentials\n7. Copy Client ID and then move back to first tab and paste Client ID to into Client ID form\n   Expected: \"Client ID\" form is filled. The credentials are not displayed, hidden with \"*\"\n8. Copy Client secret from the other tab into form \"Client secret\"\n   Expected: \"Client secret\" form is filled. The credentials are not displayed, hidden with \"*\"\n9. Click Save\n   Expected: Changes are successfully saved\n10. Navigate to Administration->Resources\n   Expected: Individuals tab is displayed.\n11. Click Synchronize with Tempo in the right top corner\n   Expected: Popup appears:\n\n\"This process may take a while if there is a significant number of users to sync.\"\n\nThere are two buttons:\n\"Proceed\" and \"Cancel\"\n12. Click \"Proceed\"\n   Expected: New tab is opened with text:\n\n*BigPicture would like to:*\nAccess your Tempo Data\n\nTwo buttons are displayed:\n\"Authorize Access\" and \"Deny Access\"\n13. Click \"Authorize Access\"\n   Expected: Message is displayed:\n\nSuccess!\nClick ''Onwards!'' to connect BP with Tempo\n14. Click \"Onwards!\"\n   Expected: The second tab is closed and first tab with Indiviuals tab is displayed again.\n\nModal window is displayed:\n\"Authorization in progress...\nTempo requires authorization. Make sure that your browser alLows pop-ups. Once the authorization process is completed, you will be able to proceed with Tempo synchronization.\"\n\nButton \"Synchronize with Tempo\" is grayed out.\n15. Wait for authorization process to be completed.\n   Expected: Modal window is displayed:\n\"Authorization completed\n\nTempo can be synchronized now.\"\n\nButton \"Synchronize with Tempo\" is active.\n16. Click \"Synchronize with Tempo\"\n   Expected: \"Authorization completed\" windows is closed.\n\nNew modal window in the top right corner is displayed:\n\"Sync in progress\nThe items are currently being synchronized. We will inform you when the process is completed\"\n17. Wait for synchronization process to be completed.\n   Expected: New modal window in the top right corner is displayed:\n\"Synchronization finished\nSynchronization with Tempo was successfully finished.\"\n\nOn the list of resources users from Tempo are displayed with SYNCED label in Tempo Sync Status column.",
+    "metadata": {
+      "jira_key": "TC-2936",
+      "issue_id": "356940",
+      "summary": "Global - Tempo Integration - Integration with Tempo on JC",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-397 Global - Tempo Integration",
+      "labels": [
+        "be-enterprise",
+        "ppm-e2e-cloud"
+      ],
+      "step_count": 17,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

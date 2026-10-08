@@ -1,0 +1,91 @@
+{
+  "test": {
+    "key": "TC-4169",
+    "issue_id": "467769",
+    "url": "https://appfire.atlassian.net/browse/TC-4169",
+    "summary": "Box Module - Scope - Basic operations - Detail View on JC ",
+    "description": "",
+    "status": "In Review",
+    "priority": "Medium",
+    "assignee": "Mateusz Maniak",
+    "reporter": "Katarzyna Rajchert",
+    "created": "2023-04-21T06:17:25.493-0400",
+    "updated": "2026-08-06T11:20:31.295-0400",
+    "labels": [],
+    "test_type": "Manual",
+    "folder": "/BP/TS-106 Box Module - Scope - Basic operations",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Scope module of boxName",
+        "data": "boxName: TC-4169 Box Module - Scope - Basic operations - Detail View on JC",
+        "result": "Scope module is presented with 1 task"
+      },
+      {
+        "step": 2,
+        "action": "Expand Detail View if close",
+        "data": "",
+        "result": "The splashscreen \"\"Select a task first. Then view its details here with the multi-level hierarchy in sight.\"\" is visible"
+      },
+      {
+        "step": 3,
+        "action": "Click on taskSummary",
+        "data": "taskSummary: Task A",
+        "result": "On top of the frame on left side project/task key links are visible, on the right side 'Quick preview' option.\n\nDetail View is presented with 5 sections: \n\n* Details\n* People\n* Estimations (Original estimation, Remaining estimation, Time spent, Story Points fields in this sections )\n* Dates\n* Others"
+      },
+      {
+        "step": 4,
+        "action": "Change size of Detail View",
+        "data": "",
+        "result": "The sections are responsive. Between section the same space during size changing."
+      },
+      {
+        "step": 5,
+        "action": "Expand and collapse sectionsName1, sectionsName2, sectionsName3, sectionsName4, sectionsName5",
+        "data": "sectionsName1: Details\n\nsectionsName2: People\n\nsectionsName3: Estimations\n\nsectionsName4: Dates\n\nsectionsName5: Others",
+        "result": "Sections are responsive, works smoothly without jumping."
+      },
+      {
+        "step": 6,
+        "action": "On top of Detail View click on Open full view",
+        "data": "",
+        "result": "Jira Issue modal is opened"
+      },
+      {
+        "step": 7,
+        "action": "Close task window, On Detail View change the fields on newValueSummary, newValuePriority, newValueStartDate.",
+        "data": "newValueSummary: Task New Name\n\nnewValuePriority: Low\n\nnewValueStartDate: 03/Apr/23",
+        "result": "New field's values are changed correctly"
+      },
+      {
+        "step": 8,
+        "action": "Double click on fieldName , fieldName1",
+        "data": "fieldName: Original estimate\n\nfieldName1: Story Points",
+        "result": "The fields are editable."
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 8
+  },
+  "rag": {
+    "id": "TC-4169",
+    "text": "Test: TC-4169 — Box Module - Scope - Basic operations - Detail View on JC \nPriority: Medium | Status: In Review | Type: Manual\nFolder: /BP/TS-106 Box Module - Scope - Basic operations\n\nSteps:\n1. Navigate to the Scope module of boxName\n   Data: boxName: TC-4169 Box Module - Scope - Basic operations - Detail View on JC\n   Expected: Scope module is presented with 1 task\n2. Expand Detail View if close\n   Expected: The splashscreen \"\"Select a task first. Then view its details here with the multi-level hierarchy in sight.\"\" is visible\n3. Click on taskSummary\n   Data: taskSummary: Task A\n   Expected: On top of the frame on left side project/task key links are visible, on the right side 'Quick preview' option.\n\nDetail View is presented with 5 sections: \n\n* Details\n* People\n* Estimations (Original estimation, Remaining estimation, Time spent, Story Points fields in this sections )\n* Dates\n* Others\n4. Change size of Detail View\n   Expected: The sections are responsive. Between section the same space during size changing.\n5. Expand and collapse sectionsName1, sectionsName2, sectionsName3, sectionsName4, sectionsName5\n   Data: sectionsName1: Details\n\nsectionsName2: People\n\nsectionsName3: Estimations\n\nsectionsName4: Dates\n\nsectionsName5: Others\n   Expected: Sections are responsive, works smoothly without jumping.\n6. On top of Detail View click on Open full view\n   Expected: Jira Issue modal is opened\n7. Close task window, On Detail View change the fields on newValueSummary, newValuePriority, newValueStartDate.\n   Data: newValueSummary: Task New Name\n\nnewValuePriority: Low\n\nnewValueStartDate: 03/Apr/23\n   Expected: New field's values are changed correctly\n8. Double click on fieldName , fieldName1\n   Data: fieldName: Original estimate\n\nfieldName1: Story Points\n   Expected: The fields are editable.",
+    "metadata": {
+      "jira_key": "TC-4169",
+      "issue_id": "467769",
+      "summary": "Box Module - Scope - Basic operations - Detail View on JC ",
+      "priority": "Medium",
+      "status": "In Review",
+      "test_type": "Manual",
+      "folder": "/BP/TS-106 Box Module - Scope - Basic operations",
+      "labels": [],
+      "step_count": 8,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}

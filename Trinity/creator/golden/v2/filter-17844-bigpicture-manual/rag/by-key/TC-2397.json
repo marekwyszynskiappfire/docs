@@ -1,0 +1,137 @@
+{
+  "test": {
+    "key": "TC-2397",
+    "issue_id": "359281",
+    "url": "https://appfire.atlassian.net/browse/TC-2397",
+    "summary": "Box Module - Reports - Displaying inline dialogs",
+    "description": "",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "Katarzyna Kamińska",
+    "reporter": "Katarzyna Kamińska",
+    "created": "2021-08-10T10:08:37.660-0400",
+    "updated": "2026-03-13T06:28:33.196-0400",
+    "labels": [
+      "Sanity",
+      "can_be_automated",
+      "rocksolid",
+      "teamsmile"
+    ],
+    "test_type": "Manual",
+    "folder": "/BP/TS-104 Box Module - Reports",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to the Reports module of boxName.",
+        "data": "boxName: TC-2397 Box Module - Reports - Displaying inline dialogs",
+        "result": "Reports module is loaded."
+      },
+      {
+        "step": 2,
+        "action": "Locate and verify the reportName.",
+        "data": "reportName: Risks matrix",
+        "result": "Risks matrix report has one cell with 10 issues."
+      },
+      {
+        "step": 3,
+        "action": "Click on the cell with 10 issues.",
+        "data": "",
+        "result": "Inline dialog is displayed.\nThere is a Risks header at the top and an arrow circle icon that is a link to the Risks module.\nBeLow, there are three columns: SOURCE, STATUS and RISK  and the list of issues. Issue names are links that leads to the issue page in Jira.\n10 issues does not fit in the inline dialog and they can be scrolled down."
+      },
+      {
+        "step": 4,
+        "action": "Locate and verify the reportName.",
+        "data": "reportName: Team dependencies",
+        "result": "There two cells, each with 5 issues between teams Team Alpha TC-2397 and Team Beta TC-2397. There two empty cells between the same teams."
+      },
+      {
+        "step": 5,
+        "action": "Click on the cell with 5 issues.",
+        "data": "",
+        "result": "Inline dialog is displayed.\nThere is a Team dependencies header at the top.\nBeLow, there is a tree with two teams collapsed.\nBetween the teams, there are the dependencies icons with numbers of issues:\n\n* Team Alpha TC-2397 > Team Beta TC-2397 (2)\n* Team Beta TC-2397 > Team Alpha TC-2397 (3)"
+      },
+      {
+        "step": 6,
+        "action": "Expand the first tree on the list: Team Alpha TC-2397 > Team Beta TC-2397",
+        "data": "",
+        "result": "The tree is expanded.  On the left side of the issue name there are a box icon and issue status symbol. Issue names are links that leads to the issue page in Jira.\nAt the center, there is a Dependency icon with detailed information in tooltip on hover."
+      },
+      {
+        "step": 7,
+        "action": "Grab the top-left corner and expand the inline dialog.",
+        "data": "",
+        "result": "The inline dialog is expanded."
+      },
+      {
+        "step": 8,
+        "action": "Grab the bottom-right corner and expand the inline dialog.",
+        "data": "",
+        "result": "The inline dialog is expanded."
+      },
+      {
+        "step": 9,
+        "action": "Click on the expand icon.",
+        "data": "",
+        "result": "The inline dialog is opened in the full screen mode."
+      },
+      {
+        "step": 10,
+        "action": "Click on the exit button.",
+        "data": "",
+        "result": "The inline dialog is closed."
+      },
+      {
+        "step": 11,
+        "action": "Click on the same cell with 5 issues.",
+        "data": "",
+        "result": "The inline dialog is reopened."
+      },
+      {
+        "step": 12,
+        "action": "Hover over the chart in the reportName.",
+        "data": "reportName: Issue Type per Status",
+        "result": "Inline dialog shows the information as beLow:\n\n* Story: 100% 10/10"
+      },
+      {
+        "step": 13,
+        "action": "Click on the pie chart in the reportName.",
+        "data": "reportName: Issue Type per Status",
+        "result": "The report shows the data for the second grouping field."
+      },
+      {
+        "step": 14,
+        "action": "Hover over the chart in the reportName.",
+        "data": "reportName: Issue Type per Status",
+        "result": "Inline dialog shows the information as beLow:\n\n* Story: 100% 10/10"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 14
+  },
+  "rag": {
+    "id": "TC-2397",
+    "text": "Test: TC-2397 — Box Module - Reports - Displaying inline dialogs\nPriority: High | Status: Done | Type: Manual\nFolder: /BP/TS-104 Box Module - Reports\nLabels: Sanity, can_be_automated, rocksolid, teamsmile\n\nSteps:\n1. Navigate to the Reports module of boxName.\n   Data: boxName: TC-2397 Box Module - Reports - Displaying inline dialogs\n   Expected: Reports module is loaded.\n2. Locate and verify the reportName.\n   Data: reportName: Risks matrix\n   Expected: Risks matrix report has one cell with 10 issues.\n3. Click on the cell with 10 issues.\n   Expected: Inline dialog is displayed.\nThere is a Risks header at the top and an arrow circle icon that is a link to the Risks module.\nBeLow, there are three columns: SOURCE, STATUS and RISK  and the list of issues. Issue names are links that leads to the issue page in Jira.\n10 issues does not fit in the inline dialog and they can be scrolled down.\n4. Locate and verify the reportName.\n   Data: reportName: Team dependencies\n   Expected: There two cells, each with 5 issues between teams Team Alpha TC-2397 and Team Beta TC-2397. There two empty cells between the same teams.\n5. Click on the cell with 5 issues.\n   Expected: Inline dialog is displayed.\nThere is a Team dependencies header at the top.\nBeLow, there is a tree with two teams collapsed.\nBetween the teams, there are the dependencies icons with numbers of issues:\n\n* Team Alpha TC-2397 > Team Beta TC-2397 (2)\n* Team Beta TC-2397 > Team Alpha TC-2397 (3)\n6. Expand the first tree on the list: Team Alpha TC-2397 > Team Beta TC-2397\n   Expected: The tree is expanded.  On the left side of the issue name there are a box icon and issue status symbol. Issue names are links that leads to the issue page in Jira.\nAt the center, there is a Dependency icon with detailed information in tooltip on hover.\n7. Grab the top-left corner and expand the inline dialog.\n   Expected: The inline dialog is expanded.\n8. Grab the bottom-right corner and expand the inline dialog.\n   Expected: The inline dialog is expanded.\n9. Click on the expand icon.\n   Expected: The inline dialog is opened in the full screen mode.\n10. Click on the exit button.\n   Expected: The inline dialog is closed.\n11. Click on the same cell with 5 issues.\n   Expected: The inline dialog is reopened.\n12. Hover over the chart in the reportName.\n   Data: reportName: Issue Type per Status\n   Expected: Inline dialog shows the information as beLow:\n\n* Story: 100% 10/10\n13. Click on the pie chart in the reportName.\n   Data: reportName: Issue Type per Status\n   Expected: The report shows the data for the second grouping field.\n14. Hover over the chart in the reportName.\n   Data: reportName: Issue Type per Status\n   Expected: Inline dialog shows the information as beLow:\n\n* Story: 100% 10/10",
+    "metadata": {
+      "jira_key": "TC-2397",
+      "issue_id": "359281",
+      "summary": "Box Module - Reports - Displaying inline dialogs",
+      "priority": "High",
+      "status": "Done",
+      "test_type": "Manual",
+      "folder": "/BP/TS-104 Box Module - Reports",
+      "labels": [
+        "Sanity",
+        "can_be_automated",
+        "rocksolid",
+        "teamsmile"
+      ],
+      "step_count": 14,
+      "filter_id": "17844",
+      "filter_name": "BigPicture - Manual TestRun",
+      "source": "xray_graphql_export"
+    }
+  }
+}
