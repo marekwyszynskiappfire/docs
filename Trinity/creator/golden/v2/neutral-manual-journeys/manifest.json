@@ -1,0 +1,15 @@
+{
+  "corpus_id": "neutral-manual-journeys",
+  "title": "Neutral manual journeys (product-agnostic)",
+  "reference_jira_project": "TC",
+  "product_lines": [
+    "default",
+    "requirements",
+    "spm"
+  ],
+  "run_id": "trinity-neutral-golden-v1",
+  "extracted_at": "2026-10-12T10:29:35.225244+00:00",
+  "source": "Trinity IQ-12 builder (synthetic references)",
+  "test_count": 5,
+  "total_steps": 22
+}

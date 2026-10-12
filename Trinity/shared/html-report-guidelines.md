@@ -26,7 +26,7 @@ Canonical rules for **The Reviewer**, **The Creator**, and any future agent-buil
 
 **Creator execution / bug / triage reports** (e.g. TC-6504) are **Profile B** unless explicitly documented otherwise.
 
-**Test suite HTML** (Creator `test-suite-report.html`) is **Profile A** today; new interactive triage UIs must use **Profile B**.
+**Creator suite (Studio export + CLI)** — **Profile B** folder `suite-report/` (`Trinity/creator/suite-report-template/`, builder `Trinity/creator/scripts/build_suite_report.py`, Studio `POST /api/creator-runs/{id}/export-suite-report`). Legacy single-file `test-suite-report.html` in AI-in-QA artifacts remains **Profile A** until migrated.
 
 ---
 

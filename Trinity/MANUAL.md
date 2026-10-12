@@ -73,6 +73,41 @@ After import, open a pipeline run on the Dashboard:
 
 Then review units on the Dashboard, approve payloads, export for Creator.
 
+## Importer (Studio → Xray)
+
+Full operator detail: [`GUIDE.md`](GUIDE.md) §6 · [`importer/README.md`](importer/README.md).
+
+1. **Creator** run → approve tests → mark **Fit for Xray import** → **Export for Importer** (or open Importer with `creator_run_id` in the URL).
+2. **Importer** tab:
+   - **Instance** — production for real Xray create; sandbox for plan/read only ([ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)).
+   - **Production** — type `PRODUCTION` before preview or copy execute prompt.
+   - **Mapping** + **project key** — default TC; override key as needed. Plan resolves **project id** via Jira REST for `createFolder`.
+   - **Folder path** — Xray Test Repository path (e.g. `/TC Importer/ONE-12345`).
+3. **Preview import plan** — fix validation errors; if **Reviewer gate** warns, check acknowledgement and preview again.
+4. **Copy Cursor prompt** — run **trinity-importer** / CLI execute in Cursor.
+5. **Persist Xray keys** — path to `xray-import-report.json` or report folder + Creator run id (updates Studio for metrics/scorecard).
+
+Telemetry: [`METRICS.md`](METRICS.md). POC narrative: [`POC-TC-GENERATOR.md`](POC-TC-GENERATOR.md).
+
+## 11. Who does what (personas)
+
+Trinity serves **ten design-time audiences (P1–P10)** plus **editable runtime prompts** under `Trinity/personas/`. This section mirrors [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §11 for the **whole pipeline** (Reviewer → Studio → Creator → Importer).
+
+| If you are… | Start here |
+|-------------|------------|
+| **QA engineer (P1)** | Reviewer skill → import run → approve unit → Creator import → triage tests on Creator run (coverage matrix, suite report) |
+| **QA lead (P2)** | [`personas/P1-P10.md`](personas/P1-P10.md) lead table; portfolio `index.html`; metrics + scorecard |
+| **PM / BA (P3)** | Reviewer readiness + questions only; Importer plan PM summary when executing |
+| **Automation engineer (P4)** | Creator drafts: `automation_fit`, blockers; approved + marked rows for Importer |
+| **Skill maintainer (P5)** | Personas UI, run configs, schemas, [`REVIEW-PRODUCT-AND-DOCS.md`](REVIEW-PRODUCT-AND-DOCS.md) |
+| **Test-data steward (P6)** | Creator prerequisites in batch JSON; product config — not Reviewer |
+| **Release manager (P8)** | Epic portfolio bundle; Studio Creator handoff JQL |
+| **Security (P9)** | Redaction before share; export preflight warnings on Importer handoff |
+| **Platform / MCP admin (P10)** | Reviewer report **Data sources** / `context_loaded` in payload |
+
+**Canonical matrix:** [`personas/P1-P10.md`](personas/P1-P10.md) (P1–P10 table, runtime files, lead ownership).  
+**Reviewer-only audiences:** [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §11.
+
 ---
 
 Pipeline overview: [`PIPELINE.md`](PIPELINE.md). Step-by-step validation: [`TESTING.md`](TESTING.md).

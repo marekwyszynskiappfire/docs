@@ -3,10 +3,17 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 from db import utc_now
+
+_TRINITY = Path(__file__).resolve().parents[2]
+_SHARED = _TRINITY / "shared"
+if str(_SHARED) not in sys.path:
+    sys.path.insert(0, str(_SHARED))
+from validate_for_xray import export_preflight_warnings  # noqa: E402
 
 
 def automation_candidate_flag(tc: dict[str, Any]) -> int:
@@ -77,7 +84,7 @@ def build_importer_payload(conn: Any, creator_run_id: str) -> dict[str, Any]:
             case["coverage_catalog_id"] = str(linked_ac[0]) if linked_ac else "TRINITY-IMPORT"
         tests.append(case)
 
-    return {
+    payload = {
         "schema_version": "1.0",
         "export_kind": "creator_importer_handoff",
         "creator_run_id": creator_run_id,
@@ -88,13 +95,17 @@ def build_importer_payload(conn: Any, creator_run_id: str) -> dict[str, Any]:
         "suite_mode": batch_meta.get("suite_mode"),
         "test_count": len(tests),
         "tests": tests,
+        "coverage_report": batch_meta.get("coverage_report"),
     }
+    payload["export_preflight_warnings"] = export_preflight_warnings(payload)
+    return payload
 
 
-def write_importer_export(conn: Any, creator_run_id: str, export_root: Path) -> Path:
+def write_importer_export(conn: Any, creator_run_id: str, export_root: Path) -> tuple[Path, list[str]]:
     payload = build_importer_payload(conn, creator_run_id)
+    warnings = payload.get("export_preflight_warnings") or []
     out_dir = export_root / "creator" / creator_run_id
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "importer-payload.json"
     out_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    return out_path
+    return out_path, warnings

@@ -14,6 +14,13 @@ Production test exports for Creator **depth / style** reference (`existing_xray_
 | `raw-batches/` | Resumable GraphQL responses (**gitignored** — may contain presigned URLs) |
 | `issues.json` | Jira keys + ids used for the run |
 
+## neutral-manual-journeys (IQ-12)
+
+- **Purpose:** Product-agnostic manual journey references for teams that import to **non-TC** Jira projects (ONE, SPM, etc.).
+- **Tests:** 5 synthetic references (`TC-99001`–`TC-99005`) — not live Xray issues.
+- **Rebuild:** `python3 Trinity/creator/scripts/build_neutral_golden_corpus.py`
+- **Registry:** [`registry.json`](../registry.json) · product config `requirements.json`
+
 ## filter-17844-bigpicture-manual
 
 - **Source:** [Jira filter 17844](https://appfire.atlassian.net/issues/?filter=17844) — *BigPicture - Manual TestRun*

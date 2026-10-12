@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "description": "Registered golden corpora for Creator (CR-GOLDEN-01). Paths are repo-relative from DOCS root.",
+  "corpora": [
+    {
+      "id": "bigpicture-manual-17844",
+      "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual",
+      "title": "BigPicture manual (Jira filter 17844)",
+      "reference_jira_project": "TC",
+      "product_lines": ["bigpicture"],
+      "test_count": 245,
+      "sampler": "extraction.md",
+      "notes": "Module-specific BP vocabulary (box, Gantt, Risk). Use for BigPicture Epics only."
+    },
+    {
+      "id": "neutral-manual-journeys",
+      "path": "Trinity/creator/golden/v2/neutral-manual-journeys",
+      "title": "Neutral manual journeys",
+      "reference_jira_project": "TC",
+      "product_lines": ["default", "requirements", "spm"],
+      "test_count": 5,
+      "sampler": "extraction.md",
+      "notes": "Product-agnostic admin/journey depth. Preferred when Importer target project is not TC (ONE, SPM, etc.)."
+    },
+    {
+      "id": "golden-v1-markdown",
+      "path": "Trinity/creator/golden/v1",
+      "title": "v1 markdown style pack",
+      "reference_jira_project": null,
+      "product_lines": ["legacy"],
+      "test_count": 2,
+      "sampler": null,
+      "notes": "style-rules.md + examples only. Not a full Xray extract; use a v2 corpus for similarity sampling."
+    }
+  ]
+}

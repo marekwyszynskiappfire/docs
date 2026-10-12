@@ -1,6 +1,14 @@
 # Pilot runs (The Creator)
 
-Committed run folders (optional) hold **redacted** fixtures for regression: `suite-payload.json`, `suite-report.html`, and notes — not full tenant data.
+Committed run folders (optional) hold **redacted** fixtures for regression: `suite-payload.json`, **`suite-report/`** (Profile B), and notes — not full tenant data.
+
+Regenerate demo report:
+
+```bash
+python3 Trinity/creator/scripts/build_suite_report.py \
+  --batch Trinity/creator/samples/demo-story.suite.json \
+  --out Trinity/creator/runs/demo-story/suite-report
+```
 
 **Policy (match Reviewer practice):**
 

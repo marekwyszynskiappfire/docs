@@ -19,6 +19,8 @@ export default function ImporterPage() {
   const [folderPath, setFolderPath] = useState("/Trinity sandbox");
   const [createFolder, setCreateFolder] = useState(true);
   const [projectKey, setProjectKey] = useState("");
+  const [jiraProjects, setJiraProjects] = useState<{ key: string; name: string }[]>([]);
+  const [projectsHint, setProjectsHint] = useState("");
   const [creatorRunId, setCreatorRunId] = useState(initialRunId);
   const [payloadPath, setPayloadPath] = useState(initialPayload);
   const [skipRequirementLink, setSkipRequirementLink] = useState(false);
@@ -27,6 +29,17 @@ export default function ImporterPage() {
   const [copyMsg, setCopyMsg] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [prodConfirm, setProdConfirm] = useState("");
+  const [reportPath, setReportPath] = useState("");
+  const [recordMsg, setRecordMsg] = useState("");
+  const [reviewerGateAck, setReviewerGateAck] = useState(false);
+  const [executing, setExecuting] = useState(false);
+  const [executeResult, setExecuteResult] = useState<{
+    created: number;
+    failed: number;
+    report_dir?: string;
+    results?: { draft_id: string; xray_key?: string; action?: string }[];
+  } | null>(null);
 
   const loadMeta = useCallback(() => {
     setError("");
@@ -65,10 +78,40 @@ export default function ImporterPage() {
     loadMeta();
   }, [loadMeta]);
 
+  useEffect(() => {
+    if (!creatorRunId && !payloadPath) return;
+    const params = new URLSearchParams();
+    if (creatorRunId) params.set("creator_run_id", creatorRunId);
+    if (payloadPath) params.set("payload_path", payloadPath);
+    fetch(`/api/importer/defaults?${params}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { default_jira_project_key?: string; suggested_folder_path?: string } | null) => {
+        if (!d) return;
+        if (d.default_jira_project_key && !projectKey) {
+          setProjectKey(d.default_jira_project_key);
+        }
+        if (d.suggested_folder_path && folderPath === "/Trinity sandbox") {
+          setFolderPath(d.suggested_folder_path);
+        }
+      })
+      .catch(() => {});
+  }, [creatorRunId, payloadPath]);
+
   const selectedInstance = useMemo(
     () => instances.find((i) => i.id === jiraInstanceId),
     [instances, jiraInstanceId]
   );
+
+  const isProduction = selectedInstance?.risk_tier === "production";
+
+  const requireProductionConfirm = (): boolean => {
+    if (!isProduction) return true;
+    if (prodConfirm.trim() !== "PRODUCTION") {
+      setError('Production instance selected — type PRODUCTION in the confirmation field below.');
+      return false;
+    }
+    return true;
+  };
 
   const mappingOptions = useMemo(() => {
     if (!selectedInstance) return mappings;
@@ -94,11 +137,34 @@ export default function ImporterPage() {
     if (match.default_folder) {
       setFolderPath(match.default_folder);
     }
+    if (match.project_key) {
+      setProjectKey(match.project_key);
+    }
   }, [jiraInstanceId, mappingOptions]);
+
+  useEffect(() => {
+    if (!jiraInstanceId || !mappingPath) return;
+    api
+      .importerJiraProjects(jiraInstanceId, mappingPath)
+      .then((res) => {
+        if (res.status === "ok") {
+          setJiraProjects(res.projects.map((p) => ({ key: p.key, name: p.name })));
+          setProjectsHint("");
+        } else {
+          setJiraProjects([]);
+          setProjectsHint(res.message ?? "Could not load Jira projects — type a project key manually.");
+        }
+      })
+      .catch(() => {
+        setJiraProjects([]);
+        setProjectsHint("Could not load Jira projects — type a project key manually.");
+      });
+  }, [jiraInstanceId, mappingPath]);
 
   const onPreview = async () => {
     setError("");
     setPlan(null);
+    if (!requireProductionConfirm()) return;
     if (!creatorRunId && !payloadPath) {
       setError("Provide a Creator run id or path to importer-payload.json");
       return;
@@ -110,10 +176,11 @@ export default function ImporterPage() {
         folder_path: folderPath,
         create_folder_if_missing: createFolder,
         mapping_path: mappingPath || null,
-        project_key_override: projectKey || null,
+        project_key_override: projectKey.trim() || null,
         payload_path: payloadPath || null,
         creator_run_id: creatorRunId || null,
         skip_requirement_link: skipRequirementLink,
+        reviewer_gate_acknowledged: reviewerGateAck,
       });
       setPlan(result);
       setCopyMsg("");
@@ -126,6 +193,7 @@ export default function ImporterPage() {
 
   const onCopyPrompt = async () => {
     if (!plan?.cursor_prompt) return;
+    if (!requireProductionConfirm()) return;
     try {
       await navigator.clipboard.writeText(plan.cursor_prompt);
       setCopyMsg("Importer Cursor prompt copied — paste into a new Cursor chat.");
@@ -134,12 +202,81 @@ export default function ImporterPage() {
     }
   };
 
+  const onExecute = async () => {
+    setError("");
+    setExecuteResult(null);
+    if (!requireProductionConfirm()) return;
+    if (!plan?.credentials.execute_ready) {
+      setError("Plan is not execute-ready — fix validation, credentials, or Reviewer gate acknowledgement.");
+      return;
+    }
+    if (plan.reviewer_gate?.requires_acknowledgement && !reviewerGateAck) {
+      setError("Acknowledge Reviewer gate and re-run Preview before execute.");
+      return;
+    }
+    setExecuting(true);
+    try {
+      const res = await api.importerExecute({
+        jira_instance_id: jiraInstanceId,
+        folder_path: folderPath,
+        create_folder_if_missing: createFolder,
+        mapping_path: mappingPath || null,
+        project_key_override: projectKey.trim() || null,
+        payload_path: payloadPath || null,
+        creator_run_id: creatorRunId || null,
+        skip_requirement_link: skipRequirementLink,
+        reviewer_gate_acknowledged: reviewerGateAck,
+        production_confirm: isProduction ? prodConfirm.trim() : undefined,
+      });
+      setExecuteResult(res);
+      setRecordMsg(
+        `Execute finished: ${res.created}/${res.total} created. Keys persisted when Creator run id was set.`
+      );
+      if (res.report_dir) setReportPath(res.report_dir);
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setExecuting(false);
+    }
+  };
+
+  const onRecordResults = async () => {
+    setError("");
+    setRecordMsg("");
+    if (!creatorRunId) {
+      setError("Creator run id is required to persist Xray keys");
+      return;
+    }
+    if (!reportPath.trim()) {
+      setError("Path to xray-import-report.json or folder containing import reports");
+      return;
+    }
+    try {
+      const res = await api.recordImporterResults({
+        creator_run_id: creatorRunId,
+        report_path: reportPath.trim(),
+      });
+      setRecordMsg(`Persisted ${res.updated} Xray key(s) to Studio (${res.skipped} skipped).`);
+    } catch (e) {
+      setError(String(e));
+    }
+  };
+
   return (
     <>
-      <h2>Importer</h2>
+      <h2 className="page-title-row">
+        Importer
+        {selectedInstance && (
+          <span
+            className={`risk-pill risk-pill--${selectedInstance.risk_tier === "production" ? "production" : "sandbox"}`}
+          >
+            {selectedInstance.risk_tier}
+          </span>
+        )}
+      </h2>
       <p className="muted">
         Choose the Jira/Xray target, mapping config, and Test Repository folder before dry-run or execute.
-        Execute (Xray submit) is planned next — use <strong>Preview import plan</strong> to validate today.
+        Use <strong>Preview import plan</strong>, then <strong>Execute import batch</strong> when execute-ready (or copy the Cursor prompt).
       </p>
       {error && <p className="error">{error}</p>}
 
@@ -158,6 +295,26 @@ export default function ImporterPage() {
         {selectedInstance?.credential_hint && (
           <p className="muted importer-hint">{selectedInstance.credential_hint}</p>
         )}
+        {isProduction && (
+          <div className="production-guard panel">
+            <p>
+              <span className="risk-pill risk-pill--production">PRODUCTION</span>
+              {" "}
+              Xray writes target live Jira. Type <strong>PRODUCTION</strong> to preview the plan or copy
+              the execute prompt.
+            </p>
+            <label>
+              Confirmation
+              <input
+                type="text"
+                value={prodConfirm}
+                onChange={(e) => setProdConfirm(e.target.value)}
+                placeholder="Type PRODUCTION"
+                autoComplete="off"
+              />
+            </label>
+          </div>
+        )}
 
         <h3>Import mapping config</h3>
         <label>
@@ -170,15 +327,32 @@ export default function ImporterPage() {
             ))}
           </select>
         </label>
+        <h3>Jira project for new Tests</h3>
+        <p className="muted importer-hint">
+          Default <strong>TC</strong> in shipped mappings is the Appfire QA Test project used for the
+          committed golden export — not tied to Creator output. Pick any project your account can create
+          Tests in, or add a mapping file per project (see{" "}
+          <code>Trinity/importer/config/mappings/README.md</code>).
+        </p>
         <label>
-          Project key override (optional)
+          Project key
           <input
             type="text"
+            list="importer-jira-projects"
             value={projectKey}
-            onChange={(e) => setProjectKey(e.target.value)}
-            placeholder="Uses mapping default when empty"
+            onChange={(e) => setProjectKey(e.target.value.toUpperCase())}
+            placeholder="e.g. TC, BPQA"
+            required
           />
+          <datalist id="importer-jira-projects">
+            {jiraProjects.map((p) => (
+              <option key={p.key} value={p.key}>
+                {p.name}
+              </option>
+            ))}
+          </datalist>
         </label>
+        {projectsHint && <p className="muted importer-hint">{projectsHint}</p>}
 
         <h3>Test Repository location</h3>
         <label>
@@ -253,7 +427,56 @@ export default function ImporterPage() {
             {plan.summary.valid}/{plan.summary.total} tests ready · mapping{" "}
             <code>{plan.mapping.path.split("/").pop()}</code> · project{" "}
             <code>{plan.project_key}</code>
+            {plan.project_resolution?.project_id != null && (
+              <>
+                {" "}
+                · id <code>{String(plan.project_resolution.project_id)}</code>
+              </>
+            )}
           </p>
+          {plan.reviewer_gate?.requires_acknowledgement && (
+            <div className="production-guard panel">
+              <p>
+                <strong>Reviewer gate ({plan.reviewer_gate.level})</strong>
+              </p>
+              <ul className="importer-warnings">
+                {(plan.reviewer_gate.messages ?? []).map((m) => (
+                  <li key={m}>{m}</li>
+                ))}
+              </ul>
+              {plan.reviewer_gate.review_ref_path && (
+                <p className="muted">
+                  review_ref: <code>{plan.reviewer_gate.review_ref_path}</code>
+                </p>
+              )}
+              <label className="checkbox-row">
+                <input
+                  type="checkbox"
+                  checked={reviewerGateAck}
+                  onChange={(e) => setReviewerGateAck(e.target.checked)}
+                />
+                I acknowledge Reviewer findings and accept proceeding to Xray import
+              </label>
+              {!reviewerGateAck && (
+                <p className="muted">
+                  Re-run <strong>Preview import plan</strong> after checking this box to mark execute
+                  ready.
+                </p>
+              )}
+            </div>
+          )}
+          {plan.pm_safe_summary && (
+            <p className="muted">
+              <strong>PM summary:</strong> {plan.pm_safe_summary}
+            </p>
+          )}
+          {(plan.export_preflight_warnings?.length ?? 0) > 0 && (
+            <ul className="importer-warnings">
+              {plan.export_preflight_warnings!.map((w) => (
+                <li key={w}>{w}</li>
+              ))}
+            </ul>
+          )}
           {plan.target.warnings.length > 0 && (
             <ul className="importer-warnings">
               {plan.target.warnings.map((w) => (
@@ -272,11 +495,33 @@ export default function ImporterPage() {
             )}
           </p>
           <div className="btn-row">
+            <button
+              type="button"
+              onClick={onExecute}
+              disabled={!plan.credentials.execute_ready || executing}
+            >
+              {executing ? "Executing…" : "Execute import batch"}
+            </button>
             <button type="button" onClick={onCopyPrompt} disabled={!plan.cursor_prompt}>
               Copy Cursor prompt
             </button>
           </div>
+          {executeResult && (
+            <ul className="muted">
+              {executeResult.results?.map((r) => (
+                <li key={r.draft_id}>
+                  {r.draft_id}: {r.action}
+                  {r.xray_key ? ` → ${r.xray_key}` : ""}
+                </li>
+              ))}
+            </ul>
+          )}
           {copyMsg && <p className="muted">{copyMsg}</p>}
+          {isProduction && plan.credentials.execute_ready && (
+            <p className="muted">
+              After CLI/agent execute, paste the report folder path below to store Xray keys in Studio.
+            </p>
+          )}
           {plan.cursor_prompt && (
             <details className="prompt-preview" style={{ marginTop: "0.75rem" }}>
               <summary>Preview handoff prompt</summary>
@@ -309,6 +554,30 @@ export default function ImporterPage() {
           </table>
         </div>
       )}
+
+      <div className="panel">
+        <h3>Record Xray import results (Studio)</h3>
+        <p className="muted">
+          After execute, point to <code>xray-import-report.json</code> or a folder (e.g.{" "}
+          <code>…/xray-import-run/</code>). Maps <code>draft_id</code> → <code>xray_test_key</code> on
+          the Creator run for metrics and scorecard evidence.
+        </p>
+        <label>
+          Report file or folder path
+          <input
+            type="text"
+            value={reportPath}
+            onChange={(e) => setReportPath(e.target.value)}
+            placeholder="Trinity/studio/data/exports/creator/RUN/xray-import-run"
+          />
+        </label>
+        <div className="btn-row">
+          <button type="button" className="secondary" onClick={onRecordResults}>
+            Persist Xray keys
+          </button>
+        </div>
+        {recordMsg && <p className="muted">{recordMsg}</p>}
+      </div>
 
       <p>
         <Link to="/creator">← Creator</Link>

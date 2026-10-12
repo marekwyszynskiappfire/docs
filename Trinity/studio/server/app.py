@@ -17,9 +17,20 @@ from pydantic import BaseModel, Field
 # Allow running as `python app.py` from server/
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from db import db, init_db, json_loads, log_event, row_to_dict, utc_now
+from db import db, init_db, json_loads, row_to_dict, utc_now
+from telemetry import (
+    REJECTION_REASON_LABELS,
+    REJECTION_REASONS,
+    flush_outbox,
+    mateusz_summary,
+    record_event,
+    validate_rejection_reason,
+)
 from import_review import import_reviewer_run, import_test_case_batch
 from personas import docs_repo_root, list_persona_files, read_persona, write_persona
+from creator_coverage import build_coverage_summary
+from creator_golden import golden_info_for_product, list_creator_products, list_golden_corpora
+from creator_suite_report import export_suite_report_for_run
 from creator_export import (
     automation_candidate_flag,
     automation_fit_value,
@@ -28,9 +39,14 @@ from creator_export import (
     write_importer_export,
 )
 from creator_handoff import build_creator_prompt, payload_readiness, review_ref_relative
-from importer_handoff import build_importer_cursor_prompt
+from importer_handoff import build_importer_cursor_prompt, build_pm_safe_summary
+from importer_jira import list_jira_projects
+from importer_execute import run_batch_execute
+from importer_idempotency import attach_existing_xray_keys
 from importer_plan import build_import_plan, load_handoff_payload
-from importer_registry import list_jira_instances, list_mapping_files
+from importer_persist import apply_xray_reports, load_reports_from_path, resolve_report_path
+from creator_importer_config import importer_defaults_for_handoff
+from importer_registry import get_jira_instance, list_jira_instances, list_mapping_files
 from run_config import (
     list_new_epics,
     list_run_configs,
@@ -71,6 +87,11 @@ class ImporterPlanBody(BaseModel):
     payload_path: str | None = None
     creator_run_id: str | None = None
     skip_requirement_link: bool = False
+    reviewer_gate_acknowledged: bool = False
+
+
+class ImporterExecuteBody(ImporterPlanBody):
+    production_confirm: str | None = None
 
 
 class SavePayloadBody(BaseModel):
@@ -87,18 +108,21 @@ class SaveTestCaseBody(BaseModel):
     case: dict[str, Any]
     human_review_status: str | None = None
     marked_for_xray_import: bool | None = None
+    rejection_reason: str | None = None
     created_by: str = "human"
 
 
 class PatchTestBody(BaseModel):
     human_review_status: str | None = None
     marked_for_xray_import: bool | None = None
+    rejection_reason: str | None = None
 
 
 class BulkTestsBody(BaseModel):
     test_ids: list[str] = Field(..., min_length=1)
     human_review_status: str | None = None
     marked_for_xray_import: bool | None = None
+    rejection_reason: str | None = None
 
 
 class SavePersonaBody(BaseModel):
@@ -107,6 +131,12 @@ class SavePersonaBody(BaseModel):
 
 class PasteResolvedKeysBody(BaseModel):
     keys_text: str = Field(..., min_length=1)
+
+
+class ImporterRecordResultsBody(BaseModel):
+    creator_run_id: str = Field(..., min_length=1)
+    report_path: str | None = None
+    results: list[dict[str, Any]] | None = None
 
 
 def _load_env_file(path: Path, *, keys_only: set[str] | None = None, override: bool = False) -> None:
@@ -157,7 +187,13 @@ def health() -> dict[str, Any]:
     return {
         "status": "ok",
         "studio_version": "0.2.0",
-        "features": ["importer_plan"],
+        "features": [
+            "importer_plan",
+            "importer_execute",
+            "creator_coverage",
+            "creator_golden",
+            "creator_suite_report",
+        ],
     }
 
 
@@ -377,7 +413,7 @@ def save_unit_payload(unit_id: str, body: SavePayloadBody) -> dict[str, Any]:
             "UPDATE review_unit SET gate_status = ?, summary = ?, updated_at = ? WHERE id = ?",
             (gate, summary, now, unit_id),
         )
-        log_event(
+        record_event(
             conn,
             "review_payload_saved",
             "review_unit",
@@ -420,7 +456,7 @@ def approve_unit(unit_id: str) -> dict[str, Any]:
             "UPDATE review_unit SET approved_revision_id = ?, updated_at = ? WHERE id = ?",
             (rev["id"], utc_now(), unit_id),
         )
-        log_event(
+        record_event(
             conn,
             "review_unit_approved",
             "review_unit",
@@ -640,6 +676,21 @@ def global_stats() -> dict[str, Any]:
     }
 
 
+@app.get("/api/creator/golden-corpora")
+def api_golden_corpora() -> dict[str, Any]:
+    return {"corpora": list_golden_corpora()}
+
+
+@app.get("/api/creator/products")
+def api_creator_products() -> dict[str, Any]:
+    return {"products": list_creator_products()}
+
+
+@app.get("/api/creator/products/{product_id}/golden")
+def api_product_golden(product_id: str) -> dict[str, Any]:
+    return golden_info_for_product(product_id)
+
+
 @app.get("/api/creator-runs")
 def list_creator_runs() -> list[dict[str, Any]]:
     with db() as conn:
@@ -669,15 +720,18 @@ def get_creator_run(run_id: str) -> dict[str, Any]:
             for t in tests
             if t["human_review_status"] == "approved" and t["marked_for_xray_import"]
         )
+        test_dicts = [row_to_dict(t) for t in tests]
+        coverage = build_coverage_summary(conn, run_id, test_dicts)
     return {
         "run": row_to_dict(run),
-        "tests": [row_to_dict(t) for t in tests],
+        "tests": test_dicts,
         "summary": {
             "total": len(tests),
             "approved": sum(1 for t in tests if t["human_review_status"] == "approved"),
             "rejected": sum(1 for t in tests if t["human_review_status"] == "rejected"),
             "ready_for_import": ready,
         },
+        "coverage": coverage,
     }
 
 
@@ -695,6 +749,37 @@ def get_test(test_id: str) -> dict[str, Any]:
             (test_id,),
         ).fetchone()
     return {"test": row_to_dict(row), "case": json.loads(rev["case_json"]) if rev else None}
+
+
+def _emit_test_case_review(
+    conn: Any,
+    row: Any,
+    status: str,
+    rejection_reason: str | None,
+    *,
+    source: str = "studio",
+) -> None:
+    reason = validate_rejection_reason(rejection_reason, status)
+    run = conn.execute(
+        "SELECT pipeline_run_id FROM creator_run WHERE id = ?",
+        (row["creator_run_id"],),
+    ).fetchone()
+    pipeline_run_id = run["pipeline_run_id"] if run else None
+    record_event(
+        conn,
+        "test_case_review",
+        "test_case",
+        row["id"],
+        pipeline_run_id,
+        {
+            "creator_run_id": row["creator_run_id"],
+            "draft_id": row["draft_id"],
+            "human_review_status": status,
+            "rejection_reason": reason,
+            "marked_for_xray_import": bool(row["marked_for_xray_import"]),
+            "source": source,
+        },
+    )
 
 
 def _resolve_test_row_update(
@@ -752,11 +837,19 @@ def save_test(test_id: str, body: SaveTestCaseBody) -> dict[str, Any]:
             """,
             (test_id, new_rev, json.dumps(body.case, ensure_ascii=False), now, body.created_by),
         )
+        rejection_reason: str | None = None
+        if status == "rejected":
+            rejection_reason = validate_rejection_reason(body.rejection_reason, status)
+        elif status == "approved":
+            rejection_reason = None
+        else:
+            rejection_reason = row["rejection_reason"]
+
         conn.execute(
             """
             UPDATE test_case_row SET title = ?, execution_tier = ?, test_type = ?,
               human_review_status = ?, automation_candidate = ?, automation_fit = ?,
-              marked_for_xray_import = ?, current_revision_id = ?, updated_at = ?
+              marked_for_xray_import = ?, rejection_reason = ?, current_revision_id = ?, updated_at = ?
             WHERE id = ?
             """,
             (
@@ -767,11 +860,17 @@ def save_test(test_id: str, body: SaveTestCaseBody) -> dict[str, Any]:
                 auto,
                 fit,
                 marked,
+                rejection_reason,
                 new_rev,
                 now,
                 test_id,
             ),
         )
+        if body.human_review_status is not None and body.human_review_status != row["human_review_status"]:
+            updated = conn.execute(
+                "SELECT * FROM test_case_row WHERE id = ?", (test_id,)
+            ).fetchone()
+            _emit_test_case_review(conn, updated, status, rejection_reason)
     return {"revision": new_rev, "human_review_status": status, "marked_for_xray_import": bool(marked)}
 
 
@@ -792,13 +891,28 @@ def patch_test(test_id: str, body: PatchTestBody) -> dict[str, Any]:
             validate_import_mark(status, bool(marked))
         except ValueError as exc:
             raise HTTPException(400, str(exc)) from exc
+        rejection_reason: str | None = row["rejection_reason"]
+        if body.human_review_status is not None:
+            if status == "rejected":
+                try:
+                    rejection_reason = validate_rejection_reason(body.rejection_reason, status)
+                except ValueError as exc:
+                    raise HTTPException(400, str(exc)) from exc
+            elif status == "approved":
+                rejection_reason = None
         conn.execute(
             """
-            UPDATE test_case_row SET human_review_status = ?, marked_for_xray_import = ?, updated_at = ?
+            UPDATE test_case_row SET human_review_status = ?, marked_for_xray_import = ?,
+              rejection_reason = ?, updated_at = ?
             WHERE id = ?
             """,
-            (status, marked, now, test_id),
+            (status, marked, rejection_reason, now, test_id),
         )
+        if body.human_review_status is not None and body.human_review_status != row["human_review_status"]:
+            updated = conn.execute(
+                "SELECT * FROM test_case_row WHERE id = ?", (test_id,)
+            ).fetchone()
+            _emit_test_case_review(conn, updated, status, rejection_reason)
     return {"human_review_status": status, "marked_for_xray_import": bool(marked)}
 
 
@@ -806,6 +920,12 @@ def patch_test(test_id: str, body: PatchTestBody) -> dict[str, Any]:
 def bulk_test_review(run_id: str, body: BulkTestsBody) -> dict[str, Any]:
     now = utc_now()
     updated = 0
+    deferrable_marked: list[str] = []
+    if body.human_review_status == "rejected":
+        try:
+            validate_rejection_reason(body.rejection_reason, "rejected")
+        except ValueError as exc:
+            raise HTTPException(400, str(exc)) from exc
     with db() as conn:
         for test_id in body.test_ids:
             row = conn.execute(
@@ -828,15 +948,49 @@ def bulk_test_review(run_id: str, body: BulkTestsBody) -> dict[str, Any]:
                 validate_import_mark(status, bool(marked))
             except ValueError:
                 continue
+            if marked:
+                rev = conn.execute(
+                    """
+                    SELECT case_json FROM test_case_revision
+                    WHERE test_case_row_id = ? ORDER BY revision DESC LIMIT 1
+                    """,
+                    (test_id,),
+                ).fetchone()
+                if rev:
+                    try:
+                        case = json.loads(rev["case_json"])
+                        if case.get("deferrable"):
+                            deferrable_marked.append(row["draft_id"])
+                    except json.JSONDecodeError:
+                        pass
+            rejection_reason: str | None = row["rejection_reason"]
+            if body.human_review_status == "rejected":
+                rejection_reason = body.rejection_reason
+            elif body.human_review_status == "approved":
+                rejection_reason = None
+            prev_status = row["human_review_status"]
             conn.execute(
                 """
-                UPDATE test_case_row SET human_review_status = ?, marked_for_xray_import = ?, updated_at = ?
+                UPDATE test_case_row SET human_review_status = ?, marked_for_xray_import = ?,
+                  rejection_reason = ?, updated_at = ?
                 WHERE id = ?
                 """,
-                (status, marked, now, test_id),
+                (status, marked, rejection_reason, now, test_id),
             )
+            if body.human_review_status is not None and body.human_review_status != prev_status:
+                updated_row = conn.execute(
+                    "SELECT * FROM test_case_row WHERE id = ?", (test_id,)
+                ).fetchone()
+                _emit_test_case_review(
+                    conn, updated_row, status, rejection_reason, source="bulk"
+                )
             updated += 1
-    return {"updated": updated}
+    out: dict[str, Any] = {"updated": updated}
+    if deferrable_marked:
+        out["warnings"] = [
+            f"Marked deferrable test(s) for Xray import: {', '.join(deferrable_marked)} (IQ-08 — review before execute)."
+        ]
+    return out
 
 
 @app.get("/api/importer/instances")
@@ -847,6 +1001,20 @@ def importer_instances() -> dict[str, Any]:
 @app.get("/api/importer/mappings")
 def importer_mappings() -> dict[str, Any]:
     return {"mappings": list_mapping_files()}
+
+
+@app.get("/api/importer/jira-projects")
+def importer_jira_projects(
+    jira_instance_id: str,
+    mapping_path: str | None = None,
+    query: str = "",
+) -> dict[str, Any]:
+    apply_importer_credential_profile(jira_instance_id)
+    return list_jira_projects(
+        jira_instance_id,
+        mapping_path=mapping_path,
+        query=query,
+    )
 
 
 @app.get("/api/importer/credentials")
@@ -902,7 +1070,12 @@ def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
             handoff=handoff,
             project_key_override=body.project_key_override,
             skip_requirement_link=body.skip_requirement_link,
+            reviewer_gate_acknowledged=body.reviewer_gate_acknowledged,
+            jira_instance_id_for_resolve=body.jira_instance_id,
         )
+        plan["pm_safe_summary"] = build_pm_safe_summary(plan)
+        with db() as conn:
+            attach_existing_xray_keys(conn, body.creator_run_id, plan)
         plan["cursor_prompt"] = build_importer_cursor_prompt(
             plan,
             payload_path=body.payload_path,
@@ -910,6 +1083,21 @@ def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
             mapping_path=body.mapping_path,
             skip_requirement_link=body.skip_requirement_link,
         )
+        with db() as conn:
+            record_event(
+                conn,
+                "importer_plan",
+                "creator_run",
+                body.creator_run_id,
+                None,
+                {
+                    "jira_instance_id": body.jira_instance_id,
+                    "valid_count": plan.get("valid_count"),
+                    "invalid_count": plan.get("invalid_count"),
+                    "project_key": plan.get("project_key"),
+                    "folder_path": body.folder_path,
+                },
+            )
         return plan
     except KeyError as exc:
         raise HTTPException(400, str(exc)) from None
@@ -929,13 +1117,13 @@ def export_creator_for_importer(run_id: str) -> dict[str, Any]:
                 400,
                 "No tests approved and marked for Xray import",
             )
-        out_path = write_importer_export(conn, run_id, EXPORT_ROOT)
+        out_path, export_warnings = write_importer_export(conn, run_id, EXPORT_ROOT)
         rel = out_path
         try:
             rel = out_path.resolve().relative_to(docs_repo_root().resolve())
         except ValueError:
             rel = out_path
-        log_event(
+        record_event(
             conn,
             "creator_importer_export",
             "creator_run",
@@ -947,8 +1135,233 @@ def export_creator_for_importer(run_id: str) -> dict[str, Any]:
         "path": str(rel),
         "absolute_path": str(out_path),
         "test_count": payload["test_count"],
+        "export_preflight_warnings": export_warnings,
         "payload": payload,
     }
+
+
+@app.post("/api/creator-runs/{run_id}/export-suite-report")
+def export_creator_suite_report(run_id: str) -> dict[str, Any]:
+    with db() as conn:
+        run = conn.execute("SELECT id FROM creator_run WHERE id = ?", (run_id,)).fetchone()
+        if not run:
+            raise HTTPException(404, "Creator run not found")
+        try:
+            index_path, test_count = export_suite_report_for_run(conn, run_id, EXPORT_ROOT)
+        except ValueError as exc:
+            raise HTTPException(400, str(exc)) from None
+        rel = index_path
+        try:
+            rel = index_path.resolve().relative_to(docs_repo_root().resolve())
+        except ValueError:
+            rel = index_path
+        record_event(
+            conn,
+            "creator_suite_report_export",
+            "creator_run",
+            run_id,
+            None,
+            {"path": str(rel), "test_count": test_count},
+        )
+    return {
+        "path": str(rel),
+        "absolute_path": str(index_path),
+        "index_html": str(index_path),
+        "test_count": test_count,
+        "profile": "B",
+    }
+
+
+def _assert_production_execute_confirm(jira_instance_id: str, production_confirm: str | None) -> None:
+    instance = get_jira_instance(jira_instance_id)
+    if instance.get("risk_tier") == "production" and (production_confirm or "").strip() != "PRODUCTION":
+        raise HTTPException(
+            400,
+            "Production instance: set production_confirm to PRODUCTION before execute",
+        )
+
+
+@app.post("/api/importer/execute")
+def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
+    _assert_production_execute_confirm(body.jira_instance_id, body.production_confirm)
+    try:
+        handoff = _resolve_importer_handoff(body)
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from None
+    except FileNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from None
+
+    try:
+        apply_importer_credential_profile(body.jira_instance_id)
+        plan = build_import_plan(
+            jira_instance_id=body.jira_instance_id,
+            mapping_path=body.mapping_path,
+            folder_path=body.folder_path,
+            create_folder_if_missing=body.create_folder_if_missing,
+            handoff=handoff,
+            project_key_override=body.project_key_override,
+            skip_requirement_link=body.skip_requirement_link,
+            reviewer_gate_acknowledged=body.reviewer_gate_acknowledged,
+            jira_instance_id_for_resolve=body.jira_instance_id,
+        )
+        with db() as conn:
+            attach_existing_xray_keys(conn, body.creator_run_id or handoff.get("creator_run_id"), plan)
+        if not plan.get("credentials", {}).get("execute_ready"):
+            raise HTTPException(
+                400,
+                "Import plan is not execute-ready — fix validation, credentials, gate acknowledgement, or mapping conflict",
+            )
+        map_path = body.mapping_path or plan["mapping"]["path"]
+        if body.payload_path:
+            batch_path = Path(body.payload_path)
+            if not batch_path.is_absolute():
+                batch_path = (docs_repo_root() / batch_path).resolve()
+        elif body.creator_run_id:
+            batch_path = EXPORT_ROOT / "creator" / body.creator_run_id / "importer-payload.json"
+        else:
+            raise HTTPException(400, "payload_path or creator_run_id required for execute")
+
+        summary = run_batch_execute(
+            plan=plan,
+            handoff=handoff,
+            batch_path=batch_path,
+            mapping_path=map_path,
+            skip_requirement_link=body.skip_requirement_link,
+        )
+        persist: dict[str, Any] | None = None
+        creator_run_id = body.creator_run_id or handoff.get("creator_run_id")
+        if creator_run_id and summary.get("report_dir"):
+            with db() as conn:
+                persist = apply_xray_reports(conn, creator_run_id, Path(summary["report_dir"]))
+                record_event(
+                    conn,
+                    "importer_execute",
+                    "creator_run",
+                    creator_run_id,
+                    None,
+                    {
+                        "created": summary.get("created"),
+                        "failed": summary.get("failed"),
+                        "report_dir": summary.get("report_dir"),
+                    },
+                )
+        return {**summary, "persist": persist, "plan_summary": plan.get("summary")}
+    except KeyError as exc:
+        raise HTTPException(400, str(exc)) from None
+    except FileNotFoundError as exc:
+        raise HTTPException(404, str(exc)) from None
+    except HTTPException:
+        raise
+    except Exception as exc:  # noqa: BLE001 — surface Xray/Jira errors to operator
+        raise HTTPException(500, str(exc)) from exc
+
+
+@app.get("/api/importer/defaults")
+def importer_defaults(
+    creator_run_id: str | None = None,
+    payload_path: str | None = None,
+) -> dict[str, Any]:
+    try:
+        handoff = _resolve_importer_handoff(
+            ImporterPlanBody(
+                jira_instance_id="appfire-production",
+                folder_path="/",
+                creator_run_id=creator_run_id,
+                payload_path=payload_path,
+            )
+        )
+    except HTTPException:
+        raise
+    except (ValueError, FileNotFoundError) as exc:
+        raise HTTPException(400, str(exc)) from exc
+    return importer_defaults_for_handoff(handoff)
+
+
+@app.post("/api/importer/record-results")
+def importer_record_results(body: ImporterRecordResultsBody) -> dict[str, Any]:
+    """Persist Xray keys from import report JSON (file, folder, or inline list)."""
+    reports: list[dict[str, Any]] = []
+    if body.report_path:
+        try:
+            path = resolve_report_path(body.report_path)
+            reports = load_reports_from_path(path)
+        except FileNotFoundError as exc:
+            raise HTTPException(404, str(exc)) from exc
+    if body.results:
+        for item in body.results:
+            reports.append(
+                {
+                    "draft_id": item.get("draft_id"),
+                    "xray_key": item.get("xray_test_key") or item.get("xray_key"),
+                    "errors": item.get("errors"),
+                }
+            )
+    if not reports:
+        raise HTTPException(400, "Provide report_path or results")
+    with db() as conn:
+        run = conn.execute(
+            "SELECT id FROM creator_run WHERE id = ?", (body.creator_run_id,)
+        ).fetchone()
+        if not run:
+            raise HTTPException(404, "Creator run not found")
+        return apply_xray_reports(conn, body.creator_run_id, reports)
+
+
+@app.get("/api/telemetry/rejection-reasons")
+def telemetry_rejection_reasons() -> dict[str, Any]:
+    return {
+        "reasons": [
+            {"id": r, "label": REJECTION_REASON_LABELS[r]} for r in REJECTION_REASONS
+        ]
+    }
+
+
+@app.get("/api/telemetry/summary")
+def telemetry_summary() -> dict[str, Any]:
+    with db() as conn:
+        return mateusz_summary(conn)
+
+
+@app.get("/api/telemetry/events")
+def telemetry_events(limit: int = 500) -> dict[str, Any]:
+    cap = min(max(limit, 1), 5000)
+    with db() as conn:
+        rows = conn.execute(
+            """
+            SELECT id, pipeline_run_id, entity_type, entity_id, event_type, payload_json, created_at
+            FROM metric_event ORDER BY id DESC LIMIT ?
+            """,
+            (cap,),
+        ).fetchall()
+    return {"events": [row_to_dict(r) for r in rows]}
+
+
+@app.get("/api/telemetry/export")
+def telemetry_export() -> dict[str, Any]:
+    """Single JSON bundle for scorecard / evidence (local; copy before BigQuery exists)."""
+    with db() as conn:
+        summary = mateusz_summary(conn)
+        rows = conn.execute(
+            """
+            SELECT id, pipeline_run_id, entity_type, entity_id, event_type, payload_json, created_at
+            FROM metric_event ORDER BY id ASC
+            """
+        ).fetchall()
+        outbox_pending = conn.execute(
+            "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
+        ).fetchone()[0]
+    return {
+        "exported_at": utc_now(),
+        "summary": summary,
+        "metric_events": [row_to_dict(r) for r in rows],
+        "telemetry_outbox_pending": outbox_pending,
+    }
+
+
+@app.post("/api/telemetry/flush")
+def telemetry_flush() -> dict[str, Any]:
+    with db() as conn:
+        return flush_outbox(conn)
 
 
 STATIC_FALLBACK = Path(__file__).resolve().parent / "static"

@@ -1,0 +1,73 @@
+{
+  "test": {
+    "key": "TC-99005",
+    "issue_id": "99005",
+    "url": "https://example.invalid/browse/TC-99005",
+    "summary": "Feature flag off hides capability from navigation and API",
+    "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+    "status": "Reference",
+    "priority": "High",
+    "assignee": "",
+    "reporter": "Trinity Creator",
+    "created": "2026-10-12T10:29:35.225244+00:00",
+    "updated": "2026-10-12T10:29:35.225244+00:00",
+    "labels": [
+      "neutral-golden",
+      "journey"
+    ],
+    "test_type": "Manual",
+    "folder": "/Neutral/Feature flags",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Disable target feature flag in staging",
+        "data": "flag: example.feature.enabled = off",
+        "result": "Flag saved"
+      },
+      {
+        "step": 2,
+        "action": "Refresh application as standard user",
+        "data": "",
+        "result": "Capability menu entry is not shown"
+      },
+      {
+        "step": 3,
+        "action": "Enable flag and refresh",
+        "data": "flag: on",
+        "result": "Capability entry appears"
+      },
+      {
+        "step": 4,
+        "action": "Smoke-check primary action once enabled",
+        "data": "",
+        "result": "Happy path loads without error"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 4
+  },
+  "rag": {
+    "id": "TC-99005",
+    "text": "Test: TC-99005 — Feature flag off hides capability from navigation and API\nPriority: High | Status: Reference | Type: Manual\nFolder: /Neutral/Feature flags\nLabels: neutral-golden, journey\n\nSteps:\n1. Disable target feature flag in staging\n   Data: flag: example.feature.enabled = off\n   Expected: Flag saved\n2. Refresh application as standard user\n   Expected: Capability menu entry is not shown\n3. Enable flag and refresh\n   Data: flag: on\n   Expected: Capability entry appears\n4. Smoke-check primary action once enabled\n   Expected: Happy path loads without error",
+    "metadata": {
+      "jira_key": "TC-99005",
+      "issue_id": "99005",
+      "summary": "Feature flag off hides capability from navigation and API",
+      "priority": "High",
+      "status": "Reference",
+      "test_type": "Manual",
+      "folder": "/Neutral/Feature flags",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "step_count": 4,
+      "filter_id": "neutral",
+      "filter_name": "Neutral manual journeys",
+      "source": "trinity_neutral_golden_builder"
+    }
+  }
+}

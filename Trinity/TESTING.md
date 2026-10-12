@@ -122,7 +122,19 @@ After **Send to Creator** from Studio (or manual):
 
 ---
 
-## 4. End-to-end checklist (~30 min)
+## 4. Importer (Studio)
+
+Full steps: **[`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)** (instance, mapping, **project key override**, folder, `project.id` resolution, production confirm, Execute batch).
+
+Quick check:
+
+1. Creator run → **Export for Importer**.
+2. **Importer** tab → select instance + mapping → set **Jira project for new Tests** if not TC.
+3. **Preview import plan** → **Execute import batch** or copy Cursor prompt (includes PM summary + coverage matrix when batch has `coverage_report`).
+
+---
+
+## 5. End-to-end checklist (~30 min)
 
 | Step | Pass? |
 |------|--------|
@@ -134,10 +146,11 @@ After **Send to Creator** from Studio (or manual):
 | Import `demo-story.suite.json` in Creator tab | ☐ |
 | Approve + mark for Xray → Export for Importer | ☐ |
 | `importer-payload.json` exists under `studio/data/exports/creator/` | ☐ |
+| Importer plan + optional **Execute import batch** (or CLI) | ☐ |
 
 ---
 
-## 5. Troubleshooting
+## 6. Troubleshooting
 
 | Issue | Fix |
 |-------|-----|
@@ -148,10 +161,8 @@ After **Send to Creator** from Studio (or manual):
 | Creator skill not found | Re-run `install-trinity-skills.sh`; restart Cursor |
 | Old schema / missing columns | Delete `qa-studio.db` and re-import batches |
 
----
+## 7. What is not wired yet
 
-## 6. What is not wired yet
-
-- **Importer** — Studio **Preview import plan** + **Copy Cursor prompt**; production execute via `Trinity/importer/scripts/xray_graphql_import.py` (sandbox Xray keys: TBD in `.env`).
+- **Studio Execute button** for batch Xray submit (CLI + Cursor prompt today).
 - **Studio** does not run Reviewer/Creator agents (Cursor only).
 - **Suite HTML** report renderer for Creator batches (Markdown only).

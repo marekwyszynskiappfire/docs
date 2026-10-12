@@ -5,6 +5,26 @@ from __future__ import annotations
 from typing import Any
 
 
+def build_pm_safe_summary(plan: dict[str, Any]) -> str:
+    """PQ-02: non-technical summary for stakeholders."""
+    handoff = plan.get("handoff") or {}
+    summary = plan.get("summary") or {}
+    inst = plan.get("jira_instance") or {}
+    target = plan.get("target") or {}
+    gate = plan.get("reviewer_gate") or {}
+    req = (plan.get("importer_defaults") or {}).get("primary_requirement_key") or "the requirement"
+    count = summary.get("valid", 0)
+    site = (inst.get("jira_site") or "").replace("https://", "").split("/")[0]
+    gate_note = ""
+    if gate.get("requires_acknowledgement"):
+        gate_note = " Review noted open clarification items; QA acknowledged before import."
+    return (
+        f"For {req}, the team prepared {count} manual test scenario(s) in the QA test library "
+        f"({plan.get('project_key', 'TC')} on {site or 'Jira'}), folder “{target.get('folder_path', '')}”. "
+        f"Tests were AI-assisted and human-reviewed before upload.{gate_note}"
+    )
+
+
 def build_importer_cursor_prompt(
     plan: dict[str, Any],
     *,
@@ -53,9 +73,21 @@ def build_importer_cursor_prompt(
         else "Folder must exist; `createTest` with `folderPath` only."
     )
 
+    pm_summary = plan.get("pm_safe_summary") or build_pm_safe_summary(plan)
+    preflight = plan.get("export_preflight_warnings") or []
+    preflight_block = ""
+    if preflight:
+        preflight_block = "\n### Export preflight (warnings)\n\n" + "\n".join(
+            f"- {w}" for w in preflight[:10]
+        )
+
     return f"""## Trinity Importer — execute handoff
 
 Run the **trinity-importer** skill in Cursor. Studio dry-run plan is **validated**; your job is **execute** (or single-test CLI dry-run first if you want extra safety).
+
+### Summary for stakeholders (PM-safe)
+
+{pm_summary}
 
 ### Operator target
 
@@ -86,11 +118,15 @@ Run the **trinity-importer** skill in Cursor. Studio dry-run plan is **validated
 
 {test_lines or "- (none)"}
 
+### Epic coverage matrix (from Creator batch)
+
+{plan.get("coverage_matrix_markdown") or "_Not available — re-export Importer handoff after batch import._"}
+
 ### Execute (agent)
 
 1. Confirm operator selected **{inst.get("label")}** intentionally ({inst.get("risk_tier")}).
 2. Load mapping `{map_path}`; ensure `project.id` is set if `create_folder_if_missing` is true.
-3. For each valid `draft_id`, run import (when Studio Execute ships) or CLI:
+3. Prefer **Studio → Execute import batch** when `execute_ready`, or CLI per test:
 
 ```bash
 export XRAY_INSECURE_SSL=1   # if needed

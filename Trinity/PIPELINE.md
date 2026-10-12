@@ -20,7 +20,7 @@ flowchart LR
 
 ## 1. Configure the program
 
-1. **Persona** — edit `Trinity/personas/reviewer-expert-qa-automation.md` (Studio → **Personas**) if needed.
+1. **Persona** — edit `Trinity/personas/reviewer-expert-qa-automation.md` (Studio → **Personas**) if needed; audience map: [`personas/P1-P10.md`](personas/P1-P10.md).
 2. **Portfolio run config** — Studio → **Reviewer configs** (or interview in Cursor). Saves `Trinity/reviewer/config/runs/{portfolio_id}.json`.
 3. **Copy Cursor prompt** from Studio → paste into Cursor → run **trinity-reviewer**.
 
@@ -46,7 +46,7 @@ Dashboard lists the pipeline run. Open the run to review epics.
 2. Run **trinity-creator** in Cursor — **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
 3. Import `suite-payload.json` in Studio → **Creator**.
 4. Operator: edit → approve or reject; mark **fit for Xray import**; **Export for Importer** → `studio/data/exports/creator/{run}/importer-payload.json`.
-5. **Importer** (Studio): choose **production vs sandbox** Jira, mapping config, Test Repository **folder** (+ optional **create folder**); **Preview import plan**; Execute to Xray (batch submit next).
+5. **Importer** (Studio): instance, mapping, **[project key override](GUIDE.md#6-importer-studio--xray)** (default TC), folder → **Preview import plan** → **Execute import batch** or Cursor prompt ([`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)).
 
 Each draft includes `automation_fit`, `automation_blockers`, and `persona_notes` (QA / architect / automation).
 

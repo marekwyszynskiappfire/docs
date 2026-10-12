@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS test_case_row (
   current_revision_id INTEGER,
   xray_test_key TEXT,
   import_status TEXT,
+  rejection_reason TEXT,
   updated_at TEXT NOT NULL,
   UNIQUE (creator_run_id, draft_id)
 );
@@ -102,6 +103,14 @@ CREATE TABLE IF NOT EXISTS metric_event (
   event_type TEXT NOT NULL,
   payload_json TEXT,
   created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS telemetry_outbox (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  event_json TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  sent_at TEXT,
+  last_error TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_review_unit_run ON review_unit(pipeline_run_id);

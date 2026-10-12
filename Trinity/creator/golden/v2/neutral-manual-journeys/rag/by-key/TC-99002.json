@@ -1,0 +1,79 @@
+{
+  "test": {
+    "key": "TC-99002",
+    "issue_id": "99002",
+    "url": "https://example.invalid/browse/TC-99002",
+    "summary": "Journey — Text custom field visible across parent and child records",
+    "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+    "status": "Reference",
+    "priority": "High",
+    "assignee": "",
+    "reporter": "Trinity Creator",
+    "created": "2026-10-12T10:29:35.225244+00:00",
+    "updated": "2026-10-12T10:29:35.225244+00:00",
+    "labels": [
+      "neutral-golden",
+      "journey"
+    ],
+    "test_type": "Manual",
+    "folder": "/Neutral/Journey - Field propagation",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Ensure a Text custom field exists for the workspace",
+        "data": "fieldName: Journey Text",
+        "result": "Field listed as active"
+      },
+      {
+        "step": 2,
+        "action": "Create parent record with Text value",
+        "data": "value: Parent-1",
+        "result": "Parent saved; Text shown in panel"
+      },
+      {
+        "step": 3,
+        "action": "Create child record under parent",
+        "data": "",
+        "result": "Child create form shows Text default Not set"
+      },
+      {
+        "step": 4,
+        "action": "Set Text on child and save",
+        "data": "value: Child-1",
+        "result": "Child visible; Text correct in tree and panel"
+      },
+      {
+        "step": 5,
+        "action": "Open parent detail **Info** section",
+        "data": "",
+        "result": "Parent Text value unchanged and correct"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 5
+  },
+  "rag": {
+    "id": "TC-99002",
+    "text": "Test: TC-99002 — Journey — Text custom field visible across parent and child records\nPriority: High | Status: Reference | Type: Manual\nFolder: /Neutral/Journey - Field propagation\nLabels: neutral-golden, journey\n\nSteps:\n1. Ensure a Text custom field exists for the workspace\n   Data: fieldName: Journey Text\n   Expected: Field listed as active\n2. Create parent record with Text value\n   Data: value: Parent-1\n   Expected: Parent saved; Text shown in panel\n3. Create child record under parent\n   Expected: Child create form shows Text default Not set\n4. Set Text on child and save\n   Data: value: Child-1\n   Expected: Child visible; Text correct in tree and panel\n5. Open parent detail **Info** section\n   Expected: Parent Text value unchanged and correct",
+    "metadata": {
+      "jira_key": "TC-99002",
+      "issue_id": "99002",
+      "summary": "Journey — Text custom field visible across parent and child records",
+      "priority": "High",
+      "status": "Reference",
+      "test_type": "Manual",
+      "folder": "/Neutral/Journey - Field propagation",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "step_count": 5,
+      "filter_id": "neutral",
+      "filter_name": "Neutral manual journeys",
+      "source": "trinity_neutral_golden_builder"
+    }
+  }
+}

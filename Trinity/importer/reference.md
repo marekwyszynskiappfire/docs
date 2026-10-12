@@ -22,8 +22,10 @@ Studio export: `Trinity/studio/data/exports/creator/{creator_run_id}/importer-pa
 
 | Section | Purpose |
 |---------|---------|
-| `project.key` | Jira project for Tests |
+| `project.key` | Default Jira project for Tests (overridable in Studio or `--project` on CLI) |
 | `project.id` | Numeric id — **required** for `createFolder` when `create_folder_if_missing` |
+
+Default **TC** in shipped mappings reflects Appfire QA + golden export filter 17844, not Creator output. See [GUIDE.md §5](../GUIDE.md#5-importer-why-tc-by-default-choosing-another-project).
 | `defaults.folder_path` | Suggested default in UI only |
 | `defaults.jira_required_fields` | Custom fields on create (site-specific IDs) |
 | `jira.site_url` | Must match selected instance |
@@ -46,7 +48,8 @@ Normalize paths with a leading `/` (Studio and `normalize_folder_path` in script
 |--------|------|
 | GET | `/api/importer/instances` |
 | GET | `/api/importer/mappings` |
-| POST | `/api/importer/plan` — body: `jira_instance_id`, `folder_path`, `create_folder_if_missing`, optional `mapping_path`, `creator_run_id` or `payload_path` |
+| GET | `/api/importer/jira-projects?jira_instance_id=&mapping_path=` — Jira project picker (needs `JIRA_*` in `.env`) |
+| POST | `/api/importer/plan` — body: `jira_instance_id`, `folder_path`, `create_folder_if_missing`, optional `mapping_path`, `project_key_override`, `creator_run_id` or `payload_path` |
 
 Response `mode`: `dry_run_plan` — no Xray calls.
 

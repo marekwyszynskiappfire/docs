@@ -113,6 +113,7 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 |------|---------|
 | `suite-payload.json` | Studio import |
 | `suite-report.md` | Human suite (**D21**) |
+| `suite-report/` | Profile B HTML (faceted table + steps) — Studio export or `scripts/build_suite_report.py` |
 
 7. **Handoff** — Studio → Creator → import batch → operator **approve/reject** and mark **fit for Xray import** (Phase 2 UI). **Importer** submits to Xray.
 

@@ -14,8 +14,11 @@ export default function App() {
   return (
     <div className="layout">
       <header className="app-header">
-        <h1>Trinity Studio</h1>
-        <nav>
+        <div className="brand">
+          <h1>Trinity Studio</h1>
+          <p className="brand-tagline">Reviewer → Creator → Importer</p>
+        </div>
+        <nav className="app-nav">
           <NavLink to="/" end className={({ isActive }) => (isActive ? "active" : "")}>
             Dashboard
           </NavLink>

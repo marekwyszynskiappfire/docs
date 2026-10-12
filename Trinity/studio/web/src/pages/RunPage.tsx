@@ -87,6 +87,20 @@ export default function RunPage() {
     await reload();
   };
 
+  const gateClass = (gate: string | null) => {
+    const g = (gate || "").toUpperCase();
+    if (g.includes("GREEN") || g === "PASS") return "badge ok";
+    if (g.includes("AMBER") || g.includes("WARN")) return "badge sev-med";
+    if (g.includes("RED") || g.includes("BLOCK")) return "badge sev-high";
+    return "badge";
+  };
+
+  const fitClass = (fit: string | null) => {
+    if (fit === "not_fit") return "badge sev-high";
+    if (fit === "fit" || fit === "good") return "badge ok";
+    return "badge sev-low";
+  };
+
   if (!runId) return null;
 
   return (
@@ -204,8 +218,12 @@ export default function RunPage() {
                   <strong>{u.jira_key}</strong>
                   <div className="muted">{u.summary}</div>
                 </td>
-                <td>{u.gate_status}</td>
-                <td>{u.qa_planning_fit ?? "—"}</td>
+                <td>
+                  <span className={gateClass(u.gate_status)}>{u.gate_status ?? "—"}</span>
+                </td>
+                <td>
+                  <span className={fitClass(u.qa_planning_fit)}>{u.qa_planning_fit ?? "—"}</span>
+                </td>
                 <td>
                   <label style={{ display: "flex", alignItems: "center", gap: "0.35rem", margin: 0 }}>
                     <input

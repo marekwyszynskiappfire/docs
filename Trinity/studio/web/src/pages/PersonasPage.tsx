@@ -61,7 +61,8 @@ export default function PersonasPage() {
       <p className="muted">
         Role prompts for Trinity skills. Files live in{" "}
         <code>Trinity/personas/</code> and are referenced from Reviewer run config (
-        <code>persona_id</code>).
+        <code>persona_id</code>). Audience matrix P1–P10: see{" "}
+        <code>Trinity/personas/P1-P10.md</code> and <code>Trinity/MANUAL.md</code> §11.
       </p>
 
       <div className="panel" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>

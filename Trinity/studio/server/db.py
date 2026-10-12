@@ -40,6 +40,23 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
         )
     if cols and "automation_fit" not in cols:
         conn.execute("ALTER TABLE test_case_row ADD COLUMN automation_fit TEXT")
+    if cols and "rejection_reason" not in cols:
+        conn.execute("ALTER TABLE test_case_row ADD COLUMN rejection_reason TEXT")
+    outbox = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='telemetry_outbox'"
+    ).fetchone()
+    if not outbox:
+        conn.execute(
+            """
+            CREATE TABLE telemetry_outbox (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              event_json TEXT NOT NULL,
+              created_at TEXT NOT NULL,
+              sent_at TEXT,
+              last_error TEXT
+            )
+            """
+        )
 
 
 def init_db() -> None:

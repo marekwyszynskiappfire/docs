@@ -80,6 +80,42 @@ export type CreatorTestRow = {
   automation_candidate?: number | null;
   marked_for_xray_import?: number | null;
   creator_run_id?: string;
+  xray_test_key?: string | null;
+  import_status?: string | null;
+};
+
+export type CoverageMatrixRow = {
+  ac_id: string;
+  jira_key?: string | null;
+  batch_status: string;
+  batch_covered_by: string[];
+  approved_covered_by: string[];
+  draft_covered_by: string[];
+  review_gap: boolean;
+  gap_reason?: string | null;
+};
+
+export type CatalogCoverageRow = {
+  catalog_id: string;
+  tier: string;
+  status: string;
+  covered_by?: string[];
+  blocker?: string;
+};
+
+export type CreatorCoverage = {
+  available: boolean;
+  batch_revision?: number | null;
+  message?: string;
+  gap_count?: number;
+  uncovered_ac_ids?: string[];
+  uncovered_goals?: string[];
+  warnings?: string[];
+  catalog_coverage_pct?: number;
+  catalog_coverage?: CatalogCoverageRow[];
+  matrix?: CoverageMatrixRow[];
+  source_requirement_keys?: string[];
+  approved_ac_ids?: string[];
 };
 
 export const api = {
@@ -137,6 +173,34 @@ export const api = {
     }>(`/api/units/${unitId}/send-to-creator`, { method: "POST" }),
   creatorHandoff: (runId: string) =>
     json<Record<string, unknown>>(`/api/runs/${runId}/creator-handoff`),
+  creatorProducts: () =>
+    json<{
+      products: {
+        product_id: string;
+        name: string;
+        config_file: string;
+        golden_root: string;
+        golden_corpus_id?: string;
+        golden_title?: string;
+        golden_test_count?: number;
+        importer_default_project_key?: string;
+        importer_default_folder_template?: string;
+      }[];
+    }>("/api/creator/products"),
+  creatorGoldenCorpora: () =>
+    json<{
+      corpora: {
+        id: string;
+        title: string;
+        path: string;
+        resolved_path?: string;
+        path_exists?: boolean;
+        product_lines?: string[];
+        test_count?: number;
+        reference_jira_project?: string | null;
+        notes?: string;
+      }[];
+    }>("/api/creator/golden-corpora"),
   creatorRuns: () =>
     json<
       {
@@ -157,6 +221,7 @@ export const api = {
         rejected: number;
         ready_for_import: number;
       };
+      coverage?: CreatorCoverage;
     }>(`/api/creator-runs/${id}`),
   test: (id: string) =>
     json<{
@@ -189,17 +254,35 @@ export const api = {
   bulkTestReview: (
     runId: string,
     testIds: string[],
-    body: { human_review_status?: string; marked_for_xray_import?: boolean }
+    body: {
+      human_review_status?: string;
+      marked_for_xray_import?: boolean;
+      rejection_reason?: string;
+    }
   ) =>
-    json<{ updated: number }>(`/api/creator-runs/${runId}/bulk-test-review`, {
+    json<{ updated: number; warnings?: string[] }>(
+      `/api/creator-runs/${runId}/bulk-test-review`,
+      {
+        method: "POST",
+        body: JSON.stringify({ test_ids: testIds, ...body }),
+      }
+    ),
+  exportSuiteReport: (runId: string) =>
+    json<{
+      path: string;
+      absolute_path: string;
+      index_html: string;
+      test_count: number;
+      profile: string;
+    }>(`/api/creator-runs/${encodeURIComponent(runId)}/export-suite-report`, {
       method: "POST",
-      body: JSON.stringify({ test_ids: testIds, ...body }),
     }),
   exportForImporter: (runId: string) =>
     json<{
       path: string;
       absolute_path: string;
       test_count: number;
+      export_preflight_warnings?: string[];
       payload: Record<string, unknown>;
     }>(`/api/creator-runs/${runId}/export-for-importer`, { method: "POST" }),
   importBatch: (path: string) =>
@@ -294,6 +377,17 @@ export const api = {
         jira_site?: string;
       }[];
     }>("/api/importer/mappings"),
+  importerJiraProjects: (jiraInstanceId: string, mappingPath?: string, query?: string) => {
+    const params = new URLSearchParams({ jira_instance_id: jiraInstanceId });
+    if (mappingPath) params.set("mapping_path", mappingPath);
+    if (query) params.set("query", query);
+    return json<{
+      status: string;
+      jira_site?: string;
+      projects: { key: string; id: string; name: string }[];
+      message?: string;
+    }>(`/api/importer/jira-projects?${params}`);
+  },
   importerPlan: (body: {
     jira_instance_id: string;
     folder_path: string;
@@ -303,7 +397,41 @@ export const api = {
     payload_path?: string | null;
     creator_run_id?: string | null;
     skip_requirement_link?: boolean;
+    reviewer_gate_acknowledged?: boolean;
   }) => json<ImporterPlanResult>("/api/importer/plan", { method: "POST", body: JSON.stringify(body) }),
+  telemetryRejectionReasons: () =>
+    json<{ reasons: { id: string; label: string }[] }>("/api/telemetry/rejection-reasons"),
+  telemetrySummary: () => json<Record<string, unknown>>("/api/telemetry/summary"),
+  importerExecute: (body: {
+    jira_instance_id: string;
+    folder_path: string;
+    create_folder_if_missing: boolean;
+    mapping_path?: string | null;
+    project_key_override?: string | null;
+    payload_path?: string | null;
+    creator_run_id?: string | null;
+    skip_requirement_link?: boolean;
+    reviewer_gate_acknowledged?: boolean;
+    production_confirm?: string;
+  }) =>
+    json<{
+      status: string;
+      created: number;
+      failed: number;
+      total: number;
+      report_dir: string;
+      results: { draft_id: string; action?: string; xray_key?: string | null }[];
+      persist?: { updated: number; skipped: number };
+    }>("/api/importer/execute", { method: "POST", body: JSON.stringify(body) }),
+  recordImporterResults: (body: {
+    creator_run_id: string;
+    report_path?: string | null;
+    results?: { draft_id: string; xray_test_key?: string; xray_key?: string }[];
+  }) =>
+    json<{ updated: number; skipped: number; details: unknown[] }>(
+      "/api/importer/record-results",
+      { method: "POST", body: JSON.stringify(body) }
+    ),
 };
 
 export type ImporterPlanResult = {
@@ -325,6 +453,27 @@ export type ImporterPlanResult = {
     create_folder_mutation?: { mutation: string; variables: Record<string, unknown> } | null;
   };
   project_key: string;
+  project_resolution?: {
+    project_key?: string;
+    project_id?: string;
+    project_name?: string;
+    mapping_file_project_id?: string | null;
+    mapping_conflict?: boolean;
+    resolve_error?: string;
+    resolved_via?: string;
+  };
+  reviewer_gate?: {
+    linked?: boolean;
+    requires_acknowledgement?: boolean;
+    level?: string;
+    messages?: string[];
+    gate_status?: string | null;
+    review_ref_path?: string;
+  };
+  reviewer_gate_acknowledged?: boolean;
+  pm_safe_summary?: string;
+  export_preflight_warnings?: string[];
+  importer_defaults?: Record<string, unknown>;
   credentials: {
     xray_client_id: boolean;
     xray_client_secret: boolean;

@@ -1,0 +1,67 @@
+{
+  "test": {
+    "key": "TC-99004",
+    "issue_id": "99004",
+    "url": "https://example.invalid/browse/TC-99004",
+    "summary": "Standard user cannot access admin-only settings",
+    "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+    "status": "Reference",
+    "priority": "High",
+    "assignee": "",
+    "reporter": "Trinity Creator",
+    "created": "2026-10-12T10:29:35.225244+00:00",
+    "updated": "2026-10-12T10:29:35.225244+00:00",
+    "labels": [
+      "neutral-golden",
+      "journey"
+    ],
+    "test_type": "Manual",
+    "folder": "/Neutral/Security - Permissions",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Log in as user without admin role",
+        "data": "role: Standard user",
+        "result": "Home loads successfully"
+      },
+      {
+        "step": 2,
+        "action": "Attempt direct URL to admin settings",
+        "data": "",
+        "result": "Access denied or redirect per product policy"
+      },
+      {
+        "step": 3,
+        "action": "Confirm admin navigation entry is hidden",
+        "data": "",
+        "result": "No admin settings link in primary navigation"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 3
+  },
+  "rag": {
+    "id": "TC-99004",
+    "text": "Test: TC-99004 — Standard user cannot access admin-only settings\nPriority: High | Status: Reference | Type: Manual\nFolder: /Neutral/Security - Permissions\nLabels: neutral-golden, journey\n\nSteps:\n1. Log in as user without admin role\n   Data: role: Standard user\n   Expected: Home loads successfully\n2. Attempt direct URL to admin settings\n   Expected: Access denied or redirect per product policy\n3. Confirm admin navigation entry is hidden\n   Expected: No admin settings link in primary navigation",
+    "metadata": {
+      "jira_key": "TC-99004",
+      "issue_id": "99004",
+      "summary": "Standard user cannot access admin-only settings",
+      "priority": "High",
+      "status": "Reference",
+      "test_type": "Manual",
+      "folder": "/Neutral/Security - Permissions",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "step_count": 3,
+      "filter_id": "neutral",
+      "filter_name": "Neutral manual journeys",
+      "source": "trinity_neutral_golden_builder"
+    }
+  }
+}

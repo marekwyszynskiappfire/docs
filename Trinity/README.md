@@ -2,21 +2,20 @@
 
 **Trinity** combines three Cursor Agent skills — **Reviewer**, **Creator**, and **Importer** — with **Trinity Studio**, the local workbench for human QA review, approvals, and handoff.
 
-Start here for install, preflight, and the full operator manual.
+Start here for install. **Full operator guide:** [`GUIDE.md`](GUIDE.md) (architecture, checkout steps, golden exports, Importer project choice).
 
-## Quick start
+## Getting Started
+
+**New operators:** read **[`GUIDE.md` → Getting Started](GUIDE.md#getting-started)** (15‑min demo, credentials, Importer **project selector**, golden exports).
 
 ```bash
-# 1. Install skills into Cursor (from repo root)
 ./Trinity/scripts/install-trinity-skills.sh
-
-# 2. Start Trinity Studio
 ./Trinity/studio/scripts/start.sh
 ```
 
-Open **http://127.0.0.1:5173** (UI) · API **http://127.0.0.1:8765**
+Open **http://127.0.0.1:5173** · API **http://127.0.0.1:8765/api/health**
 
-**Hands-on test path:** [`TESTING.md`](TESTING.md) (Reviewer → Studio → Creator).
+Validate: [`TESTING.md`](TESTING.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md)
 
 Import a Reviewer run (example):
 
@@ -33,16 +32,20 @@ Import a Reviewer run (example):
 | [`importer/`](importer/) | Approved suites → Xray (instance + folder targeting; dry-run in Studio) |
 | [`studio/`](studio/) | Trinity Studio — FastAPI + React, SQLite revisions |
 | [`shared/`](shared/) | HTML report guidelines (Profile A/B) |
-| [`personas/`](personas/) | Editable Reviewer/Creator/Importer role prompts |
+| [`personas/`](personas/) | Runtime prompts + [`personas/P1-P10.md`](personas/P1-P10.md) operator matrix |
 | [`scripts/`](scripts/) | `install-trinity-skills.sh` |
 
 ## Documentation
 
 | Doc | Purpose |
 |-----|---------|
+| **[GUIDE.md](GUIDE.md)** | **Getting Started, prerequisites, golden, Importer project selector** |
+| [REVIEW-PRODUCT-AND-DOCS.md](REVIEW-PRODUCT-AND-DOCS.md) | Multi-persona product/doc review + open questions |
+| [NEXT-STEPS.md](NEXT-STEPS.md) | Post-P2: grill, doc cleanup, UI, Mateusz closure |
 | [PREFLIGHT.md](PREFLIGHT.md) | MCP, skills, health checks |
-| [MANUAL.md](MANUAL.md) | Operator guide (Reviewer interview, Studio personas/configs) |
-| [PIPELINE.md](PIPELINE.md) | End-to-end Reviewer → Studio → Creator |
+| [TESTING.md](TESTING.md) | Hands-on validation checklist |
+| [MANUAL.md](MANUAL.md) | Reviewer interview, Studio personas/configs |
+| [PIPELINE.md](PIPELINE.md) | End-to-end Reviewer → Studio → Creator → Importer |
 | [CONTRACTS.md](CONTRACTS.md) | Payload and handoff contracts |
 | [parity-matrix.md](parity-matrix.md) | Studio vs Reviewer HTML (Phase 0 stub) |
 

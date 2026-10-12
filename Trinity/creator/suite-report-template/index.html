@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Creator test suite</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#report-table">Skip to table</a>
+  <header class="page-header">
+    <h1 id="page-title">Creator test suite</h1>
+    <p class="meta" id="meta-line"></p>
+  </header>
+
+  <section class="note" aria-labelledby="note-heading">
+    <h2 id="note-heading" class="visually-hidden">How to read this report</h2>
+    <p id="note-body"></p>
+  </section>
+
+  <section aria-labelledby="filters-heading">
+    <div class="filters-bar">
+      <h2 id="filters-heading">Filters</h2>
+      <p class="filters-hint">Combine filters (AND). Counts update for the current selection.</p>
+      <button type="button" class="btn btn-ghost" id="clearFilters" disabled>Clear all filters</button>
+    </div>
+    <div class="active-filters" id="activeFilters" hidden>
+      <span class="active-filters-label">Active:</span>
+      <ul id="activeFilterList" class="active-filter-list"></ul>
+    </div>
+    <div class="cards" id="filterCards" role="group" aria-label="Facet filters"></div>
+    <div class="stats" id="statCards" aria-label="Totals for current filter"></div>
+  </section>
+
+  <section class="toolbar-section" aria-labelledby="search-heading">
+    <label for="textFilter" id="search-heading">Search within results</label>
+    <div class="toolbar">
+      <input id="textFilter" type="search" placeholder="Draft id, title, requirement keys, AC ids…" autocomplete="off" spellcheck="false">
+    </div>
+    <p class="result-summary" id="resultSummary" aria-live="polite"></p>
+  </section>
+
+  <div class="table-wrap">
+    <table id="report-table">
+      <thead id="tableHead"></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <section class="step-panels" id="stepPanels" aria-labelledby="steps-heading">
+    <h2 id="steps-heading">Steps (filtered tests)</h2>
+    <div id="stepPanelsBody"></div>
+  </section>
+
+  <footer class="page-footer">
+    <p>Profile B — zip this folder and open <code>index.html</code> (no CDN; works on <code>file://</code>).</p>
+  </footer>
+
+  <script src="data/report-data.js"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

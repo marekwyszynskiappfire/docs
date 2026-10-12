@@ -38,6 +38,15 @@ from pathlib import Path
 from typing import Any
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+TRINITY_ROOT = SCRIPT_DIR.parent.parent
+_SHARED = TRINITY_ROOT / "shared"
+if str(_SHARED) not in sys.path:
+    sys.path.insert(0, str(_SHARED))
+from validate_for_xray import (  # noqa: E402
+    enrich_test_for_xray_import as enrich_test_for_import,
+    validate_test,
+)
+
 DEFAULT_CONFIG = SCRIPT_DIR.parent / "config" / "mappings" / "appfire-production.json"
 
 CREATE_FOLDER_MUTATION = """
@@ -137,20 +146,6 @@ def urlopen(req: urllib.request.Request, *, timeout: int = 120):
     return urllib.request.urlopen(req, timeout=timeout, context=ssl_context())
 
 
-REQUIRED_TEST_FIELDS = (
-    "title",
-    "linked_requirement_keys",
-    "steps",
-    "coverage_catalog_id",
-    "execution_tier",
-    "test_pattern",
-    "role",
-    "customer_impact",
-    "test_data_required",
-    "test_data_prerequisites",
-)
-
-
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -159,22 +154,6 @@ def load_config(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"Mapping config not found: {path}")
     return load_json(path)
-
-
-_VALID_XRAY_TEST_TYPES = frozenset({"Manual", "Automated", "Generic", "Cucumber"})
-
-
-def enrich_test_for_import(test: dict[str, Any]) -> dict[str, Any]:
-    out = dict(test)
-    linked_ac = out.get("linked_ac_ids") or []
-    if not out.get("coverage_catalog_id"):
-        out["coverage_catalog_id"] = str(linked_ac[0]) if linked_ac else "TRINITY-IMPORT"
-    test_type = (out.get("test_type") or "").strip()
-    if test_type and test_type not in _VALID_XRAY_TEST_TYPES:
-        out["test_type"] = "Manual"
-    elif test_type == "Generic":
-        out["test_type"] = "Manual"
-    return out
 
 
 def find_test(batch: dict[str, Any], draft_id: str) -> dict[str, Any]:
@@ -239,30 +218,6 @@ def map_steps(test: dict[str, Any]) -> list[dict[str, str]]:
             step["data"] = data
         steps.append(step)
     return steps
-
-
-def validate_test(test: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
-    for field in REQUIRED_TEST_FIELDS:
-        if field not in test:
-            errors.append(f"Missing required field: {field}")
-    if not test.get("title", "").strip():
-        errors.append("title is empty")
-    if not test.get("linked_requirement_keys"):
-        errors.append("linked_requirement_keys must be non-empty")
-    steps = test.get("steps", [])
-    if not steps:
-        errors.append("steps must be non-empty")
-    pattern = test.get("test_pattern")
-    max_steps = 18 if pattern == "journey" else 13
-    if len(steps) > max_steps:
-        errors.append(f"step count {len(steps)} exceeds max {max_steps} for pattern {pattern}")
-    for i, step in enumerate(steps, 1):
-        if not step.get("step", "").strip():
-            errors.append(f"step {i}: action is empty")
-        if not step.get("expected_result", "").strip():
-            errors.append(f"step {i}: expected_result is empty")
-    return errors
 
 
 def build_create_variables(
@@ -546,6 +501,119 @@ def write_report(
     return json_path, md_path
 
 
+def execute_create_folder(
+    config: dict[str, Any],
+    folder_path: str,
+    token: str,
+) -> dict[str, Any]:
+    project_id = (config.get("project") or {}).get("id")
+    if not project_id:
+        raise RuntimeError("project.id required in mapping for createFolder")
+    norm_folder = normalize_folder_path(folder_path)
+    return graphql_request(
+        config,
+        token,
+        CREATE_FOLDER_MUTATION,
+        {"projectId": str(project_id), "path": norm_folder},
+    )
+
+
+def execute_single_test_import(
+    *,
+    config: dict[str, Any],
+    batch: dict[str, Any],
+    draft_id: str,
+    project_key: str,
+    folder_path: str,
+    output_dir: Path,
+    skip_requirement_link: bool,
+    token: str,
+) -> dict[str, Any]:
+    """Create one Xray test (execute). Writes xray-import-report.json under output_dir."""
+    started = datetime.now(timezone.utc).isoformat()
+    test = find_test(batch, draft_id)
+    validation_errors = validate_test(test)
+    variables = build_create_variables(
+        test, batch, config, project_key=project_key, folder_path=folder_path
+    )
+    output_dir.mkdir(parents=True, exist_ok=True)
+    report: dict[str, Any] = {
+        "run_id": batch.get("run_id"),
+        "draft_id": draft_id,
+        "mode": "execute",
+        "started_at": started,
+        "completed_at": None,
+        "mapping_version": config.get("version"),
+        "project_key": project_key,
+        "folder_path": folder_path,
+        "title": test["title"],
+        "step_count": len(variables["steps"]),
+        "linked_requirement_keys": test["linked_requirement_keys"],
+        "validation_errors": validation_errors,
+        "graphql_mutation": CREATE_TEST_MUTATION,
+        "graphql_variables": variables,
+        "action": "pending",
+        "xray_key": None,
+        "issue_id": None,
+        "errors": [],
+        "warnings": [],
+        "requirement_links": [],
+    }
+    if validation_errors:
+        report["action"] = "failed_validation"
+        report["completed_at"] = datetime.now(timezone.utc).isoformat()
+        write_report(output_dir, report)
+        return report
+
+    try:
+        result = graphql_request(config, token, CREATE_TEST_MUTATION, variables)
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode(errors="replace")
+        report["action"] = "failed"
+        report["errors"].append(f"HTTP {exc.code}: {body[:500]}")
+        report["completed_at"] = datetime.now(timezone.utc).isoformat()
+        write_report(output_dir, report)
+        return report
+    except Exception as exc:  # noqa: BLE001 — API/CLI boundary
+        report["action"] = "failed"
+        report["errors"].append(str(exc))
+        report["completed_at"] = datetime.now(timezone.utc).isoformat()
+        write_report(output_dir, report)
+        return report
+
+    if result.get("errors"):
+        report["action"] = "failed"
+        report["errors"] = [e.get("message", str(e)) for e in result["errors"]]
+    else:
+        data = result.get("data", {}).get("createTest", {})
+        test_node = data.get("test") or {}
+        jira = test_node.get("jira") or {}
+        report["action"] = "created"
+        report["xray_key"] = jira.get("key")
+        report["issue_id"] = test_node.get("issueId")
+        report["warnings"] = list(data.get("warnings") or [])
+
+        if report["xray_key"] and not skip_requirement_link:
+            link_results = link_requirements(
+                report["xray_key"],
+                test["linked_requirement_keys"],
+                config,
+            )
+            report["requirement_links"] = link_results
+            failed_links = [r for r in link_results if r["status"] != "linked"]
+            if failed_links:
+                report["action"] = "created_link_failed"
+                for item in failed_links:
+                    report["errors"].append(
+                        f"Link {item['test_key']} → {item['requirement_key']}: {item.get('error')}"
+                    )
+
+    report["graphql_response"] = result
+    report["completed_at"] = datetime.now(timezone.utc).isoformat()
+    write_report(output_dir, report)
+    return report
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Import TestCaseDraft to Xray Cloud via GraphQL")
     parser.add_argument("--batch", type=Path, help="Path to testcase-draft.json")
@@ -696,30 +764,22 @@ def main() -> int:
         }, indent=2))
         return 0
 
-    # Execute path
     try:
         token = authenticate(config)
         if args.create_folder:
-            project_id = (config.get("project") or {}).get("id")
-            if not project_id:
-                raise RuntimeError("project.id required in mapping for --create-folder")
-            norm_folder = normalize_folder_path(folder_path)
-            folder_result = graphql_request(
-                config,
-                token,
-                CREATE_FOLDER_MUTATION,
-                {"projectId": str(project_id), "path": norm_folder},
+            report["create_folder_response"] = execute_create_folder(
+                config, folder_path, token
             )
-            report["create_folder_response"] = folder_result
-        result = graphql_request(config, token, CREATE_TEST_MUTATION, variables)
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode(errors="replace")
-        report["action"] = "failed"
-        report["errors"].append(f"HTTP {exc.code}: {body[:500]}")
-        report["completed_at"] = datetime.now(timezone.utc).isoformat()
-        write_report(out_dir, report)
-        print(f"HTTP error: {exc.code}\n{body}", file=sys.stderr)
-        return 1
+        report = execute_single_test_import(
+            config=config,
+            batch=batch,
+            draft_id=args.draft_id,
+            project_key=project_key,
+            folder_path=folder_path,
+            output_dir=out_dir,
+            skip_requirement_link=args.skip_requirement_link,
+            token=token,
+        )
     except Exception as exc:  # noqa: BLE001 — CLI boundary
         report["action"] = "failed"
         report["errors"].append(str(exc))
@@ -728,42 +788,12 @@ def main() -> int:
         print(f"Error: {exc}", file=sys.stderr)
         return 1
 
-    if result.get("errors"):
-        report["action"] = "failed"
-        report["errors"] = [e.get("message", str(e)) for e in result["errors"]]
-    else:
-        data = result.get("data", {}).get("createTest", {})
-        test_node = data.get("test") or {}
-        jira = test_node.get("jira") or {}
-        report["action"] = "created"
-        report["xray_key"] = jira.get("key")
-        report["issue_id"] = test_node.get("issueId")
-        report["warnings"] = list(data.get("warnings") or [])
-
-        if report["xray_key"] and not args.skip_requirement_link:
-            link_results = link_requirements(
-                report["xray_key"],
-                test["linked_requirement_keys"],
-                config,
-            )
-            report["requirement_links"] = link_results
-            failed_links = [r for r in link_results if r["status"] != "linked"]
-            if failed_links:
-                report["action"] = "created_link_failed"
-                for item in failed_links:
-                    report["errors"].append(
-                        f"Link {item['test_key']} → {item['requirement_key']}: {item.get('error')}"
-                    )
-
-    report["graphql_response"] = result
-    report["completed_at"] = datetime.now(timezone.utc).isoformat()
-    json_path, md_path = write_report(out_dir, report)
+    json_path = out_dir / "xray-import-report.json"
     print(json.dumps({
         "status": report["action"],
         "xray_key": report.get("xray_key"),
         "requirement_links": report.get("requirement_links"),
         "report_json": str(json_path),
-        "report_md": str(md_path),
     }, indent=2))
     return 0 if report["action"] in ("created",) else 1
 

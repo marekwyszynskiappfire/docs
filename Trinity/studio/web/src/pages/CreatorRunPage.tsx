@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { api, CreatorTestRow } from "../api";
+import { api, CreatorCoverage, CreatorTestRow } from "../api";
+import CoverageMatrixPanel from "../components/CoverageMatrixPanel";
 
 type Filter = "all" | "pending" | "approved" | "rejected" | "ready_for_import";
 
@@ -18,6 +19,17 @@ export default function CreatorRunPage() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [exportPath, setExportPath] = useState("");
+  const [suiteReportPath, setSuiteReportPath] = useState("");
+  const [rejectReason, setRejectReason] = useState("requirements_mismatch");
+  const [rejectionReasons, setRejectionReasons] = useState<{ id: string; label: string }[]>([]);
+  const [coverage, setCoverage] = useState<CreatorCoverage | null>(null);
+
+  useEffect(() => {
+    api
+      .telemetryRejectionReasons()
+      .then((d) => setRejectionReasons(d.reasons))
+      .catch(() => {});
+  }, []);
 
   const load = useCallback(() => {
     if (!runId) return;
@@ -26,6 +38,7 @@ export default function CreatorRunPage() {
       .then((d) => {
         setTests(d.tests);
         setSummary(d.summary);
+        setCoverage(d.coverage ?? null);
       })
       .catch((e) => setError(String(e)));
   }, [runId]);
@@ -63,14 +76,28 @@ export default function CreatorRunPage() {
   const bulk = async (body: {
     human_review_status?: string;
     marked_for_xray_import?: boolean;
+    rejection_reason?: string;
   }) => {
     if (!runId || selected.size === 0) return;
     setError("");
     try {
       const res = await api.bulkTestReview(runId, [...selected], body);
-      setMessage(`Updated ${res.updated} test(s)`);
+      const warn = res.warnings?.length ? ` ${res.warnings.join(" ")}` : "";
+      setMessage(`Updated ${res.updated} test(s).${warn}`);
       setSelected(new Set());
       load();
+    } catch (e) {
+      setError(String(e));
+    }
+  };
+
+  const onSuiteReport = async () => {
+    if (!runId) return;
+    setError("");
+    try {
+      const res = await api.exportSuiteReport(runId);
+      setSuiteReportPath(res.path);
+      setMessage(`Suite report (Profile ${res.profile}): ${res.test_count} test(s) → ${res.path}`);
     } catch (e) {
       setError(String(e));
     }
@@ -82,7 +109,11 @@ export default function CreatorRunPage() {
     try {
       const res = await api.exportForImporter(runId);
       setExportPath(res.path);
-      setMessage(`Exported ${res.test_count} test(s) for Importer`);
+      const warn =
+        res.export_preflight_warnings?.length
+          ? ` Warnings: ${res.export_preflight_warnings.join("; ")}`
+          : "";
+      setMessage(`Exported ${res.test_count} test(s) for Importer.${warn}`);
     } catch (e) {
       setError(String(e));
     }
@@ -102,6 +133,14 @@ export default function CreatorRunPage() {
       </p>
       {message && <p className="muted">{message}</p>}
       {error && <p className="error">{error}</p>}
+      <CoverageMatrixPanel coverage={coverage} />
+
+      {suiteReportPath && (
+        <p className="muted">
+          Suite report: <code>{suiteReportPath}</code> — open <code>index.html</code> in that folder.
+        </p>
+      )}
+
       {exportPath && (
         <p className="muted">
           Importer payload: <code>{exportPath}</code>
@@ -132,7 +171,25 @@ export default function CreatorRunPage() {
           <button type="button" onClick={() => bulk({ human_review_status: "approved" })}>
             Approve selected
           </button>
-          <button type="button" className="secondary" onClick={() => bulk({ human_review_status: "rejected" })}>
+          <label>
+            Reject reason
+            <select
+              value={rejectReason}
+              onChange={(e) => setRejectReason(e.target.value)}
+              title="Required when rejecting"
+            >
+              {rejectionReasons.map((r) => (
+                <option key={r.id} value={r.id}>{r.label}</option>
+              ))}
+            </select>
+          </label>
+          <button
+            type="button"
+            className="secondary"
+            onClick={() =>
+              bulk({ human_review_status: "rejected", rejection_reason: rejectReason })
+            }
+          >
             Reject selected
           </button>
           <button
@@ -144,6 +201,9 @@ export default function CreatorRunPage() {
           </button>
           <button type="button" className="secondary" onClick={() => bulk({ marked_for_xray_import: false })}>
             Unmark import
+          </button>
+          <button type="button" className="secondary" onClick={onSuiteReport}>
+            Export suite report (HTML)
           </button>
           <button type="button" onClick={onExport}>
             Export for Importer
@@ -178,7 +238,10 @@ export default function CreatorRunPage() {
                 <td>{t.title}</td>
                 <td>{t.human_review_status}</td>
                 <td>{t.automation_fit ?? "—"}</td>
-                <td>{t.marked_for_xray_import ? "✓" : ""}</td>
+                <td>
+                  {t.marked_for_xray_import ? "✓" : ""}
+                  {t.xray_test_key ? ` · ${t.xray_test_key}` : ""}
+                </td>
                 <td>
                   <Link to={`/tests/${t.id}`}>Edit</Link>
                 </td>

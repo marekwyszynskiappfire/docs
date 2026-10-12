@@ -1,0 +1,73 @@
+{
+  "test": {
+    "key": "TC-99003",
+    "issue_id": "99003",
+    "url": "https://example.invalid/browse/TC-99003",
+    "summary": "Admin exports configuration list to spreadsheet for audit",
+    "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+    "status": "Reference",
+    "priority": "High",
+    "assignee": "",
+    "reporter": "Trinity Creator",
+    "created": "2026-10-12T10:29:35.225244+00:00",
+    "updated": "2026-10-12T10:29:35.225244+00:00",
+    "labels": [
+      "neutral-golden",
+      "journey"
+    ],
+    "test_type": "Manual",
+    "folder": "/Neutral/Admin - Export",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to admin configuration list",
+        "data": "",
+        "result": "Table of configurable items is displayed"
+      },
+      {
+        "step": 2,
+        "action": "Apply optional filter to a known subset",
+        "data": "filter: Active only",
+        "result": "Filtered rows match criteria"
+      },
+      {
+        "step": 3,
+        "action": "Click **Export** and choose spreadsheet format",
+        "data": "",
+        "result": "Download starts"
+      },
+      {
+        "step": 4,
+        "action": "Open file and verify headers and row count",
+        "data": "",
+        "result": "Columns match UI; row count matches filtered list"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 4
+  },
+  "rag": {
+    "id": "TC-99003",
+    "text": "Test: TC-99003 — Admin exports configuration list to spreadsheet for audit\nPriority: High | Status: Reference | Type: Manual\nFolder: /Neutral/Admin - Export\nLabels: neutral-golden, journey\n\nSteps:\n1. Navigate to admin configuration list\n   Expected: Table of configurable items is displayed\n2. Apply optional filter to a known subset\n   Data: filter: Active only\n   Expected: Filtered rows match criteria\n3. Click **Export** and choose spreadsheet format\n   Expected: Download starts\n4. Open file and verify headers and row count\n   Expected: Columns match UI; row count matches filtered list",
+    "metadata": {
+      "jira_key": "TC-99003",
+      "issue_id": "99003",
+      "summary": "Admin exports configuration list to spreadsheet for audit",
+      "priority": "High",
+      "status": "Reference",
+      "test_type": "Manual",
+      "folder": "/Neutral/Admin - Export",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "step_count": 4,
+      "filter_id": "neutral",
+      "filter_name": "Neutral manual journeys",
+      "source": "trinity_neutral_golden_builder"
+    }
+  }
+}

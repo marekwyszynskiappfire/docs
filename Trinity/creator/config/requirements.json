@@ -1,0 +1,41 @@
+{
+  "config_version": "1.0",
+  "product": {
+    "id": "requirements",
+    "name": "Requirements / SPM (non-TC import)"
+  },
+  "golden_corpus_id": "neutral-manual-journeys",
+  "golden_root": "Trinity/creator/golden/v2/neutral-manual-journeys",
+  "assets": {
+    "golden_style": "Trinity/creator/golden/v1/style-rules.md",
+    "golden_examples": "Trinity/creator/golden/v1/examples",
+    "coverage_catalog": null
+  },
+  "jira": {
+    "field_map": {
+      "acceptance_criteria": "customfield_10901",
+      "end_date": "customfield_10548",
+      "duedate": "duedate"
+    }
+  },
+  "policy": {
+    "gate_blocks_on": ["CRITICAL"],
+    "figma_policy": "link-only",
+    "jira_comment": "off",
+    "require_approval_before_write": true,
+    "suite_mode_default": "release_slice_e2e",
+    "release_slice_test_count_min": 3,
+    "release_slice_test_count_max": 5,
+    "allow_atomic": false,
+    "max_steps_per_journey": 15
+  },
+  "output": {
+    "artifacts_dir": "artifacts",
+    "report_kinds": ["md"]
+  },
+  "importer": {
+    "default_jira_project_key": "ONE",
+    "default_folder_template": "/Requirements tests/{requirement_key}",
+    "default_mapping_id": "appfire-production"
+  }
+}

@@ -8,8 +8,11 @@ Approved Creator exports → Xray on **production** or **sandbox** Jira.
 
 1. Export from Studio: Creator run → **Export for Importer**.
 2. Open **Importer** in Studio (or `./Trinity/studio/scripts/start.sh` → http://127.0.0.1:5173/importer).
-3. Select **Appfire sandbox (774)** or **production**, mapping file, folder path, and whether to **create folder**.
+3. Select **instance**, **mapping file**, **Jira project key** (where Test issues are created — defaults to `TC` from mapping; override per run), **folder path**, and whether to **create folder**.
 4. **Preview import plan** — validates payload and shows credential/folder readiness.
+5. **Copy Cursor prompt** — execute via **trinity-importer** or CLI (`--project` override).
+
+Project selector details: [GUIDE.md § Getting Started](../GUIDE.md#getting-started) and [§6](../GUIDE.md#6-importer-why-tc-by-default-choosing-another-project).
 
 ## Sandbox credentials
 

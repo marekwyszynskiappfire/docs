@@ -31,10 +31,11 @@ Switch env vars when switching instance; Studio shows which instance is selected
 ### Studio (recommended)
 
 1. Creator run → **Export for Importer**.
-2. **Importer** nav → pick instance, mapping, folder, create-folder checkbox.
-3. **Preview import plan** — validates tests and shows folder/credential readiness.
-4. **Copy Cursor prompt** — paste into Cursor to run **trinity-importer** execute handoff (same pattern as Creator / Reviewer).
-5. Execute — batch `createFolder` + `createTest` + requirement links (agent or CLI).
+2. **Importer** nav → pick instance, mapping, **Jira project for new Tests** (overrides mapping default — see [`GUIDE.md`](../GUIDE.md#6-importer-studio--xray)), folder, create-folder checkbox.
+3. **Preview import plan** — shared validation ([`shared/validate_for_xray.py`](../shared/validate_for_xray.py)); resolves **project.id** from project key via Jira REST; Reviewer soft-gate acknowledgement when needed.
+4. **Production** — type `PRODUCTION` before preview or copy prompt.
+5. **Copy Cursor prompt** — PM-safe summary + Epic **coverage matrix**; paste into Cursor to run **trinity-importer** execute handoff.
+6. **Execute import batch** in Studio (or agent/CLI) — auto-persists Xray keys when `creator_run_id` is set; reports under `xray-import-run/`.
 
 ### CLI (single test)
 

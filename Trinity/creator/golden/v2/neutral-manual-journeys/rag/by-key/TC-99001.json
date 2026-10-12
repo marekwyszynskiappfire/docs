@@ -1,0 +1,85 @@
+{
+  "test": {
+    "key": "TC-99001",
+    "issue_id": "99001",
+    "url": "https://example.invalid/browse/TC-99001",
+    "summary": "Admin journey — create Select custom field and verify in entity form",
+    "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+    "status": "Reference",
+    "priority": "High",
+    "assignee": "",
+    "reporter": "Trinity Creator",
+    "created": "2026-10-12T10:29:35.225244+00:00",
+    "updated": "2026-10-12T10:29:35.225244+00:00",
+    "labels": [
+      "neutral-golden",
+      "journey"
+    ],
+    "test_type": "Manual",
+    "folder": "/Neutral/Admin - Custom fields",
+    "unstructured": "",
+    "gherkin": "",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Navigate to **Settings → Custom fields** as product admin",
+        "data": "",
+        "result": "Custom fields page opens with list or empty state"
+      },
+      {
+        "step": 2,
+        "action": "Click **Add custom field**",
+        "data": "",
+        "result": "Create form opens"
+      },
+      {
+        "step": 3,
+        "action": "Enter **Name** and choose **Select** type with two options",
+        "data": "Name: Work Area; options: A, B",
+        "result": "Values editor accepts options"
+      },
+      {
+        "step": 4,
+        "action": "Save the field",
+        "data": "",
+        "result": "Success message; field appears in admin list"
+      },
+      {
+        "step": 5,
+        "action": "Open **Create entity** flow for a supported record type",
+        "data": "",
+        "result": "Create modal shows the new field"
+      },
+      {
+        "step": 6,
+        "action": "Set the Select value and submit",
+        "data": "Value: A",
+        "result": "Record is created; field value visible on detail view"
+      }
+    ],
+    "preconditions": [],
+    "coverable_issues": [],
+    "step_count": 6
+  },
+  "rag": {
+    "id": "TC-99001",
+    "text": "Test: TC-99001 — Admin journey — create Select custom field and verify in entity form\nPriority: High | Status: Reference | Type: Manual\nFolder: /Neutral/Admin - Custom fields\nLabels: neutral-golden, journey\n\nSteps:\n1. Navigate to **Settings → Custom fields** as product admin\n   Expected: Custom fields page opens with list or empty state\n2. Click **Add custom field**\n   Expected: Create form opens\n3. Enter **Name** and choose **Select** type with two options\n   Data: Name: Work Area; options: A, B\n   Expected: Values editor accepts options\n4. Save the field\n   Expected: Success message; field appears in admin list\n5. Open **Create entity** flow for a supported record type\n   Expected: Create modal shows the new field\n6. Set the Select value and submit\n   Data: Value: A\n   Expected: Record is created; field value visible on detail view",
+    "metadata": {
+      "jira_key": "TC-99001",
+      "issue_id": "99001",
+      "summary": "Admin journey — create Select custom field and verify in entity form",
+      "priority": "High",
+      "status": "Reference",
+      "test_type": "Manual",
+      "folder": "/Neutral/Admin - Custom fields",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "step_count": 6,
+      "filter_id": "neutral",
+      "filter_name": "Neutral manual journeys",
+      "source": "trinity_neutral_golden_builder"
+    }
+  }
+}

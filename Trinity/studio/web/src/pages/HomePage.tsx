@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, PipelineRun, Stats } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
+import PipelineStrip from "../components/PipelineStrip";
 
 export default function HomePage() {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -57,41 +58,46 @@ export default function HomePage() {
 
   return (
     <>
+      <p className="page-lead">
+        Local workbench for Epic review, test design, and Xray import. Operator guide:{" "}
+        <code>Trinity/GUIDE.md</code>
+      </p>
+      <PipelineStrip stats={stats} />
       {stats && (
         <div className="stats-grid">
-          <div className="stat-card">
+          <div className="stat-card stat-card--review">
             <div className="label">Pipeline runs</div>
             <div className="value">{stats.pipeline_runs}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--review">
             <div className="label">Review units</div>
             <div className="value">{stats.review_units}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--review">
             <div className="label">Approved reviews</div>
             <div className="value">{stats.review_units_approved}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--warn">
             <div className="label">Open findings</div>
             <div className="value">{stats.open_findings_latest}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--warn">
             <div className="label">Open questions</div>
             <div className="value">{stats.open_questions_latest}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--creator">
             <div className="label">Test cases</div>
             <div className="value">{stats.test_cases}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--creator">
             <div className="label">TC approved</div>
             <div className="value">{stats.test_cases_approved}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--creator">
             <div className="label">Automatable</div>
             <div className="value">{stats.test_cases_automation_candidate}</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card stat-card--import">
             <div className="label">Ready for Xray</div>
             <div className="value">{stats.test_cases_ready_for_import ?? 0}</div>
           </div>
@@ -129,7 +135,15 @@ export default function HomePage() {
 
       <div className="panel">
         <h2 style={{ marginTop: 0 }}>Runs</h2>
-        {runs.length === 0 && <p className="muted">No runs yet. Import a Reviewer folder.</p>}
+        {runs.length === 0 && (
+          <div className="empty-callout">
+            <h3>No Reviewer runs yet</h3>
+            <p className="muted" style={{ margin: 0 }}>
+              Import a folder with <code>ONE-*/review-payload.json</code>, or use the demo path in{" "}
+              <code>Trinity/TESTING.md</code>. Then open a run → approve → Creator.
+            </p>
+          </div>
+        )}
         <table className="data">
           <thead>
             <tr>

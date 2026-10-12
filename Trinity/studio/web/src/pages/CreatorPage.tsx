@@ -17,6 +17,16 @@ export default function CreatorPage() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [highlightId, setHighlightId] = useState<string | null>(null);
+  const [products, setProducts] = useState<
+    {
+      product_id: string;
+      name: string;
+      golden_title?: string;
+      golden_test_count?: number;
+      importer_default_project_key?: string;
+    }[]
+  >([]);
+
   const [feedback, setFeedback] = useState<{
     kind: "new" | "updated";
     title: string;
@@ -30,6 +40,7 @@ export default function CreatorPage() {
 
   useEffect(() => {
     load();
+    api.creatorProducts().then((d) => setProducts(d.products)).catch(() => {});
   }, []);
 
   const onImport = async () => {
@@ -62,6 +73,40 @@ export default function CreatorPage() {
   return (
     <>
       <h2>Creator runs</h2>
+      {products.length > 0 && (
+        <div className="panel">
+          <h3 style={{ marginTop: 0 }}>Product golden corpora (IQ-12)</h3>
+          <p className="muted">
+            Pick <code>product_id</code> in Reviewer run config and Creator batch JSON. Non-TC imports use{" "}
+            <code>requirements</code> (neutral journeys + ONE folder defaults).
+          </p>
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Golden corpus</th>
+                <th>Importer project</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((p) => (
+                <tr key={p.product_id}>
+                  <td>
+                    <code>{p.product_id}</code>
+                    <span className="muted"> — {p.name}</span>
+                  </td>
+                  <td>
+                    {p.golden_title ?? "—"}
+                    {p.golden_test_count != null ? ` (${p.golden_test_count} refs)` : ""}
+                  </td>
+                  <td>{p.importer_default_project_key ?? "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       <div className="panel">
         <h3 style={{ marginTop: 0 }}>Import TestCaseDraft batch</h3>
         <p className="muted">

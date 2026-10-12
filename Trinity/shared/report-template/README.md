@@ -2,7 +2,10 @@
 
 Copy this layout for new **interactive facet** reports. Do not copy TC-6504 data.
 
-**Canonical example:** [`Creator/runs/TC-6504/report/`](../Creator/runs/TC-6504/report/) (`index.html`, `assets/`, `data/report-data.js`, `build_bug_report.py` in parent run folder).
+**Canonical examples:**
+
+- Creator **test suite** — [`creator/suite-report-template/`](../creator/suite-report-template/) + [`creator/runs/demo-story/suite-report/`](../creator/runs/demo-story/suite-report/)
+- Creator **bug/triage** — [`Creator/runs/TC-6504/report/`](../../Creator/runs/TC-6504/report/)
 
 **Rules:** [`../html-report-guidelines.md`](../html-report-guidelines.md)
 

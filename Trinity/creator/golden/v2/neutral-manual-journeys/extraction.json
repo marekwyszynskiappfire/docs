@@ -1,0 +1,276 @@
+{
+  "extracted_at": "2026-10-12T10:29:35.225244+00:00",
+  "source": "Trinity IQ-12 builder (synthetic references)",
+  "filter": {
+    "filter_id": "neutral",
+    "filter_name": "Neutral manual journeys (product-agnostic)",
+    "filter_jql": "corpus=neutral-manual-journeys",
+    "run_id": "trinity-neutral-golden-v1",
+    "extracted_at": "2026-10-12T10:29:35.225244+00:00"
+  },
+  "test_count": 5,
+  "tests": [
+    {
+      "key": "TC-99001",
+      "issue_id": "99001",
+      "url": "https://example.invalid/browse/TC-99001",
+      "summary": "Admin journey — create Select custom field and verify in entity form",
+      "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+      "status": "Reference",
+      "priority": "High",
+      "assignee": "",
+      "reporter": "Trinity Creator",
+      "created": "2026-10-12T10:29:35.225244+00:00",
+      "updated": "2026-10-12T10:29:35.225244+00:00",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "test_type": "Manual",
+      "folder": "/Neutral/Admin - Custom fields",
+      "unstructured": "",
+      "gherkin": "",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to **Settings → Custom fields** as product admin",
+          "data": "",
+          "result": "Custom fields page opens with list or empty state"
+        },
+        {
+          "step": 2,
+          "action": "Click **Add custom field**",
+          "data": "",
+          "result": "Create form opens"
+        },
+        {
+          "step": 3,
+          "action": "Enter **Name** and choose **Select** type with two options",
+          "data": "Name: Work Area; options: A, B",
+          "result": "Values editor accepts options"
+        },
+        {
+          "step": 4,
+          "action": "Save the field",
+          "data": "",
+          "result": "Success message; field appears in admin list"
+        },
+        {
+          "step": 5,
+          "action": "Open **Create entity** flow for a supported record type",
+          "data": "",
+          "result": "Create modal shows the new field"
+        },
+        {
+          "step": 6,
+          "action": "Set the Select value and submit",
+          "data": "Value: A",
+          "result": "Record is created; field value visible on detail view"
+        }
+      ],
+      "preconditions": [],
+      "coverable_issues": [],
+      "step_count": 6
+    },
+    {
+      "key": "TC-99002",
+      "issue_id": "99002",
+      "url": "https://example.invalid/browse/TC-99002",
+      "summary": "Journey — Text custom field visible across parent and child records",
+      "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+      "status": "Reference",
+      "priority": "High",
+      "assignee": "",
+      "reporter": "Trinity Creator",
+      "created": "2026-10-12T10:29:35.225244+00:00",
+      "updated": "2026-10-12T10:29:35.225244+00:00",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "test_type": "Manual",
+      "folder": "/Neutral/Journey - Field propagation",
+      "unstructured": "",
+      "gherkin": "",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Ensure a Text custom field exists for the workspace",
+          "data": "fieldName: Journey Text",
+          "result": "Field listed as active"
+        },
+        {
+          "step": 2,
+          "action": "Create parent record with Text value",
+          "data": "value: Parent-1",
+          "result": "Parent saved; Text shown in panel"
+        },
+        {
+          "step": 3,
+          "action": "Create child record under parent",
+          "data": "",
+          "result": "Child create form shows Text default Not set"
+        },
+        {
+          "step": 4,
+          "action": "Set Text on child and save",
+          "data": "value: Child-1",
+          "result": "Child visible; Text correct in tree and panel"
+        },
+        {
+          "step": 5,
+          "action": "Open parent detail **Info** section",
+          "data": "",
+          "result": "Parent Text value unchanged and correct"
+        }
+      ],
+      "preconditions": [],
+      "coverable_issues": [],
+      "step_count": 5
+    },
+    {
+      "key": "TC-99003",
+      "issue_id": "99003",
+      "url": "https://example.invalid/browse/TC-99003",
+      "summary": "Admin exports configuration list to spreadsheet for audit",
+      "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+      "status": "Reference",
+      "priority": "High",
+      "assignee": "",
+      "reporter": "Trinity Creator",
+      "created": "2026-10-12T10:29:35.225244+00:00",
+      "updated": "2026-10-12T10:29:35.225244+00:00",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "test_type": "Manual",
+      "folder": "/Neutral/Admin - Export",
+      "unstructured": "",
+      "gherkin": "",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Navigate to admin configuration list",
+          "data": "",
+          "result": "Table of configurable items is displayed"
+        },
+        {
+          "step": 2,
+          "action": "Apply optional filter to a known subset",
+          "data": "filter: Active only",
+          "result": "Filtered rows match criteria"
+        },
+        {
+          "step": 3,
+          "action": "Click **Export** and choose spreadsheet format",
+          "data": "",
+          "result": "Download starts"
+        },
+        {
+          "step": 4,
+          "action": "Open file and verify headers and row count",
+          "data": "",
+          "result": "Columns match UI; row count matches filtered list"
+        }
+      ],
+      "preconditions": [],
+      "coverable_issues": [],
+      "step_count": 4
+    },
+    {
+      "key": "TC-99004",
+      "issue_id": "99004",
+      "url": "https://example.invalid/browse/TC-99004",
+      "summary": "Standard user cannot access admin-only settings",
+      "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+      "status": "Reference",
+      "priority": "High",
+      "assignee": "",
+      "reporter": "Trinity Creator",
+      "created": "2026-10-12T10:29:35.225244+00:00",
+      "updated": "2026-10-12T10:29:35.225244+00:00",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "test_type": "Manual",
+      "folder": "/Neutral/Security - Permissions",
+      "unstructured": "",
+      "gherkin": "",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Log in as user without admin role",
+          "data": "role: Standard user",
+          "result": "Home loads successfully"
+        },
+        {
+          "step": 2,
+          "action": "Attempt direct URL to admin settings",
+          "data": "",
+          "result": "Access denied or redirect per product policy"
+        },
+        {
+          "step": 3,
+          "action": "Confirm admin navigation entry is hidden",
+          "data": "",
+          "result": "No admin settings link in primary navigation"
+        }
+      ],
+      "preconditions": [],
+      "coverable_issues": [],
+      "step_count": 3
+    },
+    {
+      "key": "TC-99005",
+      "issue_id": "99005",
+      "url": "https://example.invalid/browse/TC-99005",
+      "summary": "Feature flag off hides capability from navigation and API",
+      "description": "Synthetic neutral golden reference (IQ-12). Not a live Xray issue.",
+      "status": "Reference",
+      "priority": "High",
+      "assignee": "",
+      "reporter": "Trinity Creator",
+      "created": "2026-10-12T10:29:35.225244+00:00",
+      "updated": "2026-10-12T10:29:35.225244+00:00",
+      "labels": [
+        "neutral-golden",
+        "journey"
+      ],
+      "test_type": "Manual",
+      "folder": "/Neutral/Feature flags",
+      "unstructured": "",
+      "gherkin": "",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Disable target feature flag in staging",
+          "data": "flag: example.feature.enabled = off",
+          "result": "Flag saved"
+        },
+        {
+          "step": 2,
+          "action": "Refresh application as standard user",
+          "data": "",
+          "result": "Capability menu entry is not shown"
+        },
+        {
+          "step": 3,
+          "action": "Enable flag and refresh",
+          "data": "flag: on",
+          "result": "Capability entry appears"
+        },
+        {
+          "step": 4,
+          "action": "Smoke-check primary action once enabled",
+          "data": "",
+          "result": "Happy path loads without error"
+        }
+      ],
+      "preconditions": [],
+      "coverable_issues": [],
+      "step_count": 4
+    }
+  ]
+}

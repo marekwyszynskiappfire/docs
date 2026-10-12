@@ -4,7 +4,8 @@
     "id": "default",
     "name": "Default"
   },
-  "golden_root": "Trinity/creator/golden/v1",
+  "golden_corpus_id": "neutral-manual-journeys",
+  "golden_root": "Trinity/creator/golden/v2/neutral-manual-journeys",
   "assets": {
     "golden_style": "Trinity/creator/golden/v1/style-rules.md",
     "golden_examples": "Trinity/creator/golden/v1/examples",
@@ -31,5 +32,10 @@
   "output": {
     "artifacts_dir": "artifacts",
     "report_kinds": ["html", "md"]
+  },
+  "importer": {
+    "default_jira_project_key": "TC",
+    "default_folder_template": "/TC Importer/{requirement_key}",
+    "default_mapping_id": "appfire-production"
   }
 }

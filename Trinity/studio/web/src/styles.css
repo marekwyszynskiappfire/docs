@@ -58,6 +58,10 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 100% -20%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 0% 100%, color-mix(in srgb, var(--ok) 8%, transparent), transparent 50%);
+  min-height: 100vh;
 }
 
 a {
@@ -74,11 +78,124 @@ a {
 header.app-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
+  align-items: flex-end;
+  gap: 0.75rem 1.25rem;
   margin-bottom: 1.5rem;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 0.75rem;
+  padding: 0.5rem 0 1rem;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 25%, var(--border));
+}
+
+.brand h1 {
+  font-size: 1.35rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(105deg, var(--text), color-mix(in srgb, var(--accent) 70%, var(--text)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand-tagline {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+header.app-header nav.app-nav {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.page-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.empty-callout {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem;
+  margin-bottom: 1rem;
+  background: color-mix(in srgb, var(--accent) 6%, var(--panel));
+}
+
+.empty-callout h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.page-lead {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+  max-width: 52rem;
+}
+
+.pipeline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.1rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--border) 40%, transparent);
+}
+
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.pipeline-step__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: color-mix(in srgb, var(--accent) 22%, var(--panel));
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  flex-shrink: 0;
+}
+
+.pipeline-step p {
+  margin: 0.1rem 0 0;
+  font-size: 0.8rem;
+}
+
+.pipeline-step__arrow {
+  color: var(--muted);
+  font-size: 1.25rem;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.pipeline-step__link {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 header.app-header nav {
@@ -90,19 +207,24 @@ button.theme-toggle {
   flex-shrink: 0;
 }
 
-header.app-header h1 {
-  font-size: 1.25rem;
-  margin: 0;
-  font-weight: 600;
+nav a {
+  margin-right: 0;
+  color: var(--muted);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-nav a {
-  margin-right: 1rem;
-  color: var(--muted);
+nav a:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 nav a.active {
-  color: var(--text);
+  color: var(--accent-fg);
+  background: var(--accent);
 }
 
 .stats-grid {
@@ -115,8 +237,31 @@ nav a.active {
 .stat-card {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 0.75rem 1rem;
+  border-left: 3px solid var(--border);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+.stat-card--review {
+  border-left-color: color-mix(in srgb, var(--accent) 80%, var(--border));
+}
+
+.stat-card--creator {
+  border-left-color: var(--ok);
+}
+
+.stat-card--import {
+  border-left-color: var(--warn);
+}
+
+.stat-card--warn {
+  border-left-color: var(--danger);
 }
 
 .stat-card .label {
@@ -466,6 +611,73 @@ blockquote.excerpt {
   font-size: 0.8rem;
 }
 
+.coverage-panel__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.coverage-gap-pill,
+.coverage-ok-pill {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.coverage-gap-pill {
+  background: color-mix(in srgb, var(--error, #c44) 12%, transparent);
+  border-color: color-mix(in srgb, var(--error, #c44) 40%, var(--border));
+}
+
+.coverage-ok-pill {
+  background: color-mix(in srgb, #3a8 18%, transparent);
+}
+
+.coverage-status {
+  font-size: 0.75rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.coverage-status--ok {
+  background: color-mix(in srgb, #3a8 15%, transparent);
+}
+
+.coverage-status--partial {
+  background: color-mix(in srgb, #c90 20%, transparent);
+}
+
+.coverage-status--gap {
+  background: color-mix(in srgb, var(--error, #c44) 12%, transparent);
+}
+
+tr.coverage-row-gap td {
+  background: color-mix(in srgb, var(--error, #c44) 6%, var(--panel));
+}
+
+.coverage-callout {
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin: 0.75rem 0;
+  font-size: 0.875rem;
+}
+
+.coverage-callout ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.coverage-callout--gap {
+  border: 1px solid color-mix(in srgb, var(--error, #c44) 35%, var(--border));
+}
+
+.coverage-callout--warn {
+  border: 1px solid color-mix(in srgb, #c90 40%, var(--border));
+}
+
 tr.row-highlight td {
   background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
@@ -550,6 +762,12 @@ tr.row-highlight td {
 .risk-pill--sandbox {
   background: var(--badge-ok-bg);
   color: var(--ok);
+}
+
+.production-guard {
+  margin: 0.75rem 0;
+  border: 1px solid var(--high);
+  background: color-mix(in srgb, var(--high) 8%, transparent);
 }
 
 .add-qa-question .btn-row {

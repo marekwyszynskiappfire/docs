@@ -9,7 +9,8 @@ from pathlib import Path
 from typing import Any
 
 from creator_export import automation_candidate_flag, automation_fit_value
-from db import db, init_db, log_event, utc_now
+from db import db, init_db, utc_now
+from telemetry import record_event
 
 EPIC_DIR_RE = re.compile(r"^[A-Z][A-Z0-9]+-\d+$")
 
@@ -144,7 +145,7 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
             )
             imported_units += 1
 
-        log_event(
+        record_event(
             conn,
             "review_run_imported",
             "pipeline_run",
@@ -232,13 +233,18 @@ def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) 
                 (row_id, json.dumps(tc, ensure_ascii=False), now),
             )
 
-        log_event(
+        record_event(
             conn,
             "creator_batch_imported",
             "creator_run",
             run_id,
             None,
-            {"tests": len(tests), "batch_revision": rev, "run_is_new": run_is_new},
+            {
+                "tests": len(tests),
+                "batch_revision": rev,
+                "run_is_new": run_is_new,
+                "ai_generated_test_count": len(tests),
+            },
         )
 
     return {

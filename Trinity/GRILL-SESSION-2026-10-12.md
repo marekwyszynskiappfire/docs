@@ -1,0 +1,107 @@
+# Grill session — Trinity POC (2026-10-12)
+
+**Purpose:** Stress-test solution + code before Mateusz closure. **Tests:** 25 pytest pass. **Live Studio:** restart required if `/api/health` `features` lacks `importer_execute`, `creator_coverage`, `creator_suite_report`.
+
+---
+
+## Agent findings (facts, not decisions)
+
+### Architecture — holds up
+
+- Clear pipeline: Reviewer payload → Studio → Creator batch → Importer handoff → Xray.
+- ADR 0002 matches implemented behaviour (IQ-01–02, 08, 16–17, RQ-01, telemetry local-first).
+- Shared `validate_for_xray.py` is the right choke point; export preflight + plan validation align.
+
+### Risks / gaps (grill these)
+
+| # | Area | Finding | Severity |
+|---|------|---------|----------|
+| G1 | **Ops** | Stale Studio process serves old API (`features` only `importer_plan`) | Medium — operator confusion |
+| G2 | **Security (P9)** | Redaction is **warn-only** (IQ-17); execute can still push emails/URLs to Xray | Medium — policy call |
+| G3 | **Gate (P8)** | Reviewer gate is **soft ack** (IQ-16); release manager cannot rely on hard block | Low if POC accepts |
+| G4 | **Execute** | No idempotency — re-run Execute may duplicate tests in Xray | High for production habit |
+| G5 | **Sandbox** | IQ-03 prod-only policy; sandbox Xray 403 documented | Low for Mateusz if prod path proven |
+| G6 | **Reviewer ↔ Studio** | `parity-matrix.md` — child inventory, classifications, portfolio link gaps in Studio | Medium for P2 leads |
+| G7 | **Schema** | `coverage_catalog_id` vs `linked_ac_ids` dual field (CQ-02 open) | Low — enrich masks it |
+| G8 | **Code hygiene** | `importer_plan.py` imports `validate_test` twice (same implementation) | Low — cleanup |
+| G9 | **Docs** | ADR 0002 consequences still say “P2 remain backlog” | Trivial — update |
+| G10 | **REVIEW §2** | P1/P2 rows predate IQ-11/13 (suite Profile B, coverage UI) | Trivial — refresh scores |
+
+### What is **not** broken for POC
+
+- E2E path ONE-228469 → TC keys (historical).
+- Production confirm + project.id resolution + persist keys + Studio Execute.
+- Personas P1–P10 doc path; GUIDE/MANUAL Importer chapters.
+
+---
+
+## Round 1 — decisions
+
+Captured via interactive form (not a static question dump). See session transcript / agent memory: grill must stay interactive.
+
+---
+
+❓ **Q1 — Mateusz “done” definition**
+
+Is POC-complete **only** scorecard + Slides filled with **one** documented prod (or staging) run — without BigQuery, without sandbox Xray, without hard redaction block?
+
+➡️ **Yes** — treat BQ/sandbox/hard-redaction as post-POC; scorecard cites local `metric_event` + ADR 0002.
+
+---
+
+❓ **Q2 — Redaction at execute (PQ-05 vs IQ-17)**
+
+Keep **warn** on export/plan, or **block** `execute_ready` when preflight finds emails/sensitive URLs?
+
+➡️ **Warn for POC**; add **block** in first post-POC hardening sprint (document in ADR addendum).
+
+---
+
+❓ **Q3 — Reviewer gate (PQ-04 vs IQ-16)**
+
+Keep **soft** gate (ack + re-preview), or **hard** block Importer export/execute when readiness ≠ green?
+
+➡️ **Keep soft** — matches ADR; hard block only for `gate_status: BLOCKED` + CRITICAL if you add that later.
+
+---
+
+❓ **Q4 — Re-execute / idempotency (G4)**
+
+For v1 operators, is manual discipline (“check Xray first”) enough, or must Studio refuse Execute when `xray_test_key` already set?
+
+➡️ **POC:** warn in plan when row has `xray_test_key`; **post-POC:** skip or block duplicates.
+
+---
+
+❓ **Q5 — Next engineering slice (after you answer Q1–Q4)**
+
+Pick **one** for the next ~half day: **(A)** UI round 2 (Importer risk badge, run gate chips), **(B)** doc cleanup only, **(C)** PQ-01 dashboard rollup, **(D)** commit + PR without more code.
+
+➡️ **(D) then (A)** — commit P2 wave, then UI polish; defer PQ-01 until after Mateusz readout.
+
+---
+
+## Locked decisions (2026-10-12, interactive form)
+
+| # | Decision |
+|---|----------|
+| Q1 | Mateusz done = **scorecard + Slides + one documented run** (no BQ/sandbox/hard-redact required for POC) |
+| Q2 | **Warn** on redaction for POC; hard block post-POC |
+| Q3 | **Soft** Reviewer gate (IQ-16 / ADR) |
+| Q4 | **Warn** in plan when `xray_test_key` exists; block/skip post-POC → `importer_idempotency.py` |
+| Q5 | **Commit → UI round 2 → doc cleanup** |
+
+## Round 2 (optional follow-up)
+
+- RQ-02 `environment` on Reviewer export  
+- PQ-03 `test_data_isolation` in creator config  
+- CQ-01 enforce `test_type: Manual` in schema vs enrich only  
+- TQ-02 automation field → Xray mapping  
+
+---
+
+## After shared understanding
+
+1. Update ADR 0002 + REVIEW §2 scores from your answers.  
+2. Log GitHub Issues for G4, G6, and any **block** you chose on Q2/Q3.  
+3. Proceed: doc cleanup → UI round 2 → `commit`.
