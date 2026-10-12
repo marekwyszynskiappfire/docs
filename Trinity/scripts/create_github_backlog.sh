@@ -35,7 +35,7 @@ create_issue() {
 
 create_issue "Trinity: BigQuery telemetry ingest + Looker Studio" "$(cat <<'EOF'
 ## Goal
-Ship preconfigured dashboards for Mateusz metrics (acceptance rate, rejection reasons, funnel).
+Ship preconfigured dashboards for Trinity metrics (acceptance rate, rejection reasons, funnel).
 
 ## Scope
 - Configure `TRINITY_TELEMETRY_URL` + API key (see `Trinity/METRICS.md`)
@@ -48,7 +48,7 @@ GCP / ingest endpoint credentials
 ## References
 - `Trinity/METRICS.md`
 - `docs/adr/0002-trinity-importer-telemetry-decisions.md`
-- `Trinity/MATEUSZ-POC-ANSWERS.md` §4 dashboards
+- `Trinity/FAQ.md` (dashboards)
 EOF
 )" "telemetry"
 
@@ -95,14 +95,14 @@ TQ-02 deferred for POC (all Manual in TC). See `Trinity/importer/reference.md`.
 EOF
 )" "importer"
 
-create_issue "Trinity: Wall-clock timing metrics for Mateusz §3" "$(cat <<'EOF'
+create_issue "Trinity: Wall-clock timing metrics" "$(cat <<'EOF'
 ## Goal
 Measure time from batch import → review complete → Xray persist.
 
 ## Approach
 Derive from `metric_event` timestamps or explicit duration fields in export.
 EOF
-)" "telemetry,mateusz-poc"
+)" "telemetry"
 
 if [[ "$CREATE" != true ]]; then
   echo ""

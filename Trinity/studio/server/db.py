@@ -57,6 +57,38 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
             )
             """
         )
+    cursor_usage = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='cursor_usage_event'"
+    ).fetchone()
+    if not cursor_usage:
+        conn.executescript(
+            """
+            CREATE TABLE cursor_usage_event (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              pipeline_run_id TEXT,
+              creator_run_id TEXT,
+              stage TEXT NOT NULL,
+              conversation_id TEXT,
+              generation_id TEXT,
+              model TEXT,
+              model_id TEXT,
+              duration_ms INTEGER,
+              status TEXT,
+              input_tokens INTEGER,
+              output_tokens INTEGER,
+              cache_read_tokens INTEGER,
+              cache_write_tokens INTEGER,
+              cost_cents INTEGER,
+              cost_currency TEXT NOT NULL DEFAULT 'USD',
+              source TEXT NOT NULL,
+              notes TEXT,
+              created_at TEXT NOT NULL,
+              billed_at TEXT
+            );
+            CREATE INDEX IF NOT EXISTS idx_cursor_usage_pipeline ON cursor_usage_event(pipeline_run_id);
+            CREATE INDEX IF NOT EXISTS idx_cursor_usage_conversation ON cursor_usage_event(conversation_id);
+            """
+        )
 
 
 def init_db() -> None:

@@ -1,4 +1,4 @@
-# Trinity POC — Google Slides speaker bullets (English)
+# Trinity — Google Slides speaker bullets (English)
 
 Copy each block into a slide. Fill bracketed fields from your filled [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) and `GET /api/telemetry/export` when ready.
 
@@ -29,7 +29,7 @@ Copy each block into a slide. Fill bracketed fields from your filled [SCORECARD-
 
 ---
 
-## Slide 4 — How we control quality (Mateusz §1)
+## Slide 4 — How we control quality
 
 - **Granularity:** Golden corpus v2 + test-architect persona + edit in Studio
 - **Quality:** Reviewer gate + human review; reject with categorized reasons

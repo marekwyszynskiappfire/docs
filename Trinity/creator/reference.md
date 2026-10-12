@@ -74,6 +74,22 @@ Helper: `scripts/sample_golden_references.py` implements steps 3–6.
 
 **5–10** entries per batch. Per-test optional: `golden_reference_keys[]`.
 
+## Coverage linkage — `coverage_catalog_id` vs `linked_ac_ids` (CQ-02)
+
+Grill decision: **`coverage_catalog_id` is canonical** when the batch uses the optional product coverage catalog (`config.assets.coverage_catalog`). **`linked_ac_ids`** remains the traceability field to Reviewer ACs / goals (`AC-01`, `GOAL-01`, etc.).
+
+| Field | Role | Required when |
+|-------|------|----------------|
+| `linked_ac_ids` | Traceability to requirements in `review_ref` | Epic-driven runs (Reviewer matrix) |
+| `coverage_catalog_id` | Row id in `coverage-catalog.md` (e.g. `CAT-…`) | Only when catalog-driven generation is enabled for the product |
+
+Rules for authors and tools:
+
+1. Prefer **`linked_ac_ids`** from the Reviewer coverage matrix for Epic runs without a catalog.
+2. When both appear, **`coverage_catalog_id`** names the catalog row; **`linked_ac_ids`** must still list the AC/goal keys that row satisfies — they must not contradict.
+3. Importer / Studio validation may enrich missing `coverage_catalog_id` from catalog rules; do not treat `linked_ac_ids` as a substitute catalog key.
+4. Schema tightening (require catalog id when `linked_ac_ids` present) is **post-pilot**; until then, document mismatches in `coverage_report.warnings`.
+
 ## Automation fields (per test)
 
 | Field | Values |

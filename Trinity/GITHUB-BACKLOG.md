@@ -1,8 +1,6 @@
-# Trinity — GitHub backlog (post-POC)
+# Trinity — GitHub backlog (post-release)
 
-Create issues on **`marekwyszynskiappfire/docs`** so Mateusz closure stays in docs/scorecard and engineering debt is tracked in the issue tracker ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)).
-
-`gh` was not available in the agent environment when this file was written. From a machine with GitHub CLI:
+Create issues on **`marekwyszynskiappfire/docs`** so pilot evidence stays in scorecard/docs and engineering debt is tracked in the issue tracker ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)).
 
 ```bash
 cd /path/to/DOCS
@@ -12,11 +10,11 @@ cd /path/to/DOCS
 
 Or create manually from the table below.
 
-**Labels to add once:** `trinity`, `post-poc`, `mateusz-poc`, `studio`, `importer`, `telemetry`, `docs`
+**Labels to add once:** `trinity`, `post-poc`, `studio`, `importer`, `telemetry`, `docs`
 
 ---
 
-## Priority P0 — Mateusz / production safety (post-POC unless noted)
+## Priority P0 — Production safety (post-release unless noted)
 
 | Title | Body summary | Labels |
 |-------|----------------|--------|
@@ -30,10 +28,10 @@ Or create manually from the table below.
 
 | Title | Body summary | Labels |
 |-------|----------------|--------|
-| **Trinity Studio: Open local review-report.html from run** | RQ-02 parity; link from `source_path` / portfolio report path. parity-matrix.md | `trinity`, `studio` |
-| **Trinity: Map automation_fit to Xray Automated field** | TQ-02 deferred at POC; per-test Jira fields on execute. importer/reference.md | `trinity`, `importer` |
+| **Trinity Studio: QA readiness checklist panel** | Grill R5 deferred; Profile A HTML link covers pilot. parity-matrix.md | `trinity`, `studio` |
+| **Trinity: Map automation_fit to Xray Automated field** | TQ-02 deferred at release; per-test Jira fields on execute. importer/reference.md | `trinity`, `importer` |
 | **Trinity Creator: test_data_isolation config enforcement** | PQ-03: warn today; optional schema + Studio display. | `trinity`, `creator` |
-| **Trinity: CQ-02 coverage_catalog_id vs linked_ac_ids** | Canonical schema alignment for Creator batches. | `trinity`, `creator` |
+| **Trinity: CQ-02 schema warn on catalog vs linked_ac_ids mismatch** | Doc done (grill R5); optional Studio/validation warn post-pilot. creator/reference.md | `trinity`, `creator` |
 | **Trinity Reviewer export: environment/tenant metadata** | RQ-02 follow-up for multi-tenant analytics. | `trinity`, `reviewer` |
 
 ---
@@ -42,16 +40,16 @@ Or create manually from the table below.
 
 | Title | Body summary | Labels |
 |-------|----------------|--------|
-| **Trinity Studio: Wall-clock timing metrics** | Mateusz §3 time-to-generate/review; derive from metric_event or explicit timers. | `trinity`, `telemetry` |
-| **Trinity: Second product pilot scorecard** | Mateusz §5 — human task; track mapping + acceptance comparison. | `mateusz-poc`, `docs` |
+| **Trinity Studio: Wall-clock timing metrics** | Time from batch import → review complete → Xray persist; derive from `metric_event` or explicit timers. | `trinity`, `telemetry` |
+| **Trinity: Second product pilot scorecard** | Multi-project validation; mapping + acceptance comparison per [FAQ.md](FAQ.md). | `trinity`, `docs` |
 | **Trinity Studio: deprecate duplicate static editor** | Single React UI on 5173/8765. NEXT-STEPS.md | `trinity`, `studio` |
-| **Trinity: GitHub release v0.1.0 + internal announcement** | Tag + changelog after POC sign-off. | `trinity`, `docs` |
+| **Trinity: GitHub release v0.1.0 + internal announcement** | Tag + changelog after pilot sign-off. | `trinity`, `docs` |
 | **Trinity: Sanitize demo Reviewer runs in repo** | Hub README + committed demo portfolio only. | `trinity`, `docs` |
 
 ---
 
 ## Done in repo (do not re-open)
 
-IQ-01–IQ-17 (except post-POC hardening above), IQ-10–15, grill R1–R3 (portfolio rollup, child inventory, classifications banner, plan test_type coercion), run rename/delete, `pr-`/`cr-` IDs, production Importer default.
+IQ-01–IQ-17 (except post-release hardening above), IQ-10–15, grill R1–R5 (portfolio rollup, child inventory + status banner, classifications banner, plan test_type coercion, Reviewer HTML open, PQ-06 dashboard alerts, CQ-02 doc), run rename/delete, `pr-`/`cr-` IDs, production Importer default, Cursor cost hooks (optional telemetry).
 
-Update this file when issues are created (paste `#123` links in the table).
+**Open review-report.html** — done in repo (R4); do not re-open unless parity regresses.

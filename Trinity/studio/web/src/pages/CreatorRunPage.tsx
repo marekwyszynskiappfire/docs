@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, CreatorCoverage, CreatorTestRow } from "../api";
 import CoverageMatrixPanel from "../components/CoverageMatrixPanel";
+import CursorCostPanel from "../components/CursorCostPanel";
 import RunManageActions from "../components/RunManageActions";
 
 type Filter = "all" | "pending" | "approved" | "rejected" | "ready_for_import";
@@ -25,6 +26,7 @@ export default function CreatorRunPage() {
   const [rejectionReasons, setRejectionReasons] = useState<{ id: string; label: string }[]>([]);
   const [coverage, setCoverage] = useState<CreatorCoverage | null>(null);
   const [runLabel, setRunLabel] = useState("");
+  const [pipelineRunId, setPipelineRunId] = useState<string | undefined>();
 
   useEffect(() => {
     api
@@ -42,6 +44,7 @@ export default function CreatorRunPage() {
         setSummary(d.summary);
         setCoverage(d.coverage ?? null);
         setRunLabel(d.run?.label ?? runId);
+        setPipelineRunId(d.run?.pipeline_run_id ?? undefined);
       })
       .catch((e) => setError(String(e)));
   }, [runId]);
@@ -144,6 +147,7 @@ export default function CreatorRunPage() {
       </p>
       {message && <p className="muted">{message}</p>}
       {error && <p className="error">{error}</p>}
+      <CursorCostPanel pipelineRunId={pipelineRunId} creatorRunId={runId} />
       <CoverageMatrixPanel coverage={coverage} />
 
       {suiteReportPath && (

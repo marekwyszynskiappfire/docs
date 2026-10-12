@@ -102,7 +102,7 @@ Legend: **M** met well · **P** partial · **G** gap
 | **PQ-03** (P6) | Add `test_data_isolation` to `creator/config/*.json` as in C-06/T-G6? | Creator maintainers |
 | **PQ-04** (P8) | Block Importer export until Epic **Reviewer gate** is green on linked `review_ref`? | Release + QA |
 | **PQ-05** (P9) | Redaction pass on `importer-payload.json` before execute (emails, internal URLs)? | Security |
-| **PQ-06** (P10) | Surface `context_loaded` / import failures on Studio **Dashboard** for operators? | Platform |
+| **PQ-06** (P10) | Surface `context_loaded` / import failures on Studio **Dashboard** for operators? | **Done** — Dashboard alerts panel (grill R5) |
 
 ---
 
@@ -176,7 +176,7 @@ Does each doc explain **what** the selector does, **TC default**, **override vs 
 | ID | Question | Owner |
 |----|----------|--------|
 | **CQ-01** | Should Creator **enforce** `test_type: Manual` for `release_slice_e2e` unless config allows Cucumber? | **Done** — coerce at import; show `test_type_coercion` in Importer plan (grill R3) |
-| **CQ-02** | Should `coverage_catalog_id` be **required** in schema when `linked_ac_ids` exist (derive one canonical field)? | Schema owners |
+| **CQ-02** | Should `coverage_catalog_id` be **required** in schema when `linked_ac_ids` exist (derive one canonical field)? | **Grill R4:** `coverage_catalog_id` canonical when present; document `linked_ac_ids` as legacy |
 | **CQ-03** | Default Importer folder in `creator/config`? | **Done** — `importer.default_folder_template` |
 
 ---
@@ -272,7 +272,7 @@ Does each doc explain **what** the selector does, **TC default**, **override vs 
 
 ## 9. Interactive question backlog
 
-Decisions from the 2026-10-12 session → **[ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)**. Mateusz evidence → **[POC-TC-GENERATOR.md](POC-TC-GENERATOR.md)**, **[METRICS.md](METRICS.md)**, **[SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md)**.
+Decisions from the 2026-10-12 session → **[ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)**. Pilot evidence → **[FAQ.md](FAQ.md)**, **[POC-TC-GENERATOR.md](POC-TC-GENERATOR.md)**, **[METRICS.md](METRICS.md)**, **[SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md)**.
 
 ### Priority P0 (blocks safe scaling)
 

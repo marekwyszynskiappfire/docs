@@ -1,10 +1,10 @@
 # Trinity — post-P2 next steps
 
-P2 implementation backlog (IQ-10–IQ-15) is **closed** as of 2026-10-12. Use this page to sequence what comes before Mateusz POC sign-off and wider rollout.
+P2 implementation backlog (IQ-10–IQ-15) is **closed** as of 2026-10-12. Use this page to sequence pilot sign-off and wider rollout.
 
 ## 1. Stress-test (grill)
 
-Run a structured **review / grill** of product decisions and code — not another feature wave.
+Grill **Rounds 1–5 locked** — see [`GRILL-SESSION-2026-10-12.md`](GRILL-SESSION-2026-10-12.md). **Product code frozen** for pilot until scorecard + Slides; only doc/scorecard work unless a production bug appears.
 
 | Track | Scope | Suggested output |
 |-------|--------|------------------|
@@ -20,6 +20,7 @@ Use Cursor **Grill** skill or a live session with QA lead + EM. Capture outcomes
 | Task | Status |
 |------|--------|
 | Central operator path | [`GUIDE.md`](GUIDE.md) + [`MANUAL.md`](MANUAL.md) §11 |
+| Engineering FAQ | [`FAQ.md`](FAQ.md) |
 | Stale REVIEW §8 cross-cutting table | Refresh after each wave |
 | Partial doc rows (TESTING, PIPELINE, PREFLIGHT, importer SKILL) | Align with GUIDE §6 project selector |
 | Optional screenshot in GUIDE | Still open |
@@ -38,7 +39,7 @@ Still optional:
 - Run page: hollow-epic / gate_status chips (R3)
 - Light motion (respect `prefers-reduced-motion`)
 
-## 4. Mateusz POC closure (human-owned)
+## 4. Pilot sign-off (human-owned)
 
 | Artifact | Owner |
 |----------|--------|
@@ -46,11 +47,13 @@ Still optional:
 | [`POC-GOOGLE-SLIDES-BULLETS.md`](POC-GOOGLE-SLIDES-BULLETS.md) | Presenter |
 | Telemetry evidence | [`METRICS.md`](METRICS.md) export after real runs |
 
+Checklist: [FAQ.md — Sign-off questions](FAQ.md#sign-off-questions-evidence-not-slides-alone).
+
 ## 5. Backlog (GitHub)
 
-Track post-POC work in **[GITHUB-BACKLOG.md](GITHUB-BACKLOG.md)** — create issues with `./Trinity/scripts/create_github_backlog.sh --create`.
+Track post-release work in **[GITHUB-BACKLOG.md](GITHUB-BACKLOG.md)** — create issues with `./Trinity/scripts/create_github_backlog.sh --create`.
 
-Grill R1–R3 closed in repo; Mateusz Q&A: **[MATEUSZ-POC-ANSWERS.md](MATEUSZ-POC-ANSWERS.md)**.
+Grill R1–R3 closed in repo; product Q&A lives in **[FAQ.md](FAQ.md)** and **[POC-TC-GENERATOR.md](POC-TC-GENERATOR.md)**.
 
 ---
 

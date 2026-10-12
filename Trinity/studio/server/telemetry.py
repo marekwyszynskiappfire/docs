@@ -12,7 +12,7 @@ from typing import Any
 
 from db import get_db_path, log_event, utc_now
 
-# Mateusz §3 rejection categories (aligned with POC scorecard)
+# Rejection categories (aligned with METRICS.md / scorecard)
 REJECTION_REASONS: tuple[str, ...] = (
     "granularity_too_high",
     "granularity_too_low",

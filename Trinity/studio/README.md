@@ -33,6 +33,13 @@ STUDIO_FORCE=1 ./Trinity/studio/scripts/start.sh
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<run-id>
 ```
 
+Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
+
+```bash
+./Trinity/studio/scripts/cleanup-local-runs.sh          # dry-run
+./Trinity/studio/scripts/cleanup-local-runs.sh --apply  # edit KEEP_REVIEWER inside first
+```
+
 ## API
 
 | Endpoint | Purpose |
@@ -56,7 +63,7 @@ STUDIO_FORCE=1 ./Trinity/studio/scripts/start.sh
 | `POST /api/importer/plan` | Dry-run plan + `cursor_prompt` (`project_key_override` supported) |
 | `POST /api/importer/execute` | Batch Xray create + auto-persist keys (IQ-10) |
 | `POST /api/importer/record-results` | Persist `xray_test_key` from import report JSON (IQ-05) |
-| `GET /api/telemetry/summary`, `/export`, `/events` | Local Mateusz metrics ([`METRICS.md`](../METRICS.md)) |
+| `GET /api/telemetry/summary`, `/export`, `/events` | Local metrics ([`METRICS.md`](../METRICS.md)) |
 | `POST /api/telemetry/flush` | Best-effort BigQuery ingest when `TRINITY_TELEMETRY_URL` set |
 | `/api/units/...`, `/api/creator-runs/...` | Review and Creator batches |
 

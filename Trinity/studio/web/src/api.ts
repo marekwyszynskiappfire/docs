@@ -92,6 +92,8 @@ export type EpicChildRow = {
 
 export type EpicChildInventory = {
   pipeline_run_id: string;
+  total_children?: number;
+  run_status_mix?: Record<string, number>;
   epics: {
     unit_id: string;
     jira_key: string;
@@ -173,6 +175,34 @@ function formatMix(mix: Record<string, number> | undefined): string {
 export const api = {
   stats: () => json<Stats>("/api/stats"),
   portfolioRollup: () => json<PortfolioRollup>("/api/portfolio-rollup"),
+  contextLoadedAlerts: () =>
+    json<{
+      alert_count: number;
+      alerts: {
+        pipeline_run_id: string;
+        run_label: string;
+        unit_id: string;
+        jira_key: string;
+        source: string;
+        source_type?: string;
+        status: string;
+        detail?: string;
+      }[];
+      statuses_flagged: string[];
+    }>("/api/context-loaded-alerts"),
+  runReviewReports: (runId: string) =>
+    json<{
+      source_path: string | null;
+      portfolio_report_exists: boolean;
+      portfolio_open_url: string | null;
+      epics: {
+        unit_id: string;
+        jira_key: string;
+        report_exists: boolean;
+        report_relative_path: string | null;
+        open_url: string | null;
+      }[];
+    }>(`/api/runs/${encodeURIComponent(runId)}/review-reports`),
   runChildInventory: (runId: string) =>
     json<EpicChildInventory>(`/api/runs/${encodeURIComponent(runId)}/child-inventory`),
   formatMix,
@@ -506,6 +536,55 @@ export const api = {
       "/api/importer/record-results",
       { method: "POST", body: JSON.stringify(body) }
     ),
+  cursorUsageStages: () =>
+    json<{ stages: { id: string; label: string }[] }>("/api/cursor-usage/stages"),
+  beginCursorSession: (body: {
+    stage: string;
+    pipeline_run_id?: string;
+    creator_run_id?: string;
+  }) =>
+    json<{
+      path: string;
+      stage: string;
+      pipeline_run_id?: string;
+      creator_run_id?: string;
+    }>("/api/cursor-session", { method: "POST", body: JSON.stringify(body) }),
+  cursorUsageSummary: (opts: { pipelineRunId?: string; creatorRunId?: string }) => {
+    const params = new URLSearchParams();
+    if (opts.pipelineRunId) params.set("pipeline_run_id", opts.pipelineRunId);
+    if (opts.creatorRunId) params.set("creator_run_id", opts.creatorRunId);
+    return json<CursorUsageSummary>(`/api/cursor-usage/summary?${params}`);
+  },
+  cursorUsageBackfill: (hoursBack = 48) =>
+    json<{
+      updated?: number;
+      error?: string;
+      skipped?: string;
+      conversations_matched?: number;
+    }>(`/api/cursor-usage/backfill?hours_back=${hoursBack}`, { method: "POST" }),
+};
+
+export type CursorUsageSummary = {
+  pipeline_run_id?: string;
+  creator_run_id?: string;
+  currency: string;
+  total_cost_cents: number;
+  total_cost_display?: string;
+  total_input_tokens?: number | null;
+  total_output_tokens?: number | null;
+  sessions_pending_cost: number;
+  models_used: { model: string; sessions: number }[];
+  by_stage: {
+    stage: string;
+    label: string;
+    sessions: number;
+    cost_cents: number;
+    cost_pending_sessions: number;
+    input_tokens: number;
+    output_tokens: number;
+    models: string[];
+  }[];
+  admin_api_configured: boolean;
 };
 
 export type ImporterPlanResult = {

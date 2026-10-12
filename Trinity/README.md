@@ -40,8 +40,11 @@ Import a Reviewer run (example):
 | Doc | Purpose |
 |-----|---------|
 | **[GUIDE.md](GUIDE.md)** | **Getting Started, prerequisites, golden, Importer project selector** |
+| [FAQ.md](FAQ.md) | Capabilities, metrics, multi-product validation, sign-off evidence |
+| [CURSOR-COST.md](CURSOR-COST.md) | Per-stage Cursor usage and USD cost (hooks + Admin API) |
 | [REVIEW-PRODUCT-AND-DOCS.md](REVIEW-PRODUCT-AND-DOCS.md) | Multi-persona product/doc review + open questions |
-| [NEXT-STEPS.md](NEXT-STEPS.md) | Post-P2: grill, doc cleanup, UI, Mateusz closure |
+| [FAQ.md](FAQ.md) | Engineering FAQ (capabilities, metrics, sign-off evidence) |
+| [NEXT-STEPS.md](NEXT-STEPS.md) | Post-P2: grill, doc cleanup, UI, pilot sign-off |
 | [PREFLIGHT.md](PREFLIGHT.md) | MCP, skills, health checks |
 | [TESTING.md](TESTING.md) | Hands-on validation checklist |
 | [MANUAL.md](MANUAL.md) | Reviewer interview, Studio personas/configs |

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": ".cursor/hooks/trinity-cursor-usage.py"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": ".cursor/hooks/trinity-cursor-usage.py"
+      }
+    ]
+  }
+}

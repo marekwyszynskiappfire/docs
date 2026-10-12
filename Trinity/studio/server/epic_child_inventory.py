@@ -71,4 +71,15 @@ def build_run_child_inventory(conn: Any, run_id: str) -> dict[str, Any]:
                 "children": children,
             }
         )
-    return {"pipeline_run_id": run_id, "epics": epics}
+    run_status_mix: dict[str, int] = {}
+    total_children = 0
+    for epic in epics:
+        total_children += epic["child_count"]
+        for st, n in epic["status_mix"].items():
+            run_status_mix[st] = run_status_mix.get(st, 0) + n
+    return {
+        "pipeline_run_id": run_id,
+        "total_children": total_children,
+        "run_status_mix": run_status_mix,
+        "epics": epics,
+    }

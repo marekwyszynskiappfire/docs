@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { api, PipelineRollup, PipelineRun, Stats } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
 import PipelineStrip from "../components/PipelineStrip";
+import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import PortfolioRollupPanel from "../components/PortfolioRollupPanel";
 import RunListRowActions from "../components/RunListRowActions";
 
@@ -68,6 +69,7 @@ export default function HomePage() {
       </p>
       <PipelineStrip stats={stats} />
       {rollup && <PortfolioRollupPanel rollup={rollup} />}
+      <ContextLoadedAlertsPanel />
       {stats && (
         <div className="stats-grid">
           <div className="stat-card stat-card--review">

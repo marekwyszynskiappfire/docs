@@ -1,6 +1,6 @@
 # Test case generator — scorecard
 
-One-pager template for Mateusz §2 evidence. Copy **Template** for each pilot; see **Example** (ONE-228469).
+One-pager template for pilot evidence (acceptance, rejection reasons, Xray traceability). Copy **Template** for each pilot; see **Example** (ONE-228469).
 
 Export live numbers: `curl -s http://127.0.0.1:8765/api/telemetry/export` (after Studio runs on that machine).
 

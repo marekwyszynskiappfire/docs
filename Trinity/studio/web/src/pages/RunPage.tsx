@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, EpicChildInventory, ReviewUnit } from "../api";
+import CursorCostPanel from "../components/CursorCostPanel";
 import RunManageActions from "../components/RunManageActions";
 
 type Handoff = {
@@ -22,6 +23,10 @@ export default function RunPage() {
   const [busy, setBusy] = useState(false);
   const [childInventory, setChildInventory] = useState<EpicChildInventory | null>(null);
   const [runLabel, setRunLabel] = useState("");
+  const [reportIndex, setReportIndex] = useState<
+    Record<string, { open_url: string | null; report_exists: boolean }>
+  >({});
+  const [portfolioOpenUrl, setPortfolioOpenUrl] = useState<string | null>(null);
 
   const reload = useCallback(async () => {
     if (!runId) return;
@@ -33,6 +38,13 @@ export default function RunPage() {
     setHandoff(h as Handoff);
     const inv = await api.runChildInventory(runId);
     setChildInventory(inv);
+    const reports = await api.runReviewReports(runId);
+    setPortfolioOpenUrl(reports.portfolio_open_url);
+    const idx: Record<string, { open_url: string | null; report_exists: boolean }> = {};
+    for (const e of reports.epics) {
+      idx[e.unit_id] = { open_url: e.open_url, report_exists: e.report_exists };
+    }
+    setReportIndex(idx);
   }, [runId]);
 
   useEffect(() => {
@@ -131,6 +143,8 @@ export default function RunPage() {
       {error && <p className="error">{error}</p>}
       {message && <p className="muted">{message}</p>}
 
+      <CursorCostPanel pipelineRunId={runId} />
+
       {handoff && (
         <div className="panel">
           <h3 style={{ marginTop: 0 }}>Creator handoff</h3>
@@ -138,28 +152,28 @@ export default function RunPage() {
             Included: {handoff.included_epics?.length ?? 0} epic(s) · excluded from Creator:{" "}
             {handoff.excluded_from_creator_count ?? 0}
           </p>
-          {handoff.portfolio_report_path && (
+          {(portfolioOpenUrl || handoff.portfolio_report_path) && (
             <p>
               Portfolio report:{" "}
-              <code>{handoff.portfolio_report_path}</code>
-              <span className="btn-row" style={{ display: "inline-flex", marginLeft: "0.5rem" }}>
+              {portfolioOpenUrl ? (
+                <a href={portfolioOpenUrl} target="_blank" rel="noreferrer">
+                  Open Profile A portfolio HTML
+                </a>
+              ) : (
+                <code>{handoff.portfolio_report_path}</code>
+              )}
+              {handoff.portfolio_report_path && (
                 <button
                   type="button"
                   className="secondary"
+                  style={{ marginLeft: "0.5rem" }}
                   onClick={() =>
-                    copyText(
-                      handoff.portfolio_report_path!,
-                      "Portfolio path copied"
-                    )
+                    copyText(handoff.portfolio_report_path!, "Portfolio path copied")
                   }
                 >
                   Copy path
                 </button>
-              </span>
-              <span className="muted" style={{ display: "block", marginTop: "0.35rem" }}>
-                Open in browser from repo root:{" "}
-                <code>open {handoff.portfolio_report_path}</code> (macOS)
-              </span>
+              )}
             </p>
           )}
           <label>
@@ -200,6 +214,16 @@ export default function RunPage() {
       {childInventory && childInventory.epics.some((e) => e.child_count > 0) && (
         <div className="panel">
           <h3 style={{ marginTop: 0 }}>Child inventory (Reviewer rollup)</h3>
+          {childInventory.run_status_mix &&
+            Object.keys(childInventory.run_status_mix).length > 0 && (
+              <p className="mix-strip">
+                <span className="label">Child status mix (all epics)</span>
+                <span className="mix-value">{api.formatMix(childInventory.run_status_mix)}</span>
+                {childInventory.total_children != null && (
+                  <span className="muted"> · {childInventory.total_children} children</span>
+                )}
+              </p>
+            )}
           <p className="muted" style={{ marginTop: 0 }}>
             Full child set from latest payload per epic — parity with Reviewer HTML § children.
           </p>
@@ -296,6 +320,14 @@ export default function RunPage() {
                 </td>
                 <td>
                   <Link to={`/units/${u.id}`}>Edit review</Link>
+                  {reportIndex[u.id]?.report_exists && reportIndex[u.id]?.open_url && (
+                    <>
+                      {" · "}
+                      <a href={reportIndex[u.id].open_url!} target="_blank" rel="noreferrer">
+                        HTML
+                      </a>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}

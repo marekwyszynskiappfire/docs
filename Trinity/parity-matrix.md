@@ -10,11 +10,11 @@
 | Clarification questions + Why / Source | Yes | |
 | Findings + testing impact / quote | Yes | |
 | QA review (valid / do not ask / discuss) | Yes — `studio_qa` | |
-| Child inventory & status mix | **Partial** — Run page expandable tables (`child-inventory` API) | RQ-02 follow-ups: status mix banner |
+| Child inventory & status mix | **Yes** — Run page rollup banner + per-epic tables | Grill R5 |
 | Classifications banner | **Partial** — unit review (`ClassificationsBanner`) | Run-level rollup optional |
-| QA readiness checklist | **Gap** | |
-| Link to per-epic `review-report.html` | **Gap** | Open static report alongside Studio |
-| Portfolio index link | **Gap** (run-level) | PQ-01 related |
+| QA readiness checklist | **Deferred** (grill R5) | Use Profile A HTML; Studio panel post-pilot |
+| Link to per-epic `review-report.html` | **Yes** — Run table + unit review (`/api/units/{id}/review-report.html`) | Grill R4 |
+| Portfolio index link | **Partial** — `portfolio-report.html` API when `portfolio/index.html` exists | PQ-01 rollup in Studio |
 
 | Creator / Importer capability | Studio | Offline HTML / CLI |
 |------------------------------|--------|---------------------|

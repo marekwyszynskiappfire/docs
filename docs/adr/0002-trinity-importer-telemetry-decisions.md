@@ -6,7 +6,7 @@ Accepted (2026-10-12)
 
 ## Context
 
-Interactive product review and Mateusz POC criteria require clear Importer rules, optional BigQuery telemetry later, and local evidence in the meantime.
+Interactive product review and pilot sign-off require clear Importer rules, optional BigQuery telemetry later, and local evidence in the meantime.
 
 ## Decisions
 
@@ -32,10 +32,10 @@ Interactive product review and Mateusz POC criteria require clear Importer rules
 | **Local first** | Every Studio run records **`metric_event`** rows in SQLite; optional **`telemetry_outbox`** for BigQuery-shaped payloads. |
 | **Non-blocking** | Missing `TRINITY_TELEMETRY_URL` or failed upload **never** blocks Reviewer, Creator, Importer, or Studio. |
 | **BigQuery later** | When credentials exist, `POST /api/telemetry/flush` (or automatic flush after events) sends outbox rows to the configured ingest URL. Looker Studio is out of scope until BQ exists. |
-| **Mateusz metrics** | Acceptance, rejection counts, and **rejection reason** enum are captured on human review; see [`Trinity/METRICS.md`](../../Trinity/METRICS.md). |
+| **Review metrics** | Acceptance, rejection counts, and **rejection reason** enum are captured on human review; see [`Trinity/METRICS.md`](../../Trinity/METRICS.md). |
 
 ## Consequences
 
-- Operator docs: [`Trinity/POC-TC-GENERATOR.md`](../../Trinity/POC-TC-GENERATOR.md), [`Trinity/METRICS.md`](../../Trinity/METRICS.md), [`Trinity/SCORECARD-TC-GENERATOR.md`](../../Trinity/SCORECARD-TC-GENERATOR.md).
+- Operator docs: [`Trinity/FAQ.md`](../../Trinity/FAQ.md), [`Trinity/POC-TC-GENERATOR.md`](../../Trinity/POC-TC-GENERATOR.md), [`Trinity/METRICS.md`](../../Trinity/METRICS.md), [`Trinity/SCORECARD-TC-GENERATOR.md`](../../Trinity/SCORECARD-TC-GENERATOR.md).
 - Studio gains telemetry export API, rejection reasons on bulk reject, **IQ-02** production guard, **IQ-05** `POST /api/importer/record-results`.
-- P2 items IQ-10–IQ-15 implemented 2026-10-12. Grill 2026-10-12: Mateusz POC without BQ; redaction warn-only; soft gate; idempotency warn (G4).
+- P2 items IQ-10–IQ-15 implemented 2026-10-12. Grill 2026-10-12: initial release without BQ; redaction warn-only; soft gate; idempotency warn (G4).

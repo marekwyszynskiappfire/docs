@@ -8,6 +8,31 @@ from db import utc_now
 from telemetry import record_event
 
 
+def resolve_creator_run_id(conn: Any, token: str) -> str:
+    """Resolve Studio creator run from stable id or display label (after rename)."""
+    trimmed = token.strip()
+    if not trimmed:
+        raise ValueError("Creator run id or label is required")
+    by_id = conn.execute("SELECT id FROM creator_run WHERE id = ?", (trimmed,)).fetchone()
+    if by_id:
+        return by_id["id"]
+    rows = conn.execute(
+        """
+        SELECT id FROM creator_run
+        WHERE label = ? COLLATE NOCASE
+        ORDER BY updated_at DESC
+        """,
+        (trimmed,),
+    ).fetchall()
+    if len(rows) == 1:
+        return rows[0]["id"]
+    if len(rows) > 1:
+        raise ValueError(
+            f"Multiple creator runs named '{trimmed}'; pick a unique label or use the run id"
+        )
+    raise KeyError(f"Creator run not found: {trimmed}")
+
+
 def rename_pipeline_run(conn: Any, run_id: str, label: str) -> dict[str, Any]:
     row = conn.execute("SELECT id, label FROM pipeline_run WHERE id = ?", (run_id,)).fetchone()
     if not row:

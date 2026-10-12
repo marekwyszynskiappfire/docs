@@ -1,14 +1,14 @@
-# Trinity — POC test case generator (operator narrative)
+# Trinity — test case generator (operator guide)
 
-English guide for the **Mateusz POC**: working generator, controls, evidence, and metrics. Deadlines in [Mateusz.MD](Mateusz.MD): solution **14/10**, documentation + scorecard + dashboards **16/10**.
+English narrative for the **working generator**: pipeline, controls, evidence, and metrics. Quick answers: [FAQ.md](FAQ.md).
 
 | Topic | Document |
 |-------|----------|
-| **Answers to Mateusz requirements** | [MATEUSZ-POC-ANSWERS.md](MATEUSZ-POC-ANSWERS.md) |
-| Post-POC GitHub issues | [GITHUB-BACKLOG.md](GITHUB-BACKLOG.md) |
+| FAQ (capabilities, metrics, multi-product) | [FAQ.md](FAQ.md) |
+| Post-release GitHub issues | [GITHUB-BACKLOG.md](GITHUB-BACKLOG.md) |
 | Metrics & telemetry | [METRICS.md](METRICS.md) |
-| One-pager evidence | [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) |
-| Google Slides bullets | [POC-GOOGLE-SLIDES-BULLETS.md](POC-GOOGLE-SLIDES-BULLETS.md) |
+| Pilot one-pager evidence | [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) |
+| Presentation bullets | [POC-GOOGLE-SLIDES-BULLETS.md](POC-GOOGLE-SLIDES-BULLETS.md) |
 | Day-to-day operations | [GUIDE.md](GUIDE.md) |
 | Decisions (Importer, telemetry) | [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md) |
 
@@ -28,7 +28,7 @@ Demonstrated on production: ONE-228469 → TC-6704–6708 (see scorecard example
 
 ---
 
-## 2. How we control output (Mateusz §1)
+## 2. How we control output
 
 | Control | Mechanism |
 |---------|-----------|
@@ -68,7 +68,7 @@ Metrics update on each step; export JSON for scorecard: `GET /api/telemetry/expo
 
 ---
 
-## 6. Multi-project validation (Mateusz §5)
+## 6. Multi-project validation
 
 Run the same path on **2–3 requirement types** (e.g. TC story, another product key once mapping exists). Record per project:
 
@@ -76,11 +76,11 @@ Run the same path on **2–3 requirement types** (e.g. TC story, another product
 - Project key override (if any)
 - Acceptance rate and top rejection reasons from telemetry summary
 
-Do not wait until POC end date to start the second project if mapping is ready.
+Start the second product as soon as mapping is ready — see [FAQ.md](FAQ.md).
 
 ---
 
-## 7. Closing questions (Mateusz §5)
+## 7. Sign-off evidence
 
 | Question | Where to answer |
 |----------|-----------------|
@@ -105,11 +105,13 @@ Suggested deck outline (build after one filled scorecard):
 7. Multi-project plan  
 8. Roadmap (ADR 0002 implementation items)  
 
+Bullets: [POC-GOOGLE-SLIDES-BULLETS.md](POC-GOOGLE-SLIDES-BULLETS.md).
+
 ---
 
-## 9. Known limitations (honest POC)
+## 9. Known limitations
 
 - **Dashboards:** Local telemetry summary + export today; **Looker Studio** waits on BigQuery ingest ([GITHUB-BACKLOG.md](GITHUB-BACKLOG.md)).
 - **Timing vs manual baseline:** Not automated — fill scorecard **Impact**; optional analysis from `metric_event` timestamps.
-- **Multi-project evidence:** Pipeline supports multiple mappings/products; **second filled scorecard** is human-owned ([MATEUSZ-POC-ANSWERS.md §5](MATEUSZ-POC-ANSWERS.md#5--multi-project-validation)).
-- **Post-POC hardening:** Redaction block, execute idempotency block, `automation_fit` → Xray field (grill decisions).
+- **Multi-project evidence:** Pipeline supports multiple mappings/products; each pilot needs a filled scorecard row ([FAQ.md](FAQ.md)).
+- **Post-release hardening:** Redaction block, execute idempotency block, `automation_fit` → Xray field ([GRILL-SESSION-2026-10-12.md](GRILL-SESSION-2026-10-12.md)).

@@ -1,8 +1,8 @@
 # Trinity — metrics and telemetry
 
-English operator reference for **local metrics** (always on in Studio) and **optional BigQuery** upload. Supports Mateusz POC scorecard and acceptance-rate evidence.
+English operator reference for **local metrics** (always on in Studio) and **optional BigQuery** upload. Use with pilot scorecards and acceptance-rate evidence.
 
-Related: [POC-TC-GENERATOR.md](POC-TC-GENERATOR.md) · [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) · [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
+Related: [FAQ.md](FAQ.md) · [POC-TC-GENERATOR.md](POC-TC-GENERATOR.md) · [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) · [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
 
 ---
 
@@ -26,7 +26,7 @@ Join telemetry on `pipeline_run_id`, `entity_id`, and `entity_type` (`pipeline_r
 
 ---
 
-## Mateusz-aligned measures
+## Standard measures
 
 | Measure | Source |
 |---------|--------|
@@ -65,7 +65,7 @@ Required when **rejecting** tests in Studio (bulk or single patch).
 
 | Endpoint | Purpose |
 |----------|---------|
-| `GET /api/telemetry/summary` | Mateusz rollup for this install |
+| `GET /api/telemetry/summary` | Rollup for this Studio install |
 | `GET /api/telemetry/events?limit=500` | Recent `metric_event` rows |
 | `GET /api/telemetry/export` | Full local bundle for scorecard / archive |
 | `GET /api/telemetry/rejection-reasons` | Enum for UI |

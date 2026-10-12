@@ -12,6 +12,15 @@ Import into Studio:
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<your-run-folder>
 ```
 
+To prune old portfolio folders and pytest noise from Studio SQLite:
+
+```bash
+./Trinity/studio/scripts/cleanup-local-runs.sh          # dry-run
+./Trinity/studio/scripts/cleanup-local-runs.sh --apply
+```
+
+Edit `KEEP_REVIEWER` in that script if you need to retain additional folders.
+
 To validate the renderer without a live run:
 
 ```bash

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../api";
 
 type Kind = "pipeline" | "creator";
@@ -15,6 +15,10 @@ export default function RunListRowActions({ kind, runId, label, onChanged }: Pro
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(label);
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!editing) setDraft(label);
+  }, [label, editing]);
 
   const save = async () => {
     const next = draft.trim();

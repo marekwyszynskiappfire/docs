@@ -47,14 +47,32 @@ from importer_plan import build_import_plan, load_handoff_payload
 from importer_persist import apply_xray_reports, load_reports_from_path, resolve_report_path
 from creator_importer_config import importer_defaults_for_handoff, test_data_isolation_warning
 from epic_child_inventory import build_run_child_inventory
+from context_loaded_alerts import build_context_loaded_alerts
+from reviewer_reports import (
+    epic_report_for_unit,
+    list_run_review_reports,
+    portfolio_report_for_run,
+)
 from portfolio_rollup import build_portfolio_rollup
 from run_management import (
     delete_creator_run,
     delete_pipeline_run,
     rename_creator_run,
     rename_pipeline_run,
+    resolve_creator_run_id,
 )
 from importer_registry import get_jira_instance, list_jira_instances, list_mapping_files
+from cursor_cost import (
+    CURSOR_STAGES,
+    STAGE_LABELS,
+    backfill_costs_from_admin_api,
+    normalize_stage,
+    read_cursor_session_file,
+    record_cursor_usage,
+    usage_summary_for_creator,
+    usage_summary_for_pipeline,
+    write_cursor_session_file,
+)
 from run_config import (
     list_new_epics,
     list_run_configs,
@@ -74,7 +92,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-EXPORT_ROOT = Path(__file__).resolve().parent.parent / "data" / "exports"
+STUDIO_DATA = Path(__file__).resolve().parent.parent / "data"
+EXPORT_ROOT = STUDIO_DATA / "exports"
 
 
 class ImportRunBody(BaseModel):
@@ -152,6 +171,29 @@ class ImporterRecordResultsBody(BaseModel):
     results: list[dict[str, Any]] | None = None
 
 
+class CursorSessionBody(BaseModel):
+    stage: str = Field(..., min_length=1)
+    pipeline_run_id: str | None = None
+    creator_run_id: str | None = None
+
+
+class CursorUsageBody(BaseModel):
+    stage: str = Field(..., min_length=1)
+    conversation_id: str | None = None
+    pipeline_run_id: str | None = None
+    creator_run_id: str | None = None
+    generation_id: str | None = None
+    model: str | None = None
+    model_id: str | None = None
+    duration_ms: int | None = None
+    status: str | None = None
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    cost_cents: int | None = None
+    source: str = "cursor_hook"
+    notes: str | None = None
+
+
 def _load_env_file(path: Path, *, keys_only: set[str] | None = None, override: bool = False) -> None:
     if not path.is_file():
         return
@@ -207,6 +249,9 @@ def health() -> dict[str, Any]:
             "creator_golden",
             "creator_suite_report",
             "portfolio_rollup",
+            "cursor_cost",
+            "reviewer_html_reports",
+            "context_loaded_alerts",
         ],
     }
 
@@ -663,10 +708,50 @@ def build_creator_handoff(run_id: str) -> dict[str, Any]:
     }
 
 
+@app.get("/api/context-loaded-alerts")
+def api_context_loaded_alerts(limit: int = 50) -> dict[str, Any]:
+    cap = min(max(limit, 1), 200)
+    with db() as conn:
+        return build_context_loaded_alerts(conn, limit=cap)
+
+
 @app.get("/api/portfolio-rollup")
 def api_portfolio_rollup() -> dict[str, Any]:
     with db() as conn:
         return build_portfolio_rollup(conn)
+
+
+@app.get("/api/runs/{run_id}/review-reports")
+def api_run_review_reports(run_id: str) -> dict[str, Any]:
+    with db() as conn:
+        try:
+            return list_run_review_reports(conn, run_id)
+        except KeyError:
+            raise HTTPException(404, "Run not found") from None
+
+
+@app.get("/api/runs/{run_id}/portfolio-report.html")
+def api_portfolio_report_html(run_id: str) -> FileResponse:
+    with db() as conn:
+        try:
+            path = portfolio_report_for_run(conn, run_id)
+        except KeyError:
+            raise HTTPException(404, "Run not found") from None
+        except FileNotFoundError as exc:
+            raise HTTPException(404, str(exc)) from exc
+    return FileResponse(path, media_type="text/html")
+
+
+@app.get("/api/units/{unit_id}/review-report.html")
+def api_unit_review_report_html(unit_id: str) -> FileResponse:
+    with db() as conn:
+        try:
+            path = epic_report_for_unit(conn, unit_id)
+        except KeyError:
+            raise HTTPException(404, "Unit not found") from None
+        except FileNotFoundError as exc:
+            raise HTTPException(404, str(exc)) from exc
+    return FileResponse(path, media_type="text/html")
 
 
 @app.get("/api/runs/{run_id}/child-inventory")
@@ -1113,19 +1198,35 @@ def importer_credentials() -> dict[str, Any]:
     }
 
 
-def _resolve_importer_handoff(body: ImporterPlanBody) -> dict[str, Any]:
+def _resolve_creator_run_id_param(raw: str | None) -> str | None:
+    if not raw or not str(raw).strip():
+        return None
+    with db() as conn:
+        try:
+            return resolve_creator_run_id(conn, str(raw).strip())
+        except ValueError as exc:
+            raise HTTPException(400, str(exc)) from exc
+        except KeyError as exc:
+            raise HTTPException(404, str(exc)) from exc
+
+
+def _resolve_importer_handoff(body: ImporterPlanBody) -> tuple[dict[str, Any], str | None]:
+    creator_run_id = _resolve_creator_run_id_param(body.creator_run_id)
     if body.payload_path:
         path = Path(body.payload_path)
         if not path.is_absolute():
             path = (docs_repo_root() / path).resolve()
-        return load_handoff_payload(path)
-    if body.creator_run_id:
-        export_path = EXPORT_ROOT / "creator" / body.creator_run_id / "importer-payload.json"
+        handoff = load_handoff_payload(path)
+        if not creator_run_id:
+            creator_run_id = handoff.get("creator_run_id")
+        return handoff, creator_run_id
+    if creator_run_id:
+        export_path = EXPORT_ROOT / "creator" / creator_run_id / "importer-payload.json"
         if export_path.is_file():
-            return load_handoff_payload(export_path)
+            return load_handoff_payload(export_path), creator_run_id
         with db() as conn:
             try:
-                return build_importer_payload(conn, body.creator_run_id)
+                return build_importer_payload(conn, creator_run_id), creator_run_id
             except KeyError:
                 raise HTTPException(404, "Creator run not found") from None
     raise HTTPException(400, "Provide payload_path or creator_run_id")
@@ -1134,7 +1235,7 @@ def _resolve_importer_handoff(body: ImporterPlanBody) -> dict[str, Any]:
 @app.post("/api/importer/plan")
 def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
     try:
-        handoff = _resolve_importer_handoff(body)
+        handoff, creator_run_id = _resolve_importer_handoff(body)
     except ValueError as exc:
         raise HTTPException(400, str(exc)) from None
     except FileNotFoundError as exc:
@@ -1153,12 +1254,14 @@ def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
             jira_instance_id_for_resolve=body.jira_instance_id,
         )
         plan["pm_safe_summary"] = build_pm_safe_summary(plan)
+        if creator_run_id:
+            plan["resolved_creator_run_id"] = creator_run_id
         with db() as conn:
-            attach_existing_xray_keys(conn, body.creator_run_id, plan)
+            attach_existing_xray_keys(conn, creator_run_id, plan)
         plan["cursor_prompt"] = build_importer_cursor_prompt(
             plan,
             payload_path=body.payload_path,
-            creator_run_id=body.creator_run_id,
+            creator_run_id=creator_run_id,
             mapping_path=body.mapping_path,
             skip_requirement_link=body.skip_requirement_link,
         )
@@ -1167,7 +1270,7 @@ def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
                 conn,
                 "importer_plan",
                 "creator_run",
-                body.creator_run_id,
+                creator_run_id,
                 None,
                 {
                     "jira_instance_id": body.jira_instance_id,
@@ -1264,7 +1367,7 @@ def _assert_production_execute_confirm(jira_instance_id: str, production_confirm
 def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
     _assert_production_execute_confirm(body.jira_instance_id, body.production_confirm)
     try:
-        handoff = _resolve_importer_handoff(body)
+        handoff, creator_run_id = _resolve_importer_handoff(body)
     except ValueError as exc:
         raise HTTPException(400, str(exc)) from None
     except FileNotFoundError as exc:
@@ -1284,7 +1387,7 @@ def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
             jira_instance_id_for_resolve=body.jira_instance_id,
         )
         with db() as conn:
-            attach_existing_xray_keys(conn, body.creator_run_id or handoff.get("creator_run_id"), plan)
+            attach_existing_xray_keys(conn, creator_run_id, plan)
         if not plan.get("credentials", {}).get("execute_ready"):
             raise HTTPException(
                 400,
@@ -1295,8 +1398,8 @@ def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
             batch_path = Path(body.payload_path)
             if not batch_path.is_absolute():
                 batch_path = (docs_repo_root() / batch_path).resolve()
-        elif body.creator_run_id:
-            batch_path = EXPORT_ROOT / "creator" / body.creator_run_id / "importer-payload.json"
+        elif creator_run_id:
+            batch_path = EXPORT_ROOT / "creator" / creator_run_id / "importer-payload.json"
         else:
             raise HTTPException(400, "payload_path or creator_run_id required for execute")
 
@@ -1308,7 +1411,6 @@ def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
             skip_requirement_link=body.skip_requirement_link,
         )
         persist: dict[str, Any] | None = None
-        creator_run_id = body.creator_run_id or handoff.get("creator_run_id")
         if creator_run_id and summary.get("report_dir"):
             with db() as conn:
                 persist = apply_xray_reports(conn, creator_run_id, Path(summary["report_dir"]))
@@ -1341,7 +1443,7 @@ def importer_defaults(
     payload_path: str | None = None,
 ) -> dict[str, Any]:
     try:
-        handoff = _resolve_importer_handoff(
+        handoff, _resolved = _resolve_importer_handoff(
             ImporterPlanBody(
                 jira_instance_id="appfire-production",
                 folder_path="/",
@@ -1384,6 +1486,92 @@ def importer_record_results(body: ImporterRecordResultsBody) -> dict[str, Any]:
         if not run:
             raise HTTPException(404, "Creator run not found")
         return apply_xray_reports(conn, body.creator_run_id, reports)
+
+
+@app.get("/api/cursor-usage/stages")
+def cursor_usage_stages() -> dict[str, Any]:
+    return {
+        "stages": [{"id": s, "label": STAGE_LABELS[s]} for s in CURSOR_STAGES if s != "unscoped"]
+        + [{"id": "unscoped", "label": STAGE_LABELS["unscoped"]}],
+    }
+
+
+@app.post("/api/cursor-session")
+def cursor_session_begin(body: CursorSessionBody) -> dict[str, Any]:
+    """Write context for Cursor hooks (next Agent session in this repo)."""
+    path = write_cursor_session_file(
+        STUDIO_DATA,
+        pipeline_run_id=body.pipeline_run_id,
+        creator_run_id=body.creator_run_id,
+        stage=body.stage,
+    )
+    return {
+        "path": str(path),
+        "stage": normalize_stage(body.stage),
+        "pipeline_run_id": body.pipeline_run_id,
+        "creator_run_id": body.creator_run_id,
+    }
+
+
+@app.get("/api/cursor-session")
+def cursor_session_read() -> dict[str, Any]:
+    data = read_cursor_session_file(STUDIO_DATA)
+    if not data:
+        return {"active": False}
+    return {"active": True, **data}
+
+
+@app.post("/api/cursor-usage")
+def cursor_usage_record(body: CursorUsageBody) -> dict[str, Any]:
+    session = read_cursor_session_file(STUDIO_DATA) or {}
+    pipeline_run_id = body.pipeline_run_id or session.get("pipeline_run_id")
+    creator_run_id = body.creator_run_id or session.get("creator_run_id")
+    stage = body.stage or session.get("stage") or "unscoped"
+    try:
+        with db() as conn:
+            return record_cursor_usage(
+                conn,
+                stage=stage,
+                conversation_id=body.conversation_id,
+                pipeline_run_id=pipeline_run_id,
+                creator_run_id=creator_run_id,
+                model=body.model,
+                model_id=body.model_id,
+                generation_id=body.generation_id,
+                duration_ms=body.duration_ms,
+                status=body.status,
+                input_tokens=body.input_tokens,
+                output_tokens=body.output_tokens,
+                cost_cents=body.cost_cents,
+                source=body.source,
+                notes=body.notes,
+            )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+
+
+@app.get("/api/cursor-usage/summary")
+def cursor_usage_summary(
+    pipeline_run_id: str | None = None,
+    creator_run_id: str | None = None,
+    include_events: bool = False,
+) -> dict[str, Any]:
+    if not pipeline_run_id and not creator_run_id:
+        raise HTTPException(400, "Provide pipeline_run_id or creator_run_id")
+    with db() as conn:
+        if creator_run_id and not pipeline_run_id:
+            summary = usage_summary_for_creator(conn, creator_run_id)
+        else:
+            summary = usage_summary_for_pipeline(conn, pipeline_run_id or "")
+    if not include_events:
+        summary.pop("events", None)
+    return summary
+
+
+@app.post("/api/cursor-usage/backfill")
+def cursor_usage_backfill(hours_back: int = 48) -> dict[str, Any]:
+    with db() as conn:
+        return backfill_costs_from_admin_api(conn, hours_back=min(max(hours_back, 1), 168))
 
 
 @app.get("/api/telemetry/rejection-reasons")

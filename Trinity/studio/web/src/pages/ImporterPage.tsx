@@ -116,6 +116,16 @@ export default function ImporterPage() {
       .catch(() => {});
   }, [creatorRunId, payloadPath]);
 
+  const sortedCreatorRuns = useMemo(
+    () => [...creatorRuns].sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: "base" })),
+    [creatorRuns]
+  );
+
+  const selectedCreatorRun = useMemo(
+    () => creatorRuns.find((r) => r.id === creatorRunId),
+    [creatorRuns, creatorRunId]
+  );
+
   const selectedInstance = useMemo(
     () => instances.find((i) => i.id === jiraInstanceId),
     [instances, jiraInstanceId]
@@ -398,22 +408,34 @@ export default function ImporterPage() {
 
         <h3>Handoff payload</h3>
         <label>
-          Creator run id
-          <input
-            type="text"
-            list="importer-creator-runs"
-            value={creatorRunId}
-            onChange={(e) => setCreatorRunId(e.target.value)}
-            placeholder="cr-… or legacy id from Creator"
-          />
+          Creator run
+          <select value={creatorRunId} onChange={(e) => setCreatorRunId(e.target.value)}>
+            <option value="">— Select a run —</option>
+            {sortedCreatorRuns.map((r) => {
+              const meta: string[] = [];
+              if (r.test_count != null && r.test_count > 0) meta.push(`${r.test_count} tests`);
+              if (r.status && r.status !== "imported") meta.push(r.status);
+              const suffix = meta.length ? ` · ${meta.join(" · ")}` : "";
+              return (
+                <option key={r.id} value={r.id}>
+                  {r.label}
+                  {suffix}
+                </option>
+              );
+            })}
+          </select>
         </label>
-        <datalist id="importer-creator-runs">
-          {creatorRuns.map((r) => (
-            <option key={r.id} value={r.id}>
-              {r.label}
-            </option>
-          ))}
-        </datalist>
+        {selectedCreatorRun && (
+          <p className="muted importer-hint">
+            {selectedCreatorRun.label !== selectedCreatorRun.id ? (
+              <>
+                Stable id <code>{selectedCreatorRun.id}</code>
+                {" · "}
+              </>
+            ) : null}
+            <Link to={`/creator/${encodeURIComponent(selectedCreatorRun.id)}`}>Open in Creator</Link>
+          </p>
+        )}
         <label>
           Or importer-payload.json path
           <input

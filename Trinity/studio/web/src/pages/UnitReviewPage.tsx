@@ -177,6 +177,14 @@ export default function UnitReviewPage() {
         )}
       </p>
       <h2>{jiraKey}</h2>
+      {unitId && (
+        <p>
+          <a href={`/api/units/${encodeURIComponent(unitId)}/review-report.html`} target="_blank" rel="noreferrer">
+            Open Profile A HTML (Reviewer)
+          </a>
+          <span className="muted"> — alongside Studio; file must exist under imported run folder.</span>
+        </p>
+      )}
       {summary && <p className="muted">{summary}</p>}
       <p className="muted">
         Revision {revision ?? "—"} · QA review is saved in <code>studio_qa</code> on the payload.
