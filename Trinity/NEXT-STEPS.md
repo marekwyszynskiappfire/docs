@@ -46,14 +46,11 @@ Still optional:
 | [`POC-GOOGLE-SLIDES-BULLETS.md`](POC-GOOGLE-SLIDES-BULLETS.md) | Presenter |
 | Telemetry evidence | [`METRICS.md`](METRICS.md) export after real runs |
 
-## 5. Backlog not in P2 (pick after grill)
+## 5. Backlog (GitHub)
 
-- **PQ-01** — Portfolio readiness rollup on Dashboard  
-- **PQ-03** — `test_data_isolation` in creator config (T-G6)  
-- **RQ-02** — `environment` / `tenant` on Reviewer export  
-- **CQ-02** — Canonical `coverage_catalog_id` vs `linked_ac_ids` in schema  
-- **TQ-02 / TQ-03** — Automation field mapping + backlog export  
-- **BigQuery** telemetry when credentials exist  
+Track post-POC work in **[GITHUB-BACKLOG.md](GITHUB-BACKLOG.md)** — create issues with `./Trinity/scripts/create_github_backlog.sh --create`.
+
+Grill R1–R3 closed in repo; Mateusz Q&A: **[MATEUSZ-POC-ANSWERS.md](MATEUSZ-POC-ANSWERS.md)**.
 
 ---
 

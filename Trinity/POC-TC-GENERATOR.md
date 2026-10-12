@@ -4,6 +4,8 @@ English guide for the **Mateusz POC**: working generator, controls, evidence, an
 
 | Topic | Document |
 |-------|----------|
+| **Answers to Mateusz requirements** | [MATEUSZ-POC-ANSWERS.md](MATEUSZ-POC-ANSWERS.md) |
+| Post-POC GitHub issues | [GITHUB-BACKLOG.md](GITHUB-BACKLOG.md) |
 | Metrics & telemetry | [METRICS.md](METRICS.md) |
 | One-pager evidence | [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) |
 | Google Slides bullets | [POC-GOOGLE-SLIDES-BULLETS.md](POC-GOOGLE-SLIDES-BULLETS.md) |
@@ -50,7 +52,7 @@ Demonstrated on production: ONE-228469 → TC-6704–6708 (see scorecard example
 - **Credentials:** `Trinity/studio/.env` — Jira + Xray (see [GUIDE.md §3](GUIDE.md#3-credentials-setup)).
 - **Xray import:** **Production only** for create/update; sandbox for read/plan ([ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)).
 - **Project / folder:** Mapping JSON default **TC**; override project key in Studio; folder path operator-defined (e.g. `/TC Importer/ONE-228469`).
-- **Future:** `creator/config` defaults for project + folder template ([RQ-01](REVIEW-PRODUCT-AND-DOCS.md)).
+- **Importer defaults:** `creator/config` → `importer.*`; Studio `GET /api/importer/defaults` ([RQ-01](REVIEW-PRODUCT-AND-DOCS.md) done).
 
 ---
 
@@ -107,8 +109,7 @@ Suggested deck outline (build after one filled scorecard):
 
 ## 9. Known limitations (honest POC)
 
-- Studio **Execute** for Importer is prompt/CLI-led (not a single button).
-- **IQ-02** typed `PRODUCTION` confirm is required in Studio Importer UI for production instance.
-- **IQ-04** shared schema validation and **RQ-01** creator/config defaults are not implemented yet.
-- Timing metrics and non-AI baseline are manual in scorecard.
-- Looker Studio waits on BigQuery credentials.
+- **Dashboards:** Local telemetry summary + export today; **Looker Studio** waits on BigQuery ingest ([GITHUB-BACKLOG.md](GITHUB-BACKLOG.md)).
+- **Timing vs manual baseline:** Not automated — fill scorecard **Impact**; optional analysis from `metric_event` timestamps.
+- **Multi-project evidence:** Pipeline supports multiple mappings/products; **second filled scorecard** is human-owned ([MATEUSZ-POC-ANSWERS.md §5](MATEUSZ-POC-ANSWERS.md#5--multi-project-validation)).
+- **Post-POC hardening:** Redaction block, execute idempotency block, `automation_fit` → Xray field (grill decisions).

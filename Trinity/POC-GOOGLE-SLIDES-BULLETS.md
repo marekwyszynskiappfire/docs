@@ -76,15 +76,15 @@ Copy each block into a slide. Fill bracketed fields from your filled [SCORECARD-
 
 ## Slide 9 — Limitations (honest)
 
-- Importer execute via Cursor/CLI prompt (Studio Execute button on roadmap)
-- Some ADR items documented but not all coded (project.id auto-resolve, Reviewer soft-gate on plan)
+- Looker/BigQuery dashboards: planned; local `/api/telemetry/export` today
 - Timing vs manual baseline: qualitative in scorecard until measured
+- Post-POC: hard redaction block, duplicate-key block on execute, automation_fit → Xray field
 
 ---
 
 ## Slide 10 — Recommendation & next steps
 
 - **Recommendation:** [Scale / pilot widen / pause — your call]
-- Implement: typed PROD guard ✓ · Xray key persist in Studio ✓
-- Next: BigQuery, IQ-01/16, MANUAL Importer chapter, second product mapping
+- Done: PROD guard ✓ · Xray key persist ✓ · Studio execute ✓ · local metrics ✓
+- Next: BigQuery/Looker ([GITHUB-BACKLOG.md](GITHUB-BACKLOG.md)) · pilot 2 scorecard · post-POC safety issues
 - **Ask:** [budget, license, headcount — if needed]
