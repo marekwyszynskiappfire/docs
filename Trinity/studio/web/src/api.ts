@@ -177,6 +177,24 @@ export const api = {
     json<EpicChildInventory>(`/api/runs/${encodeURIComponent(runId)}/child-inventory`),
   formatMix,
   runs: () => json<PipelineRun[]>("/api/runs"),
+  renamePipelineRun: (runId: string, label: string) =>
+    json<{ id: string; label: string }>(`/api/runs/${encodeURIComponent(runId)}`, {
+      method: "PATCH",
+      body: JSON.stringify({ label }),
+    }),
+  deletePipelineRun: (runId: string) =>
+    json<{ deleted: boolean; id: string }>(`/api/runs/${encodeURIComponent(runId)}`, {
+      method: "DELETE",
+    }),
+  renameCreatorRun: (runId: string, label: string) =>
+    json<{ id: string; label: string }>(`/api/creator-runs/${encodeURIComponent(runId)}`, {
+      method: "PATCH",
+      body: JSON.stringify({ label }),
+    }),
+  deleteCreatorRun: (runId: string) =>
+    json<{ deleted: boolean; id: string }>(`/api/creator-runs/${encodeURIComponent(runId)}`, {
+      method: "DELETE",
+    }),
   run: (id: string) =>
     json<{ units: ReviewUnit[]; creator_handoff?: unknown } & PipelineRun>(
       `/api/runs/${id}`

@@ -44,6 +44,25 @@ def test_health_lists_portfolio_rollup(client):
     assert "portfolio_rollup" in r.json()["features"]
 
 
+def test_patch_and_delete_pipeline_run(client):
+    run_id = "pr-api-test"
+    now = utc_now()
+    with db() as conn:
+        conn.execute(
+            """
+            INSERT INTO pipeline_run (id, label, trigger_type, trigger_value, created_at, updated_at)
+            VALUES (?, ?, 'reviewer_folder', 'x', ?, ?)
+            """,
+            (run_id, "Label", now, now),
+        )
+    r = client.patch(f"/api/runs/{run_id}", json={"label": "Renamed"})
+    assert r.status_code == 200
+    assert r.json()["label"] == "Renamed"
+    r2 = client.delete(f"/api/runs/{run_id}")
+    assert r2.status_code == 200
+    assert client.get(f"/api/runs/{run_id}").status_code == 404
+
+
 def test_creator_products_lists_requirements(client):
     r = client.get("/api/creator/products")
     assert r.status_code == 200

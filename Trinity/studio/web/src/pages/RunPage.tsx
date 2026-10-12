@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, EpicChildInventory, ReviewUnit } from "../api";
+import RunManageActions from "../components/RunManageActions";
 
 type Handoff = {
   creator_jql?: string;
@@ -20,11 +21,13 @@ export default function RunPage() {
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [childInventory, setChildInventory] = useState<EpicChildInventory | null>(null);
+  const [runLabel, setRunLabel] = useState("");
 
   const reload = useCallback(async () => {
     if (!runId) return;
     const r = await api.run(runId);
     setUnits(r.units);
+    setRunLabel(r.label);
     setSourcePath(r.source_path);
     const h = await api.creatorHandoff(runId);
     setHandoff(h as Handoff);
@@ -111,7 +114,15 @@ export default function RunPage() {
       <p>
         <Link to="/">← Dashboard</Link>
       </p>
-      <h2>{runId}</h2>
+      <h2>{runLabel || runId}</h2>
+      {runId && (
+        <RunManageActions
+          kind="pipeline"
+          runId={runId}
+          label={runLabel || runId}
+          onRenamed={setRunLabel}
+        />
+      )}
       {sourcePath && (
         <p className="muted">
           Imported from: <code>{sourcePath}</code>

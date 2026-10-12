@@ -29,6 +29,7 @@ export default function PortfolioRollupPanel({ rollup }: Props) {
           <thead>
             <tr>
               <th>Run</th>
+              <th>Studio ID</th>
               <th>Epics</th>
               <th>Approved</th>
               <th>Gate mix</th>
@@ -44,6 +45,7 @@ export default function PortfolioRollupPanel({ rollup }: Props) {
                 <td>
                   <Link to={`/runs/${r.id}`}>{r.label}</Link>
                 </td>
+                <td><code className="run-id-cell">{r.id}</code></td>
                 <td>{r.unit_count}</td>
                 <td>{r.units_approved}</td>
                 <td className="muted mix-cell">{api.formatMix(r.gate_mix)}</td>

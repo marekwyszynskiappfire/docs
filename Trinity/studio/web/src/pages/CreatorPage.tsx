@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
+import RunListRowActions from "../components/RunListRowActions";
 
 type RunRow = {
   id: string;
@@ -13,6 +14,9 @@ type RunRow = {
 
 export default function CreatorPage() {
   const [runs, setRuns] = useState<RunRow[]>([]);
+  const [reviewerRuns, setReviewerRuns] = useState<
+    { id: string; label: string; unit_count?: number }[]
+  >([]);
   const [batchPath, setBatchPath] = useState("Trinity/creator/samples/demo-story.suite.json");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -36,6 +40,7 @@ export default function CreatorPage() {
 
   const load = () => {
     api.creatorRuns().then(setRuns).catch((e) => setError(String(e)));
+    api.runs().then(setReviewerRuns).catch(() => {});
   };
 
   useEffect(() => {
@@ -136,9 +141,11 @@ export default function CreatorPage() {
           <thead>
             <tr>
               <th>Run</th>
+              <th>Studio ID</th>
               <th>Tests</th>
               <th>Batch rev.</th>
               <th>Status</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -152,14 +159,53 @@ export default function CreatorPage() {
                     </span>
                   )}
                 </td>
+                <td><code className="run-id-cell">{r.id}</code></td>
                 <td>{r.test_count}</td>
                 <td>{r.batch_revision ?? "—"}</td>
                 <td>{r.status}</td>
+                <td>
+                  <RunListRowActions kind="creator" runId={r.id} label={r.label} onChanged={load} />
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
         {runs.length === 0 && <p className="muted">No Creator batches imported yet.</p>}
+      </div>
+
+      <div className="panel">
+        <h3 style={{ marginTop: 0 }}>Reviewer runs</h3>
+        <p className="muted">
+          Epic review imports use stable <code>pr-…</code> IDs. Manage from Dashboard or here.
+        </p>
+        {reviewerRuns.length === 0 ? (
+          <p className="muted">No Reviewer runs imported.</p>
+        ) : (
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>Studio ID</th>
+                <th>Units</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {reviewerRuns.map((r) => (
+                <tr key={r.id}>
+                  <td>
+                    <Link to={`/runs/${r.id}`}>{r.label}</Link>
+                  </td>
+                  <td><code className="run-id-cell">{r.id}</code></td>
+                  <td>{r.unit_count ?? "—"}</td>
+                  <td>
+                    <RunListRowActions kind="pipeline" runId={r.id} label={r.label} onChanged={load} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );

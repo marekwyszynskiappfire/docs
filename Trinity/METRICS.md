@@ -6,6 +6,17 @@ Related: [POC-TC-GENERATOR.md](POC-TC-GENERATOR.md) · [SCORECARD-TC-GENERATOR.m
 
 ---
 
+## Stable run IDs (BigQuery / Looker Studio)
+
+| Entity | `id` format | `label` |
+|--------|-------------|---------|
+| Reviewer import | `pr-<uuid>` (new imports) or legacy folder name | Renamable display name in Studio |
+| Creator batch | `cr-<uuid>` (new imports) or explicit `run_id` in batch JSON | Renamable display name |
+
+Join telemetry on `pipeline_run_id`, `entity_id`, and `entity_type` (`pipeline_run`, `creator_run`). Re-importing the same folder or batch path updates the **same** row; IDs do not change. Events: `pipeline_run_renamed`, `pipeline_run_deleted`, `creator_run_renamed`, `creator_run_deleted`.
+
+---
+
 ## Principles
 
 1. **Local first** — SQLite `metric_event` + `telemetry_outbox` under `Trinity/studio/data/`.

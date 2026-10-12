@@ -4,6 +4,7 @@ import { api, PipelineRollup, PipelineRun, Stats } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
 import PipelineStrip from "../components/PipelineStrip";
 import PortfolioRollupPanel from "../components/PortfolioRollupPanel";
+import RunListRowActions from "../components/RunListRowActions";
 
 export default function HomePage() {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -152,8 +153,10 @@ export default function HomePage() {
           <thead>
             <tr>
               <th>Run</th>
+              <th>Studio ID</th>
               <th>Units</th>
               <th>Updated</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -167,8 +170,12 @@ export default function HomePage() {
                     </span>
                   )}
                 </td>
+                <td><code className="run-id-cell">{r.id}</code></td>
                 <td>{r.unit_count ?? "—"}</td>
                 <td className="muted">{r.updated_at.slice(0, 19)}</td>
+                <td>
+                  <RunListRowActions kind="pipeline" runId={r.id} label={r.label} onChanged={load} />
+                </td>
               </tr>
             ))}
           </tbody>

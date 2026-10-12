@@ -34,14 +34,15 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
     if not run_dir.is_dir():
         raise FileNotFoundError(run_dir)
 
-    pipeline_id = run_id or run_dir.name
+    run_dir_str = str(run_dir)
     handoff_path = run_dir / "portfolio" / "data" / "creator-handoff.json"
     handoff_json = None
-    trigger_value = pipeline_id
+    default_label = run_dir.name
+    trigger_value = default_label
     if handoff_path.is_file():
         handoff = _read_json(handoff_path)
         handoff_json = json.dumps(handoff)
-        trigger_value = handoff.get("source_jql") or handoff.get("creator_jql") or pipeline_id
+        trigger_value = handoff.get("source_jql") or handoff.get("creator_jql") or default_label
 
     epic_dirs = sorted(
         p for p in run_dir.iterdir() if p.is_dir() and EPIC_DIR_RE.match(p.name)
@@ -61,36 +62,43 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
     pipeline_is_new = True
 
     with db() as conn:
-        existing = conn.execute(
-            "SELECT id FROM pipeline_run WHERE id = ?", (pipeline_id,)
-        ).fetchone()
+        existing = None
+        if run_id:
+            existing = conn.execute(
+                "SELECT id FROM pipeline_run WHERE id = ?", (run_id,)
+            ).fetchone()
+        if not existing:
+            existing = conn.execute(
+                "SELECT id FROM pipeline_run WHERE source_path = ?", (run_dir_str,)
+            ).fetchone()
         pipeline_is_new = existing is None
         if existing:
+            pipeline_id = existing["id"]
             conn.execute(
                 """
                 UPDATE pipeline_run
-                SET label = ?, trigger_type = ?, trigger_value = ?, source_path = ?,
+                SET trigger_type = ?, trigger_value = ?, source_path = ?,
                     creator_handoff_json = ?, updated_at = ?
                 WHERE id = ?
                 """,
                 (
-                    pipeline_id,
                     "reviewer_folder",
                     trigger_value,
-                    str(run_dir),
+                    run_dir_str,
                     handoff_json,
                     now,
                     pipeline_id,
                 ),
             )
         else:
+            pipeline_id = run_id or f"pr-{uuid.uuid4()}"
             conn.execute(
                 """
                 INSERT INTO pipeline_run (id, label, trigger_type, trigger_value, source_path,
                   product_id, status, creator_handoff_json, created_at, updated_at)
                 VALUES (?, ?, 'reviewer_folder', ?, ?, NULL, 'active', ?, ?, ?)
                 """,
-                (pipeline_id, pipeline_id, trigger_value, str(run_dir), handoff_json, now, now),
+                (pipeline_id, default_label, trigger_value, run_dir_str, handoff_json, now, now),
             )
 
         for epic_dir in epic_dirs:
@@ -166,24 +174,43 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
 def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) -> dict[str, Any]:
     init_db()
     batch_path = batch_path.resolve()
+    batch_path_str = str(batch_path)
     batch = _read_json(batch_path)
-    run_id = creator_run_id or batch.get("run_id") or f"creator-{uuid.uuid4().hex[:8]}"
+    default_label = (
+        (batch.get("label") or batch.get("suite_name") or batch.get("run_id") or batch_path.stem)
+    )
     now = utc_now()
     tests = batch.get("tests") or []
 
     with db() as conn:
-        run_is_new = (
-            conn.execute("SELECT id FROM creator_run WHERE id = ?", (run_id,)).fetchone()
-            is None
-        )
-        conn.execute(
-            """
-            INSERT INTO creator_run (id, pipeline_run_id, review_unit_id, label, source_path, status, created_at, updated_at)
-            VALUES (?, NULL, NULL, ?, ?, 'draft', ?, ?)
-            ON CONFLICT(id) DO UPDATE SET source_path = excluded.source_path, updated_at = excluded.updated_at
-            """,
-            (run_id, run_id, str(batch_path), now, now),
-        )
+        existing = None
+        explicit_id = creator_run_id or batch.get("run_id")
+        if explicit_id:
+            existing = conn.execute(
+                "SELECT id FROM creator_run WHERE id = ?", (explicit_id,)
+            ).fetchone()
+        if not existing:
+            existing = conn.execute(
+                "SELECT id FROM creator_run WHERE source_path = ?", (batch_path_str,)
+            ).fetchone()
+        run_is_new = existing is None
+        if existing:
+            run_id = existing["id"]
+            conn.execute(
+                """
+                UPDATE creator_run SET source_path = ?, updated_at = ? WHERE id = ?
+                """,
+                (batch_path_str, now, run_id),
+            )
+        else:
+            run_id = explicit_id or f"cr-{uuid.uuid4()}"
+            conn.execute(
+                """
+                INSERT INTO creator_run (id, pipeline_run_id, review_unit_id, label, source_path, status, created_at, updated_at)
+                VALUES (?, NULL, NULL, ?, ?, 'draft', ?, ?)
+                """,
+                (run_id, default_label, batch_path_str, now, now),
+            )
         max_rev = conn.execute(
             "SELECT COALESCE(MAX(revision), 0) FROM test_case_batch_revision WHERE creator_run_id = ?",
             (run_id,),

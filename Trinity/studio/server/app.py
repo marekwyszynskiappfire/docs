@@ -48,6 +48,12 @@ from importer_persist import apply_xray_reports, load_reports_from_path, resolve
 from creator_importer_config import importer_defaults_for_handoff, test_data_isolation_warning
 from epic_child_inventory import build_run_child_inventory
 from portfolio_rollup import build_portfolio_rollup
+from run_management import (
+    delete_creator_run,
+    delete_pipeline_run,
+    rename_creator_run,
+    rename_pipeline_run,
+)
 from importer_registry import get_jira_instance, list_jira_instances, list_mapping_files
 from run_config import (
     list_new_epics,
@@ -73,6 +79,11 @@ EXPORT_ROOT = Path(__file__).resolve().parent.parent / "data" / "exports"
 
 class ImportRunBody(BaseModel):
     path: str
+    run_id: str | None = None
+
+
+class RunLabelBody(BaseModel):
+    label: str = Field(..., min_length=1, max_length=240)
 
 
 class ImportBatchBody(BaseModel):
@@ -316,7 +327,7 @@ def api_import_run(body: ImportRunBody) -> dict[str, Any]:
         repo_root = Path(__file__).resolve().parent.parent.parent.parent
         path = (repo_root / path).resolve()
     try:
-        return import_reviewer_run(path)
+        return import_reviewer_run(path, run_id=body.run_id)
     except (FileNotFoundError, ValueError) as e:
         raise HTTPException(400, str(e)) from e
 
@@ -361,6 +372,26 @@ def get_run(run_id: str) -> dict[str, Any]:
     out["creator_handoff"] = json_loads(out.pop("creator_handoff_json", None))
     out["units"] = [row_to_dict(u) for u in units]
     return out
+
+
+@app.patch("/api/runs/{run_id}")
+def api_patch_pipeline_run(run_id: str, body: RunLabelBody) -> dict[str, Any]:
+    try:
+        with db() as conn:
+            return rename_pipeline_run(conn, run_id, body.label)
+    except KeyError:
+        raise HTTPException(404, "Run not found") from None
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+
+
+@app.delete("/api/runs/{run_id}")
+def api_delete_pipeline_run(run_id: str) -> dict[str, Any]:
+    try:
+        with db() as conn:
+            return delete_pipeline_run(conn, run_id)
+    except KeyError:
+        raise HTTPException(404, "Run not found") from None
 
 
 @app.get("/api/units/{unit_id}")
@@ -761,6 +792,26 @@ def get_creator_run(run_id: str) -> dict[str, Any]:
         },
         "coverage": coverage,
     }
+
+
+@app.patch("/api/creator-runs/{run_id}")
+def api_patch_creator_run(run_id: str, body: RunLabelBody) -> dict[str, Any]:
+    try:
+        with db() as conn:
+            return rename_creator_run(conn, run_id, body.label)
+    except KeyError:
+        raise HTTPException(404, "Creator run not found") from None
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+
+
+@app.delete("/api/creator-runs/{run_id}")
+def api_delete_creator_run(run_id: str) -> dict[str, Any]:
+    try:
+        with db() as conn:
+            return delete_creator_run(conn, run_id)
+    except KeyError:
+        raise HTTPException(404, "Creator run not found") from None
 
 
 @app.get("/api/tests/{test_id}")

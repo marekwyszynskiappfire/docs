@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, CreatorCoverage, CreatorTestRow } from "../api";
 import CoverageMatrixPanel from "../components/CoverageMatrixPanel";
+import RunManageActions from "../components/RunManageActions";
 
 type Filter = "all" | "pending" | "approved" | "rejected" | "ready_for_import";
 
@@ -23,6 +24,7 @@ export default function CreatorRunPage() {
   const [rejectReason, setRejectReason] = useState("requirements_mismatch");
   const [rejectionReasons, setRejectionReasons] = useState<{ id: string; label: string }[]>([]);
   const [coverage, setCoverage] = useState<CreatorCoverage | null>(null);
+  const [runLabel, setRunLabel] = useState("");
 
   useEffect(() => {
     api
@@ -39,6 +41,7 @@ export default function CreatorRunPage() {
         setTests(d.tests);
         setSummary(d.summary);
         setCoverage(d.coverage ?? null);
+        setRunLabel(d.run?.label ?? runId);
       })
       .catch((e) => setError(String(e)));
   }, [runId]);
@@ -126,7 +129,15 @@ export default function CreatorRunPage() {
       <p>
         <Link to="/creator">← Creator</Link>
       </p>
-      <h2>{runId}</h2>
+      <h2>{runLabel || runId}</h2>
+      {runId && (
+        <RunManageActions
+          kind="creator"
+          runId={runId}
+          label={runLabel || runId}
+          onRenamed={setRunLabel}
+        />
+      )}
       <p className="muted">
         {summary.total} tests · {summary.approved} approved · {summary.rejected} rejected ·{" "}
         {summary.ready_for_import} ready for Xray import

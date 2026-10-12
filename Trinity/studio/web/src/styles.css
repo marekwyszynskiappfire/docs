@@ -150,6 +150,62 @@ header.app-header nav.app-nav {
   font-size: 0.88rem;
 }
 
+.run-id,
+.run-id-cell {
+  font-size: 0.78rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.run-manage {
+  margin: 0.5rem 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.run-manage--compact .run-manage-actions {
+  margin-left: 0;
+}
+
+.run-manage-edit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.run-manage-edit input {
+  min-width: 12rem;
+}
+
+.run-manage-err {
+  font-size: 0.85rem;
+}
+
+.run-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.run-row-input {
+  max-width: 9rem;
+  font-size: 0.85rem;
+}
+
+button.danger {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: transparent;
+}
+
+button.danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+}
+
 .page-title-row {
   display: flex;
   flex-wrap: wrap;

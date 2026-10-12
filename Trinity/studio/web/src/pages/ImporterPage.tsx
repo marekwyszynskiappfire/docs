@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { api, ImporterPlanResult } from "../api";
+import RunListRowActions from "../components/RunListRowActions";
+
+const DEFAULT_JIRA_INSTANCE_ID = "appfire-production";
+const DEFAULT_FOLDER_PATH = "/Trinity imports";
 
 export default function ImporterPage() {
   const [searchParams] = useSearchParams();
@@ -14,9 +18,9 @@ export default function ImporterPage() {
     { id: string; path: string; default_folder?: string; project_key?: string; jira_site?: string }[]
   >([]);
 
-  const [jiraInstanceId, setJiraInstanceId] = useState("appfire-sandbox-774");
+  const [jiraInstanceId, setJiraInstanceId] = useState(DEFAULT_JIRA_INSTANCE_ID);
   const [mappingPath, setMappingPath] = useState("");
-  const [folderPath, setFolderPath] = useState("/Trinity sandbox");
+  const [folderPath, setFolderPath] = useState(DEFAULT_FOLDER_PATH);
   const [createFolder, setCreateFolder] = useState(true);
   const [projectKey, setProjectKey] = useState("");
   const [jiraProjects, setJiraProjects] = useState<{ key: string; name: string }[]>([]);
@@ -34,6 +38,12 @@ export default function ImporterPage() {
   const [recordMsg, setRecordMsg] = useState("");
   const [reviewerGateAck, setReviewerGateAck] = useState(false);
   const [executing, setExecuting] = useState(false);
+  const [creatorRuns, setCreatorRuns] = useState<
+    { id: string; label: string; test_count?: number; status: string }[]
+  >([]);
+  const [reviewerRuns, setReviewerRuns] = useState<
+    { id: string; label: string; unit_count?: number }[]
+  >([]);
   const [executeResult, setExecuteResult] = useState<{
     created: number;
     failed: number;
@@ -74,9 +84,15 @@ export default function ImporterPage() {
       });
   }, []);
 
+  const loadStudioRuns = useCallback(() => {
+    api.creatorRuns().then(setCreatorRuns).catch(() => {});
+    api.runs().then(setReviewerRuns).catch(() => {});
+  }, []);
+
   useEffect(() => {
     loadMeta();
-  }, [loadMeta]);
+    loadStudioRuns();
+  }, [loadMeta, loadStudioRuns]);
 
   useEffect(() => {
     if (!creatorRunId && !payloadPath) return;
@@ -90,7 +106,10 @@ export default function ImporterPage() {
         if (d.default_jira_project_key && !projectKey) {
           setProjectKey(d.default_jira_project_key);
         }
-        if (d.suggested_folder_path && folderPath === "/Trinity sandbox") {
+        if (
+          d.suggested_folder_path &&
+          (folderPath === DEFAULT_FOLDER_PATH || folderPath === "/Trinity sandbox")
+        ) {
           setFolderPath(d.suggested_folder_path);
         }
       })
@@ -382,11 +401,19 @@ export default function ImporterPage() {
           Creator run id
           <input
             type="text"
+            list="importer-creator-runs"
             value={creatorRunId}
             onChange={(e) => setCreatorRunId(e.target.value)}
-            placeholder="From Studio Creator run"
+            placeholder="cr-… or legacy id from Creator"
           />
         </label>
+        <datalist id="importer-creator-runs">
+          {creatorRuns.map((r) => (
+            <option key={r.id} value={r.id}>
+              {r.label}
+            </option>
+          ))}
+        </datalist>
         <label>
           Or importer-payload.json path
           <input
@@ -577,6 +604,81 @@ export default function ImporterPage() {
           </button>
         </div>
         {recordMsg && <p className="muted">{recordMsg}</p>}
+      </div>
+
+      <div className="panel">
+        <h3 style={{ marginTop: 0 }}>Reviewer runs</h3>
+        {reviewerRuns.length === 0 ? (
+          <p className="muted">No Reviewer runs imported.</p>
+        ) : (
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>Studio ID</th>
+                <th>Units</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {reviewerRuns.map((r) => (
+                <tr key={r.id}>
+                  <td>
+                    <Link to={`/runs/${r.id}`}>{r.label}</Link>
+                  </td>
+                  <td><code className="run-id-cell">{r.id}</code></td>
+                  <td>{r.unit_count ?? "—"}</td>
+                  <td>
+                    <RunListRowActions kind="pipeline" runId={r.id} label={r.label} onChanged={loadStudioRuns} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+      <div className="panel">
+        <h3 style={{ marginTop: 0 }}>Creator runs (manage)</h3>
+        <p className="muted">
+          Stable <code>cr-…</code> IDs join to <code>metric_event</code> / BigQuery. Rename is display-only; ID never changes.
+        </p>
+        {creatorRuns.length === 0 ? (
+          <p className="muted">No Creator runs yet.</p>
+        ) : (
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>Studio ID</th>
+                <th>Tests</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {creatorRuns.map((r) => (
+                <tr key={r.id}>
+                  <td>
+                    <Link to={`/creator/${encodeURIComponent(r.id)}`}>{r.label}</Link>
+                  </td>
+                  <td><code className="run-id-cell">{r.id}</code></td>
+                  <td>{r.test_count ?? "—"}</td>
+                  <td>
+                    <RunListRowActions
+                      kind="creator"
+                      runId={r.id}
+                      label={r.label}
+                      onChanged={() => {
+                        loadStudioRuns();
+                        if (creatorRunId === r.id) setCreatorRunId("");
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <p>
