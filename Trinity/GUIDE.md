@@ -25,11 +25,15 @@ Related: [TESTING.md](TESTING.md) (checklist) · [PREFLIGHT.md](PREFLIGHT.md) ·
 
 ## Getting Started
 
+**Fastest path:** [`QUICKSTART.md`](QUICKSTART.md) — Studio + demo data in ~10 minutes (no Jira).
+
 ### Who this is for
 
 QA engineers, test architects, and automation leads running **Epic-scoped** review → test design → Xray import at Appfire (production or sandbox Jira).
 
 ### 15-minute first run (no live Jira)
+
+Prefer the committed fixture: `Trinity/studio/fixtures/demo-reviewer-run` or `./Trinity/studio/scripts/seed-demo.sh`.
 
 ```bash
 git clone <docs-repo> && cd DOCS
@@ -41,9 +45,11 @@ cd Trinity/studio/web && npm install && cd ../../..
 Open http://127.0.0.1:5173 → import demo Reviewer folder:
 
 ```bash
-mkdir -p Trinity/reviewer/runs/demo-local-test/ONE-DEMO
+./Trinity/studio/scripts/seed-demo.sh
+# Or manually (epic folder must match ONE-12345 pattern):
+mkdir -p Trinity/reviewer/runs/demo-local-test/ONE-90001
 cp Trinity/reviewer/samples/demo-epic.payload.json \
-   Trinity/reviewer/runs/demo-local-test/ONE-DEMO/review-payload.json
+   Trinity/reviewer/runs/demo-local-test/ONE-90001/review-payload.json
 ```
 
 Dashboard → import `Trinity/reviewer/runs/demo-local-test` → **Creator** → import `Trinity/creator/samples/demo-story.suite.json`.
@@ -200,13 +206,10 @@ python3 Trinity/reviewer/scripts/render_report.py \
 **Smoke (Studio import demo)**
 
 ```bash
-RUN=Trinity/reviewer/runs/demo-local-test
-mkdir -p "$RUN/ONE-DEMO"
-cp Trinity/reviewer/samples/demo-epic.payload.json "$RUN/ONE-DEMO/review-payload.json"
-./Trinity/studio/scripts/import-run.sh "$RUN"
+./Trinity/studio/scripts/seed-demo.sh
 ```
 
-Then open Dashboard → import path above.
+Or import path `Trinity/studio/fixtures/demo-reviewer-run` on the Dashboard.
 
 Full checklist: [TESTING.md](TESTING.md).
 

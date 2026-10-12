@@ -12,7 +12,7 @@ export default function HomePage() {
   const [rollup, setRollup] = useState<PortfolioRollup | null>(null);
   const [runs, setRuns] = useState<PipelineRun[]>([]);
   const [importPath, setImportPath] = useState(
-    "Trinity/reviewer/runs/<your-run-folder>"
+    "Trinity/studio/fixtures/demo-reviewer-run"
   );
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);

@@ -2,16 +2,22 @@
 
 **Trinity** combines three Cursor Agent skills — **Reviewer**, **Creator**, and **Importer** — with **Trinity Studio**, the local workbench for human QA review, approvals, and handoff.
 
-Start here for install. **Full operator guide:** [`GUIDE.md`](GUIDE.md) (architecture, checkout steps, golden exports, Importer project choice).
+Start here for install.
+
+| Path | Audience |
+|------|----------|
+| **[`QUICKSTART.md`](QUICKSTART.md)** | **New operator — Studio in ~10 min** (demo data, no Jira) |
+| [`GUIDE.md`](GUIDE.md) | Full path: credentials, golden, Importer **project selector** |
+| [`TESTING.md`](TESTING.md) | Hands-on checklist |
 
 ## Getting Started
 
-**New operators:** read **[`GUIDE.md` → Getting Started](GUIDE.md#getting-started)** (15‑min demo, credentials, Importer **project selector**, golden exports).
-
 ```bash
-./Trinity/scripts/install-trinity-skills.sh
-./Trinity/studio/scripts/start.sh
+./Trinity/studio/scripts/start.sh          # terminal 1 — UI http://127.0.0.1:5173
+./Trinity/studio/scripts/seed-demo.sh      # terminal 2 — demo Reviewer import
 ```
+
+Cursor skills (optional for demo): `./Trinity/scripts/install-trinity-skills.sh`
 
 Open **http://127.0.0.1:5173** · API **http://127.0.0.1:8765/api/health**
 
@@ -45,6 +51,7 @@ Import a Reviewer run (example):
 | [REVIEW-PRODUCT-AND-DOCS.md](REVIEW-PRODUCT-AND-DOCS.md) | Multi-persona product/doc review + open questions |
 | [FAQ.md](FAQ.md) | Engineering FAQ (capabilities, metrics, sign-off evidence) |
 | [NEXT-STEPS.md](NEXT-STEPS.md) | Post-P2: grill, doc cleanup, UI, pilot sign-off |
+| [QUICKSTART.md](QUICKSTART.md) | **10-minute Studio demo (no Jira)** |
 | [PREFLIGHT.md](PREFLIGHT.md) | MCP, skills, health checks |
 | [TESTING.md](TESTING.md) | Hands-on validation checklist |
 | [MANUAL.md](MANUAL.md) | Reviewer interview, Studio personas/configs |

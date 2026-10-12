@@ -54,9 +54,9 @@ Opens HTML beside the sample or prints output path. Confirms Python + template w
 
 ```bash
 RUN=Trinity/reviewer/runs/demo-local-test
-mkdir -p "$RUN/ONE-DEMO"
-cp Trinity/reviewer/samples/demo-epic.payload.json "$RUN/ONE-DEMO/review-payload.json"
-cp Trinity/reviewer/samples/demo-epic.report.md "$RUN/ONE-DEMO/review-report.md" 2>/dev/null || true
+mkdir -p "$RUN/ONE-90001"
+cp Trinity/reviewer/samples/demo-epic.payload.json "$RUN/ONE-90001/review-payload.json"
+cp Trinity/reviewer/samples/demo-epic.report.md "$RUN/ONE-90001/review-report.md" 2>/dev/null || true
 ```
 
 Use that folder in Studio import below.
@@ -80,7 +80,7 @@ Keep the terminal open (Ctrl+C stops API + Vite).
 
 ### 2a. Dashboard
 
-- **Import Reviewer run** — path: `Trinity/reviewer/runs/demo-local-test` (or your real run).
+- **Import Reviewer run** — path: `Trinity/studio/fixtures/demo-reviewer-run` (committed) or `./Trinity/studio/scripts/seed-demo.sh` (or your real run under `reviewer/runs/`).
 - Confirm pipeline run appears; open it.
 
 ### 2b. Review workflow
