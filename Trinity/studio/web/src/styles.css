@@ -136,6 +136,93 @@ header.app-header nav.app-nav {
   font-size: 0.9rem;
 }
 
+.context-alerts-lead {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.context-alerts-runs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.context-alerts-run {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem 0.5rem;
+  background: var(--surface-elevated, var(--bg));
+}
+
+.context-alerts-run-summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  padding: 0.25rem 0;
+  font-weight: 600;
+}
+
+.context-alerts-run-summary::-webkit-details-marker {
+  display: none;
+}
+
+.context-alerts-run-summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.35rem;
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+
+.context-alerts-run[open] .context-alerts-run-summary::before {
+  transform: rotate(90deg);
+}
+
+.context-alerts-run-link {
+  font-weight: 600;
+}
+
+.context-alerts-run-meta {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.context-alerts-table {
+  margin-top: 0.35rem;
+  margin-bottom: 0.15rem;
+}
+
+.context-alerts-table .th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.context-alerts-table .th-sort:hover {
+  color: var(--accent);
+}
+
+.context-alerts-table .th-sort--active {
+  color: var(--accent);
+}
+
+.context-alerts-table .th-sort-indicator {
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
 .child-inventory-epic {
   margin-bottom: 0.65rem;
 }
