@@ -4,7 +4,7 @@ P2 implementation backlog (IQ-10–IQ-15) is **closed** as of 2026-10-12. Use th
 
 ## 1. Stress-test (grill)
 
-Grill **Rounds 1–5 locked** — see [`GRILL-SESSION-2026-10-12.md`](GRILL-SESSION-2026-10-12.md). **Product code frozen** for pilot until scorecard + Slides; only doc/scorecard work unless a production bug appears.
+Grill **closed** (Rounds 1–6) — [`GRILL-SESSION-2026-10-12.md`](GRILL-SESSION-2026-10-12.md). **Pilot focus only:** fill scorecard, Slides, one documented prod run. No new product work unless a **production bug** or explicit EM exception.
 
 | Track | Scope | Suggested output |
 |-------|--------|------------------|

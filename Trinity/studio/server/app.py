@@ -69,6 +69,7 @@ from cursor_cost import (
     normalize_stage,
     read_cursor_session_file,
     record_cursor_usage,
+    cursor_usage_export_bundle,
     usage_summary_for_creator,
     usage_summary_for_pipeline,
     write_cursor_session_file,
@@ -1617,9 +1618,11 @@ def telemetry_export() -> dict[str, Any]:
         outbox_pending = conn.execute(
             "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
         ).fetchone()[0]
+        cursor_usage = cursor_usage_export_bundle(conn)
     return {
         "exported_at": utc_now(),
         "summary": summary,
+        "cursor_usage": cursor_usage,
         "metric_events": [row_to_dict(r) for r in rows],
         "telemetry_outbox_pending": outbox_pending,
     }

@@ -219,6 +219,35 @@ def _format_usd(cents: int) -> str:
     return f"${cents / 100:.2f}"
 
 
+def cursor_usage_export_bundle(conn: Any) -> dict[str, Any]:
+    """Rollup for telemetry export / scorecard (no per-event rows)."""
+    pipeline_ids = [
+        r["pipeline_run_id"]
+        for r in conn.execute(
+            """
+            SELECT DISTINCT pipeline_run_id FROM cursor_usage_event
+            WHERE pipeline_run_id IS NOT NULL AND pipeline_run_id != ''
+            ORDER BY pipeline_run_id
+            """
+        ).fetchall()
+    ]
+    by_pipeline: dict[str, Any] = {}
+    install_total_cents = 0
+    for pid in pipeline_ids:
+        summary = usage_summary_for_pipeline(conn, pid)
+        summary.pop("events", None)
+        by_pipeline[pid] = summary
+        install_total_cents += int(summary.get("total_cost_cents") or 0)
+    return {
+        "currency": "USD",
+        "install_total_cost_cents": install_total_cents,
+        "install_total_cost_display": _format_usd(install_total_cents),
+        "pipeline_run_count": len(by_pipeline),
+        "by_pipeline_run_id": by_pipeline,
+        "note": "Optional; see Trinity/CURSOR-COST.md. Costs may be pending until Admin API backfill.",
+    }
+
+
 def write_cursor_session_file(
     data_dir: Path | str,
     *,

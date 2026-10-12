@@ -21,6 +21,7 @@ After Xray execute, use Importer → **Persist Xray keys** (or `POST /api/import
 | **Accepted** | List or count of approved / exported tests |
 | **Rejected** | Count + top rejection reasons from [METRICS.md](METRICS.md) enum |
 | **Impact** | Time saved/spent vs manual; quality notes; cost (if any) |
+| **Cursor cost (USD)** | Optional — Studio run page or `GET /api/telemetry/export` → `cursor_usage.by_pipeline_run_id[<run_id>]`; see [CURSOR-COST.md](CURSOR-COST.md) |
 
 **Acceptance rate:** `approved / (approved + rejected)` after review (exclude pending).
 

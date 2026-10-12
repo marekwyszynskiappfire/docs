@@ -78,6 +78,8 @@ curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 curl -s http://127.0.0.1:8765/api/telemetry/export -o trinity-telemetry-export.json
 ```
 
+The export bundle includes `summary` (test-case acceptance), `metric_events`, and **`cursor_usage`** (per `pipeline_run_id` stage breakdown when Cursor hooks recorded sessions).
+
 ---
 
 ## Optional BigQuery (when credentials exist)

@@ -133,7 +133,17 @@ Pick **one** for the next ~half day: **(A)** UI round 2 (Importer risk badge, ru
 | Q5 | Implement R5 only, then **freeze** product code for pilot | This commit wave |
 | Q6 | Align **GITHUB-BACKLOG.md** with grill deferrals | Checklist, TQ-03, hardening rows |
 
-**Post-pilot:** QA checklist parity; ADR consequence tidy (G9); optional `coverage_catalog_id` schema warn.
+## Round 6 — locked (2026-10-12, interactive form) — **session closed**
+
+| # | Decision | Implementation |
+|---|----------|----------------|
+| Q1 | Refresh **ADR 0002** consequences (G9) | Full grill + cursor + parity links |
+| Q2 | **Close grill** — pilot artifacts only until bug | This section; NEXT-STEPS updated |
+| Q3 | **`cursor_usage` in telemetry export** | `cursor_usage_export_bundle` in `/api/telemetry/export` |
+| Q4 | Scorecard **Cursor cost (USD)** optional row | SCORECARD-TC-GENERATOR.md |
+| Q5 | Hygiene only — no new product features | R6 commit |
+
+**Post-pilot (backlog, not grill):** QA checklist in Studio; `coverage_catalog_id` schema warn; hard redaction/idempotency; BQ ingest.
 
 ---
 
