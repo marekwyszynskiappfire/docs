@@ -21,7 +21,7 @@ def test_format_coverage_matrix_for_prompt():
     assert "Covered" in text
 
 
-def test_load_latest_batch_and_gaps():
+def test_load_latest_batch_and_gaps(studio_db):
     run_id = f"cov-demo-{uuid.uuid4().hex[:8]}"
     batch = json.loads(DEMO_BATCH.read_text(encoding="utf-8"))
     now = utc_now()

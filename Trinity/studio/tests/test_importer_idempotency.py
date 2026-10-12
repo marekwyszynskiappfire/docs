@@ -4,7 +4,7 @@ from db import db, utc_now
 from importer_idempotency import attach_existing_xray_keys
 
 
-def test_attach_existing_xray_keys_warns():
+def test_attach_existing_xray_keys_warns(studio_db):
     run_id = f"cr-idem-{uuid.uuid4().hex[:8]}"
     now = utc_now()
     plan = {"tests": [{"draft_id": "TC-001", "action": "would_create"}], "target": {"warnings": []}}
