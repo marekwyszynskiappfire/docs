@@ -1,18 +1,18 @@
 # Trinity Importer (pillar 3)
 
-**Status:** v0.2 — instance + mapping + folder targeting in Studio; dry-run plan API; CLI execute for single tests.
+**Status:** v0.3 — Studio plan + **Execute batch** (`POST /api/importer/execute`); CLI for single-test and automation.
 
 Approved Creator exports → Xray on **production** or **sandbox** Jira.
 
 ## Quick start
 
 1. Export from Studio: Creator run → **Export for Importer**.
-2. Open **Importer** in Studio (or `./Trinity/studio/scripts/start.sh` → http://127.0.0.1:5173/importer).
-3. Select **instance**, **mapping file**, **Jira project key** (where Test issues are created — defaults to `TC` from mapping; override per run), **folder path**, and whether to **create folder**.
-4. **Preview import plan** — validates payload and shows credential/folder readiness.
-5. **Copy Cursor prompt** — execute via **trinity-importer** or CLI (`--project` override).
+2. Open **Importer** in Studio (`./Trinity/studio/scripts/start.sh` → http://127.0.0.1:5173/importer).
+3. Set **instance**, **mapping**, **Jira project key**, **folder** — see **[GUIDE.md § Getting Started](../GUIDE.md#getting-started)** (canonical project selector).
+4. **Preview import plan** → optional **Execute batch** (production requires typed confirmation).
+5. Or **Copy Cursor prompt** → **trinity-importer** / CLI.
 
-Project selector details: [GUIDE.md § Getting Started](../GUIDE.md#getting-started) and [§6](../GUIDE.md#6-importer-why-tc-by-default-choosing-another-project).
+Operator depth: [GUIDE.md §6](../GUIDE.md#6-importer-why-tc-by-default-choosing-another-project) · [MANUAL.md §Importer](../MANUAL.md) · [SKILL.md](SKILL.md).
 
 ## Sandbox credentials
 
@@ -46,6 +46,5 @@ Update [`config/mappings/appfire-sandbox.json`](config/mappings/appfire-sandbox.
 
 ## Next
 
-- Studio **Execute batch** (createFolder + createTest loop + link requirements).
 - Per-instance credential profiles (optional env prefix).
-- Import result tracking in Studio (`test_cases_imported_xray`).
+- Post-POC: hard redaction block on execute; block/skip duplicate Xray keys (warn today).

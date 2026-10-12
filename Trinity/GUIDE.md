@@ -2,7 +2,7 @@
 
 Single reference for **what Trinity is**, **how to get running**, **golden test data**, and **Importer configuration** (including the **Jira project selector**).
 
-Related: [TESTING.md](TESTING.md) (checklist) · [PREFLIGHT.md](PREFLIGHT.md) · [PIPELINE.md](PIPELINE.md) · [MANUAL.md](MANUAL.md) · [POC & Mateusz criteria](POC-TC-GENERATOR.md) · [Metrics](METRICS.md) · [Scorecard template](SCORECARD-TC-GENERATOR.md) · [Product review](REVIEW-PRODUCT-AND-DOCS.md)
+Related: [TESTING.md](TESTING.md) (checklist) · [PREFLIGHT.md](PREFLIGHT.md) · [PIPELINE.md](PIPELINE.md) · [MANUAL.md](MANUAL.md) · [Studio vs Reviewer HTML](parity-matrix.md) · [POC & Mateusz criteria](POC-TC-GENERATOR.md) · [Metrics](METRICS.md) · [Scorecard template](SCORECARD-TC-GENERATOR.md) · [Product review](REVIEW-PRODUCT-AND-DOCS.md)
 
 **Personas:** [`personas/P1-P10.md`](personas/P1-P10.md) (operator matrix) · runtime prompts in [`personas/`](personas/) · [`MANUAL.md`](MANUAL.md) §11 · Reviewer detail in [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §11.
 

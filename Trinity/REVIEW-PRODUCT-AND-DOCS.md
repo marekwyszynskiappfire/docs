@@ -4,7 +4,7 @@
 **Purpose:** Capture a multi-persona review of the **Trinity product** (Reviewer, Studio, Creator, Importer) and **operator documentation**, with **open questions** for interactive resolution.  
 **Method:** This review uses **three persona layers** (see §1): runtime Cursor prompts in `Trinity/personas/`, the **P1–P10** design-time matrix from solution consolidation, and **Reviewer audience roles** from `reviewer/MANUAL.md` §11. Findings draw on repo layout, Studio behaviour, and the E2E path on ONE-228469.
 
-**Status:** **POC-complete when artifacts filled** — scorecard + Google Slides ([POC-GOOGLE-SLIDES-BULLETS.md](POC-GOOGLE-SLIDES-BULLETS.md)). Core IQ/RQ items implemented 2026-10-12; P2 backlog remains — see §9.
+**Status:** **POC-complete when artifacts filled** — scorecard + Google Slides ([POC-GOOGLE-SLIDES-BULLETS.md](POC-GOOGLE-SLIDES-BULLETS.md)). IQ-01–IQ-17 implemented 2026-10-12 (commit `dc5b7ec`); open product gaps → §2 notes + [`parity-matrix.md`](parity-matrix.md).
 
 ---
 
@@ -82,8 +82,8 @@ Legend: **M** met well · **P** partial · **G** gap
 
 | ID | Product | Documentation | Notes |
 |----|---------|---------------|--------|
-| **P1** | **P** | **P** | Studio triage for review + Creator; Importer plan/CLI split; no suite HTML triage UI |
-| **P2** | **P** | **G** | Creator batch has counts; Studio lacks coverage/effort dashboard; GUIDE has no lead view |
+| **P1** | **P** | **P** | Studio triage for review + Creator; Importer plan/execute in Studio; **Profile B** suite HTML via export (IQ-13), not in-app suite triage |
+| **P2** | **P** | **P** | Per-run **coverage matrix** on Creator run (IQ-11); portfolio rollup still open (**PQ-01**); see [METRICS.md](METRICS.md) |
 | **P3** | **P** | **P** | Reviewer Q# for PM; blocked “gate” in HTML; Importer opaque to PM |
 | **P4** | **M** | **P** | `automation_fit` / blockers; AutomatingTestCases still separate skill (by design) |
 | **P5** | **M** | **M** | Schemas, SKILL.md, GUIDE, CONTRACTS; DECISIONS local to maintainer |
@@ -310,12 +310,14 @@ Decisions from the 2026-10-12 session → **[ADR 0002](../docs/adr/0002-trinity-
 
 ## 10. Suggested session agenda (interactive)
 
-1. **IQ-01 / IQ-04** — Importer project model (15 min)  
-2. **IQ-02 / IQ-03** — Production vs sandbox policy (10 min)  
-3. **PQ-04 / IQ-16** — Reviewer gate vs Importer (10 min)  
-4. **§2 P1–P10** — PQ-01, PQ-02, PQ-06 (15 min)  
-5. **RQ-01 / CQ-03** — Recommended project/folder on handoff (10 min)  
-6. Doc debt: **IQ-06**, **IQ-07**, **IQ-15** (10 min)
+**Done (2026-10-12):** IQ-01–IQ-17, grill Round 1 → [GRILL-SESSION-2026-10-12.md](GRILL-SESSION-2026-10-12.md).
+
+**Next interactive topics:**
+
+1. **PQ-01** — Portfolio dashboard vs per-run coverage (P2 lead)  
+2. **PQ-03 / CQ-02** — `test_data_isolation` in Creator config  
+3. **RQ-02** — Studio parity gaps ([parity-matrix.md](parity-matrix.md))  
+4. **Post-POC** — hard redaction block, execute idempotency block (grill Q2/Q4)
 
 ---
 
@@ -327,3 +329,4 @@ Decisions from the 2026-10-12 session → **[ADR 0002](../docs/adr/0002-trinity-
 | 2026-10-12 | Added P1–P10 design personas, MANUAL §11 map, PQ-01–06 |
 | 2026-10-12 | ADR 0002 decisions; POC/METRICS/SCORECARD docs; Studio local telemetry |
 | 2026-10-12 | IQ-14 Trinity Studio CI (pytest + vitest + GHA) |
+| 2026-10-12 | §2 refresh (IQ-11/13); agenda → PQ-01+; P2 wave committed |

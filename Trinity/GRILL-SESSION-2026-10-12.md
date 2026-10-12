@@ -102,6 +102,6 @@ Pick **one** for the next ~half day: **(A)** UI round 2 (Importer risk badge, ru
 
 ## After shared understanding
 
-1. Update ADR 0002 + REVIEW §2 scores from your answers.  
+1. Update ADR 0002 + REVIEW §2 scores from your answers. **Done** — P2 commit `dc5b7ec`, doc pass `parity-matrix` + REVIEW §2.  
 2. Log GitHub Issues for G4, G6, and any **block** you chose on Q2/Q3.  
 3. Proceed: doc cleanup → UI round 2 → `commit`.
