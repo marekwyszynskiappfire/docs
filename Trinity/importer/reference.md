@@ -33,6 +33,13 @@ Default **TC** in shipped mappings reflects Appfire QA + golden export filter 17
 
 Sandbox mappings often use empty `jira_required_fields` until field IDs are confirmed.
 
+## `test_type` and automation (POC policy)
+
+| Topic | POC behaviour |
+|-------|----------------|
+| **test_type** | `shared/validate_for_xray.enrich_test_for_xray_import` coerces invalid values and **Generic** → **Manual** before create. Importer **Preview plan** lists `xray_test_type` and `test_type_coercion` when the handoff value changes. |
+| **automation_fit** | Stored on Creator test rows and telemetry only. Shipped `appfire-production` mapping sets Jira test-type custom field to **Manual** for every import — not mapped from `automation_fit` until post-POC (TQ-02). |
+
 ## Folder behaviour
 
 | `create_folder_if_missing` | Behaviour |

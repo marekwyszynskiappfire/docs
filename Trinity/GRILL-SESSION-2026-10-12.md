@@ -101,10 +101,15 @@ Pick **one** for the next ~half day: **(A)** UI round 2 (Importer risk badge, ru
 
 **Still open:** CQ-01, TQ-02, other RQ-02 gaps (classifications banner, open HTML).
 
-## Round 3 (optional)
+## Round 3 — locked (2026-10-12, interactive form)
 
-- CQ-01 enforce `test_type: Manual` in schema vs enrich only  
-- TQ-02 automation field → Xray mapping  
+| # | Decision | Implementation |
+|---|----------|----------------|
+| CQ-01 | Coerce at import; **show in Importer plan** | `test_type_coercion` + `xray_test_type` per test |
+| TQ-02 | **Document** POC: Manual only in TC; analytics for `automation_fit` | `importer/reference.md`, REVIEW §6 |
+| RQ-02 | **Classifications banner** on unit review | `ClassificationsBanner` on `UnitReviewPage` |
+
+**Still open:** open `review-report.html` shortcut; hard schema lock on `test_type`.  
 
 ---
 

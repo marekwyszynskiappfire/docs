@@ -38,6 +38,17 @@ def _test_case_schema() -> dict[str, Any]:
     return json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
 
 
+def test_type_xray_coercion(raw: dict[str, Any]) -> str | None:
+    """Human-readable note when import will change test_type for Xray (CQ-01)."""
+    before = (raw.get("test_type") or "").strip()
+    after = (enrich_test_for_xray_import(dict(raw)).get("test_type") or "Manual").strip()
+    if not before:
+        return None
+    if before == after:
+        return None
+    return f"{before} → {after} (Xray import)"
+
+
 def enrich_test_for_xray_import(test: dict[str, Any]) -> dict[str, Any]:
     out = dict(test)
     linked_ac = out.get("linked_ac_ids") or []

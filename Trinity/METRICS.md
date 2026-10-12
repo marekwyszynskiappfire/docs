@@ -36,6 +36,7 @@ Join telemetry on `pipeline_run_id`, `entity_id`, and `entity_type` (`pipeline_r
 | Acceptance rate | `approved / total` in `/api/telemetry/summary` |
 | Rejection reasons | Enum on reject in Studio; aggregated in summary |
 | Pipeline funnel | Event types: `review_run_imported`, `review_unit_approved`, `creator_batch_imported`, `test_case_review`, `creator_importer_export`, `importer_plan`, `xray_import_persisted` |
+| Automation signal | `test_case_row.automation_fit` / `automation_candidate` — **not** sent to Xray in POC (all Manual in TC); use for acceptance analytics |
 | Xray keys in Studio | Importer → **Persist Xray keys** or `POST /api/importer/record-results` |
 
 **Not yet automated:** wall-clock time per phase, baseline comparison without AI (capture manually in scorecard).

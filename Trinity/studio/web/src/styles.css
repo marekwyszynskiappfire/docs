@@ -150,6 +150,35 @@ header.app-header nav.app-nav {
   font-size: 0.88rem;
 }
 
+.classifications-banner {
+  margin-bottom: 1rem;
+}
+
+.classifications-dl {
+  display: grid;
+  grid-template-columns: minmax(8rem, 11rem) 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0;
+}
+
+.classifications-dl dt {
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0;
+}
+
+.classifications-dl dd {
+  margin: 0;
+}
+
+.classifications-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.35rem 0 0.75rem;
+}
+
 .run-id,
 .run-id-cell {
   font-size: 0.78rem;

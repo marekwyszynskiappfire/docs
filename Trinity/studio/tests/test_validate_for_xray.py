@@ -28,6 +28,13 @@ def test_enrich_adds_coverage_catalog_id():
     assert t["coverage_catalog_id"] == "42"
 
 
+def test_test_type_xray_coercion_note():
+    from validate_for_xray import test_type_xray_coercion
+
+    assert test_type_xray_coercion({"test_type": "Generic"}) == "Generic → Manual (Xray import)"
+    assert test_type_xray_coercion({"test_type": "Manual"}) is None
+
+
 def test_enrich_coerces_generic_to_manual():
     t = enrich_test_for_xray_import({"test_type": "Generic"})
     assert t["test_type"] == "Manual"

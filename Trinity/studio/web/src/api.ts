@@ -560,6 +560,8 @@ export type ImporterPlanResult = {
   tests: {
     draft_id: string;
     title?: string;
+    xray_test_type?: string;
+    test_type_coercion?: string;
     validation_errors: string[];
     action: string;
   }[];

@@ -175,7 +175,7 @@ Does each doc explain **what** the selector does, **TC default**, **override vs 
 
 | ID | Question | Owner |
 |----|----------|--------|
-| **CQ-01** | Should Creator **enforce** `test_type: Manual` for `release_slice_e2e` unless config allows Cucumber? | Creator maintainers |
+| **CQ-01** | Should Creator **enforce** `test_type: Manual` for `release_slice_e2e` unless config allows Cucumber? | **Done** — coerce at import; show `test_type_coercion` in Importer plan (grill R3) |
 | **CQ-02** | Should `coverage_catalog_id` be **required** in schema when `linked_ac_ids` exist (derive one canonical field)? | Schema owners |
 | **CQ-03** | Default Importer folder in `creator/config`? | **Done** — `importer.default_folder_template` |
 
@@ -223,7 +223,7 @@ Does each doc explain **what** the selector does, **TC default**, **override vs 
 | ID | Question | Owner |
 |----|----------|--------|
 | **TQ-01** | Persist `xray_key` after import | **Done** (IQ-05) |
-| **TQ-02** | Map `automation_fit` → Xray **Automated** field value when partial/full? | Importer mapping |
+| **TQ-02** | Map `automation_fit` → Xray **Automated** field value when partial/full? | **POC deferred** — all TC imports Manual; `automation_fit` in Studio/telemetry only (grill R3) |
 | **TQ-03** | Separate **automation backlog export** (JSON/CSV) from Importer handoff? | QA + automation |
 
 ---

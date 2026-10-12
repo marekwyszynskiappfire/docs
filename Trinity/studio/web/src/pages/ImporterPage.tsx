@@ -560,6 +560,7 @@ export default function ImporterPage() {
               <tr>
                 <th>Draft</th>
                 <th>Title</th>
+                <th>Xray type</th>
                 <th>Action</th>
                 <th>Validation</th>
               </tr>
@@ -569,6 +570,14 @@ export default function ImporterPage() {
                 <tr key={t.draft_id}>
                   <td>{t.draft_id}</td>
                   <td>{t.title}</td>
+                  <td>
+                    {t.xray_test_type ?? "Manual"}
+                    {t.test_type_coercion && (
+                      <span className="muted" style={{ display: "block", fontSize: "0.85rem" }}>
+                        {t.test_type_coercion}
+                      </span>
+                    )}
+                  </td>
                   <td>{t.action}</td>
                   <td>
                     {t.validation_errors.length === 0

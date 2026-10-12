@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../api";
+import ClassificationsBanner, { type Classifications } from "../components/ClassificationsBanner";
 import ReviewUnitSections from "../components/ReviewUnitSections";
 import type {
   ClarificationQuestion,
@@ -56,6 +57,7 @@ export default function UnitReviewPage() {
   const report = payload?.report as ReviewReport | undefined;
   const contextLoaded = (payload?.context_loaded as ContextLoadedEntry[]) ?? [];
   const gateStatus = (payload?.gate as { status?: string } | undefined)?.status;
+  const classifications = payload?.classifications as Classifications | undefined;
 
   const studio: StudioQa = useMemo(() => {
     if (!payload) return { version: 1, decisions: {}, added_questions: [] };
@@ -231,6 +233,8 @@ export default function UnitReviewPage() {
           <Link to="/creator">Open Creator in Studio →</Link>
         </div>
       )}
+
+      <ClassificationsBanner classifications={classifications} />
 
       <ReviewUnitSections
         contextLoaded={contextLoaded}

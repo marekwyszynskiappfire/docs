@@ -12,7 +12,11 @@ _SHARED = _TRINITY / "shared"
 if str(_SHARED) not in sys.path:
     sys.path.insert(0, str(_SHARED))
 
-from validate_for_xray import enrich_test_for_xray_import, validate_test  # noqa: E402
+from validate_for_xray import (  # noqa: E402
+    enrich_test_for_xray_import,
+    test_type_xray_coercion,
+    validate_test,
+)
 
 from creator_importer_config import importer_defaults_for_handoff
 from importer_jira import resolve_project_by_key
@@ -114,12 +118,16 @@ def build_import_plan(
         )
     creds = credentials_status()
 
+    raw_tests = handoff.get("tests") or []
+    raw_by_draft = {t.get("draft_id"): t for t in raw_tests if t.get("draft_id")}
+
     tests_out: list[dict[str, Any]] = []
     valid = 0
     invalid = 0
     for test in batch["tests"]:
         draft_id = test.get("draft_id", "?")
-        enriched = enrich_test_for_xray_import(test)
+        raw = raw_by_draft.get(draft_id) or test
+        enriched = enrich_test_for_xray_import(dict(raw))
         errors = validate_test(enriched)
         entry: dict[str, Any] = {
             "draft_id": draft_id,
@@ -128,7 +136,11 @@ def build_import_plan(
             "linked_requirement_keys": test.get("linked_requirement_keys") or [],
             "validation_errors": errors,
             "action": "would_create" if not errors else "blocked_validation",
+            "xray_test_type": enriched.get("test_type") or "Manual",
         }
+        coercion = test_type_xray_coercion(raw)
+        if coercion:
+            entry["test_type_coercion"] = coercion
         if not errors:
             valid += 1
             variables = build_create_variables(
