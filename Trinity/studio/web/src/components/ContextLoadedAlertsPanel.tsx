@@ -67,6 +67,8 @@ export default function ContextLoadedAlertsPanel() {
   const [data, setData] = useState<{ alert_count: number; alerts: Alert[] } | null>(null);
   const [sortColumn, setSortColumn] = useState<SortColumn>("jira_key");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
+  /** Per-run expand state — do not use controlled `open={bool}` without onToggle (breaks <details>). */
+  const [expandedRuns, setExpandedRuns] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     api.contextLoadedAlerts().then(setData).catch(() => setData(null));
@@ -81,10 +83,21 @@ export default function ContextLoadedAlertsPanel() {
     }
   };
 
-  const runGroups = useMemo(
-    () => (data?.alerts ? groupContextLoadedAlertsByRun(data.alerts) : []),
-    [data?.alerts]
-  );
+  const alerts = data?.alerts ?? [];
+  const runGroups = useMemo(() => groupContextLoadedAlertsByRun(alerts), [alerts]);
+
+  useEffect(() => {
+    if (!runGroups.length) return;
+    setExpandedRuns((prev) => {
+      const next = { ...prev };
+      runGroups.forEach((g, index) => {
+        if (next[g.pipeline_run_id] === undefined) {
+          next[g.pipeline_run_id] = runGroups.length === 1 || index === 0;
+        }
+      });
+      return next;
+    });
+  }, [runGroups]);
 
   if (!data || data.alert_count === 0) {
     return (
@@ -104,11 +117,15 @@ export default function ContextLoadedAlertsPanel() {
         {data.alert_count} issue(s) across {runGroups.length} run(s) — click column headers to sort.
       </p>
       <div className="context-alerts-runs">
-        {runGroups.map((group, index) => (
+        {runGroups.map((group) => (
           <details
             key={group.pipeline_run_id}
             className="context-alerts-run"
-            open={runGroups.length === 1 || index === 0}
+            open={expandedRuns[group.pipeline_run_id] ?? false}
+            onToggle={(e) => {
+              const open = e.currentTarget.open;
+              setExpandedRuns((prev) => ({ ...prev, [group.pipeline_run_id]: open }));
+            }}
           >
             <summary className="context-alerts-run-summary">
               <Link
