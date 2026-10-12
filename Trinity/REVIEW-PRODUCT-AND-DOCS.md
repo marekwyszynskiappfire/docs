@@ -83,7 +83,7 @@ Legend: **M** met well · **P** partial · **G** gap
 | ID | Product | Documentation | Notes |
 |----|---------|---------------|--------|
 | **P1** | **P** | **P** | Studio triage for review + Creator; Importer plan/execute in Studio; **Profile B** suite HTML via export (IQ-13), not in-app suite triage |
-| **P2** | **P** | **P** | Per-run **coverage matrix** on Creator run (IQ-11); portfolio rollup still open (**PQ-01**); see [METRICS.md](METRICS.md) |
+| **P2** | **M** | **P** | Dashboard **portfolio rollup** (PQ-01) + per-run coverage (IQ-11); see [METRICS.md](METRICS.md) |
 | **P3** | **P** | **P** | Reviewer Q# for PM; blocked “gate” in HTML; Importer opaque to PM |
 | **P4** | **M** | **P** | `automation_fit` / blockers; AutomatingTestCases still separate skill (by design) |
 | **P5** | **M** | **M** | Schemas, SKILL.md, GUIDE, CONTRACTS; DECISIONS local to maintainer |
@@ -97,7 +97,7 @@ Legend: **M** met well · **P** partial · **G** gap
 
 | ID | Question | Owner |
 |----|----------|--------|
-| **PQ-01** (P2) | Should Studio **Dashboard** show portfolio-level readiness / test-count rollup? | QA lead |
+| **PQ-01** (P2) | Should Studio **Dashboard** show portfolio-level readiness / test-count rollup? | **Done** — portfolio rollup panel (grill R2) |
 | **PQ-02** (P3) | PM-safe summary on Importer handoff | **Done** — `pm_safe_summary` in plan + prompt |
 | **PQ-03** (P6) | Add `test_data_isolation` to `creator/config/*.json` as in C-06/T-G6? | Creator maintainers |
 | **PQ-04** (P8) | Block Importer export until Epic **Reviewer gate** is green on linked `review_ref`? | Release + QA |

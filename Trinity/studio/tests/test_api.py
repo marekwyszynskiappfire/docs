@@ -33,6 +33,17 @@ def test_health_lists_creator_coverage(client):
     assert "creator_coverage" in r.json()["features"]
 
 
+def test_portfolio_rollup_empty(client):
+    r = client.get("/api/portfolio-rollup")
+    assert r.status_code == 200
+    assert r.json()["runs"] == []
+
+
+def test_health_lists_portfolio_rollup(client):
+    r = client.get("/api/health")
+    assert "portfolio_rollup" in r.json()["features"]
+
+
 def test_creator_products_lists_requirements(client):
     r = client.get("/api/creator/products")
     assert r.status_code == 200

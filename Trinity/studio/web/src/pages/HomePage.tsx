@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { api, PipelineRun, Stats } from "../api";
+import { api, PipelineRollup, PipelineRun, Stats } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
 import PipelineStrip from "../components/PipelineStrip";
+import PortfolioRollupPanel from "../components/PortfolioRollupPanel";
 
 export default function HomePage() {
   const [stats, setStats] = useState<Stats | null>(null);
+  const [rollup, setRollup] = useState<PortfolioRollup | null>(null);
   const [runs, setRuns] = useState<PipelineRun[]>([]);
   const [importPath, setImportPath] = useState(
     "Trinity/reviewer/runs/<your-run-folder>"
@@ -22,6 +24,7 @@ export default function HomePage() {
 
   const load = () => {
     api.stats().then(setStats).catch((e) => setError(String(e)));
+    api.portfolioRollup().then(setRollup).catch((e) => setError(String(e)));
     api.runs().then(setRuns).catch((e) => setError(String(e)));
   };
 
@@ -63,6 +66,7 @@ export default function HomePage() {
         <code>Trinity/GUIDE.md</code>
       </p>
       <PipelineStrip stats={stats} />
+      {rollup && <PortfolioRollupPanel rollup={rollup} />}
       {stats && (
         <div className="stats-grid">
           <div className="stat-card stat-card--review">

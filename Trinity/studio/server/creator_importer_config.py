@@ -30,6 +30,17 @@ def resolve_folder_template(template: str, requirement_key: str | None) -> str:
     return template.replace("{requirement_key}", key).replace("{jira_key}", key)
 
 
+def test_data_isolation_warning(product_id: str | None) -> str | None:
+    cfg = load_creator_product_config(product_id)
+    policy = cfg.get("policy") or {}
+    if policy.get("test_data_isolation"):
+        return None
+    return (
+        "policy.test_data_isolation is not set in creator product config — "
+        "state tenant/sandbox isolation in test prerequisites before parallel runs."
+    )
+
+
 def importer_defaults_for_handoff(handoff: dict[str, Any]) -> dict[str, Any]:
     product_id = handoff.get("product_id")
     cfg = load_creator_product_config(product_id)

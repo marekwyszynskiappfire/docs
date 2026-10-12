@@ -27,7 +27,8 @@
     "release_slice_test_count_min": 3,
     "release_slice_test_count_max": 5,
     "allow_atomic": false,
-    "max_steps_per_journey": 15
+    "max_steps_per_journey": 15,
+    "test_data_isolation": "dedicated_tenant"
   },
   "output": {
     "artifacts_dir": "artifacts",

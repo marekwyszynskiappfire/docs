@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { api, ReviewUnit } from "../api";
+import { api, EpicChildInventory, ReviewUnit } from "../api";
 
 type Handoff = {
   creator_jql?: string;
@@ -19,6 +19,7 @@ export default function RunPage() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const [childInventory, setChildInventory] = useState<EpicChildInventory | null>(null);
 
   const reload = useCallback(async () => {
     if (!runId) return;
@@ -27,6 +28,8 @@ export default function RunPage() {
     setSourcePath(r.source_path);
     const h = await api.creatorHandoff(runId);
     setHandoff(h as Handoff);
+    const inv = await api.runChildInventory(runId);
+    setChildInventory(inv);
   }, [runId]);
 
   useEffect(() => {
@@ -180,6 +183,45 @@ export default function RunPage() {
             <summary className="muted">Handoff JSON preview</summary>
             <pre className="prompt-pre">{JSON.stringify(exportJson, null, 2)}</pre>
           </details>
+        </div>
+      )}
+
+      {childInventory && childInventory.epics.some((e) => e.child_count > 0) && (
+        <div className="panel">
+          <h3 style={{ marginTop: 0 }}>Child inventory (Reviewer rollup)</h3>
+          <p className="muted" style={{ marginTop: 0 }}>
+            Full child set from latest payload per epic — parity with Reviewer HTML § children.
+          </p>
+          {childInventory.epics.map((epic) =>
+            epic.child_count === 0 ? null : (
+              <details key={epic.unit_id} className="child-inventory-epic">
+                <summary>
+                  <strong>{epic.jira_key}</strong> — {epic.child_count} children (
+                  {api.formatMix(epic.status_mix)})
+                </summary>
+                <table className="data child-table">
+                  <thead>
+                    <tr>
+                      <th>Key</th>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th>Summary</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {epic.children.map((c) => (
+                      <tr key={c.key ?? c.summary ?? ""}>
+                        <td>{c.key ?? "—"}</td>
+                        <td>{c.type ?? "—"}</td>
+                        <td>{c.status ?? "—"}</td>
+                        <td className="muted">{c.summary ?? "—"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </details>
+            )
+          )}
         </div>
       )}
 

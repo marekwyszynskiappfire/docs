@@ -10,7 +10,7 @@
 | Clarification questions + Why / Source | Yes | |
 | Findings + testing impact / quote | Yes | |
 | QA review (valid / do not ask / discuss) | Yes — `studio_qa` | |
-| Child inventory & status mix | **Gap** | RQ-02 |
+| Child inventory & status mix | **Partial** — Run page expandable tables (`child-inventory` API) | RQ-02 follow-ups: status mix banner |
 | Classifications banner | **Gap** | RQ-02 |
 | QA readiness checklist | **Gap** | |
 | Link to per-epic `review-report.html` | **Gap** | Open static report alongside Studio |

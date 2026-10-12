@@ -45,7 +45,9 @@ from importer_execute import run_batch_execute
 from importer_idempotency import attach_existing_xray_keys
 from importer_plan import build_import_plan, load_handoff_payload
 from importer_persist import apply_xray_reports, load_reports_from_path, resolve_report_path
-from creator_importer_config import importer_defaults_for_handoff
+from creator_importer_config import importer_defaults_for_handoff, test_data_isolation_warning
+from epic_child_inventory import build_run_child_inventory
+from portfolio_rollup import build_portfolio_rollup
 from importer_registry import get_jira_instance, list_jira_instances, list_mapping_files
 from run_config import (
     list_new_epics,
@@ -193,6 +195,7 @@ def health() -> dict[str, Any]:
             "creator_coverage",
             "creator_golden",
             "creator_suite_report",
+            "portfolio_rollup",
         ],
     }
 
@@ -524,7 +527,12 @@ def send_to_creator(unit_id: str) -> dict[str, Any]:
                 400,
                 "This epic is not suitable for test design (not_fit). Resolve scope before Creator.",
             )
+        run_row = conn.execute(
+            "SELECT product_id FROM pipeline_run WHERE id = ?",
+            (unit["pipeline_run_id"],),
+        ).fetchone()
         unit_row = dict(unit)
+        product_id = run_row["product_id"] if run_row else None
     export = export_unit(unit_id)
     with db() as conn:
         rev_row = conn.execute(
@@ -544,12 +552,17 @@ def send_to_creator(unit_id: str) -> dict[str, Any]:
         qa_planning_fit=unit_row["qa_planning_fit"],
         pipeline_run_id=unit_row["pipeline_run_id"],
     )
+    warnings: list[str] = []
+    iso_warn = test_data_isolation_warning(product_id)
+    if iso_warn:
+        warnings.append(iso_warn)
     return {
         "review_ref": export["review_ref"],
         "creator_run_id": unit_row["jira_key"],
         "prompt": prompt,
         "suite_payload_hint": f"Trinity/creator/artifacts/{unit_row['jira_key']}/suite-payload.json",
         "creator_studio_path": "/creator",
+        "warnings": warnings,
     }
 
 
@@ -617,6 +630,21 @@ def build_creator_handoff(run_id: str) -> dict[str, Any]:
         "portfolio_report_path": portfolio_report_path,
         "handoff_export": handoff_export,
     }
+
+
+@app.get("/api/portfolio-rollup")
+def api_portfolio_rollup() -> dict[str, Any]:
+    with db() as conn:
+        return build_portfolio_rollup(conn)
+
+
+@app.get("/api/runs/{run_id}/child-inventory")
+def api_run_child_inventory(run_id: str) -> dict[str, Any]:
+    with db() as conn:
+        run = conn.execute("SELECT id FROM pipeline_run WHERE id = ?", (run_id,)).fetchone()
+        if not run:
+            raise HTTPException(404, "Run not found")
+        return build_run_child_inventory(conn, run_id)
 
 
 @app.get("/api/stats")

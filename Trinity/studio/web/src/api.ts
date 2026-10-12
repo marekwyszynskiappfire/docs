@@ -57,6 +57,50 @@ export type ReviewerRunConfig = {
   resolved_source?: "paste" | "scope_inline" | "jira_rest";
 };
 
+export type PortfolioRollupRun = {
+  id: string;
+  label: string;
+  updated_at: string;
+  unit_count: number;
+  units_approved: number;
+  units_in_creator: number;
+  gate_mix: Record<string, number>;
+  fit_mix: Record<string, number>;
+  open_findings_latest: number;
+  open_questions_latest: number;
+  creator_runs: number;
+  test_cases: number;
+  test_cases_approved: number;
+};
+
+export type PortfolioRollup = {
+  generated_at: string;
+  global: {
+    gate_mix: Record<string, number>;
+    fit_mix: Record<string, number>;
+    pipeline_runs: number;
+  };
+  runs: PortfolioRollupRun[];
+};
+
+export type EpicChildRow = {
+  key: string | null;
+  type: string | null;
+  status: string | null;
+  summary: string | null;
+};
+
+export type EpicChildInventory = {
+  pipeline_run_id: string;
+  epics: {
+    unit_id: string;
+    jira_key: string;
+    child_count: number;
+    status_mix: Record<string, number>;
+    children: EpicChildRow[];
+  }[];
+};
+
 export type Stats = {
   pipeline_runs: number;
   review_units: number;
@@ -118,8 +162,20 @@ export type CreatorCoverage = {
   approved_ac_ids?: string[];
 };
 
+function formatMix(mix: Record<string, number> | undefined): string {
+  if (!mix || !Object.keys(mix).length) return "—";
+  return Object.entries(mix)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `${k}: ${v}`)
+    .join(" · ");
+}
+
 export const api = {
   stats: () => json<Stats>("/api/stats"),
+  portfolioRollup: () => json<PortfolioRollup>("/api/portfolio-rollup"),
+  runChildInventory: (runId: string) =>
+    json<EpicChildInventory>(`/api/runs/${encodeURIComponent(runId)}/child-inventory`),
+  formatMix,
   runs: () => json<PipelineRun[]>("/api/runs"),
   run: (id: string) =>
     json<{ units: ReviewUnit[]; creator_handoff?: unknown } & PipelineRun>(

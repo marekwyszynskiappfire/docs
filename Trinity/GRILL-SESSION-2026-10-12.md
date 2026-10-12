@@ -91,10 +91,18 @@ Pick **one** for the next ~half day: **(A)** UI round 2 (Importer risk badge, ru
 | Q4 | **Warn** in plan when `xray_test_key` exists; block/skip post-POC → `importer_idempotency.py` |
 | Q5 | **Commit → UI round 2 → doc cleanup** |
 
-## Round 2 (optional follow-up)
+## Round 2 — locked (2026-10-12, interactive form)
 
-- RQ-02 `environment` on Reviewer export  
-- PQ-03 `test_data_isolation` in creator config  
+| # | Decision | Implementation |
+|---|----------|----------------|
+| PQ-01 | **Full** portfolio rollup on Dashboard before POC | `GET /api/portfolio-rollup` + PortfolioRollupPanel |
+| RQ-02 | **Child inventory** table first | `GET /api/runs/{id}/child-inventory` + RunPage details |
+| PQ-03 | **SKILL + optional JSON**, warn if missing | `policy.test_data_isolation`; warn on Send to Creator |
+
+**Still open:** CQ-01, TQ-02, other RQ-02 gaps (classifications banner, open HTML).
+
+## Round 3 (optional)
+
 - CQ-01 enforce `test_type: Manual` in schema vs enrich only  
 - TQ-02 automation field → Xray mapping  
 

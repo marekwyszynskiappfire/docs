@@ -97,7 +97,7 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 
 ## Workflow
 
-1. **Pre-flight** — Gate, readiness, fingerprint staleness vs live Jira.
+1. **Pre-flight** — Gate, readiness, fingerprint staleness vs live Jira. Read `policy.test_data_isolation` from product config (`shared_sandbox`, `dedicated_tenant`, `production_readonly`). If unset, Studio warns on **Send to Creator** — still document isolation in each test’s prerequisites (PQ-03).
 2. **Golden sampling (blocking)** — Run `scripts/sample_golden_references.py --golden-root … --keywords … --theme-file … --seed {run_id}-golden`. Read **all** selected tests. Announce `method`, `similarity_count`, `random_fill_count`, and TC keys. Fill `golden_sampling` + `golden_references[]`.
 3. **Plan suite** (Test Architect) — Propose **3–5** journey titles mapping to the matrix **and** golden title patterns; operator may adjust before full draft.
 4. **Draft journeys** — Write steps **in golden voice** (CR-GOLDEN-01) and **CR-STEP-01** (fully executable prose). Each test includes:
@@ -125,6 +125,7 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 | No placeholders | No “TBD”, “verify as appropriate”, `{from Q7}`, or “when documented” without a concrete example value in `test_data` |
 | CR-STEP-01 | Every step/action + expected result is **self-contained**; repeatable by manual tester or automation without reading other tests, epics, or golden keys |
 | No invented secrets/URLs | Use config redaction patterns |
+| Test data isolation | Match `policy.test_data_isolation`; prerequisites must name tenant/user pool and forbid cross-worker clashes |
 | P3 | `deferrable: true` + `deferrable_rationale` |
 | Count | **3–5** journeys in `release_slice_e2e` without operator approval to exceed |
 | Steps per journey | Up to **15**; prefer golden-like depth (often **>5** when samples are longer) — do not default every journey to five steps |
