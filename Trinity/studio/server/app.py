@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
 
@@ -12,20 +13,29 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
-
 # Allow running as `python app.py` from server/
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from db import db, init_db, json_loads, row_to_dict, utc_now
-from telemetry import (
-    REJECTION_REASON_LABELS,
-    REJECTION_REASONS,
-    flush_outbox,
-    mateusz_summary,
-    record_event,
-    validate_rejection_reason,
+from api_models import (
+    BulkTestsBody,
+    ImporterExecuteBody,
+    ImporterPlanBody,
+    ImporterRecordResultsBody,
+    ImportBatchBody,
+    ImportRunBody,
+    PasteResolvedKeysBody,
+    PatchTestBody,
+    RunLabelBody,
+    SavePayloadBody,
+    SavePersonaBody,
+    SaveTestCaseBody,
+    UnitMetaBody,
 )
+from db import db, init_db, json_loads, row_to_dict, utc_now
+from routers import register_routers
+from studio_env import apply_importer_credential_profile, load_dotenv
+from studio_paths import DOCS_REPO_ROOT, EXPORT_ROOT, STATIC_FALLBACK, WEB_DIST
+from telemetry import record_event, validate_rejection_reason
 from import_review import import_reviewer_run, import_test_case_batch
 from personas import docs_repo_root, list_persona_files, read_persona, write_persona
 from creator_coverage import build_coverage_summary
@@ -46,14 +56,6 @@ from importer_idempotency import attach_existing_xray_keys
 from importer_plan import build_import_plan, load_handoff_payload
 from importer_persist import apply_xray_reports, load_reports_from_path, resolve_report_path
 from creator_importer_config import importer_defaults_for_handoff, test_data_isolation_warning
-from epic_child_inventory import build_run_child_inventory
-from context_loaded_alerts import build_context_loaded_alerts
-from reviewer_reports import (
-    epic_report_for_unit,
-    list_run_review_reports,
-    portfolio_report_for_run,
-)
-from portfolio_rollup import build_portfolio_rollup
 from run_management import (
     delete_creator_run,
     delete_pipeline_run,
@@ -62,18 +64,6 @@ from run_management import (
     resolve_creator_run_id,
 )
 from importer_registry import get_jira_instance, list_jira_instances, list_mapping_files
-from cursor_cost import (
-    CURSOR_STAGES,
-    STAGE_LABELS,
-    backfill_costs_from_admin_api,
-    normalize_stage,
-    read_cursor_session_file,
-    record_cursor_usage,
-    cursor_usage_export_bundle,
-    usage_summary_for_creator,
-    usage_summary_for_pipeline,
-    write_cursor_session_file,
-)
 from run_config import (
     list_new_epics,
     list_run_configs,
@@ -84,7 +74,14 @@ from run_config import (
     write_run_config,
 )
 
-app = FastAPI(title="Trinity Studio", version="0.1.0")
+@asynccontextmanager
+async def _lifespan(_app: FastAPI):
+    load_dotenv()
+    init_db()
+    yield
+
+
+app = FastAPI(title="Trinity Studio", version="0.1.0", lifespan=_lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -92,150 +89,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-STUDIO_DATA = Path(__file__).resolve().parent.parent / "data"
-EXPORT_ROOT = STUDIO_DATA / "exports"
-
-
-class ImportRunBody(BaseModel):
-    path: str
-    run_id: str | None = None
-
-
-class RunLabelBody(BaseModel):
-    label: str = Field(..., min_length=1, max_length=240)
-
-
-class ImportBatchBody(BaseModel):
-    path: str
-    creator_run_id: str | None = None
-
-
-class ImporterPlanBody(BaseModel):
-    jira_instance_id: str
-    folder_path: str
-    create_folder_if_missing: bool = False
-    mapping_path: str | None = None
-    project_key_override: str | None = None
-    payload_path: str | None = None
-    creator_run_id: str | None = None
-    skip_requirement_link: bool = False
-    reviewer_gate_acknowledged: bool = False
-
-
-class ImporterExecuteBody(ImporterPlanBody):
-    production_confirm: str | None = None
-
-
-class SavePayloadBody(BaseModel):
-    payload: dict[str, Any]
-    created_by: str = "human"
-
-
-class UnitMetaBody(BaseModel):
-    include_in_creator: bool | None = None
-    qa_planning_fit: str | None = None
-
-
-class SaveTestCaseBody(BaseModel):
-    case: dict[str, Any]
-    human_review_status: str | None = None
-    marked_for_xray_import: bool | None = None
-    rejection_reason: str | None = None
-    created_by: str = "human"
-
-
-class PatchTestBody(BaseModel):
-    human_review_status: str | None = None
-    marked_for_xray_import: bool | None = None
-    rejection_reason: str | None = None
-
-
-class BulkTestsBody(BaseModel):
-    test_ids: list[str] = Field(..., min_length=1)
-    human_review_status: str | None = None
-    marked_for_xray_import: bool | None = None
-    rejection_reason: str | None = None
-
-
-class SavePersonaBody(BaseModel):
-    content: str = Field(..., min_length=1)
-
-
-class PasteResolvedKeysBody(BaseModel):
-    keys_text: str = Field(..., min_length=1)
-
-
-class ImporterRecordResultsBody(BaseModel):
-    creator_run_id: str = Field(..., min_length=1)
-    report_path: str | None = None
-    results: list[dict[str, Any]] | None = None
-
-
-class CursorSessionBody(BaseModel):
-    stage: str = Field(..., min_length=1)
-    pipeline_run_id: str | None = None
-    creator_run_id: str | None = None
-
-
-class CursorUsageBody(BaseModel):
-    stage: str = Field(..., min_length=1)
-    conversation_id: str | None = None
-    pipeline_run_id: str | None = None
-    creator_run_id: str | None = None
-    generation_id: str | None = None
-    model: str | None = None
-    model_id: str | None = None
-    duration_ms: int | None = None
-    status: str | None = None
-    input_tokens: int | None = None
-    output_tokens: int | None = None
-    cost_cents: int | None = None
-    source: str = "cursor_hook"
-    notes: str | None = None
-
-
-def _load_env_file(path: Path, *, keys_only: set[str] | None = None, override: bool = False) -> None:
-    if not path.is_file():
-        return
-    for line in path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, _, val = line.partition("=")
-        key = key.strip()
-        val = val.strip().strip('"').strip("'")
-        if not key:
-            continue
-        if keys_only is not None and key not in keys_only:
-            continue
-        if override or key not in os.environ:
-            os.environ[key] = val
-
-
-def _load_dotenv() -> None:
-    studio_root = Path(__file__).resolve().parent.parent
-    _load_env_file(studio_root / ".env")
-
-
-def apply_importer_credential_profile(jira_instance_id: str) -> None:
-    """Overlay Xray (and site URL) from .env.production when targeting prod."""
-    if jira_instance_id != "appfire-production":
-        return
-    studio_root = Path(__file__).resolve().parent.parent
-    prod_keys = {
-        "XRAY_CLIENT_ID",
-        "XRAY_CLIENT_SECRET",
-        "JIRA_BASE_URL",
-        "XRAY_INSECURE_SSL",
-    }
-    _load_env_file(studio_root / ".env.production", keys_only=prod_keys, override=True)
-
-
-@app.on_event("startup")
-def _startup() -> None:
-    _load_dotenv()
-    init_db()
+register_routers(app)
 
 
 @app.get("/api/health")
@@ -369,9 +223,7 @@ def api_put_run_config(portfolio_id: str, body: dict[str, Any]) -> dict[str, Any
 def api_import_run(body: ImportRunBody) -> dict[str, Any]:
     path = Path(body.path).expanduser()
     if not path.is_absolute():
-        # DOCS repo root: Trinity/studio/server → four levels up
-        repo_root = Path(__file__).resolve().parent.parent.parent.parent
-        path = (repo_root / path).resolve()
+        path = (DOCS_REPO_ROOT / path).resolve()
     try:
         return import_reviewer_run(path, run_id=body.run_id)
     except (FileNotFoundError, ValueError) as e:
@@ -382,8 +234,7 @@ def api_import_run(body: ImportRunBody) -> dict[str, Any]:
 def api_import_batch(body: ImportBatchBody) -> dict[str, Any]:
     path = Path(body.path).expanduser()
     if not path.is_absolute():
-        repo_root = Path(__file__).resolve().parent.parent.parent.parent
-        path = (repo_root / path).resolve()
+        path = (DOCS_REPO_ROOT / path).resolve()
     try:
         return import_test_case_batch(path, body.creator_run_id)
     except FileNotFoundError as e:
@@ -707,61 +558,6 @@ def build_creator_handoff(run_id: str) -> dict[str, Any]:
         "portfolio_report_path": portfolio_report_path,
         "handoff_export": handoff_export,
     }
-
-
-@app.get("/api/context-loaded-alerts")
-def api_context_loaded_alerts(limit: int = 50) -> dict[str, Any]:
-    cap = min(max(limit, 1), 200)
-    with db() as conn:
-        return build_context_loaded_alerts(conn, limit=cap)
-
-
-@app.get("/api/portfolio-rollup")
-def api_portfolio_rollup() -> dict[str, Any]:
-    with db() as conn:
-        return build_portfolio_rollup(conn)
-
-
-@app.get("/api/runs/{run_id}/review-reports")
-def api_run_review_reports(run_id: str) -> dict[str, Any]:
-    with db() as conn:
-        try:
-            return list_run_review_reports(conn, run_id)
-        except KeyError:
-            raise HTTPException(404, "Run not found") from None
-
-
-@app.get("/api/runs/{run_id}/portfolio-report.html")
-def api_portfolio_report_html(run_id: str) -> FileResponse:
-    with db() as conn:
-        try:
-            path = portfolio_report_for_run(conn, run_id)
-        except KeyError:
-            raise HTTPException(404, "Run not found") from None
-        except FileNotFoundError as exc:
-            raise HTTPException(404, str(exc)) from exc
-    return FileResponse(path, media_type="text/html")
-
-
-@app.get("/api/units/{unit_id}/review-report.html")
-def api_unit_review_report_html(unit_id: str) -> FileResponse:
-    with db() as conn:
-        try:
-            path = epic_report_for_unit(conn, unit_id)
-        except KeyError:
-            raise HTTPException(404, "Unit not found") from None
-        except FileNotFoundError as exc:
-            raise HTTPException(404, str(exc)) from exc
-    return FileResponse(path, media_type="text/html")
-
-
-@app.get("/api/runs/{run_id}/child-inventory")
-def api_run_child_inventory(run_id: str) -> dict[str, Any]:
-    with db() as conn:
-        run = conn.execute("SELECT id FROM pipeline_run WHERE id = ?", (run_id,)).fetchone()
-        if not run:
-            raise HTTPException(404, "Run not found")
-        return build_run_child_inventory(conn, run_id)
 
 
 @app.get("/api/stats")
@@ -1487,155 +1283,6 @@ def importer_record_results(body: ImporterRecordResultsBody) -> dict[str, Any]:
         if not run:
             raise HTTPException(404, "Creator run not found")
         return apply_xray_reports(conn, body.creator_run_id, reports)
-
-
-@app.get("/api/cursor-usage/stages")
-def cursor_usage_stages() -> dict[str, Any]:
-    return {
-        "stages": [{"id": s, "label": STAGE_LABELS[s]} for s in CURSOR_STAGES if s != "unscoped"]
-        + [{"id": "unscoped", "label": STAGE_LABELS["unscoped"]}],
-    }
-
-
-@app.post("/api/cursor-session")
-def cursor_session_begin(body: CursorSessionBody) -> dict[str, Any]:
-    """Write context for Cursor hooks (next Agent session in this repo)."""
-    path = write_cursor_session_file(
-        STUDIO_DATA,
-        pipeline_run_id=body.pipeline_run_id,
-        creator_run_id=body.creator_run_id,
-        stage=body.stage,
-    )
-    return {
-        "path": str(path),
-        "stage": normalize_stage(body.stage),
-        "pipeline_run_id": body.pipeline_run_id,
-        "creator_run_id": body.creator_run_id,
-    }
-
-
-@app.get("/api/cursor-session")
-def cursor_session_read() -> dict[str, Any]:
-    data = read_cursor_session_file(STUDIO_DATA)
-    if not data:
-        return {"active": False}
-    return {"active": True, **data}
-
-
-@app.post("/api/cursor-usage")
-def cursor_usage_record(body: CursorUsageBody) -> dict[str, Any]:
-    session = read_cursor_session_file(STUDIO_DATA) or {}
-    pipeline_run_id = body.pipeline_run_id or session.get("pipeline_run_id")
-    creator_run_id = body.creator_run_id or session.get("creator_run_id")
-    stage = body.stage or session.get("stage") or "unscoped"
-    try:
-        with db() as conn:
-            return record_cursor_usage(
-                conn,
-                stage=stage,
-                conversation_id=body.conversation_id,
-                pipeline_run_id=pipeline_run_id,
-                creator_run_id=creator_run_id,
-                model=body.model,
-                model_id=body.model_id,
-                generation_id=body.generation_id,
-                duration_ms=body.duration_ms,
-                status=body.status,
-                input_tokens=body.input_tokens,
-                output_tokens=body.output_tokens,
-                cost_cents=body.cost_cents,
-                source=body.source,
-                notes=body.notes,
-            )
-    except ValueError as exc:
-        raise HTTPException(400, str(exc)) from exc
-
-
-@app.get("/api/cursor-usage/summary")
-def cursor_usage_summary(
-    pipeline_run_id: str | None = None,
-    creator_run_id: str | None = None,
-    include_events: bool = False,
-) -> dict[str, Any]:
-    if not pipeline_run_id and not creator_run_id:
-        raise HTTPException(400, "Provide pipeline_run_id or creator_run_id")
-    with db() as conn:
-        if creator_run_id and not pipeline_run_id:
-            summary = usage_summary_for_creator(conn, creator_run_id)
-        else:
-            summary = usage_summary_for_pipeline(conn, pipeline_run_id or "")
-    if not include_events:
-        summary.pop("events", None)
-    return summary
-
-
-@app.post("/api/cursor-usage/backfill")
-def cursor_usage_backfill(hours_back: int = 48) -> dict[str, Any]:
-    with db() as conn:
-        return backfill_costs_from_admin_api(conn, hours_back=min(max(hours_back, 1), 168))
-
-
-@app.get("/api/telemetry/rejection-reasons")
-def telemetry_rejection_reasons() -> dict[str, Any]:
-    return {
-        "reasons": [
-            {"id": r, "label": REJECTION_REASON_LABELS[r]} for r in REJECTION_REASONS
-        ]
-    }
-
-
-@app.get("/api/telemetry/summary")
-def telemetry_summary() -> dict[str, Any]:
-    with db() as conn:
-        return mateusz_summary(conn)
-
-
-@app.get("/api/telemetry/events")
-def telemetry_events(limit: int = 500) -> dict[str, Any]:
-    cap = min(max(limit, 1), 5000)
-    with db() as conn:
-        rows = conn.execute(
-            """
-            SELECT id, pipeline_run_id, entity_type, entity_id, event_type, payload_json, created_at
-            FROM metric_event ORDER BY id DESC LIMIT ?
-            """,
-            (cap,),
-        ).fetchall()
-    return {"events": [row_to_dict(r) for r in rows]}
-
-
-@app.get("/api/telemetry/export")
-def telemetry_export() -> dict[str, Any]:
-    """Single JSON bundle for scorecard / evidence (local; copy before BigQuery exists)."""
-    with db() as conn:
-        summary = mateusz_summary(conn)
-        rows = conn.execute(
-            """
-            SELECT id, pipeline_run_id, entity_type, entity_id, event_type, payload_json, created_at
-            FROM metric_event ORDER BY id ASC
-            """
-        ).fetchall()
-        outbox_pending = conn.execute(
-            "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
-        ).fetchone()[0]
-        cursor_usage = cursor_usage_export_bundle(conn)
-    return {
-        "exported_at": utc_now(),
-        "summary": summary,
-        "cursor_usage": cursor_usage,
-        "metric_events": [row_to_dict(r) for r in rows],
-        "telemetry_outbox_pending": outbox_pending,
-    }
-
-
-@app.post("/api/telemetry/flush")
-def telemetry_flush() -> dict[str, Any]:
-    with db() as conn:
-        return flush_outbox(conn)
-
-
-STATIC_FALLBACK = Path(__file__).resolve().parent / "static"
-WEB_DIST = Path(__file__).resolve().parent.parent / "web" / "dist"
 
 
 def _ui_index() -> FileResponse:

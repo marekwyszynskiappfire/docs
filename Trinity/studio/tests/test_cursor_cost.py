@@ -31,7 +31,7 @@ def test_cursor_usage_summary_by_stage(studio_db):
 
 
 def test_cursor_usage_export_bundle(studio_db):
-    from cursor_cost import cursor_usage_export_bundle
+    from cursor_cost import cursor_usage_export_bundle, record_cursor_usage
     from db import db
 
     with db() as conn:

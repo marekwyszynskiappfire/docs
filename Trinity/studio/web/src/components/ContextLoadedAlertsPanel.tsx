@@ -1,27 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
+import {
+  groupContextLoadedAlertsByRun,
+  sortContextLoadedAlerts,
+  type ContextLoadedAlert,
+  type ContextLoadedSortColumn,
+  type ContextLoadedSortDir,
+} from "../lib/contextLoadedAlerts";
 import { SOURCE_STATUS_LABEL } from "../types/review-payload";
 
-type Alert = {
-  pipeline_run_id: string;
-  run_label: string;
-  unit_id: string;
-  jira_key: string;
-  source: string;
-  status: string;
-  detail?: string;
-};
-
-type RunGroup = {
-  pipeline_run_id: string;
-  run_label: string;
-  alerts: Alert[];
-  epicKeys: string[];
-};
-
-type SortColumn = "jira_key" | "source" | "status" | "detail";
-type SortDir = "asc" | "desc";
+type Alert = ContextLoadedAlert;
+type SortColumn = ContextLoadedSortColumn;
+type SortDir = ContextLoadedSortDir;
 
 function contextStatusPillClass(status: string): string {
   switch (status) {
@@ -43,52 +34,6 @@ function contextStatusLabel(status: string): string {
     return SOURCE_STATUS_LABEL[status as keyof typeof SOURCE_STATUS_LABEL];
   }
   return status;
-}
-
-function sortValue(a: Alert, col: SortColumn): string {
-  switch (col) {
-    case "jira_key":
-      return a.jira_key;
-    case "source":
-      return a.source;
-    case "status":
-      return a.status;
-    case "detail":
-      return a.detail ?? "";
-  }
-}
-
-function sortAlerts(alerts: Alert[], col: SortColumn, dir: SortDir): Alert[] {
-  const mult = dir === "asc" ? 1 : -1;
-  return [...alerts].sort(
-    (a, b) =>
-      sortValue(a, col).localeCompare(sortValue(b, col), undefined, {
-        sensitivity: "base",
-        numeric: true,
-      }) * mult
-  );
-}
-
-function groupAlertsByRun(alerts: Alert[]): RunGroup[] {
-  const map = new Map<string, RunGroup>();
-  for (const a of alerts) {
-    let g = map.get(a.pipeline_run_id);
-    if (!g) {
-      g = {
-        pipeline_run_id: a.pipeline_run_id,
-        run_label: a.run_label,
-        alerts: [],
-        epicKeys: [],
-      };
-      map.set(a.pipeline_run_id, g);
-    }
-    g.alerts.push(a);
-    if (!g.epicKeys.includes(a.jira_key)) g.epicKeys.push(a.jira_key);
-  }
-  return [...map.values()].sort((a, b) => {
-    if (b.alerts.length !== a.alerts.length) return b.alerts.length - a.alerts.length;
-    return a.run_label.localeCompare(b.run_label, undefined, { sensitivity: "base" });
-  });
 }
 
 type SortableHeaderProps = {
@@ -137,7 +82,7 @@ export default function ContextLoadedAlertsPanel() {
   };
 
   const runGroups = useMemo(
-    () => (data?.alerts ? groupAlertsByRun(data.alerts) : []),
+    () => (data?.alerts ? groupContextLoadedAlertsByRun(data.alerts) : []),
     [data?.alerts]
   );
 
@@ -212,7 +157,7 @@ export default function ContextLoadedAlertsPanel() {
                 </tr>
               </thead>
               <tbody>
-                {sortAlerts(group.alerts, sortColumn, sortDir).map((a) => (
+                {sortContextLoadedAlerts(group.alerts, sortColumn, sortDir).map((a) => (
                   <tr key={`${a.unit_id}-${a.source}-${a.status}`}>
                     <td>
                       <Link to={`/units/${a.unit_id}`}>{a.jira_key}</Link>

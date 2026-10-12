@@ -1,6 +1,6 @@
 # Trinity Studio (developer notes)
 
-User-facing docs: **[`../README.md`](../README.md)** · **[`../PREFLIGHT.md`](../PREFLIGHT.md)**
+User-facing docs: **[`../README.md`](../README.md)** · **[`../PREFLIGHT.md`](../PREFLIGHT.md)** · **[`CODE-HEALTH.md`](CODE-HEALTH.md)** (maintainer backlog)
 
 ## CI (IQ-14)
 
