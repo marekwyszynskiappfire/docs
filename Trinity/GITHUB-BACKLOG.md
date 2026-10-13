@@ -29,6 +29,7 @@ Or create manually from the table below.
 | Title | Body summary | Labels |
 |-------|----------------|--------|
 | **Trinity Studio: QA readiness checklist panel** | Grill R5 deferred; Profile A HTML link covers pilot. parity-matrix.md | `trinity`, `studio` |
+| **Trinity Studio: Post Jira epic comments (preview + confirm)** | Close gap: `studio_qa` + Reviewer comment templates → Jira REST from Studio. Spec: [`studio/JIRA-EPIC-COMMENTS-OUTLINE.md`](studio/JIRA-EPIC-COMMENTS-OUTLINE.md). | `trinity`, `studio`, `post-poc` |
 | **Trinity: Map automation_fit to Xray Automated field** | TQ-02 deferred at release; per-test Jira fields on execute. importer/reference.md | `trinity`, `importer` |
 | **Trinity Creator: test_data_isolation config enforcement** | PQ-03: warn today; optional schema + Studio display. | `trinity`, `creator` |
 | **Trinity: CQ-02 schema warn on catalog vs linked_ac_ids mismatch** | Doc done (grill R5); optional Studio/validation warn post-pilot. creator/reference.md | `trinity`, `creator` |

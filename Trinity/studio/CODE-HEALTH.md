@@ -25,6 +25,7 @@ Last reviewed: 2026-10-12 (Bugbot on `Trinity/studio` + structural pass).
 | P3 | ESLint + Prettier for `web/` | TS strict only today. |
 | P3 | Component tests (RTL) for critical flows | Importer plan, bulk approve. |
 | P3 | Auth + path allowlist if Studio leaves localhost | Operator tool assumption today. |
+| P1 | **Jira epic comment post from Studio** | [`JIRA-EPIC-COMMENTS-OUTLINE.md`](JIRA-EPIC-COMMENTS-OUTLINE.md) |
 
 ## CI
 
