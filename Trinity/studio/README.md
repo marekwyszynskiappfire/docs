@@ -18,7 +18,7 @@ GitHub Actions: [`.github/workflows/trinity-studio-ci.yml`](../../.github/workfl
 ./Trinity/studio/scripts/seed-demo.sh   # optional: committed demo Reviewer run
 ```
 
-Operator quickstart: [`../FIRST-RUN.md`](../FIRST-RUN.md)
+Operator quickstart: [`../QUICKSTART.md`](../QUICKSTART.md)
 
 API **8765** · Vite UI **5173** (Vite uses `--strictPort` — will not silently move to 5174).
 

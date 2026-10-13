@@ -1,6 +1,6 @@
 # Shareable HTML report guidelines
 
-Canonical rules for **Reviewer**, **Creator**, and any future agent-built HTML reports in Trinity. Optional reference: `Trinity/creator/runs/TC-6504/report/` (local pilot folder).
+Canonical rules for **The Reviewer**, **The Creator**, and any future agent-built HTML reports in this repo. Reference implementation: [`Creator/runs/TC-6504/report/`](../Creator/runs/TC-6504/report/).
 
 ---
 
@@ -20,9 +20,9 @@ Canonical rules for **Reviewer**, **Creator**, and any future agent-built HTML r
 | **A — Document** | Narrative review, test suite catalog, readiness handoff | Single self-contained `.html` **or** portable folder with one HTML + inline CSS | Optional light JS (e.g. decision export). Tiering via native `<details>`. |
 | **B — Interactive facet** | Tables, triage, analytics over many rows | **Portable folder** (required): `index.html`, `assets/styles.css`, `assets/app.js`, generated `data/report-data.js` | **Combinable AND filters**; facet counts **update** when selection changes (faceted search). |
 
-**Reviewer** per-epic `review-report.html` is **Profile A** (renderer: [`reviewer/scripts/render_report.py`](../reviewer/scripts/render_report.py), tier spec in [`reviewer/reference.md`](../reviewer/reference.md)).
+**The Reviewer** per-epic `review-report.html` is **Profile A** (renderer: `The Reviewer/scripts/render_report.py`, tier spec in `The Reviewer/reference.md`).
 
-**Reviewer** multi-Epic **`portfolio/`** bundle (≥2 epics in one run) is **Profile B** (builder: [`reviewer/scripts/build_portfolio_report.py`](../reviewer/scripts/build_portfolio_report.py), template: [`reviewer/portfolio-report-template/`](../reviewer/portfolio-report-template/)). Open `portfolio/index.html`; zip the whole `portfolio/` folder to share. Epic report links inside the portfolio use **relative** paths (`epics/{KEY}/review-report.html`). **Creator handoff:** toggles + exported `creator-handoff.json` (JQL + Jira search URL) for downstream test generation.
+**The Reviewer** multi-Epic **`portfolio/`** bundle (≥2 epics in one run) is **Profile B** (builder: `The Reviewer/scripts/build_portfolio_report.py`, template: `The Reviewer/portfolio-report-template/`). Open `portfolio/index.html`; zip the whole `portfolio/` folder to share. Epic report links inside the portfolio use **relative** paths (`epics/{KEY}/review-report.html`). **Creator handoff:** toggles + exported `creator-handoff.json` (JQL + Jira search URL) for downstream test generation.
 
 **Creator execution / bug / triage reports** (e.g. TC-6504) are **Profile B** unless explicitly documented otherwise.
 
@@ -98,8 +98,8 @@ No external scripts, fonts, or CSS from CDNs.
 |------|-----------|------------------|
 | The Reviewer (single issue) | `{artifacts_dir}/{run_id}/{KEY}/review-payload.json` + rendered reports | Copy `review-report.html` (+ optional `.md`) — single file share |
 | The Reviewer (≥2 Epics, one run) | `{portfolio_run_id}/{KEY}/…` + **`{portfolio_run_id}/portfolio/`** | Zip **`portfolio/`** — `index.html` + `epics/{KEY}/review-report.html` |
-| Trinity Creator (runs) | `Trinity/creator/runs/{RUN_ID}/` batches + build scripts | **`Trinity/creator/runs/{RUN_ID}/report/`** zip |
-| Trinity Creator (artifacts) | `Trinity/creator/artifacts/{run_id}/` | Suite HTML via `build_suite_report.py` — Profile B |
+| The Creator (runs) | `Creator/runs/{RUN_ID}/` batches + build scripts | **`Creator/runs/{RUN_ID}/report/`** zip |
+| AI in QA / TestCaseCreator | `artifacts/{KEY}/` | Suite HTML per skill paths; follow Profile A until migrated |
 
 Each shareable folder includes a **README.md** with: open instructions, regenerate command, data freshness note.
 
@@ -120,6 +120,6 @@ Each shareable folder includes a **README.md** with: open instructions, regenera
 
 ## Related docs
 
-- Reviewer HTML tier spec: [`reviewer/reference.md`](../reviewer/reference.md) (§ HTML report)
-- Creator runs policy: [`creator/runs/README.md`](../creator/runs/README.md)
-- Trinity hub: [`README.md`](../README.md)
+- The Reviewer HTML tier spec: [`The Reviewer/reference.md`](../The%20Reviewer/reference.md) (§ HTML report)
+- TC-6504 example: [`Creator/runs/TC-6504/report/README.md`](../Creator/runs/TC-6504/report/README.md)
+- Creator runs hub: [`Creator/README.md`](../Creator/README.md)

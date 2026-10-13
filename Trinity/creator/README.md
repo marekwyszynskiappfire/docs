@@ -11,7 +11,9 @@ Test suite generation skill for the Trinity pipeline: **Reviewer** → **Creator
 | Product config | [`config/default.json`](config/default.json), [`config/bigpicture.json`](config/bigpicture.json) |
 | Schema | [`schemas/TestCaseDraft.schema.json`](schemas/TestCaseDraft.schema.json) |
 | Studio import | [`samples/demo-story.suite.json`](samples/demo-story.suite.json) |
-| Roadmap | [`../PATH-TO-1.0.md`](../PATH-TO-1.0.md) |
+| Rule port | [`PORT-CHECKLIST.md`](PORT-CHECKLIST.md) (fill during Phase 1) |
+| Planning hub | [`../../The Creator/ACTION-PLAN.md`](../../The%20Creator/ACTION-PLAN.md) |
+| Decisions | [`../reviewer/DECISIONS.md`](../reviewer/DECISIONS.md) § Creator Part 2 |
 
 ## Quick demo (Studio)
 
@@ -35,10 +37,15 @@ creator/
   templates/        Review gate and external-context samples
   config/           Per-product JSON (start from default.json)
   artifacts/        Gitignored agent runs → {run_id}/suite-payload.json
-  runs/             Optional committed pilots (see runs/README.md)
+  runs/             Committed pilots (e.g. TC-6504 Profile B report)
   scripts/          Render/import helpers (roadmap)
 ```
 
-## Reference run (Profile B, optional local)
+## Reference run (Profile B)
 
-If present under `runs/TC-6504/`, see `runs/TC-6504/report/README.md` — combinable facet filters for test↔bug triage (not required for operators).
+[runs/TC-6504/report/](runs/TC-6504/report/) — combinable facet filters for test↔bug triage; build with `runs/TC-6504/build_bug_report.py`.
+
+## Legacy paths
+
+- Root [`Creator/README.md`](../../Creator/README.md) — pointer after CR0 cutover.
+- Input skills and persona review: [`../../The Creator/`](../../The%20Creator/).

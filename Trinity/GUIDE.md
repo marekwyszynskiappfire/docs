@@ -23,7 +23,7 @@ Related: [FIRST-RUN.md](FIRST-RUN.md) · [TESTING.md](TESTING.md) · [PREFLIGHT.
 
 ## Getting Started
 
-**Fastest path:** [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0 — Studio + demo in ~10 minutes (no Jira).
+**Fastest path:** [`QUICKSTART.md`](QUICKSTART.md) — Studio + demo data in ~10 minutes (no Jira).
 
 ### Who this is for
 

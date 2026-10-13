@@ -1,7 +1,7 @@
 # Trinity preflight
 
 Run once on a new machine before a portfolio review.  
-**10-minute Studio demo (no Jira):** [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0 · **Full path:** [`GUIDE.md`](GUIDE.md#getting-started).
+**10-minute Studio demo (no Jira):** [`QUICKSTART.md`](QUICKSTART.md) · **Full path:** [`GUIDE.md`](GUIDE.md#getting-started).
 
 1. **Clone** the docs repo and `cd` to repo root.
 2. **MCP** — Atlassian (and Figma if needed): [`reviewer/config/DUAL-ATLASSIAN-MCP.md`](reviewer/config/DUAL-ATLASSIAN-MCP.md).

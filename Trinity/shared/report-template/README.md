@@ -5,7 +5,7 @@ Copy this layout for new **interactive facet** reports. Do not copy TC-6504 data
 **Canonical examples:**
 
 - Creator **test suite** — [`creator/suite-report-template/`](../creator/suite-report-template/) + [`creator/runs/demo-story/suite-report/`](../creator/runs/demo-story/suite-report/)
-- Creator **bug/triage** (optional local pilot) — `creator/runs/TC-6504/report/`
+- Creator **bug/triage** — [`Creator/runs/TC-6504/report/`](../../Creator/runs/TC-6504/report/)
 
 **Rules:** [`../html-report-guidelines.md`](../html-report-guidelines.md)
 

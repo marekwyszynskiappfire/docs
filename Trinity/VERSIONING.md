@@ -21,7 +21,7 @@ git tag -a "trinity-v$(cat Trinity/VERSION)" -m "Trinity $(cat Trinity/VERSION)"
 git push docs "trinity-v$(cat Trinity/VERSION)"
 ```
 
-**Changelog:** [`CHANGELOG.md`](CHANGELOG.md). GitHub Releases page and npm publish remain optional (Studio web is `private`).
+**Not yet automated:** changelog file, GitHub Releases page, or npm publish (Studio web is `private`).
 
 ---
 
