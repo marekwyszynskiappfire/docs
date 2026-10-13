@@ -4,11 +4,11 @@
 **Release version:** [`VERSION`](VERSION) · [`VERSIONING.md`](VERSIONING.md)  
 **Operator docs:** [`FIRST-RUN.md`](FIRST-RUN.md) · [`MANUAL.md`](MANUAL.md) · [`FAQ.md`](FAQ.md) · [`METRICS.md`](METRICS.md)  
 **Decisions:** [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)  
-**Engineering backlog:** GitHub Issues on `marekwyszynskiappfire/docs` ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)). Suggested titles: *pilot 2 (M2)*, *BigQuery/Looker (M4–M5)*, *Slides + scorecard (M1/M3)* — create when `gh` is authenticated.
+**Scorecard (Mateusz §2):** [`SCORECARD.md`](SCORECARD.md)
 
 Status legend: **Done** · **Partial** · **Open** (human or infra still required)
 
-Update the **Closure** section when pilots complete; link Confluence/Slides/Issue numbers in **Evidence**.
+Update the **Closure** checklist and **Pilot log** in [`SCORECARD.md`](SCORECARD.md) when pilots complete.
 
 ---
 
@@ -34,10 +34,10 @@ Update the **Closure** section when pilots complete; link Confluence/Slides/Issu
 
 | Scorecard field | Status | Where |
 |-----------------|--------|--------|
-| Template | **Done** | § [Scorecard template](#scorecard-template) below |
-| Filled example (pilot 1) | **Partial** | ONE-228469 narrative in template example row |
-| Filled pilot 2+ | **Open** | Second epic / product |
-| Export for numbers | **Done** | `GET /api/telemetry/export` |
+| Template + example | **Done** | [`SCORECARD.md`](SCORECARD.md) |
+| Pilot 1 “published” to stakeholders | **Open** | Example row filled; attach telemetry + Slides/Confluence when you present |
+| Pilot 2+ | **Open** | Add rows in SCORECARD **Pilot log** |
+| Export for numbers | **Done** | `./Trinity/scripts/export-telemetry.sh` |
 
 ---
 
@@ -69,7 +69,7 @@ curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 | Usage, input, config | **Done** | [`GUIDE.md`](GUIDE.md), [`FIRST-RUN.md`](FIRST-RUN.md) |
 | QC, human review, granularity, limitations | **Done** | [`MANUAL.md`](MANUAL.md), [`FAQ.md`](FAQ.md), skills |
 | Confluence operator tree | **Done** | [QACoE Trinity guide](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide) |
-| Scorecard published | **Open** | Fill template; attach export JSON |
+| Scorecard published | **Open** | Complete [`SCORECARD.md`](SCORECARD.md) pilot log + share externally |
 | Preconfigured **org** dashboards | **Partial** | Studio Dashboard + telemetry API; Looker **Open** |
 
 ---
@@ -98,44 +98,11 @@ curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 
 ---
 
-## Scorecard template
-
-Copy for each pilot; store filled copies in Confluence or a GitHub Issue (planning templates stay out of git per [`README.md`](README.md)).
-
-| Field | Value |
-|-------|--------|
-| **Trinity version** | `cat Trinity/VERSION` or `/api/health` → `trinity_version` |
-| **Use case** | |
-| **Product / solution** | Trinity (Reviewer + Creator + Studio + Importer); skills `trinity-*` |
-| **Who used it** | Operator + reviewers (names) |
-| **Input** | Jira key(s), review run id, requirement summary |
-| **Output** | # generated, # approved, # rejected, Xray keys |
-| **Human review** | Who, Studio actions, material edits |
-| **Accepted** | Count / list exported to Importer |
-| **Rejected** | Count + top reasons from telemetry summary |
-| **Impact** | Time vs manual; quality notes; Cursor cost if tracked |
-| **Date / environment** | PROD Jira; project key; Xray folder |
-
-**Acceptance rate:** `approved / (approved + rejected)` after review (exclude pending).
-
-### Example — ONE-228469 (reference)
-
-| Field | Value |
-|-------|--------|
-| **Use case** | AI-assisted manual TCs for custom fields; import to Xray |
-| **Input** | ONE-228469 |
-| **Output** | 5 tests → TC-6704 … TC-6708 |
-| **Human review** | Validation fixes before import (`coverage_catalog_id`, Manual type, field mapping) |
-| **Accepted** | 5/5 after plan corrections |
-| **Rejected** | N/A (validation caught issues pre-review reject) |
-
----
-
 ## Slides (Google)
 
 **Open:** build deck from this page + filled scorecard + screenshots.
 
-Suggested flow: Problem → Pipeline (ARCHITECTURE diagram) → Control table (FAQ) → Metrics (summary JSON) → ONE-228469 evidence → Multi-project plan → Roadmap (Issues).
+Suggested flow: Problem → Pipeline (ARCHITECTURE diagram) → Control table (FAQ) → Metrics (summary JSON) → [`SCORECARD.md`](SCORECARD.md) evidence → Multi-project plan.
 
 ---
 
@@ -143,7 +110,7 @@ Suggested flow: Problem → Pipeline (ARCHITECTURE diagram) → Control table (F
 
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
-| M1 | Pilot 1 scorecard + telemetry export | | ☐ |
+| M1 | Pilot 1 shared: SCORECARD pilot log + `export-telemetry.sh` | | ☐ |
 | M2 | Pilot 2 (different project or epic) | | ☐ |
 | M3 | Slides presented to stakeholders | | ☐ |
 | M4 | BigQuery ingest URL + first flush | | ☐ |

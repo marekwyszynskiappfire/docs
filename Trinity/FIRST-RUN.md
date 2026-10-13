@@ -365,6 +365,6 @@ Reset demo only: `rm Trinity/studio/data/qa-studio.db` → restart → `seed-dem
 - Read [`MANUAL.md`](MANUAL.md) for edge cases and roles.
 - Walk [`TESTING.md`](TESTING.md) before pilot sign-off.
 - Portfolio HTML and multi-epic: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
-- **Mateusz POC evidence:** fill scorecard in [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md); run `./Trinity/scripts/export-telemetry.sh` while Studio is up.
+- **Mateusz POC evidence:** update [`SCORECARD.md`](SCORECARD.md) pilot log; run `./Trinity/scripts/export-telemetry.sh` while Studio is up.
 
 **Last reviewed:** 2026-10-13

@@ -15,7 +15,9 @@
 
 **Release:** `Trinity/VERSION` (see [`VERSIONING.md`](VERSIONING.md)) · **Mateusz POC closure:** [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) · [`Mateusz.MD`](Mateusz.MD) (requirements PL).
 
-Planning artifacts (grill sessions, filled scorecards, Slides drafts) stay **local or Confluence** — engineering backlog in GitHub Issues ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)).
+**Scorecard:** [`SCORECARD.md`](SCORECARD.md) (template + ONE-228469 example); telemetry JSON exports stay local (`scorecard-exports/` gitignored).
+
+Planning artifacts (grill sessions, Slides drafts) stay **local or Confluence**.
 
 ## Getting started
 
@@ -55,7 +57,8 @@ Import a Reviewer run:
 | [`FAQ.md`](FAQ.md) | Capabilities and policies |
 | [`METRICS.md`](METRICS.md) · [`CURSOR-COST.md`](CURSOR-COST.md) | Telemetry and Cursor usage |
 | [`VERSIONING.md`](VERSIONING.md) | Release semver vs JSON schema versions |
-| [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) | POC traceability and scorecard template |
+| [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) | POC traceability |
+| [`SCORECARD.md`](SCORECARD.md) | Mateusz one-pager template + pilot log |
 | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) | Reading Reviewer HTML reports |
 | [`confluence/README.md`](confluence/README.md) | Confluence (QACoE) three-page tree |
 
