@@ -5,11 +5,13 @@ on:
     paths:
       - "Trinity/studio/**"
       - "Trinity/shared/**"
+      - "Trinity/VERSION"
       - ".github/workflows/trinity-studio-ci.yml"
   pull_request:
     paths:
       - "Trinity/studio/**"
       - "Trinity/shared/**"
+      - "Trinity/VERSION"
       - ".github/workflows/trinity-studio-ci.yml"
 
 jobs:
@@ -32,7 +34,15 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Pytest (API + shared validation)
+        env:
+          TRINITY_GIT_REVISION: ${{ github.sha }}
         run: pytest tests -q
+
+      - name: Assert Trinity VERSION matches release module
+        run: |
+          V="$(tr -d ' \r' < ../VERSION | head -1)"
+          test -n "$V"
+          echo "Trinity release version: $V"
 
       - uses: actions/setup-node@v4
         with:

@@ -4,7 +4,7 @@
 **Release version:** [`VERSION`](VERSION) · [`VERSIONING.md`](VERSIONING.md)  
 **Operator docs:** [`FIRST-RUN.md`](FIRST-RUN.md) · [`MANUAL.md`](MANUAL.md) · [`FAQ.md`](FAQ.md) · [`METRICS.md`](METRICS.md)  
 **Decisions:** [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)  
-**Engineering backlog:** GitHub Issues on `marekwyszynskiappfire/docs` ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md))
+**Engineering backlog:** GitHub Issues on `marekwyszynskiappfire/docs` ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)). Suggested titles: *pilot 2 (M2)*, *BigQuery/Looker (M4–M5)*, *Slides + scorecard (M1/M3)* — create when `gh` is authenticated.
 
 Status legend: **Done** · **Partial** · **Open** (human or infra still required)
 
@@ -56,7 +56,7 @@ Update the **Closure** section when pilots complete; link Confluence/Slides/Issu
 
 ```bash
 curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
-curl -s http://127.0.0.1:8765/api/telemetry/export -o trinity-telemetry-export.json
+./Trinity/scripts/export-telemetry.sh trinity-telemetry-export.json
 ```
 
 ---
@@ -148,6 +148,6 @@ Suggested flow: Problem → Pipeline (ARCHITECTURE diagram) → Control table (F
 | M3 | Slides presented to stakeholders | | ☐ |
 | M4 | BigQuery ingest URL + first flush | | ☐ |
 | M5 | Looker Studio report | | ☐ |
-| M6 | Git tag `trinity-v$(cat Trinity/VERSION)` on `main` | | ☐ |
+| M6 | Git tag `trinity-v$(cat Trinity/VERSION)` on `main` | | ☑ `trinity-v0.2.0` @ `2f19313` |
 
 **Last updated:** 2026-10-13
