@@ -12,6 +12,8 @@ Only **three** child pages are maintained on Confluence (sync from git):
 
 Superseded sectional markdown (`confluence/0*.md`, `samples/`) is **gitignored** — do not re-add; wiki content is the three pages above only.
 
+**Mateusz POC closure** stays in git ([`MATEUSZ-CRITERIA.md`](../MATEUSZ-CRITERIA.md), [`Mateusz.MD`](../Mateusz.MD)); link from Slides or a short Confluence note under the parent page when scorecard is ready — not a fourth maintained wiki page unless leadership asks.
+
 ## Republish after edits
 
 1. Update the three git files above (and `OPERATOR-SETUP.md` if the checklist changed — content is folded into FIRST-RUN).

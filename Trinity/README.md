@@ -43,7 +43,7 @@ Import a Reviewer run:
 | [`studio/`](studio/) | Trinity Studio — FastAPI + React |
 | [`shared/`](shared/) | HTML report guidelines |
 | [`personas/`](personas/) | Runtime prompts |
-| [`scripts/`](scripts/) | `install-trinity-skills.sh` |
+| [`scripts/`](scripts/) | `install-trinity-skills.sh`, `export-telemetry.sh` (pilot evidence) |
 | [`confluence/`](confluence/) | Wiki publish map + pipeline SVG |
 
 ## More docs
