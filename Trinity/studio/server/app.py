@@ -20,6 +20,7 @@ from db import init_db
 from routers import register_routers
 from studio_env import load_dotenv
 from studio_paths import STATIC_FALLBACK, WEB_DIST
+from trinity_release import trinity_git_revision, trinity_release_version
 
 
 @asynccontextmanager
@@ -29,7 +30,7 @@ async def _lifespan(_app: FastAPI):
     yield
 
 
-app = FastAPI(title="Trinity Studio", version="0.1.0", lifespan=_lifespan)
+app = FastAPI(title="Trinity Studio", version=trinity_release_version(), lifespan=_lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -42,9 +43,11 @@ register_routers(app)
 
 @app.get("/api/health")
 def health() -> dict[str, Any]:
-    return {
+    version = trinity_release_version()
+    body: dict[str, Any] = {
         "status": "ok",
-        "studio_version": "0.2.0",
+        "trinity_version": version,
+        "studio_version": version,
         "features": [
             "importer_plan",
             "importer_execute",
@@ -58,6 +61,10 @@ def health() -> dict[str, Any]:
             "jira_epic_comments",
         ],
     }
+    rev = trinity_git_revision()
+    if rev:
+        body["git_revision"] = rev
+    return body
 
 
 def _ui_index() -> FileResponse:

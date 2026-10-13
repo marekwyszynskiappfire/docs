@@ -1,5 +1,7 @@
 # Trinity — ignore planning, pilot, and dev-harvest artifacts (track work in GitHub Issues).
 
+# Tracked: Mateusz.MD, MATEUSZ-CRITERIA.md, VERSION, VERSIONING.md
+
 # Grill / POC / backlog / product-review sessions (not needed to run the pipeline)
 /GRILL*.md
 /GITHUB-BACKLOG.md

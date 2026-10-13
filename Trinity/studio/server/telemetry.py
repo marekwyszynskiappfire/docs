@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from db import get_db_path, log_event, utc_now
+from trinity_release import trinity_release_version
 
 # Rejection categories (aligned with METRICS.md / scorecard)
 REJECTION_REASONS: tuple[str, ...] = (
@@ -61,7 +62,7 @@ def operator_id() -> str:
 
 
 def trinity_version() -> str:
-    return os.environ.get("TRINITY_VERSION", "studio-0.1.0")
+    return trinity_release_version()
 
 
 def _envelope(

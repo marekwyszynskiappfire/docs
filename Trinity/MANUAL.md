@@ -428,6 +428,6 @@ Pilot evidence: capture metrics export from Studio and attach to your program’
 
 ## 16. Version and publishing
 
-This manual describes Trinity Studio **0.2.x** operator flows (Jira epic comments MVP, Importer execute guards, React UI). When behaviour changes, update this file and [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md), then re-publish [Operator manual (full)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual+full) under the [QA CoE Trinity tree](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide).
+This manual describes Trinity release **0.2.x** operator flows (see [`VERSION`](VERSION), [`VERSIONING.md`](VERSIONING.md)) (Jira epic comments MVP, Importer execute guards, React UI). When behaviour changes, update this file and [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md), then re-publish [Operator manual (full)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual+full) under the [QA CoE Trinity tree](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide).
 
 Short sectional pages remain in [`confluence/`](confluence/) for wiki navigation; **this document is the canonical long-form manual.**

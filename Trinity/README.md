@@ -13,7 +13,9 @@
 | [`GUIDE.md`](GUIDE.md) | Credentials, golden corpus, Importer project key |
 | [`PREFLIGHT.md`](PREFLIGHT.md) · [`TESTING.md`](TESTING.md) | Smoke checks and validation |
 
-Planning and pilot notes (grill sessions, scorecards, backlog) are **not in this repo** — use GitHub Issues on `marekwyszynskiappfire/docs` ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)).
+**Release:** `Trinity/VERSION` (see [`VERSIONING.md`](VERSIONING.md)) · **Mateusz POC closure:** [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) · [`Mateusz.MD`](Mateusz.MD) (requirements PL).
+
+Planning artifacts (grill sessions, filled scorecards, Slides drafts) stay **local or Confluence** — engineering backlog in GitHub Issues ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)).
 
 ## Getting started
 
@@ -52,6 +54,8 @@ Import a Reviewer run:
 | [`CONTRACTS.md`](CONTRACTS.md) | Payload and handoff JSON |
 | [`FAQ.md`](FAQ.md) | Capabilities and policies |
 | [`METRICS.md`](METRICS.md) · [`CURSOR-COST.md`](CURSOR-COST.md) | Telemetry and Cursor usage |
+| [`VERSIONING.md`](VERSIONING.md) | Release semver vs JSON schema versions |
+| [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) | POC traceability and scorecard template |
 | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) | Reading Reviewer HTML reports |
 | [`confluence/README.md`](confluence/README.md) | Confluence (QACoE) three-page tree |
 

@@ -1,4 +1,7 @@
+from pathlib import Path
+
 from db import db, utc_now
+from trinity_release import trinity_release_version
 
 
 def test_health(client):
@@ -6,7 +9,17 @@ def test_health(client):
     assert r.status_code == 200
     body = r.json()
     assert body["status"] == "ok"
+    assert body["trinity_version"] == trinity_release_version()
+    assert body["studio_version"] == body["trinity_version"]
     assert "importer_plan" in body["features"]
+
+
+def test_trinity_version_file_matches_release_module():
+    version_file = Path(__file__).resolve().parents[2] / "VERSION"
+    assert version_file.is_file()
+    assert version_file.read_text(encoding="utf-8").strip().splitlines()[0].strip() == (
+        trinity_release_version()
+    )
 
 
 def test_telemetry_rejection_reasons(client):

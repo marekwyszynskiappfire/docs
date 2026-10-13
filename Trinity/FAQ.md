@@ -2,7 +2,7 @@
 
 Answers for engineers and QA operators adopting the **Reviewer → Creator → Studio → Importer** pipeline. Start with [FIRST-RUN.md](FIRST-RUN.md) and [GUIDE.md](GUIDE.md). Contracts: [CONTRACTS.md](CONTRACTS.md).
 
-Related: [METRICS.md](METRICS.md) · [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
+Related: [METRICS.md](METRICS.md) · [MATEUSZ-CRITERIA.md](MATEUSZ-CRITERIA.md) · [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
 
 ---
 
