@@ -35,6 +35,8 @@ Markdown in this folder is written to become **shareable Confluence pages** (cus
 
 Use `createConfluenceContent` with your `spaceId`, parent page id, and markdown/HTML body. Convert relative links to absolute wiki links after publish.
 
+**Published (QACoE, 2026-10-13):** parent under [QA Center of Excellence](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/1055719475/QA+Center+of+Excellence) → [Trinity — AI-assisted QA pipeline (operator guide)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide) (child pages 01–09, samples, OPERATOR-SETUP).
+
 ### Option C — Export from repo (readers with git access)
 
 Point readers to [`OPERATOR-SETUP.md`](../OPERATOR-SETUP.md) for a single linear guide; Confluence pages are sectional copies of the same content.
