@@ -12,7 +12,7 @@ Reviewer, Creator, Importer, and Studio were scattered at the repo root (`The Re
 
 - **Trinity** is the product name for the full solution.
 - All runnable skill roots and **Trinity Studio** live under **`Trinity/`** in this monorepo.
-- Legacy top-level paths keep stub READMEs pointing to `Trinity/`.
+- Legacy top-level skill folders (`The Reviewer/`, `The Creator/`, etc.) were removed; only `Trinity/` remains.
 - Operator documentation is centralized under `Trinity/` (README, PREFLIGHT, MANUAL, PIPELINE).
 
 ## Consequences

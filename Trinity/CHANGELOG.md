@@ -12,7 +12,7 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 
 ## Unreleased
 
-- Removed legacy trees: `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
+- Removed legacy trees: `The Reviewer/`, `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
 
 ## Pre-0.2.0
 
