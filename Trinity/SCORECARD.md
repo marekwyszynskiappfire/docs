@@ -46,7 +46,7 @@ After Xray execute: Importer → **Persist Xray keys** (or `POST /api/importer/r
 
 | Field | Value |
 |-------|--------|
-| **Trinity version** | (record version used for any replay) |
+| **Trinity version** | **0.2.0** (`trinity-v0.2.0`) |
 | **Use case** | AI-assisted manual test cases for custom fields (part 2); import to Xray |
 | **Product / solution** | Trinity; mapping `appfire-production.json`; Importer GraphQL create |
 | **Who used it** | Marek Wyszyński (operator); QA review in Studio |
@@ -55,7 +55,7 @@ After Xray execute: Importer → **Persist Xray keys** (or `POST /api/importer/r
 | **Human review** | Validation fixes (`coverage_catalog_id`, `Generic`→`Manual`, field mapping) before import |
 | **Accepted** | 5/5 after plan corrections |
 | **Rejected** | N/A (validation caught issues before post-review reject) |
-| **Impact** | First prod E2E; mapping/validation iteration reduced repeat failures |
+| **Impact** | **Time:** ~4–8h manual test design → ~2–4h with Trinity (estimate). **Quality:** Reviewer findings + human approve in Studio before Xray. **Cost:** Cursor trackable in Studio; no formal baseline study in POC. |
 
 For runs that use Studio **bulk reject**, copy `rejection_reasons` from telemetry summary into **Rejected**.
 
@@ -63,20 +63,21 @@ For runs that use Studio **bulk reject**, copy `rejection_reasons` from telemetr
 
 ## Pilot log (fill in)
 
-| Pilot | Jira key | Date | Acceptance rate | Telemetry export file | Shared (Slides / Confluence) |
-|-------|----------|------|-----------------|----------------------|------------------------------|
-| 1 | ONE-228469 | (reference above) | — | (attach locally) | ☐ |
-| 2 | | | | | ☐ |
+| Pilot | Jira key / scope | Date | Acceptance rate | Telemetry export file | Shared |
+|-------|------------------|------|-----------------|----------------------|--------|
+| 1 | **ONE-228469** → TC-6704–6708 | **2026-10-13** | **5/5** Xray import; Studio **14 approved / 0 rejected** (25 rows incl. 11 pending) → **100%** among decided | `scorecard-exports/2026-10-13-pilot1-telemetry.json` | ☑ reveal.js [`presentations/mateusz-pilot1-2026-10-13.html`](presentations/mateusz-pilot1-2026-10-13.html) |
+| 2 | **Planned:** BigPicture, TimeTracker, Core Apps, Rich Filters; *stretch:* CMJ | — | — | — | ☐ |
 | 3 | | | | | ☐ |
 
 ---
 
 ## Checklist before sharing
 
-- [ ] `./Trinity/scripts/export-telemetry.sh` saved alongside the scorecard
-- [ ] Screenshot or link to Xray folder
+- [x] `./Trinity/scripts/export-telemetry.sh` → `scorecard-exports/2026-10-13-pilot1-telemetry.json` (2026-10-13)
+- [ ] Screenshot or link to Xray folder (add URL in chat / Confluence when ready)
 - [ ] Reviewer readiness noted if `review_ref` linked
-- [ ] Honest limits: prod-only Xray write, Cursor steps, optional BQ — [`FAQ.md`](FAQ.md), [`MANUAL.md`](MANUAL.md)
+- [x] Presentation: [`presentations/mateusz-pilot1-2026-10-13.html`](presentations/mateusz-pilot1-2026-10-13.html)
+- [x] Honest limits documented — [`FAQ.md`](FAQ.md), [`MANUAL.md`](MANUAL.md)
 
 ---
 

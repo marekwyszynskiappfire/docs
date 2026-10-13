@@ -35,8 +35,8 @@ Update the **Closure** checklist and **Pilot log** in [`SCORECARD.md`](SCORECARD
 | Scorecard field | Status | Where |
 |-----------------|--------|--------|
 | Template + example | **Done** | [`SCORECARD.md`](SCORECARD.md) |
-| Pilot 1 “published” to stakeholders | **Open** | Example row filled; attach telemetry + Slides/Confluence when you present |
-| Pilot 2+ | **Open** | Add rows in SCORECARD **Pilot log** |
+| Pilot 1 “published” to stakeholders | **Done** | SCORECARD pilot log + telemetry export + reveal.js deck (Mateusz, 2026-10-13) |
+| Pilot 2+ | **Planned** | BP, TimeTracker, Core Apps, Rich Filters; CMJ stretch — SCORECARD row 2 |
 | Export for numbers | **Done** | `./Trinity/scripts/export-telemetry.sh` |
 
 ---
@@ -69,7 +69,7 @@ curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 | Usage, input, config | **Done** | [`GUIDE.md`](GUIDE.md), [`FIRST-RUN.md`](FIRST-RUN.md) |
 | QC, human review, granularity, limitations | **Done** | [`MANUAL.md`](MANUAL.md), [`FAQ.md`](FAQ.md), skills |
 | Confluence operator tree | **Done** | [QACoE Trinity guide](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide) |
-| Scorecard published | **Open** | Complete [`SCORECARD.md`](SCORECARD.md) pilot log + share externally |
+| Scorecard published | **Done** | [`SCORECARD.md`](SCORECARD.md) + [`presentations/mateusz-pilot1-2026-10-13.html`](presentations/mateusz-pilot1-2026-10-13.html) |
 | Preconfigured **org** dashboards | **Partial** | Studio Dashboard + telemetry API; Looker **Open** |
 
 ---
@@ -91,18 +91,16 @@ curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 | Question | Status | Evidence still needed |
 |----------|--------|------------------------|
 | Does it work? | **Done** (technical) | One **current** scorecard + optional recording |
-| Did people actually use it? | **Open** | Names in scorecard; second operator |
+| Did people actually use it? | **Partial** | Marek (solo POC); widen in pilot 2 |
 | What % accepted? | **Done** (when Studio used) | Export after run with real reject mix |
 | Why rejected? | **Done** | Summary JSON + 2–3 bullets for Slides |
-| Impact on time / quality / cost? | **Open** | Scorecard **Impact**; optional [`CURSOR-COST.md`](CURSOR-COST.md) |
+| Impact on time / quality / cost? | **Partial** | Scorecard **Impact** (time estimate + Reviewer/review); cost informal |
 
 ---
 
-## Slides (Google)
+## Slides
 
-**Open:** build deck from this page + filled scorecard + screenshots.
-
-Suggested flow: Problem → Pipeline (ARCHITECTURE diagram) → Control table (FAQ) → Metrics (summary JSON) → [`SCORECARD.md`](SCORECARD.md) evidence → Multi-project plan.
+**Done (pilot 1):** [`presentations/mateusz-pilot1-2026-10-13.html`](presentations/mateusz-pilot1-2026-10-13.html) — open in browser (reveal.js CDN).
 
 ---
 
@@ -110,9 +108,9 @@ Suggested flow: Problem → Pipeline (ARCHITECTURE diagram) → Control table (F
 
 | ID | Item | Owner | Status |
 |----|------|-------|--------|
-| M1 | Pilot 1 shared: SCORECARD pilot log + `export-telemetry.sh` | | ☐ |
-| M2 | Pilot 2 (different project or epic) | | ☐ |
-| M3 | Slides presented to stakeholders | | ☐ |
+| M1 | Pilot 1 shared: SCORECARD pilot log + `export-telemetry.sh` | Marek | ☑ 2026-10-13 |
+| M2 | Pilot 2 (BP, TT, Core Apps, RF; CMJ stretch) | Marek | ☐ planned |
+| M3 | Slides presented to stakeholders | Marek | ☑ reveal.js deck (walkthrough with Mateusz) |
 | M4 | BigQuery ingest URL + first flush | | ☐ |
 | M5 | Looker Studio report | | ☐ |
 | M6 | Git tag `trinity-v$(cat Trinity/VERSION)` on `main` | | ☑ `trinity-v0.2.0` @ `2f19313` |

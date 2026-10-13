@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trinity — Test case generator POC</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
+  <style>
+    .reveal h2 { text-transform: none; }
+    .reveal table { font-size: 0.55em; margin: 0 auto; }
+    .reveal .small { font-size: 0.7em; }
+    .ok { color: #0a7; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section>
+        <h2>Trinity</h2>
+        <p>AI-assisted test case generation with human control</p>
+        <p class="small">POC closure · 13 Oct 2026 · Marek Wyszyński</p>
+        <p class="small">Release <code>0.2.0</code> · <code>trinity-v0.2.0</code></p>
+      </section>
+
+      <section>
+        <h2>Problem</h2>
+        <ul>
+          <li>Manual test design from Jira requirements is slow and inconsistent.</li>
+          <li>Stakeholders need <strong>useful</strong> AI output — not a demo-only generator.</li>
+          <li>Evidence: acceptance rate, human review, prod Xray traceability.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Solution — one pipeline</h2>
+        <ul>
+          <li><strong>Reviewer</strong> — structured requirements review</li>
+          <li><strong>Creator</strong> — test cases (golden style, coverage catalog)</li>
+          <li><strong>Studio</strong> — approve / reject with reason enum</li>
+          <li><strong>Importer</strong> — validated handoff → <strong>Xray on Jira PROD</strong> (TC project)</li>
+        </ul>
+        <p class="small">Docs: Confluence QACoE · git <code>Trinity/FIRST-RUN.md</code></p>
+      </section>
+
+      <section>
+        <h2>Does it work? <span class="ok">Yes</span></h2>
+        <p><strong>Pilot 1 — ONE-228469</strong> (production import)</p>
+        <ul>
+          <li>5 tests created in Xray: <strong>TC-6704 … TC-6708</strong></li>
+          <li>Dedicated test project (TC); prod-only write policy</li>
+        </ul>
+        <p class="small">Scorecard: <code>Trinity/SCORECARD.md</code></p>
+      </section>
+
+      <section>
+        <h2>How we control quality</h2>
+        <ul>
+          <li><strong>Reviewer</strong> findings and readiness before Creator</li>
+          <li><strong>Human review</strong> in Studio (approve / reject + reasons)</li>
+          <li><strong>Importer</strong> validation before Xray create</li>
+          <li>Granularity: golden corpus + personas + Studio edits</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Metrics (local Studio)</h2>
+        <p>Snapshot 13 Oct 2026 — this install:</p>
+        <table>
+          <tr><th>AI-generated rows in Studio</th><td>25</td></tr>
+          <tr><th>Approved</th><td>14</td></tr>
+          <tr><th>Rejected</th><td>0</td></tr>
+          <tr><th>Pending / edited</th><td>11</td></tr>
+          <tr><th>Acceptance (approved ÷ decided)</th><td>100% (14/14)</td></tr>
+        </table>
+        <p class="small">Export: <code>Trinity/scorecard-exports/2026-10-13-pilot1-telemetry.json</code></p>
+        <p class="small">Org dashboard: BigQuery / Looker when credentials available</p>
+      </section>
+
+      <section>
+        <h2>Scorecard (Mateusz §2)</h2>
+        <table>
+          <tr><th>Use case</th><td>AI-assisted manual TCs for requirements → Xray</td></tr>
+          <tr><th>Who used it</th><td>Marek Wyszyński (operator, solo POC)</td></tr>
+          <tr><th>Accepted</th><td>5/5 Xray (ONE-228469); Studio 14 approved</td></tr>
+          <tr><th>Rejected</th><td>0 in Studio; pre-import validation fixes on pilot 1</td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>Impact</h2>
+        <ul>
+          <li><strong>Time:</strong> roughly <strong>4–8h</strong> manual design → <strong>2–4h</strong> with Trinity (estimate, pilot 1)</li>
+          <li><strong>Quality:</strong> Reviewer gate + explicit human approve in Studio before import</li>
+          <li><strong>Cost:</strong> Cursor usage trackable via Studio; no formal baseline study in POC</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Scaling — pilot 2+ (planned)</h2>
+        <ul>
+          <li><strong>BigPicture</strong></li>
+          <li><strong>TimeTracker</strong></li>
+          <li><strong>Core Apps</strong></li>
+          <li><strong>Rich Filters</strong></li>
+          <li><em>Stretch:</em> CMJ</li>
+        </ul>
+        <p>Same scorecard template + telemetry export per product line</p>
+      </section>
+
+      <section>
+        <h2>Honest limitations</h2>
+        <ul>
+          <li>Importer often via Cursor prompt (not single Studio button)</li>
+          <li>Xray write: <strong>production only</strong> (policy)</li>
+          <li>Phase timings & org dashboards: local now, BQ later</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Closing questions</h2>
+        <table>
+          <tr><th>Works?</th><td class="ok">Yes — prod Xray path</td></tr>
+          <tr><th>People used it?</th><td>Marek (expand in pilot 2)</td></tr>
+          <tr><th>% accepted?</th><td>100% decided in Studio; 5/5 imported pilot 1</td></tr>
+          <tr><th>Why rejected?</th><td>Taxonomy live; 0 rejects in current export</td></tr>
+          <tr><th>Impact?</th><td>Time ↓ ~50%; quality via Reviewer + review</td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>Thank you</h2>
+        <p>Repo: <code>marekwyszynskiappfire/docs</code> · <code>Trinity/</code></p>
+        <p class="small">Open this file in a browser · arrow keys to navigate</p>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({ hash: true, slideNumber: true, width: 1100, height: 700 });
+  </script>
+</body>
+</html>
