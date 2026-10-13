@@ -1,4 +1,4 @@
-# Trinity — ignore planning, pilot, and dev-harvest artifacts (track work in GitHub Issues).
+# Trinity — ignore planning, pilot, and dev-harvest artifacts (roadmap: PATH-TO-1.0.md).
 
 # Tracked: Mateusz.MD, MATEUSZ-CRITERIA.md, VERSION, VERSIONING.md
 
@@ -40,6 +40,8 @@
 /reviewer/scripts/sync_*.py
 /reviewer/scripts/write_*.py
 /reviewer/scripts/merge_epic_gather.py
+/reviewer/scripts/cache_confluence_response.py
+/reviewer/scripts/save_confluence_cache_batch.py
 
 # Ad-hoc portfolio configs (use example.demo-portfolio or *-local.json)
 /reviewer/config/runs/bp-*.json

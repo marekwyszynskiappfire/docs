@@ -93,7 +93,7 @@ Terminal 2:
 
 Dashboard → open the imported run → unit **`DEMO-4500`** (fictional demo epic; folder name matches payload `scope.value`).
 
-Hands-on table: [`QUICKSTART.md`](QUICKSTART.md).
+Hands-on table: [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0–1.
 
 Optional Creator demo batch:
 

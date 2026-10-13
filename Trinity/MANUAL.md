@@ -37,7 +37,7 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 | Hand off to test design | **Approve & export** → **Send to Creator** (§9) | Approved unit; not `not_fit` |
 | Import tests to Xray | **Importer** tab (§10) | Mapping, project key, folder; production gate |
 | Fix “import failed: folder ≠ epic key” | Rename run folder to match `scope.value` in payload | §6 |
-| Track engineering backlog | GitHub Issues ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)) | — |
+| Roadmap to GA | [`PATH-TO-1.0.md`](PATH-TO-1.0.md) · [`CHANGELOG.md`](CHANGELOG.md) | — |
 
 ---
 

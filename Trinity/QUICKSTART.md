@@ -1,14 +1,10 @@
-# Trinity — 10-minute quickstart
+# Trinity — quickstart (redirect)
 
-**Superseded for new operators by [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0–1** (same steps, more context).
-
-## TL;DR
+**Use [`FIRST-RUN.md`](FIRST-RUN.md)** — Phase 0 (demo) and Phase 1 (first epic) replace this page.
 
 ```bash
-./Trinity/studio/scripts/start.sh          # terminal 1
-./Trinity/studio/scripts/seed-demo.sh      # terminal 2
+./Trinity/studio/scripts/start.sh
+./Trinity/studio/scripts/seed-demo.sh
 ```
 
-Open **http://127.0.0.1:5173** → Dashboard → run → **DEMO-4500** → **Creator** → import `Trinity/creator/samples/demo-story.suite.json` → **Importer** → preview only.
-
-Full first-time path (demo + real epic + three prompts): **[`FIRST-RUN.md`](FIRST-RUN.md)**.
+Open **http://127.0.0.1:5173** · skills: `./Trinity/scripts/install-trinity-skills.sh`

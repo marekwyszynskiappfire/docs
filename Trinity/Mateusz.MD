@@ -1,4 +1,4 @@
-**Traceability (EN):** [MATEUSZ-CRITERIA.md](MATEUSZ-CRITERIA.md) · **Backlog:** GitHub Issues ([docs/agents/issue-tracker.md](../docs/agents/issue-tracker.md))
+**Traceability (EN):** [MATEUSZ-CRITERIA.md](MATEUSZ-CRITERIA.md) · **Roadmap:** [PATH-TO-1.0.md](PATH-TO-1.0.md)
 
 1. POC Test Case Generatora — termin: 14/10
 Do 14/10 powinno być dostępne działające rozwiązanie, które:

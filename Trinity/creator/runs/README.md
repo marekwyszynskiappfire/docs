@@ -14,4 +14,4 @@ python3 Trinity/creator/scripts/build_suite_report.py \
 
 - Prefer demo keys (`DEMO-*`) in `samples/` for renderer CI.
 - Real Jira keys may appear in local `artifacts/` only until redacted copies are promoted here.
-- Each pilot should link to a row in `PERSONA-CREATOR-RUNS.md` (created in Phase 6).
+- Each pilot: add a row in [`SCORECARD.md`](../SCORECARD.md) **Pilot log** (and optional committed run folder here).

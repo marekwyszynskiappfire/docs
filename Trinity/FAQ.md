@@ -54,4 +54,4 @@ BigQuery / Looker requires `TRINITY_TELEMETRY_URL` (optional; track setup in Git
 ## Where are engineering decisions recorded?
 
 - Importer production policy, telemetry: [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
-- Backlog and enhancements: GitHub Issues on `marekwyszynskiappfire/docs` ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md))
+- Releases and roadmap: [`CHANGELOG.md`](CHANGELOG.md) · [`PATH-TO-1.0.md`](PATH-TO-1.0.md) · [`VERSIONING.md`](VERSIONING.md)
