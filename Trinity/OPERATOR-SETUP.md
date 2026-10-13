@@ -1,7 +1,8 @@
 # Trinity — operator setup (checkout → operational)
 
 **Audience:** QA engineer bringing Trinity up on a fresh machine.  
-**Narrative manual (read first):** [`MANUAL.md`](MANUAL.md) — full day-to-day guide; this file is the **linear checklist** only.  
+**First run (recommended):** [`FIRST-RUN.md`](FIRST-RUN.md) — checkout → demo → Prompts #1–#3 → one epic.  
+**Reference manual:** [`MANUAL.md`](MANUAL.md). This file is the **same flow as numbered steps** without narrative.  
 **Confluence:** publish [`MANUAL.md`](MANUAL.md) as the primary wiki page; short sections under [`confluence/`](confluence/).  
 **Diagram:** [`confluence/assets/trinity-operator-pipeline.svg`](confluence/assets/trinity-operator-pipeline.svg)
 

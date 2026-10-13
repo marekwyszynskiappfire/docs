@@ -6,8 +6,9 @@ Start here for install.
 
 | Path | Audience |
 |------|----------|
-| **[`MANUAL.md`](MANUAL.md)** | **Full operator manual** (Reviewer → Studio → Creator → Importer) |
-| **[`OPERATOR-SETUP.md`](OPERATOR-SETUP.md)** | **Step-by-step checklist** (checkout → operational) |
+| **[`FIRST-RUN.md`](FIRST-RUN.md)** | **First time? Follow this** — checkout → demo → prompts → one epic E2E |
+| **[`MANUAL.md`](MANUAL.md)** | Full operator manual (reference after first run) |
+| **[`OPERATOR-SETUP.md`](OPERATOR-SETUP.md)** | Step-by-step checklist (same flow, numbered steps) |
 | **[`confluence/`](confluence/)** | Short Confluence sections + SVG (manual = [`MANUAL.md`](MANUAL.md)) |
 | **[`ROADMAP.md`](ROADMAP.md)** | **What’s left** — prioritized backlog (P0–P3) |
 | **[`QUICKSTART.md`](QUICKSTART.md)** | **New operator — Studio in ~10 min** (demo data, no Jira) |

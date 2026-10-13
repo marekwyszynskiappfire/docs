@@ -2,7 +2,8 @@
 
 *Draft for Confluence publishing. Written for the **QA engineer** running Reviewer → Studio → Creator → Importer day to day, with callouts for QA leads, PMs, and platform admins. This manual explains **how to operate the pipeline**; contracts and schemas live in [`CONTRACTS.md`](CONTRACTS.md), [`reviewer/SKILL.md`](reviewer/SKILL.md), and [`creator/SKILL.md`](creator/SKILL.md).*
 
-**Companion docs:** linear setup checklist [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · hands-on validation [`TESTING.md`](TESTING.md) · credentials & Importer project selector [`GUIDE.md`](GUIDE.md) · Reviewer-only depth [`reviewer/MANUAL.md`](reviewer/MANUAL.md) · pipeline map [`PIPELINE.md`](PIPELINE.md).
+**First time using Trinity?** Follow [`FIRST-RUN.md`](FIRST-RUN.md) phase by phase (demo → three Cursor prompts → one epic).  
+**Companion docs:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · [`TESTING.md`](TESTING.md) · [`GUIDE.md`](GUIDE.md) · [`reviewer/MANUAL.md`](reviewer/MANUAL.md) · [`PIPELINE.md`](PIPELINE.md).
 
 **Last reviewed:** 2026-10-13
 
@@ -27,7 +28,8 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 
 | You want to… | Do this | You need |
 |--------------|---------|----------|
-| Prove Studio works in 10 minutes | [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) steps 1–6 + [`QUICKSTART.md`](QUICKSTART.md) | Python, Node; no Jira |
+| **First run — don’t think, just follow** | [`FIRST-RUN.md`](FIRST-RUN.md) Phases 0–3 | Python, Node; Phase 3 needs MCP |
+| Prove Studio works in 10 minutes | [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0–1 | No Jira |
 | Run a full pipeline on real epics | Setup steps 1–14 in [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) | MCP, `.env`, Xray keys for execute |
 | Understand a Reviewer HTML report | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §3–7 | Sample: `reviewer/sample-report.html` |
 | Configure a portfolio / pass type | Studio → **Reviewer configs** (§5 below) | Saved JSON under `reviewer/config/runs/` |
