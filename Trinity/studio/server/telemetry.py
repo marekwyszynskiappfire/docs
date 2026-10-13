@@ -189,7 +189,7 @@ def _try_flush_pending(conn: Any, max_rows: int) -> None:
         pass
 
 
-def mateusz_summary(conn: Any) -> dict[str, Any]:
+def operator_review_summary(conn: Any) -> dict[str, Any]:
     total = conn.execute("SELECT COUNT(*) FROM test_case_row").fetchone()[0]
     approved = conn.execute(
         "SELECT COUNT(*) FROM test_case_row WHERE human_review_status = 'approved'"
@@ -236,3 +236,8 @@ def mateusz_summary(conn: Any) -> dict[str, Any]:
         "telemetry_outbox_pending": outbox_pending,
         "bigquery_configured": bool(_telemetry_url()),
     }
+
+
+def mateusz_summary(conn: Any) -> dict[str, Any]:
+    """Deprecated alias — use operator_review_summary."""
+    return operator_review_summary(conn)

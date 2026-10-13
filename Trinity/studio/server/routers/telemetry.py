@@ -12,7 +12,7 @@ from telemetry import (
     REJECTION_REASON_LABELS,
     REJECTION_REASONS,
     flush_outbox,
-    mateusz_summary,
+    operator_review_summary,
 )
 
 router = APIRouter(tags=["telemetry"])
@@ -30,7 +30,7 @@ def telemetry_rejection_reasons() -> dict[str, Any]:
 @router.get("/api/telemetry/summary")
 def telemetry_summary() -> dict[str, Any]:
     with db() as conn:
-        return mateusz_summary(conn)
+        return operator_review_summary(conn)
 
 
 @router.get("/api/telemetry/events")
@@ -51,7 +51,7 @@ def telemetry_events(limit: int = 500) -> dict[str, Any]:
 def telemetry_export() -> dict[str, Any]:
     """Single JSON bundle for scorecard / evidence (local; copy before BigQuery exists)."""
     with db() as conn:
-        summary = mateusz_summary(conn)
+        summary = operator_review_summary(conn)
         rows = conn.execute(
             """
             SELECT id, pipeline_run_id, entity_type, entity_id, event_type, payload_json, created_at

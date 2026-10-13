@@ -43,6 +43,7 @@ export default function JiraEpicCommentPanel({
   const [editedBody, setEditedBody] = useState("");
   const [confirmKey, setConfirmKey] = useState("");
   const [reviewed, setReviewed] = useState(false);
+  const [allowDuplicate, setAllowDuplicate] = useState(false);
   const [prodConfirm, setProdConfirm] = useState("");
   const [posting, setPosting] = useState(false);
   const [postError, setPostError] = useState("");
@@ -85,18 +86,20 @@ export default function JiraEpicCommentPanel({
     setPreviewLoading(true);
     setPreviewError("");
     api
-      .jiraCommentPreview(unitId, variant)
+      .jiraCommentPreview(unitId, variant, unlockEdit)
       .then((p) => {
         setPreview(p);
         setEditedBody(p.body);
-        setUnlockEdit(false);
+        if (!unlockEdit) {
+          setAllowDuplicate(false);
+        }
       })
       .catch((e) => {
         setPreview(null);
         setPreviewError(String(e));
       })
       .finally(() => setPreviewLoading(false));
-  }, [unitId, variant, draftDirty]);
+  }, [unitId, variant, draftDirty, unlockEdit]);
 
   useEffect(() => {
     loadStatus();
@@ -119,7 +122,8 @@ export default function JiraEpicCommentPanel({
     blockers.length === 0 &&
     confirmKey.trim() === jiraKey &&
     reviewed &&
-    (!production || prodConfirm.trim() === "PRODUCTION");
+    (!production || prodConfirm.trim() === "PRODUCTION") &&
+    (!preview?.duplicate_warning || allowDuplicate);
 
   const onUseRecommendation = () => {
     const rec = preview?.recommendation?.variant as VariantChoice | undefined;
@@ -142,6 +146,7 @@ export default function JiraEpicCommentPanel({
         body: unlockEdit ? editedBody : undefined,
         preview_edited: unlockEdit,
         production_confirm: production ? prodConfirm.trim() : undefined,
+        allow_duplicate: allowDuplicate,
       });
       setPostSuccess(`Posted ${res.variant} comment at ${res.posted_at}`);
       loadHistory();
@@ -245,6 +250,12 @@ export default function JiraEpicCommentPanel({
         </ul>
       )}
 
+      {preview?.duplicate_warning && (
+        <p className="error" style={{ marginTop: "0.5rem" }}>
+          {preview.duplicate_warning}
+        </p>
+      )}
+
       <label style={{ display: "block", marginTop: "0.75rem" }}>
         Preview
         <textarea
@@ -291,6 +302,19 @@ export default function JiraEpicCommentPanel({
           I reviewed the preview
         </label>
       </div>
+
+      {preview?.duplicate_warning && (
+        <div style={{ marginTop: "0.5rem" }}>
+          <label>
+            <input
+              type="checkbox"
+              checked={allowDuplicate}
+              onChange={(e) => setAllowDuplicate(e.target.checked)}
+            />
+            Post anyway (duplicate within 24h)
+          </label>
+        </div>
+      )}
 
       <label style={{ display: "block", marginTop: "0.5rem" }}>
         Type issue key to confirm post

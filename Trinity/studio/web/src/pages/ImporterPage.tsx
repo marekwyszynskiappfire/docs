@@ -37,6 +37,7 @@ export default function ImporterPage() {
   const [reportPath, setReportPath] = useState("");
   const [recordMsg, setRecordMsg] = useState("");
   const [reviewerGateAck, setReviewerGateAck] = useState(false);
+  const [idempotencyAck, setIdempotencyAck] = useState(false);
   const [executing, setExecuting] = useState(false);
   const [creatorRuns, setCreatorRuns] = useState<
     { id: string; label: string; test_count?: number; status: string }[]
@@ -210,6 +211,7 @@ export default function ImporterPage() {
         creator_run_id: creatorRunId || null,
         skip_requirement_link: skipRequirementLink,
         reviewer_gate_acknowledged: reviewerGateAck,
+        idempotency_acknowledged: idempotencyAck,
       });
       setPlan(result);
       setCopyMsg("");
@@ -243,6 +245,10 @@ export default function ImporterPage() {
       setError("Acknowledge Reviewer gate and re-run Preview before execute.");
       return;
     }
+    if (plan.idempotency?.requires_acknowledgement && !idempotencyAck) {
+      setError("Acknowledge existing Xray keys and re-run Preview before execute.");
+      return;
+    }
     setExecuting(true);
     try {
       const res = await api.importerExecute({
@@ -255,6 +261,7 @@ export default function ImporterPage() {
         creator_run_id: creatorRunId || null,
         skip_requirement_link: skipRequirementLink,
         reviewer_gate_acknowledged: reviewerGateAck,
+        idempotency_acknowledged: idempotencyAck,
         production_confirm: isProduction ? prodConfirm.trim() : undefined,
       });
       setExecuteResult(res);
@@ -526,6 +533,45 @@ export default function ImporterPage() {
               ))}
             </ul>
           )}
+          {(plan.export_preflight_redaction?.length ?? 0) > 0 && (
+            <div className="production-guard panel">
+              <p>
+                <strong>Export preflight redaction</strong> — execute blocked until tests are fixed
+                (or emergency override via <code>STUDIO_IMPORTER_ALLOW_REDACTION_EXECUTE=1</code>).
+              </p>
+              <ul className="importer-warnings">
+                {plan.export_preflight_redaction!.map((w) => (
+                  <li key={w}>{w}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {plan.idempotency?.requires_acknowledgement && (
+            <div className="production-guard panel">
+              <p>
+                <strong>Existing Xray keys in Studio</strong>
+              </p>
+              <ul className="importer-warnings">
+                {(plan.idempotency.warnings ?? []).map((m) => (
+                  <li key={m}>{m}</li>
+                ))}
+              </ul>
+              <label className="checkbox-row">
+                <input
+                  type="checkbox"
+                  checked={idempotencyAck}
+                  onChange={(e) => setIdempotencyAck(e.target.checked)}
+                />
+                I understand re-import may duplicate or conflict with existing Xray tests
+              </label>
+              {!idempotencyAck && (
+                <p className="muted">
+                  Re-run <strong>Preview import plan</strong> after checking this box to mark execute
+                  ready.
+                </p>
+              )}
+            </div>
+          )}
           {plan.target.warnings.length > 0 && (
             <ul className="importer-warnings">
               {plan.target.warnings.map((w) => (
@@ -540,7 +586,12 @@ export default function ImporterPage() {
             {plan.credentials.execute_ready ? (
               <span className="ok-msg"> — ready for execute (when enabled)</span>
             ) : (
-              <span className="muted"> — set env vars before execute</span>
+              <span className="muted">
+                — not execute-ready
+                {(plan.execute_blockers?.length ?? 0) > 0 && (
+                  <> ({plan.execute_blockers!.join(", ")})</>
+                )}
+              </span>
             )}
           </p>
           <div className="btn-row">

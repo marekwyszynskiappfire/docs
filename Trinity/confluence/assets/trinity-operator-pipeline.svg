@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">Trinity operator pipeline</title>
+  <desc id="desc">From repository checkout through Reviewer, Studio, Creator, and Importer to Xray.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill: #f8fafc; stroke: #334155; stroke-width: 1.5; }
+      .box-accent { fill: #eff6ff; stroke: #2563eb; }
+      .box-studio { fill: #f0fdf4; stroke: #16a34a; }
+      .title { font: 600 13px system-ui, sans-serif; fill: #0f172a; }
+      .sub { font: 11px system-ui, sans-serif; fill: #475569; }
+      .phase { font: 700 11px system-ui, sans-serif; fill: #64748b; letter-spacing: 0.04em; }
+      .line { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <text x="20" y="28" class="phase">CHECKOUT &amp; PREFLIGHT</text>
+  <rect x="20" y="40" width="140" height="56" rx="6" class="box"/>
+  <text x="32" y="62" class="title">Clone repo</text>
+  <text x="32" y="78" class="sub">Python 3.11+ · Node 18+</text>
+  <rect x="180" y="40" width="140" height="56" rx="6" class="box"/>
+  <text x="192" y="62" class="title">Preflight</text>
+  <text x="192" y="78" class="sub">MCP · skills · renderer</text>
+  <rect x="340" y="40" width="160" height="56" rx="6" class="box-studio"/>
+  <text x="352" y="62" class="title">Start Studio</text>
+  <text x="352" y="78" class="sub">:8765 API · :5173 UI</text>
+  <rect x="520" y="40" width="160" height="56" rx="6" class="box-studio"/>
+  <text x="532" y="62" class="title">seed-demo.sh</text>
+  <text x="532" y="78" class="sub">DEMO-4500 fixture</text>
+  <path d="M160 68 H180" class="line"/>
+  <path d="M320 68 H340" class="line"/>
+  <path d="M500 68 H520" class="line"/>
+  <text x="20" y="130" class="phase">LIVE PIPELINE (CURSOR + JIRA)</text>
+  <rect x="20" y="142" width="150" height="64" rx="6" class="box-accent"/>
+  <text x="32" y="166" class="title">Reviewer config</text>
+  <text x="32" y="182" class="sub">Studio ’ Reviewer configs</text>
+  <text x="32" y="196" class="sub">trinity-reviewer in Cursor</text>
+  <rect x="190" y="142" width="150" height="64" rx="6" class="box"/>
+  <text x="202" y="166" class="title">reviewer/runs/</text>
+  <text x="202" y="182" class="sub">ONE-*/review-payload.json</text>
+  <text x="202" y="196" class="sub">folder = epic Jira key</text>
+  <rect x="360" y="142" width="150" height="64" rx="6" class="box-studio"/>
+  <text x="372" y="166" class="title">Import + QA</text>
+  <text x="372" y="182" class="sub">Unit triage · approve</text>
+  <text x="372" y="196" class="sub">Jira epic comment (opt.)</text>
+  <rect x="530" y="142" width="150" height="64" rx="6" class="box-studio"/>
+  <text x="542" y="166" class="title">Send to Creator</text>
+  <text x="542" y="182" class="sub">trinity-creator</text>
+  <text x="542" y="196" class="sub">suite-payload.json</text>
+  <rect x="700" y="142" width="200" height="64" rx="6" class="box-studio"/>
+  <text x="712" y="166" class="title">Importer</text>
+  <text x="712" y="182" class="sub">Plan · execute · Xray keys</text>
+  <text x="712" y="196" class="sub">production gate: PRODUCTION</text>
+  <path d="M170 174 H190" class="line"/>
+  <path d="M340 174 H360" class="line"/>
+  <path d="M510 174 H530" class="line"/>
+  <path d="M680 174 H700" class="line"/>
+  <text x="20" y="248" class="phase">CREDENTIALS (WHEN WRITING TO JIRA / XRAY)</text>
+  <rect x="20" y="260" width="880" height="72" rx="6" class="box"/>
+  <text x="32" y="284" class="title">Trinity/studio/.env</text>
+  <text x="32" y="302" class="sub">JIRA_BASE_URL · JIRA_EMAIL · JIRA_API_TOKEN  scope resolve, Jira comments, Importer project list</text>
+  <text x="32" y="318" class="sub">XRAY_CLIENT_ID · XRAY_CLIENT_SECRET  Importer execute (sandbox instance in UI for dry-runs)</text>
+  <text x="20" y="360" class="phase">KEY RULES</text>
+  <rect x="20" y="372" width="430" height="120" rx="6" class="box"/>
+  <text x="32" y="396" class="sub">" Epic folder name must match scope.value in review-payload.json</text>
+  <text x="32" y="414" class="sub">" Demo epic key DEMO-4500 is fictional  do not post to production Jira</text>
+  <text x="32" y="432" class="sub">" Jira comments: preview ’ confirm issue key ’ optional PRODUCTION on appfire host</text>
+  <text x="32" y="450" class="sub">" not_fit epics: Creator handoff disabled in Studio</text>
+  <text x="32" y="468" class="sub">" Redaction: blockers in preview prevent post (secrets / tokens)</text>
+  <rect x="470" y="372" width="430" height="120" rx="6" class="box-studio"/>
+  <text x="482" y="396" class="title">Doc map (repo)</text>
+  <text x="482" y="414" class="sub">OPERATOR-SETUP.md  linear setup from checkout</text>
+  <text x="482" y="432" class="sub">confluence/*.md  pages for Confluence import</text>
+  <text x="482" y="450" class="sub">QUICKSTART.md  10 min, no Jira</text>
+  <text x="482" y="468" class="sub">GUIDE.md · MANUAL.md · PREFLIGHT.md · TESTING.md</text>
+</svg>

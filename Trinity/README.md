@@ -6,6 +6,9 @@ Start here for install.
 
 | Path | Audience |
 |------|----------|
+| **[`OPERATOR-SETUP.md`](OPERATOR-SETUP.md)** | **Step-by-step: checkout → operational** (demo + full pipeline) |
+| **[`confluence/`](confluence/)** | **Confluence page pack** + SVG diagram + sample prompts |
+| **[`ROADMAP.md`](ROADMAP.md)** | **What’s left** — prioritized backlog (P0–P3) |
 | **[`QUICKSTART.md`](QUICKSTART.md)** | **New operator — Studio in ~10 min** (demo data, no Jira) |
 | [`GUIDE.md`](GUIDE.md) | Full path: credentials, golden, Importer **project selector** |
 | [`TESTING.md`](TESTING.md) | Hands-on checklist |
@@ -45,11 +48,14 @@ Import a Reviewer run (example):
 
 | Doc | Purpose |
 |-----|---------|
+| **[OPERATOR-SETUP.md](OPERATOR-SETUP.md)** | **Linear setup from git clone (diagram in `confluence/assets/`)** |
+| **[confluence/README.md](confluence/README.md)** | Publish operator docs to Confluence |
 | **[GUIDE.md](GUIDE.md)** | **Getting Started, prerequisites, golden, Importer project selector** |
 | [FAQ.md](FAQ.md) | Capabilities, metrics, multi-product validation, sign-off evidence |
 | [CURSOR-COST.md](CURSOR-COST.md) | Per-stage Cursor usage and USD cost (hooks + Admin API) |
 | [REVIEW-PRODUCT-AND-DOCS.md](REVIEW-PRODUCT-AND-DOCS.md) | Multi-persona product/doc review + open questions |
 | [FAQ.md](FAQ.md) | Engineering FAQ (capabilities, metrics, sign-off evidence) |
+| [ROADMAP.md](ROADMAP.md) | Prioritized remaining work (P0–P3) |
 | [NEXT-STEPS.md](NEXT-STEPS.md) | Post-P2: grill, doc cleanup, UI, pilot sign-off |
 | [QUICKSTART.md](QUICKSTART.md) | **10-minute Studio demo (no Jira)** |
 | [PREFLIGHT.md](PREFLIGHT.md) | MCP, skills, health checks |

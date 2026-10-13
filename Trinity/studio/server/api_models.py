@@ -31,6 +31,7 @@ class ImporterPlanBody(BaseModel):
     creator_run_id: str | None = None
     skip_requirement_link: bool = False
     reviewer_gate_acknowledged: bool = False
+    idempotency_acknowledged: bool = False
 
 
 class ImporterExecuteBody(ImporterPlanBody):

@@ -23,6 +23,7 @@ class JiraCommentPostBody(BaseModel):
     body: str | None = None
     preview_edited: bool = False
     production_confirm: str | None = None
+    allow_duplicate: bool = False
 
 
 def _load_unit_payload(conn: Any, unit_id: str) -> tuple[dict[str, Any], str, int | None]:
@@ -57,13 +58,19 @@ def jira_status() -> dict[str, Any]:
 
 
 @router.get("/api/units/{unit_id}/jira-comment/preview")
-def jira_comment_preview(unit_id: str, variant: str = "auto") -> dict[str, Any]:
+def jira_comment_preview(
+    unit_id: str,
+    variant: str = "auto",
+    preview_edited: bool = False,
+) -> dict[str, Any]:
     with db() as conn:
         unit = conn.execute(
             "SELECT pipeline_run_id FROM review_unit WHERE id = ?", (unit_id,)
         ).fetchone()
         payload, jira_key, revision = _load_unit_payload(conn, unit_id)
-        out = preview_comment(conn, unit_id, payload, jira_key, variant)
+        out = preview_comment(
+            conn, unit_id, payload, jira_key, variant, payload_revision_id=revision
+        )
         out["jira_key"] = jira_key
         out["payload_revision_id"] = revision
         record_event(
@@ -76,6 +83,8 @@ def jira_comment_preview(unit_id: str, variant: str = "auto") -> dict[str, Any]:
                 "variant": out.get("variant"),
                 "epic_feedback_count": out.get("epic_feedback_count"),
                 "blocker_count": len(out.get("blockers") or []),
+                "preview_edited": preview_edited,
+                "duplicate_warning": bool(out.get("duplicate_warning")),
             },
         )
         return out
@@ -113,6 +122,7 @@ def jira_comment_post(unit_id: str, body: JiraCommentPostBody) -> dict[str, Any]
                 body_override=body.body,
                 preview_edited=body.preview_edited,
                 payload_revision_id=revision,
+                allow_duplicate=body.allow_duplicate,
             )
         except ValueError as exc:
             record_event(

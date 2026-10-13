@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from jira_client import post_issue_comment, scan_redaction_warnings
@@ -182,6 +183,7 @@ def preview_comment(
     payload: dict[str, Any],
     jira_key: str,
     variant: str = "auto",
+    payload_revision_id: int | None = None,
 ) -> dict[str, Any]:
     recommendation = recommend_variant(conn, unit_id, payload)
     resolved = resolve_variant(variant, recommendation)
@@ -199,8 +201,10 @@ def preview_comment(
         work_payload = payload
     body = render_body(work_payload, jira_key, resolved)
     warnings = scan_redaction_warnings(body)
-    blockers = list(warnings) if warnings else []
-    return {
+    blockers: list[str] = []
+    if warnings:
+        blockers.extend("redaction")
+    out = {
         "variant": resolved,
         "recommendation": recommendation,
         "body": body,
@@ -208,11 +212,47 @@ def preview_comment(
         "blockers": blockers,
         "epic_feedback_count": epic_feedback_count(payload),
     }
+    _attach_duplicate_warning(conn, unit_id, out, body, payload_revision_id)
+    return out
 
 
 def request_hash(variant: str, body: str, revision_id: int | None) -> str:
     raw = f"{variant}\n{revision_id or 0}\n{body}"
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def find_recent_duplicate_post(
+    conn: Any, unit_id: str, req_hash: str, hours: int = 24
+) -> dict[str, Any] | None:
+    cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
+    row = conn.execute(
+        """
+        SELECT id, created_at, jira_comment_id FROM jira_comment_post
+        WHERE review_unit_id = ? AND request_hash = ? AND created_at >= ?
+        ORDER BY id DESC LIMIT 1
+        """,
+        (unit_id, req_hash, cutoff),
+    ).fetchone()
+    return dict(row) if row else None
+
+
+def _attach_duplicate_warning(
+    conn: Any,
+    unit_id: str,
+    out: dict[str, Any],
+    body: str,
+    revision_id: int | None,
+) -> None:
+    if not body.strip():
+        return
+    req_hash = request_hash(out.get("variant") or "full", body, revision_id)
+    out["request_hash"] = req_hash
+    dup = find_recent_duplicate_post(conn, unit_id, req_hash)
+    if dup:
+        out["duplicate_warning"] = (
+            f"A comment with the same content was posted at {dup['created_at']} "
+            f"(within 24h, id {dup.get('jira_comment_id') or dup['id']})."
+        )
 
 
 def post_comment(
@@ -225,15 +265,22 @@ def post_comment(
     body_override: str | None,
     preview_edited: bool,
     payload_revision_id: int | None,
+    allow_duplicate: bool = False,
 ) -> dict[str, Any]:
-    preview = preview_comment(conn, unit_id, payload, jira_key, variant)
+    preview = preview_comment(
+        conn, unit_id, payload, jira_key, variant, payload_revision_id=payload_revision_id
+    )
     body = (body_override or preview["body"] or "").strip()
     if not body:
         raise ValueError("Comment body is empty")
     if preview.get("blockers"):
         raise ValueError("Cannot post: redaction or validation blockers present")
-    result = post_issue_comment(jira_key, body)
     req_hash = request_hash(preview["variant"], body, payload_revision_id)
+    if not allow_duplicate and find_recent_duplicate_post(conn, unit_id, req_hash):
+        raise ValueError(
+            "Duplicate comment within 24h — refresh preview or set allow_duplicate to post again"
+        )
+    result = post_issue_comment(jira_key, body)
     from db import utc_now
 
     now = utc_now()

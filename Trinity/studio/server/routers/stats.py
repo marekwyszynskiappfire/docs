@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-import json
 from typing import Any
 
 from fastapi import APIRouter
 
 from db import db
+from studio_stats import count_open_questions_and_findings
 
 router = APIRouter(tags=["stats"])
 
@@ -20,23 +20,7 @@ def global_stats() -> dict[str, Any]:
         approved = conn.execute(
             "SELECT COUNT(*) FROM review_unit WHERE approved_revision_id IS NOT NULL"
         ).fetchone()[0]
-        findings_open = 0
-        questions_open = 0
-        for row in conn.execute(
-            """
-            SELECT r.payload_json FROM review_payload_revision r
-            INNER JOIN (
-              SELECT review_unit_id, MAX(revision) AS mr FROM review_payload_revision GROUP BY review_unit_id
-            ) latest ON latest.review_unit_id = r.review_unit_id AND latest.mr = r.revision
-            """
-        ):
-            p = json.loads(row["payload_json"])
-            for f in p.get("findings") or []:
-                if f.get("status", "open") == "open":
-                    findings_open += 1
-            for q in p.get("questions") or []:
-                if q.get("status", "open") == "open":
-                    questions_open += 1
+        open_qf = count_open_questions_and_findings(conn)
         creator_runs = conn.execute("SELECT COUNT(*) FROM creator_run").fetchone()[0]
         tests = conn.execute("SELECT COUNT(*) FROM test_case_row").fetchone()[0]
         tests_approved = conn.execute(
@@ -58,8 +42,10 @@ def global_stats() -> dict[str, Any]:
         "pipeline_runs": runs,
         "review_units": units,
         "review_units_approved": approved,
-        "open_findings_latest": findings_open,
-        "open_questions_latest": questions_open,
+        "open_findings_latest": open_qf["open_findings_latest"],
+        "open_questions_latest": open_qf["open_questions_latest"],
+        "open_qf_counts_capped": open_qf["open_qf_counts_capped"],
+        "open_qf_unit_cap": open_qf["open_qf_unit_cap"],
         "creator_runs": creator_runs,
         "test_cases": tests,
         "test_cases_approved": tests_approved,

@@ -1,6 +1,6 @@
 # Trinity operator manual
 
-Hub: [`README.md`](README.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md) · **Testing:** [`TESTING.md`](TESTING.md)
+Hub: [`README.md`](README.md) · **Setup:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · Confluence pack: [`confluence/README.md`](confluence/README.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md) · **Testing:** [`TESTING.md`](TESTING.md)
 
 ## Reviewer — portfolio interview (Cursor)
 
@@ -72,6 +72,12 @@ After import, open a pipeline run on the Dashboard:
 ```
 
 Then review units on the Dashboard, approve payloads, export for Creator.
+
+Epic folder name must match `scope.value` in each `review-payload.json` (import rejects mismatches).
+
+## Jira epic comments (Studio)
+
+After triage and **Save draft**, use the **Jira epic comment** panel on the unit page (preview → confirm issue key → post). Requires `JIRA_*` in `Trinity/studio/.env`; production host requires `PRODUCTION`. Do not post fictional demo key `DEMO-4500` to real Jira. Detail: [`confluence/06-studio-review-and-jira-comments.md`](confluence/06-studio-review-and-jira-comments.md).
 
 ## Importer (Studio → Xray)
 

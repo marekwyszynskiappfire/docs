@@ -1,6 +1,6 @@
 # Trinity Studio (developer notes)
 
-User-facing docs: **[`../README.md`](../README.md)** · **[`../PREFLIGHT.md`](../PREFLIGHT.md)** · **[`CODE-HEALTH.md`](CODE-HEALTH.md)** (maintainer backlog)
+User-facing docs: **[`../OPERATOR-SETUP.md`](../OPERATOR-SETUP.md)** · **[`../confluence/README.md`](../confluence/README.md)** · **[`../README.md`](../README.md)** · **[`../PREFLIGHT.md`](../PREFLIGHT.md)** · **[`CODE-HEALTH.md`](CODE-HEALTH.md)** (maintainer backlog)
 
 ## CI (IQ-14)
 
@@ -21,6 +21,8 @@ GitHub Actions: [`.github/workflows/trinity-studio-ci.yml`](../../.github/workfl
 Operator quickstart: [`../QUICKSTART.md`](../QUICKSTART.md)
 
 API **8765** · Vite UI **5173** (Vite uses `--strictPort` — will not silently move to 5174).
+
+After `cd web && npm run build`, **8765** serves the React build from `web/dist` (legacy static: `QA_STUDIO_LEGACY_STATIC=1`).
 
 If ports are busy (old Studio or a stray API from an agent session):
 
@@ -55,6 +57,8 @@ Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
 | `POST .../resolve-scope` | Inline resolve for epic_keys/epic_url |
 | `POST/DELETE .../resolved-keys` | Paste or clear `resolved_epic_keys` snapshot |
 | `POST /api/import/reviewer-run` | Import Reviewer run folder |
+| `GET /api/jira/status` | Jira credentials chip for epic comment panel |
+| `GET/POST /api/units/{id}/jira-comment/*` | Preview, post, history (epic comments) |
 | `POST /api/units/{id}/send-to-creator` | Approved export + Creator prompt (blocks not_fit) |
 | `PUT/PATCH /api/tests/{id}` | Save case JSON, review status, import mark |
 | `GET /api/creator/products`, `/golden-corpora` | Product → golden corpus + Importer defaults (IQ-12) |

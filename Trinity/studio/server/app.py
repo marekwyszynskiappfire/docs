@@ -69,9 +69,14 @@ def _ui_index() -> FileResponse:
 
 @app.get("/")
 def root_ui():
-    """Built-in UI — no npm. Set QA_STUDIO_REACT=1 to serve web/dist instead."""
-    use_react = os.environ.get("QA_STUDIO_REACT", "").lower() in ("1", "true", "yes")
-    if use_react and WEB_DIST.is_dir() and (WEB_DIST / "index.html").is_file():
+    """Prefer built React app when web/dist exists; legacy static fallback is deprecated."""
+    force_legacy = os.environ.get("QA_STUDIO_LEGACY_STATIC", "").lower() in ("1", "true", "yes")
+    use_react = (
+        not force_legacy
+        and WEB_DIST.is_dir()
+        and (WEB_DIST / "index.html").is_file()
+    ) or os.environ.get("QA_STUDIO_REACT", "").lower() in ("1", "true", "yes")
+    if use_react:
         return FileResponse(WEB_DIST / "index.html")
     return _ui_index()
 

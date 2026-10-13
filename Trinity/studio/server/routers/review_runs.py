@@ -9,12 +9,12 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 
 from api_models import RunLabelBody, SavePayloadBody, UnitMetaBody
-from creator_handoff import build_creator_prompt, payload_readiness, review_ref_relative
+from creator_handoff import build_creator_prompt, payload_readiness
 from creator_importer_config import test_data_isolation_warning
 from db import db, json_loads, row_to_dict, utc_now
 from personas import docs_repo_root
+from review_unit_export import export_review_unit
 from run_management import delete_pipeline_run, rename_pipeline_run
-from studio_paths import EXPORT_ROOT
 from telemetry import record_event
 
 router = APIRouter(tags=["review-runs"])
@@ -179,41 +179,16 @@ def approve_unit(unit_id: str) -> dict[str, Any]:
 @router.post("/api/units/{unit_id}/export")
 def export_unit(unit_id: str) -> dict[str, Any]:
     with db() as conn:
-        unit = conn.execute("SELECT * FROM review_unit WHERE id = ?", (unit_id,)).fetchone()
-        if not unit:
-            raise HTTPException(404, "Unit not found")
-        rev = None
-        if unit["approved_revision_id"]:
-            rev = conn.execute(
-                "SELECT * FROM review_payload_revision WHERE id = ?",
-                (unit["approved_revision_id"],),
-            ).fetchone()
-        if not rev:
-            rev = _latest_revision(conn, unit_id)
-        if not rev:
-            raise HTTPException(400, "No payload")
-        payload = json.loads(rev["payload_json"])
-    meta = {
-        "studio_run_id": unit["pipeline_run_id"],
-        "studio_unit_id": unit_id,
-        "approved_revision": rev["revision"],
-        "exported_at": utc_now(),
-    }
-    payload["studio_export"] = meta
-
-    EXPORT_ROOT.mkdir(parents=True, exist_ok=True)
-    out_dir = EXPORT_ROOT / unit["pipeline_run_id"] / unit["jira_key"]
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / "review-payload.json"
-    with out_path.open("w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
-        f.write("\n")
-
-    rel = review_ref_relative(str(out_path))
+        try:
+            result = export_review_unit(conn, unit_id)
+        except KeyError:
+            raise HTTPException(404, "Unit not found") from None
+        except ValueError as exc:
+            raise HTTPException(400, str(exc)) from exc
     return {
-        "path": str(out_path),
-        "review_ref": rel,
-        "jira_key": unit["jira_key"],
+        "path": result["path"],
+        "review_ref": result["review_ref"],
+        "jira_key": result["jira_key"],
     }
 
 
@@ -237,39 +212,34 @@ def send_to_creator(unit_id: str) -> dict[str, Any]:
             "SELECT product_id FROM pipeline_run WHERE id = ?",
             (unit["pipeline_run_id"],),
         ).fetchone()
-        unit_row = dict(unit)
         product_id = run_row["product_id"] if run_row else None
-    export = export_unit(unit_id)
-    with db() as conn:
-        rev_row = conn.execute(
-            "SELECT payload_json FROM review_payload_revision WHERE id = ?",
-            (unit_row["approved_revision_id"],),
-        ).fetchone()
-    if not rev_row:
-        raise HTTPException(400, "Approved revision payload not found")
-    payload = json.loads(rev_row["payload_json"])
-    gate = (payload.get("gate") or {}).get("status")
-    prompt = build_creator_prompt(
-        review_ref=export["review_ref"],
-        jira_key=unit_row["jira_key"],
-        creator_run_id=unit_row["jira_key"],
-        gate_status=gate,
-        readiness_label=payload_readiness(payload),
-        qa_planning_fit=unit_row["qa_planning_fit"],
-        pipeline_run_id=unit_row["pipeline_run_id"],
-    )
-    warnings: list[str] = []
-    iso_warn = test_data_isolation_warning(product_id)
-    if iso_warn:
-        warnings.append(iso_warn)
-    return {
-        "review_ref": export["review_ref"],
-        "creator_run_id": unit_row["jira_key"],
-        "prompt": prompt,
-        "suite_payload_hint": f"Trinity/creator/artifacts/{unit_row['jira_key']}/suite-payload.json",
-        "creator_studio_path": "/creator",
-        "warnings": warnings,
-    }
+        try:
+            export = export_review_unit(conn, unit_id)
+        except ValueError as exc:
+            raise HTTPException(400, str(exc)) from exc
+        payload = export["payload"]
+        gate = (payload.get("gate") or {}).get("status")
+        prompt = build_creator_prompt(
+            review_ref=export["review_ref"],
+            jira_key=unit["jira_key"],
+            creator_run_id=unit["jira_key"],
+            gate_status=gate,
+            readiness_label=payload_readiness(payload),
+            qa_planning_fit=unit["qa_planning_fit"],
+            pipeline_run_id=unit["pipeline_run_id"],
+        )
+        warnings: list[str] = []
+        iso_warn = test_data_isolation_warning(product_id)
+        if iso_warn:
+            warnings.append(iso_warn)
+        return {
+            "review_ref": export["review_ref"],
+            "creator_run_id": unit["jira_key"],
+            "prompt": prompt,
+            "suite_payload_hint": f"Trinity/creator/artifacts/{unit['jira_key']}/suite-payload.json",
+            "creator_studio_path": "/creator",
+            "warnings": warnings,
+        }
 
 
 def _source_path_relative(source_path: str | None) -> str | None:

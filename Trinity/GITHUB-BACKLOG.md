@@ -19,8 +19,8 @@ Or create manually from the table below.
 | Title | Body summary | Labels |
 |-------|----------------|--------|
 | **Trinity: BigQuery telemetry ingest + Looker Studio** | Wire `TRINITY_TELEMETRY_URL`; document dataset schema; dashboard for acceptance rate + rejection reasons. Blocked on GCP credentials. Ref: METRICS.md, ADR 0002. | `trinity`, `telemetry`, `post-poc` |
-| **Trinity: Hard block redaction on Importer execute** | Grill Q2: warn-only today (IQ-17); block execute when `export_preflight_warnings` include PII patterns. | `trinity`, `importer`, `post-poc` |
-| **Trinity: Idempotency block/skip duplicate Xray keys** | Grill Q4: warn in plan today; block or skip when `xray_test_key` already set on execute. | `trinity`, `importer`, `post-poc` |
+| ~~Trinity: Hard block redaction on Importer execute~~ | *Shipped* — `importer_execute_guard`; override `STUDIO_IMPORTER_ALLOW_REDACTION_EXECUTE=1`. | — |
+| ~~Trinity: Idempotency block/skip duplicate Xray keys~~ | *Shipped* — block until `idempotency_acknowledged` on plan/execute + UI checkbox. | — |
 
 ---
 
@@ -29,10 +29,10 @@ Or create manually from the table below.
 | Title | Body summary | Labels |
 |-------|----------------|--------|
 | **Trinity Studio: QA readiness checklist panel** | Grill R5 deferred; Profile A HTML link covers pilot. parity-matrix.md | `trinity`, `studio` |
-| **Trinity Studio: Post Jira epic comments (preview + confirm)** | Close gap: `studio_qa` + Reviewer comment templates → Jira REST from Studio. Spec: [`studio/JIRA-EPIC-COMMENTS-OUTLINE.md`](studio/JIRA-EPIC-COMMENTS-OUTLINE.md). | `trinity`, `studio`, `post-poc` |
+| **Trinity Studio: Jira epic comments — polish & ADF** | MVP shipped (preview/post/history). Remaining: Phase 0 ADF/wiki, duplicate-post warn, batch post, GUIDE update. Spec: [`studio/JIRA-EPIC-COMMENTS-OUTLINE.md`](studio/JIRA-EPIC-COMMENTS-OUTLINE.md). | `trinity`, `studio`, `post-poc` |
 | **Trinity: Map automation_fit to Xray Automated field** | TQ-02 deferred at release; per-test Jira fields on execute. importer/reference.md | `trinity`, `importer` |
 | **Trinity Creator: test_data_isolation config enforcement** | PQ-03: warn today; optional schema + Studio display. | `trinity`, `creator` |
-| **Trinity: CQ-02 schema warn on catalog vs linked_ac_ids mismatch** | Doc done (grill R5); optional Studio/validation warn post-pilot. creator/reference.md | `trinity`, `creator` |
+| **Trinity: CQ-02 escalate warn → block** | Studio warns in coverage summary (shipped); optional block on approve/export. creator/reference.md | `trinity`, `creator` |
 | **Trinity Reviewer export: environment/tenant metadata** | RQ-02 follow-up for multi-tenant analytics. | `trinity`, `reviewer` |
 
 ---
@@ -51,6 +51,8 @@ Or create manually from the table below.
 
 ## Done in repo (do not re-open)
 
-IQ-01–IQ-17 (except post-release hardening above), IQ-10–15, grill R1–R5 (portfolio rollup, child inventory + status banner, classifications banner, plan test_type coercion, Reviewer HTML open, PQ-06 dashboard alerts, CQ-02 doc), run rename/delete, `pr-`/`cr-` IDs, production Importer default, Cursor cost hooks (optional telemetry).
+IQ-01–IQ-17 (except post-release hardening above), IQ-10–15, grill R1–R5 (portfolio rollup, child inventory + status banner, classifications banner, plan test_type coercion, Reviewer HTML open, PQ-06 dashboard alerts, CQ-02 doc), run rename/delete, `pr-`/`cr-` IDs, production Importer default, Cursor cost hooks (optional telemetry), **Jira epic comments MVP** (Studio API + panel), **Studio API router split**, **demo fixture DEMO-4500** + import key guard, **operator Confluence pack** + [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md).
+
+Roadmap summary: [`ROADMAP.md`](ROADMAP.md).
 
 **Open review-report.html** — done in repo (R4); do not re-open unless parity regresses.

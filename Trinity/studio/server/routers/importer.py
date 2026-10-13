@@ -15,6 +15,7 @@ from creator_importer_config import importer_defaults_for_handoff
 from db import db
 from importer_execute import run_batch_execute
 from importer_handoff import build_importer_cursor_prompt, build_pm_safe_summary
+from importer_execute_guard import assert_execute_allowed, finalize_import_plan_execute_readiness
 from importer_idempotency import attach_existing_xray_keys
 from importer_jira import list_jira_projects
 from importer_persist import apply_xray_reports, load_reports_from_path, resolve_report_path
@@ -130,6 +131,9 @@ def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
             plan["resolved_creator_run_id"] = creator_run_id
         with db() as conn:
             attach_existing_xray_keys(conn, creator_run_id, plan)
+        finalize_import_plan_execute_readiness(
+            plan, idempotency_acknowledged=body.idempotency_acknowledged
+        )
         plan["cursor_prompt"] = build_importer_cursor_prompt(
             plan,
             payload_path=body.payload_path,
@@ -193,6 +197,12 @@ def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
         )
         with db() as conn:
             attach_existing_xray_keys(conn, creator_run_id, plan)
+        try:
+            assert_execute_allowed(
+                plan, idempotency_acknowledged=body.idempotency_acknowledged
+            )
+        except ValueError as exc:
+            raise HTTPException(400, str(exc)) from exc
         if not plan.get("credentials", {}).get("execute_ready"):
             raise HTTPException(
                 400,

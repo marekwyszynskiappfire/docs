@@ -502,6 +502,7 @@ export const api = {
     creator_run_id?: string | null;
     skip_requirement_link?: boolean;
     reviewer_gate_acknowledged?: boolean;
+    idempotency_acknowledged?: boolean;
   }) => json<ImporterPlanResult>("/api/importer/plan", { method: "POST", body: JSON.stringify(body) }),
   telemetryRejectionReasons: () =>
     json<{ reasons: { id: string; label: string }[] }>("/api/telemetry/rejection-reasons"),
@@ -516,6 +517,7 @@ export const api = {
     creator_run_id?: string | null;
     skip_requirement_link?: boolean;
     reviewer_gate_acknowledged?: boolean;
+    idempotency_acknowledged?: boolean;
     production_confirm?: string;
   }) =>
     json<{
@@ -563,10 +565,13 @@ export const api = {
       conversations_matched?: number;
     }>(`/api/cursor-usage/backfill?hours_back=${hoursBack}`, { method: "POST" }),
   jiraStatus: () => json<JiraStatus>("/api/jira/status"),
-  jiraCommentPreview: (unitId: string, variant: string) =>
-    json<JiraCommentPreview>(
-      `/api/units/${encodeURIComponent(unitId)}/jira-comment/preview?variant=${encodeURIComponent(variant)}`
-    ),
+  jiraCommentPreview: (unitId: string, variant: string, previewEdited = false) => {
+    const params = new URLSearchParams({ variant });
+    if (previewEdited) params.set("preview_edited", "true");
+    return json<JiraCommentPreview>(
+      `/api/units/${encodeURIComponent(unitId)}/jira-comment/preview?${params}`
+    );
+  },
   jiraCommentHistory: (unitId: string) =>
     json<{ posts: JiraCommentHistoryPost[] }>(
       `/api/units/${encodeURIComponent(unitId)}/jira-comment/history`
@@ -579,6 +584,7 @@ export const api = {
       body?: string;
       preview_edited?: boolean;
       production_confirm?: string;
+      allow_duplicate?: boolean;
     }
   ) =>
     json<JiraCommentPostResult>(
@@ -604,6 +610,8 @@ export type JiraCommentPreview = {
   epic_feedback_count: number;
   jira_key?: string;
   payload_revision_id?: number;
+  duplicate_warning?: string;
+  request_hash?: string;
 };
 
 export type JiraCommentPostResult = {
@@ -689,6 +697,13 @@ export type ImporterPlanResult = {
   reviewer_gate_acknowledged?: boolean;
   pm_safe_summary?: string;
   export_preflight_warnings?: string[];
+  export_preflight_redaction?: string[];
+  idempotency?: {
+    requires_acknowledgement?: boolean;
+    warnings?: string[];
+    acknowledged?: boolean;
+  };
+  execute_blockers?: string[];
   importer_defaults?: Record<string, unknown>;
   credentials: {
     xray_client_id: boolean;
