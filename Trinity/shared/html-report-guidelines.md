@@ -98,8 +98,8 @@ No external scripts, fonts, or CSS from CDNs.
 |------|-----------|------------------|
 | The Reviewer (single issue) | `{artifacts_dir}/{run_id}/{KEY}/review-payload.json` + rendered reports | Copy `review-report.html` (+ optional `.md`) — single file share |
 | The Reviewer (≥2 Epics, one run) | `{portfolio_run_id}/{KEY}/…` + **`{portfolio_run_id}/portfolio/`** | Zip **`portfolio/`** — `index.html` + `epics/{KEY}/review-report.html` |
-| The Creator (runs) | `Creator/runs/{RUN_ID}/` batches + build scripts | **`Creator/runs/{RUN_ID}/report/`** zip |
-| AI in QA / TestCaseCreator | `artifacts/{KEY}/` | Suite HTML per skill paths; follow Profile A until migrated |
+| Trinity Creator (runs) | `Trinity/creator/runs/{RUN_ID}/` batches + build scripts | **`Trinity/creator/runs/{RUN_ID}/report/`** zip |
+| Trinity Creator (artifacts) | `Trinity/creator/artifacts/{run_id}/` | Suite HTML via `build_suite_report.py` — Profile B |
 
 Each shareable folder includes a **README.md** with: open instructions, regenerate command, data freshness note.
 
@@ -120,6 +120,6 @@ Each shareable folder includes a **README.md** with: open instructions, regenera
 
 ## Related docs
 
-- The Reviewer HTML tier spec: [`The Reviewer/reference.md`](../The%20Reviewer/reference.md) (§ HTML report)
-- TC-6504 example: [`Creator/runs/TC-6504/report/README.md`](../Creator/runs/TC-6504/report/README.md)
-- Creator runs hub: [`Creator/README.md`](../Creator/README.md)
+- Reviewer HTML tier spec: [`reviewer/reference.md`](../reviewer/reference.md) (§ HTML report)
+- Creator runs policy: [`creator/runs/README.md`](../creator/runs/README.md)
+- Trinity hub: [`README.md`](../README.md)

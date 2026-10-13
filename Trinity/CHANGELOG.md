@@ -10,6 +10,10 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 - Studio: telemetry export, rejection reasons, Importer execute guards, React UI on 8765 when built.
 - Operator docs: FIRST-RUN, MANUAL, ARCHITECTURE; Confluence three-page tree.
 
+## Unreleased
+
+- Removed legacy trees: `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
+
 ## Pre-0.2.0
 
 Internal iterations (Reviewer 1.1 payloads, Creator golden v2, Studio MVP). No prior public tags.

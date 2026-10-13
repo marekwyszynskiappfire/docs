@@ -8,4 +8,4 @@
 
 Agent runs should write **`suite-payload.json`** validated against `TestCaseDraft.schema.json` until the dedicated suite schema ships.
 
-Plan: [`../../The Creator/ACTION-PLAN.md`](../../The%20Creator/ACTION-PLAN.md) Phase 1–2.
+Suite schema evolution: [`PATH-TO-1.0.md`](../../PATH-TO-1.0.md).

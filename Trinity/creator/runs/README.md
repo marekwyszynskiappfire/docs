@@ -1,4 +1,4 @@
-# Pilot runs (The Creator)
+# Pilot runs (Trinity Creator)
 
 Committed run folders (optional) hold **redacted** fixtures for regression: `suite-payload.json`, **`suite-report/`** (Profile B), and notes — not full tenant data.
 

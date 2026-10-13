@@ -670,7 +670,7 @@ This also protects every number the pages publish. Out-of-band work consumes the
 **The deliverable is questions, not a verdict.** Requirement review returns *additional questions* to the requester. It is not a pass/fail gate, and the pages should not imply one.
 
 **Two cross-references for the rewrite:**
-- The tooling is the **`requirements-review` skill** already built in this repository under `AI in QA/Skills/requirements-review/`, along with `templates/requirement_standard.md`. The pages should link it rather than describe a hypothetical capability — and this partly answers finding **N7**.
+- The tooling is **Trinity Reviewer** ([`Trinity/reviewer/`](../../Trinity/reviewer/), install via [`Trinity/scripts/install-trinity-skills.sh`](../../Trinity/scripts/install-trinity-skills.sh)). Link Confluence pages to [`Trinity/FIRST-RUN.md`](../../Trinity/FIRST-RUN.md) — partly answers finding **N7**.
 - Once questions go back to the requester, the **clock stops** under the Q7b pause rule, exactly as for any other incomplete request.
 
 ---

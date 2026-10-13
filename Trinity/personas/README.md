@@ -7,7 +7,6 @@ Editable **role prompts** for Reviewer and Creator agents. The Reviewer loads on
 - **[`P1-P10.md`](P1-P10.md)** — roles, Trinity touchpoints, lead ownership, Studio entry points
 - [`MANUAL.md`](../MANUAL.md) §11 — whole-pipeline “who does what”
 - [`reviewer/MANUAL.md`](../reviewer/MANUAL.md) §11 — Reviewer HTML audiences (maps to P1–P10)
-- [`The Creator/CREATOR-SKILLS-PERSONA-REVIEW.md`](../../The%20Creator/CREATOR-SKILLS-PERSONA-REVIEW.md) — historical consolidation (C-01–C-15)
 
 Operator audiences: [`P1-P10.md`](P1-P10.md) and [`MANUAL.md`](../MANUAL.md) §11.
 
