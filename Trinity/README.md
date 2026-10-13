@@ -57,6 +57,7 @@ Import a Reviewer run:
 | [`FAQ.md`](FAQ.md) | Capabilities and policies |
 | [`METRICS.md`](METRICS.md) · [`CURSOR-COST.md`](CURSOR-COST.md) | Telemetry and Cursor usage |
 | [`VERSIONING.md`](VERSIONING.md) | Release semver vs JSON schema versions |
+| [`PATH-TO-1.0.md`](PATH-TO-1.0.md) | Roadmap from 0.2 POC to 1.0 GA |
 | [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) | POC traceability |
 | [`SCORECARD.md`](SCORECARD.md) | Mateusz one-pager template + pilot log |
 | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) | Reading Reviewer HTML reports |
