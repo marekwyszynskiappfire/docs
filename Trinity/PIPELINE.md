@@ -4,7 +4,7 @@ End-to-end flow from portfolio planning through test-case prep.
 
 **Checkout → operational:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · **Confluence pages:** [`confluence/`](confluence/) · **SVG:** [`confluence/assets/trinity-operator-pipeline.svg`](confluence/assets/trinity-operator-pipeline.svg)
 
-Details: [`MANUAL.md`](MANUAL.md), [`CONTRACTS.md`](CONTRACTS.md).
+**Manual:** [`MANUAL.md`](MANUAL.md) (full operator guide). Contracts: [`CONTRACTS.md`](CONTRACTS.md).
 
 ```mermaid
 flowchart LR

@@ -1,7 +1,8 @@
 # Trinity — operator setup (checkout → operational)
 
 **Audience:** QA engineer bringing Trinity up on a fresh machine.  
-**Confluence:** sectional copies live under [`confluence/`](confluence/) (see [`confluence/README.md`](confluence/README.md)).  
+**Narrative manual (read first):** [`MANUAL.md`](MANUAL.md) — full day-to-day guide; this file is the **linear checklist** only.  
+**Confluence:** publish [`MANUAL.md`](MANUAL.md) as the primary wiki page; short sections under [`confluence/`](confluence/).  
 **Diagram:** [`confluence/assets/trinity-operator-pipeline.svg`](confluence/assets/trinity-operator-pipeline.svg)
 
 | Mode | Goal | Stop after step |

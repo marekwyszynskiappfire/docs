@@ -7,6 +7,7 @@ Markdown in this folder is written to become **shareable Confluence pages** (cus
 | Order | File | Suggested Confluence title |
 |-------|------|----------------------------|
 | Parent | — | **Trinity — AI-assisted QA pipeline (operator guide)** |
+| **0** | [`../MANUAL.md`](../MANUAL.md) | **Trinity — Operator manual (full)** — **canonical long-form doc** |
 | 1 | [`01-overview.md`](01-overview.md) | Overview & architecture |
 | 2 | [`02-prerequisites.md`](02-prerequisites.md) | Prerequisites & preflight |
 | 3 | [`03-checkout-and-studio-demo.md`](03-checkout-and-studio-demo.md) | Checkout & 10-minute Studio demo |
@@ -35,7 +36,7 @@ Markdown in this folder is written to become **shareable Confluence pages** (cus
 
 Use `createConfluenceContent` with your `spaceId`, parent page id, and markdown/HTML body. Convert relative links to absolute wiki links after publish.
 
-**Published (QACoE, 2026-10-13):** parent under [QA Center of Excellence](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/1055719475/QA+Center+of+Excellence) → [Trinity — AI-assisted QA pipeline (operator guide)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide) (child pages 01–09, samples, OPERATOR-SETUP).
+**Published (QACoE):** parent under [QA Center of Excellence](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/1055719475/QA+Center+of+Excellence) → [Trinity — AI-assisted QA pipeline (operator guide)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide). **Primary doc:** [Operator manual (full)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual+full) from [`MANUAL.md`](../MANUAL.md); pages 01–09 are supplements.
 
 ### Option C — Export from repo (readers with git access)
 
