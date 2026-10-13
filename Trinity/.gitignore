@@ -1,0 +1,45 @@
+# Trinity — ignore planning, pilot, and dev-harvest artifacts (track work in GitHub Issues).
+
+# Grill / POC / backlog / product-review sessions (not needed to run the pipeline)
+/GRILL*.md
+/GITHUB-BACKLOG.md
+/NEXT-STEPS.md
+/REVIEW-PRODUCT-AND-DOCS.md
+/POC-*.md
+/SCORECARD-*.md
+/ROADMAP.md
+/parity-matrix.md
+
+# Superseded Confluence sectional pack (publish FIRST-RUN, ARCHITECTURE, MANUAL only)
+/confluence/0*.md
+/confluence/samples/
+
+# Creator port / personal templates (not runtime)
+/creator/PORT-CHECKLIST.md
+/creator/planning/
+/creator/templates/
+
+# Studio maintainer notes (operators use MANUAL / FIRST-RUN)
+/studio/CODE-HEALTH.md
+/studio/JIRA-EPIC-COMMENTS-OUTLINE.md
+
+/scripts/create_github_backlog.sh
+
+# MCP / Confluence harvest helpers (optional dev tooling; not in operator path)
+/reviewer/scripts/close_merge_only_epics.py
+/reviewer/scripts/fetch_*.py
+/reviewer/scripts/harvest_*.py
+/reviewer/scripts/ingest_*.py
+/reviewer/scripts/mcp_*.py
+/reviewer/scripts/persist_*.py
+/reviewer/scripts/save_mcp_*.py
+/reviewer/scripts/sync_*.py
+/reviewer/scripts/write_*.py
+/reviewer/scripts/merge_epic_gather.py
+
+# Ad-hoc portfolio configs (use example.demo-portfolio or *-local.json)
+/reviewer/config/runs/bp-*.json
+
+**/__pycache__/
+**/*.pyc
+.DS_Store

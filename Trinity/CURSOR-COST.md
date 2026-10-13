@@ -36,7 +36,7 @@ Hooks (`sessionStart` / `sessionEnd`) do **not** include token counts or dollars
 
 Billing data is typically **aggregated on an hourly cadence**; use **Backfill cost from Cursor API** in Studio after sessions complete (or wait and click again).
 
-Enterprise teams can additionally export **OpenTelemetry** with per-request tokens and estimated cost; that is not wired in Studio yet (see [GITHUB-BACKLOG.md](GITHUB-BACKLOG.md)).
+Enterprise teams can additionally export **OpenTelemetry** with per-request tokens and estimated cost; that is not wired in Studio yet (track via GitHub Issues).
 
 ---
 
@@ -128,4 +128,4 @@ For pilot evidence, copy from Studio:
 - **Models used**
 - Link to the same `pipeline_run_id` in QA telemetry export
 
-Add a one-line **Impact** note in [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) comparing Cursor cost to manual test-design time.
+Compare Cursor cost to manual test-design time in your program’s pilot notes or GitHub Issue.

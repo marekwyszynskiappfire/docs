@@ -36,8 +36,8 @@ Interactive product review and pilot sign-off require clear Importer rules, opti
 
 ## Consequences
 
-- Operator docs: [`Trinity/FAQ.md`](../../Trinity/FAQ.md), [`Trinity/POC-TC-GENERATOR.md`](../../Trinity/POC-TC-GENERATOR.md), [`Trinity/METRICS.md`](../../Trinity/METRICS.md), [`Trinity/SCORECARD-TC-GENERATOR.md`](../../Trinity/SCORECARD-TC-GENERATOR.md), [`Trinity/CURSOR-COST.md`](../../Trinity/CURSOR-COST.md).
+- Operator docs: [`Trinity/FIRST-RUN.md`](../../Trinity/FIRST-RUN.md), [`Trinity/MANUAL.md`](../../Trinity/MANUAL.md), [`Trinity/FAQ.md`](../../Trinity/FAQ.md), [`Trinity/METRICS.md`](../../Trinity/METRICS.md), [`Trinity/CURSOR-COST.md`](../../Trinity/CURSOR-COST.md).
 - Studio: telemetry export (`GET /api/telemetry/export`) includes QA summary + **`cursor_usage`** rollup; rejection reasons on bulk reject; **IQ-02** production guard; **IQ-05** `POST /api/importer/record-results`.
-- Grill 2026-10-12 (R1–R6, see [`Trinity/GRILL-SESSION-2026-10-12.md`](../../Trinity/GRILL-SESSION-2026-10-12.md)): pilot sign-off = scorecard + Slides; **no BigQuery required**; redaction **warn-only** until post-pilot hard block; Reviewer gate **soft** (IQ-16); Importer idempotency **warn** in plan; optional **Cursor cost** via hooks + Admin API backfill.
+- Pilot review (2026-10-12): sign-off via evidence + presentation; **no BigQuery required** for pilot; Importer redaction and idempotency hardened in Studio post-pilot; Reviewer gate **soft** (IQ-16); optional **Cursor cost** via hooks + Admin API backfill.
 - Studio parity (post-grill): portfolio rollup, child inventory + status banner, classifications banner, Reviewer **Profile A HTML** via API, Dashboard **`context_loaded`** alerts.
-- P2 IQ-10–IQ-15 implemented 2026-10-12. Post-pilot: hard redaction/idempotency, BQ ingest, QA checklist in Studio, `test_data_isolation` enforce — [`Trinity/GITHUB-BACKLOG.md`](../../Trinity/GITHUB-BACKLOG.md).
+- P2 IQ-10–IQ-15 implemented 2026-10-12. Further work tracked in GitHub Issues (`docs/agents/issue-tracker.md`).

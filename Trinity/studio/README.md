@@ -1,6 +1,6 @@
 # Trinity Studio (developer notes)
 
-User-facing docs: **[`../OPERATOR-SETUP.md`](../OPERATOR-SETUP.md)** · **[`../confluence/README.md`](../confluence/README.md)** · **[`../README.md`](../README.md)** · **[`../PREFLIGHT.md`](../PREFLIGHT.md)** · **[`CODE-HEALTH.md`](CODE-HEALTH.md)** (maintainer backlog)
+User-facing docs: **[`../FIRST-RUN.md`](../FIRST-RUN.md)** · **[`../MANUAL.md`](../MANUAL.md)** · **[`../OPERATOR-SETUP.md`](../OPERATOR-SETUP.md)** · **[`../PREFLIGHT.md`](../PREFLIGHT.md)** · **[`../README.md`](../README.md)**
 
 ## CI (IQ-14)
 

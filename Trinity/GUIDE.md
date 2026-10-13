@@ -2,7 +2,7 @@
 
 Single reference for **what Trinity is**, **how to get running**, **golden test data**, and **Importer configuration** (including the **Jira project selector**).
 
-Related: [TESTING.md](TESTING.md) (checklist) · [PREFLIGHT.md](PREFLIGHT.md) · [PIPELINE.md](PIPELINE.md) · [MANUAL.md](MANUAL.md) · [Studio vs Reviewer HTML](parity-matrix.md) · [FAQ](FAQ.md) · [Operator guide](POC-TC-GENERATOR.md) · [Metrics](METRICS.md) · [Scorecard template](SCORECARD-TC-GENERATOR.md) · [Product review](REVIEW-PRODUCT-AND-DOCS.md)
+Related: [FIRST-RUN.md](FIRST-RUN.md) · [TESTING.md](TESTING.md) · [PREFLIGHT.md](PREFLIGHT.md) · [PIPELINE.md](PIPELINE.md) · [MANUAL.md](MANUAL.md) · [FAQ](FAQ.md) · [METRICS.md](METRICS.md)
 
 **Personas:** [`personas/P1-P10.md`](personas/P1-P10.md) (operator matrix) · runtime prompts in [`personas/`](personas/) · [`MANUAL.md`](MANUAL.md) §11 · Reviewer detail in [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §11.
 
@@ -17,9 +17,7 @@ Related: [TESTING.md](TESTING.md) (checklist) · [PREFLIGHT.md](PREFLIGHT.md) ·
 | **Importer operator lens** | [`personas/importer-xray-operator.md`](personas/importer-xray-operator.md) |
 | **Whole-pipeline “who does what”** | [`MANUAL.md`](MANUAL.md) §11 |
 | **Reviewer report sections by role** | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §11 |
-| **Product review vs P1–P10** | [`REVIEW-PRODUCT-AND-DOCS.md`](REVIEW-PRODUCT-AND-DOCS.md) §1–2 |
-
-**P2 (QA lead)** usually owns golden corpus choice (`creator/config`), mapping JSON, and POC scorecard. **P5 (maintainer)** owns personas, checklist, and schema changes.
+**P2 (QA lead)** usually owns golden corpus choice (`creator/config`) and mapping JSON. **P5 (maintainer)** owns personas, checklist, and schema changes.
 
 ---
 
@@ -157,7 +155,7 @@ Copy from `.env.example` and `.env.production.example`. Never commit real `.env`
 
 The **project selector** needs `JIRA_*` in `.env` to populate the datalist; Xray execute needs `XRAY_*` for the chosen instance.
 
-**Xray import policy:** create/update tests in **production** Jira/Xray only. Use sandbox for Jira read and Importer **plan** dry-runs. See [POC-TC-GENERATOR.md](POC-TC-GENERATOR.md) and [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md).
+**Xray import policy:** create/update tests in **production** Jira/Xray only. Use sandbox for Jira read and Importer **plan** dry-runs. See [FAQ.md](FAQ.md) and [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md).
 
 **Telemetry (optional):** local metrics always on in Studio; BigQuery when `TRINITY_TELEMETRY_URL` is set — [METRICS.md](METRICS.md).
 
@@ -399,7 +397,5 @@ More: [TESTING.md §5](TESTING.md#5-troubleshooting).
 | [CONTRACTS.md](CONTRACTS.md) | JSON schemas index |
 | [importer/reference.md](importer/reference.md) | Importer API + GraphQL |
 | [creator/SKILL.md](creator/SKILL.md) | Creator rules (golden, steps, Epic scope) |
-| [POC-TC-GENERATOR.md](POC-TC-GENERATOR.md) | Test case generator narrative and controls |
 | [FAQ.md](FAQ.md) | Common engineering questions |
 | [METRICS.md](METRICS.md) | Telemetry, rejection reasons, BigQuery (optional) |
-| [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) | Evidence one-pager |

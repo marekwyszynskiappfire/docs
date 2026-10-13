@@ -2,33 +2,30 @@
 
 **Trinity** combines three Cursor Agent skills — **Reviewer**, **Creator**, and **Importer** — with **Trinity Studio**, the local workbench for human QA review, approvals, and handoff.
 
-Start here for install.
+## Start here
 
-| Path | Audience |
-|------|----------|
-| **[`FIRST-RUN.md`](FIRST-RUN.md)** | **First time? Follow this** — checkout → demo → prompts → one epic E2E |
-| **[`MANUAL.md`](MANUAL.md)** | Full operator manual (reference after first run) |
-| **[`OPERATOR-SETUP.md`](OPERATOR-SETUP.md)** | Step-by-step checklist (same flow, numbered steps) |
-| **[`confluence/`](confluence/)** | Short Confluence sections + SVG (manual = [`MANUAL.md`](MANUAL.md)) |
-| **[`ROADMAP.md`](ROADMAP.md)** | **What’s left** — prioritized backlog (P0–P3) |
-| **[`QUICKSTART.md`](QUICKSTART.md)** | **New operator — Studio in ~10 min** (demo data, no Jira) |
-| [`GUIDE.md`](GUIDE.md) | Full path: credentials, golden, Importer **project selector** |
-| [`TESTING.md`](TESTING.md) | Hands-on checklist |
+| Doc | Purpose |
+|-----|---------|
+| **[`FIRST-RUN.md`](FIRST-RUN.md)** | **First time** — checkout → demo → three Cursor prompts → one epic |
+| [`MANUAL.md`](MANUAL.md) | Full operator reference |
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | Components, diagrams, repo layout |
+| [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) | Linear setup checklist |
+| [`GUIDE.md`](GUIDE.md) | Credentials, golden corpus, Importer project key |
+| [`PREFLIGHT.md`](PREFLIGHT.md) · [`TESTING.md`](TESTING.md) | Smoke checks and validation |
 
-## Getting Started
+Planning and pilot notes (grill sessions, scorecards, backlog) are **not in this repo** — use GitHub Issues on `marekwyszynskiappfire/docs` ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)).
+
+## Getting started
 
 ```bash
 ./Trinity/studio/scripts/start.sh          # terminal 1 — UI http://127.0.0.1:5173
 ./Trinity/studio/scripts/seed-demo.sh      # terminal 2 — demo Reviewer import
+./Trinity/scripts/install-trinity-skills.sh   # Cursor skills (live Jira path)
 ```
-
-Cursor skills (optional for demo): `./Trinity/scripts/install-trinity-skills.sh`
 
 Open **http://127.0.0.1:5173** · API **http://127.0.0.1:8765/api/health**
 
-Validate: [`TESTING.md`](TESTING.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md)
-
-Import a Reviewer run (example):
+Import a Reviewer run:
 
 ```bash
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<your-run-folder>
@@ -38,37 +35,27 @@ Import a Reviewer run (example):
 
 | Path | Role |
 |------|------|
-| [`reviewer/`](reviewer/) | Requirement quality review (SKILL, schemas, `runs/`, portfolio builder) |
-| [`creator/`](creator/) | Test suite generation ([`SKILL.md`](creator/SKILL.md); demo batch in `samples/`) |
-| [`importer/`](importer/) | Approved suites → Xray (instance + folder targeting; dry-run in Studio) |
-| [`studio/`](studio/) | Trinity Studio — FastAPI + React, SQLite revisions |
-| [`shared/`](shared/) | HTML report guidelines (Profile A/B) |
-| [`personas/`](personas/) | Runtime prompts + [`personas/P1-P10.md`](personas/P1-P10.md) operator matrix |
+| [`reviewer/`](reviewer/) | Requirement quality review (SKILL, schemas, portfolio HTML) |
+| [`creator/`](creator/) | Test suite generation |
+| [`importer/`](importer/) | Approved suites → Xray |
+| [`studio/`](studio/) | Trinity Studio — FastAPI + React |
+| [`shared/`](shared/) | HTML report guidelines |
+| [`personas/`](personas/) | Runtime prompts |
 | [`scripts/`](scripts/) | `install-trinity-skills.sh` |
+| [`confluence/`](confluence/) | Wiki publish map + pipeline SVG |
 
-## Documentation
+## More docs
 
 | Doc | Purpose |
 |-----|---------|
-| **[OPERATOR-SETUP.md](OPERATOR-SETUP.md)** | **Linear setup from git clone (diagram in `confluence/assets/`)** |
-| **[confluence/README.md](confluence/README.md)** | Publish operator docs to Confluence |
-| **[GUIDE.md](GUIDE.md)** | **Getting Started, prerequisites, golden, Importer project selector** |
-| [FAQ.md](FAQ.md) | Capabilities, metrics, multi-product validation, sign-off evidence |
-| [CURSOR-COST.md](CURSOR-COST.md) | Per-stage Cursor usage and USD cost (hooks + Admin API) |
-| [REVIEW-PRODUCT-AND-DOCS.md](REVIEW-PRODUCT-AND-DOCS.md) | Multi-persona product/doc review + open questions |
-| [FAQ.md](FAQ.md) | Engineering FAQ (capabilities, metrics, sign-off evidence) |
-| [ROADMAP.md](ROADMAP.md) | Prioritized remaining work (P0–P3) |
-| [NEXT-STEPS.md](NEXT-STEPS.md) | Post-P2: grill, doc cleanup, UI, pilot sign-off |
-| [QUICKSTART.md](QUICKSTART.md) | **10-minute Studio demo (no Jira)** |
-| [PREFLIGHT.md](PREFLIGHT.md) | MCP, skills, health checks |
-| [TESTING.md](TESTING.md) | Hands-on validation checklist |
-| [MANUAL.md](MANUAL.md) | Reviewer interview, Studio personas/configs |
-| [PIPELINE.md](PIPELINE.md) | End-to-end Reviewer → Studio → Creator → Importer |
-| [CONTRACTS.md](CONTRACTS.md) | Payload and handoff contracts |
-| [parity-matrix.md](parity-matrix.md) | Studio vs Reviewer HTML (Phase 0 stub) |
+| [`PIPELINE.md`](PIPELINE.md) | End-to-end flow map |
+| [`CONTRACTS.md`](CONTRACTS.md) | Payload and handoff JSON |
+| [`FAQ.md`](FAQ.md) | Capabilities and policies |
+| [`METRICS.md`](METRICS.md) · [`CURSOR-COST.md`](CURSOR-COST.md) | Telemetry and Cursor usage |
+| [`reviewer/MANUAL.md`](reviewer/MANUAL.md) | Reading Reviewer HTML reports |
+| [`confluence/README.md`](confluence/README.md) | Confluence (QACoE) three-page tree |
 
 ## Prerequisites
 
 - Cursor with Atlassian MCP ([`reviewer/config/DUAL-ATLASSIAN-MCP.md`](reviewer/config/DUAL-ATLASSIAN-MCP.md))
-- Python 3.11+ for Studio and `render_report.py`
-- Node 18+ for Trinity Studio UI (`Trinity/studio/web`)
+- Python 3.11+ · Node 18+

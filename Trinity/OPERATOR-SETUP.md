@@ -122,7 +122,7 @@ Skills installed: `trinity-reviewer`, `trinity-creator`, `trinity-importer` (nam
 3. Set **persona** and **product_id**.
 4. **Save** → file under `Trinity/reviewer/config/runs/{portfolio_id}.json`.
 
-For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Resolve** / paste keys) before gather. Sample: [`confluence/samples/jql-resolve-prompt.md`](confluence/samples/jql-resolve-prompt.md).
+For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Copy JQL resolve prompt** / paste keys) before gather. See [`FIRST-RUN.md`](FIRST-RUN.md) §3.1.
 
 ---
 
@@ -134,7 +134,7 @@ For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Resolve** / p
 
 **Rule:** folder name **must equal** the epic Jira key in the payload (`scope.value`). Import fails on mismatch.
 
-Sample start prompt: [`confluence/samples/reviewer-portfolio-start.md`](confluence/samples/reviewer-portfolio-start.md).
+Use **Copy Cursor prompt** on Reviewer configs (see [`FIRST-RUN.md`](FIRST-RUN.md) §3.2).
 
 Deep dive: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
 
@@ -172,7 +172,7 @@ On the unit page → panel **Jira epic comment**:
 
 Do **not** post demo key `DEMO-4500` to real Jira. Use a sandbox **Epic** key for end-to-end tests.
 
-Spec: [`studio/JIRA-EPIC-COMMENTS-OUTLINE.md`](studio/JIRA-EPIC-COMMENTS-OUTLINE.md).
+Detail: [`MANUAL.md`](MANUAL.md) §8.
 
 ---
 
@@ -184,7 +184,7 @@ Spec: [`studio/JIRA-EPIC-COMMENTS-OUTLINE.md`](studio/JIRA-EPIC-COMMENTS-OUTLINE
 4. Approve/reject tests; mark **Fit for Xray import**.
 5. **Export for Importer** on the creator run.
 
-Sample prompt shape: [`confluence/samples/creator-handoff-prompt.md`](confluence/samples/creator-handoff-prompt.md).
+Use **Send to Creator** on the unit page ([`FIRST-RUN.md`](FIRST-RUN.md) §3.5).
 
 ---
 

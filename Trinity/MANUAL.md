@@ -37,7 +37,7 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 | Hand off to test design | **Approve & export** → **Send to Creator** (§9) | Approved unit; not `not_fit` |
 | Import tests to Xray | **Importer** tab (§10) | Mapping, project key, folder; production gate |
 | Fix “import failed: folder ≠ epic key” | Rename run folder to match `scope.value` in payload | §6 |
-| See what’s left on the roadmap | [`ROADMAP.md`](ROADMAP.md) | — |
+| Track engineering backlog | GitHub Issues ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)) | — |
 
 ---
 
@@ -279,7 +279,7 @@ Prerequisites: `JIRA_*` in `.env`; credentials chip on panel should be green.
 
 **Never post** `invalid` items. **Do not** use `DEMO-4500` against production.
 
-Spec and telemetry: [`studio/JIRA-EPIC-COMMENTS-OUTLINE.md`](studio/JIRA-EPIC-COMMENTS-OUTLINE.md).
+Jira panel behaviour is documented in §8 above; telemetry in [`METRICS.md`](METRICS.md).
 
 ---
 
@@ -359,10 +359,10 @@ Trinity serves design-time audiences **P1–P10** plus editable runtime prompts.
 | If you are… | Start here |
 |-------------|------------|
 | **QA engineer (P1)** | This manual §7–10; Reviewer manual for report reading |
-| **QA lead (P2)** | Portfolio `index.html`, [`METRICS.md`](METRICS.md), [`SCORECARD-TC-GENERATOR.md`](SCORECARD-TC-GENERATOR.md) |
+| **QA lead (P2)** | Portfolio `index.html`, [`METRICS.md`](METRICS.md) |
 | **PM / BA (P3)** | Reviewer readiness + questions; Importer **PM-safe summary** on plan |
 | **Automation engineer (P4)** | Creator `automation_fit`, blockers; approved rows for Importer |
-| **Skill maintainer (P5)** | Personas, run configs, schemas, [`REVIEW-PRODUCT-AND-DOCS.md`](REVIEW-PRODUCT-AND-DOCS.md) |
+| **Skill maintainer (P5)** | Personas, run configs, schemas, [`CONTRACTS.md`](CONTRACTS.md) |
 | **Test-data steward (P6)** | Creator prerequisites in batch JSON — not Reviewer |
 | **Release manager (P8)** | Epic portfolio bundle; Studio Creator handoff JQL |
 | **Security (P9)** | Redaction before share; Importer preflight warnings |
@@ -400,7 +400,7 @@ Payload schemas and handoff fields: [`CONTRACTS.md`](CONTRACTS.md).
 | Studio UI old shell | Legacy static fallback | `cd studio/web && npm run build`; or use :5173 |
 | Duplicate Jira comment posted | Double-click post | 24h duplicate warning; acknowledge override if intentional |
 
-More: [`confluence/09-troubleshooting-and-glossary.md`](confluence/09-troubleshooting-and-glossary.md) · [`FAQ.md`](FAQ.md).
+More: [`FAQ.md`](FAQ.md) · [`FIRST-RUN.md`](FIRST-RUN.md) troubleshooting table.
 
 ---
 
@@ -422,7 +422,7 @@ More: [`confluence/09-troubleshooting-and-glossary.md`](confluence/09-troublesho
 
 Before calling a pilot “done,” walk [`TESTING.md`](TESTING.md) end-to-end on sandbox, then one controlled production path (Importer + optional Jira comment) with real keys.
 
-Evidence template: [`SCORECARD-TC-GENERATOR.md`](SCORECARD-TC-GENERATOR.md).
+Pilot evidence: capture metrics export from Studio and attach to your program’s GitHub Issue or Confluence page.
 
 ---
 

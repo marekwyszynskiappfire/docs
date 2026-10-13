@@ -9,7 +9,9 @@
 | **2** Wire Cursor | ~20 min once | MCP + optional `.env` | Ready for a real epic |
 | **3** One epic E2E | 1–3 hours | Yes | Review → tests → Xray plan (or execute) |
 
-Deep reference later: [`MANUAL.md`](MANUAL.md) · Checklist: [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · Validation: [`TESTING.md`](TESTING.md).
+Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.md`](ARCHITECTURE.md) · Checklist: [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · Validation: [`TESTING.md`](TESTING.md).
+
+**Confluence (QACoE):** [First run playbook](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750592672/Trinity+First+run+playbook) · [Architecture](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture) · [Operator manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual)
 
 ---
 

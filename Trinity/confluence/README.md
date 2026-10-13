@@ -10,7 +10,7 @@ Only **three** child pages are maintained on Confluence (sync from git):
 | 2 | [`ARCHITECTURE.md`](../ARCHITECTURE.md) | [Architecture](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture) — attach [`assets/trinity-operator-pipeline.svg`](assets/trinity-operator-pipeline.svg) on the page if needed |
 | 3 | [`MANUAL.md`](../MANUAL.md) | [Operator manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual) |
 
-Older sectional files (`01-overview.md` … `09-*.md`, `samples/`) remain in git as **optional excerpts**; they are **not** published to Confluence anymore.
+Superseded sectional markdown (`confluence/0*.md`, `samples/`) is **gitignored** — do not re-add; wiki content is the three pages above only.
 
 ## Republish after edits
 

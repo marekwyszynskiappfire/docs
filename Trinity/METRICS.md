@@ -2,7 +2,7 @@
 
 English operator reference for **local metrics** (always on in Studio) and **optional BigQuery** upload. Use with pilot scorecards and acceptance-rate evidence.
 
-Related: [FAQ.md](FAQ.md) · [POC-TC-GENERATOR.md](POC-TC-GENERATOR.md) · [SCORECARD-TC-GENERATOR.md](SCORECARD-TC-GENERATOR.md) · [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
+Related: [FAQ.md](FAQ.md) · [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
 
 ---
 
