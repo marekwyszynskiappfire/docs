@@ -6,8 +6,8 @@ REPO_ROOT="$(cd "$STUDIO_ROOT/../.." && pwd)"
 FIXTURE_REL="Trinity/studio/fixtures/demo-reviewer-run"
 FIXTURE="$REPO_ROOT/$FIXTURE_REL"
 
-if [[ ! -f "$FIXTURE/ONE-90001/review-payload.json" ]]; then
-  echo "ERROR: missing $FIXTURE/ONE-90001/review-payload.json" >&2
+if [[ ! -f "$FIXTURE/DEMO-4500/review-payload.json" ]]; then
+  echo "ERROR: missing $FIXTURE/DEMO-4500/review-payload.json" >&2
   exit 1
 fi
 

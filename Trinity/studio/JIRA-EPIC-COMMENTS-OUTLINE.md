@@ -1,6 +1,6 @@
 # Studio → Jira epic comments (implementation outline)
 
-**Status:** Planned (post-pilot).  
+**Status:** MVP shipped in Studio (preview/post/history + unit page panel). ADF = plain-line paragraphs; wiki markup shown as text in Jira until Phase 0 spike closes.  
 **Goal:** Let operators preview and post Reviewer/Studio feedback to the **Epic issue in Jira** from Trinity Studio, with the same safety model as Reviewer §12 (generate → review → explicit confirm → write).
 
 **Interactive prototype:** open Canvas `jira-epic-comments` in Cursor (stepper + smart variant + unlock-to-edit).
@@ -206,10 +206,10 @@ Align with [`METRICS.md`](../METRICS.md) and scorecard evidence export.
 
 ### Phase 1 — MVP (2–3 days)
 
-- [ ] `jira_epic_comment.py` + preview/post endpoints + migration.
-- [ ] Unit page UI: preview + post + history.
-- [ ] Pytest: mock Jira HTTP; fixture payload from `fixtures/demo-reviewer-run`.
-- [ ] Vitest: preview panel smoke (mock fetch).
+- [x] `jira_epic_comment.py` + preview/post endpoints + migration.
+- [x] Unit page UI: preview + post + history.
+- [x] Pytest: fixture payload from `fixtures/demo-reviewer-run/DEMO-4500`.
+- [ ] Vitest: preview panel smoke (mock fetch) — deferred (no RTL in web yet).
 
 ### Phase 2 — Studio filter + polish (1–2 days)
 
@@ -243,7 +243,7 @@ Defaults above are **recommended**; override via comment on this doc or GitHub i
 | Case | Expect |
 |------|--------|
 | No credentials | Preview works; post 503 with setup hint |
-| Demo fixture `ONE-90001` | Preview generates; post blocked or sandbox-only key |
+| Demo fixture `DEMO-4500` | Preview generates; do not post to real Jira (fictional key) |
 | `send_to_epic` false on all items | Studio variant empty → 400 with message |
 | Redaction tripwire | Warning banner; post still blocked if severity=block (if we add block mode) |
 | Wrong `confirm_issue_key` | 400 |

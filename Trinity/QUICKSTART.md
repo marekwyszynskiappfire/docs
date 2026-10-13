@@ -48,8 +48,8 @@ Or use the Dashboard **Import Reviewer run** field (pre-filled path):
 
 | Step | Where | What |
 |------|--------|------|
-| Open run | Dashboard → pipeline run | See `ONE-90001` unit |
-| Review unit | Click epic | Skim payload, optional edit |
+| Open run | Dashboard → pipeline run | See **`DEMO-4500`** unit (fictional demo epic) |
+| Review unit | Click unit | Skim payload, optional edit |
 | Creator batch | **Creator** tab → Import | Path: `Trinity/creator/samples/demo-story.suite.json` |
 | Triage tests | Open creator run | Approve / reject; mark for Xray |
 | Importer dry-run | **Importer** tab | Preview plan only (no `.env` needed for read-only UI) |

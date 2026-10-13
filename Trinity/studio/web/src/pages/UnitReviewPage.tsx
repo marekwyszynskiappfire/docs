@@ -10,6 +10,7 @@ import type {
   ReviewReport,
 } from "../types/review-payload";
 import { questionBody } from "../types/review-payload";
+import JiraEpicCommentPanel from "../components/JiraEpicCommentPanel";
 import {
   applyDecisionPatch,
   buildEpicFeedback,
@@ -36,6 +37,7 @@ export default function UnitReviewPage() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [draftDirty, setDraftDirty] = useState(false);
 
   useEffect(() => {
     if (!unitId) return;
@@ -48,6 +50,7 @@ export default function UnitReviewPage() {
         setRevision(d.revision);
         setApprovedRevision(d.approved_revision);
         setQaPlanningFit(d.unit.qa_planning_fit);
+        setDraftDirty(false);
       })
       .catch((e) => setError(String(e)));
   }, [unitId]);
@@ -65,6 +68,7 @@ export default function UnitReviewPage() {
   }, [payload]);
 
   const patchStudio = useCallback((updater: (s: StudioQa) => StudioQa) => {
+    setDraftDirty(true);
     setPayload((prev) => {
       if (!prev) return prev;
       const current = readStudioQa(prev);
@@ -103,6 +107,7 @@ export default function UnitReviewPage() {
     try {
       const r = await api.savePayload(unitId, payload);
       setRevision(r.revision);
+      setDraftDirty(false);
       setMessage(`Saved revision ${r.revision}`);
     } catch (e) {
       setError(String(e));
@@ -141,6 +146,15 @@ export default function UnitReviewPage() {
 
   const blockedForCreator = qaPlanningFit === "not_fit";
   const canSendToCreator = Boolean(approvedRevision) && !blockedForCreator;
+
+  const sendToEpicCount = useMemo(() => {
+    return Object.values(studio.decisions).filter(
+      (d) => d.send_to_epic && d.validity !== "invalid"
+    ).length;
+  }, [studio]);
+
+  const jiraPanelDefaultOpen =
+    sendToEpicCount > 0 || gateStatus === "needs_clarification" || gateStatus === "blocked";
 
   const approveAndExport = async () => {
     if (!unitId || !payload) return;
@@ -243,6 +257,16 @@ export default function UnitReviewPage() {
       )}
 
       <ClassificationsBanner classifications={classifications} />
+
+      {unitId && (
+        <JiraEpicCommentPanel
+          unitId={unitId}
+          jiraKey={jiraKey}
+          revision={revision}
+          draftDirty={draftDirty}
+          defaultOpen={jiraPanelDefaultOpen}
+        />
+      )}
 
       <ReviewUnitSections
         contextLoaded={contextLoaded}

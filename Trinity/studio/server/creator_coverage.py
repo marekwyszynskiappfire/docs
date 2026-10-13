@@ -33,6 +33,24 @@ def _latest_case_json_by_row(conn: Any, row_ids: list[str]) -> dict[str, dict[st
     return out
 
 
+def cq02_catalog_warnings(cases: dict[str, dict[str, Any]]) -> list[str]:
+    """CQ-02: warn when coverage_catalog_id disagrees with linked_ac_ids."""
+    warnings: list[str] = []
+    for row_id, case in cases.items():
+        catalog = case.get("coverage_catalog_id")
+        if not catalog or not isinstance(catalog, str):
+            continue
+        linked = [str(x) for x in (case.get("linked_ac_ids") or []) if x]
+        if not linked:
+            continue
+        if catalog not in linked:
+            draft = case.get("draft_id") or row_id
+            warnings.append(
+                f"CQ-02: {draft} has coverage_catalog_id={catalog} not in linked_ac_ids={linked}"
+            )
+    return warnings
+
+
 def _ac_to_drafts(
     tests: list[dict[str, Any]],
     cases: dict[str, dict[str, Any]],
@@ -115,6 +133,7 @@ def build_coverage_summary(
     approved_ac_map = _ac_to_drafts(test_list, cases, approved_only=True)
     all_ac_map = _ac_to_drafts(test_list, cases, approved_only=False)
 
+    cq_warnings = cq02_catalog_warnings(cases)
     if not batch:
         orphan_approved = sorted(approved_ac_map.keys())
         return {
@@ -124,6 +143,7 @@ def build_coverage_summary(
             "approved_ac_ids": orphan_approved,
             "approved_ac_map": approved_ac_map,
             "gap_count": len(orphan_approved),
+            "warnings": cq_warnings,
         }
 
     report = batch.get("coverage_report") or {}
@@ -131,6 +151,7 @@ def build_coverage_summary(
     uncovered_ac_ids = list(report.get("uncovered_ac_ids") or [])
     uncovered_goals = list(report.get("uncovered_goals") or [])
     warnings = list(report.get("warnings") or [])
+    warnings.extend(cq02_catalog_warnings(cases))
 
     matrix_rows: list[dict[str, Any]] = []
     matrix_ac_ids: set[str] = set()

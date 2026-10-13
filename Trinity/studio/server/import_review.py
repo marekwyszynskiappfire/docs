@@ -20,6 +20,23 @@ def _read_json(path: Path) -> dict[str, Any]:
         return json.load(f)
 
 
+def epic_key_from_payload(payload: dict[str, Any]) -> str | None:
+    """Jira key for the reviewed epic (folder name should match)."""
+    scope = payload.get("scope") or {}
+    if isinstance(scope, dict):
+        if (scope.get("type") or "").lower() == "epic" and scope.get("value"):
+            return str(scope["value"]).strip()
+        if scope.get("jira_key"):
+            return str(scope["jira_key"]).strip()
+    keys = payload.get("requirement_keys") or []
+    if keys:
+        return str(keys[0]).strip()
+    reqs = payload.get("requirements") or []
+    if reqs and isinstance(reqs[0], dict) and reqs[0].get("jira_key"):
+        return str(reqs[0]["jira_key"]).strip()
+    return None
+
+
 def _qa_planning_fit(payload: dict[str, Any]) -> str | None:
     for req in payload.get("requirements") or []:
         fit = req.get("qa_planning_fit")
@@ -107,6 +124,12 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
                 continue
             payload = _read_json(payload_path)
             jira_key = epic_dir.name
+            expected = epic_key_from_payload(payload)
+            if expected and expected != jira_key:
+                raise ValueError(
+                    f"Epic folder {jira_key} does not match payload epic key {expected} "
+                    f"in {payload_path.relative_to(run_dir)} — rename the folder or fix scope/requirement_keys."
+                )
             unit_id = f"{pipeline_id}:{jira_key}"
             summary = (payload.get("requirements") or [{}])[0].get("summary")
             gate = (payload.get("gate") or {}).get("status")

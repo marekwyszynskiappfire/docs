@@ -89,6 +89,27 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
             CREATE INDEX IF NOT EXISTS idx_cursor_usage_conversation ON cursor_usage_event(conversation_id);
             """
         )
+    jira_post = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='jira_comment_post'"
+    ).fetchone()
+    if not jira_post:
+        conn.executescript(
+            """
+            CREATE TABLE jira_comment_post (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              review_unit_id TEXT NOT NULL,
+              jira_issue_key TEXT NOT NULL,
+              variant TEXT NOT NULL,
+              jira_comment_id TEXT,
+              jira_comment_url TEXT,
+              payload_revision_id INTEGER,
+              preview_edited INTEGER NOT NULL DEFAULT 0,
+              request_hash TEXT,
+              created_at TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_jira_comment_unit ON jira_comment_post(review_unit_id);
+            """
+        )
 
 
 def init_db() -> None:

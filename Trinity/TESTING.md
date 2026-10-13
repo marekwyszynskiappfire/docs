@@ -54,9 +54,9 @@ Opens HTML beside the sample or prints output path. Confirms Python + template w
 
 ```bash
 RUN=Trinity/reviewer/runs/demo-local-test
-mkdir -p "$RUN/ONE-90001"
-cp Trinity/reviewer/samples/demo-epic.payload.json "$RUN/ONE-90001/review-payload.json"
-cp Trinity/reviewer/samples/demo-epic.report.md "$RUN/ONE-90001/review-report.md" 2>/dev/null || true
+mkdir -p "$RUN/DEMO-4500"
+cp Trinity/reviewer/samples/demo-epic.payload.json "$RUN/DEMO-4500/review-payload.json"
+cp Trinity/reviewer/samples/demo-epic.report.md "$RUN/DEMO-4500/review-report.md" 2>/dev/null || true
 ```
 
 Use that folder in Studio import below.

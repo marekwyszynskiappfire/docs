@@ -46,10 +46,10 @@ Open http://127.0.0.1:5173 → import demo Reviewer folder:
 
 ```bash
 ./Trinity/studio/scripts/seed-demo.sh
-# Or manually (epic folder must match ONE-12345 pattern):
-mkdir -p Trinity/reviewer/runs/demo-local-test/ONE-90001
+# Or manually (folder name = epic Jira key; must match scope.value in payload):
+mkdir -p Trinity/reviewer/runs/demo-local-test/DEMO-4500
 cp Trinity/reviewer/samples/demo-epic.payload.json \
-   Trinity/reviewer/runs/demo-local-test/ONE-90001/review-payload.json
+   Trinity/reviewer/runs/demo-local-test/DEMO-4500/review-payload.json
 ```
 
 Dashboard → import `Trinity/reviewer/runs/demo-local-test` → **Creator** → import `Trinity/creator/samples/demo-story.suite.json`.

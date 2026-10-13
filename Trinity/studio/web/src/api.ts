@@ -562,6 +562,69 @@ export const api = {
       skipped?: string;
       conversations_matched?: number;
     }>(`/api/cursor-usage/backfill?hours_back=${hoursBack}`, { method: "POST" }),
+  jiraStatus: () => json<JiraStatus>("/api/jira/status"),
+  jiraCommentPreview: (unitId: string, variant: string) =>
+    json<JiraCommentPreview>(
+      `/api/units/${encodeURIComponent(unitId)}/jira-comment/preview?variant=${encodeURIComponent(variant)}`
+    ),
+  jiraCommentHistory: (unitId: string) =>
+    json<{ posts: JiraCommentHistoryPost[] }>(
+      `/api/units/${encodeURIComponent(unitId)}/jira-comment/history`
+    ),
+  jiraCommentPost: (
+    unitId: string,
+    body: {
+      variant: string;
+      confirm_issue_key: string;
+      body?: string;
+      preview_edited?: boolean;
+      production_confirm?: string;
+    }
+  ) =>
+    json<JiraCommentPostResult>(
+      `/api/units/${encodeURIComponent(unitId)}/jira-comment/post`,
+      { method: "POST", body: JSON.stringify(body) }
+    ),
+};
+
+export type JiraStatus = {
+  configured: boolean;
+  jira_base_url_set: boolean;
+  jira_email_set: boolean;
+  jira_token_set: boolean;
+  jira_base_url_host: string | null;
+};
+
+export type JiraCommentPreview = {
+  variant: string;
+  recommendation: { variant: string; reasons: string[] };
+  body: string;
+  warnings: string[];
+  blockers: string[];
+  epic_feedback_count: number;
+  jira_key?: string;
+  payload_revision_id?: number;
+};
+
+export type JiraCommentPostResult = {
+  posted_at: string;
+  variant: string;
+  jira_comment_id: string;
+  jira_comment_url: string;
+  preview_edited: boolean;
+};
+
+export type JiraCommentHistoryPost = {
+  id: number;
+  review_unit_id: string;
+  jira_issue_key: string;
+  variant: string;
+  jira_comment_id: string | null;
+  jira_comment_url: string | null;
+  payload_revision_id: number | null;
+  preview_edited: number;
+  request_hash: string | null;
+  created_at: string;
 };
 
 export type CursorUsageSummary = {
