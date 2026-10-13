@@ -24,4 +24,4 @@ Human edits and pipeline stats live in [`Trinity/studio/`](Trinity/studio/README
 
 **Do not modify `Trinity/` for repository hygiene** (removing legacy folders, deduping docs elsewhere, root `.gitignore`, etc.). Trinity is the shipped product tree — changes there are releases, features, and operator docs, not monorepo cleanup.
 
-Cleanup targets: legacy root skill stubs (`The Reviewer/`, `The Creator/`, `TestCaseCreator/`, `Creator/`), duplicate initiative copies under `AI in QA/` when instructed, and other non-Trinity paths. Update root [`README.md`](README.md) and [`.gitignore`](.gitignore) as needed; leave `Trinity/` to its own maintainers.
+Cleanup targets: legacy root skill stubs (`The Reviewer/`, `The Creator/`, `TestCaseCreator/`, `Creator/`), retired `QA_TRANSPARENCY/` and `QA Work Tracking/`, duplicate initiative copies under `AI in QA/` when instructed, and other non-Trinity paths. Update root [`README.md`](README.md) and [`.gitignore`](.gitignore) as needed; leave `Trinity/` to its own maintainers.

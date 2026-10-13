@@ -489,7 +489,7 @@ Relevant skills installed globally at `~/.cursor/skills/`: `grilling`, `grill-me
 
 - Repo: `/Users/marek.wyszynski/repo/DOCS`, remote `docs` → `https://github.com/marekwyszynskiappfire/docs`
 - `AGENTS.md` and `docs/agents/` were scaffolded on 2026-09-21 and are intentionally **uncommitted** at the user's request
-- Related material elsewhere in the repo: `AI in QA/` (Xray import, AI-assisted test creation) and `QA Work Tracking/`. Finding N7 flags that the portal process and the Xray work are not yet cross-referenced
+- Related material elsewhere in the repo: `AI in QA/` (Xray import, AI-assisted test creation) and **Trinity** for AI-assisted review/generation. Finding N7 flags that the portal process and the Xray work are not yet cross-referenced
 
 ---
 
