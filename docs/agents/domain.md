@@ -17,10 +17,14 @@ This repo uses **single-context** layout:
 ```
 /
 ├── CONTEXT.md              ← glossary (created by /grill-with-docs as needed)
-├── docs/adr/               ← architecture decision records
-├── BP QA/                  ← team WoW and process docs
-├── AI in QA/               ← AI-assisted QA initiative docs
-└── …
+├── docs/
+│   ├── adr/                ← architecture decision records
+│   └── agents/             ← issue tracker, domain layout (this file)
+├── Trinity/                ← Reviewer, Creator, Importer, Studio
+├── archive/                ← local-only legacy team docs (gitignored)
+├── .cursor/                ← Cursor rules and hooks
+├── .github/                ← CI (e.g. Trinity Studio)
+└── .agents/                ← agent config stubs
 ```
 
 ## Use the glossary's vocabulary

@@ -1,6 +1,6 @@
 # Agent instructions (DOCS)
 
-Personal and team documentation repository (QA process, releases, AI-in-QA initiative, 1:1 templates). Not an application codebase.
+Repository for **Trinity** and **Cursor/agent/GitHub** documentation (`docs/agents`, `docs/adr`). Not an application codebase.
 
 ## Agent skills
 
@@ -24,4 +24,4 @@ Human edits and pipeline stats live in [`Trinity/studio/`](Trinity/studio/README
 
 **Do not modify `Trinity/` for repository hygiene** (removing legacy folders, deduping docs elsewhere, root `.gitignore`, etc.). Trinity is the shipped product tree — changes there are releases, features, and operator docs, not monorepo cleanup.
 
-Cleanup targets: legacy root skill stubs (`The Reviewer/`, `The Creator/`, `TestCaseCreator/`, `Creator/`), retired `QA_TRANSPARENCY/` and `QA Work Tracking/`, duplicate initiative copies under `AI in QA/` when instructed, and other non-Trinity paths. Update root [`README.md`](README.md) and [`.gitignore`](.gitignore) as needed; leave `Trinity/` to its own maintainers.
+Cleanup targets: legacy root skill stubs (`The Reviewer/`, `The Creator/`, `TestCaseCreator/`, `Creator/`), retired `QA_TRANSPARENCY/` and `QA Work Tracking/`, and other non-Trinity paths that belong in local-only **`archive/`** (gitignored). Update root [`README.md`](README.md) and [`.gitignore`](.gitignore) as needed; leave `Trinity/` to its own maintainers.
