@@ -2,7 +2,9 @@
 
 *Draft for Confluence publishing. Written for the **QA engineer** running Reviewer → Studio → Creator → Importer day to day, with callouts for QA leads, PMs, and platform admins. This manual explains **how to operate the pipeline**; contracts and schemas live in [`CONTRACTS.md`](CONTRACTS.md), [`reviewer/SKILL.md`](reviewer/SKILL.md), and [`creator/SKILL.md`](creator/SKILL.md).*
 
-**First time using Trinity?** Follow [`FIRST-RUN.md`](FIRST-RUN.md) phase by phase (demo → three Cursor prompts → one epic).  
+**Wiki:** [Operator manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual) · [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [FAQ](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754164473/Trinity+FAQ)
+
+**First time?** [`START-HERE.md`](START-HERE.md) → [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) → [`FIRST-RUN.md`](FIRST-RUN.md).  
 **Companion docs:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · [`TESTING.md`](TESTING.md) · [`GUIDE.md`](GUIDE.md) · [`reviewer/MANUAL.md`](reviewer/MANUAL.md) · [`PIPELINE.md`](PIPELINE.md).
 
 **Last reviewed:** 2026-10-14

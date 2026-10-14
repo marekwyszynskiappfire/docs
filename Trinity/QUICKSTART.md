@@ -1,6 +1,6 @@
 # Trinity — 10-minute quickstart
 
-**Superseded for new operators by [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0–1** (same steps, more context).
+**New operators:** [Start here (wiki)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [`START-HERE.md`](START-HERE.md) · [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0–1 (same steps, more context).
 
 ## TL;DR
 

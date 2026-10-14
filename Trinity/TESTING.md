@@ -1,7 +1,7 @@
 # Trinity — hands-on testing guide
 
 One path from zero to Reviewer → Studio → Creator → Importer handoff file.  
-Hub: [`README.md`](README.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md) · Pipeline: [`PIPELINE.md`](PIPELINE.md)
+**Wiki:** [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · Hub: [`START-HERE.md`](START-HERE.md) · Preflight: [`PREFLIGHT.md`](PREFLIGHT.md) · Pipeline: [`PIPELINE.md`](PIPELINE.md)
 
 ---
 

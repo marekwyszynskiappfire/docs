@@ -2,7 +2,8 @@
 
 **Last reviewed:** 2026-10-14  
 **Audience:** Operators, QA leads, and engineers onboarding to Trinity.  
-**Runbook:** [`FIRST-RUN.md`](FIRST-RUN.md) · **Reference:** [`MANUAL.md`](MANUAL.md)
+**Wiki:** [Architecture](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture) · [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here)  
+**Runbook:** [`FIRST-RUN.md`](FIRST-RUN.md) · **Reference:** [`MANUAL.md`](MANUAL.md) · **FAQ:** [`FAQ.md`](FAQ.md)
 
 ---
 

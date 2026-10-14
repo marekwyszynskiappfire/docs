@@ -2,7 +2,8 @@
 
 End-to-end flow from portfolio planning through test-case prep.
 
-**Checkout → operational:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · **Confluence pages:** [`confluence/`](confluence/) · **SVG:** [`confluence/assets/trinity-operator-pipeline.svg`](confluence/assets/trinity-operator-pipeline.svg)
+**New operators:** [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [`FAQ.md`](FAQ.md)  
+**Checkout → operational:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · **Wiki map:** [`confluence/README.md`](confluence/README.md) · **SVG:** [`confluence/assets/trinity-operator-pipeline.svg`](confluence/assets/trinity-operator-pipeline.svg)
 
 **Manual:** [`MANUAL.md`](MANUAL.md) (full operator guide). Contracts: [`CONTRACTS.md`](CONTRACTS.md).
 
