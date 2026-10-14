@@ -1,4 +1,5 @@
 import type { CreatorCoverage } from "../api";
+import SortableDataTable from "./SortableDataTable";
 
 function joinIds(ids: string[] | undefined) {
   if (!ids?.length) return "—";
@@ -70,33 +71,51 @@ export default function CoverageMatrixPanel({ coverage }: { coverage: CreatorCov
         </div>
       )}
 
-      <table className="data coverage-table">
-        <thead>
-          <tr>
-            <th>AC / goal</th>
-            <th>Batch</th>
-            <th>Batch tests</th>
-            <th>Approved tests</th>
-            <th>Gap</th>
-          </tr>
-        </thead>
-        <tbody>
-          {matrix.map((row) => (
-            <tr key={row.ac_id} className={row.review_gap ? "coverage-row-gap" : undefined}>
-              <td>
+      <SortableDataTable
+        className="data coverage-table"
+        rows={matrix}
+        rowKey={(row) => row.ac_id}
+        rowClassName={(row) => (row.review_gap ? "coverage-row-gap" : undefined)}
+        defaultSort={{ columnId: "ac_id", dir: "asc" }}
+        columns={[
+          {
+            id: "ac_id",
+            header: "AC / goal",
+            getValue: (row) => row.ac_id,
+            render: (row) => (
+              <>
                 <code>{row.ac_id}</code>
                 {row.jira_key ? <span className="muted"> · {row.jira_key}</span> : null}
-              </td>
-              <td>
-                <span className={statusClass(row.batch_status)}>{row.batch_status}</span>
-              </td>
-              <td>{joinIds(row.batch_covered_by)}</td>
-              <td>{joinIds(row.approved_covered_by)}</td>
-              <td className="muted">{row.review_gap ? row.gap_reason ?? "Gap" : "—"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </>
+            ),
+          },
+          {
+            id: "batch_status",
+            header: "Batch",
+            getValue: (row) => row.batch_status,
+            render: (row) => (
+              <span className={statusClass(row.batch_status)}>{row.batch_status}</span>
+            ),
+          },
+          {
+            id: "batch_covered",
+            header: "Batch tests",
+            getValue: (row) => joinIds(row.batch_covered_by),
+          },
+          {
+            id: "approved_covered",
+            header: "Approved tests",
+            getValue: (row) => joinIds(row.approved_covered_by),
+          },
+          {
+            id: "gap",
+            header: "Gap",
+            getValue: (row) => (row.review_gap ? row.gap_reason ?? "Gap" : ""),
+            cellClassName: "muted",
+            render: (row) => (row.review_gap ? row.gap_reason ?? "Gap" : "—"),
+          },
+        ]}
+      />
       {matrix.length === 0 && (
         <p className="muted">No matrix[] in coverage_report — check batch JSON or Reviewer handoff.</p>
       )}
@@ -107,26 +126,33 @@ export default function CoverageMatrixPanel({ coverage }: { coverage: CreatorCov
           {coverage.catalog_coverage_pct != null && (
             <p className="muted">{coverage.catalog_coverage_pct}% catalog items covered or N/A</p>
           )}
-          <table className="data coverage-table">
-            <thead>
-              <tr>
-                <th>Catalog id</th>
-                <th>Tier</th>
-                <th>Status</th>
-                <th>Tests</th>
-              </tr>
-            </thead>
-            <tbody>
-              {coverage.catalog_coverage!.map((c) => (
-                <tr key={c.catalog_id} className={c.status === "UNCOVERED" ? "coverage-row-gap" : undefined}>
-                  <td><code>{c.catalog_id}</code></td>
-                  <td>{c.tier}</td>
-                  <td><span className={statusClass(c.status)}>{c.status}</span></td>
-                  <td>{joinIds(c.covered_by)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <SortableDataTable
+            className="data coverage-table"
+            rows={coverage.catalog_coverage!}
+            rowKey={(c) => c.catalog_id}
+            rowClassName={(c) => (c.status === "UNCOVERED" ? "coverage-row-gap" : undefined)}
+            defaultSort={{ columnId: "catalog_id", dir: "asc" }}
+            columns={[
+              {
+                id: "catalog_id",
+                header: "Catalog id",
+                getValue: (c) => c.catalog_id,
+                render: (c) => <code>{c.catalog_id}</code>,
+              },
+              { id: "tier", header: "Tier", getValue: (c) => c.tier },
+              {
+                id: "status",
+                header: "Status",
+                getValue: (c) => c.status,
+                render: (c) => <span className={statusClass(c.status)}>{c.status}</span>,
+              },
+              {
+                id: "tests",
+                header: "Tests",
+                getValue: (c) => joinIds(c.covered_by),
+              },
+            ]}
+          />
         </>
       )}
     </div>

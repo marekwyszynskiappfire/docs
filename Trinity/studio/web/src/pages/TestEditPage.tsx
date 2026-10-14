@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../api";
+import SortableDataTable from "../components/SortableDataTable";
 
 type Step = { step: string; expected_result: string; test_data?: string };
 type PersonaNotes = {
@@ -37,6 +38,10 @@ export default function TestEditPage() {
   }, [testId]);
 
   const steps = (caseObj?.steps as Step[]) ?? [];
+  const stepRows = useMemo(
+    () => steps.map((s, originalIndex) => ({ ...s, originalIndex })),
+    [caseObj?.steps]
+  );
   const personaNotes = (caseObj?.persona_notes as PersonaNotes) ?? {};
 
   const syncCaseFromForm = (): Record<string, unknown> => {
@@ -237,52 +242,72 @@ export default function TestEditPage() {
           </p>
         </div>
         <div className="steps-table-wrap">
-          <table className="steps-table">
-            <thead>
-              <tr>
-                <th className="steps-col-num">#</th>
-                <th className="steps-col-action">Step (action)</th>
-                <th className="steps-col-expected">Expected result</th>
-                <th className="steps-col-actions" aria-label="Row actions" />
-              </tr>
-            </thead>
-            <tbody>
-              {steps.map((s, i) => (
-                <tr key={i}>
-                  <td className="steps-col-num">{i + 1}</td>
-                  <td>
-                    <textarea
-                      className="steps-cell"
-                      aria-label={`Step ${i + 1} action`}
-                      value={s.step}
-                      onChange={(e) => updateStep(i, { step: e.target.value })}
-                      rows={4}
-                    />
-                  </td>
-                  <td>
-                    <textarea
-                      className="steps-cell"
-                      aria-label={`Step ${i + 1} expected result`}
-                      value={s.expected_result}
-                      onChange={(e) => updateStep(i, { expected_result: e.target.value })}
-                      rows={4}
-                    />
-                  </td>
-                  <td className="steps-col-actions">
-                    <button
-                      type="button"
-                      className="secondary steps-remove"
-                      onClick={() => removeStep(i)}
-                      disabled={steps.length <= 1}
-                      title="Remove step"
-                    >
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <SortableDataTable
+            className="steps-table"
+            rows={stepRows}
+            rowKey={(r) => String(r.originalIndex)}
+            defaultSort={{ columnId: "stepOrder", dir: "asc" }}
+            columns={[
+              {
+                id: "stepOrder",
+                header: "#",
+                headerClassName: "steps-col-num",
+                cellClassName: "steps-col-num",
+                getValue: (r) => r.originalIndex,
+                render: (r) => r.originalIndex + 1,
+              },
+              {
+                id: "step",
+                header: "Step (action)",
+                headerClassName: "steps-col-action",
+                cellClassName: "steps-col-action",
+                getValue: (r) => r.step,
+                render: (r) => (
+                  <textarea
+                    className="steps-cell"
+                    aria-label={`Step ${r.originalIndex + 1} action`}
+                    value={r.step}
+                    onChange={(e) => updateStep(r.originalIndex, { step: e.target.value })}
+                    rows={4}
+                  />
+                ),
+              },
+              {
+                id: "expected",
+                header: "Expected result",
+                headerClassName: "steps-col-expected",
+                cellClassName: "steps-col-expected",
+                getValue: (r) => r.expected_result,
+                render: (r) => (
+                  <textarea
+                    className="steps-cell"
+                    aria-label={`Step ${r.originalIndex + 1} expected result`}
+                    value={r.expected_result}
+                    onChange={(e) => updateStep(r.originalIndex, { expected_result: e.target.value })}
+                    rows={4}
+                  />
+                ),
+              },
+              {
+                id: "actions",
+                header: "Actions",
+                headerClassName: "steps-col-actions",
+                cellClassName: "steps-col-actions",
+                getValue: () => "",
+                render: (r) => (
+                  <button
+                    type="button"
+                    className="secondary steps-remove"
+                    onClick={() => removeStep(r.originalIndex)}
+                    disabled={steps.length <= 1}
+                    title="Remove step"
+                  >
+                    Remove
+                  </button>
+                ),
+              },
+            ]}
+          />
         </div>
         <button type="button" className="secondary" onClick={addStep}>
           Add step

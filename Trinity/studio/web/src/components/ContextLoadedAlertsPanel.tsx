@@ -1,18 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
-import {
-  groupContextLoadedAlertsByRun,
-  sortContextLoadedAlerts,
-  type ContextLoadedAlert,
-  type ContextLoadedSortColumn,
-  type ContextLoadedSortDir,
-} from "../lib/contextLoadedAlerts";
+import { groupContextLoadedAlertsByRun, type ContextLoadedAlert } from "../lib/contextLoadedAlerts";
 import { SOURCE_STATUS_LABEL } from "../types/review-payload";
+import SortableDataTable from "./SortableDataTable";
 
 type Alert = ContextLoadedAlert;
-type SortColumn = ContextLoadedSortColumn;
-type SortDir = ContextLoadedSortDir;
 
 function contextStatusPillClass(status: string): string {
   switch (status) {
@@ -36,52 +29,14 @@ function contextStatusLabel(status: string): string {
   return status;
 }
 
-type SortableHeaderProps = {
-  label: string;
-  column: SortColumn;
-  sortColumn: SortColumn;
-  sortDir: SortDir;
-  onSort: (column: SortColumn) => void;
-};
-
-function SortableHeader({ label, column, sortColumn, sortDir, onSort }: SortableHeaderProps) {
-  const active = sortColumn === column;
-  return (
-    <th
-      scope="col"
-      aria-sort={active ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
-    >
-      <button
-        type="button"
-        className={`th-sort${active ? " th-sort--active" : ""}`}
-        onClick={() => onSort(column)}
-      >
-        <span>{label}</span>
-        {active && <span className="th-sort-indicator" aria-hidden="true">{sortDir === "asc" ? "▲" : "▼"}</span>}
-      </button>
-    </th>
-  );
-}
-
 export default function ContextLoadedAlertsPanel() {
   const [data, setData] = useState<{ alert_count: number; alerts: Alert[] } | null>(null);
-  const [sortColumn, setSortColumn] = useState<SortColumn>("jira_key");
-  const [sortDir, setSortDir] = useState<SortDir>("asc");
   /** Per-run expand state — do not use controlled `open={bool}` without onToggle (breaks <details>). */
   const [expandedRuns, setExpandedRuns] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     api.contextLoadedAlerts().then(setData).catch(() => setData(null));
   }, []);
-
-  const onSort = (column: SortColumn) => {
-    if (sortColumn === column) {
-      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-    } else {
-      setSortColumn(column);
-      setSortDir("asc");
-    }
-  };
 
   const alerts = data?.alerts ?? [];
   const runGroups = useMemo(() => groupContextLoadedAlertsByRun(alerts), [alerts]);
@@ -140,56 +95,37 @@ export default function ContextLoadedAlertsPanel() {
                 {group.epicKeys.length} epic{group.epicKeys.length === 1 ? "" : "s"}
               </span>
             </summary>
-            <table className="data child-table context-alerts-table">
-              <thead>
-                <tr>
-                  <SortableHeader
-                    label="Epic"
-                    column="jira_key"
-                    sortColumn={sortColumn}
-                    sortDir={sortDir}
-                    onSort={onSort}
-                  />
-                  <SortableHeader
-                    label="Source"
-                    column="source"
-                    sortColumn={sortColumn}
-                    sortDir={sortDir}
-                    onSort={onSort}
-                  />
-                  <SortableHeader
-                    label="Status"
-                    column="status"
-                    sortColumn={sortColumn}
-                    sortDir={sortDir}
-                    onSort={onSort}
-                  />
-                  <SortableHeader
-                    label="Detail"
-                    column="detail"
-                    sortColumn={sortColumn}
-                    sortDir={sortDir}
-                    onSort={onSort}
-                  />
-                </tr>
-              </thead>
-              <tbody>
-                {sortContextLoadedAlerts(group.alerts, sortColumn, sortDir).map((a) => (
-                  <tr key={`${a.unit_id}-${a.source}-${a.status}`}>
-                    <td>
-                      <Link to={`/units/${a.unit_id}`}>{a.jira_key}</Link>
-                    </td>
-                    <td>{a.source}</td>
-                    <td>
-                      <span className={`status-pill ${contextStatusPillClass(a.status)}`}>
-                        {contextStatusLabel(a.status)}
-                      </span>
-                    </td>
-                    <td className="muted">{a.detail ?? "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <SortableDataTable
+              className="data child-table context-alerts-table"
+              rows={group.alerts}
+              rowKey={(a) => `${a.unit_id}-${a.source}-${a.status}`}
+              defaultSort={{ columnId: "jira_key", dir: "asc" }}
+              columns={[
+                {
+                  id: "jira_key",
+                  header: "Epic",
+                  getValue: (a) => a.jira_key,
+                  render: (a) => <Link to={`/units/${a.unit_id}`}>{a.jira_key}</Link>,
+                },
+                { id: "source", header: "Source", getValue: (a) => a.source },
+                {
+                  id: "status",
+                  header: "Status",
+                  getValue: (a) => a.status,
+                  render: (a) => (
+                    <span className={`status-pill ${contextStatusPillClass(a.status)}`}>
+                      {contextStatusLabel(a.status)}
+                    </span>
+                  ),
+                },
+                {
+                  id: "detail",
+                  header: "Detail",
+                  getValue: (a) => a.detail,
+                  cellClassName: "muted",
+                },
+              ]}
+            />
           </details>
         ))}
       </div>

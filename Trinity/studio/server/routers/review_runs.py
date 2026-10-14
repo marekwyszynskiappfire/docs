@@ -13,7 +13,9 @@ from creator_handoff import build_creator_prompt, payload_readiness
 from creator_importer_config import test_data_isolation_warning
 from db import db, json_loads, row_to_dict, utc_now
 from personas import docs_repo_root
+from review_payload_fields import apply_payload_fields_to_unit
 from review_unit_export import export_review_unit
+from run_report import _latest_payloads_for_units
 from run_management import delete_pipeline_run, rename_pipeline_run
 from telemetry import record_event
 
@@ -43,9 +45,13 @@ def get_run(run_id: str) -> dict[str, Any]:
             "SELECT * FROM review_unit WHERE pipeline_run_id = ? ORDER BY jira_key",
             (run_id,),
         ).fetchall()
+        unit_dicts = [row_to_dict(u) for u in units]
+        payloads = _latest_payloads_for_units(conn, [u["id"] for u in unit_dicts])
     out = row_to_dict(run)
     out["creator_handoff"] = json_loads(out.pop("creator_handoff_json", None))
-    out["units"] = [row_to_dict(u) for u in units]
+    out["units"] = [
+        apply_payload_fields_to_unit(u, payloads.get(u["id"])) for u in unit_dicts
+    ]
     return out
 
 

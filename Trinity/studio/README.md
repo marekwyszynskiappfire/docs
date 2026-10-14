@@ -70,10 +70,14 @@ Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
 | `POST /api/importer/plan` | Dry-run plan + `cursor_prompt` (`project_key_override` supported) |
 | `POST /api/importer/execute` | Batch Xray create + auto-persist keys (IQ-10) |
 | `POST /api/importer/record-results` | Persist `xray_test_key` from import report JSON (IQ-05) |
+| `GET /api/runs/{id}/statistics`, `/statistics/export` | Per-run E2E report ([`METRICS.md`](../METRICS.md)) |
+| `GET /api/statistics/compare?runs=id1,id2` | Compare 2–5 pipeline runs (TC readiness + metrics; first id = baseline) |
 | `GET /api/telemetry/summary`, `/export`, `/events` | Local metrics ([`METRICS.md`](../METRICS.md)) |
 | `POST /api/telemetry/flush` | Best-effort BigQuery ingest when `TRINITY_TELEMETRY_URL` set |
 | `/api/units/...`, `/api/creator-runs/...` | Review and Creator batches |
 
 UI: **Personas** nav → edit role prompts used by Reviewer run config.
+
+List tables across Studio use **`web/src/components/SortableDataTable.tsx`** — click any column header to sort (asc/desc).
 
 Data: `Trinity/studio/data/` (gitignored SQLite and exports).

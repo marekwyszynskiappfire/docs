@@ -6,6 +6,7 @@ import PipelineStrip from "../components/PipelineStrip";
 import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import PortfolioRollupPanel from "../components/PortfolioRollupPanel";
 import RunListRowActions from "../components/RunListRowActions";
+import SortableDataTable from "../components/SortableDataTable";
 
 export default function HomePage() {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -151,37 +152,59 @@ export default function HomePage() {
             </p>
           </div>
         )}
-        <table className="data">
-          <thead>
-            <tr>
-              <th>Run</th>
-              <th>Studio ID</th>
-              <th>Units</th>
-              <th>Updated</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {runs.map((r) => (
-              <tr key={r.id} className={highlightId === r.id ? "row-highlight" : undefined}>
-                <td>
+        <SortableDataTable
+          rows={runs}
+          rowKey={(r) => r.id}
+          rowClassName={(r) => (highlightId === r.id ? "row-highlight" : undefined)}
+          defaultSort={{ columnId: "updated", dir: "desc" }}
+          columns={[
+            {
+              id: "label",
+              header: "Run",
+              getValue: (r) => r.label,
+              render: (r) => (
+                <>
                   <Link to={`/runs/${r.id}`}>{r.label}</Link>
                   {highlightId === r.id && (
                     <span className={`import-kind-pill import-kind-pill--${feedback?.kind ?? "new"}`}>
                       {feedback?.kind === "updated" ? "Updated" : "New"}
                     </span>
                   )}
-                </td>
-                <td><code className="run-id-cell">{r.id}</code></td>
-                <td>{r.unit_count ?? "—"}</td>
-                <td className="muted">{r.updated_at.slice(0, 19)}</td>
-                <td>
+                </>
+              ),
+            },
+            {
+              id: "id",
+              header: "Studio ID",
+              getValue: (r) => r.id,
+              render: (r) => <code className="run-id-cell">{r.id}</code>,
+            },
+            {
+              id: "units",
+              header: "Units",
+              getValue: (r) => r.unit_count ?? null,
+              align: "right",
+            },
+            {
+              id: "updated",
+              header: "Updated",
+              getValue: (r) => r.updated_at,
+              render: (r) => <span className="muted">{r.updated_at.slice(0, 19)}</span>,
+            },
+            {
+              id: "actions",
+              header: "Actions",
+              getValue: () => "",
+              render: (r) => (
+                <>
+                  <Link to={`/runs/${encodeURIComponent(r.id)}?tab=statistics`}>Statistics</Link>
+                  {" · "}
                   <RunListRowActions kind="pipeline" runId={r.id} label={r.label} onChanged={load} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </>
+              ),
+            },
+          ]}
+        />
       </div>
     </>
   );

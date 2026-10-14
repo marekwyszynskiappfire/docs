@@ -39,7 +39,34 @@ Join telemetry on `pipeline_run_id`, `entity_id`, and `entity_type` (`pipeline_r
 | Automation signal | `test_case_row.automation_fit` / `automation_candidate` — **not** sent to Xray in POC (all Manual in TC); use for acceptance analytics |
 | Xray keys in Studio | Importer → **Persist Xray keys** or `POST /api/importer/record-results` |
 
-**Not yet automated:** wall-clock time per phase, baseline comparison without AI (capture manually in scorecard).
+**Phase timings (per pipeline run):** computed in Studio → open a **Dashboard** run → **Statistics** tab, or `GET /api/runs/{pipeline_run_id}/statistics`. Snapshots persist in SQLite table `pipeline_run_report` for later BigQuery ingest alongside `telemetry_outbox`.
+
+**Not yet automated:** baseline comparison without AI (capture manually in scorecard).
+
+---
+
+## Per-run E2E statistics (local, pre–BigQuery)
+
+For each **pipeline run** (Reviewer folder import through Xray), Studio computes a structured report:
+
+| Measure | Source |
+|---------|--------|
+| Epics reviewed, findings spotted, epics not ready (`not_fit` / `needs_clarification_before_scope_lock`) | Latest `review-payload` per epic |
+| Questions marked / posted to epic (suggested vs QA-added) | `studio_qa.decisions` + `jira_comment_post` |
+| Epics selected for Creator, TCs drafted / amended / sent to import / Xray keys | `review_unit`, `creator_run`, `test_case_row` |
+| **TC creation readiness** (ready / reservations / not ready / unknown) | Latest payload `report.qa_planning_fit` (fallback: `requirements[].qa_planning_fit`, then `review_unit.qa_planning_fit` on import) → `summary` buckets |
+| **Compare runs** (2–5) | `GET /api/statistics/compare?runs=id1,id2` — first id = baseline for deltas |
+| Phase durations | `metric_event` timestamps + reviewer folder / handoff `generated_at` |
+| Product & Jira context | `pipeline_run`, portfolio `creator-handoff.json` |
+
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /api/runs/{id}/statistics` | Recompute + return report; upsert `pipeline_run_report` |
+| `GET /api/runs/{id}/statistics/export` | JSON bundle (`export_kind: pipeline_run_statistics`) for archive / future BQ load |
+
+```bash
+curl -s "http://127.0.0.1:8765/api/runs/<pipeline_run_id>/statistics" | jq '.summary'
+```
 
 ---
 
@@ -70,6 +97,8 @@ Required when **rejecting** tests in Studio (bulk or single patch).
 | `GET /api/telemetry/export` | Full local bundle for scorecard / archive |
 | `GET /api/telemetry/rejection-reasons` | Enum for UI |
 | `POST /api/telemetry/flush` | Send pending `telemetry_outbox` to BigQuery ingest |
+| `GET /api/runs/{id}/statistics` | Per-run E2E report (see above) |
+| `GET /api/runs/{id}/statistics/export` | BigQuery-shaped run report JSON |
 
 Example (Studio API on port 8765):
 

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { api, CursorUsageSummary } from "../api";
+import SortableDataTable from "./SortableDataTable";
 
 type Props = {
   pipelineRunId?: string;
@@ -109,35 +110,38 @@ export default function CursorCostPanel({ pipelineRunId, creatorRunId }: Props) 
             </p>
           )}
           {summary.by_stage.length > 0 ? (
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>Stage</th>
-                  <th>Sessions</th>
-                  <th>Cost</th>
-                  <th>Tokens (in / out)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {summary.by_stage.map((row) => (
-                  <tr key={row.stage}>
-                    <td>{row.label}</td>
-                    <td>{row.sessions}</td>
-                    <td>
+            <SortableDataTable
+              className="data-table"
+              rows={summary.by_stage}
+              rowKey={(row) => row.stage}
+              defaultSort={{ columnId: "label", dir: "asc" }}
+              columns={[
+                { id: "label", header: "Stage", getValue: (row) => row.label },
+                { id: "sessions", header: "Sessions", getValue: (row) => row.sessions, align: "right" },
+                {
+                  id: "cost",
+                  header: "Cost",
+                  getValue: (row) => row.cost_cents,
+                  render: (row) => (
+                    <>
                       {row.cost_cents > 0 ? `$${(row.cost_cents / 100).toFixed(2)}` : "—"}
                       {row.cost_pending_sessions > 0 && (
                         <span className="muted"> ({row.cost_pending_sessions} pending)</span>
                       )}
-                    </td>
-                    <td>
-                      {row.input_tokens || row.output_tokens
-                        ? `${row.input_tokens ?? 0} / ${row.output_tokens ?? 0}`
-                        : "—"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </>
+                  ),
+                },
+                {
+                  id: "tokens",
+                  header: "Tokens (in / out)",
+                  getValue: (row) => row.input_tokens ?? 0,
+                  render: (row) =>
+                    row.input_tokens || row.output_tokens
+                      ? `${row.input_tokens ?? 0} / ${row.output_tokens ?? 0}`
+                      : "—",
+                },
+              ]}
+            />
           ) : (
             <p className="muted">No Cursor sessions recorded yet for this run.</p>
           )}

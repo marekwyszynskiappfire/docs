@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { api, PortfolioRollup } from "../api";
+import SortableDataTable from "./SortableDataTable";
 
 type Props = { rollup: PortfolioRollup };
 
@@ -25,42 +26,52 @@ export default function PortfolioRollupPanel({ rollup }: Props) {
       {rollup.runs.length === 0 ? (
         <p className="muted">Import a Reviewer folder to populate portfolio rows.</p>
       ) : (
-        <table className="data">
-          <thead>
-            <tr>
-              <th>Run</th>
-              <th>Studio ID</th>
-              <th>Epics</th>
-              <th>Approved</th>
-              <th>Gate mix</th>
-              <th>Fit mix</th>
-              <th>Open F / Q</th>
-              <th>Creator</th>
-              <th>Tests</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rollup.runs.map((r) => (
-              <tr key={r.id}>
-                <td>
-                  <Link to={`/runs/${r.id}`}>{r.label}</Link>
-                </td>
-                <td><code className="run-id-cell">{r.id}</code></td>
-                <td>{r.unit_count}</td>
-                <td>{r.units_approved}</td>
-                <td className="muted mix-cell">{api.formatMix(r.gate_mix)}</td>
-                <td className="muted mix-cell">{api.formatMix(r.fit_mix)}</td>
-                <td>
-                  {r.open_findings_latest} / {r.open_questions_latest}
-                </td>
-                <td>{r.creator_runs}</td>
-                <td>
-                  {r.test_cases_approved}/{r.test_cases}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <SortableDataTable
+          rows={rollup.runs}
+          rowKey={(r) => r.id}
+          defaultSort={{ columnId: "label", dir: "asc" }}
+          columns={[
+            {
+              id: "label",
+              header: "Run",
+              getValue: (r) => r.label,
+              render: (r) => <Link to={`/runs/${r.id}`}>{r.label}</Link>,
+            },
+            {
+              id: "id",
+              header: "Studio ID",
+              getValue: (r) => r.id,
+              render: (r) => <code className="run-id-cell">{r.id}</code>,
+            },
+            { id: "units", header: "Epics", getValue: (r) => r.unit_count, align: "right" },
+            { id: "approved", header: "Approved", getValue: (r) => r.units_approved, align: "right" },
+            {
+              id: "gate",
+              header: "Gate mix",
+              getValue: (r) => api.formatMix(r.gate_mix),
+              cellClassName: "muted mix-cell",
+            },
+            {
+              id: "fit",
+              header: "Fit mix",
+              getValue: (r) => api.formatMix(r.fit_mix),
+              cellClassName: "muted mix-cell",
+            },
+            {
+              id: "fq",
+              header: "Open F / Q",
+              getValue: (r) => r.open_findings_latest,
+              render: (r) => `${r.open_findings_latest} / ${r.open_questions_latest}`,
+            },
+            { id: "creator", header: "Creator", getValue: (r) => r.creator_runs, align: "right" },
+            {
+              id: "tests",
+              header: "Tests",
+              getValue: (r) => r.test_cases_approved,
+              render: (r) => `${r.test_cases_approved}/${r.test_cases}`,
+            },
+          ]}
+        />
       )}
     </div>
   );

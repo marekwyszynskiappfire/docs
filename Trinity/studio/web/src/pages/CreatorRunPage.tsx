@@ -4,6 +4,7 @@ import { api, CreatorCoverage, CreatorTestRow } from "../api";
 import CoverageMatrixPanel from "../components/CoverageMatrixPanel";
 import CursorCostPanel from "../components/CursorCostPanel";
 import RunManageActions from "../components/RunManageActions";
+import SortableDataTable from "../components/SortableDataTable";
 
 type Filter = "all" | "pending" | "approved" | "rejected" | "ready_for_import";
 
@@ -227,43 +228,47 @@ export default function CreatorRunPage() {
       </div>
 
       <div className="panel">
-        <table className="data">
-          <thead>
-            <tr>
-              <th></th>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Review</th>
-              <th>Automation</th>
-              <th>Xray</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((t) => (
-              <tr key={t.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selected.has(t.id)}
-                    onChange={() => toggle(t.id)}
-                  />
-                </td>
-                <td>{t.draft_id}</td>
-                <td>{t.title}</td>
-                <td>{t.human_review_status}</td>
-                <td>{t.automation_fit ?? "—"}</td>
-                <td>
+        <SortableDataTable
+          rows={filtered}
+          rowKey={(t) => t.id}
+          defaultSort={{ columnId: "draft_id", dir: "asc" }}
+          columns={[
+            {
+              id: "selected",
+              header: "Select",
+              getValue: (t) => (selected.has(t.id) ? 1 : 0),
+              render: (t) => (
+                <input
+                  type="checkbox"
+                  checked={selected.has(t.id)}
+                  onChange={() => toggle(t.id)}
+                  aria-label={`Select ${t.draft_id}`}
+                />
+              ),
+            },
+            { id: "draft_id", header: "ID", getValue: (t) => t.draft_id },
+            { id: "title", header: "Title", getValue: (t) => t.title },
+            { id: "review", header: "Review", getValue: (t) => t.human_review_status },
+            { id: "automation", header: "Automation", getValue: (t) => t.automation_fit },
+            {
+              id: "xray",
+              header: "Xray",
+              getValue: (t) => t.xray_test_key ?? (t.marked_for_xray_import ? "marked" : ""),
+              render: (t) => (
+                <>
                   {t.marked_for_xray_import ? "✓" : ""}
                   {t.xray_test_key ? ` · ${t.xray_test_key}` : ""}
-                </td>
-                <td>
-                  <Link to={`/tests/${t.id}`}>Edit</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </>
+              ),
+            },
+            {
+              id: "actions",
+              header: "Actions",
+              getValue: () => "",
+              render: (t) => <Link to={`/tests/${t.id}`}>Edit</Link>,
+            },
+          ]}
+        />
         {filtered.length === 0 && <p className="muted">No tests match this filter.</p>}
       </div>
     </>

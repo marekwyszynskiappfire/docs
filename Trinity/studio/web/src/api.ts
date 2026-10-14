@@ -103,6 +103,99 @@ export type EpicChildInventory = {
   }[];
 };
 
+export type PipelineRunPhase = {
+  phase: string;
+  label: string;
+  started_at: string | null;
+  ended_at: string | null;
+  duration_seconds: number | null;
+  notes?: string | null;
+};
+
+export type PipelineRunStatistics = {
+  schema_version: number;
+  pipeline_run_id: string;
+  pipeline_label: string;
+  computed_at: string;
+  product_context: {
+    product_id: string | null;
+    trigger_type: string;
+    trigger_value: string;
+    source_path: string | null;
+    jira_projects: string[];
+    reviewer_run_id?: string | null;
+    source_jql?: string | null;
+    creator_jql?: string | null;
+  };
+  summary: {
+    epics_reviewed: number;
+    issues_spotted_findings_total: number;
+    issues_spotted_findings_open: number;
+    epics_not_ready_for_test_design: number;
+    epics_tc_creation_ready: number;
+    epics_tc_creation_ready_with_reservations: number;
+    epics_tc_creation_not_ready: number;
+    epics_tc_creation_unknown?: number;
+    epics_tc_creation_mix?: Record<string, number>;
+    questions_marked_for_epic_suggested: number;
+    questions_marked_for_epic_new: number;
+    questions_posted_to_epic_suggested: number;
+    questions_posted_to_epic_new: number;
+    jira_comment_posts_success: number;
+    epics_selected_for_test_case_creation: number;
+    epics_review_approved: number;
+    test_cases_drafted_total: number;
+    test_cases_amended_total: number;
+    test_cases_sent_to_import_total: number;
+    test_cases_imported_to_xray_total: number;
+    creator_runs_linked: number;
+  };
+  test_cases_per_epic_drafted: Record<string, number>;
+  phases: PipelineRunPhase[];
+  epics: {
+    unit_id: string;
+    jira_key: string;
+    summary: string | null;
+    gate_status?: string | null;
+    qa_planning_fit?: string | null;
+    findings_total: number;
+    not_ready_for_test_design: boolean;
+    tc_creation_readiness?: string;
+    include_in_creator: boolean;
+    test_cases_drafted: number;
+    test_cases_amended: number;
+    xray_test_keys: string[];
+  }[];
+};
+
+export type PipelineRunCompare = {
+  compared_at: string;
+  baseline_run_id: string;
+  runs: {
+    pipeline_run_id: string;
+    pipeline_label: string;
+    computed_at: string;
+    summary: PipelineRunStatistics["summary"];
+    overall_duration_seconds: number | null;
+  }[];
+  metrics: {
+    key: string;
+    label: string;
+    values: Record<string, number | null>;
+    min: number | null;
+    max: number | null;
+  }[];
+  deltas_from_baseline: {
+    metric: string;
+    label: string;
+    baseline_run_id: string;
+    other_run_id: string;
+    baseline: number;
+    other: number;
+    delta: number;
+  }[];
+};
+
 export type Stats = {
   pipeline_runs: number;
   review_units: number;
@@ -228,6 +321,18 @@ export const api = {
   run: (id: string) =>
     json<{ units: ReviewUnit[]; creator_handoff?: unknown } & PipelineRun>(
       `/api/runs/${id}`
+    ),
+  runStatistics: (runId: string) =>
+    json<PipelineRunStatistics>(
+      `/api/runs/${encodeURIComponent(runId)}/statistics`
+    ),
+  runStatisticsExport: (runId: string) =>
+    json<{ exported_at: string; export_kind: string; report: PipelineRunStatistics }>(
+      `/api/runs/${encodeURIComponent(runId)}/statistics/export`
+    ),
+  compareStatistics: (runIds: string[]) =>
+    json<PipelineRunCompare>(
+      `/api/statistics/compare?runs=${runIds.map(encodeURIComponent).join(",")}`
     ),
   importRun: (path: string) =>
     json<{

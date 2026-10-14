@@ -48,6 +48,9 @@ if [[ ! -d web/node_modules ]]; then
   (cd web && npm install)
 fi
 
+echo "Building React UI (web/dist) for API on :${API_PORT}…"
+(cd web && npm run build)
+
 free_port "$API_PORT"
 free_port "$UI_PORT"
 
@@ -99,7 +102,8 @@ VITE_PID=$!
 
 echo ""
 echo "Trinity Studio ready:"
-echo "  UI:  http://127.0.0.1:${UI_PORT}"
-echo "  API: http://127.0.0.1:${API_PORT}/api/health"
+echo "  UI (dev):  http://127.0.0.1:${UI_PORT}  ← use this or web/dist on :${API_PORT}"
+echo "  API:       http://127.0.0.1:${API_PORT}/api/health"
+echo "  Statistics: nav → Statistics, or Dashboard run → Statistics link"
 echo "Press Ctrl+C to stop both."
 wait

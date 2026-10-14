@@ -59,6 +59,7 @@ def health() -> dict[str, Any]:
             "reviewer_html_reports",
             "context_loaded_alerts",
             "jira_epic_comments",
+            "pipeline_run_statistics",
         ],
     }
     rev = trinity_git_revision()
@@ -100,6 +101,22 @@ def static_asset(filename: str):
 
 if WEB_DIST.is_dir():
     app.mount("/assets", StaticFiles(directory=WEB_DIST / "assets"), name="assets")
+
+    @app.get("/{spa_path:path}")
+    def spa_ui(spa_path: str):
+        """React Router paths (e.g. /statistics, /runs/…) when UI is served from :8765."""
+        if spa_path == "api" or spa_path.startswith("api/") or spa_path.startswith("assets/"):
+            raise HTTPException(status_code=404, detail="Not found")
+        force_legacy = os.environ.get("QA_STUDIO_LEGACY_STATIC", "").lower() in (
+            "1",
+            "true",
+            "yes",
+        )
+        if force_legacy:
+            raise HTTPException(status_code=404, detail="Not found")
+        if (WEB_DIST / "index.html").is_file():
+            return FileResponse(WEB_DIST / "index.html", headers={"Cache-Control": "no-cache"})
+        raise HTTPException(status_code=404, detail="Not found")
 
 
 if __name__ == "__main__":

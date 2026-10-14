@@ -6,6 +6,7 @@ import json
 from typing import Any
 
 from db import utc_now
+from review_payload_fields import gate_status_from_payload, qa_planning_fit_from_payload
 
 
 def _inc(bucket: dict[str, int], key: str) -> None:
@@ -59,15 +60,17 @@ def build_portfolio_rollup(conn: Any) -> dict[str, Any]:
         open_findings = 0
         open_questions = 0
         for u in units:
-            _inc(gate_mix, u["gate_status"])
-            _inc(global_gate, u["gate_status"])
-            _inc(fit_mix, u["qa_planning_fit"])
-            _inc(global_fit, u["qa_planning_fit"])
+            payload = _latest_payload(conn, u["id"])
+            gate = gate_status_from_payload(payload) or u["gate_status"]
+            fit = qa_planning_fit_from_payload(payload) or u["qa_planning_fit"]
+            _inc(gate_mix, gate)
+            _inc(global_gate, gate)
+            _inc(fit_mix, fit)
+            _inc(global_fit, fit)
             if u["approved_revision_id"]:
                 approved += 1
             if u["include_in_creator"]:
                 in_creator += 1
-            payload = _latest_payload(conn, u["id"])
             if payload:
                 f, q = _open_counts_from_payload(payload)
                 open_findings += f

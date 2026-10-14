@@ -143,3 +143,10 @@ CREATE TABLE IF NOT EXISTS cursor_usage_event (
 
 CREATE INDEX IF NOT EXISTS idx_cursor_usage_pipeline ON cursor_usage_event(pipeline_run_id);
 CREATE INDEX IF NOT EXISTS idx_cursor_usage_conversation ON cursor_usage_event(conversation_id);
+
+CREATE TABLE IF NOT EXISTS pipeline_run_report (
+  pipeline_run_id TEXT PRIMARY KEY REFERENCES pipeline_run(id) ON DELETE CASCADE,
+  schema_version INTEGER NOT NULL,
+  report_json TEXT NOT NULL,
+  computed_at TEXT NOT NULL
+);

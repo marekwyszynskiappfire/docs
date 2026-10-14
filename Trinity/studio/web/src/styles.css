@@ -195,34 +195,6 @@ header.app-header nav.app-nav {
   margin-bottom: 0.15rem;
 }
 
-.context-alerts-table .th-sort {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: transparent;
-  font: inherit;
-  font-weight: 600;
-  color: inherit;
-  cursor: pointer;
-  text-align: left;
-}
-
-.context-alerts-table .th-sort:hover {
-  color: var(--accent);
-}
-
-.context-alerts-table .th-sort--active {
-  color: var(--accent);
-}
-
-.context-alerts-table .th-sort-indicator {
-  font-size: 0.65rem;
-  opacity: 0.85;
-}
-
 .child-inventory-epic {
   margin-bottom: 0.65rem;
 }
@@ -478,6 +450,199 @@ nav a.active {
 .stat-card .value {
   font-size: 1.5rem;
   font-weight: 600;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.run-tabs {
+  margin: 0.75rem 0 1rem;
+}
+
+.stats-dashboard-page {
+  max-width: 1100px;
+}
+
+.stats-dashboard-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stats-hero-readiness {
+  margin-bottom: 1rem;
+}
+
+.tc-readiness-dashboard {
+  margin: 0.5rem 0 1rem;
+}
+
+.tc-readiness-title {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+}
+
+.tc-readiness-bar {
+  display: flex;
+  height: 1.25rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.tc-readiness-segment {
+  min-width: 2px;
+  transition: width 0.2s ease;
+}
+
+.tc-bar-ready {
+  background: var(--ok);
+}
+
+.tc-bar-reservations {
+  background: var(--warn);
+}
+
+.tc-bar-not-ready {
+  background: var(--danger);
+}
+
+.tc-bar-unknown {
+  background: var(--muted);
+}
+
+.tc-readiness-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.5rem 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.tc-readiness-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.tc-legend-swatch {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.tc-readiness-help {
+  font-size: 0.8rem;
+  margin: 0.75rem 0 0;
+}
+
+.stat-card--ready {
+  border-left: 3px solid var(--ok);
+}
+
+.stat-card--reservations {
+  border-left: 3px solid var(--warn);
+}
+
+.compare-run-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.compare-run-card h3 {
+  font-size: 1rem;
+}
+
+.compare-run-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.compare-run-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  background: var(--bg);
+}
+
+.compare-run-chip.checked {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+}
+
+.baseline-tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-left: 0.25rem;
+}
+
+.compare-metrics-table td.compare-cell-high {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.compare-metrics-table td.compare-cell-low {
+  color: var(--muted);
+}
+
+.compare-delta-up {
+  color: var(--ok);
+}
+
+.compare-delta-down {
+  color: var(--danger);
+}
+
+.compare-baseline-note {
+  margin: 0 0 1rem;
+}
+
+button.sortable-th {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 500;
+  padding: 0;
+  cursor: pointer;
+  text-align: inherit;
+  width: 100%;
+}
+
+button.sortable-th:hover {
+  color: var(--accent);
+}
+
+.sort-indicator {
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+table.compact-stats th {
+  text-align: left;
+  width: 12rem;
+  font-weight: 500;
+  color: var(--muted);
 }
 
 .panel {

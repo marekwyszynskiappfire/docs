@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { api, ImporterPlanResult } from "../api";
-import RunListRowActions from "../components/RunListRowActions";
+import CreatorRunsManageTable from "../components/CreatorRunsManageTable";
+import ReviewerRunsTable from "../components/ReviewerRunsTable";
+import SortableDataTable from "../components/SortableDataTable";
 
 const DEFAULT_JIRA_INSTANCE_ID = "appfire-production";
 const DEFAULT_FOLDER_PATH = "/Trinity imports";
@@ -628,39 +630,36 @@ export default function ImporterPage() {
               <pre className="prompt-pre">{plan.cursor_prompt}</pre>
             </details>
           )}
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Draft</th>
-                <th>Title</th>
-                <th>Xray type</th>
-                <th>Action</th>
-                <th>Validation</th>
-              </tr>
-            </thead>
-            <tbody>
-              {plan.tests.map((t) => (
-                <tr key={t.draft_id}>
-                  <td>{t.draft_id}</td>
-                  <td>{t.title}</td>
-                  <td>
+          <SortableDataTable
+            rows={plan.tests}
+            rowKey={(t) => t.draft_id}
+            defaultSort={{ columnId: "draft_id", dir: "asc" }}
+            columns={[
+              { id: "draft_id", header: "Draft", getValue: (t) => t.draft_id },
+              { id: "title", header: "Title", getValue: (t) => t.title },
+              {
+                id: "type",
+                header: "Xray type",
+                getValue: (t) => t.xray_test_type ?? "Manual",
+                render: (t) => (
+                  <>
                     {t.xray_test_type ?? "Manual"}
                     {t.test_type_coercion && (
                       <span className="muted" style={{ display: "block", fontSize: "0.85rem" }}>
                         {t.test_type_coercion}
                       </span>
                     )}
-                  </td>
-                  <td>{t.action}</td>
-                  <td>
-                    {t.validation_errors.length === 0
-                      ? "OK"
-                      : t.validation_errors.join("; ")}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </>
+                ),
+              },
+              { id: "action", header: "Action", getValue: (t) => t.action },
+              {
+                id: "validation",
+                header: "Validation",
+                getValue: (t) => (t.validation_errors.length === 0 ? "OK" : t.validation_errors.join("; ")),
+              },
+            ]}
+          />
         </div>
       )}
 
@@ -693,30 +692,7 @@ export default function ImporterPage() {
         {reviewerRuns.length === 0 ? (
           <p className="muted">No Reviewer runs imported.</p>
         ) : (
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Label</th>
-                <th>Studio ID</th>
-                <th>Units</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {reviewerRuns.map((r) => (
-                <tr key={r.id}>
-                  <td>
-                    <Link to={`/runs/${r.id}`}>{r.label}</Link>
-                  </td>
-                  <td><code className="run-id-cell">{r.id}</code></td>
-                  <td>{r.unit_count ?? "—"}</td>
-                  <td>
-                    <RunListRowActions kind="pipeline" runId={r.id} label={r.label} onChanged={loadStudioRuns} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <ReviewerRunsTable runs={reviewerRuns} onChanged={loadStudioRuns} />
         )}
       </div>
 
@@ -728,38 +704,13 @@ export default function ImporterPage() {
         {creatorRuns.length === 0 ? (
           <p className="muted">No Creator runs yet.</p>
         ) : (
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Label</th>
-                <th>Studio ID</th>
-                <th>Tests</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {creatorRuns.map((r) => (
-                <tr key={r.id}>
-                  <td>
-                    <Link to={`/creator/${encodeURIComponent(r.id)}`}>{r.label}</Link>
-                  </td>
-                  <td><code className="run-id-cell">{r.id}</code></td>
-                  <td>{r.test_count ?? "—"}</td>
-                  <td>
-                    <RunListRowActions
-                      kind="creator"
-                      runId={r.id}
-                      label={r.label}
-                      onChanged={() => {
-                        loadStudioRuns();
-                        if (creatorRunId === r.id) setCreatorRunId("");
-                      }}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <CreatorRunsManageTable
+            runs={creatorRuns}
+            onChanged={loadStudioRuns}
+            onRowAction={(id) => {
+              if (creatorRunId === id) setCreatorRunId("");
+            }}
+          />
         )}
       </div>
 

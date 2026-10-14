@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { api, EpicChildInventory, ReviewUnit } from "../api";
 import CursorCostPanel from "../components/CursorCostPanel";
 import RunManageActions from "../components/RunManageActions";
+import RunStatisticsPanel from "../components/RunStatisticsPanel";
+import SortableDataTable from "../components/SortableDataTable";
 
 type Handoff = {
   creator_jql?: string;
@@ -27,6 +29,17 @@ export default function RunPage() {
     Record<string, { open_url: string | null; report_exists: boolean }>
   >({});
   const [portfolioOpenUrl, setPortfolioOpenUrl] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab: "overview" | "statistics" =
+    searchParams.get("tab") === "statistics" ? "statistics" : "overview";
+  const setTab = (next: "overview" | "statistics") => {
+    if (next === "overview") {
+      searchParams.delete("tab");
+      setSearchParams(searchParams, { replace: true });
+    } else {
+      setSearchParams({ tab: "statistics" }, { replace: true });
+    }
+  };
 
   const reload = useCallback(async () => {
     if (!runId) return;
@@ -143,6 +156,31 @@ export default function RunPage() {
       {error && <p className="error">{error}</p>}
       {message && <p className="muted">{message}</p>}
 
+      <div className="run-tabs btn-row" role="tablist" aria-label="Pipeline run views">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={tab === "overview"}
+          className={tab === "overview" ? "" : "secondary"}
+          onClick={() => setTab("overview")}
+        >
+          Overview
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={tab === "statistics"}
+          className={tab === "statistics" ? "" : "secondary"}
+          onClick={() => setTab("statistics")}
+        >
+          Statistics
+        </button>
+      </div>
+
+      {tab === "statistics" && <RunStatisticsPanel runId={runId} />}
+
+      {tab === "overview" && (
+        <>
       <CursorCostPanel pipelineRunId={runId} />
 
       {handoff && (
@@ -234,26 +272,23 @@ export default function RunPage() {
                   <strong>{epic.jira_key}</strong> — {epic.child_count} children (
                   {api.formatMix(epic.status_mix)})
                 </summary>
-                <table className="data child-table">
-                  <thead>
-                    <tr>
-                      <th>Key</th>
-                      <th>Type</th>
-                      <th>Status</th>
-                      <th>Summary</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {epic.children.map((c) => (
-                      <tr key={c.key ?? c.summary ?? ""}>
-                        <td>{c.key ?? "—"}</td>
-                        <td>{c.type ?? "—"}</td>
-                        <td>{c.status ?? "—"}</td>
-                        <td className="muted">{c.summary ?? "—"}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <SortableDataTable
+                  className="data child-table"
+                  rows={epic.children}
+                  rowKey={(c, i) => c.key ?? c.summary ?? String(i)}
+                  defaultSort={{ columnId: "key", dir: "asc" }}
+                  columns={[
+                    { id: "key", header: "Key", getValue: (c) => c.key },
+                    { id: "type", header: "Type", getValue: (c) => c.type },
+                    { id: "status", header: "Status", getValue: (c) => c.status },
+                    {
+                      id: "summary",
+                      header: "Summary",
+                      getValue: (c) => c.summary,
+                      cellClassName: "muted",
+                    },
+                  ]}
+                />
               </details>
             )
           )}
@@ -277,48 +312,70 @@ export default function RunPage() {
             Exclude not_fit
           </button>
         </div>
-        <table className="data">
-          <thead>
-            <tr>
-              <th>Epic</th>
-              <th>Gate</th>
-              <th>Test design fit</th>
-              <th>In Creator</th>
-              <th>Approved</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {units.map((u) => (
-              <tr key={u.id}>
-                <td>
+        <SortableDataTable
+          rows={units}
+          rowKey={(u) => u.id}
+          defaultSort={{ columnId: "jira_key", dir: "asc" }}
+          columns={[
+            {
+              id: "jira_key",
+              header: "Epic",
+              getValue: (u) => u.jira_key,
+              render: (u) => (
+                <>
                   <strong>{u.jira_key}</strong>
                   <div className="muted">{u.summary}</div>
-                </td>
-                <td>
-                  <span className={gateClass(u.gate_status)}>{u.gate_status ?? "—"}</span>
-                </td>
-                <td>
-                  <span className={fitClass(u.qa_planning_fit)}>{u.qa_planning_fit ?? "—"}</span>
-                </td>
-                <td>
-                  <label style={{ display: "flex", alignItems: "center", gap: "0.35rem", margin: 0 }}>
-                    <input
-                      type="checkbox"
-                      checked={Boolean(u.include_in_creator)}
-                      onChange={() => toggleCreator(u)}
-                    />
-                    {u.include_in_creator ? "Yes" : "No"}
-                  </label>
-                </td>
-                <td>
-                  {u.approved_revision_id ? (
-                    <span className="badge ok">yes</span>
-                  ) : (
-                    <span className="badge">no</span>
-                  )}
-                </td>
-                <td>
+                </>
+              ),
+            },
+            {
+              id: "gate",
+              header: "Gate",
+              getValue: (u) => u.gate_status,
+              render: (u) => (
+                <span className={gateClass(u.gate_status)}>{u.gate_status ?? "—"}</span>
+              ),
+            },
+            {
+              id: "fit",
+              header: "Test design fit",
+              getValue: (u) => u.qa_planning_fit,
+              render: (u) => (
+                <span className={fitClass(u.qa_planning_fit)}>{u.qa_planning_fit ?? "—"}</span>
+              ),
+            },
+            {
+              id: "creator",
+              header: "In Creator",
+              getValue: (u) => (u.include_in_creator ? 1 : 0),
+              render: (u) => (
+                <label style={{ display: "flex", alignItems: "center", gap: "0.35rem", margin: 0 }}>
+                  <input
+                    type="checkbox"
+                    checked={Boolean(u.include_in_creator)}
+                    onChange={() => toggleCreator(u)}
+                  />
+                  {u.include_in_creator ? "Yes" : "No"}
+                </label>
+              ),
+            },
+            {
+              id: "approved",
+              header: "Approved",
+              getValue: (u) => (u.approved_revision_id ? 1 : 0),
+              render: (u) =>
+                u.approved_revision_id ? (
+                  <span className="badge ok">yes</span>
+                ) : (
+                  <span className="badge">no</span>
+                ),
+            },
+            {
+              id: "actions",
+              header: "Actions",
+              getValue: () => "",
+              render: (u) => (
+                <>
                   <Link to={`/units/${u.id}`}>Edit review</Link>
                   {reportIndex[u.id]?.report_exists && reportIndex[u.id]?.open_url && (
                     <>
@@ -328,12 +385,14 @@ export default function RunPage() {
                       </a>
                     </>
                   )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </>
+              ),
+            },
+          ]}
+        />
       </div>
+        </>
+      )}
     </>
   );
 }

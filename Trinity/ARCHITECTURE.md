@@ -128,7 +128,7 @@ flowchart LR
 | Importer execute | Dry-run plan first | Type `PRODUCTION` + credentials |
 | Importer idempotency / redaction | Block execute until ack or fix | Env override for redaction emergency only |
 
-Telemetry: local SQLite `metric_event`; optional BigQuery ([`METRICS.md`](METRICS.md)).
+Telemetry: local SQLite `metric_event`; optional BigQuery ([`METRICS.md`](METRICS.md)). Per-run E2E reports: `pipeline_run_report` + Studio **Statistics** tab (`run_report.py`).
 
 ---
 

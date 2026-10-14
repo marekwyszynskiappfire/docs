@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  groupContextLoadedAlertsByRun,
-  sortContextLoadedAlerts,
-  type ContextLoadedAlert,
-} from "./contextLoadedAlerts";
+import { groupContextLoadedAlertsByRun, type ContextLoadedAlert } from "./contextLoadedAlerts";
 
 const sample: ContextLoadedAlert[] = [
   {
@@ -31,18 +27,6 @@ const sample: ContextLoadedAlert[] = [
     status: "failed",
   },
 ];
-
-describe("sortContextLoadedAlerts", () => {
-  it("sorts epic keys ascending", () => {
-    const sorted = sortContextLoadedAlerts(sample, "jira_key", "asc");
-    expect(sorted.map((a) => a.jira_key)).toEqual(["ONE-1", "ONE-2", "ONE-9"]);
-  });
-
-  it("sorts epic keys descending", () => {
-    const sorted = sortContextLoadedAlerts(sample, "jira_key", "desc");
-    expect(sorted.map((a) => a.jira_key)).toEqual(["ONE-9", "ONE-2", "ONE-1"]);
-  });
-});
 
 describe("groupContextLoadedAlertsByRun", () => {
   it("groups by pipeline run and orders by alert count", () => {

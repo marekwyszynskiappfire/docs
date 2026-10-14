@@ -10,6 +10,7 @@ from typing import Any
 
 from creator_export import automation_candidate_flag, automation_fit_value
 from db import db, init_db, utc_now
+from review_payload_fields import qa_planning_fit_from_payload
 from telemetry import record_event
 
 EPIC_DIR_RE = re.compile(r"^[A-Z][A-Z0-9]+-\d+$")
@@ -34,14 +35,6 @@ def epic_key_from_payload(payload: dict[str, Any]) -> str | None:
     reqs = payload.get("requirements") or []
     if reqs and isinstance(reqs[0], dict) and reqs[0].get("jira_key"):
         return str(reqs[0]["jira_key"]).strip()
-    return None
-
-
-def _qa_planning_fit(payload: dict[str, Any]) -> str | None:
-    for req in payload.get("requirements") or []:
-        fit = req.get("qa_planning_fit")
-        if fit:
-            return fit
     return None
 
 
@@ -133,7 +126,7 @@ def import_reviewer_run(run_dir: Path, run_id: str | None = None) -> dict[str, A
             unit_id = f"{pipeline_id}:{jira_key}"
             summary = (payload.get("requirements") or [{}])[0].get("summary")
             gate = (payload.get("gate") or {}).get("status")
-            fit = _qa_planning_fit(payload)
+            fit = qa_planning_fit_from_payload(payload)
             include = 0 if jira_key in excluded or fit == "not_fit" else 1
 
             conn.execute(

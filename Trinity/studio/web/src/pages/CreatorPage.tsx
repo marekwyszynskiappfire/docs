@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
+import ReviewerRunsTable from "../components/ReviewerRunsTable";
 import RunListRowActions from "../components/RunListRowActions";
+import SortableDataTable from "../components/SortableDataTable";
 
 type RunRow = {
   id: string;
@@ -85,30 +87,38 @@ export default function CreatorPage() {
             Pick <code>product_id</code> in Reviewer run config and Creator batch JSON. Non-TC imports use{" "}
             <code>requirements</code> (neutral journeys + ONE folder defaults).
           </p>
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Golden corpus</th>
-                <th>Importer project</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((p) => (
-                <tr key={p.product_id}>
-                  <td>
+          <SortableDataTable
+            rows={products}
+            rowKey={(p) => p.product_id}
+            defaultSort={{ columnId: "product_id", dir: "asc" }}
+            columns={[
+              {
+                id: "product_id",
+                header: "Product",
+                getValue: (p) => p.product_id,
+                render: (p) => (
+                  <>
                     <code>{p.product_id}</code>
                     <span className="muted"> — {p.name}</span>
-                  </td>
-                  <td>
-                    {p.golden_title ?? "—"}
-                    {p.golden_test_count != null ? ` (${p.golden_test_count} refs)` : ""}
-                  </td>
-                  <td>{p.importer_default_project_key ?? "—"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </>
+                ),
+              },
+              {
+                id: "golden",
+                header: "Golden corpus",
+                getValue: (p) => p.golden_title,
+                render: (p) =>
+                  `${p.golden_title ?? "—"}${
+                    p.golden_test_count != null ? ` (${p.golden_test_count} refs)` : ""
+                  }`,
+              },
+              {
+                id: "project",
+                header: "Importer project",
+                getValue: (p) => p.importer_default_project_key,
+              },
+            ]}
+          />
         </div>
       )}
 
@@ -137,39 +147,46 @@ export default function CreatorPage() {
       </div>
 
       <div className="panel">
-        <table className="data">
-          <thead>
-            <tr>
-              <th>Run</th>
-              <th>Studio ID</th>
-              <th>Tests</th>
-              <th>Batch rev.</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {runs.map((r) => (
-              <tr key={r.id} className={highlightId === r.id ? "row-highlight" : undefined}>
-                <td>
+        <SortableDataTable
+          rows={runs}
+          rowKey={(r) => r.id}
+          rowClassName={(r) => (highlightId === r.id ? "row-highlight" : undefined)}
+          defaultSort={{ columnId: "label", dir: "asc" }}
+          columns={[
+            {
+              id: "label",
+              header: "Run",
+              getValue: (r) => r.label,
+              render: (r) => (
+                <>
                   <Link to={`/creator/${encodeURIComponent(r.id)}`}>{r.label}</Link>
                   {highlightId === r.id && (
                     <span className={`import-kind-pill import-kind-pill--${feedback?.kind ?? "new"}`}>
                       {feedback?.kind === "updated" ? "Updated" : "New"}
                     </span>
                   )}
-                </td>
-                <td><code className="run-id-cell">{r.id}</code></td>
-                <td>{r.test_count}</td>
-                <td>{r.batch_revision ?? "—"}</td>
-                <td>{r.status}</td>
-                <td>
-                  <RunListRowActions kind="creator" runId={r.id} label={r.label} onChanged={load} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </>
+              ),
+            },
+            {
+              id: "id",
+              header: "Studio ID",
+              getValue: (r) => r.id,
+              render: (r) => <code className="run-id-cell">{r.id}</code>,
+            },
+            { id: "tests", header: "Tests", getValue: (r) => r.test_count ?? null, align: "right" },
+            { id: "batch", header: "Batch rev.", getValue: (r) => r.batch_revision ?? null, align: "right" },
+            { id: "status", header: "Status", getValue: (r) => r.status },
+            {
+              id: "actions",
+              header: "Actions",
+              getValue: () => "",
+              render: (r) => (
+                <RunListRowActions kind="creator" runId={r.id} label={r.label} onChanged={load} />
+              ),
+            },
+          ]}
+        />
         {runs.length === 0 && <p className="muted">No Creator batches imported yet.</p>}
       </div>
 
@@ -181,30 +198,7 @@ export default function CreatorPage() {
         {reviewerRuns.length === 0 ? (
           <p className="muted">No Reviewer runs imported.</p>
         ) : (
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Label</th>
-                <th>Studio ID</th>
-                <th>Units</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {reviewerRuns.map((r) => (
-                <tr key={r.id}>
-                  <td>
-                    <Link to={`/runs/${r.id}`}>{r.label}</Link>
-                  </td>
-                  <td><code className="run-id-cell">{r.id}</code></td>
-                  <td>{r.unit_count ?? "—"}</td>
-                  <td>
-                    <RunListRowActions kind="pipeline" runId={r.id} label={r.label} onChanged={load} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <ReviewerRunsTable runs={reviewerRuns} onChanged={load} />
         )}
       </div>
     </>

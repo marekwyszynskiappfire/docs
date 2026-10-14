@@ -8,6 +8,7 @@ import ImporterPage from "./pages/ImporterPage";
 import TestEditPage from "./pages/TestEditPage";
 import PersonasPage from "./pages/PersonasPage";
 import ReviewerConfigsPage from "./pages/ReviewerConfigsPage";
+import StatisticsPage from "./pages/StatisticsPage";
 import ThemeToggle from "./components/ThemeToggle";
 
 export default function App() {
@@ -34,11 +35,15 @@ export default function App() {
           <NavLink to="/reviewer-configs" className={({ isActive }) => (isActive ? "active" : "")}>
             Reviewer configs
           </NavLink>
+          <NavLink to="/statistics" className={({ isActive }) => (isActive ? "active" : "")}>
+            Statistics
+          </NavLink>
         </nav>
         <ThemeToggle />
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/statistics" element={<StatisticsPage />} />
         <Route path="/runs/:runId" element={<RunPage />} />
         <Route path="/units/:unitId" element={<UnitReviewPage />} />
         <Route path="/personas" element={<PersonasPage />} />

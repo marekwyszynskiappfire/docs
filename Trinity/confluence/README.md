@@ -17,8 +17,10 @@ Superseded sectional markdown (`confluence/0*.md`, `samples/`) is **gitignored**
 ## Republish after edits
 
 1. Update the three git files above (and `OPERATOR-SETUP.md` if the checklist changed — content is folded into FIRST-RUN).
-2. Use Atlassian MCP `updateConfluenceContent` with `body.format: markdown` and the page `contentId` from the table.
+2. Use Atlassian MCP `updateConfluenceContent` with `body.format: markdown` and the page `contentId` from the table. If the wiki page has Confluence-only macros/links, use **HTML** format or granular **edits** instead of full markdown replace (MCP will block destructive markdown swaps).
 3. Bump *Last reviewed* dates in the markdown sources.
+
+**2026-10-14:** [`MANUAL.md`](../MANUAL.md) §5.4 adds the pipeline run **Statistics** tab — republish the Operator manual page after pulling git.
 
 ## External-sharing checklist
 

@@ -155,6 +155,7 @@ After import, open a run to:
 - Toggle **In Creator** per epic (or bulk **Include all** / **Exclude not_fit**).
 - Copy **Creator JQL**, **handoff JSON**, or download JSON for planning.
 - See **portfolio report path** when `portfolio/index.html` exists (Profile B rollup).
+- Open the **Statistics** tab for an **E2E report** on that pipeline run: epics reviewed, findings, epic feedback to Jira, Creator/Importer counts, phase timings, product/Jira context. Use **Download export JSON** for scorecard evidence or future BigQuery load (`pipeline_run_report` in SQLite). Details: [`METRICS.md`](METRICS.md#per-run-e2e-statistics-local-prebigquery).
 
 ### 5.5 Review unit page
 

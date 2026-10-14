@@ -45,6 +45,6 @@ def test_portfolio_rollup_and_child_inventory(studio_db):
         rollup = build_portfolio_rollup(conn)
         inv = build_run_child_inventory(conn, run_id)
     assert rollup["runs"][0]["unit_count"] == 1
-    assert rollup["global"]["gate_mix"].get("PASS") == 1
+    assert rollup["global"]["gate_mix"].get("PASS_WITH_WARNINGS") == 1
     assert inv["epics"][0]["child_count"] >= 1
     assert inv["epics"][0]["children"][0]["key"]

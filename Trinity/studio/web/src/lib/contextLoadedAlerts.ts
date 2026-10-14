@@ -15,37 +15,6 @@ export type ContextLoadedRunGroup = {
   epicKeys: string[];
 };
 
-export type ContextLoadedSortColumn = "jira_key" | "source" | "status" | "detail";
-export type ContextLoadedSortDir = "asc" | "desc";
-
-function sortValue(a: ContextLoadedAlert, col: ContextLoadedSortColumn): string {
-  switch (col) {
-    case "jira_key":
-      return a.jira_key;
-    case "source":
-      return a.source;
-    case "status":
-      return a.status;
-    case "detail":
-      return a.detail ?? "";
-  }
-}
-
-export function sortContextLoadedAlerts(
-  alerts: ContextLoadedAlert[],
-  col: ContextLoadedSortColumn,
-  dir: ContextLoadedSortDir
-): ContextLoadedAlert[] {
-  const mult = dir === "asc" ? 1 : -1;
-  return [...alerts].sort(
-    (a, b) =>
-      sortValue(a, col).localeCompare(sortValue(b, col), undefined, {
-        sensitivity: "base",
-        numeric: true,
-      }) * mult
-  );
-}
-
 export function groupContextLoadedAlertsByRun(
   alerts: ContextLoadedAlert[]
 ): ContextLoadedRunGroup[] {

@@ -1,5 +1,6 @@
 import type { ContextLoadedEntry } from "../types/review-payload";
 import { SOURCE_STATUS_LABEL } from "../types/review-payload";
+import SortableDataTable from "./SortableDataTable";
 
 function statusClass(status: ContextLoadedEntry["status"]) {
   switch (status) {
@@ -31,6 +32,8 @@ export default function DataSourcesPanel({ entries }: Props) {
   const analyzed = entries.filter((s) => s.status === "analyzed").length;
   const problems = entries.filter((s) => s.status === "unavailable" || s.status === "failed").length;
 
+  const rows = entries.map((entry, index) => ({ entry, index }));
+
   return (
     <div className="panel data-sources">
       <details open className="report-block">
@@ -38,28 +41,30 @@ export default function DataSourcesPanel({ entries }: Props) {
           Data sources ({analyzed} analyzed · {problems} unavailable or failed)
         </summary>
         <div className="table-scroll">
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Source</th>
-                <th>Status</th>
-                <th>Detail</th>
-              </tr>
-            </thead>
-            <tbody>
-              {entries.map((s, i) => (
-                <tr key={`${s.source}-${i}`}>
-                  <td>{s.source}</td>
-                  <td>
-                    <span className={`status-pill ${statusClass(s.status)}`}>
-                      {SOURCE_STATUS_LABEL[s.status] ?? s.status}
-                    </span>
-                  </td>
-                  <td className="muted detail-cell">{detailFor(s)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <SortableDataTable
+            rows={rows}
+            rowKey={(r) => `${r.entry.source}-${r.index}`}
+            defaultSort={{ columnId: "source", dir: "asc" }}
+            columns={[
+              { id: "source", header: "Source", getValue: (r) => r.entry.source },
+              {
+                id: "status",
+                header: "Status",
+                getValue: (r) => r.entry.status,
+                render: (r) => (
+                  <span className={`status-pill ${statusClass(r.entry.status)}`}>
+                    {SOURCE_STATUS_LABEL[r.entry.status] ?? r.entry.status}
+                  </span>
+                ),
+              },
+              {
+                id: "detail",
+                header: "Detail",
+                getValue: (r) => detailFor(r.entry),
+                cellClassName: "muted detail-cell",
+              },
+            ]}
+          />
         </div>
         {problems === 0 && (
           <p className="muted" style={{ marginTop: "0.75rem", marginBottom: 0 }}>

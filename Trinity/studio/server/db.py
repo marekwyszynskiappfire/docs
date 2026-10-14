@@ -89,6 +89,20 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
             CREATE INDEX IF NOT EXISTS idx_cursor_usage_conversation ON cursor_usage_event(conversation_id);
             """
         )
+    run_report = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='pipeline_run_report'"
+    ).fetchone()
+    if not run_report:
+        conn.execute(
+            """
+            CREATE TABLE pipeline_run_report (
+              pipeline_run_id TEXT PRIMARY KEY REFERENCES pipeline_run(id) ON DELETE CASCADE,
+              schema_version INTEGER NOT NULL,
+              report_json TEXT NOT NULL,
+              computed_at TEXT NOT NULL
+            )
+            """
+        )
     jira_post = conn.execute(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='jira_comment_post'"
     ).fetchone()

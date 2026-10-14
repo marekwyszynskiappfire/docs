@@ -4,6 +4,11 @@ from db import db, utc_now
 from trinity_release import trinity_release_version
 
 
+def test_spa_does_not_capture_api_root(client):
+    r = client.get("/api")
+    assert r.status_code == 404
+
+
 def test_health(client):
     r = client.get("/api/health")
     assert r.status_code == 200
