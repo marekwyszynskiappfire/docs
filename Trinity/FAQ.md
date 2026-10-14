@@ -221,6 +221,14 @@ Detail: [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
 
 ## Quality, safety, and metrics
 
+### Does approving an epic update the JSON in the Reviewer run folder?
+
+**No.** **Approve** is stored in Studio SQLite (`approved_revision_id`). The files under `Trinity/reviewer/runs/.../ONE-*/review-payload.json` stay as imported until you re-run Reviewer or re-import.
+
+**Approve & export** or **Send to Creator** writes an approved snapshot to `Trinity/studio/data/exports/{run_id}/{EPIC_KEY}/review-payload.json` — that path is the **`review_ref`** in the Creator prompt.
+
+**In Creator** on the run page is separate: it only drives run-level handoff JQL (`include_in_creator`), not approval. See [MANUAL.md §7.5.1](MANUAL.md#751-what-changes-on-disk-vs-in-studio-approval-handoff).
+
 ### Can AI import without my approval?
 
 **No.** You approve Epics and tests in Studio. Importer execute is a deliberate step (with production guard).

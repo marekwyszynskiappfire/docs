@@ -280,6 +280,20 @@ Reviewer sets `qa_planning_fit`: `fit`, `provisional`, or `not_fit` (empty/hollo
 
 Optional: **Download epic feedback** JSON for ad-hoc tooling; prefer Jira panel for PO-facing text.
 
+#### 7.5.1 What changes on disk vs in Studio (approval handoff)
+
+| Action | SQLite (`qa-studio.db`) | Reviewer run folder on disk | Creator sees |
+|--------|-------------------------|-----------------------------|--------------|
+| **Save draft** | New payload revision + `studio_qa` overlay | Unchanged (`reviewer/runs/.../ONE-*/review-payload.json`) | — |
+| **Approve** | Sets `approved_revision_id` on the unit | Unchanged | — |
+| **Approve & export** or **Send to Creator** | Same approve pin; export event logged | Writes **`Trinity/studio/data/exports/{pipeline_run_id}/{EPIC_KEY}/review-payload.json`** with `studio_export` metadata | **`review_ref`** in Prompt #2 points here (approved snapshot), not the raw run folder |
+| **In Creator** toggle (run page) | `include_in_creator` per unit | Unchanged | **Run-level** handoff JQL / downloaded JSON lists included keys only — **not** the same as approve; does not require `approved_revision_id` |
+| Re-import Reviewer folder | Refreshes revisions from disk | Source of import | Overwrites payload revisions; approve pin may need re-approval |
+
+**Portfolio `creator-handoff.json`** under `reviewer/runs/.../portfolio/data/` is loaded at **import** time (defaults / excluded `not_fit`). Studio does **not** write epic approvals back into that file.
+
+For multi-epic planning: use run page **In Creator** + handoff JSON for JQL; for each Epic you actually run in Cursor, use **Send to Creator** after approve so `review_ref` is the export path.
+
 ### 7.6 Context-loaded alerts
 
 When Reviewer flags thin gather (missing Confluence, etc.), Studio surfaces **context loaded** warnings on the dashboard. Treat as “re-gather or accept provisional scope,” not as a Studio bug.
