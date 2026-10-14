@@ -1,4 +1,5 @@
 import type { CreatorCoverage } from "../api";
+import JiraKeyLink from "./JiraKeyLink";
 import SortableDataTable from "./SortableDataTable";
 
 function joinIds(ids: string[] | undefined) {
@@ -85,7 +86,12 @@ export default function CoverageMatrixPanel({ coverage }: { coverage: CreatorCov
             render: (row) => (
               <>
                 <code>{row.ac_id}</code>
-                {row.jira_key ? <span className="muted"> · {row.jira_key}</span> : null}
+                {row.jira_key ? (
+                  <span className="muted">
+                    {" · "}
+                    <JiraKeyLink issueKey={row.jira_key} />
+                  </span>
+                ) : null}
               </>
             ),
           },

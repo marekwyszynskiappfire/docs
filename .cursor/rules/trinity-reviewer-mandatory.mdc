@@ -1,0 +1,16 @@
+---
+description: When the user asks for requirement review, always run full trinity-reviewer (MCP gather), never REST-only sweeps.
+alwaysApply: true
+---
+
+# Trinity Reviewer — mandatory for “review” requests
+
+When the user asks to **review** requirements, epics, a Jira filter, or “what is missing for testing” in a Reviewer sense:
+
+1. **Always** execute **`trinity-reviewer`** per [`Trinity/reviewer/SKILL.md`](Trinity/reviewer/SKILL.md) — full gather (children, comments, remote links, **Confluence body** + nested hop, Figma/screenshots per skill limits).
+2. **Never** substitute [`Trinity/reviewer/scripts/portfolio_testing_sweep.py`](Trinity/reviewer/scripts/portfolio_testing_sweep.py) or hand-built Jira REST heuristics unless the user explicitly asks for a “quick REST sweep” or “dry run without MCP”.
+3. Load portfolio run config from `Trinity/reviewer/config/runs/{portfolio_id}.json` or complete the SKILL **interactive run configuration** first.
+4. Use Studio **Copy Cursor prompt** text from Reviewer configs when present; write outputs under `Trinity/reviewer/runs/{portfolio_id}/{EPIC_KEY}/`.
+5. Finish with `render_report.py --strict` per epic and `build_portfolio_report.py` when ≥2 epics.
+
+Operator preference (Marek): **full Reviewer fidelity** is the default for any review request.

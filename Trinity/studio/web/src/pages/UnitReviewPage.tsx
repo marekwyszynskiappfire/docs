@@ -11,6 +11,7 @@ import type {
 } from "../types/review-payload";
 import { questionBody } from "../types/review-payload";
 import JiraEpicCommentPanel from "../components/JiraEpicCommentPanel";
+import JiraKeyLink from "../components/JiraKeyLink";
 import {
   applyDecisionPatch,
   buildEpicFeedback,
@@ -190,7 +191,9 @@ export default function UnitReviewPage() {
           </>
         )}
       </p>
-      <h2>{jiraKey}</h2>
+      <h2>
+        <JiraKeyLink issueKey={jiraKey} />
+      </h2>
       {unitId && (
         <p>
           <a href={`/api/units/${encodeURIComponent(unitId)}/review-report.html`} target="_blank" rel="noreferrer">

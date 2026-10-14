@@ -77,6 +77,20 @@
       .replace(/"/g, "&quot;");
   }
 
+  function jiraBrowseUrl(key) {
+    const base = jiraBase.endsWith("/") ? jiraBase : jiraBase + "/";
+    return base + key;
+  }
+
+  function epicKeyLinks(key, reportPath) {
+    const ju = jiraBrowseUrl(key);
+    const rep = reportPath || `epics/${key}/review-report.html`;
+    return (
+      `<a href="${escapeHtml(ju)}" rel="noopener noreferrer">${escapeHtml(key)}</a>` +
+      ` · <a class="report" href="${escapeHtml(rep)}">report</a>`
+    );
+  }
+
   function loadCreatorInclude() {
     try {
       const raw = localStorage.getItem(storageKey);
@@ -319,10 +333,7 @@
             .map((k) => {
               const row = rows.find((r) => r.key === k);
               const rep = row ? row.reportPath : `epics/${k}/review-report.html`;
-              return (
-                `<a href="${escapeHtml(rep)}">${escapeHtml(k)}</a>` +
-                `<a class="report" href="${escapeHtml(rep)}">report</a>`
-              );
+              return epicKeyLinks(k, rep);
             })
             .join(" · ");
           return (

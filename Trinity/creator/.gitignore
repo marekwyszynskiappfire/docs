@@ -4,6 +4,7 @@ __pycache__/
 .venv/
 artifacts/*
 !artifacts/.gitkeep
+!artifacts/README.md
 runs/*
 !runs/README.md
 DECISIONS.md

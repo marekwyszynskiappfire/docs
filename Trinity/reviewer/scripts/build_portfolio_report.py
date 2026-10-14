@@ -341,11 +341,11 @@ Generated from the Reviewer portfolio (default selection). Open `index.html` to 
 
 ## Included by default ({len(included)})
 
-{", ".join(included) if included else "—"}
+{", ".join(f"[{k}]({JIRA_BROWSE}{k})" for k in included) if included else "—"}
 
 ## Excluded by default — not suitable for test design ({len(excluded)})
 
-{", ".join(excluded) if excluded else "—"}
+{", ".join(f"[{k}]({JIRA_BROWSE}{k})" for k in excluded) if excluded else "—"}
 
 ## Source portfolio JQL
 

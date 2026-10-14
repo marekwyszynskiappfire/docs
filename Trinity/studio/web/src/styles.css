@@ -195,6 +195,44 @@ header.app-header nav.app-nav {
   margin-bottom: 0.15rem;
 }
 
+.child-inventory-panel {
+  padding: 0;
+}
+.child-inventory-panel-summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  padding: 1rem 1.15rem;
+  font-weight: 600;
+}
+.child-inventory-panel-summary::-webkit-details-marker {
+  display: none;
+}
+.child-inventory-panel-summary::before {
+  content: "▸";
+  display: inline-block;
+  width: 1rem;
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+.child-inventory-panel[open] > .child-inventory-panel-summary::before {
+  transform: rotate(90deg);
+}
+.child-inventory-panel-title {
+  font-size: 1rem;
+}
+.child-inventory-panel-meta {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.child-inventory-panel-body {
+  padding: 0 1.15rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
 .child-inventory-epic {
   margin-bottom: 0.65rem;
 }

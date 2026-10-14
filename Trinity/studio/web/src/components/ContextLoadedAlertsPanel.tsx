@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { api } from "../api";
 import { groupContextLoadedAlertsByRun, type ContextLoadedAlert } from "../lib/contextLoadedAlerts";
 import { SOURCE_STATUS_LABEL } from "../types/review-payload";
+import JiraKeyLink from "./JiraKeyLink";
 import SortableDataTable from "./SortableDataTable";
 
 type Alert = ContextLoadedAlert;
@@ -105,7 +106,13 @@ export default function ContextLoadedAlertsPanel() {
                   id: "jira_key",
                   header: "Epic",
                   getValue: (a) => a.jira_key,
-                  render: (a) => <Link to={`/units/${a.unit_id}`}>{a.jira_key}</Link>,
+                  render: (a) => (
+                    <>
+                      <JiraKeyLink issueKey={a.jira_key} />
+                      {" · "}
+                      <Link to={`/units/${a.unit_id}`}>Studio</Link>
+                    </>
+                  ),
                 },
                 { id: "source", header: "Source", getValue: (a) => a.source },
                 {

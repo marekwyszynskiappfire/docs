@@ -115,13 +115,70 @@ def esc(text) -> str:
     return html.escape("" if text is None else str(text), quote=True)
 
 
+JIRA_KEY_RE = re.compile(r"\b([A-Z][A-Z0-9]+-\d+)\b")
+DEFAULT_JIRA_BROWSE = "https://appfire.atlassian.net/browse/"
+_RENDER_JIRA_BROWSE: str | None = None
+
+
+def jira_browse_base(p: dict) -> str:
+    req = (p.get("requirements") or [{}])[0]
+    url = (req.get("url") or "").strip()
+    if "/browse/" in url:
+        return url.rsplit("/browse/", 1)[0] + "/browse/"
+    return DEFAULT_JIRA_BROWSE
+
+
+def jira_issue_href(base: str, key: str) -> str:
+    return f"{base.rstrip('/')}/{key}"
+
+
+def set_render_jira_base(p: dict) -> str:
+    global _RENDER_JIRA_BROWSE
+    _RENDER_JIRA_BROWSE = jira_browse_base(p)
+    return _RENDER_JIRA_BROWSE
+
+
+def _link_jira_keys_html(fragment: str, base: str) -> str:
+    def link_text(text: str) -> str:
+        def repl(m: re.Match[str]) -> str:
+            k = m.group(1)
+            return f'<a href="{esc(jira_issue_href(base, k))}" rel="noopener noreferrer">{esc(k)}</a>'
+
+        return JIRA_KEY_RE.sub(repl, text)
+
+    parts = re.split(r"(<[^>]+>)", fragment)
+    return "".join(link_text(part) if not part.startswith("<") else part for part in parts)
+
+
 def inline(text) -> str:
     """Escape, then render `code` spans. The only inline markup the payload may use."""
-    return re.sub(r"`([^`]+)`", r'<span class="mono">\1</span>', esc(text))
+    s = re.sub(r"`([^`]+)`", r'<span class="mono">\1</span>', esc(text))
+    if _RENDER_JIRA_BROWSE:
+        s = _link_jira_keys_html(s, _RENDER_JIRA_BROWSE)
+    return s
+
+
+def md_jira_key(key: str) -> str:
+    base = _RENDER_JIRA_BROWSE or DEFAULT_JIRA_BROWSE
+    return f"[{key}]({jira_issue_href(base, key)})"
+
+
+def md_link_jira_keys(text: str, base: str) -> str:
+    return JIRA_KEY_RE.sub(lambda m: f"[{m.group(1)}]({jira_issue_href(base, m.group(1))})", text)
 
 
 def md_inline(text) -> str:
-    return "" if text is None else str(text).replace("\n", " ").replace("|", "\\|")
+    s = "" if text is None else str(text).replace("\n", " ").replace("|", "\\|")
+    if _RENDER_JIRA_BROWSE:
+        s = md_link_jira_keys(s, _RENDER_JIRA_BROWSE)
+    return s
+
+
+def html_jira_key(key: str) -> str:
+    base = _RENDER_JIRA_BROWSE or DEFAULT_JIRA_BROWSE
+    return (
+        f'<a class="mono" href="{esc(jira_issue_href(base, key))}" rel="noopener noreferrer">{esc(key)}</a>'
+    )
 
 
 def status_class(status: str) -> str:
@@ -671,7 +728,7 @@ def html_children(p: dict) -> str:
     for c in kids:
         src = c.get("content_source", "unavailable")
         pill = "analyzed" if src == "description" else "unavailable"
-        rows.append(f'<tr><td class="fid">{esc(c["key"])}</td><td>{esc(c.get("type", ""))}</td><td>{inline(c.get("summary", ""))}</td>'
+        rows.append(f'<tr><td class="fid">{html_jira_key(c["key"])}</td><td>{esc(c.get("type", ""))}</td><td>{inline(c.get("summary", ""))}</td>'
                     f'<td><span class="status-pill {status_class(c.get("status", ""))}">{esc(c.get("status", ""))}</span></td>'
                     f'<td><span class="status-pill {pill}">{CONTENT_SOURCE_LABEL.get(src, src)}</span></td></tr>')
     cs_line = " · ".join(f"{n} read via {CONTENT_SOURCE_LABEL.get(k, k).lower()}" for k, n in cs.items())
@@ -733,6 +790,7 @@ def html_handoff(p: dict) -> str:
 
 
 def render_html(p: dict) -> str:
+    set_render_jira_base(p)
     key = p["scope"]["value"]
     req = (p.get("requirements") or [{}])[0]
     itype = issue_type(p)
@@ -761,7 +819,7 @@ def render_html(p: dict) -> str:
         section("sec-risks", "Known risks & suggested testing focus", f'{len(r["risks"])} + {len(r["testing_focus"])}', html_risks(p), True),
     ]
     if is_epic(p):
-        tier2.append(section("sec-children", "Child inventory & status mix", f"{len(children(p))} — full set", html_children(p), True))
+        tier2.append(section("sec-children", "Child inventory & status mix", f"{len(children(p))} — full set", html_children(p), False))
 
     tier3 = [
         section("sec-datasources", "Data sources",
@@ -796,7 +854,7 @@ def render_html(p: dict) -> str:
 <body>
 <div class="wrap">
 <div class="header-card">
-  <div class="header-top"><h1><span class="mono">{esc(key)}</span> — {inline(req.get("summary", ""))} <span class="badge">{esc(itype)}</span></h1></div>
+  <div class="header-top"><h1>{html_jira_key(key)} — {inline(req.get("summary", ""))} <span class="badge">{esc(itype)}</span></h1></div>
   <div class="header-meta">{esc(scan_label(p))} — {esc(date)}{status}{planning}{link} · schema {esc(p["schema_version"])} · run_id {esc(p["run_id"])}</div>
   <div class="summary-line"><strong>{esc(f_line.split(" — ")[0])}</strong> — {esc(f_line.split(" — ")[1])} · <strong>{esc(q_line.split(" — ")[0])}</strong>{(" — " + esc(q_line.split(" — ")[1])) if " — " in q_line else ""}{kids_line}</div>
 </div>
@@ -834,6 +892,7 @@ def render_html(p: dict) -> str:
 # --------------------------------------------------------------------------- Markdown
 
 def render_md(p: dict) -> str:
+    set_render_jira_base(p)
     key = p["scope"]["value"]
     req = (p.get("requirements") or [{}])[0]
     itype = issue_type(p)
@@ -918,7 +977,7 @@ def render_md(p: dict) -> str:
               "**Status mix:** " + (" · ".join(f"{s} — {n}" for s, n in mix.items()) or "no children yet"), ""]
         if kids:
             L += ["| Key | Type | Status | Summary | Content |", "|-----|------|--------|---------|---------|"]
-            L += [f"| {c['key']} | {c.get('type', '')} | {c.get('status', '')} | {md_inline(c.get('summary', ''))} | {c.get('content_source', '')} |" for c in kids]
+            L += [f"| {md_jira_key(c['key'])} | {c.get('type', '')} | {c.get('status', '')} | {md_inline(c.get('summary', ''))} | {c.get('content_source', '')} |" for c in kids]
     L += ["", "## Recommended next action", "", md_inline(r["next_action"]), "",
           "---", "_This review supports shift-left preparation. It does not approve or reject the requirement._", ""]
     return "\n".join(L)

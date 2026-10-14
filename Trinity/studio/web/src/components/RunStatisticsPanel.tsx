@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { api, PipelineRunStatistics } from "../api";
+import JiraKeyLink from "./JiraKeyLink";
 import SortableDataTable from "./SortableDataTable";
 import TcReadinessChart from "./TcReadinessChart";
 
@@ -259,7 +260,9 @@ export default function RunStatisticsPanel({ runId }: Props) {
               getValue: (e) => e.jira_key,
               render: (e) => (
                 <>
-                  <strong>{e.jira_key}</strong>
+                  <strong>
+                    <JiraKeyLink issueKey={e.jira_key} />
+                  </strong>
                   <div className="muted">{e.summary}</div>
                 </>
               ),

@@ -117,6 +117,17 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 
 7. **Handoff** — Studio → Creator → import batch → operator **approve/reject** and mark **fit for Xray import** (Phase 2 UI). **Importer** submits to Xray.
 
+### Operator close-out (required in every reply)
+
+Always give the operator a **single artifacts root** and the **import rule**:
+
+| Scope | Artifacts root | Import |
+|-------|----------------|--------|
+| One Epic | `{skill_root}/{config.output.artifacts_dir}/{run_id}/suite-payload.json` (or `{run_id}/{EPIC_KEY}/` when nested) | **One** Studio import |
+| Multi-epic / portfolio | `{skill_root}/{config.output.artifacts_dir}/{portfolio_id}/` with `{EPIC_KEY}/suite-payload.json` per epic | **One Studio import per epic** — no combined batch |
+
+State explicitly: **“Import each `suite-payload.json` separately in Studio → Creator; there is no single merged payload.”** Point to [`artifacts/README.md`](artifacts/README.md). If `index.json` exists under the portfolio folder, say it is a catalog only.
+
 ## Quality bar (all personas)
 
 | Rule | Detail |
@@ -135,9 +146,10 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 ## Trinity Studio
 
 ```text
-Trinity Studio → Creator → Import batch
+Trinity Studio → Creator → Import batch  (repeat per epic)
   Trinity/creator/samples/demo-story.suite.json
-  Trinity/creator/artifacts/{run_id}/suite-payload.json
+  Trinity/creator/artifacts/{portfolio_id}/{EPIC_KEY}/suite-payload.json
+  Trinity/creator/artifacts/{run_id}/suite-payload.json   # single-epic run
 ```
 
-Operator reviews each test (approve / reject / edit). **Marked for Xray import** is separate from approval (Studio Phase 2).
+Operator reviews each test (approve / reject / edit). **Marked for Xray import** is separate from approval (Studio Phase 2). Each import creates or updates one **Creator run** in Studio — plan **one import per Epic key**, not one file for the whole portfolio.

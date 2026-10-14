@@ -49,7 +49,7 @@ Dashboard lists the pipeline run. Open the run to review epics. For portfolio me
 
 1. In Studio, open the epic unit → **Approve & export** → **Send to Creator** (prompt includes `review_ref` + three Creator personas).
 2. Run **trinity-creator** in Cursor — **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
-3. Import `suite-payload.json` in Studio → **Creator**.
+3. Import `suite-payload.json` in Studio → **Creator** (**one import per Epic** — no merged portfolio file). Multi-epic programs write under `Trinity/creator/artifacts/{portfolio_id}/{EPIC_KEY}/suite-payload.json`; see [`creator/artifacts/README.md`](creator/artifacts/README.md).
 4. Operator: edit → approve or reject; mark **fit for Xray import**; **Export for Importer** → `studio/data/exports/creator/{run}/importer-payload.json`.
 5. **Importer** (Studio): instance, mapping, **[project key override](GUIDE.md#6-importer-studio--xray)** (default TC), folder → **Preview import plan** → **Execute import batch** or Cursor prompt ([`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)).
 

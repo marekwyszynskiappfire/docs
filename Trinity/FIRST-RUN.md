@@ -277,13 +277,21 @@ If **Send to Creator** is disabled: epic is **`not_fit`** — fix scope in Jira 
 Trinity/creator/artifacts/YOUR-EPIC-KEY/suite-payload.json
 ```
 
+For a **multi-epic** Reviewer portfolio (e.g. `q4-backlog`):
+
+```text
+Trinity/creator/artifacts/q4-backlog/ONE-{number}/suite-payload.json
+```
+
+Import **each** file separately in Studio — see [`creator/artifacts/README.md`](creator/artifacts/README.md). Portfolio programs: [`creator/config/portfolios/`](creator/config/portfolios/).
+
 (path is also in the Studio prompt).
 
 ### 3.6 Studio — Creator triage
 
 | Step | Where | Action |
 |------|--------|--------|
-| 1 | **Creator** tab | Import `suite-payload.json` (path from agent) |
+| 1 | **Creator** tab | Import `suite-payload.json` (path from agent; **one import per epic**) |
 | 2 | Open **creator run** | Read 3–5 journey tests |
 | 3 | Per test | Edit if needed → **Approve** or **Reject** |
 | 4 | Approved rows | Check **Fit for Xray import** |

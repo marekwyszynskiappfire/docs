@@ -4,6 +4,7 @@ import { api, EpicChildInventory, ReviewUnit } from "../api";
 import CursorCostPanel from "../components/CursorCostPanel";
 import RunManageActions from "../components/RunManageActions";
 import RunStatisticsPanel from "../components/RunStatisticsPanel";
+import JiraKeyLink from "../components/JiraKeyLink";
 import SortableDataTable from "../components/SortableDataTable";
 
 type Handoff = {
@@ -250,49 +251,58 @@ export default function RunPage() {
       )}
 
       {childInventory && childInventory.epics.some((e) => e.child_count > 0) && (
-        <div className="panel">
-          <h3 style={{ marginTop: 0 }}>Child inventory (Reviewer rollup)</h3>
-          {childInventory.run_status_mix &&
-            Object.keys(childInventory.run_status_mix).length > 0 && (
-              <p className="mix-strip">
-                <span className="label">Child status mix (all epics)</span>
-                <span className="mix-value">{api.formatMix(childInventory.run_status_mix)}</span>
-                {childInventory.total_children != null && (
-                  <span className="muted"> · {childInventory.total_children} children</span>
-                )}
-              </p>
+        <details className="panel child-inventory-panel">
+          <summary className="child-inventory-panel-summary">
+            <span className="child-inventory-panel-title">Child inventory (Reviewer rollup)</span>
+            <span className="muted child-inventory-panel-meta">
+              {childInventory.total_children != null
+                ? `${childInventory.total_children} children`
+                : ""}
+              {childInventory.run_status_mix &&
+              Object.keys(childInventory.run_status_mix).length > 0
+                ? ` · ${api.formatMix(childInventory.run_status_mix)}`
+                : ""}
+            </span>
+          </summary>
+          <div className="child-inventory-panel-body">
+            <p className="muted" style={{ marginTop: 0 }}>
+              Full child set from latest payload per epic — parity with Reviewer HTML § children.
+            </p>
+            {childInventory.epics.map((epic) =>
+              epic.child_count === 0 ? null : (
+                <details key={epic.unit_id} className="child-inventory-epic">
+                  <summary>
+                    <JiraKeyLink issueKey={epic.jira_key} /> — {epic.child_count} children (
+                    {api.formatMix(epic.status_mix)})
+                  </summary>
+                  <SortableDataTable
+                    className="data child-table"
+                    rows={epic.children}
+                    rowKey={(c, i) => c.key ?? c.summary ?? String(i)}
+                    defaultSort={{ columnId: "key", dir: "asc" }}
+                    columns={[
+                      {
+                        id: "key",
+                        header: "Key",
+                        getValue: (c) => c.key,
+                        render: (c) =>
+                          c.key ? <JiraKeyLink issueKey={c.key} /> : "—",
+                      },
+                      { id: "type", header: "Type", getValue: (c) => c.type },
+                      { id: "status", header: "Status", getValue: (c) => c.status },
+                      {
+                        id: "summary",
+                        header: "Summary",
+                        getValue: (c) => c.summary,
+                        cellClassName: "muted",
+                      },
+                    ]}
+                  />
+                </details>
+              )
             )}
-          <p className="muted" style={{ marginTop: 0 }}>
-            Full child set from latest payload per epic — parity with Reviewer HTML § children.
-          </p>
-          {childInventory.epics.map((epic) =>
-            epic.child_count === 0 ? null : (
-              <details key={epic.unit_id} className="child-inventory-epic">
-                <summary>
-                  <strong>{epic.jira_key}</strong> — {epic.child_count} children (
-                  {api.formatMix(epic.status_mix)})
-                </summary>
-                <SortableDataTable
-                  className="data child-table"
-                  rows={epic.children}
-                  rowKey={(c, i) => c.key ?? c.summary ?? String(i)}
-                  defaultSort={{ columnId: "key", dir: "asc" }}
-                  columns={[
-                    { id: "key", header: "Key", getValue: (c) => c.key },
-                    { id: "type", header: "Type", getValue: (c) => c.type },
-                    { id: "status", header: "Status", getValue: (c) => c.status },
-                    {
-                      id: "summary",
-                      header: "Summary",
-                      getValue: (c) => c.summary,
-                      cellClassName: "muted",
-                    },
-                  ]}
-                />
-              </details>
-            )
-          )}
-        </div>
+          </div>
+        </details>
       )}
 
       <div className="panel">
@@ -323,7 +333,9 @@ export default function RunPage() {
               getValue: (u) => u.jira_key,
               render: (u) => (
                 <>
-                  <strong>{u.jira_key}</strong>
+                  <strong>
+                    <JiraKeyLink issueKey={u.jira_key} />
+                  </strong>
                   <div className="muted">{u.summary}</div>
                 </>
               ),

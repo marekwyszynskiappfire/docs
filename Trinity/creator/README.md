@@ -10,7 +10,8 @@ Test suite generation skill for the Trinity pipeline: **Reviewer** → **Creator
 | Personas | [`../personas/creator-*.md`](../personas/README.md) |
 | Product config | [`config/default.json`](config/default.json), [`config/bigpicture.json`](config/bigpicture.json) |
 | Schema | [`schemas/TestCaseDraft.schema.json`](schemas/TestCaseDraft.schema.json) |
-| Studio import | [`samples/demo-story.suite.json`](samples/demo-story.suite.json) |
+| Studio import | [`samples/demo-story.suite.json`](samples/demo-story.suite.json) · multi-epic: [`artifacts/README.md`](artifacts/README.md) |
+| Portfolio programs | [`config/portfolios/`](config/portfolios/) (e.g. Q4 backlog) |
 | Rule port | [`PORT-CHECKLIST.md`](PORT-CHECKLIST.md) (fill during Phase 1) |
 | Planning hub | [`../../The Creator/ACTION-PLAN.md`](../../The%20Creator/ACTION-PLAN.md) |
 | Decisions | [`../reviewer/DECISIONS.md`](../reviewer/DECISIONS.md) § Creator Part 2 |
@@ -36,7 +37,8 @@ creator/
   samples/          Committed demo batches
   templates/        Review gate and external-context samples
   config/           Per-product JSON (start from default.json)
-  artifacts/        Gitignored agent runs → {run_id}/suite-payload.json
+  artifacts/        Gitignored runs — see [artifacts/README.md](artifacts/README.md)
+                    Portfolio: artifacts/{id}/{EPIC_KEY}/suite-payload.json (import each file in Studio)
   runs/             Committed pilots (e.g. TC-6504 Profile B report)
   scripts/          Render/import helpers (roadmap)
 ```

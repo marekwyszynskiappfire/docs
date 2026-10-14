@@ -12,9 +12,17 @@ Work is tracked in **GitHub Issues** on `marekwyszynskiappfire/docs` via the `gh
 
 **Single-context** layout: root `CONTEXT.md` (when present) and `docs/adr/`. See `docs/agents/domain.md`.
 
+### Trinity Reviewer (requirement review)
+
+When the user asks for a **review** of Jira epics/requirements, run **`trinity-reviewer`** with full MCP gather per [`Trinity/reviewer/SKILL.md`](Trinity/reviewer/SKILL.md). Do **not** use `portfolio_testing_sweep.py` unless they explicitly want a REST-only quick sweep. See [`.cursor/rules/trinity-reviewer-mandatory.mdc`](.cursor/rules/trinity-reviewer-mandatory.mdc).
+
 ### Shareable HTML reports
 
 **Trinity** (Reviewer, Creator, Importer, Studio) lives under [`Trinity/`](Trinity/README.md). HTML reports must follow [`Trinity/shared/html-report-guidelines.md`](Trinity/shared/html-report-guidelines.md) (Profile A/B).
+
+### Trinity Creator (test suites)
+
+After **trinity-creator**, point the operator at `Trinity/creator/artifacts/{portfolio_or_run_id}/` and **one `suite-payload.json` import per epic** in Studio — see [`Trinity/creator/artifacts/README.md`](Trinity/creator/artifacts/README.md).
 
 ### Trinity Studio (edit + analytics)
 

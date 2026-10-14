@@ -89,6 +89,14 @@ def root_ui():
     return _ui_index()
 
 
+@app.get("/favicon.svg")
+def favicon_svg() -> FileResponse:
+    for path in (WEB_DIST / "favicon.svg", STATIC_FALLBACK / "favicon.svg"):
+        if path.is_file():
+            return FileResponse(path, media_type="image/svg+xml")
+    raise HTTPException(status_code=404, detail="Not found")
+
+
 @app.get("/static/{filename}")
 def static_asset(filename: str):
     if "/" in filename or filename.startswith("."):
