@@ -1,0 +1,3 @@
+# Moved
+
+Use **[OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md)**.

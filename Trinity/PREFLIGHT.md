@@ -1,11 +1,12 @@
 # Trinity preflight
 
 Run once on a new machine before a portfolio review.  
-**10-minute Studio demo (no Jira):** [`QUICKSTART.md`](QUICKSTART.md) · **Full path:** [`GUIDE.md`](GUIDE.md#getting-started).
+**New operators:** [`START-HERE.md`](START-HERE.md) · [`FAQ.md`](FAQ.md) · [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) · **Demo:** [`QUICKSTART.md`](QUICKSTART.md)
 
 1. **Clone** the docs repo and `cd` to repo root.
-2. **MCP** — Atlassian (and Figma if needed): [`reviewer/config/DUAL-ATLASSIAN-MCP.md`](reviewer/config/DUAL-ATLASSIAN-MCP.md).
+2. **MCP** — [`CURSOR-MCP-SETUP.md`](CURSOR-MCP-SETUP.md) (dual-site detail: [`reviewer/config/DUAL-ATLASSIAN-MCP.md`](reviewer/config/DUAL-ATLASSIAN-MCP.md)).
 3. **Skills** — `./Trinity/scripts/install-trinity-skills.sh` (or symlink `Trinity/reviewer` into `.cursor/skills/`).
+3b. **Mechanical check** — `./Trinity/scripts/pilot-preflight.sh` (after skills; Studio optional).
 4. **Reviewer renderer** —  
    `python3 Trinity/reviewer/scripts/render_report.py Trinity/reviewer/samples/demo-epic.payload.json --strict`
 5. **Trinity Studio** —  

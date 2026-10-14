@@ -2,7 +2,9 @@
 
 Single reference for **what Trinity is**, **how to get running**, **golden test data**, and **Importer configuration** (including the **Jira project selector**).
 
-Related: [FIRST-RUN.md](FIRST-RUN.md) · [TESTING.md](TESTING.md) · [PREFLIGHT.md](PREFLIGHT.md) · [PIPELINE.md](PIPELINE.md) · [MANUAL.md](MANUAL.md) · [FAQ](FAQ.md) · [METRICS.md](METRICS.md)
+**Wiki:** [Credentials and Importer](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754492109/Trinity+Credentials+and+Importer) · [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [FAQ](FAQ.md)
+
+Related: [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md) · [FIRST-RUN.md](FIRST-RUN.md) · [CURSOR-MCP-SETUP.md](CURSOR-MCP-SETUP.md) · [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md) · [MANUAL.md](MANUAL.md) · [METRICS.md](METRICS.md)
 
 **Personas:** [`personas/P1-P10.md`](personas/P1-P10.md) (operator matrix) · runtime prompts in [`personas/`](personas/) · [`MANUAL.md`](MANUAL.md) §11 · Reviewer detail in [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §11.
 

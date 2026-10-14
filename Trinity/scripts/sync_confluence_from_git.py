@@ -1,18 +1,14 @@
 #!/usr/bin/env python3
 """Push maintained Trinity wiki pages from git markdown to Confluence (QACoE).
 
-Uses Atlassian MCP-compatible credentials (site-wide API token):
+Uses Atlassian site API token:
 
   export ATLASSIAN_EMAIL='you@appfire.com'
   export ATLASSIAN_API_TOKEN='...'
 
-Optional: ATLASSIAN_CLOUD_ID (default appfire production).
+  python3 Trinity/scripts/sync_confluence_from_git.py [--dry-run] [--page TITLE]
 
-  python3 Trinity/scripts/sync_confluence_from_git.py [--dry-run]
-
-Parent index page (3750559869) contains Confluence page links — update its
-*Last published* / *What changed* section manually or via MCP edits (markdown
-full-replace is blocked).
+Page list: Trinity/confluence/page-map.json
 """
 
 from __future__ import annotations
@@ -20,6 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import ssl
 import urllib.error
@@ -35,15 +32,14 @@ except ImportError:
 
 BASE = "https://appfire.atlassian.net/wiki"
 
-PAGES: tuple[tuple[str, str, str], ...] = (
-    ("3750592672", "Trinity/FIRST-RUN.md", "Trinity — First run playbook"),
-    ("3750920216", "Trinity/ARCHITECTURE.md", "Trinity — Architecture"),
-    ("3750658179", "Trinity/MANUAL.md", "Trinity — Operator manual"),
-)
-
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
+
+
+def load_page_map() -> dict:
+    path = repo_root() / "Trinity/confluence/page-map.json"
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def auth_header() -> str:
@@ -92,13 +88,38 @@ def convert_markdown(markdown: str) -> str:
             return out["value"]
     except RuntimeError:
         pass
-    # Fallback: escaped preformatted (operators still have git as source of truth)
     escaped = (
         markdown.replace("&", "&amp;")
         .replace("<", "&lt;")
         .replace(">", "&gt;")
     )
     return f"<pre>{escaped}</pre>"
+
+
+def rewrite_links_for_wiki(markdown: str, pages: list[dict]) -> str:
+    """Turn relative .md links into Confluence URLs where we have a mapped page."""
+    by_name: dict[str, str] = {}
+    for p in pages:
+        name = Path(p["git_path"]).name
+        by_name[name] = p["web_url"]
+        # Trinity/foo.md style
+        rel = p["git_path"].replace("Trinity/", "")
+        by_name[rel] = p["web_url"]
+
+    def repl(match: re.Match[str]) -> str:
+        text, target = match.group(1), match.group(2)
+        if target.startswith("http") or target.startswith("#"):
+            return match.group(0)
+        clean = target.split("#")[0]
+        anchor = ""
+        if "#" in target:
+            anchor = "#" + target.split("#", 1)[1]
+        url = by_name.get(Path(clean).name) or by_name.get(clean)
+        if url:
+            return f"[{text}]({url}{anchor})"
+        return match.group(0)
+
+    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", repl, markdown)
 
 
 def update_page(page_id: str, title: str, markdown: str, dry_run: bool) -> None:
@@ -122,14 +143,25 @@ def update_page(page_id: str, title: str, markdown: str, dry_run: bool) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--page", help="Sync only page title substring match")
     args = parser.parse_args()
     root = repo_root()
-    for page_id, rel_path, title in PAGES:
+    page_map = load_page_map()
+    pages = page_map["pages"]
+
+    for entry in pages:
+        title = entry["title"]
+        if args.page and args.page.lower() not in title.lower():
+            continue
+        rel_path = entry["git_path"]
+        page_id = entry["content_id"]
         md_path = root / rel_path
         if not md_path.is_file():
             print(f"Missing {md_path}", file=sys.stderr)
             sys.exit(1)
-        update_page(page_id, title, md_path.read_text(encoding="utf-8"), args.dry_run)
+        raw = md_path.read_text(encoding="utf-8")
+        wiki_md = rewrite_links_for_wiki(raw, pages)
+        update_page(page_id, title, wiki_md, args.dry_run)
 
 
 if __name__ == "__main__":

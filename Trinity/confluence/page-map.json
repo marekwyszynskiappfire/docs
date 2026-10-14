@@ -1,0 +1,68 @@
+{
+  "space_key": "QACoE",
+  "parent_content_id": "3750559869",
+  "parent_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide",
+  "wiki_base": "https://appfire.atlassian.net/wiki",
+  "pages": [
+    {
+      "content_id": "3754590489",
+      "git_path": "Trinity/START-HERE.md",
+      "title": "Trinity — Start here",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here"
+    },
+    {
+      "content_id": "3750592672",
+      "git_path": "Trinity/FIRST-RUN.md",
+      "title": "Trinity — First run playbook",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750592672/Trinity+First+run+playbook"
+    },
+    {
+      "content_id": "3755311111",
+      "git_path": "Trinity/OPERATOR-ONBOARDING.md",
+      "title": "Trinity — Operator onboarding",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3755311111/Trinity+Operator+onboarding"
+    },
+    {
+      "content_id": "3754164473",
+      "git_path": "Trinity/FAQ.md",
+      "title": "Trinity — FAQ",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754164473/Trinity+FAQ"
+    },
+    {
+      "content_id": "3753312561",
+      "git_path": "Trinity/CURSOR-MCP-SETUP.md",
+      "title": "Trinity — Cursor and MCP setup",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3753312561/Trinity+Cursor+and+MCP+setup"
+    },
+    {
+      "content_id": "3755442183",
+      "git_path": "Trinity/PROMPTS-AND-INPUTS.md",
+      "title": "Trinity — Prompts and inputs",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3755442183/Trinity+Prompts+and+inputs"
+    },
+    {
+      "content_id": "3754459462",
+      "git_path": "Trinity/OPERATOR-SETUP.md",
+      "title": "Trinity — Setup checklist",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754459462/Trinity+Setup+checklist"
+    },
+    {
+      "content_id": "3754492109",
+      "git_path": "Trinity/GUIDE.md",
+      "title": "Trinity — Credentials and Importer",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754492109/Trinity+Credentials+and+Importer"
+    },
+    {
+      "content_id": "3750920216",
+      "git_path": "Trinity/ARCHITECTURE.md",
+      "title": "Trinity — Architecture",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture"
+    },
+    {
+      "content_id": "3750658179",
+      "git_path": "Trinity/MANUAL.md",
+      "title": "Trinity — Operator manual",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual"
+    }
+  ]
+}

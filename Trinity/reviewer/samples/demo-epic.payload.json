@@ -139,7 +139,7 @@
       "question_id": "Q2",
       "topic": "PRD authority",
       "question": "The linked Confluence PRD says export defaults to CSV; DEMO-4531 assumes XLSX is also in scope for phase 2 — which document is authoritative?",
-      "context": "Confluence page fetched; conflicts with a child story.",
+      "context": "Confluence PRD was fetched successfully, but its export-format statement conflicts with acceptance criteria on child story DEMO-4531 — QA needs a single authoritative source before test design.",
       "source": "Confluence PRD §3; DEMO-4531 description",
       "priority": "Medium",
       "unblocks": [
@@ -152,7 +152,7 @@
       "question_id": "Q3",
       "topic": "Design authority",
       "question": "The epic's Figma link has no node-id; a root metadata scan shortlisted two frames matching the epic title — \"Export flow (v1, deprecated)\" and \"Export flow (v2, current)\". Which is canonical?",
-      "context": "Name-overlap shortlist returned 2 candidates, not 1.",
+      "context": "Figma root scan returned two frames whose titles overlap the epic name (v1 deprecated vs v2 current); without a node-id or explicit design pick, UI tests cannot target the correct flow.",
       "source": "Figma — root metadata scan, figma.com/design/abc123/OKR-fields",
       "priority": "Optional",
       "unblocks": [],

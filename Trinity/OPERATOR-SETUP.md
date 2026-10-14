@@ -1,6 +1,7 @@
 # Trinity — operator setup (checkout → operational)
 
 **Audience:** QA engineer bringing Trinity up on a fresh machine.  
+**Wiki:** [Setup checklist](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754459462/Trinity+Setup+checklist) · **Onboarding:** [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) · **FAQ:** [`FAQ.md`](FAQ.md)  
 **First run (recommended):** [`FIRST-RUN.md`](FIRST-RUN.md) — checkout → demo → Prompts #1–#3 → one epic.  
 **Reference manual:** [`MANUAL.md`](MANUAL.md). This file is the **same flow as numbered steps** without narrative.  
 **Confluence:** publish [`MANUAL.md`](MANUAL.md) as the primary wiki page; short sections under [`confluence/`](confluence/).  

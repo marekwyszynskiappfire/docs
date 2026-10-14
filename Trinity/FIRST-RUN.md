@@ -2,6 +2,10 @@
 
 **Audience:** Someone using Trinity for the **first time**. Follow the phases **in order**. You do not need to read the whole repo — only this page until Phase 2.
 
+**New operators (wiki):** [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [FAQ](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754164473/Trinity+FAQ)
+
+**Setup without a buddy:** [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) — gates, MCP, prompts, [`OPERATOR-VALIDATION.md`](OPERATOR-VALIDATION.md) sign-off.
+
 | Phase | Time (after deps) | Needs Jira/MCP? | Outcome |
 |-------|-------------------|-----------------|---------|
 | **0** Checkout | 5–15 min first `start.sh` | No | Studio running |
@@ -9,9 +13,9 @@
 | **2** Wire Cursor | ~20 min once | MCP + optional `.env` | Ready for a real epic |
 | **3** One epic E2E | 1–3 hours | Yes | Review → tests → Xray plan (or execute) |
 
-Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.md`](ARCHITECTURE.md) · Checklist: [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · Validation: [`TESTING.md`](TESTING.md).
+Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.md`](ARCHITECTURE.md) · Checklist: [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · Validation: [`TESTING.md`](TESTING.md) · Prompt I/O: [`PROMPTS-AND-INPUTS.md`](PROMPTS-AND-INPUTS.md).
 
-**Confluence (QACoE):** [First run playbook](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750592672/Trinity+First+run+playbook) · [Architecture](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture) · [Operator manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual)
+**Confluence (QACoE):** [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [FAQ](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754164473/Trinity+FAQ) · [First run](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750592672/Trinity+First+run+playbook) · [Onboarding](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3755311111/Trinity+Operator+onboarding) · [Manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual)
 
 ---
 
@@ -166,7 +170,7 @@ In Cursor you should be able to invoke:
 
 ### 2.2 Atlassian MCP
 
-Reviewer needs Jira/Confluence read access. If your org uses two sites (common at Appfire), configure **both**:
+Reviewer needs Jira/Confluence read access. Start with **[`CURSOR-MCP-SETUP.md`](CURSOR-MCP-SETUP.md)** (sandbox single-site vs production dual-site). If your org uses two Cloud sites (common at Appfire), configure **both**:
 
 [`reviewer/config/DUAL-ATLASSIAN-MCP.md`](reviewer/config/DUAL-ATLASSIAN-MCP.md)
 
