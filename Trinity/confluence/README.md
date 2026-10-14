@@ -16,11 +16,13 @@ Superseded sectional markdown (`confluence/0*.md`, `samples/`) is **gitignored**
 
 ## Republish after edits
 
-1. Update the three git files above (and `OPERATOR-SETUP.md` if the checklist changed — content is folded into FIRST-RUN).
-2. Use Atlassian MCP `updateConfluenceContent` with `body.format: markdown` and the page `contentId` from the table. If the wiki page has Confluence-only macros/links, use **HTML** format or granular **edits** instead of full markdown replace (MCP will block destructive markdown swaps).
-3. Bump *Last reviewed* dates in the markdown sources.
+1. Update the three git files above (and `OPERATOR-SETUP.md` when the checklist changes — content is folded into FIRST-RUN for wiki, but Step 16 statistics is in git only until manual sync).
+2. **Preferred:** Atlassian MCP `updateConfluenceContent` on cloud **`appfire`** (`8e83c2b4-97ae-4335-8a8f-bbdff09d62dd`) with `body.format: markdown`, page `contentId`, and fresh `snapshotToken` from `getConfluenceContent`.
+3. **Alternative:** `python3 Trinity/scripts/sync_confluence_from_git.py` (needs `JIRA_EMAIL` / `JIRA_API_TOKEN` with Confluence write on appfire.atlassian.net; uses `certifi` when installed).
+4. **Parent index** (`3750559869`) embeds child page links — full markdown replace is blocked; add a footer comment or edit *Last published* in the UI.
+5. Bump *Last reviewed* dates in the markdown sources.
 
-**2026-10-14:** [`MANUAL.md`](../MANUAL.md) §5.4 adds the pipeline run **Statistics** tab — republish the Operator manual page after pulling git.
+**2026-10-14 sync topics:** Studio **Statistics** nav (single + compare with baseline dropdowns), TC readiness from `report.qa_planning_fit`, sortable tables, [`METRICS.md`](../METRICS.md) API rows.
 
 ## External-sharing checklist
 

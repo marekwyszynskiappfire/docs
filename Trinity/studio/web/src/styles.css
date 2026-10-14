@@ -566,34 +566,28 @@ nav a.active {
 }
 
 .compare-run-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 0.75rem 1rem;
+  margin-top: 0.75rem;
+}
+
+.compare-run-slot {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.compare-run-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.65rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
   font-size: 0.875rem;
-  cursor: pointer;
-  background: var(--bg);
 }
 
-.compare-run-chip.checked {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+.compare-run-slot-label {
+  font-weight: 500;
+  color: var(--text-muted, var(--muted));
 }
 
-.baseline-tag {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  margin-left: 0.25rem;
+.compare-run-slot select {
+  width: 100%;
+  max-width: 100%;
 }
 
 .compare-metrics-table td.compare-cell-high {

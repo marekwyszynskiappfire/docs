@@ -207,6 +207,16 @@ Run through [`TESTING.md`](TESTING.md) before pilot sign-off.
 
 ---
 
+## Step 16 — Pipeline statistics (pilot evidence)
+
+1. Studio → **Statistics** → **Single run** — confirm TC readiness buckets match Reviewer (`fit` / `provisional` / `not_fit` on latest payloads).
+2. With two+ imported runs → **Compare runs** — set **Run 1 (baseline)** and **Run 2** from dropdowns; optional runs 3–5.
+3. **Download export JSON** on a run for `pipeline_run_report` archive / scorecard attachment.
+
+Details: [`MANUAL.md`](MANUAL.md) §5.9 · [`METRICS.md`](METRICS.md).
+
+---
+
 ## Related docs
 
 | Doc | Use |
@@ -217,4 +227,4 @@ Run through [`TESTING.md`](TESTING.md) before pilot sign-off.
 | [`FAQ.md`](FAQ.md) | Capabilities & evidence |
 | [`confluence/`](confluence/) | Pages for wiki publish |
 
-**Last reviewed:** 2026-10-13
+**Last reviewed:** 2026-10-14

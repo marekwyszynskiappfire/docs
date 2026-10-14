@@ -39,7 +39,9 @@ Join telemetry on `pipeline_run_id`, `entity_id`, and `entity_type` (`pipeline_r
 | Automation signal | `test_case_row.automation_fit` / `automation_candidate` — **not** sent to Xray in POC (all Manual in TC); use for acceptance analytics |
 | Xray keys in Studio | Importer → **Persist Xray keys** or `POST /api/importer/record-results` |
 
-**Phase timings (per pipeline run):** computed in Studio → open a **Dashboard** run → **Statistics** tab, or `GET /api/runs/{pipeline_run_id}/statistics`. Snapshots persist in SQLite table `pipeline_run_report` for later BigQuery ingest alongside `telemetry_outbox`.
+**Phase timings (per pipeline run):** computed in Studio → top nav **Statistics** (single or compare), or a **Dashboard** run → **Statistics** tab, or `GET /api/runs/{pipeline_run_id}/statistics`. Snapshots persist in SQLite table `pipeline_run_report` for later BigQuery ingest alongside `telemetry_outbox`.
+
+**Studio UI:** All list tables use sortable column headers (`SortableDataTable`). **Compare runs** uses five dropdowns (Run 1 = baseline, runs 2–5 optional); URL param `compare=id1,id2,...`.
 
 **Not yet automated:** baseline comparison without AI (capture manually in scorecard).
 
@@ -63,6 +65,7 @@ For each **pipeline run** (Reviewer folder import through Xray), Studio computes
 |----------|---------|
 | `GET /api/runs/{id}/statistics` | Recompute + return report; upsert `pipeline_run_report` |
 | `GET /api/runs/{id}/statistics/export` | JSON bundle (`export_kind: pipeline_run_statistics`) for archive / future BQ load |
+| `GET /api/statistics/compare?runs=id1,id2` | Compare 2–5 runs (comma-separated; first id = baseline for Δ) |
 
 ```bash
 curl -s "http://127.0.0.1:8765/api/runs/<pipeline_run_id>/statistics" | jq '.summary'
@@ -99,6 +102,7 @@ Required when **rejecting** tests in Studio (bulk or single patch).
 | `POST /api/telemetry/flush` | Send pending `telemetry_outbox` to BigQuery ingest |
 | `GET /api/runs/{id}/statistics` | Per-run E2E report (see above) |
 | `GET /api/runs/{id}/statistics/export` | BigQuery-shaped run report JSON |
+| `GET /api/statistics/compare?runs=id1,id2` | Multi-run comparison payload for Statistics → Compare |
 
 Example (Studio API on port 8765):
 

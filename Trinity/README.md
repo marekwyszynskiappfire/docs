@@ -55,7 +55,7 @@ Import a Reviewer run:
 | [`PIPELINE.md`](PIPELINE.md) | End-to-end flow map |
 | [`CONTRACTS.md`](CONTRACTS.md) | Payload and handoff JSON |
 | [`FAQ.md`](FAQ.md) | Capabilities and policies |
-| [`METRICS.md`](METRICS.md) · [`CURSOR-COST.md`](CURSOR-COST.md) | Telemetry and Cursor usage |
+| [`METRICS.md`](METRICS.md) · [`CURSOR-COST.md`](CURSOR-COST.md) | Telemetry, pipeline Statistics UI, Cursor usage |
 | [`VERSIONING.md`](VERSIONING.md) | Release semver vs JSON schema versions |
 | [`PATH-TO-1.0.md`](PATH-TO-1.0.md) | Roadmap from 0.2 POC to 1.0 GA |
 | [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) | POC traceability |

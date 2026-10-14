@@ -78,6 +78,6 @@ Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
 
 UI: **Personas** nav → edit role prompts used by Reviewer run config.
 
-List tables across Studio use **`web/src/components/SortableDataTable.tsx`** — click any column header to sort (asc/desc).
+List tables across Studio use **`web/src/components/SortableDataTable.tsx`** — click any column header to sort (asc/desc). Top nav **Statistics**: single-run E2E report and compare 2–5 runs (Run 1 = baseline dropdowns); see [`MANUAL.md`](../MANUAL.md) §5.9.
 
 Data: `Trinity/studio/data/` (gitignored SQLite and exports).

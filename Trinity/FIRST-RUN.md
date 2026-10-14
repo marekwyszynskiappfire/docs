@@ -142,7 +142,9 @@ Refresh Studio **Dashboard** — you should see a pipeline run.
 3. Click **Preview import plan** if you have a creator run linked — or skip if the form is empty.
 4. You are **not** executing Xray in Phase 1.
 
-**Phase 1 done.** You know: Dashboard, run page, unit page, Creator, Importer.
+Optional: open top nav **Statistics** → **Single run** and pick the demo run — skim TC readiness and epic counts (sortable tables).
+
+**Phase 1 done.** You know: Dashboard, run page, unit page, Creator, Importer, Statistics.
 
 ---
 
@@ -342,6 +344,7 @@ Run-level shortcuts: Dashboard → **run page** → bulk **In Creator**, **Copy 
 | **Unit page** | Triage; approve; **Prompt #2**; Jira comments |
 | **Creator** | Import suites; approve tests; export for Importer |
 | **Importer** | Plan; **Prompt #3** or execute; persist Xray keys |
+| **Statistics** | Single-run E2E report; compare 2–5 runs (baseline = Run 1 dropdown) |
 
 ---
 
@@ -367,4 +370,4 @@ Reset demo only: `rm Trinity/studio/data/qa-studio.db` → restart → `seed-dem
 - Portfolio HTML and multi-epic: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
 - **Mateusz POC evidence:** update [`SCORECARD.md`](SCORECARD.md) pilot log; run `./Trinity/scripts/export-telemetry.sh` while Studio is up.
 
-**Last reviewed:** 2026-10-13
+**Last reviewed:** 2026-10-14

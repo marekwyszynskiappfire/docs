@@ -1,6 +1,6 @@
 # Trinity — architecture
 
-**Last reviewed:** 2026-10-13  
+**Last reviewed:** 2026-10-14  
 **Audience:** Operators, QA leads, and engineers onboarding to Trinity.  
 **Runbook:** [`FIRST-RUN.md`](FIRST-RUN.md) · **Reference:** [`MANUAL.md`](MANUAL.md)
 
@@ -128,7 +128,7 @@ flowchart LR
 | Importer execute | Dry-run plan first | Type `PRODUCTION` + credentials |
 | Importer idempotency / redaction | Block execute until ack or fix | Env override for redaction emergency only |
 
-Telemetry: local SQLite `metric_event`; optional BigQuery ([`METRICS.md`](METRICS.md)). Per-run E2E reports: `pipeline_run_report` + Studio **Statistics** tab (`run_report.py`).
+Telemetry: local SQLite `metric_event`; optional BigQuery ([`METRICS.md`](METRICS.md)). Per-run E2E reports: `pipeline_run_report` table + `run_report.py`; operators use Studio **Statistics** nav (single + compare 2–5 runs) or each run’s **Statistics** tab. Readiness counts use `report.qa_planning_fit` from the latest payload per epic (`review_payload_fields.py`).
 
 ---
 

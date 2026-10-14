@@ -36,7 +36,7 @@ Outputs land under `Trinity/reviewer/runs/{portfolio_run_id}/` (per-epic payload
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<portfolio-run-folder>
 ```
 
-Dashboard lists the pipeline run. Open the run to review epics.
+Dashboard lists the pipeline run. Open the run to review epics. For portfolio metrics, use top nav **Statistics** ([`METRICS.md`](METRICS.md)).
 
 ## 3. Human QA on reviews
 
@@ -70,4 +70,4 @@ For **JQL** scopes: resolve epics in Cursor → paste keys in Studio → then ru
 
 **Scope resolve:** JQL/filter → **Copy JQL resolve prompt** (Cursor MCP) or optional `JIRA_*` in `Trinity/studio/.env` for **Resolve from scope**.
 
-**Next (round 10):** git commit / PR for Trinity changes; then Creator suite HTML or demo portfolio polish.
+**Evidence:** per-run export via Statistics → **Download export JSON**; acceptance telemetry via [`export-telemetry.sh`](scripts/export-telemetry.sh) ([`SCORECARD.md`](SCORECARD.md)).

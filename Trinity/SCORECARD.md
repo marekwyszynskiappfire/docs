@@ -13,6 +13,8 @@ Copy the **Template** table for each new pilot. Keep **Example** as the referenc
 ```bash
 curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 ./Trinity/scripts/export-telemetry.sh trinity-telemetry-export.json
+# Per pipeline run (readiness, phases, compare): Statistics → Download export JSON
+# or: curl -s "http://127.0.0.1:8765/api/runs/<pipeline_run_id>/statistics/export"
 ```
 
 Include **`trinity_version`** from `/api/health` or `Trinity/VERSION` on each filled scorecard.

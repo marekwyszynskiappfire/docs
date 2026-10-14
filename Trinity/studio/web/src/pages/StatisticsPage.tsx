@@ -7,6 +7,29 @@ import TcReadinessChart from "../components/TcReadinessChart";
 
 type Mode = "single" | "compare";
 
+const MAX_COMPARE_RUNS = 5;
+
+function compareSlotsFromIds(ids: string[]): string[] {
+  const slots = [...ids];
+  while (slots.length < MAX_COMPARE_RUNS) slots.push("");
+  return slots.slice(0, MAX_COMPARE_RUNS);
+}
+
+function idsFromCompareSlots(slots: string[]): string[] {
+  const seen = new Set<string>();
+  const ids: string[] = [];
+  for (const id of slots) {
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    ids.push(id);
+  }
+  return ids;
+}
+
+function runOptionLabel(r: PipelineRun): string {
+  return `${r.label} (${r.unit_count ?? 0} epics)`;
+}
+
 export default function StatisticsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [runs, setRuns] = useState<PipelineRun[]>([]);
@@ -102,14 +125,20 @@ export default function StatisticsPage() {
     setSearchParams(params);
   };
 
-  const toggleCompareRun = (id: string) => {
-    const set = new Set(compareIds);
-    if (set.has(id)) set.delete(id);
-    else if (set.size < 5) set.add(id);
+  const compareSlots = compareSlotsFromIds(compareIds);
+
+  const setCompareSlot = (slotIndex: number, runId: string) => {
+    const nextSlots = [...compareSlots];
+    nextSlots[slotIndex] = runId;
     const params = new URLSearchParams(searchParams);
     params.set("mode", "compare");
-    params.set("compare", Array.from(set).join(","));
+    params.set("compare", idsFromCompareSlots(nextSlots).join(","));
     setSearchParams(params);
+  };
+
+  const runsForSlot = (slotIndex: number) => {
+    const taken = new Set(compareSlots.filter((id, i) => i !== slotIndex && id));
+    return runs.filter((r) => !taken.has(r.id));
   };
 
   const selectedRun = runs.find((r) => r.id === runIdFromUrl) ?? null;
@@ -199,31 +228,58 @@ export default function StatisticsPage() {
 
       {mode === "compare" && (
         <>
-          <div className="panel">
-            <h3 style={{ marginTop: 0 }}>Select runs to compare (2–5)</h3>
-            <p className="muted">First selected run is the baseline for Δ columns.</p>
-            <div className="compare-run-picker">
-              {runs.map((r) => {
-                const checked = compareIds.includes(r.id);
-                const order = compareIds.indexOf(r.id);
-                return (
-                  <label key={r.id} className={`compare-run-chip ${checked ? "checked" : ""}`}>
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={() => toggleCompareRun(r.id)}
-                      disabled={!checked && compareIds.length >= 5}
-                    />
-                    <span>
-                      {r.label}
-                      {checked && order === 0 && <span className="baseline-tag">baseline</span>}
-                    </span>
-                  </label>
-                );
-              })}
-            </div>
+          <div className="panel compare-run-select-panel">
+            <h3 style={{ marginTop: 0 }}>Runs to compare (2–5)</h3>
+            <p className="muted" style={{ marginTop: 0 }}>
+              <strong>Run 1</strong> is the baseline for Δ columns. Optional slots stay empty when not
+              needed.
+            </p>
+            {runs.length < 2 ? (
+              <p className="muted">Import at least two Reviewer runs on the Dashboard to compare.</p>
+            ) : (
+              <div className="compare-run-picker">
+                {compareSlots.map((slotValue, slotIndex) => {
+                  const optional = slotIndex >= 2;
+                  const label =
+                    slotIndex === 0
+                      ? "Run 1 — baseline"
+                      : optional
+                        ? `Run ${slotIndex + 1} (optional)`
+                        : `Run ${slotIndex + 1}`;
+                  const options = runsForSlot(slotIndex);
+                  return (
+                    <label key={slotIndex} className="compare-run-slot">
+                      <span className="compare-run-slot-label">{label}</span>
+                      <select
+                        value={slotValue}
+                        onChange={(e) => setCompareSlot(slotIndex, e.target.value)}
+                        aria-label={label}
+                      >
+                        {optional && <option value="">— None —</option>}
+                        {!optional && !slotValue && <option value="">Select run…</option>}
+                        {options.map((r) => (
+                          <option key={r.id} value={r.id}>
+                            {runOptionLabel(r)}
+                          </option>
+                        ))}
+                        {slotValue && !options.some((r) => r.id === slotValue) && (
+                          <option value={slotValue}>
+                            {runs.find((r) => r.id === slotValue)?.label ?? slotValue}
+                          </option>
+                        )}
+                      </select>
+                    </label>
+                  );
+                })}
+              </div>
+            )}
             <div className="btn-row" style={{ marginTop: "0.75rem" }}>
-              <button type="button" onClick={loadCompare} disabled={compareIds.length < 2 || compareLoading}>
+              <button
+                type="button"
+                className="secondary"
+                onClick={loadCompare}
+                disabled={compareIds.length < 2 || compareLoading}
+              >
                 {compareLoading ? "Comparing…" : "Refresh comparison"}
               </button>
             </div>

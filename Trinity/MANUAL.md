@@ -5,7 +5,7 @@
 **First time using Trinity?** Follow [`FIRST-RUN.md`](FIRST-RUN.md) phase by phase (demo → three Cursor prompts → one epic).  
 **Companion docs:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · [`TESTING.md`](TESTING.md) · [`GUIDE.md`](GUIDE.md) · [`reviewer/MANUAL.md`](reviewer/MANUAL.md) · [`PIPELINE.md`](PIPELINE.md).
 
-**Last reviewed:** 2026-10-13
+**Last reviewed:** 2026-10-14
 
 ---
 
@@ -38,6 +38,8 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 | Import tests to Xray | **Importer** tab (§10) | Mapping, project key, folder; production gate |
 | Fix “import failed: folder ≠ epic key” | Rename run folder to match `scope.value` in payload | §6 |
 | Track engineering backlog | GitHub Issues ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)) | — |
+| **Pipeline E2E metrics** (readiness, compare runs) | Top nav **Statistics** or run page **Statistics** tab (§5.9) | At least one imported Reviewer run |
+| Compare 2–5 portfolio runs | **Statistics** → **Compare runs** — Run 1 = baseline (§5.9) | Two+ runs in Studio |
 
 ---
 
@@ -155,7 +157,10 @@ After import, open a run to:
 - Toggle **In Creator** per epic (or bulk **Include all** / **Exclude not_fit**).
 - Copy **Creator JQL**, **handoff JSON**, or download JSON for planning.
 - See **portfolio report path** when `portfolio/index.html` exists (Profile B rollup).
-- Open the **Statistics** tab for an **E2E report** on that pipeline run: epics reviewed, findings, epic feedback to Jira, Creator/Importer counts, phase timings, product/Jira context. Use **Download export JSON** for scorecard evidence or future BigQuery load (`pipeline_run_report` in SQLite). Details: [`METRICS.md`](METRICS.md#per-run-e2e-statistics-local-prebigquery).
+- Toggle epics with **sortable** column headers (Epic, Gate, test design fit, Creator, approved).
+- Open the **Statistics** tab for the same **E2E report** as the global Statistics page (single-run view). Includes TC creation readiness (ready / reservations / not ready), phase timings, per-epic detail, and **Download export JSON** for scorecard evidence (`pipeline_run_report` in SQLite). Details: [`METRICS.md`](METRICS.md#per-run-e2e-statistics-local-prebigquery).
+
+**Gate and planning fit on this page** come from the latest `review-payload` per epic when present (not only the DB column from first import).
 
 ### 5.5 Review unit page
 
@@ -174,6 +179,27 @@ The **center of human QA** on requirements (§7).
 
 - Local `metric_event` rows in SQLite; optional BigQuery when configured — [`METRICS.md`](METRICS.md).
 - Cursor usage backfill when `CURSOR_ADMIN_API_KEY` is set — [`CURSOR-COST.md`](CURSOR-COST.md).
+
+### 5.9 Pipeline statistics (nav)
+
+Top nav **Statistics** (last item) — portfolio-level metrics without opening each run first.
+
+| Mode | Use |
+|------|-----|
+| **Single run** | Dropdown to pick a pipeline run; TC readiness chart; product/Jira context; E2E summary cards; sortable phase timing and per-epic tables; **Refresh** recomputes from SQLite + latest payloads. |
+| **Compare runs** | Choose **Run 1 — baseline** and **Run 2** (required), plus optional runs 3–5 via dropdowns (no duplicate runs across slots). Metric matrix highlights best/worst per row; **Change vs baseline** shows Δ. First run in the list is always the baseline for deltas. |
+
+**Readiness buckets** (Reviewer `report.qa_planning_fit` on the latest payload per epic):
+
+| Bucket | Typical values |
+|--------|----------------|
+| Ready for TC creation | `fit`, `good` |
+| Ready with reservations | `provisional` (often with gate `PASS_WITH_WARNINGS`), `ready_with_clarifications` |
+| Not ready | `not_fit`, scope-lock / cannot-plan signals |
+
+**Tables:** list views across Studio (Dashboard, Creator, Importer, coverage, statistics, and others) use **sortable column headers** (click to sort asc/desc).
+
+API: `GET /api/runs/{id}/statistics`, `GET /api/statistics/compare?runs=id1,id2,id3` — see [`METRICS.md`](METRICS.md).
 
 ---
 
