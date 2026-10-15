@@ -63,7 +63,7 @@ All commands from **repo root** (folder that contains `Trinity/`).
 ### 0.1 Clone
 
 ```bash
-git clone <your-docs-repo-url> DOCS
+git clone https://github.com/marekwyszynskiappfire/docs.git DOCS
 cd DOCS
 ```
 
@@ -231,18 +231,20 @@ The prompt tells the agent to run **trinity-reviewer** with your `portfolio_id`,
 **Wait until the agent finishes.** You should get files like:
 
 ```text
-Trinity/reviewer/runs/my-first-portfolio/<run-subfolder>/YOUR-EPIC-KEY/review-payload.json
+Trinity/reviewer/runs/.../YOUR-EPIC-KEY/review-payload.json
 Trinity/reviewer/runs/.../YOUR-EPIC-KEY/review-report.html   (optional)
 ```
 
-The prompt ends with an **import command** — keep that path.
+The agent may write under `runs/<portfolio_id>/` or `runs/<portfolio_id>/<dated-portfolio_run_id>/` — both are valid.
+
+The prompt ends with an **import command** — use that path (rule: the folder you pass to `import-run.sh` must **directly contain** `YOUR-EPIC-KEY/`).
 
 ### 3.3 Import into Studio
 
-In terminal (use the path from the agent or from the prompt footer):
+In terminal (path from the agent or prompt footer):
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/my-first-portfolio/<run-subfolder>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-contains-YOUR-EPIC-KEY>
 ```
 
 Or Dashboard → **Import Reviewer run** → paste that folder path.

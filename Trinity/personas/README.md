@@ -2,9 +2,10 @@
 
 Editable **role prompts** for Reviewer and Creator agents. The Reviewer loads one file from the portfolio **run config** (`persona_id`); Creator loads **all three** creator personas each run.
 
-**Design-time persona matrix (P1–P10)** — start here for operators and leads:
+**Design-time persona matrix (P1–P11)** — start here for operators and leads:
 
 - **[`P1-P10.md`](P1-P10.md)** — roles, Trinity touchpoints, lead ownership, Studio entry points
+- **[`operator-first-time.md`](operator-first-time.md)** (P11) — first-week operator; use for doc/UAT reviews ([`NEWBIE-PERSONA-REVIEW.md`](../NEWBIE-PERSONA-REVIEW.md))
 - [`MANUAL.md`](../MANUAL.md) §11 — whole-pipeline “who does what”
 - [`reviewer/MANUAL.md`](../reviewer/MANUAL.md) §11 — Reviewer HTML audiences (maps to P1–P10)
 - [`The Creator/CREATOR-SKILLS-PERSONA-REVIEW.md`](../../The%20Creator/CREATOR-SKILLS-PERSONA-REVIEW.md) — historical consolidation (C-01–C-15)

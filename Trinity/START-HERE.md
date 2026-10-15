@@ -51,15 +51,18 @@ All pages below sync from git via `python3 Trinity/scripts/sync_confluence_from_
 
 ---
 
-## Five commands
+## Clone and five commands (first-day order)
 
 ```bash
-./Trinity/studio/scripts/start.sh
-./Trinity/scripts/install-trinity-skills.sh
+git clone https://github.com/marekwyszynskiappfire/docs.git DOCS && cd DOCS
+./Trinity/studio/scripts/start.sh          # Phase 0 — leave running
+./Trinity/studio/scripts/seed-demo.sh      # Phase 1 — demo, no Jira
+./Trinity/scripts/install-trinity-skills.sh # Phase 2 — then MCP per CURSOR-MCP-SETUP
 ./Trinity/scripts/pilot-preflight.sh
-./Trinity/studio/scripts/seed-demo.sh
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<portfolio>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-with-epic-keys>
 ```
+
+Narrative: [FIRST-RUN.md](FIRST-RUN.md). Doc review (persona Sam): [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md).
 
 ---
 

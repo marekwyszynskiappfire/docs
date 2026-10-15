@@ -19,9 +19,11 @@ An **AI-assisted QA pipeline**: **Reviewer** (requirement quality) → **Studio*
 ### What should I read first?
 
 1. [START-HERE.md](START-HERE.md) (or the wiki **Start here** page).  
-2. [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md) for setup gates.  
-3. [FIRST-RUN.md](FIRST-RUN.md) for phased walkthrough.  
+2. [FIRST-RUN.md](FIRST-RUN.md) Phases 0 → 3 (canonical tutorial order).  
+3. [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md) for the same steps as sign-off gates.  
 4. This FAQ when you hit a question.
+
+QA leads reviewing docs as a newcomer: [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md) and persona [operator-first-time.md](personas/operator-first-time.md).
 
 ### Is this only a pilot?
 

@@ -6,6 +6,8 @@
 
 **Time budget:** ~90 minutes first time (MCP auth and first portfolio scan dominate). Repeat runs: ~30–45 minutes per Epic batch.
 
+**Learning order (first day):** Follow [FIRST-RUN.md](FIRST-RUN.md) Phases **0 → 1 → 2 → 3** (Studio demo before MCP). Sections below use **gate numbers** for [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md) sign-off — same steps, grouped for checklist use.
+
 | Companion | Use when |
 |-----------|----------|
 | [FAQ](FAQ.md) | Quick answers — read before asking in chat |
@@ -49,13 +51,43 @@ Match Studio Importer and `Trinity/studio/.env` to your profile ([`studio/.env.e
 ### 1.1 Clone and open Cursor
 
 ```bash
-git clone <docs-repo-url> DOCS
+git clone https://github.com/marekwyszynskiappfire/docs.git DOCS
 cd DOCS
 ```
 
 **File → Open Folder** → `DOCS` (repo root).
 
-### 1.2 Install Trinity skills
+### 1.2 Start Studio
+
+```bash
+./Trinity/studio/scripts/start.sh
+```
+
+Verify: `curl -sf http://127.0.0.1:8765/api/health` · UI **http://127.0.0.1:5173**
+
+**Gate 1 (partial):** Health `ok` · Dashboard loads.
+
+---
+
+## 2. Demo path (~15 min, no MCP gather)
+
+Do this **before** MCP so you know where buttons live ([FIRST-RUN.md](FIRST-RUN.md) Phase 1).
+
+```bash
+./Trinity/studio/scripts/seed-demo.sh
+```
+
+Dashboard → **DEMO-4500** → Creator → import `Trinity/creator/samples/demo-story.suite.json` → Importer preview.
+
+**Gate 4:** Skim unit · import Creator batch · read Importer plan (execute not required).
+
+Nav: `Dashboard → Run → Unit → Creator → Importer → Statistics`
+
+---
+
+## 3. Wire Cursor (once per machine)
+
+### 3.1 Install Trinity skills
 
 ```bash
 ./Trinity/scripts/install-trinity-skills.sh
@@ -69,19 +101,9 @@ Symlinks: `~/.cursor/skills/trinity-reviewer`, `trinity-creator`, `trinity-impor
 | Creator | **Send to Creator** from approved unit |
 | Importer | Importer tab **Copy Cursor prompt** after export |
 
-### 1.3 Start Studio
+**Gate 1 (complete):** Skills linked · `./Trinity/scripts/pilot-preflight.sh` passes.
 
-```bash
-./Trinity/studio/scripts/start.sh
-```
-
-Verify: `curl -sf http://127.0.0.1:8765/api/health` · UI **http://127.0.0.1:5173**
-
-**Gate 1:** Skills linked · health `ok` · Dashboard loads.
-
----
-
-## 2. Cursor MCP (Atlassian)
+### 3.2 Cursor MCP (Atlassian)
 
 Follow **[CURSOR-MCP-SETUP.md](CURSOR-MCP-SETUP.md)** end to end.
 
@@ -94,9 +116,7 @@ Verify in Agent chat: `getAccessibleAtlassianResources` → expected site URL(s)
 
 **Gate 2:** MCP authorised · no grey tools in Cursor Settings → MCP.
 
----
-
-## 3. Studio `.env` (live Jira)
+### 3.3 Studio `.env` (live Jira)
 
 ```bash
 cp Trinity/studio/.env.example Trinity/studio/.env
@@ -108,25 +128,13 @@ Restart Studio after edits. Without `.env`, use **Copy JQL resolve prompt** ([PR
 
 ---
 
-## 4. Demo path (~15 min, no MCP gather)
-
-```bash
-./Trinity/studio/scripts/seed-demo.sh
-```
-
-Dashboard → **DEMO-4500** → Creator → demo suite → Importer preview.
-
-**Gate 4:** Approve unit · import Creator batch · read Importer plan.
-
-Nav: `Dashboard → Run → Unit → Creator → Importer → Statistics`
-
----
-
-## 5. Real Epic — end to end
+## 4. Real Epic — end to end
 
 1. **Reviewer configs** — portfolio JSON under `Trinity/reviewer/config/runs/`.
-2. **Prompt 1** — Copy Cursor prompt → Agent → `reviewer/runs/<portfolio>/<EPIC>/review-payload.json`.
-3. **Import** — `./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<portfolio>`.
+2. **Prompt 1** — Copy Cursor prompt → Agent → `reviewer/runs/.../<EPIC>/review-payload.json` (path in prompt footer).
+3. **Import** — pass the folder that **directly contains** `<EPIC>/` (often `Trinity/reviewer/runs/<portfolio_id>` or a dated subfolder under it):
+
+   `./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-with-epic-keys>`
 4. **Triage** — approve unit when ready ([MANUAL.md](MANUAL.md)).
 5. **Prompt 2** — Send to Creator → import batch → export for Importer.
 6. **Prompt 3** — Importer preview → Copy prompt → sandbox execute first ([GUIDE.md](GUIDE.md)).
