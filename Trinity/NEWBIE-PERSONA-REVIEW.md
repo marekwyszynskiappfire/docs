@@ -98,15 +98,19 @@
 
 ### P0 — before next external share
 
-1. **Human UAT** — one operator fills [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md); log issues on `trinity-support`.
-2. **Canonical clone URL** in START-HERE (linked from other docs).
-3. **Import folder rule** one sentence everywhere: *import the directory that directly contains `EPIC-KEY/review-payload.json`* (may be `runs/{portfolio_id}` or `runs/{portfolio_id}/{dated-run}`).
+1. **Human UAT** — one operator fills [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md); use [UAT-SESSION.md](UAT-SESSION.md) + [issue template](../.github/ISSUE_TEMPLATE/trinity-pilot-feedback.yml). **Still open.**
+2. **Canonical clone URL** — done (START-HERE, FIRST-RUN, GUIDE, OPERATOR-SETUP).
+3. **Import folder rule** — done (FAQ, MANUAL, PROMPTS, PIPELINE, runs README, etc.).
 
 ### P1 — quality
 
-4. Capture [screenshot set](docs/screenshots/README.md) (8 PNGs).
-5. Short Loom or deck clip: Phase 1 click-through (5 min).
-6. PROMPTS page: add **portfolio interview** pointer to Reviewer SKILL § (when agent asks questions).
+4. **Screenshots** — done in [`docs/screenshots/`](docs/screenshots/) (2026-10-15); wiki attachments manual.
+5. Short Loom or deck clip: Phase 1 click-through (5 min). **Still open.**
+6. **Portfolio interview** pointer — done in [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md) § Prompt 1.
+
+### Wiki
+
+7. **Newbie persona review** — [Confluence page](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3758587937/Trinity+Newbie+persona+review) + `page-map.json` (sync from git).
 
 ### P2 — GA
 

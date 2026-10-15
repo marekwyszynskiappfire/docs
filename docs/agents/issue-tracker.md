@@ -27,6 +27,10 @@ When set to `yes`, PRs run through the same labels and states as issues, using t
 
 GitHub shares one number space across issues and PRs, so a bare `#42` may be either: resolve with `gh pr view 42` and fall back to `gh issue view 42`.
 
+## Trinity pilot feedback
+
+Operators file friction from [UAT-SESSION.md](../../Trinity/UAT-SESSION.md) via **New issue** → template **Trinity pilot feedback** (label `trinity-support`). Path: `.github/ISSUE_TEMPLATE/trinity-pilot-feedback.yml`.
+
 ## When a skill says "publish to the issue tracker"
 
 Create a GitHub issue.

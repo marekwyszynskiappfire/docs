@@ -36,7 +36,7 @@ QA engineers, test architects, and automation leads running **Epic-scoped** revi
 Prefer the committed fixture: `Trinity/studio/fixtures/demo-reviewer-run` or `./Trinity/studio/scripts/seed-demo.sh`.
 
 ```bash
-git clone <docs-repo> && cd DOCS
+git clone https://github.com/marekwyszynskiappfire/docs.git DOCS && cd DOCS
 ./Trinity/scripts/install-trinity-skills.sh
 cd Trinity/studio/web && npm install && cd ../../..
 ./Trinity/studio/scripts/start.sh

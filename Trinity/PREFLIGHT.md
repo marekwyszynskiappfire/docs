@@ -15,7 +15,7 @@ Run once on a new machine before a portfolio review.
    Smoke: open **Personas** and **Reviewer configs**; save should write under `Trinity/personas/` and `Trinity/reviewer/config/runs/`.  
    Importer UI: [`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray) (project key selector, mapping, folder).
 6. **Import** —  
-   `./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<your-local-run>` after a Reviewer portfolio scan (runs are gitignored).
+   `./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>` after a Reviewer portfolio scan (runs are gitignored).
 7. **Pipeline** — skim [`PIPELINE.md`](PIPELINE.md); hands-on walkthrough: [`TESTING.md`](TESTING.md).
 8. **Optional Jira REST** (Studio scope resolve) — copy `Trinity/studio/.env.example` → `.env` with API token; otherwise use **Copy JQL resolve prompt** in Reviewer configs.
 9. **Optional Cursor cost** — enable [`.cursor/hooks.json`](../.cursor/hooks.json) (open repo root in Cursor); arm stages in Studio per [`CURSOR-COST.md`](CURSOR-COST.md). Set `CURSOR_ADMIN_API_KEY` in `.env` to backfill USD.

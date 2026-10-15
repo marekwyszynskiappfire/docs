@@ -63,6 +63,12 @@
       "git_path": "Trinity/MANUAL.md",
       "title": "Trinity — Operator manual",
       "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual"
+    },
+    {
+      "content_id": "3758587937",
+      "git_path": "Trinity/NEWBIE-PERSONA-REVIEW.md",
+      "title": "Trinity — Newbie persona review",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3758587937/Trinity+Newbie+persona+review"
     }
   ]
 }

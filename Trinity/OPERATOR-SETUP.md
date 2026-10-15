@@ -18,7 +18,7 @@
 ## Step 1 — Clone and open the repo
 
 ```bash
-git clone <your-docs-repo-url> DOCS
+git clone https://github.com/marekwyszynskiappfire/docs.git DOCS
 cd DOCS
 ```
 
@@ -131,7 +131,7 @@ For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Copy JQL reso
 
 1. Studio → **Reviewer configs** → **Copy Cursor prompt** for your portfolio.
 2. New Cursor chat → paste → run gather per skill.
-3. Outputs: `Trinity/reviewer/runs/<run-folder>/<EPIC-KEY>/review-payload.json`.
+3. Outputs: `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` (under `portfolio_id` and optionally a dated `portfolio_run_id` subfolder).
 
 **Rule:** folder name **must equal** the epic Jira key in the payload (`scope.value`). Import fails on mismatch.
 
@@ -144,7 +144,7 @@ Deep dive: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
 ## Step 10 — Import Reviewer run into Studio
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<your-run-folder>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
 Or Dashboard → **Import Reviewer run** → path to that folder.

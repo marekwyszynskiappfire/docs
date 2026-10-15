@@ -4,12 +4,13 @@ Portfolio and epic review outputs are **not committed** (real Jira keys and plan
 
 After a Reviewer scan, artifacts live here:
 
-`Trinity/reviewer/runs/{portfolio_run_id}/{EPIC_KEY}/review-payload.json`
+`Trinity/reviewer/runs/{portfolio_run_id}/{EPIC_KEY}/review-payload.json`  
+(sometimes `runs/{portfolio_id}/{dated-portfolio_run_id}/{EPIC_KEY}/` — same rule.)
 
-Import into Studio:
+Import into Studio — pass the directory that **directly contains** `{EPIC_KEY}/`:
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<your-run-folder>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-with-epic-keys>
 ```
 
 To prune old portfolio folders and pytest noise from Studio SQLite:

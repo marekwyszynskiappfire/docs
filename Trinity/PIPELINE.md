@@ -34,7 +34,7 @@ Outputs land under `Trinity/reviewer/runs/{portfolio_run_id}/` (per-epic payload
 ## 2. Import into Studio
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<portfolio-run-folder>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
 Dashboard lists the pipeline run. Open the run to review epics. For portfolio metrics, use top nav **Statistics** ([`METRICS.md`](METRICS.md)).

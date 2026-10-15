@@ -26,6 +26,8 @@ You stay in control: approve in Studio; type **PRODUCTION** before live Xray exe
 | **One-time machine setup** | [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md) + [CURSOR-MCP-SETUP.md](CURSOR-MCP-SETUP.md) | ~60 min |
 | **Real Epic** | [FIRST-RUN.md](FIRST-RUN.md) Phase 2–3 | 1–3 h |
 | **Checklist** | [OPERATOR-SETUP.md](OPERATOR-SETUP.md) | reference |
+| **UAT with QA lead** | [UAT-SESSION.md](UAT-SESSION.md) + [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md) | ~90 min |
+| **Doc review (Sam)** | [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md) | maintainers |
 | **Daily reference** | [MANUAL.md](MANUAL.md) | as needed |
 
 ---
@@ -46,6 +48,7 @@ All pages below sync from git via `python3 Trinity/scripts/sync_confluence_from_
 | [Credentials and Importer](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754492109/Trinity+Credentials+and+Importer) | `GUIDE.md` |
 | [Architecture](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture) | `ARCHITECTURE.md` |
 | [Operator manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual) | `MANUAL.md` |
+| [Newbie persona review](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3758587937/Trinity+Newbie+persona+review) | `NEWBIE-PERSONA-REVIEW.md` |
 
 **Hub (parent):** [Trinity — AI-assisted QA pipeline](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide)
 

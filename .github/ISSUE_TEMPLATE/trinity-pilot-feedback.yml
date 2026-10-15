@@ -1,0 +1,92 @@
+name: Trinity pilot feedback
+description: Friction or defect from operator UAT (newbie path)
+title: "[trinity-support] "
+labels:
+  - trinity-support
+body:
+  - type: markdown
+    value: |
+      Use after [OPERATOR-VALIDATION](https://github.com/marekwyszynskiappfire/docs/blob/main/Trinity/OPERATOR-VALIDATION.md) or any sandbox/production pilot.
+      Session script: [UAT-SESSION.md](https://github.com/marekwyszynskiappfire/docs/blob/main/Trinity/UAT-SESSION.md).
+  - type: input
+    id: operator
+    attributes:
+      label: Operator (optional)
+    validations:
+      required: false
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Environment
+      options:
+        - Sandbox
+        - Production
+        - Demo only (DEMO-4500)
+    validations:
+      required: true
+  - type: input
+    id: trinity_version
+    attributes:
+      label: Trinity VERSION
+      placeholder: output of cat Trinity/VERSION
+    validations:
+      required: false
+  - type: input
+    id: epic
+    attributes:
+      label: Epic / portfolio id
+      placeholder: ONE-12345 or q4-backlog
+    validations:
+      required: false
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Pipeline phase
+      options:
+        - Setup / Studio
+        - MCP / Cursor
+        - Reviewer (Prompt 1)
+        - Studio triage / approve
+        - Creator (Prompt 2)
+        - Importer (Prompt 3)
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - blocker
+        - major
+        - minor
+        - doc-only
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What you clicked or ran; include paths if relevant
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: false
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+    validations:
+      required: true
+  - type: textarea
+    id: doc_gap
+    attributes:
+      label: Doc gap (if any)
+      description: Which page misled you — START-HERE, FIRST-RUN, FAQ, etc.
+    validations:
+      required: false

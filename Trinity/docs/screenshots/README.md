@@ -40,6 +40,21 @@ Capture at **1280×800** or wider, light theme, no personal tokens visible in `.
 
 ---
 
-## Placeholder until captures exist
+## Status (2026-10-15)
 
-Docs use ASCII nav maps and Mermaid in [`ARCHITECTURE.md`](../../ARCHITECTURE.md). Missing PNGs do not block the unattended text path.
+Committed captures from Studio **0.2.0** (demo run `DEMO-4500`). Re-capture after major nav changes.
+
+| File | Status |
+|------|--------|
+| `nav-dashboard.png` | Done |
+| `dashboard-run-list.png` | Done (same view as nav-dashboard; runs table visible) |
+| `run-epic-table.png` | Done |
+| `unit-triage.png` | Done |
+| `reviewer-configs-prompt.png` | Done |
+| `creator-import.png` | Done |
+| `importer-plan.png` | Done |
+| `statistics-compare.png` | Done |
+
+**FIRST-RUN** embeds: see [Phase 1 screenshots](../../FIRST-RUN.md#11-load-demo-data).
+
+Confluence: attach these files to **First run** / **Operator onboarding** wiki pages (git does not auto-upload binaries).

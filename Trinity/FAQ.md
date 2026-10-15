@@ -148,12 +148,12 @@ Pick a run, then up to four more in dropdowns (Run 1 = baseline). [MANUAL.md](MA
 
 ### Where do Reviewer outputs go?
 
-`Trinity/reviewer/runs/<portfolio-id>/<EPIC-KEY>/` — gitignored; import into Studio after scan.
+`Trinity/reviewer/runs/.../<EPIC-KEY>/` — gitignored; import into Studio after scan. Pass the folder that **directly contains** `<EPIC-KEY>/` (may be `runs/<portfolio_id>` or a dated subfolder).
 
 ### How do I import a run?
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<portfolio-id>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
 Or Dashboard → import folder.

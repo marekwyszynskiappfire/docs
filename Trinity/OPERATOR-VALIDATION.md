@@ -2,7 +2,7 @@
 
 **Wiki:** [Operator onboarding](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3755311111/Trinity+Operator+onboarding) · **Prerequisite:** all gates in [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md).
 
-QA lead (P2) records that an operator completed the path **without live coaching**. Persona definition: [operator-first-time.md](personas/operator-first-time.md). Latest doc review: [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md).
+QA lead (P2) records that an operator completed the path **without live coaching**. Persona definition: [operator-first-time.md](personas/operator-first-time.md). Latest doc review: [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md). **Session script:** [UAT-SESSION.md](UAT-SESSION.md). **File friction:** [GitHub issue template](../.github/ISSUE_TEMPLATE/trinity-pilot-feedback.yml) (label `trinity-support`).
 
 | Field | Value |
 |-------|--------|

@@ -220,7 +220,7 @@ Trinity/reviewer/runs/<portfolio-run-id>/<EPIC-KEY>/review-payload.json
 ### 6.2 Import command
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<your-run-folder>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
 Or Dashboard → import path. Re-import creates new revisions; triage in `studio_qa` is per unit in SQLite.

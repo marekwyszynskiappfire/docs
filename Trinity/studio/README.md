@@ -35,7 +35,7 @@ STUDIO_FORCE=1 ./Trinity/studio/scripts/start.sh
 ## Import CLI
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<run-id>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
 Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:

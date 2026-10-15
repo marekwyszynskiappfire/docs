@@ -122,6 +122,10 @@ Second terminal, repo root:
 
 Refresh Studio **Dashboard** — you should see a pipeline run.
 
+![Studio nav and dashboard](../docs/screenshots/nav-dashboard.png)
+
+![Runs list on dashboard](../docs/screenshots/dashboard-run-list.png)
+
 ### 1.2 Dashboard → open the run
 
 1. Click the imported **pipeline run** row.
@@ -129,15 +133,21 @@ Refresh Studio **Dashboard** — you should see a pipeline run.
 
 ### 1.3 Unit page (review UI)
 
-1. Click **`DEMO-4500`**.
+1. Click **`DEMO-4500`** (or **Edit review** from the run page).
 2. Skim findings and questions (read-only practice).
 3. You do **not** need to triage for the demo; notice **Save draft**, **Approve & export for Creator**, **Send to Creator**, **Jira epic comment** panel.
+
+![Run page epic table](../docs/screenshots/run-epic-table.png)
+
+![Unit triage and approve actions](../docs/screenshots/unit-triage.png)
 
 ### 1.4 Creator tab
 
 1. Top nav → **Creator**.
 2. **Import** batch path: `Trinity/creator/samples/demo-story.suite.json`
 3. Open the new **creator run** → approve/reject a test → toggle **Fit for Xray import** (practice only).
+
+![Creator import batch](../docs/screenshots/creator-import.png)
 
 ### 1.5 Importer tab
 
@@ -146,7 +156,15 @@ Refresh Studio **Dashboard** — you should see a pipeline run.
 3. Click **Preview import plan** if you have a creator run linked — or skip if the form is empty.
 4. You are **not** executing Xray in Phase 1.
 
+![Importer plan form](../docs/screenshots/importer-plan.png)
+
 Optional: open top nav **Statistics** → **Single run** and pick the demo run — skim TC readiness and epic counts (sortable tables).
+
+![Statistics compare runs](../docs/screenshots/statistics-compare.png)
+
+**Reviewer configs (Prompt 1):** **Reviewer configs** → pick portfolio → **Copy Cursor prompt** (see [`PROMPTS-AND-INPUTS.md`](PROMPTS-AND-INPUTS.md)).
+
+![Reviewer configs and Copy Cursor prompt](../docs/screenshots/reviewer-configs-prompt.png)
 
 **Phase 1 done.** You know: Dashboard, run page, unit page, Creator, Importer, Statistics.
 

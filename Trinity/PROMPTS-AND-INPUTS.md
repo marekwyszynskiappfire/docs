@@ -12,7 +12,7 @@ Every **Copy prompt** / **Send to Creator** action in Trinity Studio is listed h
 
 | ID | Studio source | Cursor skill | You must provide | Primary outputs |
 |----|---------------|--------------|------------------|-----------------|
-| **1** | Reviewer configs → **Copy Cursor prompt** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access | `reviewer/runs/<portfolio>/<EPIC>/review-payload.json` (+ HTML) |
+| **1** | Reviewer configs → **Copy Cursor prompt** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access; may include **portfolio interview** | `reviewer/runs/.../<EPIC>/review-payload.json` (+ HTML) |
 | **1b** | Reviewer configs → **Copy JQL resolve prompt** | Agent (no skill) | JQL string; optional `JIRA_*` in Studio `.env` | Epic key list → paste into scope / run config |
 | **2** | Unit detail → **Send to Creator** | `trinity-creator` | Approved unit; `review_ref` path in prompt | `creator/artifacts/.../suite-payload.json` |
 | **3** | Importer → **Copy Cursor prompt** | `trinity-importer` | Exported `importer-payload.json`; mapping; instance; dry-run plan reviewed | Xray Tests, folders, Jira links |
@@ -35,7 +35,7 @@ Every **Copy prompt** / **Send to Creator** action in Trinity Studio is listed h
 | Product policies | `Trinity/reviewer/config/{product}.json` | Field maps, gates |
 | Personas | `Trinity/personas/*.md` | Linked from run config |
 | Jira + Confluence | MCP | [`CURSOR-MCP-SETUP.md`](CURSOR-MCP-SETUP.md) |
-| Output root | `Trinity/reviewer/runs/{portfolio_id}/` | Gitignored; one folder per Epic **key** |
+| Output root | `Trinity/reviewer/runs/{portfolio_run_id}/` | Gitignored; one folder per Epic **key**. Import path = directory that **directly contains** `{EPIC}/` (may be `runs/{portfolio_id}` or `runs/{portfolio_id}/{dated-run}`). |
 
 ### Outputs per Epic
 
@@ -51,10 +51,18 @@ Every **Copy prompt** / **Send to Creator** action in Trinity Studio is listed h
 - `scope.value` in payload matches that key.
 - `report.qa_planning_fit` present for Statistics readiness ([`METRICS.md`](METRICS.md)).
 
+### Portfolio interview (before gather)
+
+Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **interactive run configuration** interview when `config/runs/{portfolio_id}.json` is missing or scope changed. The agent will ask (in order): portfolio id, scope (JQL/keys/filter), pass type, product id, persona, child-scan mode, outputs, Creator handoff defaults, Jira comment policy.
+
+**Operator:** answer in chat; confirm saved path under `Trinity/reviewer/config/runs/`. Do not skip unless you already have a committed run config from QA lead. Full wizard: [`reviewer/SKILL.md` § Interactive run configuration](reviewer/SKILL.md#interactive-run-configuration-mandatory).
+
+**Return visit:** agent asks “Any changes to run configuration?” — say **no** to reuse scope.
+
 ### Next step
 
 ```bash
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<portfolio_id>
+./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
 ---
