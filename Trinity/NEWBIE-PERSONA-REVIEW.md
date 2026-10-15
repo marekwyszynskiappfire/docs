@@ -4,6 +4,8 @@
 **Persona:** [Sam (P11)](personas/operator-first-time.md) — Jira/Xray QA, first Cursor/git setup  
 **Method:** Walk docs in Sam’s reading order; run `./Trinity/scripts/pilot-preflight.sh`; smoke Studio API (`/api/health`); cross-check UI labels vs FIRST-RUN / MANUAL. **Not** a live human UAT (see [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md)).
 
+**Wider pilot (15–29 Oct 2026):** track human feedback in GitHub `trinity-support` + [PILOT-SHARE.md](PILOT-SHARE.md). Re-score this doc after the wave closes.
+
 ---
 
 ## Executive summary

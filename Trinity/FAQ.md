@@ -8,6 +8,10 @@ Answers are short on purpose. Follow links for procedures.
 
 ## Getting started
 
+### Pilot feedback (Oct 2026 wave)
+
+**Through 29 Oct 2026** we’re collecting feedback from a wider internal pilot. Start at [START-HERE.md](START-HERE.md) or the [wiki Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here). File issues: [Trinity pilot feedback](https://github.com/marekwyszynskiappfire/docs/issues/new?template=trinity-pilot-feedback.yml). Leads: [PILOT-SHARE.md](PILOT-SHARE.md).
+
 ### What is Trinity?
 
 An **AI-assisted QA pipeline**: **Reviewer** (requirement quality) → **Studio** (human triage) → **Creator** (journey tests) → **Importer** (Xray on Jira). Cursor runs the skills; Studio is the local workbench on your laptop.

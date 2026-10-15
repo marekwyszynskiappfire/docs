@@ -2,6 +2,8 @@
 
 **Share this link with your team:** [Trinity — Start here (Confluence)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here)
 
+**Pilot feedback window:** **15 Oct – 29 Oct 2026** — report friction via [Trinity pilot feedback](https://github.com/marekwyszynskiappfire/docs/issues/new?template=trinity-pilot-feedback.yml) (label `trinity-support`) or your program channel. Share pack for leads: [PILOT-SHARE.md](PILOT-SHARE.md).
+
 **Version:** `Trinity/VERSION` (currently **0.2.x**). You can run **real work** on **onboarded product lines**; org-wide GA is [PATH-TO-1.0.md](PATH-TO-1.0.md).
 
 ---

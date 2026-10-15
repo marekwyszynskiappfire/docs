@@ -2,6 +2,7 @@
 
 **For:** First-time operator ([Sam / P11](personas/operator-first-time.md))  
 **QA lead:** Runs Parts A–D in [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md)  
+**Pilot wave feedback deadline:** **2026-10-29** (see [PILOT-SHARE.md](PILOT-SHARE.md))  
 **Before start:** P2 provides sandbox Epic key, portfolio id (or empty for operator-created), Importer mapping path, Xray project key + folder.
 
 ---
