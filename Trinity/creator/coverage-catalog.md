@@ -29,14 +29,16 @@ Skip items only when requirements explicitly exclude them (note `N/A` with quote
 | **P2** | Medium | Standard regression when time allows | Degraded UX, workaround exists, secondary surfaces |
 | **P3** | Deferrable | Time-boxed releases only | Analytics, promo, cosmetic, low-traffic edge cases |
 
-**Priority mapping (Xray/Jira):**
+**Priority mapping (Xray/Jira) — CR-SCORE-01, canonical:**
 
-| execution_tier | Default `priority` field |
-|----------------|--------------------------|
-| P0 | Highest or High |
-| P1 | High |
-| P2 | Medium |
-| P3 | Low or Lowest |
+| Score total | execution_tier | `priority` field |
+|-------------|----------------|------------------|
+| 13–15 | P0 | Highest |
+| 10–12 | P1 | High |
+| 7–9 | P2 | Medium |
+| 3–6 | P3 | Low |
+
+Score = customer harm + likelihood + coverage criticality (each 1–5). `automation_value` does not change the tier.
 
 ---
 

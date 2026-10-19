@@ -41,18 +41,21 @@ These rules define how generated tests should read before QA triage. Golden **ex
 
 ---
 
-## 3. Execution tiers and priority
+## 3. Execution tiers, score, and priority (**CR-SCORE-01**)
 
-Every test requires `execution_tier` (P0–P3) — see [reference.md](../../test-case-creation/reference.md).
+Every test requires `priority_score`, `execution_tier` (P0–P3), and canonical `priority`. See [reference.md](../../reference.md).
 
-| execution_tier | Name | Default `priority` | Deferrable under time pressure? |
-|----------------|------|-------------------|--------------------------------|
-| **P0** | Critical | Highest / High | **Never** — data loss, security, core unusable |
-| **P1** | Mandatory | High | **No** — primary workflows |
-| **P2** | Medium | Medium | Optional — workaround exists |
-| **P3** | Deferrable | Low / Lowest | **Yes** — analytics, promo, cosmetic |
+**Score** = `customer_harm` + `likelihood` + `coverage_criticality` (each 1–5 → total 3–15).  
+`automation_value` (1–5) ranks automation backlog only; it does **not** change the gate tier.
 
-Also set `customer_impact` (one sentence) on every test.
+| Total | execution_tier | Canonical `priority` | Deferrable under time pressure? |
+|-------|----------------|----------------------|--------------------------------|
+| 13–15 | **P0** Critical | Highest | **Never** — data loss, security, core unusable |
+| 10–12 | **P1** Mandatory | High | **No** — primary workflows |
+| 7–9 | **P2** Medium | Medium | Optional — workaround exists |
+| 3–6 | **P3** Deferrable | Low | **Yes** — analytics, promo, cosmetic |
+
+Also set `customer_impact` (one sentence) and `priority_score.rationale` on every test. Do not invent a fourth mapping (no “Highest” on P1, no “Low” on P2).
 
 ---
 
@@ -125,7 +128,8 @@ Use lowercase kebab or area tags:
 | Testing Part 3 / out-of-scope items | Scope creep |
 | Atomic-only suite when catalog requires journeys | Misses cross-surface consistency |
 | Splitting create journey across 5 atomic tests | QA must reassemble; use one journey |
-| Missing `execution_tier` or `customer_impact` | QA cannot prioritize under time pressure |
+| Missing `execution_tier`, `priority_score`, or `customer_impact` | QA cannot prioritize under time pressure |
+| `priority` that does not match the tier mapping | Xray import disagrees with the release gate |
 | Missing `test_data_required` or `test_data_prerequisites` | QA cannot plan setup before execution |
 | P0 tests marked deferrable | Contradicts release gate policy |
 

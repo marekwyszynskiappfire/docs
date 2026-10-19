@@ -8,6 +8,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
+from priority_score import validate_priority_policy
+
 TRINITY_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = TRINITY_ROOT / "creator" / "schemas" / "TestCaseDraft.schema.json"
 
@@ -83,6 +85,7 @@ def validate_test_legacy(test: dict[str, Any]) -> list[str]:
             errors.append(f"step {i}: action is empty")
         if not step.get("expected_result", "").strip():
             errors.append(f"step {i}: expected_result is empty")
+    errors.extend(validate_priority_policy(test))
     return errors
 
 

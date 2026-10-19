@@ -2,6 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../api";
 import SortableDataTable from "../components/SortableDataTable";
+import {
+  TIER_PRIORITY,
+  buildPriorityScore,
+  scoreFromTier,
+  type PriorityScore,
+} from "../lib/priorityScore";
 
 type Step = { step: string; expected_result: string; test_data?: string };
 type PersonaNotes = {
@@ -60,6 +66,22 @@ export default function TestEditPage() {
     };
   };
 
+  const patchPriority = (next: Record<string, unknown>) => {
+    const score = next.priority_score as PriorityScore;
+    const tier = String(score?.derived_tier || next.execution_tier || "P1");
+    const deferrable = tier === "P3" ? true : tier === "P0" || tier === "P1" ? false : Boolean(next.deferrable);
+    setCaseObj({
+      ...next,
+      execution_tier: tier,
+      priority: TIER_PRIORITY[tier] ?? "Medium",
+      deferrable,
+      deferrable_rationale:
+        tier === "P3"
+          ? String(next.deferrable_rationale || "P3 / score ≤ 6: skip under time pressure after P0–P2 journeys pass.")
+          : next.deferrable_rationale,
+    });
+  };
+
   const updateStep = (idx: number, patch: Partial<Step>) => {
     if (!caseObj) return;
     const next = [...steps];
@@ -110,6 +132,35 @@ export default function TestEditPage() {
   if (!caseObj) return <p className="muted">Loading…</p>;
 
   const canMarkImport = reviewStatus === "approved";
+  const score = buildPriorityScore(
+    (caseObj.priority_score as Partial<PriorityScore>) ?? {},
+    String(caseObj.execution_tier ?? "P1")
+  );
+  const factorSelect = (
+    key: keyof Pick<
+      PriorityScore,
+      "customer_harm" | "likelihood" | "coverage_criticality" | "automation_value"
+    >,
+    label: string
+  ) => (
+    <label>
+      {label}
+      <select
+        value={String(score[key])}
+        onChange={(e) => {
+          const nextScore = buildPriorityScore(
+            { ...score, [key]: Number(e.target.value) },
+            String(caseObj.execution_tier ?? "P1")
+          );
+          patchPriority({ ...caseObj, priority_score: nextScore });
+        }}
+      >
+        {[1, 2, 3, 4, 5].map((n) => (
+          <option key={n} value={n}>{n}</option>
+        ))}
+      </select>
+    </label>
+  );
 
   return (
     <>
@@ -147,7 +198,15 @@ export default function TestEditPage() {
             Tier
             <select
               value={String(caseObj.execution_tier ?? "P1")}
-              onChange={(e) => setCaseObj({ ...caseObj, execution_tier: e.target.value })}
+              onChange={(e) => {
+                const tier = e.target.value;
+                const prev = (caseObj.priority_score as PriorityScore | undefined) ?? scoreFromTier(tier);
+                patchPriority({
+                  ...caseObj,
+                  execution_tier: tier,
+                  priority_score: scoreFromTier(tier, prev.rationale),
+                });
+              }}
             >
               {["P0", "P1", "P2", "P3"].map((t) => (
                 <option key={t} value={t}>{t}</option>
@@ -179,6 +238,46 @@ export default function TestEditPage() {
             </select>
           </label>
         </div>
+        <p className="muted" style={{ marginTop: "0.75rem" }}>
+          Priority <strong>{String(caseObj.priority ?? TIER_PRIORITY[score.derived_tier] ?? "High")}</strong>
+          {" · "}
+          Gate score <strong>{score.total}</strong>/15 (harm + likelihood + coverage)
+          {" · "}
+          derived tier {score.derived_tier}. Automation value does not change the gate.
+        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr",
+            gap: "0.75rem",
+          }}
+        >
+          {factorSelect("customer_harm", "Customer harm")}
+          {factorSelect("likelihood", "Likelihood")}
+          {factorSelect("coverage_criticality", "Coverage criticality")}
+          {factorSelect("automation_value", "Automation value")}
+        </div>
+        <label style={{ marginTop: "0.75rem", display: "block" }}>
+          Score rationale
+          <textarea
+            value={score.rationale}
+            onChange={(e) =>
+              patchPriority({
+                ...caseObj,
+                priority_score: { ...score, rationale: e.target.value },
+              })
+            }
+            rows={2}
+          />
+        </label>
+        <label style={{ marginTop: "0.75rem", display: "block" }}>
+          Customer impact
+          <textarea
+            value={String(caseObj.customer_impact ?? "")}
+            onChange={(e) => setCaseObj({ ...caseObj, customer_impact: e.target.value })}
+            rows={2}
+          />
+        </label>
         <label style={{ marginTop: "0.75rem", display: "block" }}>
           Automation blockers (one per line)
           <textarea

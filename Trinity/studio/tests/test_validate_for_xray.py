@@ -1,3 +1,4 @@
+from priority_score import apply_priority_fields
 from validate_for_xray import (
     deferrable_export_warnings,
     enrich_test_for_xray_import,
@@ -9,17 +10,20 @@ from validate_for_xray import (
 def _minimal_test(**overrides):
     base = {
         "title": "Sample",
+        "draft_id": "TC-000",
         "linked_requirement_keys": ["ONE-1"],
         "steps": [{"step": "Do", "expected_result": "See"}],
         "coverage_catalog_id": "AC-1",
         "execution_tier": "P1",
         "test_pattern": "journey",
         "role": "Admin",
-        "customer_impact": "High",
+        "customer_impact": "Primary workflow is blocked for planners if this fails.",
         "test_data_required": False,
         "test_data_prerequisites": "None",
     }
     base.update(overrides)
+    if "priority_score" not in overrides and "priority" not in overrides:
+        return apply_priority_fields(base)
     return base
 
 
@@ -45,13 +49,13 @@ def test_legacy_validate_passes_minimal():
 
 
 def test_deferrable_warning():
-    t = _minimal_test(deferrable=True, draft_id="TC-001")
+    t = _minimal_test(execution_tier="P3", draft_id="TC-001")
     warnings = deferrable_export_warnings([t])
     assert any("TC-001" in w for w in warnings)
 
 
 def test_export_preflight_includes_deferrable():
-    t = _minimal_test(deferrable=True, draft_id="TC-002")
+    t = _minimal_test(execution_tier="P3", draft_id="TC-002")
     payload = {"tests": [t]}
     warnings = export_preflight_warnings(payload)
     assert len(warnings) >= 1

@@ -165,7 +165,10 @@ def find_test(batch: dict[str, Any], draft_id: str) -> dict[str, Any]:
 
 
 def map_priority(test: dict[str, Any], config: dict[str, Any]) -> str:
-    priority = test.get("priority") or "Medium"
+    # Canonical CR-SCORE-01 mapping (keep in sync with Trinity/shared/priority_score.py)
+    tier_priority = {"P0": "Highest", "P1": "High", "P2": "Medium", "P3": "Low"}
+    tier = str(test.get("execution_tier") or "").strip()
+    priority = test.get("priority") or tier_priority.get(tier, "Medium")
     priority_map = config.get("defaults", {}).get("priority_map", {})
     return priority_map.get(priority, priority)
 

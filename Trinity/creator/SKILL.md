@@ -30,6 +30,7 @@ Summarize each persona in one line to the operator before drafting.
 | Resource | Path |
 |----------|------|
 | Batch schema | `{skill_root}/schemas/TestCaseDraft.schema.json` |
+| Priority scoring | `{trinity_root}/shared/priority_score.py` + `{skill_root}/scripts/score_priority.py` |
 | Product config | `{skill_root}/config/<product>.json` → `default.json` |
 | Golden root | `config.golden_root` (e.g. BigPicture → `golden/v2/filter-17844-bigpicture-manual`) |
 | Style rules | `config.assets.golden_style` or `golden/v1/style-rules.md` |
@@ -100,9 +101,10 @@ Policy from config: `release_slice_test_count_min/max`, `allow_atomic` (default 
 1. **Pre-flight** — Gate, readiness, fingerprint staleness vs live Jira. Read `policy.test_data_isolation` from product config (`shared_sandbox`, `dedicated_tenant`, `production_readonly`). If unset, Studio warns on **Send to Creator** — still document isolation in each test’s prerequisites (PQ-03).
 2. **Golden sampling (blocking)** — Run `scripts/sample_golden_references.py --golden-root … --keywords … --theme-file … --seed {run_id}-golden`. Read **all** selected tests. Announce `method`, `similarity_count`, `random_fill_count`, and TC keys. Fill `golden_sampling` + `golden_references[]`.
 3. **Plan suite** (Test Architect) — Propose **3–5** journey titles mapping to the matrix **and** golden title patterns; operator may adjust before full draft.
-4. **Draft journeys** — Write steps **in golden voice** (CR-GOLDEN-01) and **CR-STEP-01** (fully executable prose). Each test includes:
+4. **Draft journeys** — Write steps **in golden voice** (CR-GOLDEN-01) and **CR-STEP-01** (fully executable prose). Score every test (**CR-SCORE-01**) before writing the batch. Each test includes:
    - `test_pattern: journey` (required in `release_slice_e2e`)
    - Up to **15** steps; target the **depth band** of sampled golden tests; multi-surface flow (setup → action → verification across relevant UI/API)
+   - `priority_score` (harm, likelihood, coverage_criticality, automation_value) → `execution_tier` + canonical `priority` (**CR-SCORE-01**)
    - `automation_fit`, `automation_candidate`, `automation_blockers[]`
    - `persona_notes` for all three personas
    - `linked_requirement_keys`, `linked_ac_ids` / goals, `source_quotes` where possible
@@ -138,6 +140,7 @@ State explicitly: **“Import each `suite-payload.json` separately in Studio →
 | No invented secrets/URLs | Use config redaction patterns |
 | Test data isolation | Match `policy.test_data_isolation`; prerequisites must name tenant/user pool and forbid cross-worker clashes |
 | P3 | `deferrable: true` + `deferrable_rationale` |
+| CR-SCORE-01 | Required `priority_score`; tier from total (P0=13–15 … P3=3–6); `priority` mapping P0=Highest, P1=High, P2=Medium, P3=Low |
 | Count | **3–5** journeys in `release_slice_e2e` without operator approval to exceed |
 | Steps per journey | Up to **15**; prefer golden-like depth (often **>5** when samples are longer) — do not default every journey to five steps |
 | Golden | **CR-GOLDEN-01** — similarity-first **5–10** TCs; random only as fallback; `golden_sampling` + `golden_references[]` |

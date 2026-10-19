@@ -10,6 +10,10 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 CREATOR = REPO / "Trinity/creator"
+SHARED = REPO / "Trinity/shared"
+if str(SHARED) not in sys.path:
+    sys.path.insert(0, str(SHARED))
+from priority_score import apply_priority_fields, build_execution_plan
 GOLDEN_ROOT = CREATOR / "golden/v2/filter-17844-bigpicture-manual"
 REVIEW_BASE = REPO / "Trinity/reviewer/runs/q4-backlog"
 OUT_BASE = CREATOR / "artifacts/q4-backlog"
@@ -90,7 +94,6 @@ def journey(
         "test_data_required": True,
         "test_data_prerequisites": prereq,
         "test_type": "Manual",
-        "priority": {"P0": "Highest", "P1": "High", "P2": "Medium", "P3": "Low"}[tier],
         "preconditions": prereq,
         "automation_fit": fit,
         "automation_candidate": candidate,
@@ -109,7 +112,7 @@ def journey(
         t["deferrable_rationale"] = defer_rationale
     if linked_children:
         t["tags"].extend(linked_children)
-    return t
+    return apply_priority_fields(t)
 
 
 def ensure_min_steps(tests: list[dict], minimum: int = 6) -> None:
@@ -1311,6 +1314,7 @@ def main() -> int:
                 "uncovered_goals": [],
                 "warnings": warnings,
             },
+            "execution_plan": build_execution_plan(tests),
             "tests": tests,
         }
         if gate.get("blocks_test_generation") and gate_status == "BLOCKED":

@@ -108,9 +108,27 @@ Fixed trio for v1 (no Creator run-config CRUD yet):
 
 Record paths in batch `persona_files[]`.
 
-## Execution tiers, customer impact, test data
+## Execution tiers, scoring, customer impact, test data (**CR-SCORE-01**)
 
-Same semantics as legacy test-case-creation reference (P0–P3, `test_data_required`, deferrable rules). See tiers in `golden/v1/style-rules.md`.
+Scoring is **required** on every drafted test. Golden similarity scores only pick writing references; they do **not** set release priority.
+
+| Field | Rule |
+|-------|------|
+| `priority_score.customer_harm` | 1–5: who is harmed and how badly if this journey fails |
+| `priority_score.likelihood` | 1–5: chance of regression (new/changed code, complexity, known risk) |
+| `priority_score.coverage_criticality` | 1–5: how central this journey is to Epic ACs / the gate |
+| `priority_score.automation_value` | 1–5: regression ROI — **does not** change `execution_tier` |
+| `priority_score.total` | Sum of the three gate factors (3–15); must match the arithmetic |
+| `priority_score.derived_tier` | From total: **13–15 P0**, **10–12 P1**, **7–9 P2**, **3–6 P3** |
+| `priority_score.rationale` | Why these factor values were chosen |
+| `execution_tier` | **Must equal** `derived_tier` |
+| `priority` | Canonical only: P0→Highest, P1→High, P2→Medium, P3→Low |
+| P3 | `deferrable: true` + `deferrable_rationale` |
+| P0 / P1 | `deferrable` must not be true |
+
+Helper: `scripts/score_priority.py --payload suite-payload.json` (add `--in-place` to fill defaults from tier). Shared implementation: `Trinity/shared/priority_score.py`. Populate batch `execution_plan` from the resulting tiers.
+
+See also `golden/v1/style-rules.md` §3.
 
 ## Output filenames
 

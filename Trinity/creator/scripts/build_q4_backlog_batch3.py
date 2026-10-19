@@ -12,6 +12,10 @@ from typing import Any
 
 REPO = Path(__file__).resolve().parents[3]
 CREATOR = REPO / "Trinity" / "creator"
+SHARED = REPO / "Trinity" / "shared"
+if str(SHARED) not in sys.path:
+    sys.path.insert(0, str(SHARED))
+from priority_score import apply_priority_fields, build_execution_plan
 GOLDEN_ROOT = "Trinity/creator/golden/v2/filter-17844-bigpicture-manual"
 REVIEW_BASE = REPO / "Trinity" / "reviewer" / "runs" / "q4-backlog"
 OUT_BASE = CREATOR / "artifacts" / "q4-backlog"
@@ -81,7 +85,7 @@ def journey(
     tags: list[str] | None = None,
 ) -> dict[str, Any]:
     linked = [epic] + (child_keys[:2] if child_keys else [])
-    return {
+    t: dict[str, Any] = {
         "draft_id": draft_id,
         "title": title,
         "linked_requirement_keys": linked,
@@ -92,11 +96,9 @@ def journey(
         "role": role,
         "customer_impact": impact,
         "deferrable": tier == "P3",
-        "deferrable_rationale": "Safe to defer when release is documentation-only." if tier == "P3" else None,
         "test_data_required": True,
         "test_data_prerequisites": f"{ISOLATION} {prereq}",
         "test_type": "Manual",
-        "priority": "High" if tier in ("P0", "P1") else "Medium",
         "preconditions": prereq,
         "automation_fit": auto_fit,
         "automation_candidate": auto_fit in ("full", "partial"),
@@ -110,6 +112,9 @@ def journey(
         "tags": tags or ["journey", "bigpicture", "q4-backlog"],
         "source_quotes": quotes or [],
     }
+    if tier == "P3":
+        t["deferrable_rationale"] = "Safe to defer when release is documentation-only."
+    return apply_priority_fields(t)
 
 
 def load_golden(epic: str) -> dict[str, Any]:
@@ -291,6 +296,7 @@ def build_batch(epic: str) -> dict[str, Any]:
         "source_requirement_keys": [epic],
         "requirements_review_run_id": review.get("run_id"),
         "coverage_report": coverage_for(epic, review, tests, children),
+        "execution_plan": build_execution_plan(tests),
         "tests": tests,
         "validation": {
             "schema_valid": bool(tests) or epic == "ONE-381572",

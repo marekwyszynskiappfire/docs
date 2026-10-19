@@ -248,6 +248,7 @@ export default function CreatorRunPage() {
             },
             { id: "draft_id", header: "ID", getValue: (t) => t.draft_id },
             { id: "title", header: "Title", getValue: (t) => t.title },
+            { id: "tier", header: "Tier", getValue: (t) => t.execution_tier ?? "" },
             { id: "review", header: "Review", getValue: (t) => t.human_review_status },
             { id: "automation", header: "Automation", getValue: (t) => t.automation_fit },
             {

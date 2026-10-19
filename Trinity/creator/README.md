@@ -10,6 +10,7 @@ Test suite generation skill for the Trinity pipeline: **Reviewer** → **Creator
 | Personas | [`../personas/creator-*.md`](../personas/README.md) |
 | Product config | [`config/default.json`](config/default.json), [`config/bigpicture.json`](config/bigpicture.json) |
 | Schema | [`schemas/TestCaseDraft.schema.json`](schemas/TestCaseDraft.schema.json) |
+| Priority scoring | [`../shared/priority_score.py`](../shared/priority_score.py) — CR-SCORE-01; [`scripts/score_priority.py`](scripts/score_priority.py) |
 | Studio import | [`samples/demo-story.suite.json`](samples/demo-story.suite.json) · multi-epic: [`artifacts/README.md`](artifacts/README.md) |
 | Portfolio programs | [`config/portfolios/`](config/portfolios/) (e.g. Q4 backlog) |
 | Rule port | [`PORT-CHECKLIST.md`](PORT-CHECKLIST.md) (fill during Phase 1) |

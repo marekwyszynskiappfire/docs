@@ -5,9 +5,15 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
+
+SHARED = Path(__file__).resolve().parents[2] / "shared"
+if str(SHARED) not in sys.path:
+    sys.path.insert(0, str(SHARED))
+from priority_score import apply_priority_fields, build_execution_plan
 
 REPO = Path(__file__).resolve().parents[3]
 CREATOR = REPO / "Trinity/creator"
@@ -85,7 +91,6 @@ def base_test(
         "test_data_required": True,
         "test_data_prerequisites": prereq,
         "test_type": "Manual",
-        "priority": "High",
         "preconditions": pre,
         "automation_fit": fit,
         "automation_candidate": fit in ("full", "partial"),
@@ -98,7 +103,7 @@ def base_test(
         t["golden_reference_keys"] = golden_refs
     if defer and defer_rationale:
         t["deferrable_rationale"] = defer_rationale
-    return t
+    return apply_priority_fields(t)
 
 
 def upsell_suite(epic: str, feature_label: str, module_nav: str, try_cta: str) -> list[dict]:
@@ -1223,6 +1228,7 @@ def main() -> None:
             "source_requirement_keys": [epic],
             "requirements_review_run_id": review.get("run_id", ""),
             "coverage_report": coverage,
+            "execution_plan": build_execution_plan(tests),
             "tests": tests,
             "validation": {
                 "schema_valid": True,

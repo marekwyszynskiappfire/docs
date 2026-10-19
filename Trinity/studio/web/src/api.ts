@@ -214,6 +214,7 @@ export type CreatorTestRow = {
   id: string;
   draft_id: string;
   title: string;
+  execution_tier?: string | null;
   human_review_status: string;
   automation_fit?: string | null;
   automation_candidate?: number | null;

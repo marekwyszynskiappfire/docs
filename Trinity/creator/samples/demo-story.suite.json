@@ -125,6 +125,14 @@
     "DEMO-4522"
   ],
   "requirements_review_run_id": "2026-09-28-0031",
+  "execution_plan": {
+    "p0_critical": { "count": 0, "tests": [] },
+    "p1_mandatory": { "count": 2, "tests": ["TC-001", "TC-002"] },
+    "p2_medium": { "count": 0, "tests": [] },
+    "p3_deferrable": { "count": 0, "tests": [] },
+    "minimum_release_gate": "Run all P0 and P1 journeys before release.",
+    "time_boxed_release": "Skip P3; run P2 only if time remains after P0–P1."
+  },
   "coverage_report": {
     "uncovered_ac_ids": [],
     "uncovered_goals": [],
@@ -167,6 +175,15 @@
       "test_data_prerequisites": "Staging tenant with at least two OKR custom fields and sample OKR records.",
       "test_type": "Manual",
       "priority": "High",
+      "priority_score": {
+        "customer_harm": 4,
+        "likelihood": 3,
+        "coverage_criticality": 4,
+        "automation_value": 3,
+        "total": 11,
+        "derived_tier": "P1",
+        "rationale": "Primary admin audit/export workflow; AC-01 happy path. Harm is high for compliance, likelihood moderate on a stable settings surface."
+      },
       "preconditions": "User has OKR admin role; feature flag for CSV export enabled on staging.",
       "automation_fit": "partial",
       "automation_candidate": true,
@@ -228,6 +245,15 @@
       "test_data_prerequisites": "Standard user with access to OKR overview; at least one OKR visible; no admin rights.",
       "test_type": "Manual",
       "priority": "High",
+      "priority_score": {
+        "customer_harm": 5,
+        "likelihood": 3,
+        "coverage_criticality": 4,
+        "automation_value": 4,
+        "total": 12,
+        "derived_tier": "P1",
+        "rationale": "RBAC failure can leak or mutate global field config (harm 5). Core AC-02; total 12 stays P1 because the denied path is not the only release-blocking workflow."
+      },
       "preconditions": "Logged in as standard user without custom-field admin rights.",
       "automation_fit": "full",
       "automation_candidate": true,

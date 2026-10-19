@@ -61,10 +61,14 @@ def row_from_case(
     marked = bool(studio.get("marked_for_xray_import"))
     approved = review == "approved"
     tier = case.get("execution_tier") or ""
+    score = case.get("priority_score") if isinstance(case.get("priority_score"), dict) else {}
+    score_total = score.get("total", "")
     return {
         "draft_id": draft_id,
         "title": case.get("title") or draft_id,
         "execution_tier": tier,
+        "priority": case.get("priority") or "",
+        "priority_score_total": score_total,
         "test_pattern": case.get("test_pattern") or "",
         "test_type": case.get("test_type") or "",
         "human_review_status": review,
@@ -85,6 +89,8 @@ def row_from_case(
             "draft_id": draft_id,
             "title": case.get("title") or "",
             "execution_tier": tier,
+            "priority": case.get("priority") or "",
+            "priority_score_total": str(score_total).zfill(2) if score_total != "" else "",
             "test_pattern": case.get("test_pattern") or "",
             "human_review_status": review,
             "step_count": str(len(steps)).zfill(4),
@@ -146,6 +152,8 @@ def build_report_payload(
             {"key": "draft_id", "label": "ID"},
             {"key": "title", "label": "Title"},
             {"key": "execution_tier", "label": "Tier"},
+            {"key": "priority", "label": "Priority"},
+            {"key": "priority_score_total", "label": "Score"},
             {"key": "test_pattern", "label": "Pattern"},
             {"key": "human_review_status", "label": "Review"},
             {"key": "automation_fit", "label": "Automation"},

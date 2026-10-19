@@ -176,6 +176,8 @@
         "linked_requirement_keys",
         "steps",
         "execution_tier",
+        "priority",
+        "priority_score",
         "test_pattern",
         "role",
         "customer_impact",
@@ -235,7 +237,7 @@
         "execution_tier": {
           "type": "string",
           "enum": ["P0", "P1", "P2", "P3"],
-          "description": "P0=Critical, P1=Mandatory, P2=Medium, P3=Deferrable"
+          "description": "Derived from priority_score.total: P0=13–15, P1=10–12, P2=7–9, P3=3–6"
         },
         "test_pattern": {
           "type": "string",
@@ -276,7 +278,11 @@
         },
         "priority": {
           "type": "string",
-          "enum": ["Highest", "High", "Medium", "Low", "Lowest"]
+          "enum": ["Highest", "High", "Medium", "Low"],
+          "description": "Canonical Xray/Jira mapping: P0=Highest, P1=High, P2=Medium, P3=Low"
+        },
+        "priority_score": {
+          "$ref": "#/$defs/priority_score"
         },
         "steps": {
           "type": "array",
@@ -322,6 +328,123 @@
         "possible_duplicate_of": {
           "type": "string",
           "description": "Xray test key if dedup search found similar test"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "execution_tier": { "const": "P3" } },
+            "required": ["execution_tier"]
+          },
+          "then": {
+            "required": ["deferrable", "deferrable_rationale"],
+            "properties": {
+              "deferrable": { "const": true }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "execution_tier": { "enum": ["P0", "P1"] } },
+            "required": ["execution_tier"]
+          },
+          "then": {
+            "properties": {
+              "deferrable": { "const": false }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "execution_tier": { "const": "P0" } },
+            "required": ["execution_tier"]
+          },
+          "then": {
+            "properties": { "priority": { "const": "Highest" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "execution_tier": { "const": "P1" } },
+            "required": ["execution_tier"]
+          },
+          "then": {
+            "properties": { "priority": { "const": "High" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "execution_tier": { "const": "P2" } },
+            "required": ["execution_tier"]
+          },
+          "then": {
+            "properties": { "priority": { "const": "Medium" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "execution_tier": { "const": "P3" } },
+            "required": ["execution_tier"]
+          },
+          "then": {
+            "properties": { "priority": { "const": "Low" } }
+          }
+        }
+      ]
+    },
+    "priority_score": {
+      "type": "object",
+      "description": "CR-SCORE-01: gate score = harm + likelihood + coverage_criticality (3–15)",
+      "required": [
+        "customer_harm",
+        "likelihood",
+        "coverage_criticality",
+        "automation_value",
+        "total",
+        "derived_tier",
+        "rationale"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "customer_harm": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Who is harmed and how badly if this journey fails"
+        },
+        "likelihood": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "How likely a regression is (new/changed, complexity, known risk)"
+        },
+        "coverage_criticality": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "How central this journey is to Epic ACs / the release gate"
+        },
+        "automation_value": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Regression ROI; does not change execution_tier"
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 15,
+          "description": "customer_harm + likelihood + coverage_criticality"
+        },
+        "derived_tier": {
+          "type": "string",
+          "enum": ["P0", "P1", "P2", "P3"],
+          "description": "Must equal execution_tier: 13–15 P0, 10–12 P1, 7–9 P2, 3–6 P3"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Why these factor values were chosen"
         }
       }
     },

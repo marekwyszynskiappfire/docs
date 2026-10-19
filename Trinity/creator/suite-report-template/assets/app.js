@@ -93,6 +93,8 @@
       row.draft_id,
       row.title,
       row.execution_tier,
+      row.priority,
+      row.priority_score_total,
       row.test_pattern,
       row.human_review_status,
       row.automation_fit,
@@ -270,6 +272,8 @@
   <td><code>${escapeHtml(row.draft_id)}</code></td>
   <td>${escapeHtml(row.title)}</td>
   <td>${escapeHtml(row.execution_tier || "—")}</td>
+  <td>${escapeHtml(row.priority || "—")}</td>
+  <td>${escapeHtml(String(row.priority_score_total ?? "—"))}</td>
   <td>${escapeHtml(row.test_pattern || "—")}</td>
   <td>${escapeHtml(review)}</td>
   <td>${escapeHtml(auto)}</td>

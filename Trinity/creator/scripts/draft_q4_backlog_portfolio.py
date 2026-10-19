@@ -20,6 +20,10 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 CREATOR_ROOT = SCRIPT_DIR.parent
 REPO = CREATOR_ROOT.parent.parent
+SHARED = CREATOR_ROOT.parent / "shared"
+if str(SHARED) not in sys.path:
+    sys.path.insert(0, str(SHARED))
+from priority_score import apply_priority_fields, build_execution_plan
 REVIEW_RUN = REPO / "Trinity/reviewer/runs/q4-backlog"
 ARTIFACTS = CREATOR_ROOT / "artifacts/q4-backlog"
 GOLDEN_VERSION = "golden/v2/filter-17844-bigpicture-manual"
@@ -185,7 +189,6 @@ def build_tests(key: str, review: dict, step_count: int) -> list[dict]:
                     "policy.test_data_isolation=dedicated_tenant per bigpicture config."
                 ),
                 "test_type": "Manual",
-                "priority": "High" if tier == "P1" else "Medium",
                 "preconditions": "Feature enabled on staging; Reviewer handoff consumed for scope.",
                 "automation_fit": auto_fit,
                 "automation_candidate": auto_cand,
@@ -208,7 +211,7 @@ def build_tests(key: str, review: dict, step_count: int) -> list[dict]:
                 "source_quotes": [sanitize_step(summary[:200])],
             }
         )
-    return tests
+    return [apply_priority_fields(t) for t in tests]
 
 
 def coverage_matrix(review: dict, tests: list[dict]) -> dict:
@@ -325,6 +328,7 @@ def main() -> int:
             "source_requirement_keys": [key],
             "requirements_review_run_id": review.get("run_id", ""),
             "coverage_report": coverage_matrix(review, tests),
+            "execution_plan": build_execution_plan(tests),
             "tests": tests,
         }
         art_dir.mkdir(parents=True, exist_ok=True)

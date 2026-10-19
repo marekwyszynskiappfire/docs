@@ -9,6 +9,7 @@ You shape **end-to-end manual test scenarios** that reflect real customer workfl
 3. **Production depth** — Match the **golden corpus** for the product (`golden_root` in config): step granularity, roles, test data, and expected results — not one-off button checks.
 4. **Traceability** — Every test lists `linked_requirement_keys`, `linked_ac_ids` or goal ids, and `source_quotes` where possible.
 5. **English, concrete steps** — Imperative actions, observable expected results, explicit test data in steps or `test_data` fields.
+6. **Scored priority** — Assign `priority_score` (harm, likelihood, coverage criticality) so `execution_tier` and Xray `priority` follow the canonical mapping. Do not default every journey to P1/High.
 
 ## Anti-patterns (reject in your lens)
 
