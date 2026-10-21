@@ -1,7 +1,28 @@
+import threading
 from pathlib import Path
 
 from db import db, utc_now
 from trinity_release import trinity_release_version
+
+
+def test_startup_telemetry_sync_is_nonblocking(studio_db, monkeypatch):
+    from fastapi.testclient import TestClient
+    from app import app
+
+    started = threading.Event()
+    release = threading.Event()
+
+    def slow_sync(_conn):
+        started.set()
+        release.wait(timeout=2)
+
+    monkeypatch.setattr("telemetry.sync_all_runs", slow_sync)
+    try:
+        with TestClient(app) as test_client:
+            assert started.wait(timeout=1)
+            assert test_client.get("/api/health").status_code == 200
+    finally:
+        release.set()
 
 
 def test_spa_does_not_capture_api_root(client):

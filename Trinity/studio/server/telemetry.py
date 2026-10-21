@@ -276,6 +276,9 @@ def sync_all_runs(conn: Any) -> dict[str, Any]:
                 report_errors.append(
                     {"pipeline_run_id": run_id, "error": str(exc)[:300]}
                 )
+    # Release the SQLite write transaction before remote ingest. BigQuery can be
+    # slow or unavailable and must never hold up normal pipeline writes.
+    conn.commit()
     flush = flush_outbox(conn, limit=5000)
     return {
         "runs_seen": len(run_ids),
