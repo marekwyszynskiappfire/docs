@@ -79,6 +79,9 @@ export default function EpicAccordion({
             onError={onError}
           />
           {epic.creator_handoff && <HandoffLine epic={epic} />}
+          {(epic.creator_handoff || epic.creator_run_id) && (
+            <SuiteFileImport epic={epic} onChanged={onChanged} onError={onError} />
+          )}
           {epic.creator_run_id && (
             <EpicTests
               creatorRunId={epic.creator_run_id}
@@ -199,6 +202,55 @@ function EpicDepth({
         Using {effective.label}: {effective.summary}
       </span>
     </label>
+  );
+}
+
+function SuiteFileImport({
+  epic,
+  onChanged,
+  onError,
+}: {
+  epic: WorkspaceEpic;
+  onChanged: () => void;
+  onError: (message: string) => void;
+}) {
+  const [path, setPath] = useState(
+    epic.creator_handoff?.expected_path ?? `Trinity/creator/artifacts/${epic.jira_key}/suite-payload.json`
+  );
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState("");
+
+  const importFile = async () => {
+    setBusy(true);
+    setNote("");
+    try {
+      const result = await api.importBatch(path.trim());
+      setNote(`Imported ${result.tests_imported} test(s) into this run.`);
+      onChanged();
+    } catch (reason) {
+      onError(String(reason));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <details className="ws-suite-import">
+      <summary>Import a suite file</summary>
+      <p className="muted">
+        Studio watches the path in the Creator prompt. Use this when the suite was written somewhere else.
+      </p>
+      <label>
+        Suite file
+        <input value={path} onChange={(event) => setPath(event.target.value)} spellCheck={false} />
+      </label>
+      <div className="btn-row">
+        <button type="button" onClick={importFile} disabled={busy || !path.trim()}>
+          {busy ? "Importing…" : "Import suite"}
+        </button>
+      </div>
+      {note && <p className="ok-msg">{note}</p>}
+    </details>
   );
 }
 

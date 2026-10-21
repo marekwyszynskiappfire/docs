@@ -1836,12 +1836,16 @@ button.ws-test-trigger {
 }
 
 .ws-triage,
-.ws-reviewer-prompt {
+.ws-reviewer-prompt,
+.ws-suite-import,
+.ws-importer-prompt {
   margin-top: 0.75rem;
 }
 
 .ws-triage > summary,
-.ws-reviewer-prompt > summary {
+.ws-reviewer-prompt > summary,
+.ws-suite-import > summary,
+.ws-importer-prompt > summary {
   cursor: pointer;
   font-weight: 600;
 }

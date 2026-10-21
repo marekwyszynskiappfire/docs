@@ -283,7 +283,7 @@ Stay on the same workspace. When `suite-payload.json` appears, Studio imports it
 | 3 | Mark the approved tests for Xray import |
 | 4 | **Next step → Plan Xray import** |
 
-**More → Creator** is the recovery path: paste a suite path, or import a second Epic’s file by hand. One file per Epic.
+On the Epic, expand **Import a suite file** when the suite was written to a different path. One file per Epic.
 
 ### 3.6 Workspace — Xray plan
 
@@ -340,7 +340,7 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 | **Statistics** | Single-run E2E report; compare 2–5 runs (baseline = Run 1 dropdown) |
 | **More → Dashboard** | Import a folder by hand; open a run when the workspace URL was not printed |
 | **More → Reviewer configs** | Portfolio JSON; **Prompt #1** |
-| **More → Creator** | Paste a suite path when the workspace did not import it |
+| **More → Creator** | Creator run list, and a suite path the workspace Epic does not show |
 | **More → Importer** | Payload-path import, **Prompt #3**, persist Xray keys |
 | **Run page / unit page** | Bulk handoff, finding triage, Jira epic comments |
 

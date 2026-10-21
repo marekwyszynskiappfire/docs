@@ -61,7 +61,7 @@ Dashboard → import `Trinity/reviewer/runs/demo-local-test` → **Creator** →
 3. On the workspace, expand **Reviewer prompt** → **Copy Cursor prompt** → run **trinity-reviewer**. Before a workspace exists, copy that prompt from **More → Reviewer configs**. Open the workspace URL it prints.
 4. On the workspace, approve the review → **Copy Creator prompt** → run **trinity-creator**. Studio imports `suite-payload.json` when the file appears.
 5. Approve the tests on the workspace and mark the ones for Xray.
-6. **Plan Xray import** on the same page: instance, mapping, **project key**, folder → **Preview import plan** → **Write to Xray**. **More → Importer** is the path when you copy a Cursor prompt instead of writing from the workspace.
+6. **Plan Xray import** on the same page: instance, mapping, **project key**, folder → **Preview import plan** → **Write to Xray**. After the preview, **Importer Cursor prompt** copies the trinity-importer prompt. **More → Importer** is the full page.
 
 Hands-on checklist: [TESTING.md](TESTING.md).
 
@@ -234,11 +234,11 @@ Full checklist: [TESTING.md](TESTING.md).
 
 1. Set **Coverage depth** on the workspace. The copied Creator prompt carries that profile. Then run **trinity-creator** with `review_ref`, the Epic key, and `suite_mode: release_slice_e2e`.
 2. Output: e.g. `Trinity/creator/artifacts/{EPIC}/suite-payload.json`. The workspace imports it.
-3. Approve or reject each test. Tick **Send to Xray**, or **Approve selected** for the tests you ticked. **More → Creator** is the fallback for a pasted suite path and **Export for Importer**.
+3. Approve or reject each test. Tick **Send to Xray**, or **Approve selected** for the tests you ticked. On the Epic, expand **Import a suite file** when the suite was written to a different path.
 
 ### 5.4 Importer
 
-On the workspace, **Plan Xray import** uses the same fields. **Preview plans for N Epics** is a dry-run only. **Write to Xray** stays one Epic at a time. The full page:
+On the workspace, **Plan Xray import** uses the same fields. **Preview plans for N Epics** is a dry-run only. **Write to Xray** stays one Epic at a time. After a preview, **Importer Cursor prompt** copies the trinity-importer prompt. The full page:
 
 1. **More → Importer** (or **Open in Importer** from a Creator run).
 2. **Jira instance** — production vs sandbox.

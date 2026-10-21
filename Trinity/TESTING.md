@@ -116,7 +116,7 @@ After **Copy Creator prompt** on the workspace (or a hand-written prompt):
 3. Agent writes e.g.  
    `Trinity/creator/artifacts/{EPIC-KEY}/suite-payload.json`  
    (+ `suite-report.md`).
-4. The workspace imports that file. **More → Creator** can import the path when it does not.
+4. The workspace imports that file. On the Epic, expand **Import a suite file** when the path is different.
 5. Complete operator review (section 2c).
 
 **Offline check (no agent):** use the committed demo batch only (step 2c).

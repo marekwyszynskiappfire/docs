@@ -188,7 +188,7 @@ Default **3–5 E2E journey** tests (not exhaustive regression). Edit/reject in 
 
 ### Where is the Creator batch file?
 
-Under `Trinity/creator/artifacts/<batch>/suite-payload.json` — path is in the prompt. The workspace imports that file when it appears. **More → Creator** is the fallback.
+Under `Trinity/creator/artifacts/<batch>/suite-payload.json` — path is in the prompt. The workspace imports that file when it appears. On the Epic, **Import a suite file** is the fallback.
 
 ---
 
@@ -223,7 +223,7 @@ Always **Preview import plan** first. Execute only in sandbox until validated; p
 | 1 | Workspace → Reviewer prompt → Copy Cursor prompt | `review-payload.json` |
 | 1b | Copy JQL resolve prompt (optional) | Epic key list |
 | 2 | Workspace → Copy Creator prompt | `suite-payload.json` |
-| 3 | Workspace → Plan Xray import, or More → Importer → Copy Cursor prompt | Xray Tests |
+| 3 | Workspace → Plan Xray import → Importer Cursor prompt | Xray Tests |
 
 Detail: [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
 

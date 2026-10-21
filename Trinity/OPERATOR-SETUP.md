@@ -205,7 +205,7 @@ Detail: [`MANUAL.md`](MANUAL.md) §8.
 1. Paste the workspace Creator prompt into Cursor → run **trinity-creator**. An Epic that is not testable yet cannot be drafted.
 2. Stay on the workspace. Studio imports `suite-payload.json` when the file appears. **Check for the file now** if the card is still waiting.
 3. Approve or reject each test. A rejection needs a reason. Tick **Send to Xray**, or **Approve selected** for the tests you ticked.
-4. **More → Creator** is the fallback: paste the suite path, then **Export for Importer**.
+4. On the Epic, expand **Import a suite file** when the suite was written to a different path. **More → Creator** remains the run list and **Export for Importer**.
 
 Detail: [`FIRST-RUN.md`](FIRST-RUN.md) §3.4–3.5.
 

@@ -330,6 +330,31 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
           <button type="button" onClick={execute} disabled={!plan.credentials.execute_ready || executing}>
             {executing ? "Writing…" : "Write to Xray"}
           </button>
+          {plan.cursor_prompt && (
+            <details className="ws-importer-prompt">
+              <summary>Importer Cursor prompt</summary>
+              <p className="muted">
+                Paste this into a new Cursor chat when you want trinity-importer to write, instead of Write to Xray here.
+              </p>
+              <div className="btn-row">
+                <button
+                  type="button"
+                  className="secondary"
+                  onClick={async () => {
+                    try {
+                      await navigator.clipboard.writeText(plan.cursor_prompt ?? "");
+                      setNote("Importer prompt copied. Paste it into a new Cursor chat.");
+                    } catch {
+                      setNote("Copy failed. Select the prompt text below.");
+                    }
+                  }}
+                >
+                  Copy Cursor prompt
+                </button>
+              </div>
+              <pre className="prompt-pre">{plan.cursor_prompt}</pre>
+            </details>
+          )}
         </div>
       )}
     </section>
