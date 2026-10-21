@@ -25,7 +25,7 @@ def test_epic_key_from_payload_demo_fixture():
     assert epic_key_from_payload(payload) == "DEMO-4500"
 
 
-def test_import_rejects_folder_epic_mismatch(tmp_path: Path):
+def test_import_rejects_folder_epic_mismatch(studio_db, tmp_path: Path):
     run = tmp_path / "run"
     wrong = run / "ONE-90001"
     wrong.mkdir(parents=True)
