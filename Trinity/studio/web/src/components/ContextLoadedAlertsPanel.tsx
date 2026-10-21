@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { api } from "../api";
+import { api, type PipelineRunStatistics } from "../api";
 import { groupContextLoadedAlertsByRun, type ContextLoadedAlert } from "../lib/contextLoadedAlerts";
 import { SOURCE_STATUS_LABEL } from "../types/review-payload";
 import JiraKeyLink from "./JiraKeyLink";
@@ -30,112 +30,162 @@ function contextStatusLabel(status: string): string {
   return status;
 }
 
-export default function ContextLoadedAlertsPanel() {
+function AlertTable({ alerts }: { alerts: Alert[] }) {
+  return (
+    <SortableDataTable
+      className="data child-table context-alerts-table"
+      rows={alerts}
+      rowKey={(alert) => `${alert.unit_id}-${alert.source}-${alert.status}`}
+      defaultSort={{ columnId: "jira_key", dir: "asc" }}
+      columns={[
+        {
+          id: "jira_key",
+          header: "Epic",
+          getValue: (alert) => alert.jira_key,
+          render: (alert) => <JiraKeyLink issueKey={alert.jira_key} />,
+        },
+        { id: "source", header: "Source", getValue: (alert) => alert.source },
+        {
+          id: "status",
+          header: "Status",
+          getValue: (alert) => alert.status,
+          render: (alert) => (
+            <span className={`status-pill ${contextStatusPillClass(alert.status)}`}>
+              {contextStatusLabel(alert.status)}
+            </span>
+          ),
+        },
+        {
+          id: "detail",
+          header: "Detail",
+          getValue: (alert) => alert.detail,
+          cellClassName: "muted",
+        },
+      ]}
+    />
+  );
+}
+
+type Props = {
+  /** When set, the panel shows this run’s sources and readiness on the same screen. */
+  runId?: string;
+};
+
+export default function ContextLoadedAlertsPanel({ runId }: Props) {
   const [data, setData] = useState<{ alert_count: number; alerts: Alert[] } | null>(null);
-  /** Per-run expand state — do not use controlled `open={bool}` without onToggle (breaks <details>). */
-  const [expandedRuns, setExpandedRuns] = useState<Record<string, boolean>>({});
+  const [stats, setStats] = useState<PipelineRunStatistics | null>(null);
 
   useEffect(() => {
     api.contextLoadedAlerts().then(setData).catch(() => setData(null));
   }, []);
 
-  const alerts = data?.alerts ?? [];
-  const runGroups = useMemo(() => groupContextLoadedAlertsByRun(alerts), [alerts]);
-
   useEffect(() => {
-    if (!runGroups.length) return;
-    setExpandedRuns((prev) => {
-      const next = { ...prev };
-      runGroups.forEach((g, index) => {
-        if (next[g.pipeline_run_id] === undefined) {
-          next[g.pipeline_run_id] = runGroups.length === 1 || index === 0;
-        }
-      });
-      return next;
-    });
-  }, [runGroups]);
+    if (!runId) {
+      setStats(null);
+      return;
+    }
+    api
+      .runStatistics(runId)
+      .then(setStats)
+      .catch(() => setStats(null));
+  }, [runId]);
 
-  if (!data || data.alert_count === 0) {
-    return (
-      <div className="panel context-alerts-panel">
-        <h3 style={{ marginTop: 0 }}>Data sources (P10)</h3>
-        <p className="muted" style={{ marginBottom: 0 }}>
-          No failed or unavailable <code>context_loaded</code> entries in latest epic payloads.
-        </p>
-      </div>
-    );
-  }
+  const alerts = useMemo(
+    () => (data?.alerts ?? []).filter((alert) => !runId || alert.pipeline_run_id === runId),
+    [data, runId]
+  );
+  const runGroups = useMemo(() => groupContextLoadedAlertsByRun(alerts), [alerts]);
+  const scopedGroup = runId ? runGroups[0] : undefined;
+  const failed = alerts.filter((alert) => alert.status === "failed").length;
+  const unavailable = alerts.filter((alert) => alert.status === "unavailable").length;
+  const summary = stats?.summary;
 
   return (
-    <div className="panel context-alerts-panel">
-      <h3 style={{ marginTop: 0 }}>Data sources needing attention</h3>
-      <p className="muted context-alerts-lead">
-        {data.alert_count} issue(s) across {runGroups.length} run(s) — click column headers to sort.
-      </p>
-      <div className="context-alerts-runs">
-        {runGroups.map((group) => (
-          <details
-            key={group.pipeline_run_id}
-            className="context-alerts-run"
-            open={expandedRuns[group.pipeline_run_id] ?? false}
-            onToggle={(e) => {
-              const open = e.currentTarget.open;
-              setExpandedRuns((prev) => ({ ...prev, [group.pipeline_run_id]: open }));
-            }}
-          >
-            <summary className="context-alerts-run-summary">
-              <Link
-                to={`/runs/${group.pipeline_run_id}`}
-                className="context-alerts-run-link"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {group.run_label}
-              </Link>
-              <span className="muted context-alerts-run-meta">
-                {group.alerts.length} issue{group.alerts.length === 1 ? "" : "s"} ·{" "}
-                {group.epicKeys.length} epic{group.epicKeys.length === 1 ? "" : "s"}
-              </span>
-            </summary>
-            <SortableDataTable
-              className="data child-table context-alerts-table"
-              rows={group.alerts}
-              rowKey={(a) => `${a.unit_id}-${a.source}-${a.status}`}
-              defaultSort={{ columnId: "jira_key", dir: "asc" }}
-              columns={[
-                {
-                  id: "jira_key",
-                  header: "Epic",
-                  getValue: (a) => a.jira_key,
-                  render: (a) => (
-                    <>
-                      <JiraKeyLink issueKey={a.jira_key} />
-                      {" · "}
-                      <Link to={`/units/${a.unit_id}`}>Studio</Link>
-                    </>
-                  ),
-                },
-                { id: "source", header: "Source", getValue: (a) => a.source },
-                {
-                  id: "status",
-                  header: "Status",
-                  getValue: (a) => a.status,
-                  render: (a) => (
-                    <span className={`status-pill ${contextStatusPillClass(a.status)}`}>
-                      {contextStatusLabel(a.status)}
-                    </span>
-                  ),
-                },
-                {
-                  id: "detail",
-                  header: "Detail",
-                  getValue: (a) => a.detail,
-                  cellClassName: "muted",
-                },
-              ]}
-            />
-          </details>
-        ))}
-      </div>
-    </div>
+    <details className="panel context-alerts-panel">
+      <summary className="context-alerts-summary">
+        <span>Data sources needing attention</span>
+        <span className="status-pill pill-failed">{failed} could not read</span>
+        <span className="status-pill pill-unavailable">{unavailable} unavailable</span>
+        {summary && (
+          <>
+            <span className="stat-chip stat-chip--ready">{summary.epics_tc_creation_ready ?? 0} ready</span>
+            <span className="stat-chip stat-chip--reservations">
+              {summary.epics_tc_creation_ready_with_reservations ?? 0} with reservations
+            </span>
+            <span className="stat-chip stat-chip--warn">
+              {summary.epics_tc_creation_not_ready ?? summary.epics_not_ready_for_test_design} not ready
+            </span>
+          </>
+        )}
+      </summary>
+      {summary && (
+        <div className="stat-grid stat-grid--readiness context-alerts-stats">
+          <div className="stat-card stat-card--ready">
+            <div className="label">Ready for TC creation</div>
+            <div className="value">{summary.epics_tc_creation_ready ?? 0}</div>
+          </div>
+          <div className="stat-card stat-card--reservations">
+            <div className="label">Ready with reservations</div>
+            <div className="value">{summary.epics_tc_creation_ready_with_reservations ?? 0}</div>
+          </div>
+          <div className="stat-card stat-card--warn">
+            <div className="label">Not ready for TC creation</div>
+            <div className="value">
+              {summary.epics_tc_creation_not_ready ?? summary.epics_not_ready_for_test_design}
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="label">Epics reviewed</div>
+            <div className="value">{summary.epics_reviewed}</div>
+          </div>
+          <div className="stat-card">
+            <div className="label">Open findings</div>
+            <div className="value">{summary.issues_spotted_findings_open}</div>
+          </div>
+          <div className="stat-card">
+            <div className="label">Tests drafted</div>
+            <div className="value">{summary.test_cases_drafted_total}</div>
+          </div>
+          <div className="stat-card">
+            <div className="label">Sent to import</div>
+            <div className="value">{summary.test_cases_sent_to_import_total}</div>
+          </div>
+          <div className="stat-card">
+            <div className="label">In Xray</div>
+            <div className="value">{summary.test_cases_imported_to_xray_total}</div>
+          </div>
+        </div>
+      )}
+      {runGroups.length === 0 ? (
+        <p className="muted" style={{ marginBottom: 0 }}>
+          No failed or unavailable sources in {runId ? "this run" : "the latest epic payloads"}.
+        </p>
+      ) : scopedGroup ? (
+        <AlertTable alerts={scopedGroup.alerts} />
+      ) : (
+        <div className="context-alerts-runs">
+          {runGroups.map((group) => (
+            <details key={group.pipeline_run_id} className="context-alerts-run">
+              <summary className="context-alerts-run-summary">
+                <Link
+                  to={`/workspace/${group.pipeline_run_id}`}
+                  className="context-alerts-run-link"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  {group.run_label}
+                </Link>
+                <span className="status-pill pill-failed">
+                  {group.alerts.filter((alert) => alert.status === "failed").length} could not read
+                </span>
+                <span className="status-pill pill-unavailable">
+                  {group.alerts.filter((alert) => alert.status === "unavailable").length} unavailable
+                </span>
+              </summary>
+              <AlertTable alerts={group.alerts} />
+            </details>
+          ))}
+        </div>
+      )}
+    </details>
   );
 }

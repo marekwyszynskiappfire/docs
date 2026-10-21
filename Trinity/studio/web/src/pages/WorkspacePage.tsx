@@ -3,6 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { api, CoverageProfileId, WorkspaceSummary } from "../api";
 import EpicAccordion from "../components/workspace/EpicAccordion";
 import CoverageDepthControl from "../components/workspace/CoverageDepthControl";
+import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import WorkspaceImportPanel from "../components/workspace/WorkspaceImportPanel";
 import NextActionCard from "../components/workspace/NextActionCard";
 import ProcessHelp from "../components/workspace/ProcessHelp";
@@ -235,6 +236,7 @@ export default function WorkspacePage() {
         </button>
       </div>
       <WorkspaceStepper stages={workspace.stages} />
+      <ContextLoadedAlertsPanel runId={runId} />
       <CoverageDepthControl
         profiles={workspace.coverage_profiles}
         value={workspace.coverage_profile}

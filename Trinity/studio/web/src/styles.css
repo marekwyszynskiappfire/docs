@@ -141,6 +141,54 @@ header.app-header nav.app-nav {
   margin-bottom: 0.75rem;
 }
 
+.context-alerts-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.context-alerts-summary::-webkit-details-marker {
+  display: none;
+}
+
+.context-alerts-summary::before {
+  content: "▸";
+  color: var(--muted);
+}
+
+.context-alerts-panel[open] > .context-alerts-summary::before {
+  content: "▾";
+}
+
+.context-alerts-stats {
+  margin-top: 0.85rem;
+}
+
+.stat-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+}
+
+.stat-chip--ready {
+  background: var(--badge-ok-bg);
+  color: var(--ok);
+}
+
+.stat-chip--reservations {
+  background: var(--badge-med-bg);
+  color: var(--warn);
+}
+
+.stat-chip--warn {
+  background: var(--dec-invalid-bg);
+  color: var(--danger);
+}
+
 .context-alerts-runs {
   display: flex;
   flex-direction: column;
