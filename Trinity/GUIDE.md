@@ -58,10 +58,10 @@ Dashboard → import `Trinity/reviewer/runs/demo-local-test` → **Creator** →
 
 1. Copy env files — see [§3 Credentials](#3-credentials-setup) below.
 2. [PREFLIGHT.md](PREFLIGHT.md) — MCP + `render_report.py` smoke.
-3. On the workspace list, open **New portfolio**, save it, and **Copy Reviewer prompt**. After a workspace exists, expand **Reviewer prompt** → **Copy Cursor prompt**. Run **trinity-reviewer** and open the workspace URL it prints.
-4. On the workspace, approve the review → **Copy Creator prompt** → run **trinity-creator**. Studio imports `suite-payload.json` when the file appears.
+3. On the workspace list, open **New portfolio**, save it, and **Run Reviewer in Cursor**. After a workspace exists, use the same action under **Reviewer prompt**. Open the workspace URL the agent prints.
+4. On the workspace, approve the review → prepare the Creator handoff → **Run in Cursor**. Studio imports `suite-payload.json` when the file appears.
 5. Approve the tests on the workspace and mark the ones for Xray.
-6. **Plan Xray import** on the same page: instance, mapping, **project key**, folder → **Preview import plan** → **Write to Xray**. After the preview, **Importer Cursor prompt** copies the trinity-importer prompt. **More → Importer** is the full page.
+6. **Plan Xray import** on the same page: instance, mapping, **project key**, folder → **Preview import plan** → **Write to Xray** or **Run Importer in Cursor**. **Copy prompt** is fallback. **More → Importer** is the full page.
 
 Hands-on checklist: [TESTING.md](TESTING.md).
 
@@ -219,15 +219,15 @@ Full checklist: [TESTING.md](TESTING.md).
 
 ### 5.1 Reviewer
 
-1. On the workspace list, open **New portfolio**, save it, and **Copy Reviewer prompt**. On an existing workspace, expand **Portfolio** to change scope, persona, and pass type, then expand **Reviewer prompt** → **Copy Cursor prompt**.
-2. Run **trinity-reviewer** in Cursor.
+1. On the workspace list, open **New portfolio**, save it, and **Run Reviewer in Cursor**. On an existing workspace, expand **Portfolio** to change scope, persona, and pass type, then use the same action under **Reviewer prompt**.
+2. Watch the persisted agent status. Use **Copy prompt** only as fallback.
 3. Outputs: `Trinity/reviewer/runs/{portfolio_run_id}/{EPIC}/review-payload.json`.
 
 ### 5.2 Studio — review
 
 1. Open the workspace URL the Reviewer prints. If it did not, expand **Import a review folder** on the workspace (or the workspace list) and open the imported run.
-2. Read the verdict. **Next step → Approve** when it is right. **Next step → Copy Creator prompt**.
-3. When several Epics are approved, **Prepare Creator prompts** then **Copy Creator prompts**.
+2. Read the verdict. **Next step → Approve** when it is right. Prepare the Creator handoff, then **Run in Cursor**.
+3. When several Epics are approved, prepare and launch each stored Creator handoff.
 4. Open the Epic and expand **Findings and Jira comment** to triage findings and draft the Jira comment. Save the draft before previewing the comment. The same panel is on the Epic’s own page if you want it full screen.
 
 ### 5.3 Creator
@@ -239,14 +239,14 @@ Full checklist: [TESTING.md](TESTING.md).
 
 ### 5.4 Importer
 
-On the workspace, **Plan Xray import** uses the same fields. **Preview plans for N Epics** is a dry-run only. **Write to Xray** stays one Epic at a time. After a preview, **Importer Cursor prompt** copies the trinity-importer prompt. When Cursor writes the tests, expand **Record Xray keys** and point it at `xray-import-report.json`. The full page:
+On the workspace, **Plan Xray import** uses the same fields. **Preview plans for N Epics** is a dry-run only. **Write to Xray** and **Run Importer in Cursor** stay one Epic at a time. Studio recomputes the safe plan before launch. When Cursor writes the tests, expand **Record Xray keys** and point it at `xray-import-report.json`. The full page:
 
 1. **More → Importer** (or **Open in Importer** from a Creator run).
 2. **Jira instance** — production vs sandbox.
 3. **Mapping file** — field IDs, labels, link types; default project key (often `TC`).
 4. **Project key** — where Jira **Test** issues are created (see [Getting Started — project selector](#importer-project-selector-quick-reference) and §6).
 5. **Test Repository folder** (+ **Create folder** if needed; requires `project.id` in mapping).
-6. **Preview import plan** → **Copy Cursor prompt** → run **trinity-importer** execute (or CLI in prompt).
+6. **Preview import plan** → **Run Importer in Cursor** (or **Copy prompt** fallback).
 
 CLI reference: [importer/README.md](importer/README.md).
 

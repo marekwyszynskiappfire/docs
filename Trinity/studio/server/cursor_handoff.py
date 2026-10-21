@@ -1,7 +1,8 @@
-"""Persisted Cursor cooperation state.
+"""Persisted Cursor handoffs and expected output state.
 
-Studio records the prompt and expected files. It does not launch Cursor.
-A missing file while status is awaiting_cursor is waiting, not a failure.
+Studio can launch a stored handoff through the local Cursor SDK or let the
+operator copy it as a recovery path. A missing file while status is
+awaiting_cursor is waiting, not a failure.
 """
 
 from __future__ import annotations

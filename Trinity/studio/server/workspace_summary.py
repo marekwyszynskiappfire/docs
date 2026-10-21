@@ -147,7 +147,7 @@ def _action_for(epic: dict[str, Any], workspace_path: str) -> dict[str, Any]:
                 "completion_signal": f"{key} lists tests for the new coverage depth.",
                 "primary": {
                     "kind": "copy_prompt",
-                    "label": "Copy Creator prompt",
+                    "label": "Run Creator in Cursor",
                     "handoff_id": handoff["id"],
                 },
                 "cursor_prompt": _prompt(handoff),
@@ -172,14 +172,14 @@ def _action_for(epic: dict[str, Any], workspace_path: str) -> dict[str, Any]:
                 "completion_signal": "Studio imports the corrected file automatically.",
                 "primary": {
                     "kind": "copy_prompt",
-                    "label": "Copy Creator prompt",
+                    "label": "Retry Creator in Cursor",
                     "handoff_id": handoff["id"],
                 },
                 "cursor_prompt": _prompt(handoff),
             }
         return {
             **base,
-            "title": f"Paste the Creator prompt for {key} into Cursor",
+            "title": f"Run Creator in Cursor for {key}",
             "reason": (
                 f"Studio is watching {suite_path_for(key)} and imports it automatically. "
                 "No file yet just means Cursor has not finished."
@@ -187,7 +187,7 @@ def _action_for(epic: dict[str, Any], workspace_path: str) -> dict[str, Any]:
             "completion_signal": f"{key} lists its test cases.",
             "primary": {
                 "kind": "copy_prompt",
-                "label": "Copy Creator prompt",
+                "label": "Run Creator in Cursor",
                 "handoff_id": handoff["id"],
             },
             "cursor_prompt": _prompt(handoff),
@@ -332,7 +332,7 @@ def _portfolio_actions(epics: list[dict[str, Any]]) -> list[dict[str, Any]]:
         actions.append(
             {
                 "kind": "copy_creator_prompts",
-                "label": f"Copy Creator prompts for {len(copyable)} Epics",
+                "label": f"Prepare Creator handoffs for {len(copyable)} Epics",
                 "epic_keys": [epic["jira_key"] for epic in copyable],
                 "handoff_ids": [epic["creator_handoff"]["id"] for epic in copyable],
             }

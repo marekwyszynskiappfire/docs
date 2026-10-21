@@ -90,7 +90,7 @@ def load_latest_batch(conn: Any, creator_run_id: str) -> tuple[dict[str, Any] | 
 
 
 def format_coverage_matrix_for_prompt(report: dict[str, Any] | None) -> str:
-    """AQ-03: short markdown for Importer Cursor prompt."""
+    """AQ-03: short markdown for the Importer Cursor handoff."""
     if not report:
         return "_No coverage_report in batch — matrix not included._"
     lines: list[str] = []

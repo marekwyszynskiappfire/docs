@@ -2,6 +2,23 @@
 
 Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged unless noted.
 
+## 0.3.0 — 2026-10-21
+
+- Studio launches persisted local Cursor SDK agents for Reviewer, Creator, and
+  Importer, with queued/running/final state, cancel/retry, restart recovery, and
+  **Copy prompt** fallback.
+- Workspace recovery now lists all Creator runs, imports off-workspace Epic
+  suites, and previews safe Xray plans directly from `importer-payload.json`.
+- Importer agent launch recomputes the server-owned plan and preserves
+  production confirmation, Reviewer, redaction, idempotency, and one-Epic
+  write gates.
+- BigQuery is a pre-UAT release gate: retry and report-upsert coverage, live
+  sync verification, and explicit non-blocking behavior when credentials or
+  ingest are unavailable.
+- Operator, setup, first-run, prompt, test, and UAT guidance now use **Run in
+  Cursor** as the primary workflow.
+- Studio navigation keeps **Personas** and **Statistics** in the top bar.
+
 ## 0.2.0 — 2026-10-13 (`trinity-v0.2.0`)
 
 - Mateusz POC closure: [`SCORECARD.md`](SCORECARD.md), [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md), pilot 1 reveal.js deck.
@@ -12,7 +29,6 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 
 ## Unreleased
 
-- Studio telemetry: auto-flush after each pipeline step; full backfill via `/api/telemetry/sync`; Creator batches link to Reviewer runs through `review_ref`; envelopes include human `operator_id` / `operator_name` and `product_id` / `product_name`; run snapshots upsert to BigQuery. Local ingest and Looker-ready views: [`BIGQUERY.md`](BIGQUERY.md).
 - Removed legacy trees: `The Reviewer/`, `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
 
 ## Pre-0.2.0

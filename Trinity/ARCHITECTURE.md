@@ -18,7 +18,10 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. Four coopera
 | **Creator** | Cursor (`trinity-creator`) | 3–5 E2E journey test drafts per Epic from approved review |
 | **Importer** | Studio + Cursor (`trinity-importer`) | Approved tests → Xray in Jira |
 
-**Control plane vs agents:** Cursor **gathers and generates**; Studio **approves, exports, posts, and gates writes** in v1. Studio does not run Reviewer MCP gathers.
+**Control plane vs agents:** Cursor **gathers and generates**; Studio launches
+persisted local Cursor SDK agents and **approves, exports, posts, and gates
+writes**. The local runtime inherits Cursor settings, installed Trinity skills,
+and authenticated MCP.
 
 ---
 
@@ -80,7 +83,7 @@ flowchart LR
   subgraph stu [Workspace]
     OPEN[Open workspace]
     APR[Approve verdict]
-    P2[Copy Creator prompt]
+    P2[Run Creator in Cursor]
     REV[Review tests]
     PLAN[Plan Xray import]
   end

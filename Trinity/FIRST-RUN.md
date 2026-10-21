@@ -21,7 +21,7 @@ Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.m
 
 ## Golden rules (read once)
 
-1. **Follow Next step on the workspace.** Expand **Portfolio** to change scope, persona, and pass type, then **Reviewer prompt** to copy the Cursor prompt. Create the first portfolio from **New portfolio** on the workspace list. Do not invent prompts by hand unless Studio is down.
+1. **Follow Next step on the workspace.** Expand **Portfolio** to change scope, persona, and pass type, then **Reviewer prompt** to **Run Reviewer in Cursor**. Create the first portfolio from **New portfolio** on the workspace list. **Copy prompt** is the fallback; do not invent prompts by hand.
 2. **Epic folder name = Jira epic key** — e.g. `ONE-228469/review-payload.json`, not a random folder name.
 3. **Jira comments stay on the open Epic.** Expand **Findings and Jira comment**, then **Save draft** before **Jira comment preview**.
 4. **Demo epic `DEMO-4500` is fake** — never post it to production Jira or Xray.
@@ -43,9 +43,9 @@ flowchart LR
     env[optional .env]
   end
   subgraph phase3 [Phase 3 per epic]
-    p1[Prompt 1 Reviewer]
+    p1[Run Reviewer in Cursor]
     studio1[Open workspace]
-    p2[Copy Creator prompt]
+    p2[Run Creator in Cursor]
     studio2[Review tests]
     p3[Plan Xray import]
   end
@@ -178,6 +178,7 @@ Edit at minimum for **live** work:
 |----------|------------------|
 | `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN` | Jira epic comments, project list on Importer, optional JQL resolve |
 | `XRAY_CLIENT_ID`, `XRAY_CLIENT_SECRET` | Importer **Execute import batch** |
+| `CURSOR_API_KEY`, `CURSOR_MODEL=auto` | Studio **Run in Cursor** for Reviewer, Creator, and Importer |
 
 Restart Studio after editing `.env`:
 
@@ -208,13 +209,13 @@ Replace **`YOUR-EPIC-KEY`** with one sandbox **Epic** key (e.g. `ONE-12345`). On
 
 1. Click **Copy JQL resolve prompt** → paste in **new Cursor chat** → run MCP search.
 2. Paste returned epic keys into **Resolved epic keys** → **Save pasted keys**.
-3. Then continue with **Copy Cursor prompt** below.
+3. Then continue with **Run Reviewer in Cursor** below.
 
-### 3.2 Prompt #1 — Reviewer (first Cursor prompt)
+### 3.2 Reviewer agent
 
-1. After the review is imported, open the workspace and expand **Reviewer prompt** → **Copy Cursor prompt**. Before that folder exists, use **Copy Reviewer prompt** on **New portfolio**.
-2. Open **new Cursor chat** (fresh context).
-3. Paste the prompt → send.
+1. Before a review folder exists, use **Run Reviewer in Cursor** on **New portfolio**. For an existing workspace, expand **Reviewer prompt** and use the same action.
+2. Watch the persisted status. You can leave or refresh the page, cancel an active run, and retry an error.
+3. If `CURSOR_API_KEY` is unavailable, choose **Copy Cursor prompt**, open a new Cursor chat, paste, and send.
 
 The prompt tells the agent to run **trinity-reviewer** with your `portfolio_id`, scope, and persona. **You do not need to type `scan YOUR-EPIC-KEY`** if the pasted prompt is complete — follow what the agent asks; confirm scope if it interviews you.
 
@@ -243,18 +244,19 @@ Stay on the workspace.
 |------|--------|
 | 1 | Read the testability verdict and the blocker questions on the Epic |
 | 2 | **Next step → Approve** when the verdict is right |
-| 3 | **Next step → Prepare Creator prompt**, then **Copy Creator prompt** |
-| 4 | Paste that prompt into a **new Cursor chat** |
+| 3 | **Next step → Prepare Creator prompt**, then **Run in Cursor** |
+| 4 | Watch the agent status; use **Copy prompt** only as fallback |
 
 Finding-by-finding triage and the Jira epic comment are on the open Epic: expand **Findings and Jira comment**. **Save draft** there before a comment preview. Post only to the **sandbox** epic, never `DEMO-4500`.
 
 If the Epic is not testable yet, fix the scope in Jira and re-run Reviewer, or pick another Epic.
 
-### 3.4 Prompt #2 — Creator (second Cursor prompt)
+### 3.4 Creator agent
 
-1. **New Cursor chat** (recommended).
-2. Paste the prompt you copied from the workspace.
-3. Run **trinity-creator** per the prompt (`review_ref`, epic key, `suite_mode: release_slice_e2e`).
+1. Choose **Run in Cursor** on the stored Creator handoff.
+2. Studio launches **trinity-creator** with the approved `review_ref`, Epic key,
+   and `suite_mode: release_slice_e2e`.
+3. If launch fails, use **Copy prompt** and run it in a new Cursor chat.
 
 **Wait until done.** Output path is usually:
 
@@ -299,10 +301,11 @@ The import panel is on the same page.
 
 **Production:** type `PRODUCTION` before preview or write. Use the production `.env` and mapping policy in [`GUIDE.md`](GUIDE.md).
 
-### 3.7 Prompt #3 — Importer in Cursor (when you do not write from the workspace)
+### 3.7 Importer agent (when Studio does not write directly)
 
-1. On the workspace, preview the plan, then expand **Importer Cursor prompt**.
-2. New Cursor chat → paste → run **trinity-importer**.
+1. On the workspace, preview an execute-ready plan, then choose **Run Importer in Cursor**.
+2. Studio recomputes the plan and preserves Reviewer, idempotency, redaction,
+   one-Epic, and production-confirmation gates. Use **Copy prompt** only as fallback.
 3. Back on the workspace, expand **Record Xray keys** and point it at `xray-import-report.json`.
 
 **Phase 3 done** for one epic.
@@ -312,7 +315,7 @@ The import panel is on the same page.
 ## What to do on the second epic
 
 1. **More → Reviewer configs** → same `portfolio_id`, update scope or use `new_epics_only` / `rescan_delta`.
-2. Open the workspace and expand **Reviewer prompt** → **Copy Cursor prompt** again. A return visit should skip the full interview.
+2. Open the workspace and expand **Reviewer prompt** → **Run Reviewer in Cursor** again. A return visit should skip the full interview.
 3. Open the workspace URL the agent prints, and repeat from §3.3.
 
 The run page under **More → Dashboard** still has bulk **In Creator**, **Copy JQL**, and the handoff JSON for multi-epic planning.
@@ -323,11 +326,11 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 
 | # | When | Where to get it | Cursor skill |
 |---|------|-----------------|--------------|
-| **1** | This portfolio already has a workspace | Workspace → **Reviewer prompt** → **Copy Cursor prompt** | trinity-reviewer |
-| **1a** | Before any review exists in Studio | Workspace list → **New portfolio** → **Copy Reviewer prompt** | trinity-reviewer |
+| **1** | This portfolio already has a workspace | Workspace → **Reviewer prompt** → **Run Reviewer in Cursor** | trinity-reviewer |
+| **1a** | Before any review exists in Studio | Workspace list → **New portfolio** → **Run Reviewer in Cursor** | trinity-reviewer |
 | **1b** | JQL/filter scope only | **Copy JQL resolve prompt** | MCP in Cursor (not a skill) |
-| **2** | After you approve the review | Workspace **Next step → Copy Creator prompt** | trinity-creator |
-| **3** | You are writing through Cursor instead of the workspace | Workspace → preview the plan → **Importer Cursor prompt** | trinity-importer |
+| **2** | After you approve the review | Workspace **Next step → Run in Cursor** | trinity-creator |
+| **3** | You are writing through Cursor instead of the workspace | Workspace → execute-ready preview → **Run Importer in Cursor** | trinity-importer |
 
 ---
 

@@ -64,7 +64,7 @@
 | Multi-epic Creator | One import per epic — easy to miss | OK in FIRST-RUN 3.5 + artifacts README |
 | Importer mapping + project key | #1 support topic | OK in FAQ/GUIDE; still hard |
 
-**Current path (2026-10-21):** Sam stays on the workspace after Prompt 1. The next clicks are **Approve**, **Copy Creator prompt**, test review, and **Plan Xray import**. Creator, Importer, and Reviewer configs are under **More**. The rows above record the earlier page-by-page review.
+**Current path (2026-10-21):** Sam stays on the workspace after the Reviewer agent. The next clicks are **Approve**, **Run Creator in Cursor**, test review, and **Plan Xray import**. Creator, Importer, and Reviewer configs are under **More**. The rows above record the earlier page-by-page review.
 
 ---
 

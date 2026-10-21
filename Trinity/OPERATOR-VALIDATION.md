@@ -45,7 +45,7 @@ QA lead (P2) records that an operator completed the path **without live coaching
 | C1 | Prompt 1; `review-payload.json` | ☐ | Portfolio: |
 | C2 | Workspace URL opened; verdict matches the report | ☐ | |
 | C3 | Approve the review on the workspace | ☐ | |
-| C4 | Copy Creator prompt; suite appears on the workspace | ☐ | |
+| C4 | Run Creator in Cursor; suite appears on the workspace | ☐ | |
 | C5 | Approve tests and mark Send to Xray | ☐ | |
 | C6 | Plan Xray import preview OK | ☐ | |
 | C7 | Sandbox write, or dry-run per policy. Write stays one Epic | ☐ | Test keys: |

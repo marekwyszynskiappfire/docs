@@ -58,6 +58,9 @@ Edit `.env`:
 
 - **Jira REST** — `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN` (comments, scope resolve, Importer project list).
 - **Xray** — `XRAY_CLIENT_ID`, `XRAY_CLIENT_SECRET` (Importer execute).
+- **Cursor SDK** — `CURSOR_API_KEY` from
+  [Cursor integrations](https://cursor.com/dashboard/integrations) and
+  `CURSOR_MODEL=auto` (Studio **Run in Cursor**).
 - **Human analytics identity** — `TRINITY_OPERATOR_ID` and
   `TRINITY_OPERATOR_NAME`. Use your own values; these identify the human in
   BigQuery, not the GCP service account.
@@ -69,6 +72,8 @@ Example (placeholders only):
 ```bash
 TRINITY_OPERATOR_ID=you@appfire.com
 TRINITY_OPERATOR_NAME="Your Name"
+CURSOR_API_KEY=
+CURSOR_MODEL=auto
 BQ_PROJECT=qa-coe
 BQ_DATASET=trinity
 # GOOGLE_APPLICATION_CREDENTIALS=/Users/<mac-login>/.config/trinity/key.json
@@ -150,8 +155,8 @@ For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Copy JQL reso
 
 ## Step 9 — Run Reviewer in Cursor
 
-1. On the workspace list, open **New portfolio**, save it, and **Copy Reviewer prompt**. On an existing workspace, expand **Portfolio**, then **Reviewer prompt** → **Copy Cursor prompt**.
-2. New Cursor chat → paste → run gather per skill.
+1. On the workspace list, open **New portfolio**, save it, and choose **Run Reviewer in Cursor**. On an existing workspace, expand **Portfolio**, then **Reviewer prompt** → **Run Reviewer in Cursor**.
+2. Watch the persisted queued/running/finished status. You can refresh the page, cancel an active run, or retry an error. **Copy Cursor prompt** is the fallback when the SDK is unavailable.
 3. Outputs: `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` (under `portfolio_id` and optionally a dated `portfolio_run_id` subfolder).
 
 **Rule:** folder name **must equal** the epic Jira key in the payload (`scope.value`). Import fails on mismatch.
@@ -180,7 +185,7 @@ Then expand **Import a review folder** on the workspace list. **Import and open*
 
 1. Read the testability verdict and the blocker questions.
 2. **Next step → Approve** when the verdict is right.
-3. **Next step → Copy Creator prompt**. Several approved Epics: **Prepare Creator prompts**, then **Copy Creator prompts**.
+3. **Next step → Prepare Creator prompt**, then **Run in Cursor**. Several approved Epics: **Prepare Creator prompts** and launch each stored handoff. **Copy prompt** remains the fallback.
 
 Finding-by-finding triage is on the open Epic: expand **Findings and Jira comment**. **Save draft** there before a Jira comment preview. Run-level handoff (**In Creator**, JQL, handoff JSON) stays on the run page.
 
@@ -203,7 +208,7 @@ Detail: [`MANUAL.md`](MANUAL.md) §8.
 
 ## Step 13 — Creator
 
-1. Paste the workspace Creator prompt into Cursor → run **trinity-creator**. An Epic that is not testable yet cannot be drafted.
+1. On the workspace Creator handoff choose **Run in Cursor**. An Epic that is not testable yet cannot be drafted. Use **Copy prompt** only as fallback.
 2. Stay on the workspace. Studio imports `suite-payload.json` when the file appears. **Check for the file now** if the card is still waiting.
 3. Approve or reject each test. A rejection needs a reason. Tick **Send to Xray**, or **Approve selected** for the tests you ticked.
 4. On the Epic, expand **Import a suite file** when the suite was written to a different path. Expand **Creator runs** for this workspace, every other Creator run, and a suite whose Epic is not open here. **Export for Importer** writes the handoff JSON.
@@ -219,7 +224,7 @@ On the workspace, **Next step → Plan Xray import**:
 1. Choose instance (sandbox vs production).
 2. Mapping + project key + folder path → **Preview import plan**.
 3. Acknowledge the Reviewer gate or idempotency confirmation if the plan asks.
-4. **Write to Xray** when the plan is ready. Production requires typing PRODUCTION. Several Epics can be previewed together; the write stays one Epic.
+4. **Write to Xray** when the plan is ready, or choose **Run Importer in Cursor**. Studio recomputes the execute-ready plan before launch. Production requires typing PRODUCTION. Several Epics can be previewed together; every write stays one Epic.
 
 **Write to Xray** stores keys when Studio writes them. After a Cursor write, expand **Record Xray keys** and point it at `xray-import-report.json`. The Xray plan also accepts a path to `importer-payload.json`.
 
@@ -250,7 +255,10 @@ After the workspace has the review, the tests, and the Xray keys, the same run c
 1. Put the service-account JSON at `~/.config/trinity/qa-coe-bigquery.json` (`chmod 600`). It is not in the repo.
 2. In `Trinity/studio/.env`, set `TRINITY_OPERATOR_ID`, `TRINITY_OPERATOR_NAME`, `BQ_PROJECT=qa-coe`, `BQ_DATASET=trinity`, and an absolute `GOOGLE_APPLICATION_CREDENTIALS` path. Leave `TRINITY_TELEMETRY_URL` unset so `start.sh` uses local ingest.
 3. Restart `./Trinity/studio/scripts/start.sh`.
-4. Confirm with `curl -s -X POST http://127.0.0.1:8765/api/telemetry/sync`. Expect `failed: 0` and `pending: 0`.
+4. Confirm with `curl -s -X POST http://127.0.0.1:8765/api/telemetry/sync`. Expect `failed: 0`, `pending: 0`, and `report_errors: []`.
+5. Confirm the run in `qa-coe.trinity.v_run_summary`. If the key is absent,
+   record live GCP verification as an environment precondition; Studio and every
+   pipeline stage must still start and work.
 
 Sample values and the Looker views are in [`MANUAL.md`](MANUAL.md) (New operator, §5) and [`BIGQUERY.md`](BIGQUERY.md) · [BigQuery and Looker](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3779068614/Trinity+BigQuery+and+Looker).
 

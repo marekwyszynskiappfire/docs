@@ -50,7 +50,7 @@ When reviewing a page as Sam, ask:
 | 2 | Are **placeholders** replaced (`<docs-repo-url>`, `YOUR-EPIC-KEY`)? |
 | 3 | Is **order** Studio-before-MCP for day one? |
 | 4 | Does a missing workspace URL say the import folder **contains** `EPIC-KEY/`? |
-| 5 | Are the workspace **Copy Creator prompt**, the unit-page export, and **In Creator** distinguished? |
+| 5 | Are workspace **Run Creator in Cursor**, the copy-prompt fallback, the unit-page export, and **In Creator** distinguished? |
 | 6 | Does the page say Creator, Importer, and Reviewer configs are under **More**? |
 | 7 | Does sandbox vs prod appear **before** the first write to Xray? |
 

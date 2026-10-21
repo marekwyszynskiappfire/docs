@@ -20,7 +20,7 @@ cd Trinity/studio/web && npm install && cd ../../..
 ```
 
 **Optional:** Atlassian MCP in Cursor for live Jira (Reviewer gather, JQL resolve).  
-**Optional:** `Trinity/studio/.env` from `.env.example` for Studio **Resolve from scope** via REST (otherwise use **Copy JQL resolve prompt**).
+**Optional:** `Trinity/studio/.env` from `.env.example` for Studio **Resolve from scope** via REST (otherwise use **Copy JQL resolve prompt**). Set `CURSOR_API_KEY` to exercise Studio **Run in Cursor**.
 
 **Skills in Cursor:** invoke `@trinity-reviewer` or open `Trinity/reviewer/SKILL.md`; Creator: `@trinity-creator` / `Trinity/creator/SKILL.md`.
 
@@ -45,8 +45,8 @@ Opens HTML beside the sample or prints output path. Confirms Python + template w
 
 ### 1c. Live Reviewer run (Cursor)
 
-1. Studio → **Reviewer configs** to save the portfolio, then on the workspace expand **Reviewer prompt** → **Copy Cursor prompt** (or follow the interview in `reviewer/SKILL.md`).
-2. In Cursor, run **trinity-reviewer** with your portfolio scope.
+1. Studio → **Reviewer configs** to save the portfolio, then on the workspace expand **Reviewer prompt** → **Run Reviewer in Cursor**.
+2. Confirm queued → running → finished. **Copy Cursor prompt** is the fallback.
 3. Outputs land under **`Trinity/reviewer/runs/{portfolio_run_id}/`** (gitignored), e.g.  
    `{run}/ONE-12345/review-payload.json` + `review-report.html`.
 
@@ -85,7 +85,7 @@ Keep the terminal open (Ctrl+C stops API + Vite).
 
 ### 2b. Review workflow
 
-1. On the workspace, read the verdict. **Next step → Approve**, then **Copy Creator prompt** (the prompt includes `review_ref`). An Epic that is not testable yet cannot be drafted.
+1. On the workspace, read the verdict. **Next step → Approve**, prepare the Creator handoff, then **Run in Cursor**. An Epic that is not testable yet cannot be drafted.
 2. **Personas** — the list shows the heading in each file. The filename stays above the editor. A save writes `Trinity/personas/`.
 3. Open the Epic and expand **Findings and Jira comment**. **Save draft** and **Approve & export** work there. The Epic’s own page shows the same panel.
 
@@ -109,9 +109,9 @@ On a real suite the workspace imports the file itself. Open the Epic, tick the p
 
 ## 3. Creator (Cursor agent)
 
-After **Copy Creator prompt** on the workspace (or a hand-written prompt):
+After preparing the Creator handoff on the workspace:
 
-1. Paste the handoff prompt into Cursor; run **trinity-creator**.
+1. Choose **Run in Cursor**; use **Copy prompt** only as fallback.
 2. Ensure parameters: `review_ref`, Epic key, `suite_mode: release_slice_e2e`, product config (`bigpicture` or `default`).
 3. Agent writes e.g.  
    `Trinity/creator/artifacts/{EPIC-KEY}/suite-payload.json`  
@@ -131,7 +131,7 @@ Quick check:
 
 1. On the workspace, mark the approved tests and open **Plan Xray import**. Expand **Creator runs** → **Export for Importer** when you need `importer-payload.json`.
 2. Select instance + mapping → set **Jira project for new Tests** if not TC.
-3. **Preview import plan** → **Write to Xray**, or expand **Importer Cursor prompt**. After a Cursor write, expand **Record Xray keys**.
+3. **Preview import plan** → **Write to Xray** or **Run Importer in Cursor**. After an agent write, expand **Record Xray keys**.
 
 ---
 
@@ -143,11 +143,12 @@ Quick check:
 | `render_report.py` on demo epic sample | ☐ |
 | `start.sh` — health + Personas save | ☐ |
 | `seed-demo.sh` → **Open workspace** shows the demo Epic and **Next step** | ☐ |
-| Approve the review → **Copy Creator prompt** | ☐ |
+| Reviewer/Creator **Run in Cursor** controls show persisted status; missing key gives an actionable error | ☐ |
 | Import `demo-story.suite.json` from **More → Creator** | ☐ |
 | Approve + mark for Xray on the workspace, or **Approve selected** on ticked tests | ☐ |
 | Workspace **Preview import plan** (write stays disabled until the plan is ready) | ☐ |
 | Optional: **Export for Importer** and `importer-payload.json` under `studio/data/exports/creator/` | ☐ |
+| `POST /api/telemetry/sync` → no failures/pending/report errors; run visible in `qa-coe.trinity.v_run_summary` | ☐ |
 
 ---
 
@@ -164,6 +165,4 @@ Quick check:
 
 ## 7. What is not wired yet
 
-- **Studio Execute button** for batch Xray submit (CLI + Cursor prompt today).
-- **Studio** does not run Reviewer/Creator agents (Cursor only).
 - **Suite HTML** report renderer for Creator batches (Markdown only).

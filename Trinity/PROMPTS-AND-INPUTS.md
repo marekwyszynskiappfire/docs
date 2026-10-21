@@ -2,7 +2,11 @@
 
 **Wiki:** [Trinity — Prompts and inputs](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3755442183/Trinity+Prompts+and+inputs)
 
-Every prompt Studio copies is listed here so an operator knows what to have ready **before** starting Agent mode. The normal path is the workspace. **More** still has Reviewer configs, Creator, and Importer when that page does not cover the step.
+Every server-owned agent handoff is listed here so an operator knows what to
+have ready before choosing **Run in Cursor**. Studio launches a persisted local
+Cursor agent; **Copy prompt** is the recovery path. The normal path is the
+workspace. **More** still has Reviewer configs, Creator, and Importer when that
+page does not cover the step.
 
 **Contracts:** [`CONTRACTS.md`](CONTRACTS.md) · **Walkthrough:** [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) §5.
 
@@ -12,10 +16,10 @@ Every prompt Studio copies is listed here so an operator knows what to have read
 
 | ID | Studio source | Cursor skill | You must provide | Primary outputs |
 |----|---------------|--------------|------------------|-----------------|
-| **1** | Workspace list → **New portfolio** → **Copy Reviewer prompt**. After a workspace exists: **Reviewer prompt** → **Copy Cursor prompt** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access; may include **portfolio interview** | `reviewer/runs/.../<EPIC>/review-payload.json` (+ HTML). The agent prints a workspace URL |
+| **1** | Workspace list → **New portfolio** → **Run Reviewer in Cursor**. After a workspace exists: **Reviewer prompt** → **Run Reviewer in Cursor** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access; may include **portfolio interview** | `reviewer/runs/.../<EPIC>/review-payload.json` (+ HTML). The agent prints a workspace URL |
 | **1b** | Reviewer configs → **Copy JQL resolve prompt** | Agent (no skill) | JQL string; optional `JIRA_*` in Studio `.env` | Epic key list → paste into scope / run config |
-| **2** | Workspace **Next step → Copy Creator prompt**. Several approved Epics: **Prepare Creator prompts**, then **Copy Creator prompts** | `trinity-creator` | Approved review; `review_ref` path in prompt | `creator/artifacts/.../suite-payload.json`. The workspace imports the file when it appears |
-| **3** | Workspace **Plan Xray import**, or **More → Importer → Copy Cursor prompt** when writing through Cursor | `trinity-importer` | Mapping, instance, folder; dry-run plan reviewed | Xray Tests, folders, Jira links |
+| **2** | Workspace **Next step → Prepare Creator prompt → Run in Cursor**. Several approved Epics: prepare each stored handoff | `trinity-creator` | Approved review; `review_ref` path in prompt | `creator/artifacts/.../suite-payload.json`. The workspace imports the file when it appears |
+| **3** | Workspace **Plan Xray import → Run Importer in Cursor**, or the same action under **More → Importer** | `trinity-importer` | Mapping, instance, folder; execute-ready plan reviewed | Xray Tests, folders, Jira links |
 
 ---
 
@@ -53,7 +57,12 @@ Every prompt Studio copies is listed here so an operator knows what to have read
 
 ### Portfolio interview (before gather)
 
-Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **interactive run configuration** interview when `config/runs/{portfolio_id}.json` is missing or scope changed. The agent will ask (in order): portfolio id, scope (JQL/keys/filter), pass type, product id, persona, child-scan mode, outputs, Creator handoff defaults, Jira comment policy.
+Studio **Run Reviewer in Cursor** starts **trinity-reviewer**, which runs the
+**interactive run configuration** interview when
+`config/runs/{portfolio_id}.json` is missing or scope changed. The agent will
+ask (in order): portfolio id, scope (JQL/keys/filter), pass type, product id,
+persona, child-scan mode, outputs, Creator handoff defaults, Jira comment
+policy. **Copy Cursor prompt** starts the same flow manually.
 
 **Operator:** answer in chat; confirm saved path under `Trinity/reviewer/config/runs/`. Do not skip unless you already have a committed run config from QA lead. Full wizard: [`reviewer/SKILL.md` § Interactive run configuration](reviewer/SKILL.md#interactive-run-configuration-mandatory).
 
@@ -154,15 +163,18 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 2. **Do not edit** generated prompt headers (paths and portfolio id are consistency checks for the skill).
 3. **Re-copy** after changing Reviewer config, scope, or Importer mapping — stale prompts cause wrong folders or project keys.
 4. **Secrets** stay in `.env` and MCP OAuth — never in prompt text.
+5. Studio launches only server-owned Reviewer configs, stored handoffs, and a
+   recomputed safe Importer plan; browser text cannot replace the prompt or
+   bypass execute gates.
 
 ---
 
 ## Studio UI map (where to click)
 
 ```text
-Workspace            → Verdict, Prompt 2, test review, Xray plan, import a review folder
-                     → New portfolio and Prompt 1 before a workspace exists
-                     → Portfolio: prepare/copy Creator prompts, approve selected tests, preview plans
+Workspace            → Verdict, agent handoff 2, test review, Xray plan, import a review folder
+                     → New portfolio and Reviewer launch before a workspace exists
+                     → Portfolio: prepare/run Creator handoffs, approve selected tests, preview plans
                      → Creator runs for this portfolio; Export for Importer
                      → Record Xray keys after a Cursor write
 More → Reviewer configs → Every portfolio; Prompt 1b

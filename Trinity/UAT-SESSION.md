@@ -37,9 +37,9 @@ verification as the outstanding environment precondition.
 | 15–25 | `seed-demo.sh` → **Open workspace** on DEMO-4500 | Verdict and Next step visible. Creator and Importer are under More |
 | 25–35 | `install-trinity-skills.sh` → `pilot-preflight.sh` | All PASS |
 | 35–55 | [CURSOR-MCP-SETUP](CURSOR-MCP-SETUP.md) single-site sandbox → verify resources in Agent | Gate 2 |
-| 55–60 | Copy `studio/.env.example` → sandbox creds → restart Studio | Workspace import panel lists the sandbox instance |
-| 60–75 | FIRST-RUN Phase 3 with **one** sandbox Epic (Prompt 1 → workspace URL → approve → Copy Creator prompt) | `review-payload.json` and a suite on the workspace |
-| 75–85 | **Plan Xray import** on the workspace → preview → sandbox write **or** dry-run per policy | Part C |
+| 55–60 | Copy `studio/.env.example` → sandbox creds + `CURSOR_API_KEY` → restart Studio | Workspace import panel lists sandbox; Cursor agent status is configured |
+| 60–75 | FIRST-RUN Phase 3 with **one** sandbox Epic (**Run Reviewer in Cursor** → workspace URL → approve → **Run Creator in Cursor**) | `review-payload.json` and a suite on the workspace |
+| 75–85 | **Plan Xray import** on the workspace → preview → sandbox write or **Run Importer in Cursor** per policy | Part C |
 | 85–90 | Knowledge check (validation Part D) | Operator can answer 4 questions |
 
 **Doc reference:** [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md) gates match this order.

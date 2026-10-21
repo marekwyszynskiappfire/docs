@@ -67,7 +67,7 @@ Jira read on Epics; Confluence read if Epics link docs; Xray permission to **cre
 
 ### Do I write my own prompts?
 
-**No** (normal path). On the workspace list, open **New portfolio** and use **Copy Reviewer prompt**. After a workspace exists, expand **Reviewer prompt** and use **Copy Cursor prompt**, then follow **Next step**. **More → Importer** still has a Cursor prompt when you write through Cursor. Hand-written prompts cause wrong paths and skipped checks. See [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
+**No.** On the workspace list, open **New portfolio** and use **Run Reviewer in Cursor**. After a workspace exists, use the same action under **Reviewer prompt**, then follow **Next step**. Creator and Importer also have **Run in Cursor** after their gates are satisfied. **Copy prompt** is recovery only. Hand-written prompts cause wrong paths and skipped checks. See [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
 
 ### How do I install skills?
 
@@ -220,10 +220,10 @@ Always **Preview import plan** first. Execute only in sandbox until validated; p
 
 | # | Click in Studio | Output |
 |---|-----------------|--------|
-| 1 | Workspace → Reviewer prompt → Copy Cursor prompt | `review-payload.json` |
+| 1 | Workspace → Reviewer prompt → Run Reviewer in Cursor | `review-payload.json` |
 | 1b | Copy JQL resolve prompt (optional) | Epic key list |
-| 2 | Workspace → Copy Creator prompt | `suite-payload.json` |
-| 3 | Workspace → Plan Xray import → Importer Cursor prompt | Xray Tests |
+| 2 | Workspace → Run Creator in Cursor | `suite-payload.json` |
+| 3 | Workspace → Plan Xray import → Run Importer in Cursor | Xray Tests |
 
 Detail: [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
 
@@ -235,7 +235,7 @@ Detail: [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
 
 **No.** **Approve** is stored in Studio SQLite (`approved_revision_id`). The files under `Trinity/reviewer/runs/.../ONE-*/review-payload.json` stay as imported until you re-run Reviewer or re-import.
 
-**Copy Creator prompt** on the workspace writes an approved snapshot to `Trinity/studio/data/exports/{run_id}/{EPIC_KEY}/review-payload.json` — that path is the **`review_ref`** in the Creator prompt. **Approve & export** on the unit page writes the same snapshot.
+Preparing the Creator handoff on the workspace writes an approved snapshot to `Trinity/studio/data/exports/{run_id}/{EPIC_KEY}/review-payload.json` — that path is the **`review_ref`** in the Creator prompt. **Approve & export** on the unit page writes the same snapshot.
 
 **In Creator** on the run page is separate: it only drives run-level handoff JQL (`include_in_creator`), not approval. See [MANUAL.md §7.5.1](MANUAL.md#751-what-changes-on-disk-vs-in-studio-approval-handoff).
 

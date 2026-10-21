@@ -97,9 +97,9 @@ Symlinks: `~/.cursor/skills/trinity-reviewer`, `trinity-creator`, `trinity-impor
 
 | Skill | How to run |
 |-------|------------|
-| Reviewer | Workspace list → **New portfolio** → **Copy Reviewer prompt**. After a workspace exists, **Reviewer prompt** → **Copy Cursor prompt** (do not hand-write) |
-| Creator | Workspace **Next step → Copy Creator prompt** |
-| Importer | Workspace **Plan Xray import**, then **Importer Cursor prompt** after a preview. **More → Importer** for the full page |
+| Reviewer | Workspace list → **New portfolio** → **Run Reviewer in Cursor**. After a workspace exists, use the same action under **Reviewer prompt** |
+| Creator | Workspace **Next step → Prepare Creator prompt → Run in Cursor** |
+| Importer | Workspace **Plan Xray import**, then **Run Importer in Cursor** after an execute-ready preview. **More → Importer** for the full page |
 
 **Gate 1 (complete):** Skills linked · `./Trinity/scripts/pilot-preflight.sh` passes.
 
@@ -131,13 +131,13 @@ Restart Studio after edits. Without `.env`, use **Copy JQL resolve prompt** ([PR
 ## 4. Real Epic — end to end
 
 1. Workspace list → **New portfolio** — portfolio JSON under `Trinity/reviewer/config/runs/`.
-2. **Prompt 1** — Copy Cursor prompt → Agent → `reviewer/runs/.../<EPIC>/review-payload.json`. Open the workspace URL the agent prints.
+2. **Reviewer** — Run in Cursor → `reviewer/runs/.../<EPIC>/review-payload.json`. Open the workspace URL the agent prints. Copy the prompt only as fallback.
 3. **Fallback import** — only when that URL was not printed. Pass the folder that **directly contains** `<EPIC>/`:
 
    `./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-with-epic-keys>`
 4. **Verdict** — read it on the workspace and approve when it is right ([MANUAL.md](MANUAL.md) §2).
-5. **Prompt 2** — Copy Creator prompt. The workspace imports `suite-payload.json`. Approve the tests and mark Send to Xray.
-6. **Xray** — Plan Xray import on the workspace. Preview, then sandbox write. **More → Importer** when you need the Cursor prompt ([GUIDE.md](GUIDE.md)).
+5. **Creator** — Prepare the handoff and Run in Cursor. The workspace imports `suite-payload.json`. Approve the tests and mark Send to Xray.
+6. **Xray** — Plan Xray import on the workspace. Preview, then sandbox write or Run Importer in Cursor. ([GUIDE.md](GUIDE.md)).
 
 **Gate 5–6:** Verdict on the workspace · Tests in Xray (sandbox) with the correct project and folder.
 
@@ -182,5 +182,5 @@ Sandbox Gates 1–6 → [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md) for QA 
 | # | Studio source | Output |
 |---|---------------|--------|
 | 1 | Workspace list → New portfolio | `review-payload.json` and a workspace URL |
-| 2 | Workspace → Copy Creator prompt | `suite-payload.json` |
+| 2 | Workspace → Run Creator in Cursor | `suite-payload.json` |
 | 3 | Workspace → Plan Xray import | Xray Tests |

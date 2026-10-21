@@ -93,6 +93,10 @@ JIRA_API_TOKEN=
 XRAY_CLIENT_ID=
 XRAY_CLIENT_SECRET=
 
+# One-click local Reviewer, Creator, and Importer agents
+CURSOR_API_KEY=
+CURSOR_MODEL=auto
+
 # Person shown in BigQuery. Not the GCP service account.
 TRINITY_OPERATOR_ID=you@appfire.com
 TRINITY_OPERATOR_NAME="Your Name"
@@ -109,6 +113,7 @@ GOOGLE_APPLICATION_CREDENTIALS=/Users/<mac-login>/.config/trinity/qa-coe-bigquer
 | Xray client id and secret | Jira → **Apps → Xray → Settings → API Keys**, on the same site as `JIRA_BASE_URL` | `XRAY_CLIENT_ID` and `XRAY_CLIENT_SECRET` in `Trinity/studio/.env` |
 | Production Xray keys | Same screen on `appfire.atlassian.net` | `Trinity/studio/.env.production`, copied from [`.env.production.example`](studio/.env.production.example) |
 | Atlassian MCP login | Browser OAuth the first time Cursor starts each MCP server | Stored by `mcp-remote` under your user account. Nothing to paste into the repo. |
+| Cursor user API key | [Cursor integrations](https://cursor.com/dashboard/integrations) | `CURSOR_API_KEY` in `Trinity/studio/.env`. It launches local Cursor agents from Studio; never commit it. |
 | BigQuery writer key | QA lead or GCP admin for project `qa-coe` | `~/.config/trinity/qa-coe-bigquery.json`, mode `600`. The `.env` line is only the absolute path. |
 
 Use the sandbox URL and sandbox Xray keys until a QA lead asks for production. Production writes in Studio require you to type `PRODUCTION`. Never commit `.env`, `.env.production`, or the JSON key. Never paste the JSON into `.env` or into chat.
@@ -180,16 +185,16 @@ The workspace list imports `DEMO-4500`. Do not post that key to Jira or Xray.
 
 **One real portfolio**
 
-1. On the workspace list, open **New portfolio**. Set the id, persona, product, and scope. **Save to repo**, then **Copy Reviewer prompt**. **More → Reviewer configs** still lists every portfolio.
-2. Paste the prompt into a new Cursor Agent chat and let **trinity-reviewer** finish. It writes `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` and prints a workspace URL.
+1. On the workspace list, open **New portfolio**. Set the id, persona, product, and scope. **Save to repo**, then **Run Reviewer in Cursor**. **Copy Reviewer prompt** is the fallback when the SDK is not configured. **More → Reviewer configs** still lists every portfolio.
+2. Watch the persisted agent status in Studio. It writes `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` and prints a workspace URL. You may leave or refresh the page; use **Cancel** while a run is active and **Retry** after an error. If you copied the fallback prompt, paste it into a new Cursor Agent chat.
 3. Open that URL. If it was not printed, on the workspace list expand **Import a review folder**, enter the folder that directly contains the Epic directories, and choose **Import and open**.
 4. On the workspace, read the testability verdict and the blocker questions. **Next step → Approve** when the verdict is right. Questions stay only when a named owner can decide them and the answer changes a test, a scope boundary, or a pass/fail criterion.
-5. Set **Coverage depth** (Balanced, 5–8 journey tests, unless the Epic needs another depth). **Next step → Copy Creator prompt.** Paste it into a new Cursor Agent chat and run **trinity-creator**.
+5. Set **Coverage depth** (Balanced, 5–8 journey tests, unless the Epic needs another depth). **Next step → Prepare Creator prompt**, then **Run in Cursor**. **Copy prompt** remains the fallback.
 6. Stay on the workspace. Studio imports `suite-payload.json` when the file appears. If the suite was written somewhere else, open the Epic and expand **Import a suite file**.
 7. Approve or reject each test. A rejection needs a reason. Tick **Send to Xray** on the approved tests you want imported. **Approve selected** approves the tests you ticked.
 8. Expand **Creator runs** when you need `importer-payload.json`. **Export for Importer** writes that file for the approved and marked tests. The Xray plan uses the Creator run directly, so this export is for the Cursor write path.
 9. **Plan Xray import** on the same page. Choose the Jira instance, the mapping file, the project key, and the Test Repository folder. **Preview import plan.** Fix validation, then preview again. **Write to Xray** when the plan says it is ready. Production asks you to type `PRODUCTION`. One Epic is written at a time.
-10. If Cursor writes the tests instead, expand **Importer Cursor prompt** after the preview, run **trinity-importer**, then expand **Record Xray keys** and point it at `xray-import-report.json` or the folder that contains it.
+10. To use the Importer agent, preview an execute-ready plan and choose **Run Importer in Cursor**. Studio recomputes the plan and preserves production, Reviewer, redaction, and idempotency gates. After it finishes, expand **Record Xray keys** and point it at `xray-import-report.json` or its folder. **Copy prompt** is the recovery path.
 
 An Epic that is not testable yet cannot be drafted. Demo key `DEMO-4500` is never posted to Jira.
 
@@ -251,12 +256,12 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 
 | Piece | Where it runs | What it produces |
 |-------|----------------|------------------|
-| **Reviewer** | Cursor (`trinity-reviewer`) | `review-payload.json`, HTML report, optional Jira comment text files |
-| **Trinity Studio** | Your machine (browser + API) | SQLite revisions, `studio_qa` triage, exports, metrics, Importer plan/execute |
-| **Creator** | Cursor (`trinity-creator`) | `suite-payload.json` — 3–5 E2E journey tests per Epic |
+| **Reviewer** | Local Cursor agent launched by Studio (`trinity-reviewer`) | `review-payload.json`, HTML report, optional Jira comment text files |
+| **Trinity Studio** | Your machine (browser + API) | Persisted agent runs, SQLite revisions, `studio_qa` triage, exports, metrics, Importer plan/execute |
+| **Creator** | Local Cursor agent launched by Studio (`trinity-creator`) | `suite-payload.json` — 3–5 E2E journey tests per Epic |
 | **Importer** | Studio + Cursor (`trinity-importer`) | Xray tests in Jira, import reports, persisted keys in Studio |
 
-**Design rule:** Cursor agents **gather and generate**; Studio is the **control plane** for approve/export/post/execute in v1. Studio does not run Reviewer gathers (no MCP from the API).
+**Design rule:** Cursor agents **gather and generate**; Studio is the **control plane** that launches local agents and owns approve/export/post/execute gates. The SDK agent runs from the DOCS repo with Cursor settings enabled, so it uses the installed Trinity skills and your authenticated MCP. Agent failure never fabricates output or advances a stage.
 
 ---
 
@@ -285,7 +290,7 @@ Section 2a is the current index. From section 5 on, the page-by-page steps are t
 | Understand a Reviewer HTML report | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §3–7 | Sample: `reviewer/sample-report.html` |
 | Configure a portfolio / pass type | Workspace list → **New portfolio**, or **More → Reviewer configs** | Saved JSON under `reviewer/config/runs/` |
 | Triage findings and send feedback to Jira | Unit page → `studio_qa` → **Jira epic comment** (§8) | `JIRA_*` in `studio/.env` |
-| Hand off to test design | Workspace **Next step → Copy Creator prompt** | Approved review. An Epic that is not testable yet cannot be drafted |
+| Hand off to test design | Workspace **Next step → Run in Cursor** | Approved review. An Epic that is not testable yet cannot be drafted |
 | Import tests to Xray | Workspace **Plan Xray import** | Mapping, project key, folder; production asks you to type PRODUCTION |
 | Fix “import failed: folder ≠ epic key” | Rename run folder to match `scope.value` in payload | §6 |
 | Track engineering backlog | GitHub Issues ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)) | — |
@@ -302,7 +307,7 @@ Section 2a is the current index. From section 5 on, the page-by-page steps are t
 
 1. Reviewer writes `Trinity/reviewer/runs/<run>/<EPIC-KEY>/review-payload.json` and opens the Studio workspace for that run.
 2. You read the testability verdict on the workspace and approve the review there. The payload is stored as a revision with a `studio_qa` overlay.
-3. You copy the Creator prompt. When `suite-payload.json` appears, Studio imports it into the same Epic.
+3. You launch the Creator agent from the stored handoff. **Copy prompt** is the fallback. When `suite-payload.json` appears, Studio imports it into the same Epic.
 4. You approve or reject each test in the accordion. Mark the approved tests, preview the Xray plan, and write from that page.
 5. The Xray plan on the workspace accepts a path to `importer-payload.json`. **More → Importer** is the same plan on its own page.
 
@@ -412,7 +417,7 @@ Studio is a **single-operator workbench**. The normal path is **Workspace**. The
 
 - Create/edit portfolio JSON validated against `run-config.schema.json`.
 - Saved to `Trinity/reviewer/config/runs/{portfolio_id}.json` (or `*-local.json` for private configs — gitignored).
-- **Copy Cursor prompt** — primary way to start a gather in Cursor (Studio does not invoke MCP).
+- **Run Reviewer in Cursor** — primary way to start a persisted local gather. **Copy Cursor prompt** is recovery when `CURSOR_API_KEY` is missing or the SDK run fails.
 - **List new epics** — works when scope is `epic_keys` / `epic_url` and keys are resolved.
 - **JQL / filter scope:** resolve epic keys in Cursor (or paste into **Resolved epic keys**) before gather. Use **Copy JQL resolve prompt** when REST resolve is not configured.
 
@@ -443,7 +448,7 @@ The **center of human QA** on requirements (§7).
 
 ### 5.7 Importer
 
-- Plan dry-run, acknowledge gates, copy Cursor prompt or **Execute import batch**, persist Xray keys (§10).
+- Plan dry-run, acknowledge gates, **Run Importer in Cursor** or **Execute import batch**, persist Xray keys (§10). Copy the prompt only as fallback.
 
 ### 5.8 Telemetry and Cursor cost (optional)
 
@@ -656,7 +661,8 @@ Studio → **Importer**:
 ### 10.4 Execute paths
 
 1. **Studio → Execute import batch** when `execute_ready` (sandbox first).
-2. **Copy Cursor prompt** → run **trinity-importer** or CLI from prompt.
+2. **Run Importer in Cursor** from the execute-ready preview. Studio recomputes
+   the safe plan before launch. **Copy Cursor prompt** is the recovery path.
 3. **Record Xray keys** on the workspace — point at `xray-import-report.json` or the report folder. The Creator run is the one for that Epic.
 
 Telemetry: [`METRICS.md`](METRICS.md). ADR: [`docs/adr/0002-trinity-importer-telemetry-decisions.md`](../docs/adr/0002-trinity-importer-telemetry-decisions.md).

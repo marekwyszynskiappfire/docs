@@ -27,7 +27,7 @@ flowchart LR
 
 1. **Persona** — edit `Trinity/personas/reviewer-expert-qa-automation.md` (Studio → **Personas**) if needed; audience map: [`personas/P1-P10.md`](personas/P1-P10.md).
 2. **Portfolio run config** — workspace list → **New portfolio** (or **More → Reviewer configs**). Saves `Trinity/reviewer/config/runs/{portfolio_id}.json`.
-3. **Copy Cursor prompt** from Studio → paste into Cursor → run **trinity-reviewer**.
+3. **Run Reviewer in Cursor** from Studio. The persisted local agent uses the saved config, installed skill, and authenticated MCP. **Copy prompt** is fallback.
 
 Outputs land under `Trinity/reviewer/runs/{portfolio_run_id}/` (per-epic payloads + optional `portfolio/index.html`).
 
@@ -49,8 +49,8 @@ The workspace is the normal path: read the verdict, approve the review, copy the
 
 ## 4. Creator (test cases)
 
-1. On the workspace, approve the review, then **Copy Creator prompt** (prompt includes `review_ref` + three Creator personas). Several Epics: **Prepare Creator prompts**, then copy them together.
-2. Run **trinity-creator** in Cursor — **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
+1. On the workspace, approve the review, prepare the Creator handoff, then **Run in Cursor** (handoff includes `review_ref` + three Creator personas). Several Epics: prepare and launch each stored handoff.
+2. The local **trinity-creator** agent writes **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
 3. The workspace imports `suite-payload.json` (**one file per Epic** — no merged portfolio file). Multi-epic programs write under `Trinity/creator/artifacts/{portfolio_id}/{EPIC_KEY}/suite-payload.json`; see [`creator/artifacts/README.md`](creator/artifacts/README.md). **More → Creator** is the fallback.
 4. Operator: edit → approve or reject; mark **Send to Xray**. **Approve selected** covers the tests you ticked. On the workspace, **Creator runs** → **Export for Importer** writes `studio/data/exports/creator/{run}/importer-payload.json`.
 5. On the workspace: instance, mapping, **[project key override](GUIDE.md#6-importer-studio--xray)** (default TC), folder → **Preview import plan** → **Write to Xray**. Several Epics can be previewed together; the write stays one Epic. The full Importer page remains for a Cursor prompt ([`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)).
