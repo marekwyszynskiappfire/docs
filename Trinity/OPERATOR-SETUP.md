@@ -11,6 +11,7 @@
 |------|------|-----------------|
 | **Demo only** | Prove Studio UI + fixtures | **Step 6** |
 | **Full pipeline** | Reviewer → Studio → Creator → Importer | **Step 14** |
+| **Telemetry** | Same run visible in BigQuery and Looker Studio | **Step 17** |
 | **Jira write** | Epic comments or Xray execute | **Steps 4 + 12–14** (credentials) |
 
 ---
@@ -242,6 +243,19 @@ Details: [`MANUAL.md`](MANUAL.md) §5.9 · [`METRICS.md`](METRICS.md).
 
 ---
 
+## Step 17 — BigQuery
+
+After the workspace has the review, the tests, and the Xray keys, the same run can be read in BigQuery. A failed upload does not stop the pipeline.
+
+1. Put the service-account JSON at `~/.config/trinity/qa-coe-bigquery.json` (`chmod 600`). It is not in the repo.
+2. In `Trinity/studio/.env`, set `TRINITY_OPERATOR_ID`, `TRINITY_OPERATOR_NAME`, `BQ_PROJECT=qa-coe`, `BQ_DATASET=trinity`, and an absolute `GOOGLE_APPLICATION_CREDENTIALS` path. Leave `TRINITY_TELEMETRY_URL` unset so `start.sh` uses local ingest.
+3. Restart `./Trinity/studio/scripts/start.sh`.
+4. Confirm with `curl -s -X POST http://127.0.0.1:8765/api/telemetry/sync`. Expect `failed: 0` and `pending: 0`.
+
+Sample values and the Looker views are in [`MANUAL.md`](MANUAL.md) (New operator, §5) and [`BIGQUERY.md`](BIGQUERY.md) · [BigQuery and Looker](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3779068614/Trinity+BigQuery+and+Looker).
+
+---
+
 ## Related docs
 
 | Doc | Use |
@@ -252,4 +266,4 @@ Details: [`MANUAL.md`](MANUAL.md) §5.9 · [`METRICS.md`](METRICS.md).
 | [`FAQ.md`](FAQ.md) | Capabilities & evidence |
 | [`confluence/`](confluence/) | Pages for wiki publish |
 
-**Last reviewed:** 2026-10-14
+**Last reviewed:** 2026-10-21

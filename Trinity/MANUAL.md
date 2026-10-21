@@ -7,7 +7,241 @@
 **First time?** [`START-HERE.md`](START-HERE.md) → [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) → [`FIRST-RUN.md`](FIRST-RUN.md).  
 **Companion docs:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · [`TESTING.md`](TESTING.md) · [`GUIDE.md`](GUIDE.md) · [`reviewer/MANUAL.md`](reviewer/MANUAL.md) · [`PIPELINE.md`](PIPELINE.md).
 
-**Last reviewed:** 2026-10-20
+**Last reviewed:** 2026-10-21
+
+The sections below are the path a new operator follows. Later sections are the reference for each screen.
+
+---
+
+## New operator
+
+### 1. Where to check out
+
+Clone the docs repository and open that folder in Cursor. Trinity lives inside it; there is no separate app repository.
+
+```bash
+git clone https://github.com/marekwyszynskiappfire/docs.git DOCS
+cd DOCS
+```
+
+In Cursor: **File → Open Folder** and choose `DOCS`. The folder that contains `Trinity/` is the repo root. Every path in this manual is relative to that root.
+
+You also need **Python 3.11+**, **Node.js 18+**, and the **Cursor** desktop app. Check with `python3 --version` and `node --version`.
+
+### 2. What to configure
+
+Copy the sample files. Do not invent a second config format.
+
+| What | Sample in the repo | Where the real file goes |
+|------|--------------------|--------------------------|
+| Studio secrets | [`Trinity/studio/.env.example`](studio/.env.example) | `Trinity/studio/.env` (gitignored) |
+| Production Xray keys | [`Trinity/studio/.env.production.example`](studio/.env.production.example) | `Trinity/studio/.env.production` (gitignored; only when you write to production Xray) |
+| Portfolio | [`Trinity/reviewer/config/runs/example.demo-portfolio.json`](reviewer/config/runs/example.demo-portfolio.json) | `Trinity/reviewer/config/runs/{portfolio_id}.json`, saved from **More → Reviewer configs** |
+| Xray field mapping | [`Trinity/importer/config/mappings/appfire-sandbox.json`](importer/config/mappings/appfire-sandbox.json) and [`appfire-production.json`](importer/config/mappings/appfire-production.json) | Leave them in place. Pick one in the workspace Xray plan. |
+| Cursor MCP | Samples in §3 below | `~/.cursor/mcp.json` on your machine, not in the repo |
+| BigQuery key | Not in the repo | `~/.config/trinity/qa-coe-bigquery.json` |
+
+Create the Studio env file:
+
+```bash
+cp Trinity/studio/.env.example Trinity/studio/.env
+```
+
+The sample portfolio is the shape Studio saves. Duplicate it in **More → Reviewer configs** and replace the scope before a live run:
+
+```json
+{
+  "config_version": "1.0",
+  "portfolio_id": "example.demo-portfolio",
+  "label": "Demo portfolio (sanitized)",
+  "persona_id": "reviewer-expert-qa-automation.md",
+  "product_id": "default",
+  "scope": {
+    "kind": "epic_keys",
+    "value": "DEMO-4500,DEMO-4501"
+  },
+  "pass_type": "full_sweep",
+  "child_scan": "epic_only_inventory",
+  "planning_dates": "jira_due_then_end",
+  "artifacts_dir": "Trinity/reviewer/runs",
+  "creator_handoff_exclude_not_fit": true,
+  "jira_comment_policy": "generate_review_before_post"
+}
+```
+
+`DEMO-4500` is fictional. For a real portfolio set `scope.kind` to `epic_keys`, `jql`, or `filter_url`, and set `scope.value` to your Epics. `product_id` selects the product config under `Trinity/creator/config/` and `Trinity/reviewer/config/`.
+
+Install the three Cursor skills once:
+
+```bash
+./Trinity/scripts/install-trinity-skills.sh
+```
+
+That links `trinity-reviewer`, `trinity-creator`, and `trinity-importer` into `~/.cursor/skills/`.
+
+### 3. Credentials and where each file goes
+
+Fill `Trinity/studio/.env` from the sample. Leave a value blank until you have it. Restart Studio after every edit.
+
+```bash
+# Jira REST — comments, project list, scope resolve
+JIRA_BASE_URL=https://appfire-sandbox-774.atlassian.net
+JIRA_EMAIL=you@appfire.com
+JIRA_API_TOKEN=
+
+# Xray Cloud — Jira → Apps → Xray → Settings → API Keys, for the same site
+XRAY_CLIENT_ID=
+XRAY_CLIENT_SECRET=
+
+# Person shown in BigQuery. Not the GCP service account.
+TRINITY_OPERATOR_ID=you@appfire.com
+TRINITY_OPERATOR_NAME="Your Name"
+
+# BigQuery target. The key file stays outside the repo.
+BQ_PROJECT=qa-coe
+BQ_DATASET=trinity
+GOOGLE_APPLICATION_CREDENTIALS=/Users/<mac-login>/.config/trinity/qa-coe-bigquery.json
+```
+
+| Secret | Where you get it | Where it lives |
+|--------|------------------|----------------|
+| Jira API token | [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens) | `JIRA_API_TOKEN` in `Trinity/studio/.env` |
+| Xray client id and secret | Jira → **Apps → Xray → Settings → API Keys**, on the same site as `JIRA_BASE_URL` | `XRAY_CLIENT_ID` and `XRAY_CLIENT_SECRET` in `Trinity/studio/.env` |
+| Production Xray keys | Same screen on `appfire.atlassian.net` | `Trinity/studio/.env.production`, copied from [`.env.production.example`](studio/.env.production.example) |
+| Atlassian MCP login | Browser OAuth the first time Cursor starts each MCP server | Stored by `mcp-remote` under your user account. Nothing to paste into the repo. |
+| BigQuery writer key | QA lead or GCP admin for project `qa-coe` | `~/.config/trinity/qa-coe-bigquery.json`, mode `600`. The `.env` line is only the absolute path. |
+
+Use the sandbox URL and sandbox Xray keys until a QA lead asks for production. Production writes in Studio require you to type `PRODUCTION`. Never commit `.env`, `.env.production`, or the JSON key. Never paste the JSON into `.env` or into chat.
+
+**Cursor MCP** — one site (sandbox learning). Merge this into `~/.cursor/mcp.json`. Replace `MCP_REMOTE_PATH` with the output of `which mcp-remote` after `npm install -g mcp-remote`.
+
+```json
+{
+  "mcpServers": {
+    "atlassian_sandbox": {
+      "command": "MCP_REMOTE_PATH",
+      "args": [
+        "https://mcp.atlassian.com/v2/mcp",
+        "30801",
+        "--resource",
+        "https://appfire-sandbox-774.atlassian.net/"
+      ]
+    }
+  }
+}
+```
+
+Production Jira plus Confluence on `appfireteam.atlassian.net` needs two servers. Use this instead, with two different ports, and complete two browser logins:
+
+```json
+{
+  "mcpServers": {
+    "atlassian_appfire": {
+      "command": "MCP_REMOTE_PATH",
+      "args": [
+        "https://mcp.atlassian.com/v2/mcp",
+        "30801",
+        "--resource",
+        "https://appfire.atlassian.net/"
+      ]
+    },
+    "atlassian_appfireteam": {
+      "command": "MCP_REMOTE_PATH",
+      "args": [
+        "https://mcp.atlassian.com/v2/mcp",
+        "30802",
+        "--resource",
+        "https://appfireteam.atlassian.net/"
+      ]
+    }
+  }
+}
+```
+
+Reload MCP in Cursor, finish the browser login, and ask the agent to call `getAccessibleAtlassianResources`. The URL must match the `--resource` you configured. Detail: [`CURSOR-MCP-SETUP.md`](CURSOR-MCP-SETUP.md) and [`reviewer/config/DUAL-ATLASSIAN-MCP.md`](reviewer/config/DUAL-ATLASSIAN-MCP.md).
+
+### 4. Run the whole process
+
+Leave Studio running in one terminal.
+
+```bash
+./Trinity/studio/scripts/start.sh
+```
+
+Open **http://127.0.0.1:5173**. Health check: `curl -sf http://127.0.0.1:8765/api/health`.
+
+**Learn the screens with no Jira** (optional, once):
+
+```bash
+./Trinity/studio/scripts/seed-demo.sh
+```
+
+The workspace list imports `DEMO-4500`. Do not post that key to Jira or Xray.
+
+**One real portfolio**
+
+1. **More → Reviewer configs.** Duplicate the demo portfolio. Set the persona, product, and scope. **Save to repo.** This is the only place to create the first portfolio, before a workspace exists.
+2. On that page, **Copy Cursor prompt**. Paste it into a new Cursor Agent chat and let **trinity-reviewer** finish. It writes `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` and prints a workspace URL.
+3. Open that URL. If it was not printed, on the workspace list expand **Import a review folder**, enter the folder that directly contains the Epic directories, and choose **Import and open**.
+4. On the workspace, read the testability verdict and the blocker questions. **Next step → Approve** when the verdict is right. Questions stay only when a named owner can decide them and the answer changes a test, a scope boundary, or a pass/fail criterion.
+5. Set **Coverage depth** (Balanced, 5–8 journey tests, unless the Epic needs another depth). **Next step → Copy Creator prompt.** Paste it into a new Cursor Agent chat and run **trinity-creator**.
+6. Stay on the workspace. Studio imports `suite-payload.json` when the file appears. If the suite was written somewhere else, open the Epic and expand **Import a suite file**.
+7. Approve or reject each test. A rejection needs a reason. Tick **Send to Xray** on the approved tests you want imported. **Approve selected** approves the tests you ticked.
+8. Expand **Creator runs** when you need `importer-payload.json`. **Export for Importer** writes that file for the approved and marked tests. The Xray plan uses the Creator run directly, so this export is for the Cursor write path.
+9. **Plan Xray import** on the same page. Choose the Jira instance, the mapping file, the project key, and the Test Repository folder. **Preview import plan.** Fix validation, then preview again. **Write to Xray** when the plan says it is ready. Production asks you to type `PRODUCTION`. One Epic is written at a time.
+10. If Cursor writes the tests instead, expand **Importer Cursor prompt** after the preview, run **trinity-importer**, then expand **Record Xray keys** and point it at `xray-import-report.json` or the folder that contains it.
+
+An Epic that is not testable yet cannot be drafted. Demo key `DEMO-4500` is never posted to Jira.
+
+### 5. Send the run to BigQuery
+
+Do this after the workspace has the review, the tests, and the Xray keys. BigQuery is how the run shows up in Looker Studio. A failed upload does not stop Reviewer, Creator, or Importer.
+
+**Once per machine**
+
+1. Ask the QA lead for a service-account JSON key on GCP project `qa-coe`. The account needs **BigQuery Job User** on the project and **BigQuery Data Editor** on dataset `qa-coe.trinity`.
+2. Store the key outside the repo:
+
+```bash
+mkdir -p ~/.config/trinity
+chmod 700 ~/.config/trinity
+mv ~/Downloads/<downloaded-key>.json ~/.config/trinity/qa-coe-bigquery.json
+chmod 600 ~/.config/trinity/qa-coe-bigquery.json
+```
+
+3. Uncomment and set these lines in `Trinity/studio/.env`. Use your Mac login in the path. `~` is not expanded inside `.env`.
+
+```bash
+TRINITY_OPERATOR_ID=you@appfire.com
+TRINITY_OPERATOR_NAME="Your Name"
+BQ_PROJECT=qa-coe
+BQ_DATASET=trinity
+GOOGLE_APPLICATION_CREDENTIALS=/Users/<mac-login>/.config/trinity/qa-coe-bigquery.json
+```
+
+Leave `TRINITY_TELEMETRY_URL` and `TRINITY_TELEMETRY_API_KEY` unset. `start.sh` starts a local ingest on `127.0.0.1:8787` and fills those in for you.
+
+**Every run**
+
+1. Restart Studio with `./Trinity/studio/scripts/start.sh` after the key is in place. Startup creates the tables if needed and backfills events already in Studio.
+2. Work on the workspace as in §4. Import the review folder, import each suite, approve tests, and record Xray keys in Studio. A suite must keep `review_ref` so the Creator run stays on the same pipeline run.
+3. Force a sync when you want to confirm the upload:
+
+```bash
+curl -s -X POST http://127.0.0.1:8765/api/telemetry/sync
+```
+
+A healthy result has `"failed": 0`, `"pending": 0`, and `"report_errors": []`.
+
+4. In BigQuery, the run is one row in `qa-coe.trinity.v_run_summary`:
+
+```sql
+SELECT pipeline_run_id, pipeline_label, operator_name, product_name, computed_at
+FROM `qa-coe.trinity.v_run_summary`
+ORDER BY computed_at DESC;
+```
+
+Looker Studio uses that view, plus `v_run_phases`, `v_run_epics`, and `v_event_details`. Project `qa-coe`, dataset `trinity`. Tables, IAM, hosted ingest, and the Looker page layout are in [`BIGQUERY.md`](BIGQUERY.md) · [BigQuery and Looker](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3779068614/Trinity+BigQuery+and+Looker).
 
 ---
 
@@ -87,7 +321,7 @@ Section 2a is the current index. From section 5 on, the page-by-page steps are t
 
 ## 4. First-time setup (summary)
 
-Full numbered steps: [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md). This section is the **narrative** version.
+The complete checkout, sample files, credentials, and run are in **New operator** above. This section is the short form. Numbered checklist: [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md).
 
 ### 4.1 Machine and repo
 

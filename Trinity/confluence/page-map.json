@@ -65,6 +65,12 @@
       "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual"
     },
     {
+      "content_id": "3779068614",
+      "git_path": "Trinity/BIGQUERY.md",
+      "title": "Trinity — BigQuery and Looker",
+      "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3779068614/Trinity+BigQuery+and+Looker"
+    },
+    {
       "content_id": "3758587937",
       "git_path": "Trinity/NEWBIE-PERSONA-REVIEW.md",
       "title": "Trinity — Newbie persona review",

@@ -3,6 +3,10 @@
 Operator setup for saving Trinity pipeline telemetry in BigQuery and visualizing
 complete runs in Looker Studio (formerly Data Studio).
 
+The step a new operator follows is in [`MANUAL.md`](MANUAL.md) (New operator, §5) and [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) step 17. This file is the reference for IAM, tables, hosted ingest, and Looker.
+
+**Wiki:** [BigQuery and Looker](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3779068614/Trinity+BigQuery+and+Looker)
+
 The default target is:
 
 - GCP project: `qa-coe`
