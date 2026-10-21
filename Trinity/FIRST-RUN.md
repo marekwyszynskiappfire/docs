@@ -335,12 +335,12 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 
 | Nav | Use it for |
 |-----|------------|
-| **Workspace** | One portfolio: verdict, Creator prompt, test review, Xray plan |
+| **Workspace** | One portfolio: verdict, Creator prompt, test review, Creator runs, Xray plan |
 | **Personas** | Edit role prompts. The list shows the heading in the file |
 | **Statistics** | Single-run E2E report; compare 2–5 runs (baseline = Run 1 dropdown) |
 | **Workspace list** | Import a review folder and open that workspace |
 | **More → Reviewer configs** | Portfolio JSON; **Prompt #1** |
-| **More → Creator** | Creator run list, and a suite path the workspace Epic does not show |
+| **More → Creator** | Every Creator run, and a suite path the workspace Epic does not show |
 | **More → Importer** | Payload-path import, **Prompt #3**, persist Xray keys |
 | **Run page / unit page** | Bulk handoff, finding triage, Jira epic comments |
 

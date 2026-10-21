@@ -204,8 +204,8 @@ The **center of human QA** on requirements (§7).
 
 ### 5.6 Creator
 
-- Import `suite-payload.json` from a Creator run folder or path.
-- Open a **creator run** to triage tests, bulk approve, filter **Ready for Xray import**, **Export for Importer**.
+- The workspace **Creator runs** panel lists this portfolio’s suites and **Export for Importer**.
+- The Creator page still imports a suite by path and lists every run. Open a run there to filter **Ready for Xray import**.
 
 ### 5.7 Importer
 

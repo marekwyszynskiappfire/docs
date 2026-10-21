@@ -112,7 +112,7 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 ### Operator checks
 
 - On the workspace, approve or reject each test. A rejection needs a reason. Tick **Send to Xray** on the approved tests you want imported, or use **Approve selected** for the ones you ticked.
-- **More → Creator → Export for Importer** still writes the handoff JSON when you use the full Importer page ([`CONTRACTS.md`](CONTRACTS.md)).
+- Expand **Creator runs** → **Export for Importer** to write the handoff JSON. **More → Creator** still lists every Creator run ([`CONTRACTS.md`](CONTRACTS.md)).
 
 ---
 
@@ -162,9 +162,10 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 ```text
 Workspace            → Verdict, Prompt 2, test review, Xray plan, import a review folder
                      → Portfolio: prepare/copy Creator prompts, approve selected tests, preview plans
+                     → Creator runs for this portfolio; Export for Importer
 More → Reviewer configs → Prompt 1, 1b
 Workspace list       → Import a review folder and open that workspace
-More → Creator       → Paste a suite path; Export for Importer
+More → Creator       → Every Creator run; paste a suite path the Epic does not show
 More → Importer      → Prompt 3; persist Xray keys
 Unit page            → Finding triage; Jira epic comment
 Statistics           → Post-run metrics (no prompt)

@@ -1840,7 +1840,8 @@ button.ws-test-trigger {
 .ws-suite-import,
 .ws-importer-prompt,
 .ws-portfolio-config,
-.ws-review-import {
+.ws-review-import,
+.ws-creator-runs {
   margin-top: 0.75rem;
 }
 
@@ -1849,7 +1850,8 @@ button.ws-test-trigger {
 .ws-suite-import > summary,
 .ws-importer-prompt > summary,
 .ws-portfolio-config > summary,
-.ws-review-import > summary {
+.ws-review-import > summary,
+.ws-creator-runs > summary {
   cursor: pointer;
   font-weight: 600;
 }

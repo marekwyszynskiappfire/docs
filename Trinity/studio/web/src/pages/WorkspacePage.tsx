@@ -5,6 +5,7 @@ import EpicAccordion from "../components/workspace/EpicAccordion";
 import CoverageDepthControl from "../components/workspace/CoverageDepthControl";
 import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import PortfolioConfigPanel from "../components/workspace/PortfolioConfigPanel";
+import CreatorRunsPanel from "../components/workspace/CreatorRunsPanel";
 import ReviewFolderImport from "../components/workspace/ReviewFolderImport";
 import ReviewerPromptPanel from "../components/workspace/ReviewerPromptPanel";
 import WorkspaceImportPanel from "../components/workspace/WorkspaceImportPanel";
@@ -297,6 +298,7 @@ export default function WorkspacePage() {
           </button>
         </div>
       )}
+      <CreatorRunsPanel epics={workspace.epics} onNote={setNote} />
       <WorkspaceImportPanel
         epics={workspace.epics}
         focusKey={workspace.next_action.epic_key}
