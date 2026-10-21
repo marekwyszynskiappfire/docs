@@ -20,6 +20,13 @@
 
 **Rules for the operator:** No live coaching during Parts B–C except MCP OAuth and mapping file path. Note every stall >3 minutes.
 
+**QA lead pre-UAT BigQuery gate:** restart Studio with the configured key, call
+`POST /api/telemetry/sync`, and record `failed: 0`, `pending: 0`, and
+`report_errors: []`. Confirm the run appears in
+`qa-coe.trinity.v_run_summary`. BigQuery failure must not prevent any pipeline
+stage; see [BIGQUERY.md](BIGQUERY.md). If no key is available, record live GCP
+verification as the outstanding environment precondition.
+
 ---
 
 ## Minute-by-minute script (operator)

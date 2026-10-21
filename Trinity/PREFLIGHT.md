@@ -19,3 +19,15 @@ Run once on a new machine before a portfolio review.
 7. **Pipeline** — skim [`PIPELINE.md`](PIPELINE.md); hands-on walkthrough: [`TESTING.md`](TESTING.md).
 8. **Optional Jira REST** (Studio scope resolve) — copy `Trinity/studio/.env.example` → `.env` with API token; otherwise use **Copy JQL resolve prompt** in Reviewer configs.
 9. **Optional Cursor cost** — enable [`.cursor/hooks.json`](../.cursor/hooks.json) (open repo root in Cursor); arm stages in Studio per [`CURSOR-COST.md`](CURSOR-COST.md). Set `CURSOR_ADMIN_API_KEY` in `.env` to backfill USD.
+10. **BigQuery release gate** — BigQuery is optional for pipeline work but required
+    before release/UAT when credentials are available. Put the service-account key
+    at `~/.config/trinity/qa-coe-bigquery.json`, restart Studio, then run:
+    ```bash
+    curl -s -X POST http://127.0.0.1:8765/api/telemetry/sync | jq .
+    curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
+    ```
+    Pass when sync reports `failed: 0`, `pending: 0`, and `report_errors: []`,
+    summary reports `bigquery_configured: true`, and the run is visible in
+    `qa-coe.trinity.v_run_summary`. Without a local key, Studio must still start
+    and pipeline work remains available; record live BigQuery verification as an
+    environment-dependent precondition. Full setup: [`BIGQUERY.md`](BIGQUERY.md).

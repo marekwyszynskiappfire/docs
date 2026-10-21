@@ -4,6 +4,7 @@ from io import BytesIO
 
 from db import db
 from telemetry import (
+    flush_outbox,
     operator_id,
     operator_name,
     record_event,
@@ -115,3 +116,38 @@ def test_flush_records_error(studio_db, monkeypatch):
             "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
         ).fetchone()[0]
     assert pending >= 1
+
+
+def test_flush_retries_pending_event(studio_db, monkeypatch):
+    attempts = []
+
+    class DummyResp:
+        status = 200
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+    def fail(req, timeout=30):
+        attempts.append("failed")
+        raise HTTPError("http://x", 500, "nope", hdrs=None, fp=BytesIO())
+
+    def succeed(req, timeout=30):
+        attempts.append("sent")
+        return DummyResp()
+
+    monkeypatch.setenv("TRINITY_TELEMETRY_URL", "http://127.0.0.1:8787/v1/events")
+    monkeypatch.setattr("telemetry.urllib.request.urlopen", fail)
+    with db() as conn:
+        record_event(conn, "review_run_imported", "pipeline_run", "pr-retry", "pr-retry", {})
+        assert conn.execute(
+            "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
+        ).fetchone()[0] == 1
+
+        monkeypatch.setattr("telemetry.urllib.request.urlopen", succeed)
+        result = flush_outbox(conn)
+        assert result == {"flushed": 1, "failed": 0, "pending": 0}
+
+    assert attempts == ["failed", "sent"]
