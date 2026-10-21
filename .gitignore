@@ -10,6 +10,10 @@
 # IDE workspace files (machine-specific)
 *.code-workspace
 
+# Generated Python bytecode
+__pycache__/
+*.py[cod]
+
 # Legacy pre-Trinity skill trees (removed; use Trinity/reviewer and Trinity/creator)
 /The Reviewer/
 /The Creator/
