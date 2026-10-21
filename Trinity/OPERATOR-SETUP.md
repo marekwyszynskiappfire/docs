@@ -220,7 +220,7 @@ On the workspace, **Next step → Plan Xray import**:
 3. Acknowledge the Reviewer gate or idempotency confirmation if the plan asks.
 4. **Write to Xray** when the plan is ready. Production requires typing PRODUCTION. Several Epics can be previewed together; the write stays one Epic.
 
-**More → Importer** is the path for a Cursor prompt and **Persist Xray keys** from `xray-import-report.json`.
+**Write to Xray** stores keys when Studio writes them. After a Cursor write, expand **Record Xray keys** and point it at `xray-import-report.json`. **More → Importer** remains the payload-path page.
 
 Full detail: [`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray) · [`MANUAL.md`](MANUAL.md) § Importer.
 

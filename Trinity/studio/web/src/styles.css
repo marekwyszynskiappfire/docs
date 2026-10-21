@@ -1841,7 +1841,8 @@ button.ws-test-trigger {
 .ws-importer-prompt,
 .ws-portfolio-config,
 .ws-review-import,
-.ws-creator-runs {
+.ws-creator-runs,
+.ws-xray-record {
   margin-top: 0.75rem;
 }
 
@@ -1851,7 +1852,8 @@ button.ws-test-trigger {
 .ws-importer-prompt > summary,
 .ws-portfolio-config > summary,
 .ws-review-import > summary,
-.ws-creator-runs > summary {
+.ws-creator-runs > summary,
+.ws-xray-record > summary {
   cursor: pointer;
   font-weight: 600;
 }

@@ -301,9 +301,9 @@ The import panel is on the same page.
 
 ### 3.7 Prompt #3 — Importer in Cursor (when you do not write from the workspace)
 
-1. **More → Importer** → **Preview import plan** → **Copy Cursor prompt**.
+1. On the workspace, preview the plan, then expand **Importer Cursor prompt**.
 2. New Cursor chat → paste → run **trinity-importer**.
-3. Back on that page → **Persist Xray keys** with the path to `xray-import-report.json` and your creator run id.
+3. Back on the workspace, expand **Record Xray keys** and point it at `xray-import-report.json`.
 
 **Phase 3 done** for one epic.
 
@@ -327,7 +327,7 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 | **1a** | Before any review exists in Studio | **More → Reviewer configs** → **Copy Cursor prompt** | trinity-reviewer |
 | **1b** | JQL/filter scope only | **Copy JQL resolve prompt** | MCP in Cursor (not a skill) |
 | **2** | After you approve the review | Workspace **Next step → Copy Creator prompt** | trinity-creator |
-| **3** | You are writing through Cursor instead of the workspace | **More → Importer** → **Copy Cursor prompt** | trinity-importer |
+| **3** | You are writing through Cursor instead of the workspace | Workspace → preview the plan → **Importer Cursor prompt** | trinity-importer |
 
 ---
 
@@ -341,7 +341,7 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 | **Workspace list** | Import a review folder and open that workspace |
 | **More → Reviewer configs** | Portfolio JSON; **Prompt #1** |
 | **More → Creator** | Every Creator run, and a suite path the workspace Epic does not show |
-| **More → Importer** | Payload-path import, **Prompt #3**, persist Xray keys |
+| **More → Importer** | Payload-path import and the page execute |
 | **Run page / unit page** | Bulk handoff, finding triage, Jira epic comments |
 
 ---

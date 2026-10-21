@@ -37,7 +37,7 @@ Join telemetry on `pipeline_run_id`, `entity_id`, and `entity_type` (`pipeline_r
 | Rejection reasons | Enum on reject in Studio; aggregated in summary |
 | Pipeline funnel | Event types: `review_run_imported`, `review_unit_approved`, `creator_batch_imported`, `test_case_review`, `creator_importer_export`, `importer_plan`, `xray_import_persisted` |
 | Automation signal | `test_case_row.automation_fit` / `automation_candidate` — **not** sent to Xray in POC (all Manual in TC); use for acceptance analytics |
-| Xray keys in Studio | Importer → **Persist Xray keys** or `POST /api/importer/record-results` |
+| Xray keys in Studio | Workspace → **Record Xray keys**, or `POST /api/importer/record-results` |
 
 **Phase timings (per pipeline run):** computed in Studio → top nav **Statistics** (single or compare), or a **Dashboard** run → **Statistics** tab, or `GET /api/runs/{pipeline_run_id}/statistics`. Snapshots persist in SQLite table `pipeline_run_report` for later BigQuery ingest alongside `telemetry_outbox`.
 

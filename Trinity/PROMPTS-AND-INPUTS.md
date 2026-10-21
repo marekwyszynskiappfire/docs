@@ -163,10 +163,11 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 Workspace            → Verdict, Prompt 2, test review, Xray plan, import a review folder
                      → Portfolio: prepare/copy Creator prompts, approve selected tests, preview plans
                      → Creator runs for this portfolio; Export for Importer
+                     → Record Xray keys after a Cursor write
 More → Reviewer configs → Prompt 1, 1b
 Workspace list       → Import a review folder and open that workspace
 More → Creator       → Every Creator run; paste a suite path the Epic does not show
-More → Importer      → Prompt 3; persist Xray keys
+More → Importer      → Payload-path import and the page execute
 Unit page            → Finding triage; Jira epic comment
 Statistics           → Post-run metrics (no prompt)
 Personas             → Edit role text (affects Prompt 1/2 tone)

@@ -124,7 +124,7 @@ Check Python 3.11+ and Node 18+. Run `./Trinity/studio/scripts/start.sh` from re
 
 ### Where is data stored?
 
-Local SQLite under `Trinity/studio/data/` (gitignored). The workspace keeps the approved review export and the Xray plan. **Creator runs** on the workspace writes `importer-payload.json`. **More → Importer** still records Xray keys.
+Local SQLite under `Trinity/studio/data/` (gitignored). The workspace keeps the approved review export and the Xray plan. **Creator runs** writes `importer-payload.json`. **Record Xray keys** stores keys from `xray-import-report.json`.
 
 ### What is DEMO-4500?
 

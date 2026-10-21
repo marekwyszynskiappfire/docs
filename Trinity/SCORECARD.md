@@ -19,7 +19,7 @@ curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 
 Include **`trinity_version`** from `/api/health` or `Trinity/VERSION` on each filled scorecard.
 
-After Xray execute: Importer → **Persist Xray keys** (or `POST /api/importer/record-results`) so `xray_test_key` appears on the Creator run.
+After Xray execute: workspace → **Record Xray keys** (or `POST /api/importer/record-results`) so `xray_test_key` appears on the Creator run.
 
 ---
 

@@ -239,7 +239,7 @@ Full checklist: [TESTING.md](TESTING.md).
 
 ### 5.4 Importer
 
-On the workspace, **Plan Xray import** uses the same fields. **Preview plans for N Epics** is a dry-run only. **Write to Xray** stays one Epic at a time. After a preview, **Importer Cursor prompt** copies the trinity-importer prompt. The full page:
+On the workspace, **Plan Xray import** uses the same fields. **Preview plans for N Epics** is a dry-run only. **Write to Xray** stays one Epic at a time. After a preview, **Importer Cursor prompt** copies the trinity-importer prompt. When Cursor writes the tests, expand **Record Xray keys** and point it at `xray-import-report.json`. The full page:
 
 1. **More → Importer** (or **Open in Importer** from a Creator run).
 2. **Jira instance** — production vs sandbox.

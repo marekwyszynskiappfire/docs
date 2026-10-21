@@ -7,6 +7,7 @@ import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import PortfolioConfigPanel from "../components/workspace/PortfolioConfigPanel";
 import CreatorRunsPanel from "../components/workspace/CreatorRunsPanel";
 import ReviewFolderImport from "../components/workspace/ReviewFolderImport";
+import XrayKeyRecord from "../components/workspace/XrayKeyRecord";
 import ReviewerPromptPanel from "../components/workspace/ReviewerPromptPanel";
 import WorkspaceImportPanel from "../components/workspace/WorkspaceImportPanel";
 import NextActionCard from "../components/workspace/NextActionCard";
@@ -304,6 +305,11 @@ export default function WorkspacePage() {
         focusKey={workspace.next_action.epic_key}
         previewAllKey={portfolioActions.some((action) => action.kind === "preview_import_plans")}
         onImported={load}
+      />
+      <XrayKeyRecord
+        epics={workspace.epics}
+        focusKey={workspace.next_action.epic_key}
+        onRecorded={load}
       />
       {error && <p className="error">{error}</p>}
       {tip && (

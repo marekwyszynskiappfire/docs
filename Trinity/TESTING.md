@@ -131,7 +131,7 @@ Quick check:
 
 1. On the workspace, mark the approved tests and open **Plan Xray import**. Expand **Creator runs** → **Export for Importer** when you need `importer-payload.json`.
 2. Select instance + mapping → set **Jira project for new Tests** if not TC.
-3. **Preview import plan** → **Write to Xray**, or copy the Cursor prompt from **More → Importer** (includes PM summary + coverage matrix when the batch has `coverage_report`).
+3. **Preview import plan** → **Write to Xray**, or expand **Importer Cursor prompt**. After a Cursor write, expand **Record Xray keys**.
 
 ---
 

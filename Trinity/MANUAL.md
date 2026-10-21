@@ -423,7 +423,7 @@ Studio → **Importer**:
 
 1. **Studio → Execute import batch** when `execute_ready` (sandbox first).
 2. **Copy Cursor prompt** → run **trinity-importer** or CLI from prompt.
-3. **Persist Xray keys** — point to `xray-import-report.json` or report folder + **Creator run id** so Studio metrics and idempotency stay accurate.
+3. **Record Xray keys** on the workspace — point at `xray-import-report.json` or the report folder. The Creator run is the one for that Epic.
 
 Telemetry: [`METRICS.md`](METRICS.md). ADR: [`docs/adr/0002-trinity-importer-telemetry-decisions.md`](../docs/adr/0002-trinity-importer-telemetry-decisions.md).
 
