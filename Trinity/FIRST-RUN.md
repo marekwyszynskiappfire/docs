@@ -140,6 +140,8 @@ Refresh **http://127.0.0.1:5173**. The home page lists the demo run.
 
 **Phase 1 done** when you can find **Next step**, the Epic, and **More**.
 
+![Studio top bar with Personas and Statistics, plus the open More menu](docs/screenshots/nav-dashboard.png)
+
 ---
 
 ## Phase 2 — Wire Cursor (once per machine)
@@ -204,6 +206,8 @@ Replace **`YOUR-EPIC-KEY`** with one sandbox **Epic** key (e.g. `ONE-12345`). On
    - **scope value** — `YOUR-EPIC-KEY` (one key only for first run).
    - **pass_type** — `full_sweep`.
 3. **Save** (writes `Trinity/reviewer/config/runs/my-first-portfolio.json`).
+
+![New portfolio controls with Run Reviewer in Cursor and copy fallback](docs/screenshots/workspace-new-portfolio.png)
 
 **If scope is JQL or a filter URL instead of keys:**
 
@@ -287,6 +291,8 @@ Stay on the same workspace. When `suite-payload.json` appears, Studio imports it
 
 On the Epic, expand **Import a suite file** when the suite was written to a different path. One file per Epic.
 
+![Workspace Creator runs list and off-Epic suite import](docs/screenshots/workspace-creator-runs.png)
+
 ### 3.6 Workspace — Xray plan
 
 The import panel is on the same page.
@@ -298,6 +304,8 @@ The import panel is on the same page.
 5. **Preview import plan** — read validation. Fix test errors in the Epic above, then preview again.
 6. If the plan asks for a Reviewer-gate or idempotency confirmation, check it and preview again.
 7. **Write to Xray** when the plan says it is ready.
+
+![Workspace Xray plan with importer payload path](docs/screenshots/importer-plan.png)
 
 **Production:** type `PRODUCTION` before preview or write. Use the production `.env` and mapping policy in [`GUIDE.md`](GUIDE.md).
 

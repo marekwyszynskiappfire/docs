@@ -18,9 +18,11 @@ Capture at **1280×800** or wider, light theme, no personal tokens visible in `.
 | `dashboard-run-list.png` | Home page with **Open workspace** on a run | FIRST-RUN |
 | `run-epic-table.png` | Run page epic table with readiness column | METRICS / Statistics intro |
 | `unit-triage.png` | Unit page: findings and Jira comment | MANUAL recovery |
-| `reviewer-configs-prompt.png` | More → Reviewer configs with **Copy Cursor prompt** | PROMPTS-AND-INPUTS §1 |
-| `creator-import.png` | More → Creator: pasted suite path | Recovery |
-| `importer-plan.png` | Workspace Xray plan: instance, mapping, project key, preview | GUIDE |
+| `workspace-new-portfolio.png` | Workspace list: New portfolio with **Run Reviewer in Cursor** and copy fallback | FIRST-RUN Phase 3 |
+| `workspace-creator-runs.png` | Workspace: complete Creator list and off-Epic suite import | FIRST-RUN recovery |
+| `reviewer-configs-prompt.png` | More → Reviewer configs (legacy recovery view) | PROMPTS-AND-INPUTS §1 |
+| `creator-import.png` | More → Creator: pasted suite path (legacy recovery view) | Recovery |
+| `importer-plan.png` | Workspace Xray plan with `importer-payload.json` path and preview | GUIDE |
 | `personas-editor.png` | Persona list shows the heading; filename is above the editor | Personas |
 | `statistics-compare.png` | Statistics: run selected + compare dropdowns | MANUAL §5.9 |
 
@@ -42,13 +44,17 @@ Capture at **1280×800** or wider, light theme, no personal tokens visible in `.
 
 ---
 
-## Status (2026-10-15)
+## Status (2026-10-21)
 
-Committed captures from Studio **0.2.0** (demo run `DEMO-4500`). Re-capture after major nav changes.
+Primary workflow captures are from Studio **0.3.0**, light theme, 1280×800.
+The older dedicated-page captures remain only for recovery documentation.
 
 | File | Status |
 |------|--------|
 | `nav-dashboard.png` | Done |
+| `workspace-next.png` | Done |
+| `workspace-new-portfolio.png` | Done |
+| `workspace-creator-runs.png` | Done |
 | `dashboard-run-list.png` | Done (same view as nav-dashboard; runs table visible) |
 | `run-epic-table.png` | Done |
 | `unit-triage.png` | Done |
@@ -57,6 +63,6 @@ Committed captures from Studio **0.2.0** (demo run `DEMO-4500`). Re-capture afte
 | `importer-plan.png` | Done |
 | `statistics-compare.png` | Done |
 
-**FIRST-RUN** embeds: see [Phase 1 screenshots](../../FIRST-RUN.md#11-load-demo-data).
+**FIRST-RUN** embeds: see the Phase 1 navigation and Phase 3 launch/recovery sections.
 
 Confluence: attach these files to **First run** / **Operator onboarding** wiki pages (git does not auto-upload binaries).
