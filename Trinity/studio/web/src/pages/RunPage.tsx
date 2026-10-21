@@ -138,7 +138,13 @@ export default function RunPage() {
   return (
     <>
       <p>
-        <Link to="/">← Dashboard</Link>
+        <Link to="/">← Workspace</Link>
+        {runId && (
+          <>
+            {" · "}
+            <Link to={`/workspace/${encodeURIComponent(runId)}`}>Open workspace</Link>
+          </>
+        )}
       </p>
       <h2>{runLabel || runId}</h2>
       {runId && (

@@ -33,6 +33,21 @@ def connect() -> sqlite3.Connection:
 
 
 def _migrate_schema(conn: sqlite3.Connection) -> None:
+    pipeline_cols = {
+        row[1] for row in conn.execute("PRAGMA table_info(pipeline_run)")
+    }
+    if pipeline_cols and "operator_id" not in pipeline_cols:
+        conn.execute("ALTER TABLE pipeline_run ADD COLUMN operator_id TEXT")
+    if pipeline_cols and "operator_name" not in pipeline_cols:
+        conn.execute("ALTER TABLE pipeline_run ADD COLUMN operator_name TEXT")
+    if pipeline_cols and "coverage_profile" not in pipeline_cols:
+        conn.execute(
+            "ALTER TABLE pipeline_run ADD COLUMN coverage_profile TEXT NOT NULL DEFAULT 'balanced'"
+        )
+    unit_cols = {row[1] for row in conn.execute("PRAGMA table_info(review_unit)")}
+    if unit_cols and "coverage_profile" not in unit_cols:
+        conn.execute("ALTER TABLE review_unit ADD COLUMN coverage_profile TEXT")
+
     cols = {row[1] for row in conn.execute("PRAGMA table_info(test_case_row)")}
     if cols and "marked_for_xray_import" not in cols:
         conn.execute(
@@ -122,6 +137,72 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
               created_at TEXT NOT NULL
             );
             CREATE INDEX IF NOT EXISTS idx_jira_comment_unit ON jira_comment_post(review_unit_id);
+            """
+        )
+    manifest = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='pipeline_manifest'"
+    ).fetchone()
+    if not manifest:
+        conn.execute(
+            """
+            CREATE TABLE pipeline_manifest (
+              pipeline_run_id TEXT PRIMARY KEY REFERENCES pipeline_run(id) ON DELETE CASCADE,
+              manifest_path TEXT NOT NULL,
+              manifest_json TEXT NOT NULL,
+              payload_set_hash TEXT NOT NULL,
+              imported_at TEXT NOT NULL
+            )
+            """
+        )
+    handoff = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='cursor_handoff'"
+    ).fetchone()
+    if not handoff:
+        conn.executescript(
+            """
+            CREATE TABLE cursor_handoff (
+              id TEXT PRIMARY KEY,
+              pipeline_run_id TEXT NOT NULL REFERENCES pipeline_run(id) ON DELETE CASCADE,
+              stage TEXT NOT NULL CHECK (stage IN ('review', 'creator_draft')),
+              epic_key TEXT NOT NULL DEFAULT '',
+              prompt_version TEXT NOT NULL,
+              prompt_text TEXT NOT NULL,
+              prompt_sha256 TEXT NOT NULL,
+              coverage_profile TEXT,
+              status TEXT NOT NULL CHECK (status IN (
+                'awaiting_cursor', 'output_detected', 'invalid_output', 'imported', 'stale_output'
+              )),
+              expected_paths_json TEXT NOT NULL,
+              expected_hashes_json TEXT NOT NULL,
+              copied_at TEXT,
+              detected_at TEXT,
+              imported_at TEXT,
+              retry_count INTEGER NOT NULL DEFAULT 0,
+              error TEXT,
+              created_at TEXT NOT NULL,
+              updated_at TEXT NOT NULL,
+              UNIQUE (pipeline_run_id, stage, epic_key)
+            );
+            CREATE INDEX IF NOT EXISTS idx_cursor_handoff_pipeline ON cursor_handoff(pipeline_run_id);
+            """
+        )
+    handoff_cols = {row[1] for row in conn.execute("PRAGMA table_info(cursor_handoff)")}
+    if handoff_cols and "coverage_profile" not in handoff_cols:
+        conn.execute("ALTER TABLE cursor_handoff ADD COLUMN coverage_profile TEXT")
+    persona_revision = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='persona_revision'"
+    ).fetchone()
+    if not persona_revision:
+        conn.executescript(
+            """
+            CREATE TABLE persona_revision (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              filename TEXT NOT NULL,
+              content TEXT NOT NULL,
+              content_sha256 TEXT NOT NULL,
+              created_at TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_persona_revision_file ON persona_revision(filename, id DESC);
             """
         )
 

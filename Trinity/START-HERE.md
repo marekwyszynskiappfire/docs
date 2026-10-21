@@ -13,7 +13,7 @@
 | Piece | Role |
 |-------|------|
 | **Cursor** + **trinity-*** skills | AI reads Jira/Confluence, writes reviews and tests, runs Xray import |
-| **Trinity Studio** (local) | Import runs, approve Epics, triage tests, **copy prompts** |
+| **Trinity Studio** (local) | One workspace per portfolio: verdict, tests, and the Xray plan |
 
 You stay in control: approve in Studio; type **PRODUCTION** before live Xray execute.
 
@@ -67,7 +67,7 @@ git clone https://github.com/marekwyszynskiappfire/docs.git DOCS && cd DOCS
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-with-epic-keys>
 ```
 
-Narrative: [FIRST-RUN.md](FIRST-RUN.md). Doc review (persona Sam): [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md).
+A finished Reviewer opens the workspace itself. `import-run.sh` is the fallback when that URL was not printed. Narrative: [FIRST-RUN.md](FIRST-RUN.md). Doc review (persona Sam): [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md).
 
 ---
 

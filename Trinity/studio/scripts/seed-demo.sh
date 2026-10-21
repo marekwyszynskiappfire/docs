@@ -14,5 +14,5 @@ fi
 echo "Importing demo Reviewer run from $FIXTURE_REL …"
 "$STUDIO_ROOT/scripts/import-run.sh" "$FIXTURE_REL"
 echo ""
-echo "Open Studio → Dashboard — pipeline run should list the demo import."
-echo "Creator tab → import: Trinity/creator/samples/demo-story.suite.json"
+echo "Open Studio → Open workspace on the demo run."
+echo "More → Creator can import: Trinity/creator/samples/demo-story.suite.json"

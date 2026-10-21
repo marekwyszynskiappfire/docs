@@ -58,10 +58,10 @@ Dashboard → import `Trinity/reviewer/runs/demo-local-test` → **Creator** →
 
 1. Copy env files — see [§3 Credentials](#3-credentials-setup) below.
 2. [PREFLIGHT.md](PREFLIGHT.md) — MCP + `render_report.py` smoke.
-3. Studio → **Reviewer configs** → **Copy Cursor prompt** → run **trinity-reviewer**.
-4. Import run → approve Epic → **Send to Creator** → run **trinity-creator**.
-5. Import `suite-payload.json` → approve tests → **Export for Importer**.
-6. **Importer** tab — configure instance, mapping, **project key**, folder → **Preview import plan** → **Copy Cursor prompt** → execute (CLI or agent).
+3. **More → Reviewer configs** → **Copy Cursor prompt** → run **trinity-reviewer**. Open the workspace URL it prints.
+4. On the workspace, approve the review → **Copy Creator prompt** → run **trinity-creator**. Studio imports `suite-payload.json` when the file appears.
+5. Approve the tests on the workspace and mark the ones for Xray.
+6. **Plan Xray import** on the same page: instance, mapping, **project key**, folder → **Preview import plan** → **Write to Xray**. **More → Importer** is the path when you copy a Cursor prompt instead of writing from the workspace.
 
 Hands-on checklist: [TESTING.md](TESTING.md).
 
@@ -225,18 +225,22 @@ Full checklist: [TESTING.md](TESTING.md).
 
 ### 5.2 Studio — review
 
-1. Dashboard → **Import Reviewer run** (folder path).
-2. Open Epic unit → edit → **Approve** → **Send to Creator** (copies Creator prompt).
+1. Open the workspace URL the Reviewer prints. If it did not, import the folder from **More → Dashboard**, then **Open workspace**.
+2. Read the verdict. **Next step → Approve** when it is right. **Next step → Copy Creator prompt**.
+3. When several Epics are approved, **Prepare Creator prompts** then **Copy Creator prompts**.
+4. Finding triage and the Jira comment stay on the unit page.
 
 ### 5.3 Creator
 
-1. Run **trinity-creator** with `review_ref` + Epic key + `suite_mode: release_slice_e2e`.
-2. Output: e.g. `Trinity/creator/artifacts/{EPIC}/suite-payload.json`.
-3. Studio → **Creator** → import batch → edit tests → **Approve** → **Fit for Xray import** → **Export for Importer**.
+1. Set **Coverage depth** on the workspace. The copied Creator prompt carries that profile. Then run **trinity-creator** with `review_ref`, the Epic key, and `suite_mode: release_slice_e2e`.
+2. Output: e.g. `Trinity/creator/artifacts/{EPIC}/suite-payload.json`. The workspace imports it.
+3. Approve or reject each test. Tick **Send to Xray**, or **Approve selected** for the tests you ticked. **More → Creator** is the fallback for a pasted suite path and **Export for Importer**.
 
 ### 5.4 Importer
 
-1. Studio → **Importer** (or **Open in Importer** from Creator run).
+On the workspace, **Plan Xray import** uses the same fields. **Preview plans for N Epics** is a dry-run only. **Write to Xray** stays one Epic at a time. The full page:
+
+1. **More → Importer** (or **Open in Importer** from a Creator run).
 2. **Jira instance** — production vs sandbox.
 3. **Mapping file** — field IDs, labels, link types; default project key (often `TC`).
 4. **Project key** — where Jira **Test** issues are created (see [Getting Started — project selector](#importer-project-selector-quick-reference) and §6).

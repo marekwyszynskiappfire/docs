@@ -1,10 +1,10 @@
 ---
 name: reviewer
 description: >-
-  Product-agnostic requirement quality review for Jira Stories, Bugs, Tasks,
-  and Epics. Runs a unified structural + behavioural checklist, emits findings
-  (F#) and clarification questions (Q#), classifies readiness, and gates
-  The Creator on CRITICAL gaps. Read-only on Jira and Confluence; screenshots,
+  Product-agnostic testability review for Jira Stories, Bugs, Tasks,
+  and Epics. Judges whether QA can design pass/fail tests, emits a
+  testability verdict and blocker questions, and keeps the full checklist
+  for an explicit deep audit. Read-only on Jira and Confluence; screenshots,
   spreadsheets, and Figma are optional read-only inputs. Use when reviewing a
   requirement before test creation, when asked for an AC/requirement quality
   check, a testability scan, or a review-only pass — on Cursor, Claude, or
@@ -14,7 +14,7 @@ disable-model-invocation: true
 
 # The Reviewer
 
-Structured quality review of a Jira requirement **before** test case generation. Produces a schema-valid `ReviewPayload`, a human report (Markdown + optional self-contained HTML), findings graded CRITICAL/HIGH/MEDIUM/LOW, clarification questions, and a **gate** — a real, machine-enforced verdict that stays separate from the tone of what a PM actually reads.
+Testability review of a Jira requirement **before** test case generation. The default decision is one verdict from [`requirements-testability-spec.md`](requirements-testability-spec.md): `testable_now`, `testable_with_clarifications`, or `not_testable_yet`. Produces a schema-valid `ReviewPayload` and a human report. Findings are blockers plus at most three observations. The 23-row checklist is **deep audit** only.
 
 **Does not:** generate test cases, write to Xray, silently auto-post to Jira (copy-paste is always available; auto-post is a separate opt-in capability — see §7), verify against product code, or auto-fetch a linked PDF.
 
@@ -34,7 +34,8 @@ Fully supported: **Cursor**, **Claude** (Code and desktop), and **Hive MCP**. On
 
 | Resource | Resolved from |
 |----------|---------------|
-| Unified checklist | `{skill_root}/checklist.md` |
+| **Testability spec (default decision)** | `{skill_root}/requirements-testability-spec.md` |
+| Unified checklist (deep audit) | `{skill_root}/checklist.md` |
 | `ReviewPayload` schema | `{skill_root}/schemas/review-payload.schema.json` |
 | Reference (severity, tools, redaction, limits, templates) | [`reference.md`](reference.md) |
 | **Shareable HTML rules (all tools)** | [`../shared/html-report-guidelines.md`](../shared/html-report-guidelines.md) |
@@ -93,6 +94,7 @@ Write or update `{skill_root}/config/runs/{portfolio_id}.json` per `schemas/run-
 | `scope` | Yes | Issue key, Epic key, JQL, or bundle file path |
 | `run_id` | Yes | Generate a timestamp-based id if not supplied; announce it |
 | `mode` | No | `scan` (default) · `rescan` · `jira-comment-short` · `jira-comment-full` · `html` · `readiness-checklist` |
+| `review_depth` | No | `testability` (default) · `deep_audit`. Deep audit walks every `checklist.md` row. Say "deep audit" to select it. |
 | `force` | No | Override past CRITICAL findings — requires explicit chat confirmation |
 | `artifacts_dir` | No | Override `config.output.artifacts_dir`. Portfolio/JQL runs use `Trinity/reviewer/runs/{portfolio_run_id}/` (see **JQL / portfolio scope** below). |
 
@@ -104,7 +106,7 @@ When `scope` is a **JQL** (or URL whose query is JQL) that returns **multiple** 
 2. **One Epic = one review run** — never merge several Epics into a single `review-payload.json`, never emit one combined HTML report for the portfolio, and never use `--batch` / `confirm batch` / per-child Creator batches.
 3. **Output layout** — for portfolio run id `{portfolio_run_id}` (default: `YYYY-MM-DD-{label}` if not supplied), write each Epic under `{artifacts_dir}/{portfolio_run_id}/{EPIC_KEY}/` with its own `review-payload.json`, `review-report.html`, `review-report.md`, and Jira comment drafts. The HTML is **Profile A** per [`../shared/html-report-guidelines.md`](../shared/html-report-guidelines.md) — each file is self-contained and shareable on its own (zip one folder or attach one `.html`).
 4. **Parallelism** — run Epics **in parallel** (separate agent threads/tasks) when the host allows; each thread executes the full workflow for **one** key only.
-5. **Portfolio bundle (required when ≥2 Epics)** — after every epic payload renders with `--strict`, run `{skill_root}/scripts/build_portfolio_report.py --run-dir {artifacts_dir}/{portfolio_run_id}` (pass `--title` / `--jql` when known). This writes **`{artifacts_dir}/{portfolio_run_id}/portfolio/`** — **Profile B** per [`../shared/html-report-guidelines.md`](../shared/html-report-guidelines.md): `index.html`, `assets/`, generated `data/report-data.js`, and copies of each epic report under `portfolio/epics/{KEY}/` (relative links only — portable on any machine). The portfolio synthesises finding **categories** (themes), **gap signal pills** (e.g. missing AC + backlog gaps when both apply), readiness, planning dates, and QA planning fit. **Creator handoff:** per-epic checkboxes (default excludes `qa_planning_fit: not_fit`), live JQL preview, export `creator-handoff.json`; builder also writes `portfolio/data/creator-handoff.json` and `portfolio/creator-handoff.md` for The Creator. **List `portfolio/index.html` first** in the run output paths you return to the operator (zip `portfolio/` to share the whole run).
+5. **Portfolio bundle (required when ≥2 Epics)** — after every epic payload renders with `--strict`, run `{skill_root}/scripts/build_portfolio_report.py --run-dir {artifacts_dir}/{portfolio_run_id} --product-id {product_id}` (pass `--title` / `--jql` when known). This writes **`{artifacts_dir}/{portfolio_run_id}/portfolio/`** — **Profile B** per [`../shared/html-report-guidelines.md`](../shared/html-report-guidelines.md): `index.html`, `assets/`, generated `data/report-data.js`, and copies of each epic report under `portfolio/epics/{KEY}/` (relative links only — portable on any machine). The portfolio synthesises finding **categories** (themes), **gap signal pills** (e.g. missing AC + backlog gaps when both apply), readiness, planning dates, and QA planning fit. **Creator/analytics handoff:** `creator-handoff.json` must retain `run_id` and `product_id`; per-epic checkboxes default-exclude `qa_planning_fit: not_fit`, and the UI exports the same IDs with the live Creator JQL. The builder also writes `portfolio/data/creator-handoff.json` and `portfolio/creator-handoff.md` for The Creator. **List `portfolio/index.html` first** in the run output paths you return to the operator (zip `portfolio/` to share the whole run).
 6. **Portfolio index (optional)** — `MANIFEST.md` in the run root is a Markdown companion; it does not replace the Profile B bundle.
 7. **Full fidelity (`pass_type: full_sweep`)** — see **Full fidelity and link ingestion** below. Portfolio parallelism does **not** relax gather rules per Epic.
 
@@ -185,9 +187,15 @@ Apply redaction **before any text reaches an output field** (`excerpt_quote`, a 
 
 Compute `requirement_fingerprint` — a hash of this normalized bundle — for staleness checks on any later read.
 
-### 4. Checklist sweep
+### 4. Decide testability
 
-Walk every row of `checklist.md`, Group A then Group B. For each: **COVERED** (cite `*(Source: …)*`) or a **GAP**. A GAP becomes a bullet in "Not stated in story," a finding, or both, per the question-linkage rule in `checklist.md`. Never invent an answer to fill a gap.
+Read [`requirements-testability-spec.md`](requirements-testability-spec.md). Judge the gathered sources against the minimum contract. Set `report.testability_verdict`, `report.testability_reasons` (one to three sentences), and the compatibility fields in that spec (`qa_planning_fit`, readiness label).
+
+**Default (`review_depth: testability`).** Emit a finding only when it is a **blocker** (`finding_role: blocker`) or one of at most three **observations**. Only blockers create questions. Cite `checklist_ref` for the row that matches the miss. Do not walk the other rows and do not emit a finding per row.
+
+**Deep audit (`review_depth: deep_audit`, or the operator says "deep audit").** Walk every row of `checklist.md`, Group A then Group B. For each: **COVERED** (cite `*(Source: …)*`) or a **GAP**. A GAP becomes a bullet in "Not stated in story," a finding, or both, per the question-linkage rule in `checklist.md`. Never invent an answer to fill a gap.
+
+Gathering does not shrink in the default depth. §2 and **Full fidelity** stay mandatory.
 
 Emit findings as:
 
@@ -198,6 +206,7 @@ Emit findings as:
   "severity": "CRITICAL | HIGH | MEDIUM | LOW",
   "category": "acceptance_criteria | scope | testability | traceability | open_questions | template_compliance | data_sensitivity | behavioral_gap",
   "checklist_ref": "A1-A8, B1-B12, or C1-C3 (Epic only)",
+  "finding_role": "blocker | observation",
   "excerpt_quote": "verbatim, redacted",
   "finding_summary": "one line",
   "question_for_PM": "or empty",
@@ -324,6 +333,20 @@ If the host can't execute Python, write the payload, say plainly that the report
 
 **Multi-Epic runs:** when the session scanned **≥2 Epic keys** under one `{portfolio_run_id}` folder, run `build_portfolio_report.py` (see **JQL / portfolio scope**) and include the portfolio path in the paths you announce.
 
+**Studio pipeline manifest:** After the payloads validate and the reports render, write `pipeline-manifest.json` in the run folder. It references each Epic `review-payload.json` by repository-relative path and content hash. It does not copy payloads.
+
+```
+python3 Trinity/studio/scripts/write_pipeline_manifest.py --run-dir {artifacts_dir}/{portfolio_run_id} --portfolio-id {portfolio_id}
+```
+
+For a single Epic folder, pass that folder as `--run-dir`. The script fills product, persona, and scope from `reviewer/config/runs/{portfolio_id}.json` when that file exists. Then open the workspace:
+
+```
+python3 Trinity/studio/scripts/open_workspace.py --manifest {artifacts_dir}/{portfolio_run_id}/pipeline-manifest.json
+```
+
+The script reuses a compatible Studio or starts one when the port is free. It does not stop another process on that port. Importing again with the same payload hashes reuses the pipeline run and does not add a review revision. Open the printed `workspace_url` in Cursor's embedded browser. If the browser is unavailable, that URL is the only instruction to give the operator.
+
 **Summary report link (mandatory — every completion message):** The operator must always get a **clickable markdown link** to the main HTML report. Never end a run with only per-epic paths or a prose summary.
 
 | Run shape | Summary report (lead with this) |
@@ -359,11 +382,13 @@ On request, or automatically when ≥3 "Suggested testing focus" items exist or 
 
 - [ ] Final reply to the operator includes a markdown link to the **summary report** (`portfolio/index.html` for multi-Epic, or `review-report.html` for a single target).
 - [ ] `render_report.py --strict` exited 0 on the final payload; reports were rendered by the script, not hand-written.
+- [ ] `pipeline-manifest.json` is in the run folder, and each `content_sha256` matches that Epic's `review-payload.json`.
+- [ ] `open_workspace.py` printed `workspace_url`, and that URL was opened in Cursor's browser or given to the operator as the only fallback.
 - [ ] HTML meets [`../shared/html-report-guidelines.md`](../shared/html-report-guidelines.md) Profile A (portable single file, no CDN, redacted prose).
 - [ ] Epic target: `requirements[0]` carries `planning_target_date` (and due/end when set); header shows planning date.
 - [ ] Epic target: `report.qa_planning_fit` set; when `not_fit`, HIGH A2 + readiness `cannot_plan_scope_yet` + QA quarter planning line present.
 - [ ] JQL/portfolio scope: one payload folder per Epic key; no merged multi-Epic payload.
-- [ ] Multi-Epic (≥2): `build_portfolio_report.py` ran; `portfolio/index.html` + `data/report-data.js` present; epic copies under `portfolio/epics/`; `creator-handoff.json` / `creator-handoff.md` present; gap signals and Creator toggles work in the UI.
+- [ ] Multi-Epic (≥2): `build_portfolio_report.py --product-id {product_id}` ran; `portfolio/index.html` + `data/report-data.js` present; epic copies under `portfolio/epics/`; `creator-handoff.json` / `creator-handoff.md` retain `run_id` + `product_id`; gap signals and Creator toggles work in the UI.
 - [ ] `run_id`, `requirement_fingerprint`, and `context_loaded[]` are present.
 - [ ] Every finding has `finding_id`, `severity`, `category`, `checklist_ref`, `finding_summary`.
 - [ ] `blocks_test_generation` matches `severity == CRITICAL` exactly — nowhere else.

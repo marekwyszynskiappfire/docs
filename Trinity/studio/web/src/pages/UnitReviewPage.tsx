@@ -183,7 +183,7 @@ export default function UnitReviewPage() {
   return (
     <>
       <p>
-        <Link to="/">Dashboard</Link>
+        <Link to="/">Workspace</Link>
         {payload.run_id && (
           <>
             {" · "}

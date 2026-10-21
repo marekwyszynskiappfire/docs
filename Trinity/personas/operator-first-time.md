@@ -14,7 +14,7 @@
 | **Weak** | Git beyond clone/pull, terminal, Cursor Agent, MCP, local `.env`, JSON schemas |
 | **Has** | Laptop (macOS or Windows), Appfire Jira + sandbox access, API token, Xray keys after asking P2 |
 | **Does not have** | Pre-made portfolio config, Importer mapping, or a buddy in the room |
-| **Goal** | One sandbox Epic: review → approve → Creator batch → Xray import without breaking production |
+| **Goal** | One sandbox Epic on the workspace: verdict → Creator prompt → test review → Xray plan, without writing to production |
 | **Fear** | Wrong folder path, posting DEMO data to prod, “inventing” prompts and voiding checks |
 
 ---
@@ -23,7 +23,7 @@
 
 1. Complete [FIRST-RUN.md](../FIRST-RUN.md) Phases 0–1 **without** Jira (demo only).
 2. Pass [OPERATOR-VALIDATION.md](../OPERATOR-VALIDATION.md) Parts A–C on **sandbox** with ≤2 support pings (MCP auth, mapping path).
-3. Can explain: **three Studio prompts**, **approve vs In Creator** ([MANUAL.md](../MANUAL.md) §7.5.1), **sandbox vs PRODUCTION** gate.
+3. Can explain: **three Studio prompts**, **workspace Next step vs the unit page**, **approve vs In Creator** ([MANUAL.md](../MANUAL.md) §7.5.1), and the **sandbox vs PRODUCTION** gate.
 4. Does **not** need to edit `SKILL.md`, portfolio JSON by hand, or mapping JSON without P2.
 
 ---
@@ -46,13 +46,13 @@ When reviewing a page as Sam, ask:
 
 | # | Question |
 |---|----------|
-| 1 | Is the **next click** obvious (Studio nav label matches UI)? |
+| 1 | Is the **next click** the workspace **Next step**, and do nav labels match Workspace, Personas, Statistics, and More? |
 | 2 | Are **placeholders** replaced (`<docs-repo-url>`, `YOUR-EPIC-KEY`)? |
 | 3 | Is **order** Studio-before-MCP for day one? |
-| 4 | Does import path say “folder that **contains** `EPIC-KEY/`”? |
-| 5 | Are **Approve**, **export path**, and **Send to Creator** distinguished? |
-| 6 | Is there a **picture or ASCII map** where the UI has 6+ tabs? |
-| 7 | Does sandbox vs prod appear **before** first execute? |
+| 4 | Does a missing workspace URL say the import folder **contains** `EPIC-KEY/`? |
+| 5 | Are the workspace **Copy Creator prompt**, the unit-page export, and **In Creator** distinguished? |
+| 6 | Does the page say Creator, Importer, and Reviewer configs are under **More**? |
+| 7 | Does sandbox vs prod appear **before** the first write to Xray? |
 
 Full friction log: [NEWBIE-PERSONA-REVIEW.md](../NEWBIE-PERSONA-REVIEW.md).
 
@@ -62,6 +62,6 @@ Full friction log: [NEWBIE-PERSONA-REVIEW.md](../NEWBIE-PERSONA-REVIEW.md).
 
 | P# | Sam interaction |
 |----|-----------------|
-| **P1** | Primary — triage, approve, Creator, Importer preview |
+| **P1** | Primary — workspace verdict, test review, Xray preview |
 | **P2** | Provides epic key, portfolio id, mapping file, sandbox project |
 | **P10** | Escalation for MCP / dual-site only |

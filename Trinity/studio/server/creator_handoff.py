@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from coverage_profile import DEFAULT_ID, profile_by_id, prompt_section
 from personas import docs_repo_root
 
 
@@ -26,10 +27,13 @@ def build_creator_prompt(
     readiness_label: str | None,
     qa_planning_fit: str | None,
     pipeline_run_id: str | None,
+    coverage: dict[str, Any] | None = None,
 ) -> str:
     gate = gate_status or "unknown"
     readiness = readiness_label or "—"
     fit = qa_planning_fit or "—"
+    chosen = coverage or profile_by_id(DEFAULT_ID)
+    count = f"{chosen['test_count_min']}–{chosen['test_count_max']}"
     suite_hint = f"Trinity/creator/artifacts/{creator_run_id}/suite-payload.json"
     personas = (
         "Trinity/personas/creator-expert-qa-engineer.md",
@@ -50,7 +54,7 @@ Run the **trinity-creator** skill in Cursor.
 | **Readiness** | {readiness} |
 | **Test design fit** | {fit} |
 | **Studio pipeline run** | {pipeline_run_id or "—"} |
-| **suite_mode** | `release_slice_e2e` (3–5 journey tests) |
+| **suite_mode** | `release_slice_e2e` ({count} journey tests, profile `{chosen["id"]}`) |
 | **product** | Resolve from pipeline/product config (e.g. `bigpicture` → `Trinity/creator/config/bigpicture.json`) |
 
 ### Personas (load all)
@@ -68,6 +72,7 @@ Run Creator **once on this Epic key**. Child stories supply traceability only �
 - Coverage matrix from **this review_ref**, not the legacy product catalog unless config enables it.
 - Tag each test: `automation_fit`, `automation_blockers`, `persona_notes`.
 
+{prompt_section(chosen)}
 ### After generation
 
 1. Write `suite-payload.json` under `{suite_hint}` (or path announced by the skill).
@@ -80,6 +85,7 @@ Run Creator **once on this Epic key**. Child stories supply traceability only �
 - `jira_primary_key`: `{jira_key}`.
 - `comprehensive`: **false** (default).
 - `suite_mode`: `release_slice_e2e`.
+- `coverage_profile`: `{chosen["id"]}` ({count} journeys).
 """
 
 

@@ -24,6 +24,14 @@ API **8765** · Vite UI **5173** (Vite uses `--strictPort` — will not silently
 
 After `cd web && npm run build`, **8765** serves the React build from `web/dist` (legacy static: `QA_STUDIO_LEGACY_STATIC=1`).
 
+Reviewer close-out imports a manifest and prints one workspace URL. It reuses a compatible Studio. It does not stop another process on the port:
+
+```bash
+python3 Trinity/studio/scripts/open_workspace.py --manifest path/to/pipeline-manifest.json
+```
+
+If the running Studio is too old, restart it yourself with `STUDIO_FORCE=1 ./Trinity/studio/scripts/start.sh`.
+
 If ports are busy (old Studio or a stray API from an agent session):
 
 ```bash
@@ -56,6 +64,9 @@ Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
 | `GET .../new-epics` | Epics in scope without `review-payload.json` under run folder |
 | `POST .../resolve-scope` | Inline resolve for epic_keys/epic_url |
 | `POST/DELETE .../resolved-keys` | Paste or clear `resolved_epic_keys` snapshot |
+| `POST /api/import/pipeline-manifest` | Import `pipeline-manifest.json`; unchanged payload hashes do not add a review revision |
+| `GET /api/workspace/{run_id}` | Epics, one next action, and the Cursor handoff prompt |
+| `POST /api/workspace/{run_id}/handoffs/{id}/check` | Refresh handoff status from expected files. A missing file while waiting stays `awaiting_cursor` |
 | `POST /api/import/reviewer-run` | Import Reviewer run folder |
 | `GET /api/jira/status` | Jira credentials chip for epic comment panel |
 | `GET/POST /api/units/{id}/jira-comment/*` | Preview, post, history (epic comments) |
@@ -73,7 +84,8 @@ Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
 | `GET /api/runs/{id}/statistics`, `/statistics/export` | Per-run E2E report ([`METRICS.md`](../METRICS.md)) |
 | `GET /api/statistics/compare?runs=id1,id2` | Compare 2–5 pipeline runs (TC readiness + metrics; first id = baseline) |
 | `GET /api/telemetry/summary`, `/export`, `/events` | Local metrics ([`METRICS.md`](../METRICS.md)) |
-| `POST /api/telemetry/flush` | Best-effort BigQuery ingest when `TRINITY_TELEMETRY_URL` set |
+| `POST /api/telemetry/flush` | Flush pending events to configured ingest |
+| `POST /api/telemetry/sync` | Recompute all run reports and backfill BigQuery ([setup](../BIGQUERY.md)) |
 | `/api/units/...`, `/api/creator-runs/...` | Review and Creator batches |
 
 UI: **Personas** nav → edit role prompts used by Reviewer run config.

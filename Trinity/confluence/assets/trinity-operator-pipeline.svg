@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
   <title id="title">Trinity operator pipeline</title>
-  <desc id="desc">From repository checkout through Reviewer, Studio, Creator, and Importer to Xray.</desc>
+  <desc id="desc">From repository checkout through Reviewer into the Studio workspace, then Creator and the Xray plan.</desc>
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
       <path d="M0,0 L8,3 L0,6 Z" fill="#334155"/>
@@ -34,24 +34,24 @@
   <text x="20" y="130" class="phase">LIVE PIPELINE (CURSOR + JIRA)</text>
   <rect x="20" y="142" width="150" height="64" rx="6" class="box-accent"/>
   <text x="32" y="166" class="title">Reviewer config</text>
-  <text x="32" y="182" class="sub">Studio ’ Reviewer configs</text>
+  <text x="32" y="182" class="sub">More, then Reviewer configs</text>
   <text x="32" y="196" class="sub">trinity-reviewer in Cursor</text>
   <rect x="190" y="142" width="150" height="64" rx="6" class="box"/>
   <text x="202" y="166" class="title">reviewer/runs/</text>
   <text x="202" y="182" class="sub">ONE-*/review-payload.json</text>
   <text x="202" y="196" class="sub">folder = epic Jira key</text>
   <rect x="360" y="142" width="150" height="64" rx="6" class="box-studio"/>
-  <text x="372" y="166" class="title">Import + QA</text>
-  <text x="372" y="182" class="sub">Unit triage · approve</text>
-  <text x="372" y="196" class="sub">Jira epic comment (opt.)</text>
+  <text x="372" y="166" class="title">Workspace</text>
+  <text x="372" y="182" class="sub">Verdict · approve</text>
+  <text x="372" y="196" class="sub">Next step on one page</text>
   <rect x="530" y="142" width="150" height="64" rx="6" class="box-studio"/>
-  <text x="542" y="166" class="title">Send to Creator</text>
+  <text x="542" y="166" class="title">Creator prompt</text>
   <text x="542" y="182" class="sub">trinity-creator</text>
-  <text x="542" y="196" class="sub">suite-payload.json</text>
+  <text x="542" y="196" class="sub">Workspace imports the file</text>
   <rect x="700" y="142" width="200" height="64" rx="6" class="box-studio"/>
-  <text x="712" y="166" class="title">Importer</text>
-  <text x="712" y="182" class="sub">Plan · execute · Xray keys</text>
-  <text x="712" y="196" class="sub">production gate: PRODUCTION</text>
+  <text x="712" y="166" class="title">Xray plan</text>
+  <text x="712" y="182" class="sub">Preview · write · keys</text>
+  <text x="712" y="196" class="sub">production: type PRODUCTION</text>
   <path d="M170 174 H190" class="line"/>
   <path d="M340 174 H360" class="line"/>
   <path d="M510 174 H530" class="line"/>
@@ -66,7 +66,7 @@
   <text x="32" y="396" class="sub">" Epic folder name must match scope.value in review-payload.json</text>
   <text x="32" y="414" class="sub">" Demo epic key DEMO-4500 is fictional  do not post to production Jira</text>
   <text x="32" y="432" class="sub">" Jira comments: preview ’ confirm issue key ’ optional PRODUCTION on appfire host</text>
-  <text x="32" y="450" class="sub">" not_fit epics: Creator handoff disabled in Studio</text>
+  <text x="32" y="450" class="sub">" Not testable yet: no Creator prompt until the verdict changes</text>
   <text x="32" y="468" class="sub">" Redaction: blockers in preview prevent post (secrets / tokens)</text>
   <rect x="470" y="372" width="430" height="120" rx="6" class="box-studio"/>
   <text x="482" y="396" class="title">Doc map (repo)</text>

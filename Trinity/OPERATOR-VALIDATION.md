@@ -31,10 +31,10 @@ QA lead (P2) records that an operator completed the path **without live coaching
 
 | # | Step | Pass | Notes |
 |---|------|------|-------|
-| B1 | `seed-demo.sh`; DEMO-4500 on Dashboard | ☐ | |
+| B1 | `seed-demo.sh`; **Open workspace** on DEMO-4500 | ☐ | Verdict and Next step visible |
 | B2 | Understand readiness labels | ☐ | |
-| B3 | Import demo suite in Creator | ☐ | |
-| B4 | Importer preview | ☐ | |
+| B3 | Top bar is Workspace, Personas, Statistics. Creator and Importer are under More | ☐ | |
+| B4 | Personas list shows the heading in the file; the filename stays above the editor | ☐ | |
 
 ---
 
@@ -43,12 +43,12 @@ QA lead (P2) records that an operator completed the path **without live coaching
 | # | Step | Pass | Notes |
 |---|------|------|-------|
 | C1 | Prompt 1; `review-payload.json` | ☐ | Portfolio: |
-| C2 | Import run; correct readiness | ☐ | |
-| C3 | Triage + approve | ☐ | |
-| C4 | Prompt 2; Creator batch | ☐ | |
-| C5 | Export for Importer | ☐ | |
-| C6 | Importer preview OK | ☐ | |
-| C7 | Sandbox execute (or policy dry-run) | ☐ | Test keys: |
+| C2 | Workspace URL opened; verdict matches the report | ☐ | |
+| C3 | Approve the review on the workspace | ☐ | |
+| C4 | Copy Creator prompt; suite appears on the workspace | ☐ | |
+| C5 | Approve tests and mark Send to Xray | ☐ | |
+| C6 | Plan Xray import preview OK | ☐ | |
+| C7 | Sandbox write, or dry-run per policy. Write stays one Epic | ☐ | Test keys: |
 
 ---
 

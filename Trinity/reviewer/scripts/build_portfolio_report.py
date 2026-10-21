@@ -302,6 +302,7 @@ def write_creator_handoff(
     run_id: str,
     source_jql: str,
     rows: list[dict],
+    product_id: str | None = None,
 ) -> None:
     included = [r["key"] for r in rows if r.get("creatorIncludeDefault")]
     excluded = [r["key"] for r in rows if not r.get("creatorIncludeDefault")]
@@ -310,6 +311,7 @@ def write_creator_handoff(
     payload = {
         "schema_version": "1.0",
         "run_id": run_id,
+        "product_id": product_id,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_jql": source_jql,
         "creator_jql": jql,
@@ -383,6 +385,11 @@ def main() -> None:
     ap.add_argument("--title", default="", help="Page title")
     ap.add_argument("--subtitle", default="", help="Meta subtitle line")
     ap.add_argument("--jql", default="", help="Source JQL (for meta only)")
+    ap.add_argument(
+        "--product-id",
+        default="",
+        help="Product config ID; defaults to reviewer/config/runs/<run-id>.json",
+    )
     args = ap.parse_args()
 
     run_dir = args.run_dir.resolve()
@@ -418,6 +425,13 @@ def main() -> None:
         })
 
     run_id = run_dir.name
+    product_id = args.product_id or None
+    if not product_id:
+        run_config = Path(__file__).resolve().parents[1] / "config" / "runs" / f"{run_id}.json"
+        if run_config.is_file():
+            product_id = json.loads(run_config.read_text(encoding="utf-8")).get(
+                "product_id"
+            )
     title = args.title or f"Reviewer portfolio — {run_id}"
     subtitle = args.subtitle or (
         f"{len(keys)} epics · run {run_id} · "
@@ -434,6 +448,7 @@ def main() -> None:
             "title": title,
             "subtitle": subtitle,
             "runId": run_id,
+            "productId": product_id,
             "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
             "jql": args.jql,
             "jiraBase": JIRA_BROWSE,
@@ -454,7 +469,7 @@ def main() -> None:
     data_dir = portfolio / "data"
     data_dir.mkdir(exist_ok=True)
     (data_dir / "report-data.js").write_text(js_embed(report), encoding="utf-8")
-    write_creator_handoff(portfolio, run_id, args.jql, rows)
+    write_creator_handoff(portfolio, run_id, args.jql, rows, product_id)
     (portfolio / "portfolio-meta.json").write_text(
         json.dumps(
             {

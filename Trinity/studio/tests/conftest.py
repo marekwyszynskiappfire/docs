@@ -21,6 +21,8 @@ for path in (str(SERVER), str(SHARED)):
 def studio_db(tmp_path, monkeypatch):
     db_file = tmp_path / "qa-studio-test.db"
     monkeypatch.setenv("QA_STUDIO_DB", str(db_file))
+    monkeypatch.delenv("TRINITY_TELEMETRY_URL", raising=False)
+    monkeypatch.delenv("TRINITY_TELEMETRY_API_KEY", raising=False)
     from db import init_db
 
     init_db()

@@ -7,9 +7,17 @@ from typing import Any
 
 from fastapi import APIRouter, HTTPException
 
-from api_models import ImportBatchBody, ImportRunBody, PasteResolvedKeysBody, SavePersonaBody
+from api_models import (
+    ImportBatchBody,
+    ImportManifestBody,
+    ImportRunBody,
+    PasteResolvedKeysBody,
+    RestorePersonaBody,
+    SavePersonaBody,
+)
 from import_review import import_reviewer_run, import_test_case_batch
-from personas import list_persona_files, read_persona, write_persona
+from pipeline_manifest import import_pipeline_manifest
+from personas import PersonaConflict, list_persona_files, list_revisions, read_persona, restore_revision, write_persona
 from run_config import (
     list_new_epics,
     list_run_configs,
@@ -42,9 +50,39 @@ def api_get_persona(filename: str) -> dict[str, str]:
 @router.put("/api/personas/{filename}")
 def api_put_persona(filename: str, body: SavePersonaBody) -> dict[str, Any]:
     try:
-        return write_persona(filename, body.content)
+        return write_persona(filename, body.content, body.expected_sha256)
+    except PersonaConflict as e:
+        raise HTTPException(
+            409,
+            {"message": "This persona changed after you opened it.", "content": e.content, "content_sha256": e.content_sha256},
+        ) from e
     except ValueError as e:
         raise HTTPException(400, str(e)) from e
+    except FileNotFoundError as e:
+        raise HTTPException(404, str(e)) from e
+
+
+@router.get("/api/personas/{filename}/revisions")
+def api_list_persona_revisions(filename: str) -> list[dict[str, str | int]]:
+    try:
+        return list_revisions(filename)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+
+
+@router.post("/api/personas/{filename}/revisions/{revision_id}/restore")
+def api_restore_persona(filename: str, revision_id: int, body: RestorePersonaBody) -> dict[str, str]:
+    try:
+        return restore_revision(filename, revision_id, body.expected_sha256)
+    except PersonaConflict as e:
+        raise HTTPException(
+            409,
+            {"message": "This persona changed after you opened it.", "content": e.content, "content_sha256": e.content_sha256},
+        ) from e
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
+    except FileNotFoundError as e:
+        raise HTTPException(404, str(e)) from e
 
 
 @router.get("/api/reviewer-run-configs")
@@ -129,6 +167,14 @@ def api_put_run_config(portfolio_id: str, body: dict[str, Any]) -> dict[str, Any
         raise HTTPException(400, str(e)) from e
     except RuntimeError as e:
         raise HTTPException(500, str(e)) from e
+
+
+@router.post("/api/import/pipeline-manifest")
+def api_import_manifest(body: ImportManifestBody) -> dict[str, Any]:
+    try:
+        return import_pipeline_manifest(body.path, dry_run=body.dry_run)
+    except (FileNotFoundError, ValueError) as e:
+        raise HTTPException(400, str(e)) from e
 
 
 @router.post("/api/import/reviewer-run")

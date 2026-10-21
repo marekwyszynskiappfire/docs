@@ -12,13 +12,16 @@ Capture at **1280×800** or wider, light theme, no personal tokens visible in `.
 
 | Filename | What to show | Used in |
 |----------|--------------|---------|
-| `nav-dashboard.png` | Top nav: Dashboard, Statistics, Personas, Reviewer configs, Creator, Importer | OPERATOR-ONBOARDING §4 |
-| `dashboard-run-list.png` | Dashboard with at least one run imported | FIRST-RUN |
-| `run-epic-table.png` | Run page epic/unit table with readiness column | METRICS / Statistics intro |
-| `unit-triage.png` | Unit detail: approve, fit, link to report | MANUAL |
-| `reviewer-configs-prompt.png` | Reviewer configs with **Copy Cursor prompt** visible | PROMPTS-AND-INPUTS §1 |
-| `creator-import.png` | Creator tab: import batch + test list | PROMPTS-AND-INPUTS §2 |
-| `importer-plan.png` | Importer: instance, mapping, project key, preview | GUIDE |
+| `nav-dashboard.png` | Top bar: Workspace, Personas, Statistics, and More open | OPERATOR-ONBOARDING |
+| `workspace-next.png` | Workspace: stepper, Next step, and one Epic | FIRST-RUN Phase 1 |
+| `workspace-portfolio.png` | Portfolio bar when two or more Epics share a step | MANUAL §2 |
+| `dashboard-run-list.png` | Home page with **Open workspace** on a run | FIRST-RUN |
+| `run-epic-table.png` | Run page epic table with readiness column | METRICS / Statistics intro |
+| `unit-triage.png` | Unit page: findings and Jira comment | MANUAL recovery |
+| `reviewer-configs-prompt.png` | More → Reviewer configs with **Copy Cursor prompt** | PROMPTS-AND-INPUTS §1 |
+| `creator-import.png` | More → Creator: pasted suite path | Recovery |
+| `importer-plan.png` | Workspace Xray plan: instance, mapping, project key, preview | GUIDE |
+| `personas-editor.png` | Persona list shows the heading; filename is above the editor | Personas |
 | `statistics-compare.png` | Statistics: run selected + compare dropdowns | MANUAL §5.9 |
 
 ---
@@ -27,7 +30,6 @@ Capture at **1280×800** or wider, light theme, no personal tokens visible in `.
 
 | Filename | What to show |
 |----------|--------------|
-| `personas-editor.png` | Personas edit screen |
 | `mcp-cursor-settings.png` | Cursor Settings → MCP with Atlassian servers (blur tokens) |
 
 ---

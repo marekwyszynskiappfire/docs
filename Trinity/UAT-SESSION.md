@@ -26,13 +26,13 @@
 
 | Min | Do | Pass if |
 |-----|-----|---------|
-| 0–15 | [START-HERE](START-HERE.md) → clone → `start.sh` → health check | Dashboard at :5173 |
-| 15–25 | `seed-demo.sh` → DEMO-4500 → Creator import demo suite → Importer preview | Part B in validation |
+| 0–15 | [START-HERE](START-HERE.md) → clone → `start.sh` → health check | Studio at :5173. Top bar is Workspace, Personas, Statistics |
+| 15–25 | `seed-demo.sh` → **Open workspace** on DEMO-4500 | Verdict and Next step visible. Creator and Importer are under More |
 | 25–35 | `install-trinity-skills.sh` → `pilot-preflight.sh` | All PASS |
 | 35–55 | [CURSOR-MCP-SETUP](CURSOR-MCP-SETUP.md) single-site sandbox → verify resources in Agent | Gate 2 |
-| 55–60 | Copy `studio/.env.example` → sandbox creds → restart Studio | Importer shows instance |
-| 60–75 | FIRST-RUN Phase 3 with **one** sandbox Epic (Prompt 1 → import → approve → Prompt 2) | `review-payload.json` + Creator batch |
-| 75–85 | Export for Importer → preview → sandbox execute **or** dry-run per policy | Part C |
+| 55–60 | Copy `studio/.env.example` → sandbox creds → restart Studio | Workspace import panel lists the sandbox instance |
+| 60–75 | FIRST-RUN Phase 3 with **one** sandbox Epic (Prompt 1 → workspace URL → approve → Copy Creator prompt) | `review-payload.json` and a suite on the workspace |
+| 75–85 | **Plan Xray import** on the workspace → preview → sandbox write **or** dry-run per policy | Part C |
 | 85–90 | Knowledge check (validation Part D) | Operator can answer 4 questions |
 
 **Doc reference:** [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md) gates match this order.

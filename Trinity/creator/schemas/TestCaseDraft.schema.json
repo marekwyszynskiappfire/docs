@@ -6,6 +6,7 @@
   "required": [
     "schema_version",
     "run_id",
+    "product_id",
     "generated_at",
     "golden_version",
     "golden_sampling",
@@ -50,11 +51,34 @@
     "suite_mode": {
       "type": "string",
       "enum": ["release_slice_e2e", "comprehensive_legacy"],
-      "description": "Default release_slice_e2e: 3-5 journey tests, no atomic"
+      "description": "release_slice_e2e is journey-only. The count comes from coverage_profile when that object is present; otherwise 3-5."
+    },
+    "coverage_profile": {
+      "type": "object",
+      "description": "Coverage depth selected in Studio. actual_count must be <= test_count_max. Fewer tests are valid when the requirement cannot support the minimum.",
+      "required": ["id", "test_count_min", "test_count_max", "actual_count"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": ["smoke", "core", "balanced", "thorough", "edge"]
+        },
+        "test_count_min": { "type": "integer", "minimum": 1 },
+        "test_count_max": { "type": "integer", "minimum": 1 },
+        "actual_count": { "type": "integer", "minimum": 0 },
+        "omitted": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
     },
     "product_id": {
       "type": "string",
       "description": "Resolved config product id e.g. bigpicture"
+    },
+    "pipeline_run_id": {
+      "type": "string",
+      "description": "Stable Studio Reviewer run id copied from handoff when available"
     },
     "golden_root": {
       "type": "string",

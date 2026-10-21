@@ -31,6 +31,7 @@ Git mirrors under `Trinity/`; republish with `python3 Trinity/scripts/sync_confl
 | [`CURSOR-MCP-SETUP.md`](CURSOR-MCP-SETUP.md) · [`PROMPTS-AND-INPUTS.md`](PROMPTS-AND-INPUTS.md) | MCP · Studio prompts |
 | [`MANUAL.md`](MANUAL.md) | Full operator reference |
 | [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) | Linear checklist |
+| [`BIGQUERY.md`](BIGQUERY.md) | BigQuery ingest, env setup, backfill, and Looker Studio |
 
 **Release:** [`VERSION`](VERSION) · [`VERSIONING.md`](VERSIONING.md) · Mateusz POC: [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md)
 

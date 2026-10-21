@@ -9,8 +9,11 @@ CREATE TABLE IF NOT EXISTS pipeline_run (
   trigger_value TEXT NOT NULL,
   source_path TEXT,
   product_id TEXT,
+  operator_id TEXT,
+  operator_name TEXT,
   status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'archived')),
   creator_handoff_json TEXT,
+  coverage_profile TEXT NOT NULL DEFAULT 'balanced',
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL
 );
@@ -25,6 +28,7 @@ CREATE TABLE IF NOT EXISTS review_unit (
   qa_planning_fit TEXT,
   approved_revision_id INTEGER,
   include_in_creator INTEGER NOT NULL DEFAULT 1,
+  coverage_profile TEXT,
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   UNIQUE (pipeline_run_id, jira_key)
@@ -150,3 +154,47 @@ CREATE TABLE IF NOT EXISTS pipeline_run_report (
   report_json TEXT NOT NULL,
   computed_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS pipeline_manifest (
+  pipeline_run_id TEXT PRIMARY KEY REFERENCES pipeline_run(id) ON DELETE CASCADE,
+  manifest_path TEXT NOT NULL,
+  manifest_json TEXT NOT NULL,
+  payload_set_hash TEXT NOT NULL,
+  imported_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cursor_handoff (
+  id TEXT PRIMARY KEY,
+  pipeline_run_id TEXT NOT NULL REFERENCES pipeline_run(id) ON DELETE CASCADE,
+  stage TEXT NOT NULL CHECK (stage IN ('review', 'creator_draft')),
+  epic_key TEXT NOT NULL DEFAULT '',
+  prompt_version TEXT NOT NULL,
+  prompt_text TEXT NOT NULL,
+  prompt_sha256 TEXT NOT NULL,
+  coverage_profile TEXT,
+  status TEXT NOT NULL CHECK (status IN (
+    'awaiting_cursor', 'output_detected', 'invalid_output', 'imported', 'stale_output'
+  )),
+  expected_paths_json TEXT NOT NULL,
+  expected_hashes_json TEXT NOT NULL,
+  copied_at TEXT,
+  detected_at TEXT,
+  imported_at TEXT,
+  retry_count INTEGER NOT NULL DEFAULT 0,
+  error TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  UNIQUE (pipeline_run_id, stage, epic_key)
+);
+
+CREATE INDEX IF NOT EXISTS idx_cursor_handoff_pipeline ON cursor_handoff(pipeline_run_id);
+
+CREATE TABLE IF NOT EXISTS persona_revision (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  filename TEXT NOT NULL,
+  content TEXT NOT NULL,
+  content_sha256 TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_persona_revision_file ON persona_revision(filename, id DESC);

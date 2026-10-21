@@ -37,6 +37,18 @@ Switch env vars when switching instance; Studio shows which instance is selected
 5. **Copy Cursor prompt** — PM-safe summary + Epic **coverage matrix**; paste into Cursor to run **trinity-importer** execute handoff.
 6. **Execute import batch** in Studio (or agent/CLI) — auto-persists Xray keys when `creator_run_id` is set; reports under `xray-import-run/`.
 
+### Analytics completion contract
+
+For an E2E run to finish in Trinity analytics, execute through Studio with
+`creator_run_id` so Xray keys are persisted against the linked Creator run.
+If CLI execution is unavoidable, return the import report to Studio through
+`POST /api/importer/record-results`; a standalone CLI write that is never
+recorded in Studio cannot appear as completed in BigQuery.
+
+The skill does not access BigQuery credentials or write BigQuery directly.
+Studio records the human operator, product, pipeline ID, and Importer/Xray
+events, then sends them through configured telemetry.
+
 ### CLI (single test)
 
 ```bash

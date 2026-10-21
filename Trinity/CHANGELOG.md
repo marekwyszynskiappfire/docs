@@ -12,6 +12,7 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 
 ## Unreleased
 
+- Studio telemetry: auto-flush after each pipeline step; full backfill via `/api/telemetry/sync`; Creator batches link to Reviewer runs through `review_ref`; envelopes include human `operator_id` / `operator_name` and `product_id` / `product_name`; run snapshots upsert to BigQuery. Local ingest and Looker-ready views: [`BIGQUERY.md`](BIGQUERY.md).
 - Removed legacy trees: `The Reviewer/`, `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
 
 ## Pre-0.2.0

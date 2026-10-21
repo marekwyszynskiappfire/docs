@@ -12,6 +12,148 @@ async function json<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+export type HandoffStatus =
+  | "awaiting_cursor"
+  | "output_detected"
+  | "invalid_output"
+  | "imported"
+  | "stale_output";
+
+export type CoverageProfileId = "smoke" | "core" | "balanced" | "thorough" | "edge";
+
+export type CoverageProfile = {
+  id: CoverageProfileId;
+  label: string;
+  position: number;
+  test_count_min: number;
+  test_count_max: number;
+  summary: string;
+};
+
+export type CoverageProfileUpdate = {
+  coverage_profile: CoverageProfileId;
+  override?: CoverageProfileId | null;
+  refreshed: { epic_key: string; status: HandoffStatus; id: string }[];
+  message: string;
+};
+
+export type TestabilityVerdict =
+  | "testable_now"
+  | "testable_with_clarifications"
+  | "not_testable_yet";
+
+export type WorkspaceStageId = "review" | "draft" | "test_review" | "import";
+
+export type CursorPrompt = {
+  handoff_id: string;
+  status: HandoffStatus;
+  prompt_version: string;
+  text: string;
+};
+
+export type WorkspaceAction = {
+  epic_key: string | null;
+  unit_id: string | null;
+  current_stage: WorkspaceStageId | "done";
+  title: string;
+  reason: string;
+  completion_signal: string;
+  primary: {
+    kind:
+      | "approve_review"
+      | "prepare_creator"
+      | "copy_prompt"
+      | "accept_changes"
+      | "review_tests"
+      | "open_importer"
+      | "open_unit"
+      | "none";
+    label: string;
+    handoff_id?: string;
+    path?: string;
+  };
+  cursor_prompt: CursorPrompt | null;
+};
+
+export type PortfolioAction = {
+  kind: "prepare_creator_batch" | "copy_creator_prompts" | "review_selected_tests" | "preview_import_plans";
+  label: string;
+  epic_keys: string[];
+  unit_ids?: string[];
+  handoff_ids?: string[];
+};
+
+export type WorkspaceEpic = {
+  unit_id: string;
+  jira_key: string;
+  summary: string | null;
+  qa_planning_fit: string | null;
+  gate_status: string | null;
+  verdict: TestabilityVerdict;
+  testability_reasons: string[];
+  readiness_label: string | null;
+  readiness_line: string | null;
+  blocker_questions: {
+    question_id: string | null;
+    question: string | null;
+    context: string | null;
+    owner_hint: string | null;
+    priority: string | null;
+  }[];
+  other_question_count: number;
+  approved: boolean;
+  coverage_profile: CoverageProfileId | null;
+  effective_coverage_profile: CoverageProfile;
+  creator_run_id: string | null;
+  creator_run_status: string | null;
+  tests: {
+    total: number;
+    pending: number;
+    approved: number;
+    rejected: number;
+    marked: number;
+    in_xray: number;
+  };
+  stage: WorkspaceStageId | "blocked" | "done";
+  creator_handoff: {
+    id: string;
+    status: HandoffStatus;
+    error: string | null;
+    expected_path: string;
+    prompt: string;
+  } | null;
+};
+
+export type WorkspaceStage = {
+  id: WorkspaceStageId;
+  title: string;
+  description: string;
+  done_when: string;
+  status: "complete" | "current" | "upcoming";
+};
+
+export type WorkspaceSummary = {
+  pipeline_run_id: string;
+  label: string;
+  workspace_path: string;
+  coverage_profile: CoverageProfileId;
+  coverage_profiles: CoverageProfile[];
+  stages: WorkspaceStage[];
+  next_action: WorkspaceAction;
+  portfolio_actions: PortfolioAction[];
+  review_prompt: CursorPrompt | null;
+  epics: WorkspaceEpic[];
+  watch_handoff_ids: string[];
+};
+
+export type CursorHandoff = {
+  id: string;
+  status: HandoffStatus;
+  error: string | null;
+  retry_count: number;
+  copied_at: string | null;
+};
+
 export type PipelineRun = {
   id: string;
   label: string;
@@ -335,6 +477,38 @@ export const api = {
     json<PipelineRunCompare>(
       `/api/statistics/compare?runs=${runIds.map(encodeURIComponent).join(",")}`
     ),
+  workspace: (runId: string) =>
+    json<WorkspaceSummary>(`/api/workspace/${encodeURIComponent(runId)}`),
+  setCoverageProfile: (runId: string, profile: CoverageProfileId) =>
+    json<CoverageProfileUpdate>(`/api/workspace/${encodeURIComponent(runId)}/coverage-profile`, {
+      method: "PUT",
+      body: JSON.stringify({ profile }),
+    }),
+  setEpicCoverageProfile: (runId: string, unitId: string, profile: CoverageProfileId | null) =>
+    json<CoverageProfileUpdate>(
+      `/api/workspace/${encodeURIComponent(runId)}/units/${encodeURIComponent(unitId)}/coverage-profile`,
+      { method: "PUT", body: JSON.stringify({ profile }) }
+    ),
+  prepareCreatorBatch: (runId: string) =>
+    json<{ prepared: { id: string; epic_key: string }[] }>(
+      `/api/workspace/${encodeURIComponent(runId)}/prepare-creator-batch`,
+      { method: "POST" }
+    ),
+  prepareCreator: (runId: string, unitId: string) =>
+    json<CursorHandoff>(
+      `/api/workspace/${encodeURIComponent(runId)}/units/${encodeURIComponent(unitId)}/prepare-creator`,
+      { method: "POST" }
+    ),
+  checkHandoff: (runId: string, handoffId: string, acceptChanges = false) =>
+    json<CursorHandoff>(
+      `/api/workspace/${encodeURIComponent(runId)}/handoffs/${encodeURIComponent(handoffId)}/check`,
+      { method: "POST", body: JSON.stringify({ accept_changes: acceptChanges }) }
+    ),
+  markHandoffCopied: (runId: string, handoffId: string) =>
+    json<CursorHandoff>(
+      `/api/workspace/${encodeURIComponent(runId)}/handoffs/${encodeURIComponent(handoffId)}/copied`,
+      { method: "POST" }
+    ),
   importRun: (path: string) =>
     json<{
       pipeline_run_id: string;
@@ -458,7 +632,11 @@ export const api = {
     }),
   patchTest: (
     id: string,
-    body: { human_review_status?: string; marked_for_xray_import?: boolean }
+    body: {
+      human_review_status?: string;
+      marked_for_xray_import?: boolean;
+      rejection_reason?: string;
+    }
   ) =>
     json(`/api/tests/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
   bulkTestReview: (
@@ -509,13 +687,22 @@ export const api = {
     }),
   personas: () => json<{ id: string; label: string }[]>("/api/personas"),
   persona: (filename: string) =>
-    json<{ id: string; content: string }>(
+    json<{ id: string; content: string; content_sha256: string }>(
       `/api/personas/${encodeURIComponent(filename)}`
     ),
-  savePersona: (filename: string, content: string) =>
-    json<{ id: string; saved: boolean }>(
+  savePersona: (filename: string, content: string, expectedSha256: string) =>
+    json<{ id: string; saved: boolean; content_sha256: string }>(
       `/api/personas/${encodeURIComponent(filename)}`,
-      { method: "PUT", body: JSON.stringify({ content }) }
+      { method: "PUT", body: JSON.stringify({ content, expected_sha256: expectedSha256 }) }
+    ),
+  personaRevisions: (filename: string) =>
+    json<{ id: number; content_sha256: string; created_at: string; excerpt: string }[]>(
+      `/api/personas/${encodeURIComponent(filename)}/revisions`
+    ),
+  restorePersona: (filename: string, revisionId: number, expectedSha256: string) =>
+    json<{ id: string; content: string; content_sha256: string }>(
+      `/api/personas/${encodeURIComponent(filename)}/revisions/${revisionId}/restore`,
+      { method: "POST", body: JSON.stringify({ expected_sha256: expectedSha256 }) }
     ),
   reviewerRunConfigs: () =>
     json<{ portfolio_id: string; label: string; updated_at?: string }[]>(

@@ -24,7 +24,7 @@ Git source of truth: `marekwyszynskiappfire/docs` · Page IDs: [`page-map.json`]
 | 9 | [`MANUAL.md`](../MANUAL.md) | [Operator manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual) |
 | 10 | [`NEWBIE-PERSONA-REVIEW.md`](../NEWBIE-PERSONA-REVIEW.md) | [Newbie persona review](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3758587937/Trinity+Newbie+persona+review) |
 
-**Git-only (not synced):** [`PATH-TO-1.0.md`](../PATH-TO-1.0.md), [`TESTING.md`](../TESTING.md), [`PIPELINE.md`](../PIPELINE.md), [`OPERATOR-VALIDATION.md`](../OPERATOR-VALIDATION.md), [`UAT-SESSION.md`](../UAT-SESSION.md), scorecard/Mateusz artifacts. Screenshots: [`docs/screenshots/`](../docs/screenshots/) — attach to wiki manually.
+**Git-only (not synced):** [`BIGQUERY.md`](../BIGQUERY.md) (full technical reference; essential env instructions are mirrored in Setup checklist and Operator manual), [`PATH-TO-1.0.md`](../PATH-TO-1.0.md), [`TESTING.md`](../TESTING.md), [`PIPELINE.md`](../PIPELINE.md), [`OPERATOR-VALIDATION.md`](../OPERATOR-VALIDATION.md), [`UAT-SESSION.md`](../UAT-SESSION.md), scorecard/Mateusz artifacts. Screenshots: [`docs/screenshots/`](../docs/screenshots/) — attach to wiki manually.
 
 ---
 

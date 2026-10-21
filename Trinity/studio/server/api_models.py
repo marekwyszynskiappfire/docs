@@ -12,6 +12,11 @@ class ImportRunBody(BaseModel):
     run_id: str | None = None
 
 
+class ImportManifestBody(BaseModel):
+    path: str
+    dry_run: bool = False
+
+
 class RunLabelBody(BaseModel):
     label: str = Field(..., min_length=1, max_length=240)
 
@@ -71,6 +76,11 @@ class BulkTestsBody(BaseModel):
 
 class SavePersonaBody(BaseModel):
     content: str = Field(..., min_length=1)
+    expected_sha256: str = Field(..., min_length=64, max_length=64)
+
+
+class RestorePersonaBody(BaseModel):
+    expected_sha256: str = Field(..., min_length=64, max_length=64)
 
 
 class PasteResolvedKeysBody(BaseModel):

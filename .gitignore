@@ -1,6 +1,12 @@
 # Local-only legacy team docs (not published to GitHub)
 /archive/
 
+# GCP / BigQuery service-account keys (never commit)
+**/qa-coe-bigquery.json
+**/*service-account*.json
+**/*-bigquery.json
+**/google-credentials.json
+
 # IDE workspace files (machine-specific)
 *.code-workspace
 

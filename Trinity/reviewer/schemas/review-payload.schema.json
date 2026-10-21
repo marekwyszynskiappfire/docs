@@ -314,6 +314,17 @@
       "description": "Every piece of prose the reports render that isn't already a structured field above (PRF-21). The renderer adds nothing of its own beyond fixed labels, counts, and the gate line.",
       "required": ["readiness_line", "facts", "not_stated", "risks", "testing_focus", "next_action"],
       "properties": {
+        "testability_verdict": {
+          "type": "string",
+          "enum": ["testable_now", "testable_with_clarifications", "not_testable_yet"],
+          "description": "Primary decision from requirements-testability-spec.md. Required on new default reviews."
+        },
+        "testability_reasons": {
+          "type": "array",
+          "maxItems": 3,
+          "items": { "type": "string" },
+          "description": "Why the verdict was chosen. One to three sentences, each citing a gathered source."
+        },
         "readiness_line": { "type": "string", "description": "One collaborative sentence under the readiness label, citing the top blocking finding/question ids. No blocked phrases." },
         "facts": { "type": "array", "items": { "$ref": "#/$defs/sourced_text" }, "description": "'Information identified' — every bullet carries a Source." },
         "not_stated": { "type": "array", "items": { "type": "string" }, "description": "Gaps named plainly, never with a guessed answer." },
@@ -418,6 +429,11 @@
         "source": {
           "type": "string",
           "enum": ["jira_description", "jira_ac_field", "jira_comment", "confluence", "figma", "screenshot", "spreadsheet", "sibling", "epic"]
+        },
+        "finding_role": {
+          "type": "string",
+          "enum": ["blocker", "observation"],
+          "description": "Default reviews: blocker creates a question; observation does not. Deep audit may omit this."
         },
         "blocks_test_generation": {
           "type": "boolean",

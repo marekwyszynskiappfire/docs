@@ -7,7 +7,7 @@
 **First time?** [`START-HERE.md`](START-HERE.md) → [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) → [`FIRST-RUN.md`](FIRST-RUN.md).  
 **Companion docs:** [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) · [`TESTING.md`](TESTING.md) · [`GUIDE.md`](GUIDE.md) · [`reviewer/MANUAL.md`](reviewer/MANUAL.md) · [`PIPELINE.md`](PIPELINE.md).
 
-**Last reviewed:** 2026-10-14
+**Last reviewed:** 2026-10-20
 
 ---
 
@@ -26,7 +26,22 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 
 ---
 
-## 2. Quick start — “I want to…”
+## 2. Normal path
+
+Run the Reviewer in Cursor. It writes one payload per Epic, starts Studio, and opens the workspace. Stay on that page.
+
+| Stage | What you do |
+|-------|-------------|
+| Assess testability | Read the verdict and blocker questions. Approve the review when the verdict is right. |
+| Draft tests | Copy the Creator prompt into Cursor. Studio imports `suite-payload.json` when the file appears. |
+| Review tests | Approve or reject each test in the Epic accordion. A rejection needs a reason. |
+| Import to Xray | Mark the approved tests, preview the plan on the same page, then write. Production asks you to type PRODUCTION. |
+
+The top bar is **Workspace**, **Personas**, and **Statistics**. Dashboard, Creator, Importer, and Reviewer configs stay under **More** for recovery. Personas lists each role by the heading in the file; the filename stays above the editor.
+
+Section 2a is the current index. From section 5 on, the page-by-page steps are the recovery path.
+
+## 2a. Quick start — “I want to…”
 
 | You want to… | Do this | You need |
 |--------------|---------|----------|
@@ -34,10 +49,10 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 | Prove Studio works in 10 minutes | [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0–1 | No Jira |
 | Run a full pipeline on real epics | Setup steps 1–14 in [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) | MCP, `.env`, Xray keys for execute |
 | Understand a Reviewer HTML report | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §3–7 | Sample: `reviewer/sample-report.html` |
-| Configure a portfolio / pass type | Studio → **Reviewer configs** (§5 below) | Saved JSON under `reviewer/config/runs/` |
+| Configure a portfolio / pass type | **More → Reviewer configs** (§5 below) | Saved JSON under `reviewer/config/runs/` |
 | Triage findings and send feedback to Jira | Unit page → `studio_qa` → **Jira epic comment** (§8) | `JIRA_*` in `studio/.env` |
-| Hand off to test design | **Approve & export** → **Send to Creator** (§9) | Approved unit; not `not_fit` |
-| Import tests to Xray | **Importer** tab (§10) | Mapping, project key, folder; production gate |
+| Hand off to test design | Workspace **Next step → Copy Creator prompt** | Approved review. An Epic that is not testable yet cannot be drafted |
+| Import tests to Xray | Workspace **Plan Xray import** | Mapping, project key, folder; production asks you to type PRODUCTION |
 | Fix “import failed: folder ≠ epic key” | Rename run folder to match `scope.value` in payload | §6 |
 | Track engineering backlog | GitHub Issues ([`docs/agents/issue-tracker.md`](../docs/agents/issue-tracker.md)) | — |
 | **Pipeline E2E metrics** (readiness, compare runs) | Top nav **Statistics** or run page **Statistics** tab (§5.9) | At least one imported Reviewer run |
@@ -51,11 +66,11 @@ Trinity is an **AI-assisted QA pipeline** for Jira-backed products. It does not 
 
 **Data flow for one Epic**
 
-1. Reviewer writes `Trinity/reviewer/runs/<run>/<EPIC-KEY>/review-payload.json` (and optional `review-report.html`).
-2. You import the run folder into Studio → payload stored as revisions + `studio_qa` overlay.
-3. You approve → export lands under `Trinity/studio/data/exports/`.
-4. Creator writes `suite-payload.json` → you import in Studio → approve tests.
-5. Importer creates Xray tests → you persist keys back into Studio for metrics.
+1. Reviewer writes `Trinity/reviewer/runs/<run>/<EPIC-KEY>/review-payload.json` and opens the Studio workspace for that run.
+2. You read the testability verdict on the workspace and approve the review there. The payload is stored as a revision with a `studio_qa` overlay.
+3. You copy the Creator prompt. When `suite-payload.json` appears, Studio imports it into the same Epic.
+4. You approve or reject each test in the accordion. Mark the approved tests, preview the Xray plan, and write from that page.
+5. The full Importer page remains under **More** when you need a payload path, a second mapping, or to recover a failed write.
 
 **Boundaries (do not blur these)**
 
@@ -100,6 +115,25 @@ Copy `Trinity/studio/.env.example` → `.env`. Never commit `.env`.
 |----------------|----------|
 | `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN` | Epic comments, JQL resolve (optional), Importer project list, scope resolve |
 | `XRAY_CLIENT_ID`, `XRAY_CLIENT_SECRET` | Importer **execute** (batch create in Xray) |
+| `TRINITY_OPERATOR_ID`, `TRINITY_OPERATOR_NAME` | Human identity in telemetry; never the GCP service account |
+| `BQ_PROJECT`, `BQ_DATASET` | BigQuery destination |
+| `GOOGLE_APPLICATION_CREDENTIALS` | Optional absolute path to a local service-account JSON, stored outside the repo |
+
+Safe template:
+
+```bash
+TRINITY_OPERATOR_ID=you@appfire.com
+TRINITY_OPERATOR_NAME="Your Name"
+BQ_PROJECT=qa-coe
+BQ_DATASET=trinity
+# GOOGLE_APPLICATION_CREDENTIALS=/Users/<mac-login>/.config/trinity/key.json
+```
+
+Only `.env.example` is tracked. It must contain placeholders, never a real name,
+email, token, or key. `.env`, `.env.production`, and Studio `data/` are
+gitignored. Never paste the JSON key into `.env`; set only its absolute path.
+The repository's full IAM, automatic synchronization, backfill, verification,
+and Looker Studio reference is `Trinity/BIGQUERY.md`.
 
 Production Xray often lives in `Trinity/studio/.env.production` (gitignored). **Production writes** in Studio require typing **`PRODUCTION`** in the UI (Importer execute and Jira post on production host).
 
@@ -126,7 +160,7 @@ Checklist: [`reviewer/config/DUAL-ATLASSIAN-MCP.md`](reviewer/config/DUAL-ATLASS
 
 ## 5. Trinity Studio — navigation and roles
 
-Studio is a **single-operator workbench**. You will use these areas in order during a program.
+Studio is a **single-operator workbench**. The normal path is **Workspace**. The areas below remain available from **More**, or from their existing URLs, when you need a recovery or portfolio-wide step.
 
 ### 5.1 Dashboard
 
@@ -160,7 +194,7 @@ After import, open a run to:
 - Copy **Creator JQL**, **handoff JSON**, or download JSON for planning.
 - See **portfolio report path** when `portfolio/index.html` exists (Profile B rollup).
 - Toggle epics with **sortable** column headers (Epic, Gate, test design fit, Creator, approved).
-- Open the **Statistics** tab for the same **E2E report** as the global Statistics page (single-run view). Includes TC creation readiness (ready / reservations / not ready), phase timings, per-epic detail, and **Download export JSON** for scorecard evidence (`pipeline_run_report` in SQLite). Details: [`METRICS.md`](METRICS.md#per-run-e2e-statistics-local-prebigquery).
+- Open the **Statistics** tab for the same **E2E report** as the global Statistics page (single-run view). Includes TC creation readiness (ready / reservations / not ready), phase timings, per-epic detail, and **Download export JSON** for scorecard evidence (`pipeline_run_report` in SQLite). Details: [`METRICS.md`](METRICS.md#per-run-e2e-statistics).
 
 **Gate and planning fit on this page** come from the latest `review-payload` per epic when present (not only the DB column from first import).
 

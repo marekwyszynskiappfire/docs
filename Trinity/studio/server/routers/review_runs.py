@@ -11,6 +11,7 @@ from fastapi import APIRouter, HTTPException
 from api_models import RunLabelBody, SavePayloadBody, UnitMetaBody
 from creator_handoff import build_creator_prompt, payload_readiness
 from creator_importer_config import test_data_isolation_warning
+from coverage_profile import resolve_for_unit
 from db import db, json_loads, row_to_dict, utc_now
 from personas import docs_repo_root
 from review_payload_fields import apply_payload_fields_to_unit
@@ -233,6 +234,7 @@ def send_to_creator(unit_id: str) -> dict[str, Any]:
             readiness_label=payload_readiness(payload),
             qa_planning_fit=unit["qa_planning_fit"],
             pipeline_run_id=unit["pipeline_run_id"],
+            coverage=resolve_for_unit(conn, unit),
         )
         warnings: list[str] = []
         iso_warn = test_data_isolation_warning(product_id)

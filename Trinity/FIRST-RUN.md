@@ -21,9 +21,9 @@ Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.m
 
 ## Golden rules (read once)
 
-1. **Prompts come from Studio** — use **Copy Cursor prompt**, **Send to Creator**, or Importer **Copy Cursor prompt**. Do not invent prompts by hand unless Studio is down.
+1. **Follow Next step on the workspace.** The first Reviewer prompt still comes from **More → Reviewer configs → Copy Cursor prompt**. Later prompts are on the workspace. Do not invent prompts by hand unless Studio is down.
 2. **Epic folder name = Jira epic key** — e.g. `ONE-228469/review-payload.json`, not a random folder name.
-3. **Save draft** on the unit page before **Jira comment preview** or you will see stale text.
+3. **Jira comments stay on the unit page** (**More → Dashboard**, open the run, open the Epic). **Save draft** there before **Jira comment preview**.
 4. **Demo epic `DEMO-4500` is fake** — never post it to production Jira or Xray.
 5. **Sandbox first** — type `PRODUCTION` in Studio only when you mean production Jira/Xray.
 
@@ -44,10 +44,10 @@ flowchart LR
   end
   subgraph phase3 [Phase 3 per epic]
     p1[Prompt 1 Reviewer]
-    studio1[Import + triage]
-    p2[Prompt 2 Creator]
-    studio2[Approve tests]
-    p3[Prompt 3 Importer]
+    studio1[Open workspace]
+    p2[Copy Creator prompt]
+    studio2[Review tests]
+    p3[Plan Xray import]
   end
   clone --> start --> seed --> click
   click --> skills --> mcp --> env
@@ -110,7 +110,7 @@ Ports busy: `./Trinity/studio/scripts/stop.sh` then `STUDIO_FORCE=1 ./Trinity/st
 
 ## Phase 1 — Learn Studio (no Cursor, no Jira)
 
-**Goal:** Click through the product once so Phase 3 is muscle memory.
+**Goal:** Open the workspace once so Phase 3 is muscle memory.
 
 ### 1.1 Load demo data
 
@@ -120,53 +120,25 @@ Second terminal, repo root:
 ./Trinity/studio/scripts/seed-demo.sh
 ```
 
-Refresh Studio **Dashboard** — you should see a pipeline run.
+Refresh **http://127.0.0.1:5173**. The home page lists the demo run.
 
-![Studio nav and dashboard](../docs/screenshots/nav-dashboard.png)
+### 1.2 Open the workspace
 
-![Runs list on dashboard](../docs/screenshots/dashboard-run-list.png)
+1. On the demo run row, click **Open workspace**.
+2. You see epic **`DEMO-4500`** (fictional), a four-stage stepper, and one **Next step** card.
+3. Open the Epic and skim the verdict. You do **not** need to approve it for the demo.
+4. **Process help** explains the four stages: assess testability, draft tests, review tests, import to Xray.
 
-### 1.2 Dashboard → open the run
+### 1.3 The rest of the top bar
 
-1. Click the imported **pipeline run** row.
-2. You see epic unit **`DEMO-4500`** (fictional).
+| Control | Use it for |
+|---------|------------|
+| **Workspace** | The page you just opened. This is the normal path. |
+| **Personas** | Role prompts. The list shows the heading inside each file; the filename stays above the editor. |
+| **Statistics** | Single-run report, or compare 2–5 runs. |
+| **More** | Dashboard, Creator, Importer, and Reviewer configs. Use these when the workspace does not cover the step. |
 
-### 1.3 Unit page (review UI)
-
-1. Click **`DEMO-4500`** (or **Edit review** from the run page).
-2. Skim findings and questions (read-only practice).
-3. You do **not** need to triage for the demo; notice **Save draft**, **Approve & export for Creator**, **Send to Creator**, **Jira epic comment** panel.
-
-![Run page epic table](../docs/screenshots/run-epic-table.png)
-
-![Unit triage and approve actions](../docs/screenshots/unit-triage.png)
-
-### 1.4 Creator tab
-
-1. Top nav → **Creator**.
-2. **Import** batch path: `Trinity/creator/samples/demo-story.suite.json`
-3. Open the new **creator run** → approve/reject a test → toggle **Fit for Xray import** (practice only).
-
-![Creator import batch](../docs/screenshots/creator-import.png)
-
-### 1.5 Importer tab
-
-1. Top nav → **Importer**.
-2. Choose any **Jira instance** in the dropdown (UI works without `.env`).
-3. Click **Preview import plan** if you have a creator run linked — or skip if the form is empty.
-4. You are **not** executing Xray in Phase 1.
-
-![Importer plan form](../docs/screenshots/importer-plan.png)
-
-Optional: open top nav **Statistics** → **Single run** and pick the demo run — skim TC readiness and epic counts (sortable tables).
-
-![Statistics compare runs](../docs/screenshots/statistics-compare.png)
-
-**Reviewer configs (Prompt 1):** **Reviewer configs** → pick portfolio → **Copy Cursor prompt** (see [`PROMPTS-AND-INPUTS.md`](PROMPTS-AND-INPUTS.md)).
-
-![Reviewer configs and Copy Cursor prompt](../docs/screenshots/reviewer-configs-prompt.png)
-
-**Phase 1 done.** You know: Dashboard, run page, unit page, Creator, Importer, Statistics.
+**Phase 1 done** when you can find **Next step**, the Epic, and **More**.
 
 ---
 
@@ -224,7 +196,7 @@ Replace **`YOUR-EPIC-KEY`** with one sandbox **Epic** key (e.g. `ONE-12345`). On
 
 ### 3.1 Create portfolio config in Studio
 
-1. Studio → **Reviewer configs**.
+1. **More → Reviewer configs**.
 2. Duplicate or edit [`example.demo-portfolio`](reviewer/config/runs/example.demo-portfolio.json):
    - **portfolio_id** — pick a stable name, e.g. `my-first-portfolio`.
    - **scope kind** — start with **`epic_keys`**.
@@ -255,40 +227,33 @@ Trinity/reviewer/runs/.../YOUR-EPIC-KEY/review-report.html   (optional)
 
 The agent may write under `runs/<portfolio_id>/` or `runs/<portfolio_id>/<dated-portfolio_run_id>/` — both are valid.
 
-The prompt ends with an **import command** — use that path (rule: the folder you pass to `import-run.sh` must **directly contain** `YOUR-EPIC-KEY/`).
+The agent finishes by printing a **workspace URL**. Open that URL. Importing the same payloads again does not add another review revision.
 
-### 3.3 Import into Studio
-
-In terminal (path from the agent or prompt footer):
+If no URL was printed, import the folder that **directly contains** `YOUR-EPIC-KEY/`, then click **Open workspace** on that run:
 
 ```bash
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-contains-YOUR-EPIC-KEY>
 ```
 
-Or Dashboard → **Import Reviewer run** → paste that folder path.
+### 3.3 Workspace — verdict and Creator prompt
 
-Refresh **Dashboard** → open the run → open unit **`YOUR-EPIC-KEY`**.
-
-### 3.4 Studio — triage and approve (no Cursor)
-
-On the **unit page**, in order:
+Stay on the workspace.
 
 | Step | Action |
 |------|--------|
-| 1 | Skim gate, readiness, findings, questions |
-| 2 | For each item: set **valid** / **discuss** / **invalid**; check **Include in epic feedback** only where PO should see it |
-| 3 | **Save draft** |
-| 4 | Optional: open **review-report.html** link if shown |
-| 5 | Optional: **Jira epic comment** → Refresh preview → fix redaction warnings → post to **sandbox** epic (not `DEMO-4500`) |
-| 6 | **Approve & export for Creator** |
-| 7 | **Send to Creator** — copies **Prompt #2** to clipboard |
+| 1 | Read the testability verdict and the blocker questions on the Epic |
+| 2 | **Next step → Approve** when the verdict is right |
+| 3 | **Next step → Prepare Creator prompt**, then **Copy Creator prompt** |
+| 4 | Paste that prompt into a **new Cursor chat** |
 
-If **Send to Creator** is disabled: epic is **`not_fit`** — fix scope in Jira and re-run Reviewer, or pick another epic.
+Finding-by-finding triage and the Jira epic comment live on the unit page: **More → Dashboard**, open the run, open the Epic. **Save draft** there before a comment preview. Post only to the **sandbox** epic, never `DEMO-4500`.
 
-### 3.5 Prompt #2 — Creator (second Cursor prompt)
+If the Epic is not testable yet, fix the scope in Jira and re-run Reviewer, or pick another Epic.
+
+### 3.4 Prompt #2 — Creator (second Cursor prompt)
 
 1. **New Cursor chat** (recommended).
-2. Paste **Prompt #2** from **Send to Creator**.
+2. Paste the prompt you copied from the workspace.
 3. Run **trinity-creator** per the prompt (`review_ref`, epic key, `suite_mode: release_slice_e2e`).
 
 **Wait until done.** Output path is usually:
@@ -303,42 +268,42 @@ For a **multi-epic** Reviewer portfolio (e.g. `q4-backlog`):
 Trinity/creator/artifacts/q4-backlog/ONE-{number}/suite-payload.json
 ```
 
-Import **each** file separately in Studio — see [`creator/artifacts/README.md`](creator/artifacts/README.md). Portfolio programs: [`creator/config/portfolios/`](creator/config/portfolios/).
+One file per Epic. The workspace imports the file for the Epic you are on. See [`creator/artifacts/README.md`](creator/artifacts/README.md). Portfolio programs: [`creator/config/portfolios/`](creator/config/portfolios/).
 
 (path is also in the Studio prompt).
 
-### 3.6 Studio — Creator triage
+### 3.5 Workspace — review the tests
 
-| Step | Where | Action |
-|------|--------|--------|
-| 1 | **Creator** tab | Import `suite-payload.json` (path from agent; **one import per epic**) |
-| 2 | Open **creator run** | Read 3–5 journey tests |
-| 3 | Per test | Edit if needed → **Approve** or **Reject** |
-| 4 | Approved rows | Check **Fit for Xray import** |
-| 5 | Creator run page | **Export for Importer** |
+Stay on the same workspace. When `suite-payload.json` appears, Studio imports it. If the card is still waiting, click **Check for the file now**.
 
-Optional: **Open in Importer** link on the creator run.
+| Step | Action |
+|------|--------|
+| 1 | Open the Epic and read the journey tests |
+| 2 | **Approve** or **Reject** each test. A rejection needs a reason |
+| 3 | Mark the approved tests for Xray import |
+| 4 | **Next step → Plan Xray import** |
 
-### 3.7 Studio — Importer plan (third prompt or execute)
+**More → Creator** is the recovery path: paste a suite path, or import a second Epic’s file by hand. One file per Epic.
 
-1. **Importer** tab (or URL with `?creator_run_id=...`).
-2. **Jira instance** — sandbox first.
-3. **Mapping file** — default production/sandbox mapping for your site.
-4. **Project key** — where Test issues are created (often `TC`; see [`GUIDE.md`](GUIDE.md)).
-5. **Folder path** — Xray Test Repository folder, e.g. `/Trinity imports/YOUR-EPIC-KEY`.
-6. **Preview import plan** — read validation; fix any errors in tests back on Creator run.
-7. If **Reviewer gate** or **idempotency** panels appear → check acknowledgement → **Preview** again.
-8. Choose one path:
-   - **Sandbox learning:** **Copy Cursor prompt** → **Prompt #3** in new Cursor chat → run importer skill/CLI → paste report path → **Persist Xray keys** in Studio.
-   - **Studio execute:** when `execute_ready` and sandbox creds OK → **Execute import batch** → then persist keys if needed.
+### 3.6 Workspace — Xray plan
 
-**Production:** type `PRODUCTION` in the Importer form before preview/execute; use production `.env` / mapping policy per [`GUIDE.md`](GUIDE.md).
+The import panel is on the same page.
 
-### 3.8 Prompt #3 — Importer (when not using Studio execute)
+1. **Jira instance** — sandbox first.
+2. **Mapping file** — the mapping your QA lead gave you.
+3. **Project key** — where Test issues are created (often `TC`; see [`GUIDE.md`](GUIDE.md)).
+4. **Folder path** — Xray Test Repository folder, e.g. `/Trinity imports/YOUR-EPIC-KEY`.
+5. **Preview import plan** — read validation. Fix test errors in the Epic above, then preview again.
+6. If the plan asks for a Reviewer-gate or idempotency confirmation, check it and preview again.
+7. **Write to Xray** when the plan says it is ready.
 
-1. After **Preview import plan** → **Copy Cursor prompt**.
-2. New Cursor chat → paste → run **trinity-importer** (or commands inside the prompt).
-3. Back in Studio → **Persist Xray keys** with path to `xray-import-report.json` and your **creator run id**.
+**Production:** type `PRODUCTION` before preview or write. Use the production `.env` and mapping policy in [`GUIDE.md`](GUIDE.md).
+
+### 3.7 Prompt #3 — Importer in Cursor (when you do not write from the workspace)
+
+1. **More → Importer** → **Preview import plan** → **Copy Cursor prompt**.
+2. New Cursor chat → paste → run **trinity-importer**.
+3. Back on that page → **Persist Xray keys** with the path to `xray-import-report.json` and your creator run id.
 
 **Phase 3 done** for one epic.
 
@@ -346,11 +311,11 @@ Optional: **Open in Importer** link on the creator run.
 
 ## What to do on the second epic
 
-1. **Reviewer configs** → same `portfolio_id`, update scope or use `new_epics_only` / `rescan_delta`.
-2. **Copy Cursor prompt** again (Prompt #1) — return visit should skip full interview.
-3. Repeat Phase 3.3–3.8.
+1. **More → Reviewer configs** → same `portfolio_id`, update scope or use `new_epics_only` / `rescan_delta`.
+2. **Copy Cursor prompt** again. A return visit should skip the full interview.
+3. Open the workspace URL the agent prints, and repeat from §3.3.
 
-Run-level shortcuts: Dashboard → **run page** → bulk **In Creator**, **Copy JQL**, handoff JSON for multi-epic planning.
+The run page under **More → Dashboard** still has bulk **In Creator**, **Copy JQL**, and the handoff JSON for multi-epic planning.
 
 ---
 
@@ -358,10 +323,10 @@ Run-level shortcuts: Dashboard → **run page** → bulk **In Creator**, **Copy 
 
 | # | When | Where to get it | Cursor skill |
 |---|------|-----------------|--------------|
-| **1** | Before any review exists in Studio | **Reviewer configs** → **Copy Cursor prompt** | trinity-reviewer |
+| **1** | Before any review exists in Studio | **More → Reviewer configs** → **Copy Cursor prompt** | trinity-reviewer |
 | **1b** | JQL/filter scope only | **Copy JQL resolve prompt** | MCP in Cursor (not a skill) |
-| **2** | After approve on unit page | **Send to Creator** | trinity-creator |
-| **3** | After Importer preview | **Copy Cursor prompt** on Importer | trinity-importer |
+| **2** | After you approve the review | Workspace **Next step → Copy Creator prompt** | trinity-creator |
+| **3** | You are writing through Cursor instead of the workspace | **More → Importer** → **Copy Cursor prompt** | trinity-importer |
 
 ---
 
@@ -369,14 +334,14 @@ Run-level shortcuts: Dashboard → **run page** → bulk **In Creator**, **Copy 
 
 | Nav | Use it for |
 |-----|------------|
-| **Dashboard** | Import runs; open pipeline runs |
-| **Personas** | Edit Reviewer/Creator tone (maintainers) |
-| **Reviewer configs** | Portfolio JSON; **Prompt #1** |
-| **Run page** | Which epics go to Creator; JQL/handoff export |
-| **Unit page** | Triage; approve; **Prompt #2**; Jira comments |
-| **Creator** | Import suites; approve tests; export for Importer |
-| **Importer** | Plan; **Prompt #3** or execute; persist Xray keys |
+| **Workspace** | One portfolio: verdict, Creator prompt, test review, Xray plan |
+| **Personas** | Edit role prompts. The list shows the heading in the file |
 | **Statistics** | Single-run E2E report; compare 2–5 runs (baseline = Run 1 dropdown) |
+| **More → Dashboard** | Import a folder by hand; open a run when the workspace URL was not printed |
+| **More → Reviewer configs** | Portfolio JSON; **Prompt #1** |
+| **More → Creator** | Paste a suite path when the workspace did not import it |
+| **More → Importer** | Payload-path import, **Prompt #3**, persist Xray keys |
+| **Run page / unit page** | Bulk handoff, finding triage, Jira epic comments |
 
 ---
 
@@ -402,4 +367,4 @@ Reset demo only: `rm Trinity/studio/data/qa-studio.db` → restart → `seed-dem
 - Portfolio HTML and multi-epic: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
 - **Mateusz POC evidence:** update [`SCORECARD.md`](SCORECARD.md) pilot log; run `./Trinity/scripts/export-telemetry.sh` while Studio is up.
 
-**Last reviewed:** 2026-10-14
+**Last reviewed:** 2026-10-20

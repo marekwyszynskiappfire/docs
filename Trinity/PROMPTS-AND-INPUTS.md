@@ -2,7 +2,7 @@
 
 **Wiki:** [Trinity — Prompts and inputs](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3755442183/Trinity+Prompts+and+inputs)
 
-Every **Copy prompt** / **Send to Creator** action in Trinity Studio is listed here so an operator knows what to have ready **before** starting Agent mode.
+Every prompt Studio copies is listed here so an operator knows what to have ready **before** starting Agent mode. The normal path is the workspace. **More** still has Reviewer configs, Creator, and Importer when that page does not cover the step.
 
 **Contracts:** [`CONTRACTS.md`](CONTRACTS.md) · **Walkthrough:** [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) §5.
 
@@ -12,10 +12,10 @@ Every **Copy prompt** / **Send to Creator** action in Trinity Studio is listed h
 
 | ID | Studio source | Cursor skill | You must provide | Primary outputs |
 |----|---------------|--------------|------------------|-----------------|
-| **1** | Reviewer configs → **Copy Cursor prompt** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access; may include **portfolio interview** | `reviewer/runs/.../<EPIC>/review-payload.json` (+ HTML) |
+| **1** | **More → Reviewer configs** → **Copy Cursor prompt** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access; may include **portfolio interview** | `reviewer/runs/.../<EPIC>/review-payload.json` (+ HTML). The agent prints a workspace URL |
 | **1b** | Reviewer configs → **Copy JQL resolve prompt** | Agent (no skill) | JQL string; optional `JIRA_*` in Studio `.env` | Epic key list → paste into scope / run config |
-| **2** | Unit detail → **Send to Creator** | `trinity-creator` | Approved unit; `review_ref` path in prompt | `creator/artifacts/.../suite-payload.json` |
-| **3** | Importer → **Copy Cursor prompt** | `trinity-importer` | Exported `importer-payload.json`; mapping; instance; dry-run plan reviewed | Xray Tests, folders, Jira links |
+| **2** | Workspace **Next step → Copy Creator prompt**. Several approved Epics: **Prepare Creator prompts**, then **Copy Creator prompts** | `trinity-creator` | Approved review; `review_ref` path in prompt | `creator/artifacts/.../suite-payload.json`. The workspace imports the file when it appears |
+| **3** | Workspace **Plan Xray import**, or **More → Importer → Copy Cursor prompt** when writing through Cursor | `trinity-importer` | Mapping, instance, folder; dry-run plan reviewed | Xray Tests, folders, Jira links |
 
 ---
 
@@ -106,13 +106,13 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 
 | File | Notes |
 |------|-------|
-| `suite-payload.json` | Journey tests; import via Studio **Creator** tab |
+| `suite-payload.json` | Journey tests. The workspace imports this file. **More → Creator** is the fallback |
 | Draft markdown/json | Under `creator/artifacts/<batch-id>/` |
 
 ### Operator checks
 
-- Import batch in Studio; triage each test (approve/reject/edit).
-- **Export for Importer** produces handoff JSON ([`CONTRACTS.md`](CONTRACTS.md)).
+- On the workspace, approve or reject each test. A rejection needs a reason. Tick **Send to Xray** on the approved tests you want imported, or use **Approve selected** for the ones you ticked.
+- **More → Creator → Export for Importer** still writes the handoff JSON when you use the full Importer page ([`CONTRACTS.md`](CONTRACTS.md)).
 
 ---
 
@@ -128,7 +128,7 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 | Input | Source |
 |-------|--------|
 | `importer-payload.json` | Studio export (`export_kind`: `creator_importer_handoff`) |
-| Operator config | Importer tab (instance, mapping path, project override, folder) |
+| Operator config | Workspace import panel, or the Importer page (instance, mapping path, project override, folder) |
 | Mapping JSON | `Trinity/importer/config/mappings/*.json` |
 | Xray credentials | `studio/.env` `XRAY_CLIENT_ID` / `XRAY_CLIENT_SECRET` |
 | Jira token | Same `.env` for requirement links |
@@ -160,13 +160,15 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 ## Studio UI map (where to click)
 
 ```text
-Reviewer configs     → Prompt 1, 1b
-Dashboard → Run      → Import folder; open units
-Unit detail            → Approve; Send to Creator (Prompt 2)
-Creator                → Import suite; Export for Importer
-Importer               → Plan preview; Prompt 3
-Statistics             → Post-run metrics (no prompt)
-Personas               → Edit role text (affects Prompt 1/2 tone)
+Workspace            → Verdict, Prompt 2, test review, Xray plan
+                     → Portfolio: prepare/copy Creator prompts, approve selected tests, preview plans
+More → Reviewer configs → Prompt 1, 1b
+More → Dashboard     → Import a folder by hand; open a run
+More → Creator       → Paste a suite path; Export for Importer
+More → Importer      → Prompt 3; persist Xray keys
+Unit page            → Finding triage; Jira epic comment
+Statistics           → Post-run metrics (no prompt)
+Personas             → Edit role text (affects Prompt 1/2 tone)
 ```
 
 Screenshots: [`docs/screenshots/README.md`](docs/screenshots/README.md).

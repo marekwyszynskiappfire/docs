@@ -133,6 +133,7 @@
     return {
       schema_version: "1.0",
       run_id: meta.runId || "",
+      product_id: meta.productId || null,
       exported_at: new Date().toISOString(),
       source_jql: meta.jql || "",
       creator_jql: jql,

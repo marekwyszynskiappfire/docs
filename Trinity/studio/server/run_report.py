@@ -507,6 +507,8 @@ def _reviewer_gather_bounds(
 def _product_context(run_row: Any, handoff: dict[str, Any] | None) -> dict[str, Any]:
     ctx: dict[str, Any] = {
         "product_id": run_row["product_id"],
+        "operator_id": run_row["operator_id"],
+        "operator_name": run_row["operator_name"],
         "trigger_type": run_row["trigger_type"],
         "trigger_value": run_row["trigger_value"],
         "source_path": run_row["source_path"],
@@ -856,7 +858,9 @@ def compare_pipeline_runs(conn: Any, run_ids: list[str]) -> dict[str, Any]:
     }
 
 
-def persist_pipeline_run_report(conn: Any, run_id: str) -> dict[str, Any]:
+def persist_pipeline_run_report(
+    conn: Any, run_id: str, *, flush_telemetry: bool = True
+) -> dict[str, Any]:
     report = compute_pipeline_run_report(conn, run_id)
     conn.execute(
         """
@@ -874,4 +878,12 @@ def persist_pipeline_run_report(conn: Any, run_id: str) -> dict[str, Any]:
             report["computed_at"],
         ),
     )
+    try:
+        from telemetry import _try_flush_pending, queue_report_snapshot
+
+        queue_report_snapshot(conn, report)
+        if flush_telemetry:
+            _try_flush_pending(conn, max_rows=200)
+    except Exception:
+        pass
     return report

@@ -23,6 +23,31 @@ def qa_planning_fit_from_payload(payload: dict[str, Any] | None) -> str | None:
     return None
 
 
+TESTABILITY_VERDICTS = ("testable_now", "testable_with_clarifications", "not_testable_yet")
+
+
+def testability_verdict(payload: dict[str, Any] | None, qa_planning_fit: str | None) -> str:
+    """Explicit report.testability_verdict wins; otherwise derive from fit, blockers, and open High questions."""
+    report = (payload or {}).get("report")
+    if isinstance(report, dict) and report.get("testability_verdict") in TESTABILITY_VERDICTS:
+        return str(report["testability_verdict"])
+    if qa_planning_fit == "not_fit":
+        return "not_testable_yet"
+    if not payload:
+        return "testable_with_clarifications"
+    for finding in payload.get("findings") or []:
+        if isinstance(finding, dict) and finding.get("blocks_test_generation"):
+            return "not_testable_yet"
+    for question in payload.get("questions") or []:
+        if (
+            isinstance(question, dict)
+            and question.get("priority") == "High"
+            and (question.get("status") or "open") == "open"
+        ):
+            return "testable_with_clarifications"
+    return "testable_now"
+
+
 def gate_status_from_payload(payload: dict[str, Any] | None) -> str | None:
     if not payload:
         return None

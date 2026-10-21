@@ -57,6 +57,26 @@ Edit `.env`:
 
 - **Jira REST** — `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN` (comments, scope resolve, Importer project list).
 - **Xray** — `XRAY_CLIENT_ID`, `XRAY_CLIENT_SECRET` (Importer execute).
+- **Human analytics identity** — `TRINITY_OPERATOR_ID` and
+  `TRINITY_OPERATOR_NAME`. Use your own values; these identify the human in
+  BigQuery, not the GCP service account.
+- **BigQuery target** — `BQ_PROJECT`, `BQ_DATASET`, and later an absolute
+  `GOOGLE_APPLICATION_CREDENTIALS` path when local ingest is enabled.
+
+Example (placeholders only):
+
+```bash
+TRINITY_OPERATOR_ID=you@appfire.com
+TRINITY_OPERATOR_NAME="Your Name"
+BQ_PROJECT=qa-coe
+BQ_DATASET=trinity
+# GOOGLE_APPLICATION_CREDENTIALS=/Users/<mac-login>/.config/trinity/key.json
+```
+
+`.env` and `.env.production` are gitignored. Never put personal values, API
+tokens, or JSON key contents in `.env.example`; that tracked file is a template
+only. Store the service-account JSON outside the repository. The repository's
+full BigQuery and Looker Studio reference is `Trinity/BIGQUERY.md`.
 
 Use **sandbox** URLs and keys until you deliberately target production. Production Importer and production Jira host require typing **`PRODUCTION`** in Studio before execute/post.
 
@@ -129,7 +149,7 @@ For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Copy JQL reso
 
 ## Step 9 — Run Reviewer in Cursor
 
-1. Studio → **Reviewer configs** → **Copy Cursor prompt** for your portfolio.
+1. **More → Reviewer configs** → **Copy Cursor prompt** for your portfolio.
 2. New Cursor chat → paste → run gather per skill.
 3. Outputs: `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` (under `portfolio_id` and optionally a dated `portfolio_run_id` subfolder).
 
@@ -141,24 +161,27 @@ Deep dive: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
 
 ---
 
-## Step 10 — Import Reviewer run into Studio
+## Step 10 — Open the workspace
+
+The Reviewer prints a workspace URL. Open it. Importing the same payloads again does not add another review revision.
+
+If no URL was printed:
 
 ```bash
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
-Or Dashboard → **Import Reviewer run** → path to that folder.
+Then **Open workspace** on that run. **More → Dashboard** can import the same folder by path.
 
 ---
 
-## Step 11 — Review unit (human QA)
+## Step 11 — Verdict on the workspace
 
-1. Dashboard → run → epic unit.
-2. Triage questions/findings (`studio_qa`: validity, **Include in epic feedback**).
-3. **Save draft** (Jira comment preview uses saved payload only).
-4. **Approve & export for Creator** when ready.
+1. Read the testability verdict and the blocker questions.
+2. **Next step → Approve** when the verdict is right.
+3. **Next step → Copy Creator prompt**. Several approved Epics: **Prepare Creator prompts**, then **Copy Creator prompts**.
 
-Run-level Creator handoff: run page → **In Creator** toggles, JQL, handoff JSON.
+Finding-by-finding triage stays on the unit page: **More → Dashboard**, open the run, open the Epic. **Save draft** there before a Jira comment preview. Run-level handoff ( **In Creator**, JQL, handoff JSON) stays on the run page.
 
 ---
 
@@ -179,24 +202,25 @@ Detail: [`MANUAL.md`](MANUAL.md) §8.
 
 ## Step 13 — Creator
 
-1. Unit page → **Send to Creator** (requires approve; blocked for `not_fit`).
-2. Paste prompt into Cursor → run **trinity-creator**.
-3. Studio → **Creator** → import `suite-payload.json` path from prompt.
-4. Approve/reject tests; mark **Fit for Xray import**.
-5. **Export for Importer** on the creator run.
+1. Paste the workspace Creator prompt into Cursor → run **trinity-creator**. An Epic that is not testable yet cannot be drafted.
+2. Stay on the workspace. Studio imports `suite-payload.json` when the file appears. **Check for the file now** if the card is still waiting.
+3. Approve or reject each test. A rejection needs a reason. Tick **Send to Xray**, or **Approve selected** for the tests you ticked.
+4. **More → Creator** is the fallback: paste the suite path, then **Export for Importer**.
 
-Use **Send to Creator** on the unit page ([`FIRST-RUN.md`](FIRST-RUN.md) §3.5).
+Detail: [`FIRST-RUN.md`](FIRST-RUN.md) §3.4–3.5.
 
 ---
 
 ## Step 14 — Importer (Xray)
 
-1. Studio → **Importer** (or `?creator_run_id=...`).
-2. Choose instance (sandbox vs production).
-3. Mapping + project key + folder path → **Preview import plan**.
-4. Acknowledge Reviewer gate if shown.
-5. **Copy Cursor prompt** or **Execute** (sandbox first).
-6. **Persist Xray keys** from `xray-import-report.json`.
+On the workspace, **Next step → Plan Xray import**:
+
+1. Choose instance (sandbox vs production).
+2. Mapping + project key + folder path → **Preview import plan**.
+3. Acknowledge the Reviewer gate or idempotency confirmation if the plan asks.
+4. **Write to Xray** when the plan is ready. Production requires typing PRODUCTION. Several Epics can be previewed together; the write stays one Epic.
+
+**More → Importer** is the path for a Cursor prompt and **Persist Xray keys** from `xray-import-report.json`.
 
 Full detail: [`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray) · [`MANUAL.md`](MANUAL.md) § Importer.
 

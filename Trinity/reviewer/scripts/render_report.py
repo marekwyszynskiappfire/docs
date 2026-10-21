@@ -72,6 +72,31 @@ def planning_dates_meta(req: dict) -> str:
     return "Planning target: Not set in Jira (due date and end date empty)"
 
 
+VERDICT_LABEL = {
+    "testable_now": "Testable now",
+    "testable_with_clarifications": "Testable with clarifications",
+    "not_testable_yet": "Not testable yet",
+}
+
+
+def verdict_bits(p: dict):
+    report = p.get("report") or {}
+    verdict = report.get("testability_verdict")
+    if verdict not in VERDICT_LABEL:
+        return None
+    reasons = [r for r in report.get("testability_reasons") or [] if isinstance(r, str) and r.strip()]
+    return VERDICT_LABEL[verdict], reasons
+
+
+def html_verdict(p: dict) -> str:
+    bits = verdict_bits(p)
+    if not bits:
+        return ""
+    label, reasons = bits
+    reason_html = "".join(f"<p>{inline(reason)}</p>" for reason in reasons)
+    return f'<div class="planning-fit"><strong>Testability verdict:</strong> {esc(label)}{reason_html}</div>'
+
+
 def html_planning_fit(p: dict) -> str:
     r = p.get("report") or {}
     fit = r.get("qa_planning_fit")
@@ -858,6 +883,7 @@ def render_html(p: dict) -> str:
   <div class="header-meta">{esc(scan_label(p))} — {esc(date)}{status}{planning}{link} · schema {esc(p["schema_version"])} · run_id {esc(p["run_id"])}</div>
   <div class="summary-line"><strong>{esc(f_line.split(" — ")[0])}</strong> — {esc(f_line.split(" — ")[1])} · <strong>{esc(q_line.split(" — ")[0])}</strong>{(" — " + esc(q_line.split(" — ")[1])) if " — " in q_line else ""}{kids_line}</div>
 </div>
+{html_verdict(p)}
 <div class="readiness-strip {strip_cls}">
   <div class="r-kicker">{esc(readiness_heading(p))}</div>
   <div class="r-label">{icon} {esc(readiness["human_label"])}</div>
@@ -912,6 +938,14 @@ def render_md(p: dict) -> str:
         f"**Product:** {p['product'].get('name', p['product']['id'])} · schema {p['schema_version']}  ",
         f"**Data sources analyzed:** {' · '.join(analyzed) or 'none'}  ",
         f"**Data sources unavailable or failed:** {'; '.join(missing) or 'none'}", "",
+    ]
+    verdict = verdict_bits(p)
+    if verdict:
+        label, reasons = verdict
+        L.append(f"**Testability verdict:** {label}  ")
+        L.extend(f"- {md_inline(reason)}" for reason in reasons)
+        L.append("")
+    L += [
         f"**{readiness_heading(p)}:** {cls['readiness']['human_label']}  ",
         f"_{md_inline((lead_sentence(p) + ' ') if lead_sentence(p) else '')}{md_inline(r['readiness_line'])}_  ",
         gate_line(p), "",

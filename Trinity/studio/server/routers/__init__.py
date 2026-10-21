@@ -14,6 +14,7 @@ from routers import (
     reviewer_insights,
     stats,
     telemetry,
+    workspace,
 )
 
 
@@ -28,5 +29,6 @@ def register_routers(app: FastAPI) -> None:
         telemetry,
         jira_epic_comments,
         personas_config,
+        workspace,
     ):
         app.include_router(module.router)

@@ -64,7 +64,7 @@ flowchart TB
 
 ## Operator pipeline (checkout → Xray)
 
-This matches the diagram attached on this Confluence page (`trinity-operator-pipeline.svg` in git: `Trinity/confluence/assets/`).
+The picture below is the current operator path. The same path is in `Trinity/confluence/assets/trinity-operator-pipeline.svg`.
 
 ```mermaid
 flowchart LR
@@ -77,21 +77,19 @@ flowchart LR
     P1[Cursor prompt 1]
     RUN[review-payload.json]
   end
-  subgraph stu [Studio]
-    IMP[Import run]
-    TRI[Triage studio_qa]
-    APR[Approve export]
-    P2[Send to Creator]
-    CRE[Creator import]
-    XPL[Export Importer]
-    P3[Importer plan]
+  subgraph stu [Workspace]
+    OPEN[Open workspace]
+    APR[Approve verdict]
+    P2[Copy Creator prompt]
+    REV[Review tests]
+    PLAN[Plan Xray import]
   end
   subgraph xray [Xray]
-    EXEC[Create tests]
-    KEYS[Persist keys]
+    EXEC[Write tests]
+    KEYS[Xray keys]
   end
-  CLONE --> START --> CFG --> P1 --> RUN --> IMP --> TRI --> APR --> P2
-  P2 --> CRE --> XPL --> P3 --> EXEC --> KEYS
+  CLONE --> START --> CFG --> P1 --> RUN --> OPEN --> APR --> P2
+  P2 --> REV --> PLAN --> EXEC --> KEYS
 ```
 
 | Stage | Artifact | Contract |

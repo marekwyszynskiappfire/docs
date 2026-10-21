@@ -13,6 +13,7 @@ from telemetry import (
     REJECTION_REASONS,
     flush_outbox,
     operator_review_summary,
+    sync_all_runs,
 )
 
 router = APIRouter(tags=["telemetry"])
@@ -75,3 +76,10 @@ def telemetry_export() -> dict[str, Any]:
 def telemetry_flush() -> dict[str, Any]:
     with db() as conn:
         return flush_outbox(conn)
+
+
+@router.post("/api/telemetry/sync")
+def telemetry_sync() -> dict[str, Any]:
+    """Backfill all pending events and current run snapshots to configured ingest."""
+    with db() as conn:
+        return sync_all_runs(conn)

@@ -147,8 +147,8 @@ export default function HomePage() {
           <div className="empty-callout">
             <h3>No Reviewer runs yet</h3>
             <p className="muted" style={{ margin: 0 }}>
-              Import a folder with <code>ONE-*/review-payload.json</code>, or use the demo path in{" "}
-              <code>Trinity/TESTING.md</code>. Then open a run → approve → Creator.
+              Import a folder with <code>ONE-*/review-payload.json</code>, or run <code>seed-demo.sh</code>.
+              Then choose <strong>Open workspace</strong> on the run.
             </p>
           </div>
         )}
@@ -197,6 +197,8 @@ export default function HomePage() {
               getValue: () => "",
               render: (r) => (
                 <>
+                  <Link to={`/workspace/${encodeURIComponent(r.id)}`}>Open workspace</Link>
+                  {" · "}
                   <Link to={`/runs/${encodeURIComponent(r.id)}?tab=statistics`}>Statistics</Link>
                   {" · "}
                   <RunListRowActions kind="pipeline" runId={r.id} label={r.label} onChanged={load} />

@@ -9,6 +9,6 @@
 ./Trinity/studio/scripts/seed-demo.sh      # terminal 2
 ```
 
-Open **http://127.0.0.1:5173** → Dashboard → run → **DEMO-4500** → **Creator** → import `Trinity/creator/samples/demo-story.suite.json` → **Importer** → preview only.
+Open **http://127.0.0.1:5173**. On the demo run, click **Open workspace**. Read the verdict and **Next step**. Creator and Importer are under **More**.
 
 Full first-time path (demo + real epic + three prompts): **[`FIRST-RUN.md`](FIRST-RUN.md)**.

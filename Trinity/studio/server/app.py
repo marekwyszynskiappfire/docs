@@ -16,7 +16,7 @@ from fastapi.staticfiles import StaticFiles
 # Allow running as `python app.py` from server/
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from db import init_db
+from db import db, init_db
 from routers import register_routers
 from studio_env import load_dotenv
 from studio_paths import STATIC_FALLBACK, WEB_DIST
@@ -27,6 +27,14 @@ from trinity_release import trinity_git_revision, trinity_release_version
 async def _lifespan(_app: FastAPI):
     load_dotenv()
     init_db()
+    try:
+        from telemetry import sync_all_runs
+
+        with db() as conn:
+            sync_all_runs(conn)
+    except Exception:
+        # Telemetry must never prevent Studio startup.
+        pass
     yield
 
 
@@ -60,6 +68,8 @@ def health() -> dict[str, Any]:
             "context_loaded_alerts",
             "jira_epic_comments",
             "pipeline_run_statistics",
+            "pipeline_manifest",
+            "cursor_handoff",
         ],
     }
     rev = trinity_git_revision()

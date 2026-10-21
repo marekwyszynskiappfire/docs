@@ -6,7 +6,7 @@
 |---------------|------|
 | File | Approved `review-payload.json` (Studio export under `Trinity/studio/data/exports/`) |
 | Gate `BLOCKED` | Refuse unless `force=true` and QA confirms → `gate_override: true` |
-| Readiness `needs_clarification` | Stay in `release_slice_e2e`; 3–5 journeys; document gaps in `coverage_report.warnings` |
+| Readiness `needs_clarification` | Stay in `release_slice_e2e` and the selected `coverage_profile`; document gaps in `coverage_report.warnings` |
 | Coverage | Build `coverage_report.matrix[]` from Reviewer ACs/goals/findings — primary driver |
 | Staleness | Compare `requirement_fingerprint` in review vs live issue; warn on mismatch |
 | Epic | **CR-EPIC-01** — one suite on Epic key; children for traceability only |
@@ -15,8 +15,22 @@
 
 | `suite_mode` | Tests | `test_pattern` |
 |--------------|-------|----------------|
-| `release_slice_e2e` (default) | 3–5 | `journey` only when `policy.allow_atomic` is false |
+| `release_slice_e2e` (default) | `coverage_profile` range, otherwise 3–5 | `journey` only when `policy.allow_atomic` is false |
 | `comprehensive_legacy` | Operator-defined | Journey-first; atomic only if catalog explicitly requires |
+
+## Coverage depth
+
+The workspace slider sets `coverage_profile` on the Creator prompt. `suite_mode` stays `release_slice_e2e`.
+
+| Profile | Journeys | What to write |
+|---------|----------|---------------|
+| `smoke` | 1–2 | Release-blocking happy paths |
+| `core` | 3–5 | Main journeys, the main role or permission difference, and one material failure |
+| `balanced` | 5–8 | Core coverage plus key states, validation, recovery, and integration behaviour. Studio default |
+| `thorough` | 8–12 | Balanced coverage plus boundaries, combinations, data variants, and integration failures |
+| `edge` | 12–20 | Thorough coverage plus evidence-backed corner cases |
+
+Write fewer when the requirement cannot support another distinct journey. Do not invent expected results to fill the range. Record the chosen id, the range, `actual_count`, and `omitted` on the suite.
 
 ## Golden corpus (`golden_root`) — **CR-GOLDEN-01**
 

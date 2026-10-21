@@ -26,7 +26,7 @@ flowchart LR
 ## 1. Configure the program
 
 1. **Persona** — edit `Trinity/personas/reviewer-expert-qa-automation.md` (Studio → **Personas**) if needed; audience map: [`personas/P1-P10.md`](personas/P1-P10.md).
-2. **Portfolio run config** — Studio → **Reviewer configs** (or interview in Cursor). Saves `Trinity/reviewer/config/runs/{portfolio_id}.json`.
+2. **Portfolio run config** — **More → Reviewer configs** (or interview in Cursor). Saves `Trinity/reviewer/config/runs/{portfolio_id}.json`.
 3. **Copy Cursor prompt** from Studio → paste into Cursor → run **trinity-reviewer**.
 
 Outputs land under `Trinity/reviewer/runs/{portfolio_run_id}/` (per-epic payloads + optional `portfolio/index.html`).
@@ -37,21 +37,23 @@ Outputs land under `Trinity/reviewer/runs/{portfolio_run_id}/` (per-epic payload
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
-Dashboard lists the pipeline run. Open the run to review epics. For portfolio metrics, use top nav **Statistics** ([`METRICS.md`](METRICS.md)).
+A finished Reviewer opens the workspace. `import-run.sh` is the fallback, then **Open workspace** on that run. For portfolio metrics, use top nav **Statistics** ([`METRICS.md`](METRICS.md)).
 
 ## 3. Human QA on reviews
 
+The workspace is the normal path: read the verdict, approve the review, copy the Creator prompt.
+
 - **Run page** — toggle **In Creator** per epic; bulk exclude `not_fit`; copy **Creator JQL** and handoff JSON.
-- **Unit page** — edit `review-payload.json` fields, QA workflow, approve revision.
+- **Unit page** — edit `review-payload.json` fields, QA workflow, Jira epic comment. **Save draft** before a comment preview.
 - **Export** — approved `review-payload.json` under `Trinity/studio/data/exports/`.
 
 ## 4. Creator (test cases)
 
-1. In Studio, open the epic unit → **Approve & export** → **Send to Creator** (prompt includes `review_ref` + three Creator personas).
+1. On the workspace, approve the review, then **Copy Creator prompt** (prompt includes `review_ref` + three Creator personas). Several Epics: **Prepare Creator prompts**, then copy them together.
 2. Run **trinity-creator** in Cursor — **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
-3. Import `suite-payload.json` in Studio → **Creator** (**one import per Epic** — no merged portfolio file). Multi-epic programs write under `Trinity/creator/artifacts/{portfolio_id}/{EPIC_KEY}/suite-payload.json`; see [`creator/artifacts/README.md`](creator/artifacts/README.md).
-4. Operator: edit → approve or reject; mark **fit for Xray import**; **Export for Importer** → `studio/data/exports/creator/{run}/importer-payload.json`.
-5. **Importer** (Studio): instance, mapping, **[project key override](GUIDE.md#6-importer-studio--xray)** (default TC), folder → **Preview import plan** → **Execute import batch** or Cursor prompt ([`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)).
+3. The workspace imports `suite-payload.json` (**one file per Epic** — no merged portfolio file). Multi-epic programs write under `Trinity/creator/artifacts/{portfolio_id}/{EPIC_KEY}/suite-payload.json`; see [`creator/artifacts/README.md`](creator/artifacts/README.md). **More → Creator** is the fallback.
+4. Operator: edit → approve or reject; mark **Send to Xray**. **Approve selected** covers the tests you ticked. **More → Creator → Export for Importer** still writes `studio/data/exports/creator/{run}/importer-payload.json`.
+5. On the workspace: instance, mapping, **[project key override](GUIDE.md#6-importer-studio--xray)** (default TC), folder → **Preview import plan** → **Write to Xray**. Several Epics can be previewed together; the write stays one Epic. The full Importer page remains for a Cursor prompt ([`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)).
 
 Each draft includes `automation_fit`, `automation_blockers`, and `persona_notes` (QA / architect / automation).
 

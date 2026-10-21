@@ -78,21 +78,20 @@ Use that folder in Studio import below.
 
 Keep the terminal open (Ctrl+C stops API + Vite).
 
-### 2a. Dashboard
+### 2a. Workspace
 
-- **Import Reviewer run** — path: `Trinity/studio/fixtures/demo-reviewer-run` (committed) or `./Trinity/studio/scripts/seed-demo.sh` (or your real run under `reviewer/runs/`).
-- Confirm pipeline run appears; open it.
+- Run `./Trinity/studio/scripts/seed-demo.sh`, or import `Trinity/studio/fixtures/demo-reviewer-run` from **More → Dashboard**.
+- On the run row, click **Open workspace**. Confirm the stepper, **Next step**, and the demo Epic.
 
 ### 2b. Review workflow
 
-1. **Dashboard** → open run → open an epic **unit**.
-2. Edit payload / QA workflow → **Approve & export** (or export for Creator).
-3. **Send to Creator** — copies Cursor prompt with `review_ref` (disabled for `not_fit`).
-4. **Personas** — edit Reviewer/Creator persona markdown (writes to `Trinity/personas/`).
+1. On the workspace, read the verdict. **Next step → Approve**, then **Copy Creator prompt** (the prompt includes `review_ref`). An Epic that is not testable yet cannot be drafted.
+2. **Personas** — the list shows the heading in each file. The filename stays above the editor. A save writes `Trinity/personas/`.
+3. Finding triage and **Approve & export** remain on the unit page when you need them.
 
 ### 2c. Creator workflow (UI only, no Cursor)
 
-1. **Creator** tab → import path:  
+1. **More → Creator** → import path:  
    `Trinity/creator/samples/demo-story.suite.json`
 2. Open the run → table of tests.
 3. **Edit** a test → change steps, **automation fit**, blockers → **Save & approve** → check **Fit for Xray import**.
@@ -102,20 +101,22 @@ Keep the terminal open (Ctrl+C stops API + Vite).
    `Trinity/studio/data/exports/creator/{run_id}/importer-payload.json`  
    (only **approved** + **marked** tests).
 
+On a real suite the workspace imports the file itself. Open the Epic, tick the pending tests, and use **Approve selected**. **Send to Xray** stays on each approved test.
+
 **Reset Studio DB** (start clean): delete `Trinity/studio/data/qa-studio.db` and restart `start.sh`.
 
 ---
 
 ## 3. Creator (Cursor agent)
 
-After **Send to Creator** from Studio (or manual):
+After **Copy Creator prompt** on the workspace (or a hand-written prompt):
 
 1. Paste the handoff prompt into Cursor; run **trinity-creator**.
 2. Ensure parameters: `review_ref`, Epic key, `suite_mode: release_slice_e2e`, product config (`bigpicture` or `default`).
 3. Agent writes e.g.  
    `Trinity/creator/artifacts/{EPIC-KEY}/suite-payload.json`  
    (+ `suite-report.md`).
-4. Studio → **Creator** → import that JSON path.
+4. The workspace imports that file. **More → Creator** can import the path when it does not.
 5. Complete operator review (section 2c).
 
 **Offline check (no agent):** use the committed demo batch only (step 2c).
@@ -128,9 +129,9 @@ Full steps: **[`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)** (instance, ma
 
 Quick check:
 
-1. Creator run → **Export for Importer**.
-2. **Importer** tab → select instance + mapping → set **Jira project for new Tests** if not TC.
-3. **Preview import plan** → **Execute import batch** or copy Cursor prompt (includes PM summary + coverage matrix when batch has `coverage_report`).
+1. On the workspace, mark the approved tests and open **Plan Xray import**. **More → Creator → Export for Importer** is the fallback.
+2. Select instance + mapping → set **Jira project for new Tests** if not TC.
+3. **Preview import plan** → **Write to Xray**, or copy the Cursor prompt from **More → Importer** (includes PM summary + coverage matrix when the batch has `coverage_report`).
 
 ---
 
@@ -141,12 +142,12 @@ Quick check:
 | `install-trinity-skills.sh` links reviewer + creator | ☐ |
 | `render_report.py` on demo epic sample | ☐ |
 | `start.sh` — health + Personas save | ☐ |
-| Import `demo-local-test` Reviewer folder | ☐ |
-| Approve unit → Send to Creator (prompt copies) | ☐ |
-| Import `demo-story.suite.json` in Creator tab | ☐ |
-| Approve + mark for Xray → Export for Importer | ☐ |
-| `importer-payload.json` exists under `studio/data/exports/creator/` | ☐ |
-| Importer plan + optional **Execute import batch** (or CLI) | ☐ |
+| `seed-demo.sh` → **Open workspace** shows the demo Epic and **Next step** | ☐ |
+| Approve the review → **Copy Creator prompt** | ☐ |
+| Import `demo-story.suite.json` from **More → Creator** | ☐ |
+| Approve + mark for Xray on the workspace, or **Approve selected** on ticked tests | ☐ |
+| Workspace **Preview import plan** (write stays disabled until the plan is ready) | ☐ |
+| Optional: **Export for Importer** and `importer-payload.json` under `studio/data/exports/creator/` | ☐ |
 
 ---
 
