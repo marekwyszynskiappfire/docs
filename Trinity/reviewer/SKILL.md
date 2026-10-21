@@ -225,6 +225,8 @@ Emit each open question as its own object (see `schemas/review-payload.schema.js
 
 **Informed questions only (never generic):** Every question must trace to something you **actually read** in gather — epic or child Jira text, comments, linked Confluence (including nested child-linked pages), Figma literal text, or a finding you emitted with a source citation. If you cannot point to a concrete gap in those sources, do not ask — record the limit in `context_loaded[]` instead. The **`question` text** names the specific decision needed; it must not be a boilerplate checklist prompt.
 
+**Answerable and concrete.** Keep a question, and any line that would go into the Jira comment, only when the gathered sources do not already answer it, a named owner can answer it as one decision, and that answer changes a test, a scope boundary, or a pass/fail criterion. Drop wording nits, restatements, speculative edge cases, and questions asked only to look complete. Fewer questions is the right result when the rest are not actionable.
+
 **Always explain why (`context` + `source`) — both required:**
 
 | Field | Rule |
@@ -402,6 +404,7 @@ On request, or automatically when ≥3 "Suggested testing focus" items exist or 
 - [ ] Epic target: no finding is CRITICAL and `gate.status` is not `BLOCKED`.
 - [ ] Epic target: `scope.lifecycle` set; TC handoff says run The Creator on the **Epic key** (CR-EPIC-01).
 - [ ] Every open question has substantive `context` (why we're asking) and `source` (where the gap was seen); default `owner_hint` is PM unless UX/EM/Security/PO narrowly applies.
+- [ ] Every question and every Jira-comment line is an unanswered decision a named owner can act on. Nits, restatements, and already-answered gaps are absent.
 - [ ] Multi-epic run: `enrich_questions.py --force` + every payload rendered with `--strict`; portfolio bundle regenerated.
 - [ ] Question ids run Q1…Qn in display order (fixed topic order, then by id).
 - [ ] Readiness strip colour comes from `readiness.value`; the gate line comes from `gate.status` — neither is derived from the other.

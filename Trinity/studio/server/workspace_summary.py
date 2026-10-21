@@ -11,6 +11,7 @@ from coverage_profile import coerce_profile_id, is_coverage_stale, public_profil
 from cursor_handoff import list_handoffs, suite_path_for
 from db import row_to_dict
 from review_payload_fields import testability_verdict
+from run_config import portfolio_id_for_source
 from run_report import _latest_payloads_for_units
 
 STAGES: list[dict[str, str]] = [
@@ -435,6 +436,7 @@ def workspace_summary(conn: Any, pipeline_run_id: str) -> dict[str, Any]:
     return {
         "pipeline_run_id": pipeline_run_id,
         "label": run["label"],
+        "portfolio_id": portfolio_id_for_source(run["source_path"]),
         "workspace_path": f"/workspace/{pipeline_run_id}",
         "coverage_profile": portfolio_profile,
         "coverage_profiles": public_profiles(),

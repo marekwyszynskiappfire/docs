@@ -21,7 +21,7 @@ Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.m
 
 ## Golden rules (read once)
 
-1. **Follow Next step on the workspace.** The first Reviewer prompt still comes from **More → Reviewer configs → Copy Cursor prompt**. Later prompts are on the workspace. Do not invent prompts by hand unless Studio is down.
+1. **Follow Next step on the workspace.** Expand **Reviewer prompt** there to copy the first Cursor prompt for this run. Create or edit the portfolio under **More → Reviewer configs** before a workspace exists. Do not invent prompts by hand unless Studio is down.
 2. **Epic folder name = Jira epic key** — e.g. `ONE-228469/review-payload.json`, not a random folder name.
 3. **Jira comments stay on the open Epic.** Expand **Findings and Jira comment**, then **Save draft** before **Jira comment preview**.
 4. **Demo epic `DEMO-4500` is fake** — never post it to production Jira or Xray.
@@ -212,7 +212,7 @@ Replace **`YOUR-EPIC-KEY`** with one sandbox **Epic** key (e.g. `ONE-12345`). On
 
 ### 3.2 Prompt #1 — Reviewer (first Cursor prompt)
 
-1. Still on **Reviewer configs** → click **Copy Cursor prompt**.
+1. Open the workspace for this portfolio and expand **Reviewer prompt** → **Copy Cursor prompt**. Before a workspace exists, copy it from **More → Reviewer configs** after you save the portfolio.
 2. Open **new Cursor chat** (fresh context).
 3. Paste the prompt → send.
 
@@ -312,7 +312,7 @@ The import panel is on the same page.
 ## What to do on the second epic
 
 1. **More → Reviewer configs** → same `portfolio_id`, update scope or use `new_epics_only` / `rescan_delta`.
-2. **Copy Cursor prompt** again. A return visit should skip the full interview.
+2. Open the workspace and expand **Reviewer prompt** → **Copy Cursor prompt** again. A return visit should skip the full interview.
 3. Open the workspace URL the agent prints, and repeat from §3.3.
 
 The run page under **More → Dashboard** still has bulk **In Creator**, **Copy JQL**, and the handoff JSON for multi-epic planning.
@@ -323,7 +323,8 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 
 | # | When | Where to get it | Cursor skill |
 |---|------|-----------------|--------------|
-| **1** | Before any review exists in Studio | **More → Reviewer configs** → **Copy Cursor prompt** | trinity-reviewer |
+| **1** | This portfolio already has a workspace | Workspace → **Reviewer prompt** → **Copy Cursor prompt** | trinity-reviewer |
+| **1a** | Before any review exists in Studio | **More → Reviewer configs** → **Copy Cursor prompt** | trinity-reviewer |
 | **1b** | JQL/filter scope only | **Copy JQL resolve prompt** | MCP in Cursor (not a skill) |
 | **2** | After you approve the review | Workspace **Next step → Copy Creator prompt** | trinity-creator |
 | **3** | You are writing through Cursor instead of the workspace | **More → Importer** → **Copy Cursor prompt** | trinity-importer |

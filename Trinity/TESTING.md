@@ -45,7 +45,7 @@ Opens HTML beside the sample or prints output path. Confirms Python + template w
 
 ### 1c. Live Reviewer run (Cursor)
 
-1. Studio → **Reviewer configs** → **Copy Cursor prompt** (or follow interview in `reviewer/SKILL.md`).
+1. Studio → **Reviewer configs** to save the portfolio, then on the workspace expand **Reviewer prompt** → **Copy Cursor prompt** (or follow the interview in `reviewer/SKILL.md`).
 2. In Cursor, run **trinity-reviewer** with your portfolio scope.
 3. Outputs land under **`Trinity/reviewer/runs/{portfolio_run_id}/`** (gitignored), e.g.  
    `{run}/ONE-12345/review-payload.json` + `review-report.html`.

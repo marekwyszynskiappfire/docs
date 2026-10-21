@@ -149,13 +149,13 @@ For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Copy JQL reso
 
 ## Step 9 — Run Reviewer in Cursor
 
-1. **More → Reviewer configs** → **Copy Cursor prompt** for your portfolio.
+1. On the workspace, expand **Reviewer prompt** → **Copy Cursor prompt**. Before a workspace exists, use **More → Reviewer configs**.
 2. New Cursor chat → paste → run gather per skill.
 3. Outputs: `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` (under `portfolio_id` and optionally a dated `portfolio_run_id` subfolder).
 
 **Rule:** folder name **must equal** the epic Jira key in the payload (`scope.value`). Import fails on mismatch.
 
-Use **Copy Cursor prompt** on Reviewer configs (see [`FIRST-RUN.md`](FIRST-RUN.md) §3.2).
+Use **Reviewer prompt** on the workspace (see [`FIRST-RUN.md`](FIRST-RUN.md) §3.2). **More → Reviewer configs** is where you create the portfolio before a workspace exists.
 
 Deep dive: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
 

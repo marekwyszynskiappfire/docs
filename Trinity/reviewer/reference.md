@@ -87,7 +87,7 @@ Persisted at `{skill_root}/config/runs/{portfolio_id}.json` (schema: `schemas/ru
 
 ### Persona
 
-Load `Trinity/personas/{persona_id}` before analysis. Persona controls tone and **Q# testability framing**; it does not override schema, gate math, or blocked phrases.
+Load `Trinity/personas/{persona_id}` before analysis. Persona controls tone and **Q# testability framing**; it does not override schema, gate math, or blocked phrases. A question or Jira comment line stays only when it is an unanswered decision a named owner can act on, and the answer changes a test, a scope boundary, or a pass/fail criterion.
 
 ### Epic description — QA quarter planning fit
 

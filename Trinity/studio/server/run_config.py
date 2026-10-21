@@ -202,3 +202,38 @@ def write_run_config(portfolio_id: str, data: dict[str, Any]) -> dict[str, Any]:
     validate_run_config(data)
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return data
+
+
+def config_file_exists(portfolio_id: str) -> bool:
+    try:
+        pid = validate_portfolio_id(portfolio_id)
+    except ValueError:
+        return False
+    return (runs_config_dir() / f"{pid}.json").is_file()
+
+
+def portfolio_id_for_source(source_path: str | None) -> str | None:
+    """Match a imported run folder to Trinity/reviewer/config/runs/{id}.json."""
+    if not source_path:
+        return None
+    folder = Path(source_path)
+    manifest = folder / "pipeline-manifest.json"
+    if manifest.is_file():
+        try:
+            data = json.loads(manifest.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            data = None
+        if isinstance(data, dict) and config_file_exists(str(data.get("portfolio_id") or "")):
+            return validate_portfolio_id(str(data["portfolio_id"]))
+    handoff = folder / "portfolio" / "data" / "creator-handoff.json"
+    if handoff.is_file():
+        try:
+            data = json.loads(handoff.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            data = None
+        if isinstance(data, dict) and config_file_exists(str(data.get("run_id") or "")):
+            return validate_portfolio_id(str(data["run_id"]))
+    for candidate in (folder.name, folder.parent.name):
+        if config_file_exists(candidate):
+            return validate_portfolio_id(candidate)
+    return None

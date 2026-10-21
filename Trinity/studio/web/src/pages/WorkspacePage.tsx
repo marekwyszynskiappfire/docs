@@ -4,6 +4,7 @@ import { api, CoverageProfileId, WorkspaceSummary } from "../api";
 import EpicAccordion from "../components/workspace/EpicAccordion";
 import CoverageDepthControl from "../components/workspace/CoverageDepthControl";
 import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
+import ReviewerPromptPanel from "../components/workspace/ReviewerPromptPanel";
 import WorkspaceImportPanel from "../components/workspace/WorkspaceImportPanel";
 import NextActionCard from "../components/workspace/NextActionCard";
 import ProcessHelp from "../components/workspace/ProcessHelp";
@@ -248,6 +249,12 @@ export default function WorkspacePage() {
             setNote(result.message);
           })
         }
+      />
+      <ReviewerPromptPanel
+        portfolioId={workspace.portfolio_id}
+        workspacePath={workspace.workspace_path}
+        epicKeys={workspace.epics.map((epic) => epic.jira_key)}
+        onCopied={setNote}
       />
       <NextActionCard
         action={workspace.next_action}

@@ -1835,11 +1835,13 @@ button.ws-test-trigger {
   align-items: center;
 }
 
-.ws-triage {
+.ws-triage,
+.ws-reviewer-prompt {
   margin-top: 0.75rem;
 }
 
-.ws-triage > summary {
+.ws-triage > summary,
+.ws-reviewer-prompt > summary {
   cursor: pointer;
   font-weight: 600;
 }

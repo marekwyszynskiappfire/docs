@@ -67,7 +67,7 @@ Jira read on Epics; Confluence read if Epics link docs; Xray permission to **cre
 
 ### Do I write my own prompts?
 
-**No** (normal path). Use **Copy Cursor prompt** on Reviewer configs, then the workspace **Next step**. **More → Importer** still has a Cursor prompt when you write through Cursor. Hand-written prompts cause wrong paths and skipped checks. See [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
+**No** (normal path). On a workspace, expand **Reviewer prompt** and use **Copy Cursor prompt**. Before a workspace exists, copy it from Reviewer configs, then follow **Next step**. **More → Importer** still has a Cursor prompt when you write through Cursor. Hand-written prompts cause wrong paths and skipped checks. See [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
 
 ### How do I install skills?
 
@@ -220,7 +220,7 @@ Always **Preview import plan** first. Execute only in sandbox until validated; p
 
 | # | Click in Studio | Output |
 |---|-----------------|--------|
-| 1 | More → Reviewer configs → Copy Cursor prompt | `review-payload.json` |
+| 1 | Workspace → Reviewer prompt → Copy Cursor prompt | `review-payload.json` |
 | 1b | Copy JQL resolve prompt (optional) | Epic key list |
 | 2 | Workspace → Copy Creator prompt | `suite-payload.json` |
 | 3 | Workspace → Plan Xray import, or More → Importer → Copy Cursor prompt | Xray Tests |

@@ -135,6 +135,7 @@ export type WorkspaceStage = {
 export type WorkspaceSummary = {
   pipeline_run_id: string;
   label: string;
+  portfolio_id: string | null;
   workspace_path: string;
   coverage_profile: CoverageProfileId;
   coverage_profiles: CoverageProfile[];

@@ -97,7 +97,7 @@ Symlinks: `~/.cursor/skills/trinity-reviewer`, `trinity-creator`, `trinity-impor
 
 | Skill | How to run |
 |-------|------------|
-| Reviewer | **More → Reviewer configs → Copy Cursor prompt** (do not hand-write) |
+| Reviewer | Workspace → **Reviewer prompt** → **Copy Cursor prompt**. **More → Reviewer configs** before a workspace exists (do not hand-write) |
 | Creator | Workspace **Next step → Copy Creator prompt** |
 | Importer | Workspace **Plan Xray import**. **More → Importer** when you need the Cursor prompt |
 
