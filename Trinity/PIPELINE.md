@@ -26,7 +26,7 @@ flowchart LR
 ## 1. Configure the program
 
 1. **Persona** — edit `Trinity/personas/reviewer-expert-qa-automation.md` (Studio → **Personas**) if needed; audience map: [`personas/P1-P10.md`](personas/P1-P10.md).
-2. **Portfolio run config** — **More → Reviewer configs** (or interview in Cursor). Saves `Trinity/reviewer/config/runs/{portfolio_id}.json`.
+2. **Portfolio run config** — workspace list → **New portfolio** (or **More → Reviewer configs**). Saves `Trinity/reviewer/config/runs/{portfolio_id}.json`.
 3. **Copy Cursor prompt** from Studio → paste into Cursor → run **trinity-reviewer**.
 
 Outputs land under `Trinity/reviewer/runs/{portfolio_run_id}/` (per-epic payloads + optional `portfolio/index.html`).

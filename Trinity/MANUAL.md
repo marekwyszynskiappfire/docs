@@ -36,7 +36,7 @@ Copy the sample files. Do not invent a second config format.
 |------|--------------------|--------------------------|
 | Studio secrets | [`Trinity/studio/.env.example`](studio/.env.example) | `Trinity/studio/.env` (gitignored) |
 | Production Xray keys | [`Trinity/studio/.env.production.example`](studio/.env.production.example) | `Trinity/studio/.env.production` (gitignored; only when you write to production Xray) |
-| Portfolio | [`Trinity/reviewer/config/runs/example.demo-portfolio.json`](reviewer/config/runs/example.demo-portfolio.json) | `Trinity/reviewer/config/runs/{portfolio_id}.json`, saved from **More → Reviewer configs** |
+| Portfolio | [`Trinity/reviewer/config/runs/example.demo-portfolio.json`](reviewer/config/runs/example.demo-portfolio.json) | `Trinity/reviewer/config/runs/{portfolio_id}.json`, saved from **New portfolio** on the workspace list |
 | Xray field mapping | [`Trinity/importer/config/mappings/appfire-sandbox.json`](importer/config/mappings/appfire-sandbox.json) and [`appfire-production.json`](importer/config/mappings/appfire-production.json) | Leave them in place. Pick one in the workspace Xray plan. |
 | Cursor MCP | Samples in §3 below | `~/.cursor/mcp.json` on your machine, not in the repo |
 | BigQuery key | Not in the repo | `~/.config/trinity/qa-coe-bigquery.json` |
@@ -47,7 +47,7 @@ Create the Studio env file:
 cp Trinity/studio/.env.example Trinity/studio/.env
 ```
 
-The sample portfolio is the shape Studio saves. Duplicate it in **More → Reviewer configs** and replace the scope before a live run:
+The sample portfolio is the shape Studio saves. On the workspace list, open **New portfolio** and replace the scope before a live run:
 
 ```json
 {
@@ -180,8 +180,8 @@ The workspace list imports `DEMO-4500`. Do not post that key to Jira or Xray.
 
 **One real portfolio**
 
-1. **More → Reviewer configs.** Duplicate the demo portfolio. Set the persona, product, and scope. **Save to repo.** This is the only place to create the first portfolio, before a workspace exists.
-2. On that page, **Copy Cursor prompt**. Paste it into a new Cursor Agent chat and let **trinity-reviewer** finish. It writes `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` and prints a workspace URL.
+1. On the workspace list, open **New portfolio**. Set the id, persona, product, and scope. **Save to repo**, then **Copy Reviewer prompt**. **More → Reviewer configs** still lists every portfolio.
+2. Paste the prompt into a new Cursor Agent chat and let **trinity-reviewer** finish. It writes `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` and prints a workspace URL.
 3. Open that URL. If it was not printed, on the workspace list expand **Import a review folder**, enter the folder that directly contains the Epic directories, and choose **Import and open**.
 4. On the workspace, read the testability verdict and the blocker questions. **Next step → Approve** when the verdict is right. Questions stay only when a named owner can decide them and the answer changes a test, a scope boundary, or a pass/fail criterion.
 5. Set **Coverage depth** (Balanced, 5–8 journey tests, unless the Epic needs another depth). **Next step → Copy Creator prompt.** Paste it into a new Cursor Agent chat and run **trinity-creator**.
@@ -283,7 +283,7 @@ Section 2a is the current index. From section 5 on, the page-by-page steps are t
 | Prove Studio works in 10 minutes | [`FIRST-RUN.md`](FIRST-RUN.md) Phase 0–1 | No Jira |
 | Run a full pipeline on real epics | Setup steps 1–14 in [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) | MCP, `.env`, Xray keys for execute |
 | Understand a Reviewer HTML report | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §3–7 | Sample: `reviewer/sample-report.html` |
-| Configure a portfolio / pass type | **More → Reviewer configs** (§5 below) | Saved JSON under `reviewer/config/runs/` |
+| Configure a portfolio / pass type | Workspace list → **New portfolio**, or **More → Reviewer configs** | Saved JSON under `reviewer/config/runs/` |
 | Triage findings and send feedback to Jira | Unit page → `studio_qa` → **Jira epic comment** (§8) | `JIRA_*` in `studio/.env` |
 | Hand off to test design | Workspace **Next step → Copy Creator prompt** | Approved review. An Epic that is not testable yet cannot be drafted |
 | Import tests to Xray | Workspace **Plan Xray import** | Mapping, project key, folder; production asks you to type PRODUCTION |

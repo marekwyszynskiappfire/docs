@@ -139,7 +139,7 @@ Skills installed: `trinity-reviewer`, `trinity-creator`, `trinity-importer` (nam
 
 ## Step 8 — Portfolio run config
 
-1. Studio → **Reviewer configs** → open or duplicate [`reviewer/config/runs/example.demo-portfolio.json`](reviewer/config/runs/example.demo-portfolio.json).
+1. On the workspace list, open **New portfolio**. The sample shape is [`reviewer/config/runs/example.demo-portfolio.json`](reviewer/config/runs/example.demo-portfolio.json).
 2. Set **scope** to your epics (keys, JQL, or filter URL).
 3. Set **persona** and **product_id**.
 4. **Save** → file under `Trinity/reviewer/config/runs/{portfolio_id}.json`.
@@ -150,13 +150,13 @@ For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Copy JQL reso
 
 ## Step 9 — Run Reviewer in Cursor
 
-1. On the workspace, expand **Portfolio** to set scope, persona, and pass type, then **Reviewer prompt** → **Copy Cursor prompt**. Before a workspace exists, use **More → Reviewer configs**.
+1. On the workspace list, open **New portfolio**, save it, and **Copy Reviewer prompt**. On an existing workspace, expand **Portfolio**, then **Reviewer prompt** → **Copy Cursor prompt**.
 2. New Cursor chat → paste → run gather per skill.
 3. Outputs: `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` (under `portfolio_id` and optionally a dated `portfolio_run_id` subfolder).
 
 **Rule:** folder name **must equal** the epic Jira key in the payload (`scope.value`). Import fails on mismatch.
 
-Use **Reviewer prompt** on the workspace (see [`FIRST-RUN.md`](FIRST-RUN.md) §3.2). **More → Reviewer configs** is where you create the portfolio before a workspace exists.
+Use **Reviewer prompt** on the workspace (see [`FIRST-RUN.md`](FIRST-RUN.md) §3.2). Create the portfolio from **New portfolio** on the workspace list. **More → Reviewer configs** lists every portfolio.
 
 Deep dive: [`reviewer/MANUAL.md`](reviewer/MANUAL.md).
 

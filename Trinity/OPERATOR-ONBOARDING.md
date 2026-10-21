@@ -97,7 +97,7 @@ Symlinks: `~/.cursor/skills/trinity-reviewer`, `trinity-creator`, `trinity-impor
 
 | Skill | How to run |
 |-------|------------|
-| Reviewer | Workspace → **Reviewer prompt** → **Copy Cursor prompt**. **More → Reviewer configs** before a workspace exists (do not hand-write) |
+| Reviewer | Workspace list → **New portfolio** → **Copy Reviewer prompt**. After a workspace exists, **Reviewer prompt** → **Copy Cursor prompt** (do not hand-write) |
 | Creator | Workspace **Next step → Copy Creator prompt** |
 | Importer | Workspace **Plan Xray import**, then **Importer Cursor prompt** after a preview. **More → Importer** for the full page |
 
@@ -130,7 +130,7 @@ Restart Studio after edits. Without `.env`, use **Copy JQL resolve prompt** ([PR
 
 ## 4. Real Epic — end to end
 
-1. **More → Reviewer configs** — portfolio JSON under `Trinity/reviewer/config/runs/`.
+1. Workspace list → **New portfolio** — portfolio JSON under `Trinity/reviewer/config/runs/`.
 2. **Prompt 1** — Copy Cursor prompt → Agent → `reviewer/runs/.../<EPIC>/review-payload.json`. Open the workspace URL the agent prints.
 3. **Fallback import** — only when that URL was not printed. Pass the folder that **directly contains** `<EPIC>/`:
 
@@ -181,6 +181,6 @@ Sandbox Gates 1–6 → [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md) for QA 
 
 | # | Studio source | Output |
 |---|---------------|--------|
-| 1 | More → Reviewer configs | `review-payload.json` and a workspace URL |
+| 1 | Workspace list → New portfolio | `review-payload.json` and a workspace URL |
 | 2 | Workspace → Copy Creator prompt | `suite-payload.json` |
 | 3 | Workspace → Plan Xray import | Xray Tests |

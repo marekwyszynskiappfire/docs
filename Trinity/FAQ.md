@@ -67,7 +67,7 @@ Jira read on Epics; Confluence read if Epics link docs; Xray permission to **cre
 
 ### Do I write my own prompts?
 
-**No** (normal path). On a workspace, expand **Reviewer prompt** and use **Copy Cursor prompt**. Before a workspace exists, copy it from Reviewer configs, then follow **Next step**. **More → Importer** still has a Cursor prompt when you write through Cursor. Hand-written prompts cause wrong paths and skipped checks. See [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
+**No** (normal path). On the workspace list, open **New portfolio** and use **Copy Reviewer prompt**. After a workspace exists, expand **Reviewer prompt** and use **Copy Cursor prompt**, then follow **Next step**. **More → Importer** still has a Cursor prompt when you write through Cursor. Hand-written prompts cause wrong paths and skipped checks. See [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md).
 
 ### How do I install skills?
 

@@ -21,7 +21,7 @@ Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.m
 
 ## Golden rules (read once)
 
-1. **Follow Next step on the workspace.** Expand **Portfolio** to change scope, persona, and pass type, then **Reviewer prompt** to copy the Cursor prompt. Create the first portfolio under **More → Reviewer configs** before a workspace exists. Do not invent prompts by hand unless Studio is down.
+1. **Follow Next step on the workspace.** Expand **Portfolio** to change scope, persona, and pass type, then **Reviewer prompt** to copy the Cursor prompt. Create the first portfolio from **New portfolio** on the workspace list. Do not invent prompts by hand unless Studio is down.
 2. **Epic folder name = Jira epic key** — e.g. `ONE-228469/review-payload.json`, not a random folder name.
 3. **Jira comments stay on the open Epic.** Expand **Findings and Jira comment**, then **Save draft** before **Jira comment preview**.
 4. **Demo epic `DEMO-4500` is fake** — never post it to production Jira or Xray.
@@ -196,7 +196,7 @@ Replace **`YOUR-EPIC-KEY`** with one sandbox **Epic** key (e.g. `ONE-12345`). On
 
 ### 3.1 Create portfolio config in Studio
 
-1. **More → Reviewer configs**.
+1. On the workspace list, open **New portfolio**.
 2. Duplicate or edit [`example.demo-portfolio`](reviewer/config/runs/example.demo-portfolio.json):
    - **portfolio_id** — pick a stable name, e.g. `my-first-portfolio`.
    - **scope kind** — start with **`epic_keys`**.
@@ -212,7 +212,7 @@ Replace **`YOUR-EPIC-KEY`** with one sandbox **Epic** key (e.g. `ONE-12345`). On
 
 ### 3.2 Prompt #1 — Reviewer (first Cursor prompt)
 
-1. Open the workspace for this portfolio and expand **Reviewer prompt** → **Copy Cursor prompt**. Before a workspace exists, copy it from **More → Reviewer configs** after you save the portfolio.
+1. After the review is imported, open the workspace and expand **Reviewer prompt** → **Copy Cursor prompt**. Before that folder exists, use **Copy Reviewer prompt** on **New portfolio**.
 2. Open **new Cursor chat** (fresh context).
 3. Paste the prompt → send.
 
@@ -324,7 +324,7 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 | # | When | Where to get it | Cursor skill |
 |---|------|-----------------|--------------|
 | **1** | This portfolio already has a workspace | Workspace → **Reviewer prompt** → **Copy Cursor prompt** | trinity-reviewer |
-| **1a** | Before any review exists in Studio | **More → Reviewer configs** → **Copy Cursor prompt** | trinity-reviewer |
+| **1a** | Before any review exists in Studio | Workspace list → **New portfolio** → **Copy Reviewer prompt** | trinity-reviewer |
 | **1b** | JQL/filter scope only | **Copy JQL resolve prompt** | MCP in Cursor (not a skill) |
 | **2** | After you approve the review | Workspace **Next step → Copy Creator prompt** | trinity-creator |
 | **3** | You are writing through Cursor instead of the workspace | Workspace → preview the plan → **Importer Cursor prompt** | trinity-importer |
@@ -338,8 +338,8 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 | **Workspace** | One portfolio: verdict, Creator prompt, test review, Creator runs, Xray plan |
 | **Personas** | Edit role prompts. The list shows the heading in the file |
 | **Statistics** | Single-run E2E report; compare 2–5 runs (baseline = Run 1 dropdown) |
-| **Workspace list** | Import a review folder and open that workspace |
-| **More → Reviewer configs** | Portfolio JSON; **Prompt #1** |
+| **Workspace list** | **New portfolio**, then import a review folder and open that workspace |
+| **More → Reviewer configs** | Every portfolio; JQL resolve and new-epics list |
 | **More → Creator** | Every Creator run, and a suite path the workspace Epic does not show |
 | **More → Importer** | Payload-path import and the page execute |
 | **Run page / unit page** | Bulk handoff, finding triage, Jira epic comments |

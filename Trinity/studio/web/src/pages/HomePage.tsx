@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, PipelineRollup, PipelineRun, Stats } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
+import NewPortfolioPanel from "../components/workspace/NewPortfolioPanel";
 import PipelineStrip from "../components/PipelineStrip";
 import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import PortfolioRollupPanel from "../components/PortfolioRollupPanel";
@@ -112,6 +113,8 @@ export default function HomePage() {
         </div>
       )}
 
+      <NewPortfolioPanel />
+
       <div className="panel">
         <h2 style={{ marginTop: 0 }}>Import Reviewer run</h2>
         <p className="muted">
@@ -147,8 +150,9 @@ export default function HomePage() {
           <div className="empty-callout">
             <h3>No Reviewer runs yet</h3>
             <p className="muted" style={{ margin: 0 }}>
-              Import a folder with <code>ONE-*/review-payload.json</code>, or run <code>seed-demo.sh</code>.
-              Then choose <strong>Open workspace</strong> on the run.
+              Open <strong>New portfolio</strong>, save it, and copy the Reviewer prompt. After Cursor
+              writes the review folder, import it below. Or run <code>seed-demo.sh</code>, then choose{" "}
+              <strong>Open workspace</strong>.
             </p>
           </div>
         )}

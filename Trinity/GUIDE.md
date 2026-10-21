@@ -58,7 +58,7 @@ Dashboard → import `Trinity/reviewer/runs/demo-local-test` → **Creator** →
 
 1. Copy env files — see [§3 Credentials](#3-credentials-setup) below.
 2. [PREFLIGHT.md](PREFLIGHT.md) — MCP + `render_report.py` smoke.
-3. On the workspace, expand **Reviewer prompt** → **Copy Cursor prompt** → run **trinity-reviewer**. Before a workspace exists, copy that prompt from **More → Reviewer configs**. Open the workspace URL it prints.
+3. On the workspace list, open **New portfolio**, save it, and **Copy Reviewer prompt**. After a workspace exists, expand **Reviewer prompt** → **Copy Cursor prompt**. Run **trinity-reviewer** and open the workspace URL it prints.
 4. On the workspace, approve the review → **Copy Creator prompt** → run **trinity-creator**. Studio imports `suite-payload.json` when the file appears.
 5. Approve the tests on the workspace and mark the ones for Xray.
 6. **Plan Xray import** on the same page: instance, mapping, **project key**, folder → **Preview import plan** → **Write to Xray**. After the preview, **Importer Cursor prompt** copies the trinity-importer prompt. **More → Importer** is the full page.
@@ -219,7 +219,7 @@ Full checklist: [TESTING.md](TESTING.md).
 
 ### 5.1 Reviewer
 
-1. On the workspace, expand **Portfolio** to change scope, persona, and pass type, then expand **Reviewer prompt** → **Copy Cursor prompt**. Create the first portfolio under **More → Reviewer configs** when no workspace exists yet.
+1. On the workspace list, open **New portfolio**, save it, and **Copy Reviewer prompt**. On an existing workspace, expand **Portfolio** to change scope, persona, and pass type, then expand **Reviewer prompt** → **Copy Cursor prompt**.
 2. Run **trinity-reviewer** in Cursor.
 3. Outputs: `Trinity/reviewer/runs/{portfolio_run_id}/{EPIC}/review-payload.json`.
 

@@ -12,7 +12,7 @@ Every prompt Studio copies is listed here so an operator knows what to have read
 
 | ID | Studio source | Cursor skill | You must provide | Primary outputs |
 |----|---------------|--------------|------------------|-----------------|
-| **1** | Workspace → **Reviewer prompt** → **Copy Cursor prompt**. Before a workspace exists: **More → Reviewer configs** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access; may include **portfolio interview** | `reviewer/runs/.../<EPIC>/review-payload.json` (+ HTML). The agent prints a workspace URL |
+| **1** | Workspace list → **New portfolio** → **Copy Reviewer prompt**. After a workspace exists: **Reviewer prompt** → **Copy Cursor prompt** | `trinity-reviewer` | Portfolio id, scope (JQL/keys), product config path, MCP access; may include **portfolio interview** | `reviewer/runs/.../<EPIC>/review-payload.json` (+ HTML). The agent prints a workspace URL |
 | **1b** | Reviewer configs → **Copy JQL resolve prompt** | Agent (no skill) | JQL string; optional `JIRA_*` in Studio `.env` | Epic key list → paste into scope / run config |
 | **2** | Workspace **Next step → Copy Creator prompt**. Several approved Epics: **Prepare Creator prompts**, then **Copy Creator prompts** | `trinity-creator` | Approved review; `review_ref` path in prompt | `creator/artifacts/.../suite-payload.json`. The workspace imports the file when it appears |
 | **3** | Workspace **Plan Xray import**, or **More → Importer → Copy Cursor prompt** when writing through Cursor | `trinity-importer` | Mapping, instance, folder; dry-run plan reviewed | Xray Tests, folders, Jira links |
@@ -161,10 +161,11 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 
 ```text
 Workspace            → Verdict, Prompt 2, test review, Xray plan, import a review folder
+                     → New portfolio and Prompt 1 before a workspace exists
                      → Portfolio: prepare/copy Creator prompts, approve selected tests, preview plans
                      → Creator runs for this portfolio; Export for Importer
                      → Record Xray keys after a Cursor write
-More → Reviewer configs → Prompt 1, 1b
+More → Reviewer configs → Every portfolio; Prompt 1b
 Workspace list       → Import a review folder and open that workspace
 More → Creator       → Every Creator run; paste a suite path the Epic does not show
 More → Importer      → Payload-path import and the page execute
