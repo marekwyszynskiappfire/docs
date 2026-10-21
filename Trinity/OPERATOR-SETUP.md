@@ -206,7 +206,7 @@ Detail: [`MANUAL.md`](MANUAL.md) §8.
 1. Paste the workspace Creator prompt into Cursor → run **trinity-creator**. An Epic that is not testable yet cannot be drafted.
 2. Stay on the workspace. Studio imports `suite-payload.json` when the file appears. **Check for the file now** if the card is still waiting.
 3. Approve or reject each test. A rejection needs a reason. Tick **Send to Xray**, or **Approve selected** for the tests you ticked.
-4. On the Epic, expand **Import a suite file** when the suite was written to a different path. Expand **Creator runs** for this workspace’s list and **Export for Importer**. **More → Creator** still lists every Creator run.
+4. On the Epic, expand **Import a suite file** when the suite was written to a different path. Expand **Creator runs** for this workspace, every other Creator run, and a suite whose Epic is not open here. **Export for Importer** writes the handoff JSON.
 
 Detail: [`FIRST-RUN.md`](FIRST-RUN.md) §3.4–3.5.
 
@@ -221,7 +221,7 @@ On the workspace, **Next step → Plan Xray import**:
 3. Acknowledge the Reviewer gate or idempotency confirmation if the plan asks.
 4. **Write to Xray** when the plan is ready. Production requires typing PRODUCTION. Several Epics can be previewed together; the write stays one Epic.
 
-**Write to Xray** stores keys when Studio writes them. After a Cursor write, expand **Record Xray keys** and point it at `xray-import-report.json`. **More → Importer** remains the payload-path page.
+**Write to Xray** stores keys when Studio writes them. After a Cursor write, expand **Record Xray keys** and point it at `xray-import-report.json`. The Xray plan also accepts a path to `importer-payload.json`.
 
 Full detail: [`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray) · [`MANUAL.md`](MANUAL.md) § Importer.
 

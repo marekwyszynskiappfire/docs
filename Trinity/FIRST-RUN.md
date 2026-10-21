@@ -340,8 +340,8 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 | **Statistics** | Single-run E2E report; compare 2–5 runs (baseline = Run 1 dropdown) |
 | **Workspace list** | **New portfolio**, then import a review folder and open that workspace |
 | **More → Reviewer configs** | Every portfolio; JQL resolve and new-epics list |
-| **More → Creator** | Every Creator run, and a suite path the workspace Epic does not show |
-| **More → Importer** | Payload-path import and the page execute |
+| **More → Creator** | Rename, delete, and the product golden corpus |
+| **More → Importer** | The same Xray plan on its own page |
 | **Run page / unit page** | Bulk handoff, finding triage, Jira epic comments |
 
 ---

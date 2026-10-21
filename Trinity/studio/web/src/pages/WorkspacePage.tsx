@@ -299,7 +299,7 @@ export default function WorkspacePage() {
           </button>
         </div>
       )}
-      <CreatorRunsPanel epics={workspace.epics} onNote={setNote} />
+      <CreatorRunsPanel epics={workspace.epics} onNote={setNote} onImported={load} />
       <WorkspaceImportPanel
         epics={workspace.epics}
         focusKey={workspace.next_action.epic_key}

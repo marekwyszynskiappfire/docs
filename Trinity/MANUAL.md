@@ -304,7 +304,7 @@ Section 2a is the current index. From section 5 on, the page-by-page steps are t
 2. You read the testability verdict on the workspace and approve the review there. The payload is stored as a revision with a `studio_qa` overlay.
 3. You copy the Creator prompt. When `suite-payload.json` appears, Studio imports it into the same Epic.
 4. You approve or reject each test in the accordion. Mark the approved tests, preview the Xray plan, and write from that page.
-5. The full Importer page remains under **More** when you need a payload path, a second mapping, or to recover a failed write.
+5. The Xray plan on the workspace accepts a path to `importer-payload.json`. **More → Importer** is the same plan on its own page.
 
 **Boundaries (do not blur these)**
 

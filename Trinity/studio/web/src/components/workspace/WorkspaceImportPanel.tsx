@@ -61,8 +61,9 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
     if (focusKey && ready.some((item) => item.jira_key === focusKey)) setEpicKey(focusKey);
   }, [focusKey, ready.map((item) => item.jira_key).join("|")]);
 
+  const [payloadPath, setPayloadPath] = useState("");
+
   useEffect(() => {
-    if (ready.length === 0) return;
     Promise.all([api.importerInstances(), api.importerMappings()])
       .then(([inst, maps]) => {
         setInstances(inst.instances);
@@ -71,7 +72,7 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
         if (preferred) setJiraInstanceId((current) => current || preferred.id);
       })
       .catch((reason) => setError(String(reason)));
-  }, [ready.length]);
+  }, []);
 
   const selectedInstance = instances.find((item) => item.id === jiraInstanceId);
   const isProduction = selectedInstance?.risk_tier === "production";
@@ -100,17 +101,17 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
     setReviewerGateAck(false);
     setIdempotencyAck(false);
     setNote("");
-  }, [epic?.creator_run_id, jiraInstanceId, mappingPath, folderPath, projectKey]);
+  }, [epic?.creator_run_id, jiraInstanceId, mappingPath, folderPath, projectKey, payloadPath]);
 
-  if (!epic?.creator_run_id) return null;
-
+  const usingPayload = payloadPath.trim().length > 0;
   const requestBody = {
     jira_instance_id: jiraInstanceId,
     folder_path: folderPath,
     create_folder_if_missing: createFolder,
     mapping_path: mappingPath || null,
     project_key_override: projectKey.trim() || null,
-    creator_run_id: epic.creator_run_id,
+    creator_run_id: usingPayload ? null : epic?.creator_run_id ?? null,
+    payload_path: usingPayload ? payloadPath.trim() : null,
     reviewer_gate_acknowledged: reviewerGateAck,
     idempotency_acknowledged: idempotencyAck,
   };
@@ -118,6 +119,10 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
   const preview = async () => {
     setError("");
     setNote("");
+    if (!usingPayload && !epic?.creator_run_id) {
+      setError("Choose an Epic that is ready, or enter a path to importer-payload.json.");
+      return;
+    }
     if (isProduction && prodConfirm.trim() !== "PRODUCTION") {
       setError("Production instance selected. Type PRODUCTION to preview the plan.");
       return;
@@ -144,7 +149,11 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
     for (const item of ready) {
       if (!item.creator_run_id) continue;
       try {
-        const result = await api.importerPlan({ ...requestBody, creator_run_id: item.creator_run_id });
+        const result = await api.importerPlan({
+          ...requestBody,
+          payload_path: null,
+          creator_run_id: item.creator_run_id,
+        });
         rows.push({
           key: item.jira_key,
           valid: result.summary.valid,
@@ -192,7 +201,9 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
     <section className="panel ws-import" id="ws-import">
       <h3>Xray import plan</h3>
       <p className="muted">
-        {epic.tests.marked} test(s) from {epic.jira_key}. Preview shows what would be written. Execute writes only after this plan is ready.
+        {epic
+          ? `${epic.tests.marked} test(s) from ${epic.jira_key}. Preview shows what would be written. Write to Xray runs only after this plan is ready.`
+          : "No Epic on this workspace is ready to write. Enter a path to importer-payload.json to plan from that file."}
       </p>
       {ready.length > 1 && (
         <label>
@@ -255,16 +266,32 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
         <input type="checkbox" checked={createFolder} onChange={(event) => setCreateFolder(event.target.checked)} />
         Create the folder if it is missing
       </label>
+      <label>
+        Payload file
+        <input
+          value={payloadPath}
+          onChange={(event) => setPayloadPath(event.target.value)}
+          placeholder="Trinity/studio/data/exports/creator/RUN/importer-payload.json"
+          aria-label="Importer payload path"
+          spellCheck={false}
+        />
+      </label>
+      <p className="muted">
+        A payload path plans and writes that file instead of the Epic selected above. More → Importer still has the same
+        fields.
+      </p>
       <div className="btn-row">
         <button type="button" onClick={preview} disabled={loading || !jiraInstanceId}>
           {loading ? "Previewing…" : "Preview import plan"}
         </button>
-        {previewAllKey && ready.length > 1 && (
+        {previewAllKey && ready.length > 1 && !usingPayload && (
           <button type="button" className="secondary" onClick={previewAll} disabled={loading || !jiraInstanceId}>
             Preview plans for {ready.length} Epics
           </button>
         )}
-        <Link to={`/importer?creator_run_id=${encodeURIComponent(epic.creator_run_id)}`}>Full Importer page</Link>
+        {epic?.creator_run_id && (
+          <Link to={`/importer?creator_run_id=${encodeURIComponent(epic.creator_run_id)}`}>Full Importer page</Link>
+        )}
       </div>
       {batchPlans && (
         <ul className="ws-plan-tests">
