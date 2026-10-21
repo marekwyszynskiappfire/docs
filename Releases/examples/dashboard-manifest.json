@@ -1,0 +1,29 @@
+{
+  "dashboard": {
+    "name": "Product Jira Cloud Fast Sanity Bugs (1.0–1.14)",
+    "description": "Bugs linked to Xray-verified Fast Sanity Test Executions.",
+    "share": "authenticated",
+    "columns": 2
+  },
+  "gadget": {
+    "max_results": 20,
+    "columns": [
+      "issuetype",
+      "issuekey",
+      "summary",
+      "priority",
+      "status",
+      "assignee"
+    ]
+  },
+  "releases": [
+    {
+      "version": "1.14",
+      "test_execution_key": "TC-123",
+      "xray_execution_verified": true,
+      "filter_name": "Product 1.14 JC Fast Sanity bugs (TC-123)",
+      "gadget_title": "Product 1.14 Fast Sanity bugs (TC-123)",
+      "jql": "issue in linkedIssues(\"TC-123\") AND issuetype = Bug ORDER BY statusCategory ASC, priority DESC, key ASC"
+    }
+  ]
+}

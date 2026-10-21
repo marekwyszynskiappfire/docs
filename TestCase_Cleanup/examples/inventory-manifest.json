@@ -1,0 +1,11 @@
+{
+  "version": "0.1",
+  "run_id": "example-tc-inventory",
+  "site_url": "https://appfire.atlassian.net",
+  "project_key": "TC",
+  "mode": "inventory",
+  "jql": "project = TC AND issuetype = Test ORDER BY key ASC",
+  "include_xray_folder": true,
+  "include_execution_history": false,
+  "notes": "Replace jql with a folder, label, or key list before a real run. Set include_execution_history true only for the candidate batch, not the whole project."
+}

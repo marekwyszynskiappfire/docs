@@ -1,0 +1,16 @@
+---
+description: BigPicture Release Process — process vs Cloud/DC technical split; draft until persona review
+globs: Release Process/**
+alwaysApply: false
+---
+
+# Release Process
+
+When working under `Release Process/`:
+
+1. Keep **process** in `process.md`. Keep **how-tos** in `technical/cloud.md` and `technical/dc.md`.
+2. The PPM Release Checklist is a technical source, not current ownership.
+3. Treat decisions as **Draft**. Mark **Agreed** only after the named personas review.
+4. Do not invent RACI, Jenkins jobs, or links. Engineering is taking some release work from QA; unconfirmed steps stay **Open**.
+5. Do not publish Confluence until the markdown is approved. The Confluence page must include a process graph.
+6. Follow [`Release Process/SKILL.md`](Release Process/SKILL.md).

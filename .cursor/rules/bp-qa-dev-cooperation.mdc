@@ -1,0 +1,16 @@
+---
+description: BP QA–Development Cooperation Process — start fresh and record only confirmed agreements
+globs: BP QA/**
+alwaysApply: false
+---
+
+# BP QA–Development Cooperation Process
+
+When working under `BP QA/`:
+
+1. Do not inherit or reconstruct agreements from the previous BP QA Ways of Working.
+2. Treat working-session decisions as **Draft**. Mark them **Agreed** only after review by the necessary stakeholders.
+3. Mark proposals, assumptions, and loose ends clearly; do not silently turn them into policy.
+4. Verify Trinity details from `Trinity/`. Verify Legion from https://docs-dts.appfire.net/platform-documentation/qa-coe/legion/ and this page. Do not invent extra Legion behaviour.
+5. The target is one succinct Confluence page covering responsibilities, tools, epic acceptance testing, automation and maintenance, capacity, active initiatives, agreements, and unresolved decisions.
+6. Follow [`BP QA/SKILL.md`](BP QA/SKILL.md).

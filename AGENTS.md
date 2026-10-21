@@ -24,6 +24,14 @@ When the user asks for a **review** of Jira epics/requirements, run **`trinity-r
 
 After **trinity-creator**, point the operator at `Trinity/creator/artifacts/{portfolio_or_run_id}/` and **one `suite-payload.json` import per epic** in Studio — see [`Trinity/creator/artifacts/README.md`](Trinity/creator/artifacts/README.md).
 
+### BP QA–Development cooperation
+
+When documenting BP QA–Development cooperation, follow [`BP QA/SKILL.md`](BP%20QA/SKILL.md). This workstream starts fresh: do not inherit the retired BP QA Ways of Working agreements. Treat only explicitly confirmed decisions as agreed and keep unresolved matters visible.
+
+### Release Process
+
+When documenting the BigPicture release process, follow [`Release Process/SKILL.md`](Release%20Process/SKILL.md). Keep process in `process.md` and how-tos in Cloud/DC technical files. The PPM Release Checklist is a technical source, not current ownership. Do not publish Confluence until the markdown is reviewed.
+
 ### Trinity Studio (edit + analytics)
 
 Human edits and pipeline stats live in [`Trinity/studio/`](Trinity/studio/README.md). Import Reviewer run folders after Agent gather; export approved `review-payload.json` for Creator.

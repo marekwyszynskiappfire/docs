@@ -21,6 +21,8 @@ This repo uses **single-context** layout:
 │   ├── adr/                ← architecture decision records
 │   └── agents/             ← issue tracker, domain layout (this file)
 ├── Trinity/                ← Reviewer, Creator, Importer, Studio
+├── BP QA/                  ← BP QA–Development Cooperation Process
+├── Release Process/        ← BigPicture release process (vs Cloud/DC how-tos)
 ├── archive/                ← local-only legacy team docs (gitignored)
 ├── .cursor/                ← Cursor rules and hooks
 ├── .github/                ← CI (e.g. Trinity Studio)

@@ -1,0 +1,14 @@
+{
+  "version": "0.1",
+  "project": "BP QA - DEV Cooperation Process",
+  "status": "starting-fresh",
+  "documentation": {
+    "confluence_page": "https://appfireteam.atlassian.net/wiki/spaces/~7120202c1c597e249542f89ace1bdf6605ba70/pages/100002922580/BP+QA+Development+Cooperation+Process",
+    "legion": "https://docs-dts.appfire.net/platform-documentation/qa-coe/legion/",
+    "trinity": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here"
+  },
+  "policy": {
+    "inherit_previous_wow_agreements": false,
+    "unconfirmed_items_are_open": true
+  }
+}

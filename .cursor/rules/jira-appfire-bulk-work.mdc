@@ -1,0 +1,14 @@
+---
+description: Jira bulk QA work on appfire.atlassian.net — finish with saved filters
+globs: BP QA/**
+alwaysApply: false
+---
+
+# Jira bulk work (Appfire ONE)
+
+When creating a **batch of Jira issues** (stories, links, sub-tasks) for QA or release planning:
+
+1. **Complete the deliverable** — do not stop at JQL in a JSON/markdown file. Create **saved filters** in Jira and record `id` + `https://appfire.atlassian.net/issues/?filter={id}` in the mapping artifact.
+2. **Atlassian MCP** has `listJiraFilters` but often **no create-filter tool**. Use REST: `POST /rest/api/3/filter` with `JIRA_EMAIL` + `JIRA_API_TOKEN` (e.g. from `Trinity/studio/.env`) via `curl` if Python SSL fails.
+3. **Test links (Story tests Epic):** `inwardIssue` = epic, `outwardIssue` = story. Verify on the epic UI (story on outward / “tests” side), not only API field names.
+4. **Share filters** with `sharePermissions: [{ "type": "authenticated" }]` unless the user asks for project-only sharing.

@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "project": "Release Process",
+  "status": "draft",
+  "context": {
+    "cloud_dc_split": true,
+    "qa_release_reorg": "end of August 2026",
+    "engineering_takes_some_release_responsibility_from_qa": true
+  },
+  "documentation": {
+    "process_draft": "process.md",
+    "technical_cloud": "technical/cloud.md",
+    "technical_dc": "technical/dc.md",
+    "source_checklist": "https://appfire.atlassian.net/wiki/spaces/PROC/pages/277840434/PPM+Release+Checklist",
+    "confluence_process_page": null,
+    "bp_qa_cooperation": "../BP QA/qa-dev-cooperation.md"
+  },
+  "policy": {
+    "checklist_is_technical_source_not_ownership": true,
+    "unconfirmed_items_are_open": true,
+    "publish_confluence_only_after_markdown_approval": true
+  }
+}

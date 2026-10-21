@@ -1,0 +1,16 @@
+---
+description: Test case cleanup in Jira/Xray project TC — inventory first, dry-run before writes
+globs: TestCase_Cleanup/**
+alwaysApply: false
+---
+
+# TestCase_Cleanup (TC / Xray)
+
+When working under `TestCase_Cleanup/`:
+
+1. Target is production **TC** on `appfire.atlassian.net` unless the user names another site.
+2. Default is **inventory + classify**. Do not edit or delete Tests until the user confirms host, keys, and action.
+3. Prefer labels, archive/transition, and folder moves over delete. Tests with Xray execution history are out of delete scope unless the user lists those keys.
+4. If the deliverable includes Jira filters, create **saved filters** and record `id` + `https://appfire.atlassian.net/issues/?filter={id}`.
+5. Do not change Trinity Importer, golden corpora, or Studio as part of cleanup.
+6. Follow [`TestCase_Cleanup/SKILL.md`](TestCase_Cleanup/SKILL.md).

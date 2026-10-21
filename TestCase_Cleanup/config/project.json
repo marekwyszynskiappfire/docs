@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "environment": "production",
+  "project": {
+    "key": "TC",
+    "id": "10356",
+    "url": "https://appfire.atlassian.net/jira/software/c/projects/TC"
+  },
+  "jira": {
+    "site_url": "https://appfire.atlassian.net",
+    "cloud_id": "8e83c2b4-97ae-4335-8a8f-bbdff09d62dd"
+  },
+  "xray": {
+    "graphql_url": "https://xray.cloud.getxray.app/api/v2/graphql",
+    "auth_url": "https://xray.cloud.getxray.app/api/v2/authenticate"
+  },
+  "defaults": {
+    "issue_type": "Test",
+    "trinity_import_label": "trinity-import",
+    "trinity_import_folder": "/Trinity imports",
+    "mode": "inventory"
+  }
+}
