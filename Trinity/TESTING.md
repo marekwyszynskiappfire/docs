@@ -80,8 +80,8 @@ Keep the terminal open (Ctrl+C stops API + Vite).
 
 ### 2a. Workspace
 
-- Run `./Trinity/studio/scripts/seed-demo.sh`, or import `Trinity/studio/fixtures/demo-reviewer-run` from **More → Dashboard**.
-- On the run row, click **Open workspace**. Confirm the stepper, **Next step**, and the demo Epic.
+- Run `./Trinity/studio/scripts/seed-demo.sh`, or on the workspace list import `Trinity/studio/fixtures/demo-reviewer-run`.
+- **Import and open** lands on the workspace. Confirm the stepper, **Next step**, and the demo Epic.
 
 ### 2b. Review workflow
 

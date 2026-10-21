@@ -229,7 +229,7 @@ The agent may write under `runs/<portfolio_id>/` or `runs/<portfolio_id>/<dated-
 
 The agent finishes by printing a **workspace URL**. Open that URL. Importing the same payloads again does not add another review revision.
 
-If no URL was printed, import the folder that **directly contains** `YOUR-EPIC-KEY/`, then click **Open workspace** on that run:
+If no URL was printed, expand **Import a review folder** on the workspace list. The folder must directly contain `YOUR-EPIC-KEY/`. **Import and open** opens that workspace.
 
 ```bash
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-contains-YOUR-EPIC-KEY>
@@ -338,7 +338,7 @@ The run page under **More → Dashboard** still has bulk **In Creator**, **Copy 
 | **Workspace** | One portfolio: verdict, Creator prompt, test review, Xray plan |
 | **Personas** | Edit role prompts. The list shows the heading in the file |
 | **Statistics** | Single-run E2E report; compare 2–5 runs (baseline = Run 1 dropdown) |
-| **More → Dashboard** | Import a folder by hand; open a run when the workspace URL was not printed |
+| **Workspace list** | Import a review folder and open that workspace |
 | **More → Reviewer configs** | Portfolio JSON; **Prompt #1** |
 | **More → Creator** | Creator run list, and a suite path the workspace Epic does not show |
 | **More → Importer** | Payload-path import, **Prompt #3**, persist Xray keys |

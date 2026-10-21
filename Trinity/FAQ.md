@@ -164,7 +164,7 @@ If it did not:
 ./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>
 ```
 
-Then **Open workspace** on that run. **More → Dashboard** can import the same folder by path.
+Then expand **Import a review folder** on the workspace list. **Import and open** opens that workspace.
 
 ### Reviewer stopped halfway
 

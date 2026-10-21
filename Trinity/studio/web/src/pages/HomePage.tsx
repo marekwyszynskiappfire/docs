@@ -133,8 +133,8 @@ export default function HomePage() {
             kind={feedback.kind}
             title={feedback.title}
             detail={feedback.detail}
-            linkTo={`/runs/${encodeURIComponent(feedback.runId)}`}
-            linkLabel="Open run →"
+            linkTo={`/workspace/${encodeURIComponent(feedback.runId)}`}
+            linkLabel="Open workspace"
             onDismiss={() => setFeedback(null)}
           />
         )}

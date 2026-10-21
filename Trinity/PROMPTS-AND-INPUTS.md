@@ -160,10 +160,10 @@ Studio **Copy Cursor prompt** starts **trinity-reviewer**, which runs the **inte
 ## Studio UI map (where to click)
 
 ```text
-Workspace            → Verdict, Prompt 2, test review, Xray plan
+Workspace            → Verdict, Prompt 2, test review, Xray plan, import a review folder
                      → Portfolio: prepare/copy Creator prompts, approve selected tests, preview plans
 More → Reviewer configs → Prompt 1, 1b
-More → Dashboard     → Import a folder by hand; open a run
+Workspace list       → Import a review folder and open that workspace
 More → Creator       → Paste a suite path; Export for Importer
 More → Importer      → Prompt 3; persist Xray keys
 Unit page            → Finding triage; Jira epic comment

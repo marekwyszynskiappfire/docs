@@ -5,6 +5,7 @@ import EpicAccordion from "../components/workspace/EpicAccordion";
 import CoverageDepthControl from "../components/workspace/CoverageDepthControl";
 import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import PortfolioConfigPanel from "../components/workspace/PortfolioConfigPanel";
+import ReviewFolderImport from "../components/workspace/ReviewFolderImport";
 import ReviewerPromptPanel from "../components/workspace/ReviewerPromptPanel";
 import WorkspaceImportPanel from "../components/workspace/WorkspaceImportPanel";
 import NextActionCard from "../components/workspace/NextActionCard";
@@ -239,6 +240,7 @@ export default function WorkspacePage() {
         </button>
       </div>
       <WorkspaceStepper stages={workspace.stages} />
+      <ReviewFolderImport runId={runId} onImported={load} onNote={setNote} />
       <ContextLoadedAlertsPanel runId={runId} />
       <CoverageDepthControl
         profiles={workspace.coverage_profiles}

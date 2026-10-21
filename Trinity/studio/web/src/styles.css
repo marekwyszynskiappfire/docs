@@ -1839,7 +1839,8 @@ button.ws-test-trigger {
 .ws-reviewer-prompt,
 .ws-suite-import,
 .ws-importer-prompt,
-.ws-portfolio-config {
+.ws-portfolio-config,
+.ws-review-import {
   margin-top: 0.75rem;
 }
 
@@ -1847,7 +1848,8 @@ button.ws-test-trigger {
 .ws-reviewer-prompt > summary,
 .ws-suite-import > summary,
 .ws-importer-prompt > summary,
-.ws-portfolio-config > summary {
+.ws-portfolio-config > summary,
+.ws-review-import > summary {
   cursor: pointer;
   font-weight: 600;
 }

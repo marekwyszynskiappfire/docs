@@ -165,7 +165,7 @@ Studio is a **single-operator workbench**. The normal path is **Workspace**. The
 ### 5.1 Dashboard
 
 - Lists **pipeline runs** (imported Reviewer folders).
-- **Import Reviewer run** — path to `Trinity/reviewer/runs/<folder>` or use `import-run.sh`.
+- **Import Reviewer run** — path to `Trinity/reviewer/runs/<folder>` or use `import-run.sh`. The same import is on the workspace; **Import and open** opens that workspace.
 - Each run shows epic units; open the run for portfolio-level Creator handoff.
 
 ### 5.2 Personas
