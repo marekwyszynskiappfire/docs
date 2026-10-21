@@ -181,13 +181,13 @@ Then **Open workspace** on that run. **More → Dashboard** can import the same 
 2. **Next step → Approve** when the verdict is right.
 3. **Next step → Copy Creator prompt**. Several approved Epics: **Prepare Creator prompts**, then **Copy Creator prompts**.
 
-Finding-by-finding triage stays on the unit page: **More → Dashboard**, open the run, open the Epic. **Save draft** there before a Jira comment preview. Run-level handoff ( **In Creator**, JQL, handoff JSON) stays on the run page.
+Finding-by-finding triage is on the open Epic: expand **Findings and Jira comment**. **Save draft** there before a Jira comment preview. Run-level handoff (**In Creator**, JQL, handoff JSON) stays on the run page.
 
 ---
 
 ## Step 12 — Jira epic comments (optional)
 
-On the unit page → panel **Jira epic comment**:
+On the open Epic, expand **Findings and Jira comment** → panel **Jira epic comment**:
 
 1. Check credentials chip (`GET /api/jira/status`).
 2. **Refresh preview** (smart / studio / full / short).

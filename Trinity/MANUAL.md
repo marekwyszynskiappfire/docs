@@ -341,7 +341,7 @@ Prerequisites: `JIRA_*` in `.env`; credentials chip on panel should be green.
 | Step | Action |
 |------|--------|
 | 1 | Complete triage → **Save draft** |
-| 2 | Open **Jira epic comment** panel on unit page |
+| 2 | On the open Epic, expand **Findings and Jira comment**, then open **Jira epic comment** |
 | 3 | Choose **Smart** (recommended) or short / full / studio variant |
 | 4 | **Refresh preview** — read warnings (redaction **blocks** post) |
 | 5 | Optional **Unlock wording** for minor edits (telemetry records `preview_edited`) |

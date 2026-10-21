@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, CoverageProfile, CoverageProfileId, CreatorTestRow, WorkspaceEpic } from "../../api";
+import UnitReviewPanel from "../UnitReviewPanel";
 import Term from "./Term";
 
 const VERDICT_LABEL: Record<WorkspaceEpic["verdict"], string> = {
@@ -90,13 +91,25 @@ export default function EpicAccordion({
               onError={onError}
             />
           )}
-          <p className="muted ws-advanced">
-            <Link to={`/units/${epic.unit_id}`}>Advanced details</Link> — findings, sources, and
-            Jira comment drafts.
-          </p>
+          <EpicTriage unitId={epic.unit_id} onChanged={onChanged} />
         </div>
       )}
     </section>
+  );
+}
+
+function EpicTriage({ unitId, onChanged }: { unitId: string; onChanged: () => void }) {
+  const [active, setActive] = useState(false);
+  return (
+    <details
+      className="ws-triage"
+      onToggle={(event) => {
+        if (event.currentTarget.open) setActive(true);
+      }}
+    >
+      <summary>Findings and Jira comment</summary>
+      {active && <UnitReviewPanel unitId={unitId} embedded onChanged={onChanged} />}
+    </details>
   );
 }
 
@@ -135,7 +148,7 @@ function EpicReview({ epic }: { epic: WorkspaceEpic }) {
       )}
       {epic.other_question_count > 0 && (
         <p className="muted">
-          {epic.other_question_count} other open question(s) under Advanced details.
+          {epic.other_question_count} other open question(s) under Findings and Jira comment.
         </p>
       )}
     </div>

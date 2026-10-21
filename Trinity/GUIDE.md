@@ -228,7 +228,7 @@ Full checklist: [TESTING.md](TESTING.md).
 1. Open the workspace URL the Reviewer prints. If it did not, import the folder from **More → Dashboard**, then **Open workspace**.
 2. Read the verdict. **Next step → Approve** when it is right. **Next step → Copy Creator prompt**.
 3. When several Epics are approved, **Prepare Creator prompts** then **Copy Creator prompts**.
-4. Finding triage and the Jira comment stay on the unit page.
+4. Open the Epic and expand **Findings and Jira comment** to triage findings and draft the Jira comment. Save the draft before previewing the comment. The same panel is on the Epic’s own page if you want it full screen.
 
 ### 5.3 Creator
 

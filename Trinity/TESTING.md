@@ -87,7 +87,7 @@ Keep the terminal open (Ctrl+C stops API + Vite).
 
 1. On the workspace, read the verdict. **Next step → Approve**, then **Copy Creator prompt** (the prompt includes `review_ref`). An Epic that is not testable yet cannot be drafted.
 2. **Personas** — the list shows the heading in each file. The filename stays above the editor. A save writes `Trinity/personas/`.
-3. Finding triage and **Approve & export** remain on the unit page when you need them.
+3. Open the Epic and expand **Findings and Jira comment**. **Save draft** and **Approve & export** work there. The Epic’s own page shows the same panel.
 
 ### 2c. Creator workflow (UI only, no Cursor)
 

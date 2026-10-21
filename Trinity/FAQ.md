@@ -132,7 +132,7 @@ A **fake** demo Epic. Never post to production Jira or Xray.
 
 ### Save draft before Jira comment?
 
-**Yes.** On the unit page, **Save draft** before **Jira comment preview** or you see stale text.
+**Yes.** In **Findings and Jira comment**, **Save draft** before **Jira comment preview** or you see stale text.
 
 ### What do readiness buckets mean?
 

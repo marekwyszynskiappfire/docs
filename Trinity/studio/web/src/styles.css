@@ -1835,6 +1835,19 @@ button.ws-test-trigger {
   align-items: center;
 }
 
+.ws-triage {
+  margin-top: 0.75rem;
+}
+
+.ws-triage > summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ws-triage-body {
+  margin-top: 0.75rem;
+}
+
 .ws-advanced {
   margin-top: 1rem;
 }

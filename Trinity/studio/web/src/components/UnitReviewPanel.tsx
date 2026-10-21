@@ -1,0 +1,282 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { api } from "../api";
+import ClassificationsBanner, { type Classifications } from "./ClassificationsBanner";
+import JiraEpicCommentPanel from "./JiraEpicCommentPanel";
+import JiraKeyLink from "./JiraKeyLink";
+import ReviewUnitSections from "./ReviewUnitSections";
+import type {
+  ClarificationQuestion,
+  ContextLoadedEntry,
+  ReviewFinding,
+  ReviewReport,
+} from "../types/review-payload";
+import { questionBody } from "../types/review-payload";
+import {
+  applyDecisionPatch,
+  attachStudioQa,
+  buildEpicFeedback,
+  downloadJson,
+  readStudioQa,
+  type QaItemDecision,
+  type StudioQa,
+  type StudioQaAddedQuestion,
+} from "../types/studio-qa";
+
+type Props = {
+  unitId: string;
+  /** Workspace embed: same Epic data, without the standalone page header. */
+  embedded?: boolean;
+  onChanged?: () => void;
+};
+
+export default function UnitReviewPanel({ unitId, embedded = false, onChanged }: Props) {
+  const [payload, setPayload] = useState<Record<string, unknown> | null>(null);
+  const [jiraKey, setJiraKey] = useState("");
+  const [summary, setSummary] = useState("");
+  const [revision, setRevision] = useState<number | null>(null);
+  const [approvedRevision, setApprovedRevision] = useState<number | null>(null);
+  const [qaPlanningFit, setQaPlanningFit] = useState<string | null>(null);
+  const [creatorHandoff, setCreatorHandoff] = useState<{
+    review_ref: string;
+    suite_payload_hint: string;
+  } | null>(null);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [draftDirty, setDraftDirty] = useState(false);
+
+  useEffect(() => {
+    api
+      .unit(unitId)
+      .then((d) => {
+        setPayload(attachStudioQa({ ...d.payload }));
+        setJiraKey(d.unit.jira_key);
+        setSummary(d.unit.summary ?? "");
+        setRevision(d.revision);
+        setApprovedRevision(d.approved_revision);
+        setQaPlanningFit(d.unit.qa_planning_fit);
+        setDraftDirty(false);
+      })
+      .catch((e) => setError(String(e)));
+  }, [unitId]);
+
+  const questions = (payload?.questions as ClarificationQuestion[]) ?? [];
+  const findings = (payload?.findings as ReviewFinding[]) ?? [];
+  const report = payload?.report as ReviewReport | undefined;
+  const contextLoaded = (payload?.context_loaded as ContextLoadedEntry[]) ?? [];
+  const gateStatus = (payload?.gate as { status?: string } | undefined)?.status;
+  const classifications = payload?.classifications as Classifications | undefined;
+
+  const studio: StudioQa = useMemo(() => {
+    if (!payload) return { version: 1, decisions: {}, added_questions: [] };
+    return readStudioQa(payload);
+  }, [payload]);
+
+  const patchStudio = useCallback((updater: (s: StudioQa) => StudioQa) => {
+    setDraftDirty(true);
+    setPayload((prev) => {
+      if (!prev) return prev;
+      const current = readStudioQa(prev);
+      const nextStudio = updater({
+        ...current,
+        decisions: { ...current.decisions },
+        added_questions: [...(current.added_questions ?? [])],
+      });
+      return { ...prev, studio_qa: nextStudio };
+    });
+  }, []);
+
+  const onDecisionPatch = useCallback(
+    (itemId: string, patch: Partial<QaItemDecision>) => {
+      patchStudio((s) => applyDecisionPatch(s, itemId, patch));
+    },
+    [patchStudio]
+  );
+
+  const onAddQuestion = useCallback(
+    (q: StudioQaAddedQuestion, itemId: string) => {
+      patchStudio((s) => {
+        const added = [...(s.added_questions ?? []), q];
+        let next = { ...s, added_questions: added };
+        next = applyDecisionPatch(next, itemId, { validity: "valid", send_to_epic: true });
+        return next;
+      });
+    },
+    [patchStudio]
+  );
+
+  const save = async () => {
+    if (!payload) return;
+    setBusy(true);
+    setError("");
+    try {
+      const r = await api.savePayload(unitId, payload);
+      setRevision(r.revision);
+      setDraftDirty(false);
+      setMessage(`Saved revision ${r.revision}`);
+      onChanged?.();
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const downloadEpicFeedback = () => {
+    if (!payload) return;
+    const data = buildEpicFeedback(payload, jiraKey, questionBody);
+    downloadJson(`${jiraKey}-epic-feedback.json`, data);
+    setMessage(`Downloaded ${data.items.length} item(s) marked for epic feedback.`);
+  };
+
+  const sendToCreator = async () => {
+    setBusy(true);
+    setError("");
+    try {
+      const r = await api.sendToCreator(unitId);
+      await navigator.clipboard.writeText(r.prompt);
+      setCreatorHandoff({
+        review_ref: r.review_ref,
+        suite_payload_hint: r.suite_payload_hint,
+      });
+      setMessage(`Creator prompt copied. review_ref: ${r.review_ref}`);
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const approveAndExport = async () => {
+    if (!payload) return;
+    setBusy(true);
+    setError("");
+    try {
+      const r = await api.savePayload(unitId, payload);
+      setRevision(r.revision);
+      await api.approve(unitId);
+      const ex = await api.exportUnit(unitId);
+      const refreshed = await api.unit(unitId);
+      setApprovedRevision(refreshed.approved_revision);
+      setDraftDirty(false);
+      setMessage(`Approved and exported to ${ex.review_ref ?? ex.path}`);
+      onChanged?.();
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const blockedForCreator = qaPlanningFit === "not_fit";
+  const canSendToCreator = Boolean(approvedRevision) && !blockedForCreator;
+  const sendToEpicCount = useMemo(() => {
+    return Object.values(studio.decisions).filter(
+      (d) => d.send_to_epic && d.validity !== "invalid"
+    ).length;
+  }, [studio]);
+  const jiraPanelDefaultOpen =
+    !embedded &&
+    (sendToEpicCount > 0 || gateStatus === "needs_clarification" || gateStatus === "blocked");
+
+  if (error && !payload) return <p className="error">{error}</p>;
+  if (!payload) return <p className="muted">Loading findings…</p>;
+
+  return (
+    <div className={embedded ? "ws-triage-body" : undefined}>
+      {!embedded && (
+        <h2>
+          <JiraKeyLink issueKey={jiraKey} />
+        </h2>
+      )}
+      {!embedded && summary && <p className="muted">{summary}</p>}
+      <p className="muted">
+        Revision {revision ?? "—"}
+        {embedded ? "" : " · QA review is saved in studio_qa on the payload."}
+        {" · "}
+        <a href={`/api/units/${encodeURIComponent(unitId)}/review-report.html`} target="_blank" rel="noreferrer">
+          Open review report
+        </a>
+        {embedded && (
+          <>
+            {" · "}
+            <Link to={`/units/${unitId}`}>Open on its own page</Link>
+          </>
+        )}
+      </p>
+      {message && <p className="muted ok-msg">{message}</p>}
+      {error && <p className="error">{error}</p>}
+
+      <div className="btn-row">
+        <button type="button" onClick={save} disabled={busy}>
+          Save draft
+        </button>
+        <button type="button" className="secondary" onClick={downloadEpicFeedback} disabled={busy}>
+          Download epic feedback
+        </button>
+        <button type="button" onClick={approveAndExport} disabled={busy}>
+          Approve & export for Creator
+        </button>
+        {!embedded && (
+          <button
+            type="button"
+            className="secondary"
+            onClick={sendToCreator}
+            disabled={busy || !canSendToCreator}
+            title={
+              blockedForCreator
+                ? "Not suitable for test design (not_fit)"
+                : !approvedRevision
+                  ? "Approve first"
+                  : "Copy Creator prompt to clipboard"
+            }
+          >
+            Send to Creator
+          </button>
+        )}
+      </div>
+      {!embedded && blockedForCreator && (
+        <p className="error" style={{ marginTop: "0.5rem" }}>
+          Creator is disabled: epic is <strong>not suitable for test design</strong> (not_fit).
+        </p>
+      )}
+      {!embedded && !approvedRevision && !blockedForCreator && (
+        <p className="muted" style={{ marginTop: "0.5rem" }}>
+          Approve & export before Send to Creator.
+        </p>
+      )}
+      {!embedded && creatorHandoff && (
+        <div className="panel" style={{ marginTop: "1rem" }}>
+          <h3 style={{ marginTop: 0 }}>Creator handoff</h3>
+          <p className="muted">
+            <code>{creatorHandoff.review_ref}</code>
+          </p>
+          <p className="muted">
+            After Cursor run, import suite batch: <code>{creatorHandoff.suite_payload_hint}</code>
+          </p>
+          <Link to="/creator">Open Creator in Studio →</Link>
+        </div>
+      )}
+
+      <ClassificationsBanner classifications={classifications} />
+      <JiraEpicCommentPanel
+        unitId={unitId}
+        jiraKey={jiraKey}
+        revision={revision}
+        draftDirty={draftDirty}
+        defaultOpen={jiraPanelDefaultOpen}
+      />
+      <ReviewUnitSections
+        contextLoaded={contextLoaded}
+        report={report}
+        gateStatus={gateStatus}
+        questions={questions}
+        findings={findings}
+        studio={studio}
+        onDecisionPatch={onDecisionPatch}
+        onAddQuestion={onAddQuestion}
+      />
+    </div>
+  );
+}

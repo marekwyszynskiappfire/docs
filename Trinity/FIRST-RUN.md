@@ -23,7 +23,7 @@ Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.m
 
 1. **Follow Next step on the workspace.** The first Reviewer prompt still comes from **More → Reviewer configs → Copy Cursor prompt**. Later prompts are on the workspace. Do not invent prompts by hand unless Studio is down.
 2. **Epic folder name = Jira epic key** — e.g. `ONE-228469/review-payload.json`, not a random folder name.
-3. **Jira comments stay on the unit page** (**More → Dashboard**, open the run, open the Epic). **Save draft** there before **Jira comment preview**.
+3. **Jira comments stay on the open Epic.** Expand **Findings and Jira comment**, then **Save draft** before **Jira comment preview**.
 4. **Demo epic `DEMO-4500` is fake** — never post it to production Jira or Xray.
 5. **Sandbox first** — type `PRODUCTION` in Studio only when you mean production Jira/Xray.
 
@@ -246,7 +246,7 @@ Stay on the workspace.
 | 3 | **Next step → Prepare Creator prompt**, then **Copy Creator prompt** |
 | 4 | Paste that prompt into a **new Cursor chat** |
 
-Finding-by-finding triage and the Jira epic comment live on the unit page: **More → Dashboard**, open the run, open the Epic. **Save draft** there before a comment preview. Post only to the **sandbox** epic, never `DEMO-4500`.
+Finding-by-finding triage and the Jira epic comment are on the open Epic: expand **Findings and Jira comment**. **Save draft** there before a comment preview. Post only to the **sandbox** epic, never `DEMO-4500`.
 
 If the Epic is not testable yet, fix the scope in Jira and re-run Reviewer, or pick another Epic.
 
