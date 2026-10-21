@@ -263,6 +263,7 @@ export default function WorkspacePage() {
       />
       <ReviewerPromptPanel
         portfolioId={workspace.portfolio_id}
+        pipelineRunId={workspace.pipeline_run_id}
         workspacePath={workspace.workspace_path}
         epicKeys={workspace.epics.map((epic) => epic.jira_key)}
         reloadToken={portfolioRevision}
@@ -270,6 +271,7 @@ export default function WorkspacePage() {
       />
       <NextActionCard
         action={workspace.next_action}
+        pipelineRunId={workspace.pipeline_run_id}
         busy={busy}
         note={note}
         onPrimary={onPrimary}

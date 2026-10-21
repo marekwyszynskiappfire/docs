@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, ImporterPlanResult, WorkspaceEpic } from "../../api";
+import CursorAgentControl from "./CursorAgentControl";
 
 type Instance = {
   id: string;
@@ -364,6 +365,23 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
                 Paste this into a new Cursor chat when you want trinity-importer to write, instead of Write to Xray here.
               </p>
               <div className="btn-row">
+                <CursorAgentControl
+                  label="Run Importer in Cursor"
+                  disabled={!plan.credentials.execute_ready}
+                  launch={() =>
+                    api.launchImporterAgent({
+                      ...requestBody,
+                      production_confirm: isProduction ? prodConfirm.trim() : undefined,
+                    })
+                  }
+                  onFinished={(run) =>
+                    setNote(
+                      run.status === "finished"
+                        ? "Importer agent finished. Record the Xray keys below."
+                        : `Importer agent ended with status ${run.status}.`
+                    )
+                  }
+                />
                 <button
                   type="button"
                   className="secondary"

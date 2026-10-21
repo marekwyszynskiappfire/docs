@@ -189,6 +189,32 @@ CREATE TABLE IF NOT EXISTS cursor_handoff (
 
 CREATE INDEX IF NOT EXISTS idx_cursor_handoff_pipeline ON cursor_handoff(pipeline_run_id);
 
+CREATE TABLE IF NOT EXISTS cursor_agent_run (
+  id TEXT PRIMARY KEY,
+  stage TEXT NOT NULL CHECK (stage IN ('reviewer', 'creator', 'importer')),
+  status TEXT NOT NULL CHECK (status IN (
+    'queued', 'running', 'finished', 'error', 'cancelled', 'interrupted'
+  )),
+  prompt_text TEXT NOT NULL,
+  pipeline_run_id TEXT REFERENCES pipeline_run(id) ON DELETE SET NULL,
+  creator_run_id TEXT,
+  handoff_id TEXT,
+  epic_key TEXT,
+  portfolio_id TEXT,
+  agent_id TEXT,
+  sdk_run_id TEXT,
+  model TEXT,
+  final_text TEXT,
+  error TEXT,
+  started_at TEXT,
+  finished_at TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_cursor_agent_run_pipeline
+  ON cursor_agent_run(pipeline_run_id, created_at DESC);
+
 CREATE TABLE IF NOT EXISTS persona_revision (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   filename TEXT NOT NULL,

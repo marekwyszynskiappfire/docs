@@ -70,6 +70,7 @@ def health() -> dict[str, Any]:
             "pipeline_run_statistics",
             "pipeline_manifest",
             "cursor_handoff",
+            "cursor_agent_launch",
         ],
     }
     rev = trinity_git_revision()

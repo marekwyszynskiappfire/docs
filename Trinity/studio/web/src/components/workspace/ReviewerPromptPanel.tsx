@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, ReviewerRunConfig } from "../../api";
 import { buildReviewerCursorPrompt } from "../../lib/reviewerPrompt";
+import CursorAgentControl from "./CursorAgentControl";
 
 type Props = {
   portfolioId: string | null;
+  pipelineRunId: string;
   workspacePath: string;
   epicKeys: string[];
   reloadToken?: number;
@@ -13,6 +15,7 @@ type Props = {
 
 export default function ReviewerPromptPanel({
   portfolioId,
+  pipelineRunId,
   workspacePath,
   epicKeys,
   reloadToken = 0,
@@ -77,7 +80,12 @@ export default function ReviewerPromptPanel({
             and comments in the prompt must be unanswered decisions someone can act on.
           </p>
           <div className="btn-row">
-            <button type="button" onClick={copy}>
+            <CursorAgentControl
+              label="Run Reviewer in Cursor"
+              launch={() => api.launchReviewerAgent(config.portfolio_id, pipelineRunId)}
+              onFinished={() => onCopied("Reviewer agent finished. Check the review folder now.")}
+            />
+            <button type="button" className="secondary" onClick={copy}>
               Copy Cursor prompt
             </button>
           </div>

@@ -189,6 +189,52 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
     handoff_cols = {row[1] for row in conn.execute("PRAGMA table_info(cursor_handoff)")}
     if handoff_cols and "coverage_profile" not in handoff_cols:
         conn.execute("ALTER TABLE cursor_handoff ADD COLUMN coverage_profile TEXT")
+    agent_runs = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='cursor_agent_run'"
+    ).fetchone()
+    if not agent_runs:
+        conn.executescript(
+            """
+            CREATE TABLE cursor_agent_run (
+              id TEXT PRIMARY KEY,
+              stage TEXT NOT NULL CHECK (stage IN ('reviewer', 'creator', 'importer')),
+              status TEXT NOT NULL CHECK (status IN (
+                'queued', 'running', 'finished', 'error', 'cancelled', 'interrupted'
+              )),
+              prompt_text TEXT NOT NULL,
+              pipeline_run_id TEXT REFERENCES pipeline_run(id) ON DELETE SET NULL,
+              creator_run_id TEXT,
+              handoff_id TEXT,
+              epic_key TEXT,
+              portfolio_id TEXT,
+              agent_id TEXT,
+              sdk_run_id TEXT,
+              model TEXT,
+              final_text TEXT,
+              error TEXT,
+              started_at TEXT,
+              finished_at TEXT,
+              created_at TEXT NOT NULL,
+              updated_at TEXT NOT NULL
+            );
+            CREATE INDEX idx_cursor_agent_run_pipeline
+              ON cursor_agent_run(pipeline_run_id, created_at DESC);
+            """
+        )
+    # The SDK runs inside the API process. A process restart cannot preserve a
+    # live local bridge, so never leave an orphan looking active.
+    now = utc_now()
+    conn.execute(
+        """
+        UPDATE cursor_agent_run
+        SET status = 'interrupted',
+            error = COALESCE(error, 'Studio restarted while this Cursor agent was running.'),
+            finished_at = COALESCE(finished_at, ?),
+            updated_at = ?
+        WHERE status IN ('queued', 'running')
+        """,
+        (now, now),
+    )
     persona_revision = conn.execute(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='persona_revision'"
     ).fetchone()

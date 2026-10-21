@@ -51,6 +51,26 @@ export type CursorPrompt = {
   text: string;
 };
 
+export type CursorAgentRun = {
+  id: string;
+  stage: "reviewer" | "creator" | "importer";
+  status: "queued" | "running" | "finished" | "error" | "cancelled" | "interrupted";
+  pipeline_run_id: string | null;
+  creator_run_id: string | null;
+  handoff_id: string | null;
+  epic_key: string | null;
+  portfolio_id: string | null;
+  agent_id: string | null;
+  sdk_run_id: string | null;
+  model: string | null;
+  final_text: string | null;
+  error: string | null;
+  started_at: string | null;
+  finished_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export type WorkspaceAction = {
   epic_key: string | null;
   unit_id: string | null;
@@ -510,6 +530,27 @@ export const api = {
       `/api/workspace/${encodeURIComponent(runId)}/handoffs/${encodeURIComponent(handoffId)}/copied`,
       { method: "POST" }
     ),
+  cursorAgentStatus: () =>
+    json<{ installed: boolean; configured: boolean; model: string }>("/api/cursor-agents/status"),
+  launchReviewerAgent: (portfolioId: string, pipelineRunId?: string) =>
+    json<CursorAgentRun>("/api/cursor-agents/reviewer", {
+      method: "POST",
+      body: JSON.stringify({
+        portfolio_id: portfolioId,
+        pipeline_run_id: pipelineRunId || null,
+      }),
+    }),
+  launchHandoffAgent: (pipelineRunId: string, handoffId: string) =>
+    json<CursorAgentRun>("/api/cursor-agents/handoff", {
+      method: "POST",
+      body: JSON.stringify({ pipeline_run_id: pipelineRunId, handoff_id: handoffId }),
+    }),
+  cursorAgentRun: (runId: string) =>
+    json<CursorAgentRun>(`/api/cursor-agent-runs/${encodeURIComponent(runId)}`),
+  cancelCursorAgent: (runId: string) =>
+    json<CursorAgentRun>(`/api/cursor-agent-runs/${encodeURIComponent(runId)}/cancel`, {
+      method: "POST",
+    }),
   importRun: (path: string) =>
     json<{
       pipeline_run_id: string;
@@ -823,6 +864,23 @@ export const api = {
       results: { draft_id: string; action?: string; xray_key?: string | null }[];
       persist?: { updated: number; skipped: number };
     }>("/api/importer/execute", { method: "POST", body: JSON.stringify(body) }),
+  launchImporterAgent: (body: {
+    jira_instance_id: string;
+    folder_path: string;
+    create_folder_if_missing: boolean;
+    mapping_path?: string | null;
+    project_key_override?: string | null;
+    payload_path?: string | null;
+    creator_run_id?: string | null;
+    skip_requirement_link?: boolean;
+    reviewer_gate_acknowledged?: boolean;
+    idempotency_acknowledged?: boolean;
+    production_confirm?: string;
+  }) =>
+    json<CursorAgentRun>("/api/importer/launch-cursor", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
   recordImporterResults: (body: {
     creator_run_id: string;
     report_path?: string | null;

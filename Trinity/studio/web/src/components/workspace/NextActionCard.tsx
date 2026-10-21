@@ -1,8 +1,11 @@
 import type { WorkspaceAction } from "../../api";
+import { api } from "../../api";
 import Term from "./Term";
+import CursorAgentControl from "./CursorAgentControl";
 
 type Props = {
   action: WorkspaceAction;
+  pipelineRunId: string;
   busy: boolean;
   note: string;
   onPrimary: () => void;
@@ -11,7 +14,7 @@ type Props = {
 
 const WAITING = new Set(["awaiting_cursor", "output_detected", "invalid_output"]);
 
-export default function NextActionCard({ action, busy, note, onPrimary, onCheckNow }: Props) {
+export default function NextActionCard({ action, pipelineRunId, busy, note, onPrimary, onCheckNow }: Props) {
   const prompt = action.cursor_prompt;
   const waiting = prompt && WAITING.has(prompt.status);
   return (
@@ -31,6 +34,12 @@ export default function NextActionCard({ action, busy, note, onPrimary, onCheckN
           <button type="button" onClick={onPrimary} disabled={busy}>
             {action.primary.label}
           </button>
+          {prompt && (
+            <CursorAgentControl
+              launch={() => api.launchHandoffAgent(pipelineRunId, prompt.handoff_id)}
+              onFinished={() => onCheckNow(prompt.handoff_id)}
+            />
+          )}
           {waiting && prompt && (
             <button
               type="button"

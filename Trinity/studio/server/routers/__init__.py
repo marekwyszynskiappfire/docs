@@ -6,6 +6,7 @@ from fastapi import FastAPI
 
 from routers import (
     creator,
+    cursor_agents,
     cursor_usage,
     importer,
     jira_epic_comments,
@@ -25,6 +26,7 @@ def register_routers(app: FastAPI) -> None:
         creator,
         importer,
         reviewer_insights,
+        cursor_agents,
         cursor_usage,
         telemetry,
         jira_epic_comments,

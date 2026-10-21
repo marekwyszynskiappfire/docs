@@ -12,6 +12,7 @@ from fastapi import APIRouter, HTTPException
 from api_models import ImporterExecuteBody, ImporterPlanBody, ImporterRecordResultsBody
 from creator_export import build_importer_payload
 from creator_importer_config import importer_defaults_for_handoff
+from cursor_agent_runner import launch_agent
 from db import db
 from importer_execute import run_batch_execute
 from importer_handoff import build_importer_cursor_prompt, build_pm_safe_summary
@@ -170,6 +171,33 @@ def _assert_production_execute_confirm(jira_instance_id: str, production_confirm
             400,
             "Production instance: set production_confirm to PRODUCTION before execute",
         )
+
+
+@router.post("/api/importer/launch-cursor")
+def importer_launch_cursor(body: ImporterExecuteBody) -> dict[str, Any]:
+    """Recompute the safe plan, then launch its server-owned Importer prompt."""
+    _assert_production_execute_confirm(body.jira_instance_id, body.production_confirm)
+    plan = importer_plan(body)
+    if not plan.get("credentials", {}).get("execute_ready"):
+        blockers = plan.get("execute_blockers") or ["Importer plan is not execute-ready"]
+        raise HTTPException(400, "; ".join(str(item) for item in blockers))
+    creator_run_id = plan.get("resolved_creator_run_id")
+    pipeline_run_id = None
+    if creator_run_id:
+        with db() as conn:
+            row = conn.execute(
+                "SELECT pipeline_run_id FROM creator_run WHERE id = ?", (creator_run_id,)
+            ).fetchone()
+            pipeline_run_id = row["pipeline_run_id"] if row else None
+    try:
+        return launch_agent(
+            stage="importer",
+            prompt_text=plan["cursor_prompt"],
+            pipeline_run_id=pipeline_run_id,
+            creator_run_id=creator_run_id,
+        )
+    except (RuntimeError, ValueError) as exc:
+        raise HTTPException(503, str(exc)) from exc
 
 
 @router.post("/api/importer/execute")

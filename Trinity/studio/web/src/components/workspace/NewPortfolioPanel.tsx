@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { api, type ReviewerRunConfig } from "../../api";
 import ReviewerConfigFields from "../ReviewerConfigFields";
 import { buildReviewerCursorPrompt } from "../../lib/reviewerPrompt";
+import CursorAgentControl from "./CursorAgentControl";
 
 function readableError(reason: unknown): string {
   const text = String(reason).replace(/^Error:\s*/, "");
@@ -201,9 +202,23 @@ export default function NewPortfolioPanel() {
           onCopyJqlPrompt={copyJql}
           onClearResolved={clearResolved}
           extraActions={
-            <button type="button" onClick={copyPrompt} disabled={!form.portfolio_id.trim()}>
-              Copy Reviewer prompt
-            </button>
+            <>
+              <CursorAgentControl
+                label="Run Reviewer in Cursor"
+                disabled={!saved}
+                launch={() => api.launchReviewerAgent(form.portfolio_id.trim())}
+                onFinished={(run) =>
+                  setMessage(
+                    run.status === "finished"
+                      ? "Reviewer agent finished. Import the review folder below."
+                      : `Reviewer agent ended with status ${run.status}.`
+                  )
+                }
+              />
+              <button type="button" className="secondary" onClick={copyPrompt} disabled={!form.portfolio_id.trim()}>
+                Copy Reviewer prompt
+              </button>
+            </>
           }
         />
       )}

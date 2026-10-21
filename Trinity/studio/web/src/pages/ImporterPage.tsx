@@ -4,6 +4,7 @@ import { api, ImporterPlanResult } from "../api";
 import CreatorRunsManageTable from "../components/CreatorRunsManageTable";
 import ReviewerRunsTable from "../components/ReviewerRunsTable";
 import SortableDataTable from "../components/SortableDataTable";
+import CursorAgentControl from "../components/workspace/CursorAgentControl";
 
 const DEFAULT_JIRA_INSTANCE_ID = "appfire-production";
 const DEFAULT_FOLDER_PATH = "/Trinity imports";
@@ -604,6 +605,34 @@ export default function ImporterPage() {
             >
               {executing ? "Executing…" : "Execute import batch"}
             </button>
+            {plan.cursor_prompt && (
+              <CursorAgentControl
+                label="Run Importer in Cursor"
+                disabled={!plan.credentials.execute_ready}
+                launch={() =>
+                  api.launchImporterAgent({
+                    jira_instance_id: jiraInstanceId,
+                    folder_path: folderPath,
+                    create_folder_if_missing: createFolder,
+                    mapping_path: mappingPath || null,
+                    project_key_override: projectKey.trim() || null,
+                    payload_path: payloadPath || null,
+                    creator_run_id: creatorRunId || null,
+                    skip_requirement_link: skipRequirementLink,
+                    reviewer_gate_acknowledged: reviewerGateAck,
+                    idempotency_acknowledged: idempotencyAck,
+                    production_confirm: isProduction ? prodConfirm.trim() : undefined,
+                  })
+                }
+                onFinished={(run) =>
+                  setCopyMsg(
+                    run.status === "finished"
+                      ? "Importer agent finished. Record its Xray keys below."
+                      : `Importer agent ended with status ${run.status}.`
+                  )
+                }
+              />
+            )}
             <button type="button" onClick={onCopyPrompt} disabled={!plan.cursor_prompt}>
               Copy Cursor prompt
             </button>
