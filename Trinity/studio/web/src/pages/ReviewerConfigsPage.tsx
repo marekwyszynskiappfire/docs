@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, type ReviewerRunConfig } from "../api";
+import ReviewerConfigFields from "../components/ReviewerConfigFields";
 import { buildReviewerCursorPrompt } from "../lib/reviewerPrompt";
 
 const DEFAULT_CONFIG: ReviewerRunConfig = {
@@ -249,201 +250,45 @@ export default function ReviewerConfigsPage() {
         <div style={{ flex: 1, minWidth: "22rem" }}>
           {(creating || selected) && (
             <>
-              <label>
-                portfolio_id
-                <input
-                  value={form.portfolio_id}
-                  disabled={!creating && !!selected}
-                  onChange={(e) => patch({ portfolio_id: e.target.value })}
-                  placeholder="2026-Q4-my-program"
-                />
-              </label>
-              <label>
-                Label
-                <input
-                  value={form.label ?? ""}
-                  onChange={(e) => patch({ label: e.target.value })}
-                />
-              </label>
-              <label>
-                Persona
-                <select
-                  value={form.persona_id}
-                  onChange={(e) => patch({ persona_id: e.target.value })}
-                >
-                  {personas.map((p) => (
-                    <option key={p.id} value={p.id}>{p.id}</option>
-                  ))}
-                  {!personas.length && (
-                    <option value={form.persona_id}>{form.persona_id}</option>
-                  )}
-                </select>
-              </label>
-              <label>
-                Product config
-                <input
-                  value={form.product_id}
-                  onChange={(e) => patch({ product_id: e.target.value })}
-                  placeholder="default"
-                />
-              </label>
-              <label>
-                Scope kind
-                <select
-                  value={form.scope.kind}
-                  onChange={(e) =>
-                    patch({
-                      scope: {
-                        ...form.scope,
-                        kind: e.target.value as ReviewerRunConfig["scope"]["kind"],
-                      },
-                    })
-                  }
-                >
-                  <option value="filter_url">Jira filter URL</option>
-                  <option value="jql">JQL</option>
-                  <option value="epic_keys">Epic keys (comma-separated)</option>
-                  <option value="epic_url">Single epic URL</option>
-                </select>
-              </label>
-              <label>
-                Scope value
-                <textarea
-                  className="scope-value"
-                  value={form.scope.value}
-                  onChange={(e) =>
-                    patch({ scope: { ...form.scope, value: e.target.value } })
-                  }
-                  rows={4}
-                />
-              </label>
-              <div className="panel" style={{ marginTop: "0.75rem", background: "var(--bg)" }}>
-                <h4 style={{ marginTop: 0 }}>Resolved epic keys</h4>
-                <p className="muted" style={{ fontSize: "0.85rem" }}>
-                  For <strong>JQL</strong> or <strong>filter URL</strong>: run search in Cursor
-                  (Atlassian MCP, Epics only), paste keys below.{" "}
-                  <code>scope.value</code> stays the source JQL for Creator handoff.
-                </p>
-                {form.resolved_at && (
-                  <p className="muted" style={{ fontSize: "0.8rem" }}>
-                    Last resolved: {form.resolved_at} ({form.resolved_source ?? "—"}) ·{" "}
-                    {form.resolved_epic_keys?.length ?? 0} keys
-                  </p>
-                )}
-                <label>
-                  Paste keys (one per line or comma-separated)
-                  <textarea
-                    className="scope-value"
-                    value={pasteKeysText}
-                    onChange={(e) => setPasteKeysText(e.target.value)}
-                    rows={5}
-                    placeholder="ONE-12345&#10;ONE-67890"
-                  />
-                </label>
-                <div className="btn-row">
-                  <button type="button" disabled={busy} onClick={savePastedKeys}>
-                    Save pasted keys
-                  </button>
-                  <button
-                    type="button"
-                    className="secondary"
-                    disabled={busy}
-                    onClick={resolveScope}
-                  >
-                    Resolve from scope
-                  </button>
-                  <button
-                    type="button"
-                    className="secondary"
-                    disabled={busy}
-                    onClick={copyJqlResolvePrompt}
-                  >
-                    Copy JQL resolve prompt
-                  </button>
-                  <button
-                    type="button"
-                    className="secondary"
-                    disabled={busy}
-                    onClick={clearResolved}
-                  >
-                    Clear resolved
-                  </button>
-                </div>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
-                <label>
-                  Pass type
-                  <select
-                    value={form.pass_type}
-                    onChange={(e) =>
-                      patch({
-                        pass_type: e.target.value as ReviewerRunConfig["pass_type"],
-                      })
-                    }
-                  >
-                    <option value="full_sweep">Full sweep</option>
-                    <option value="rescan_delta">Rescan (delta)</option>
-                    <option value="new_epics_only">New epics only</option>
-                  </select>
-                </label>
-                <label>
-                  Child scans
-                  <select
-                    value={form.child_scan}
-                    onChange={(e) =>
-                      patch({
-                        child_scan: e.target.value as ReviewerRunConfig["child_scan"],
-                      })
-                    }
-                  >
-                    <option value="epic_only_inventory">Epic + inventory (default)</option>
-                    <option value="include_child_checklists">Include child checklists</option>
-                  </select>
-                </label>
-              </div>
-              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.75rem" }}>
-                <input
-                  type="checkbox"
-                  checked={form.creator_handoff_exclude_not_fit}
-                  onChange={(e) =>
-                    patch({ creator_handoff_exclude_not_fit: e.target.checked })
-                  }
-                />
-                Exclude not_fit epics from Creator handoff
-              </label>
-              <label>
-                Notes
-                <textarea
-                  className="scope-value"
-                  rows={2}
-                  value={form.notes ?? ""}
-                  onChange={(e) => patch({ notes: e.target.value })}
-                />
-              </label>
-              <div className="btn-row">
-                <button type="button" onClick={onSave} disabled={busy}>
-                  Save to repo
-                </button>
-                <button
-                  type="button"
-                  onClick={copyPrompt}
-                  disabled={!form.portfolio_id.trim()}
-                >
-                  Copy Cursor prompt
-                </button>
-                <button type="button" onClick={listNewEpics} disabled={busy || !form.portfolio_id.trim()}>
-                  List new epics
-                </button>
-              </div>
-              {form.portfolio_id.trim() && (
-                <details className="prompt-preview" style={{ marginTop: "1rem" }}>
-                  <summary className="muted">Prompt preview</summary>
-                  <pre className="prompt-pre">{buildReviewerCursorPrompt(form)}</pre>
-                </details>
-              )}
-              {newEpicsInfo && (
-                <pre className="prompt-pre" style={{ marginTop: "0.75rem" }}>{newEpicsInfo}</pre>
-              )}
+              <ReviewerConfigFields
+                form={form}
+                personas={personas}
+                pasteKeysText={pasteKeysText}
+                busy={busy}
+                lockPortfolioId={!creating && !!selected}
+                onChange={patch}
+                onPasteKeysText={setPasteKeysText}
+                onSave={onSave}
+                onSavePastedKeys={savePastedKeys}
+                onResolveScope={resolveScope}
+                onCopyJqlPrompt={copyJqlResolvePrompt}
+                onClearResolved={clearResolved}
+                extraActions={
+                  <>
+                    <button type="button" onClick={copyPrompt} disabled={!form.portfolio_id.trim()}>
+                      Copy Cursor prompt
+                    </button>
+                    <button type="button" onClick={listNewEpics} disabled={busy || !form.portfolio_id.trim()}>
+                      List new epics
+                    </button>
+                  </>
+                }
+                footer={
+                  <>
+                    {form.portfolio_id.trim() && (
+                      <details className="prompt-preview" style={{ marginTop: "1rem" }}>
+                        <summary className="muted">Prompt preview</summary>
+                        <pre className="prompt-pre">{buildReviewerCursorPrompt(form)}</pre>
+                      </details>
+                    )}
+                    {newEpicsInfo && (
+                      <pre className="prompt-pre" style={{ marginTop: "0.75rem" }}>
+                        {newEpicsInfo}
+                      </pre>
+                    )}
+                  </>
+                }
+              />
             </>
           )}
           {!creating && !selected && (

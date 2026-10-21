@@ -219,7 +219,7 @@ Full checklist: [TESTING.md](TESTING.md).
 
 ### 5.1 Reviewer
 
-1. On the workspace, expand **Reviewer prompt** → **Copy Cursor prompt**. Edit the portfolio under **More → Reviewer configs** first, when no workspace exists yet.
+1. On the workspace, expand **Portfolio** to change scope, persona, and pass type, then expand **Reviewer prompt** → **Copy Cursor prompt**. Create the first portfolio under **More → Reviewer configs** when no workspace exists yet.
 2. Run **trinity-reviewer** in Cursor.
 3. Outputs: `Trinity/reviewer/runs/{portfolio_run_id}/{EPIC}/review-payload.json`.
 

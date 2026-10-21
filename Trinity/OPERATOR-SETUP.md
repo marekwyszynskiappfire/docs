@@ -149,7 +149,7 @@ For **JQL/filter** scope: resolve epic keys in Cursor (or Studio **Copy JQL reso
 
 ## Step 9 — Run Reviewer in Cursor
 
-1. On the workspace, expand **Reviewer prompt** → **Copy Cursor prompt**. Before a workspace exists, use **More → Reviewer configs**.
+1. On the workspace, expand **Portfolio** to set scope, persona, and pass type, then **Reviewer prompt** → **Copy Cursor prompt**. Before a workspace exists, use **More → Reviewer configs**.
 2. New Cursor chat → paste → run gather per skill.
 3. Outputs: `Trinity/reviewer/runs/.../<EPIC-KEY>/review-payload.json` (under `portfolio_id` and optionally a dated `portfolio_run_id` subfolder).
 

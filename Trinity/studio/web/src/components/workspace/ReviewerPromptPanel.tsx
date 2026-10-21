@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, ReviewerRunConfig } from "../../api";
 import { buildReviewerCursorPrompt } from "../../lib/reviewerPrompt";
@@ -7,6 +7,7 @@ type Props = {
   portfolioId: string | null;
   workspacePath: string;
   epicKeys: string[];
+  reloadToken?: number;
   onCopied: (message: string) => void;
 };
 
@@ -14,20 +15,23 @@ export default function ReviewerPromptPanel({
   portfolioId,
   workspacePath,
   epicKeys,
+  reloadToken = 0,
   onCopied,
 }: Props) {
   const [active, setActive] = useState(false);
   const [config, setConfig] = useState<ReviewerRunConfig | null>(null);
   const [error, setError] = useState("");
 
-  const open = () => {
-    setActive(true);
-    if (!portfolioId || config || error) return;
+  useEffect(() => {
+    if (!active || !portfolioId) return;
     api
       .reviewerRunConfig(portfolioId)
-      .then(setConfig)
+      .then((next) => {
+        setConfig(next);
+        setError("");
+      })
       .catch((reason) => setError(String(reason)));
-  };
+  }, [active, portfolioId, reloadToken]);
 
   const prompt = config
     ? buildReviewerCursorPrompt(config, {
@@ -50,7 +54,7 @@ export default function ReviewerPromptPanel({
     <details
       className="panel ws-reviewer-prompt"
       onToggle={(event) => {
-        if (event.currentTarget.open) open();
+        if (event.currentTarget.open) setActive(true);
       }}
     >
       <summary>

@@ -21,7 +21,7 @@ Deep reference later: [`MANUAL.md`](MANUAL.md) · Architecture: [`ARCHITECTURE.m
 
 ## Golden rules (read once)
 
-1. **Follow Next step on the workspace.** Expand **Reviewer prompt** there to copy the first Cursor prompt for this run. Create or edit the portfolio under **More → Reviewer configs** before a workspace exists. Do not invent prompts by hand unless Studio is down.
+1. **Follow Next step on the workspace.** Expand **Portfolio** to change scope, persona, and pass type, then **Reviewer prompt** to copy the Cursor prompt. Create the first portfolio under **More → Reviewer configs** before a workspace exists. Do not invent prompts by hand unless Studio is down.
 2. **Epic folder name = Jira epic key** — e.g. `ONE-228469/review-payload.json`, not a random folder name.
 3. **Jira comments stay on the open Epic.** Expand **Findings and Jira comment**, then **Save draft** before **Jira comment preview**.
 4. **Demo epic `DEMO-4500` is fake** — never post it to production Jira or Xray.

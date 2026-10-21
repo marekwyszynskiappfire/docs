@@ -4,6 +4,7 @@ import { api, CoverageProfileId, WorkspaceSummary } from "../api";
 import EpicAccordion from "../components/workspace/EpicAccordion";
 import CoverageDepthControl from "../components/workspace/CoverageDepthControl";
 import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
+import PortfolioConfigPanel from "../components/workspace/PortfolioConfigPanel";
 import ReviewerPromptPanel from "../components/workspace/ReviewerPromptPanel";
 import WorkspaceImportPanel from "../components/workspace/WorkspaceImportPanel";
 import NextActionCard from "../components/workspace/NextActionCard";
@@ -28,6 +29,7 @@ export default function WorkspacePage() {
   const openTest = params.get("test");
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set(openEpic ? [openEpic] : []));
   const [selectedTests, setSelectedTests] = useState<Record<string, string>>({});
+  const [portfolioRevision, setPortfolioRevision] = useState(0);
 
   useEffect(() => {
     if (!openEpic) return;
@@ -250,10 +252,16 @@ export default function WorkspacePage() {
           })
         }
       />
+      <PortfolioConfigPanel
+        portfolioId={workspace.portfolio_id}
+        onSaved={() => setPortfolioRevision((current) => current + 1)}
+        onNote={setNote}
+      />
       <ReviewerPromptPanel
         portfolioId={workspace.portfolio_id}
         workspacePath={workspace.workspace_path}
         epicKeys={workspace.epics.map((epic) => epic.jira_key)}
+        reloadToken={portfolioRevision}
         onCopied={setNote}
       />
       <NextActionCard
