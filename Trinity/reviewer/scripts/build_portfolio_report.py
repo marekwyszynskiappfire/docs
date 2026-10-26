@@ -123,8 +123,15 @@ def discover_epic_keys(run_dir: Path) -> list[str]:
         if not re.match(r"^[A-Z][A-Z0-9]+-\d+$", name):
             continue
         payload = child / "review-payload.json"
-        if payload.is_file():
-            keys.append(name)
+        if not payload.is_file():
+            continue
+        try:
+            mode = json.loads(payload.read_text(encoding="utf-8")).get("gather_mode")
+        except (OSError, json.JSONDecodeError):
+            mode = None
+        if mode in ("rest_sweep", "rest_harvest"):
+            continue
+        keys.append(name)
     keys.sort(key=epic_numeric_key)
     return keys
 

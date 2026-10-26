@@ -609,6 +609,7 @@ export default function ImporterPage() {
               <CursorAgentControl
                 label="Run Importer in Cursor"
                 disabled={!plan.credentials.execute_ready}
+                attach={creatorRunId ? { stage: "importer", creatorRunId } : undefined}
                 launch={() =>
                   api.launchImporterAgent({
                     jira_instance_id: jiraInstanceId,

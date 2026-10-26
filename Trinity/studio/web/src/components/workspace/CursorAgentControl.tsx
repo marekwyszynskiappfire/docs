@@ -1,11 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { api, type CursorAgentRun } from "../../api";
 
+type AttachTarget = {
+  stage?: CursorAgentRun["stage"];
+  pipelineRunId?: string;
+  handoffId?: string;
+  portfolioId?: string;
+  creatorRunId?: string;
+};
+
 type Props = {
   label?: string;
   launch: () => Promise<CursorAgentRun>;
   disabled?: boolean;
   onFinished?: (run: CursorAgentRun) => void;
+  attach?: AttachTarget;
 };
 
 const ACTIVE = new Set(["queued", "running"]);
@@ -16,13 +25,39 @@ export default function CursorAgentControl({
   launch,
   disabled = false,
   onFinished,
+  attach,
 }: Props) {
+  const attachKey = attach ? JSON.stringify(attach) : "";
   const [run, setRun] = useState<CursorAgentRun | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [pollFailures, setPollFailures] = useState(0);
   const onFinishedRef = useRef(onFinished);
   onFinishedRef.current = onFinished;
+
+  useEffect(() => {
+    if (!attachKey) return;
+    const target = JSON.parse(attachKey) as AttachTarget;
+    let cancelled = false;
+    api
+      .cursorAgentRuns({
+        stage: target.stage,
+        pipelineRunId: target.pipelineRunId,
+        handoffId: target.handoffId,
+        portfolioId: target.portfolioId,
+        creatorRunId: target.creatorRunId,
+        activeOnly: true,
+      })
+      .then((rows) => {
+        if (cancelled || !rows[0]) return;
+        setRun((current) => current ?? rows[0]);
+        setPollFailures(0);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [attachKey]);
 
   useEffect(() => {
     if (!run || !ACTIVE.has(run.status)) return;

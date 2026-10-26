@@ -10,6 +10,8 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 - A missing Reviewer payload must be acknowledged before Importer execute. A mapping whose Jira site does not match the selected instance cannot execute.
 - The Importer CLI requires `--confirm-production PRODUCTION` before a production write or issue-link delete.
 - Operator docs and Studio empty-state copy use **Run in Cursor** as the primary path. This pilot is macOS.
+- Studio reattaches to a queued or running Cursor agent after a reload. Re-importing a Creator suite clears approval when the case text changes, and drops drafts that left the suite.
+- A REST sweep writes under `rest-sweep/` and does not replace a canonical `review-payload.json`. The Q4 backlog generator no longer sets `gate_override` on a BLOCKED review unless `--force-blocked` is passed.
 - Removed legacy trees: `The Reviewer/`, `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
 
 ## 0.3.0 — 2026-10-21

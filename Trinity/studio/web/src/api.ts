@@ -545,6 +545,24 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ pipeline_run_id: pipelineRunId, handoff_id: handoffId }),
     }),
+  cursorAgentRuns: (query: {
+    pipelineRunId?: string;
+    stage?: CursorAgentRun["stage"];
+    handoffId?: string;
+    portfolioId?: string;
+    creatorRunId?: string;
+    activeOnly?: boolean;
+  } = {}) => {
+    const params = new URLSearchParams();
+    if (query.pipelineRunId) params.set("pipeline_run_id", query.pipelineRunId);
+    if (query.stage) params.set("stage", query.stage);
+    if (query.handoffId) params.set("handoff_id", query.handoffId);
+    if (query.portfolioId) params.set("portfolio_id", query.portfolioId);
+    if (query.creatorRunId) params.set("creator_run_id", query.creatorRunId);
+    if (query.activeOnly) params.set("active_only", "true");
+    const suffix = params.toString();
+    return json<CursorAgentRun[]>(`/api/cursor-agent-runs${suffix ? `?${suffix}` : ""}`);
+  },
   cursorAgentRun: (runId: string) =>
     json<CursorAgentRun>(`/api/cursor-agent-runs/${encodeURIComponent(runId)}`),
   cancelCursorAgent: (runId: string) =>

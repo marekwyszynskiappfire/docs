@@ -311,7 +311,8 @@ def build_payload(
         "schema_version": "1.1",
         "run_id": run_id,
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "scan_label": "Initial scan",
+        "scan_label": "REST sweep",
+        "gather_mode": "rest_sweep",
         "host": "cursor",
         "product": {"id": "default", "name": "BigPicture"},
         "scope": {
@@ -506,7 +507,12 @@ def main() -> None:
                 print(f"FAIL {key}: {e}", file=sys.stderr)
                 continue
             payload = build_payload(key, issue, children, remotes, RUN_ID)
-            payload_path = epic_dir / "review-payload.json"
+            sweep_dir = epic_dir / "rest-sweep"
+            sweep_dir.mkdir(parents=True, exist_ok=True)
+            payload_path = sweep_dir / "review-payload.json"
+            canonical = epic_dir / "review-payload.json"
+            if canonical.is_file():
+                print(f"KEEP {key} canonical review-payload.json")
             payload_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
             if not args.skip_render:
                 subprocess.run(

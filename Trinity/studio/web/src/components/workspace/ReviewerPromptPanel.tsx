@@ -82,6 +82,7 @@ export default function ReviewerPromptPanel({
           <div className="btn-row">
             <CursorAgentControl
               label="Run Reviewer in Cursor"
+              attach={{ stage: "reviewer", portfolioId: config.portfolio_id, pipelineRunId }}
               launch={() => api.launchReviewerAgent(config.portfolio_id, pipelineRunId)}
               onFinished={() => onCopied("Reviewer agent finished. Check the review folder now.")}
             />

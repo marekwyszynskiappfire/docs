@@ -366,6 +366,77 @@ def import_reviewer_run(
     }
 
 
+def _upsert_imported_case(
+    conn: Any, run_id: str, draft_id: str, tc: dict[str, Any], now: str
+) -> None:
+    """Insert or refresh one draft. Changed case text starts a new revision and drops approval."""
+    row_id = f"{run_id}:{draft_id}"
+    case_json = json.dumps(tc, ensure_ascii=False)
+    conn.execute(
+        """
+        INSERT INTO test_case_row (id, creator_run_id, draft_id, title, execution_tier, test_type,
+          human_review_status, automation_candidate, automation_fit, marked_for_xray_import, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, ?)
+        ON CONFLICT(creator_run_id, draft_id) DO UPDATE SET
+          title = excluded.title,
+          execution_tier = excluded.execution_tier,
+          test_type = excluded.test_type,
+          automation_candidate = excluded.automation_candidate,
+          automation_fit = excluded.automation_fit,
+          import_status = CASE
+            WHEN test_case_row.import_status = 'removed' THEN NULL
+            ELSE test_case_row.import_status
+          END,
+          updated_at = excluded.updated_at
+        """,
+        (
+            row_id,
+            run_id,
+            draft_id,
+            tc.get("title") or draft_id,
+            tc.get("execution_tier"),
+            tc.get("test_type"),
+            automation_candidate_flag(tc),
+            automation_fit_value(tc),
+            now,
+        ),
+    )
+    stored = conn.execute(
+        "SELECT id FROM test_case_row WHERE creator_run_id = ? AND draft_id = ?",
+        (run_id, draft_id),
+    ).fetchone()
+    stored_id = stored["id"]
+    latest = conn.execute(
+        """
+        SELECT revision, case_json FROM test_case_revision
+        WHERE test_case_row_id = ?
+        ORDER BY revision DESC LIMIT 1
+        """,
+        (stored_id,),
+    ).fetchone()
+    if latest and latest["case_json"] == case_json:
+        return
+    next_rev = int(latest["revision"]) + 1 if latest else 1
+    cur = conn.execute(
+        """
+        INSERT INTO test_case_revision (test_case_row_id, revision, case_json, source, created_at, created_by)
+        VALUES (?, ?, ?, 'import', ?, 'importer')
+        """,
+        (stored_id, next_rev, case_json, now),
+    )
+    conn.execute(
+        """
+        UPDATE test_case_row
+        SET human_review_status = 'pending',
+            marked_for_xray_import = 0,
+            current_revision_id = ?,
+            updated_at = ?
+        WHERE id = ?
+        """,
+        (cur.lastrowid, now, stored_id),
+    )
+
+
 def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) -> dict[str, Any]:
     init_db()
     batch_path = batch_path.resolve()
@@ -441,42 +512,23 @@ def import_test_case_batch(batch_path: Path, creator_run_id: str | None = None) 
             """,
             (run_id, rev, json.dumps(batch, ensure_ascii=False), now),
         )
+        seen_drafts: set[str] = set()
         for idx, tc in enumerate(tests):
             draft_id = tc.get("draft_id") or f"TC-{idx + 1:03d}"
-            row_id = f"{run_id}:{draft_id}"
-            conn.execute(
-                """
-                INSERT INTO test_case_row (id, creator_run_id, draft_id, title, execution_tier, test_type,
-                  human_review_status, automation_candidate, automation_fit, marked_for_xray_import, updated_at)
-                VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, 0, ?)
-                ON CONFLICT(creator_run_id, draft_id) DO UPDATE SET
-                  title = excluded.title,
-                  execution_tier = excluded.execution_tier,
-                  test_type = excluded.test_type,
-                  automation_candidate = excluded.automation_candidate,
-                  automation_fit = excluded.automation_fit,
-                  updated_at = excluded.updated_at
-                """,
-                (
-                    row_id,
-                    run_id,
-                    draft_id,
-                    tc.get("title") or draft_id,
-                    tc.get("execution_tier"),
-                    tc.get("test_type"),
-                    automation_candidate_flag(tc),
-                    automation_fit_value(tc),
-                    now,
-                ),
-            )
-            conn.execute(
-                """
-                INSERT INTO test_case_revision (test_case_row_id, revision, case_json, source, created_at, created_by)
-                VALUES (?, 1, ?, 'import', ?, 'importer')
-                ON CONFLICT(test_case_row_id, revision) DO UPDATE SET case_json = excluded.case_json
-                """,
-                (row_id, json.dumps(tc, ensure_ascii=False), now),
-            )
+            seen_drafts.add(draft_id)
+            _upsert_imported_case(conn, run_id, draft_id, tc, now)
+        conn.execute(
+            f"""
+            UPDATE test_case_row
+            SET human_review_status = 'pending',
+                marked_for_xray_import = 0,
+                import_status = 'removed',
+                updated_at = ?
+            WHERE creator_run_id = ?
+              AND draft_id NOT IN ({", ".join("?" for _ in seen_drafts) or "''"})
+            """,
+            (now, run_id, *seen_drafts),
+        )
 
         record_event(
             conn,

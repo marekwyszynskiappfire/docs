@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -1237,6 +1238,7 @@ def write_suite_report_md(out_dir: Path, key: str, batch: dict, gate: str) -> No
 
 
 def main() -> int:
+    force_blocked = "--force-blocked" in sys.argv
     golden_rel = "Trinity/creator/golden/v2/filter-17844-bigpicture-manual"
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
     summary_rows = []
@@ -1317,9 +1319,18 @@ def main() -> int:
             "execution_plan": build_execution_plan(tests),
             "tests": tests,
         }
+        if gate.get("blocks_test_generation") and gate_status == "BLOCKED" and not force_blocked:
+            warnings.append("BLOCKED gate — suite not written. Re-run with --force-blocked to record an override.")
+            summary_rows.append((key, 0, gate_status, "; ".join(warnings[:2]) or "—"))
+            continue
         if gate.get("blocks_test_generation") and gate_status == "BLOCKED":
             batch["gate_override"] = True
-            warnings.append("gate_override: true — BLOCKED gate bypassed per operator batch run.")
+            batch["gate_override_record"] = {
+                "at": now,
+                "by": os.environ.get("TRINITY_OPERATOR_ID") or "cli",
+                "reason": "--force-blocked",
+            }
+            warnings.append("gate_override recorded with --force-blocked.")
 
         out_dir = OUT_BASE / key
         out_dir.mkdir(parents=True, exist_ok=True)

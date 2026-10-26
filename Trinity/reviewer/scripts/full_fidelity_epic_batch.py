@@ -299,12 +299,13 @@ def build_payload(epic_key: str, issue: dict, harvest: dict, run_id: str, base_u
     if due or end:
         payload["requirements"][0]["planning_target_date"] = due or end
     payload["requirement_fingerprint"] = fingerprint(epic_key, fields.get("updated", run_id))
+    payload["gather_mode"] = "rest_harvest"
     payload["report"]["handoff_note"] = (
-        "Full-fidelity gather: Jira REST (production) + Confluence via MCP cache; "
-        "re-score findings after Confluence merge."
+        "REST harvest only. This is not a full Reviewer gather. "
+        "Re-score findings after the Confluence merge."
     )
     payload["report"]["next_action"] = (
-        "Review findings and Q# in HTML; run The Creator on this Epic key when ready (CR-EPIC-01)."
+        "Run trinity-reviewer for a full gather before Creator. This file is a REST harvest."
     )
     st = (fields.get("status") or {}).get("name", "")
     cat = (fields.get("status") or {}).get("statusCategory", {}).get("key", "")
@@ -355,7 +356,18 @@ def main() -> None:
                 harvest = build_harvest(key, issue, children, epic_remotes, child_remotes, comments)
                 (gather_dir / f"{key}.json").write_text(json.dumps(harvest, indent=2), encoding="utf-8")
                 payload = build_payload(key, issue, harvest, args.run_id, base)
-                (epic_dir / "review-payload.json").write_text(
+                canonical = epic_dir / "review-payload.json"
+                target = canonical
+                if canonical.is_file():
+                    try:
+                        existing_mode = json.loads(canonical.read_text(encoding="utf-8")).get("gather_mode")
+                    except (OSError, json.JSONDecodeError):
+                        existing_mode = None
+                    if existing_mode not in ("rest_sweep", "rest_harvest"):
+                        target = epic_dir / "rest-sweep" / "review-payload.json"
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        print(f"KEEP {key} canonical review-payload.json")
+                target.write_text(
                     json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
                 )
                 results[key] = "ok"

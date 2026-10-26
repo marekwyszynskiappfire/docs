@@ -37,6 +37,7 @@ export default function NextActionCard({ action, pipelineRunId, busy, note, onPr
           {prompt && (
             <CursorAgentControl
               key={prompt.handoff_id}
+              attach={{ pipelineRunId, handoffId: prompt.handoff_id }}
               launch={() => api.launchHandoffAgent(pipelineRunId, prompt.handoff_id)}
               onFinished={() => onCheckNow(prompt.handoff_id)}
             />

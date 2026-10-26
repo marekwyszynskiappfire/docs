@@ -362,12 +362,17 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
             <details className="ws-importer-prompt">
               <summary>Importer Cursor prompt</summary>
               <p className="muted">
-                Paste this into a new Cursor chat when you want trinity-importer to write, instead of Write to Xray here.
+                <strong>Run Importer in Cursor</strong> is the normal path. Copy this prompt only when that launch is unavailable.
               </p>
               <div className="btn-row">
                 <CursorAgentControl
                   label="Run Importer in Cursor"
                   disabled={!plan.credentials.execute_ready}
+                  attach={
+                    epic?.creator_run_id
+                      ? { stage: "importer", creatorRunId: epic.creator_run_id }
+                      : undefined
+                  }
                   launch={() =>
                     api.launchImporterAgent({
                       ...requestBody,

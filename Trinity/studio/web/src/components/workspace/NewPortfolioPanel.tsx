@@ -206,6 +206,11 @@ export default function NewPortfolioPanel() {
               <CursorAgentControl
                 label="Run Reviewer in Cursor"
                 disabled={!saved}
+                attach={
+                  saved && form.portfolio_id.trim()
+                    ? { stage: "reviewer", portfolioId: form.portfolio_id.trim() }
+                    : undefined
+                }
                 launch={() => api.launchReviewerAgent(form.portfolio_id.trim())}
                 onFinished={(run) =>
                   setMessage(

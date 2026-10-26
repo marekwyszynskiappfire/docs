@@ -40,22 +40,42 @@ def get_agent_run(run_id: str) -> dict[str, Any]:
     return _public(row)
 
 
-def list_agent_runs(pipeline_run_id: str | None = None, limit: int = 30) -> list[dict[str, Any]]:
+def list_agent_runs(
+    pipeline_run_id: str | None = None,
+    *,
+    stage: str | None = None,
+    handoff_id: str | None = None,
+    portfolio_id: str | None = None,
+    creator_run_id: str | None = None,
+    active_only: bool = False,
+    limit: int = 30,
+) -> list[dict[str, Any]]:
+    clauses: list[str] = []
+    params: list[Any] = []
+    if pipeline_run_id:
+        clauses.append("pipeline_run_id = ?")
+        params.append(pipeline_run_id)
+    if stage:
+        clauses.append("stage = ?")
+        params.append(stage)
+    if handoff_id:
+        clauses.append("handoff_id = ?")
+        params.append(handoff_id)
+    if portfolio_id:
+        clauses.append("portfolio_id = ?")
+        params.append(portfolio_id)
+    if creator_run_id:
+        clauses.append("creator_run_id = ?")
+        params.append(creator_run_id)
+    if active_only:
+        clauses.append("status IN ('queued', 'running')")
+    where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
+    params.append(limit)
     with db() as conn:
-        if pipeline_run_id:
-            rows = conn.execute(
-                """
-                SELECT * FROM cursor_agent_run
-                WHERE pipeline_run_id = ?
-                ORDER BY created_at DESC LIMIT ?
-                """,
-                (pipeline_run_id, limit),
-            ).fetchall()
-        else:
-            rows = conn.execute(
-                "SELECT * FROM cursor_agent_run ORDER BY created_at DESC LIMIT ?",
-                (limit,),
-            ).fetchall()
+        rows = conn.execute(
+            f"SELECT * FROM cursor_agent_run {where} ORDER BY created_at DESC LIMIT ?",
+            params,
+        ).fetchall()
     return [_public(row) for row in rows]
 
 

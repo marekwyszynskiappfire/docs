@@ -38,8 +38,22 @@ def cursor_agents_status() -> dict[str, Any]:
 
 
 @router.get("/api/cursor-agent-runs")
-def cursor_agent_runs(pipeline_run_id: str | None = None) -> list[dict[str, Any]]:
-    return list_agent_runs(pipeline_run_id)
+def cursor_agent_runs(
+    pipeline_run_id: str | None = None,
+    stage: str | None = None,
+    handoff_id: str | None = None,
+    portfolio_id: str | None = None,
+    creator_run_id: str | None = None,
+    active_only: bool = False,
+) -> list[dict[str, Any]]:
+    return list_agent_runs(
+        pipeline_run_id,
+        stage=stage,
+        handoff_id=handoff_id,
+        portfolio_id=portfolio_id,
+        creator_run_id=creator_run_id,
+        active_only=active_only,
+    )
 
 
 @router.get("/api/cursor-agent-runs/{run_id}")
