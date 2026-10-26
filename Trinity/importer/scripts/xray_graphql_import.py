@@ -44,6 +44,7 @@ if str(_SHARED) not in sys.path:
     sys.path.insert(0, str(_SHARED))
 from validate_for_xray import (  # noqa: E402
     enrich_test_for_xray_import as enrich_test_for_import,
+    one_epic_violation,
     validate_test,
 )
 
@@ -66,6 +67,35 @@ def normalize_folder_path(path: str) -> str:
     if not raw.startswith("/"):
         raw = f"/{raw}"
     return raw.rstrip("/") or "/"
+
+
+def existing_xray_key_error(test: dict[str, Any], acknowledged: bool) -> str | None:
+    """Refuse createTest when Studio already recorded an Xray key for this draft."""
+    key = str(test.get("existing_xray_test_key") or test.get("xray_test_key") or "").strip()
+    if not key or acknowledged:
+        return None
+    draft_id = test.get("draft_id") or "?"
+    return (
+        f"Draft {draft_id} already has Xray key {key}. "
+        "Pass --acknowledge-existing-xray-keys to create another Test."
+    )
+
+
+def reviewer_gate_execute_error(batch: dict[str, Any], acknowledged: bool) -> str | None:
+    """Same Reviewer acknowledgement Studio requires before a write."""
+    studio_server = TRINITY_ROOT / "studio" / "server"
+    if str(studio_server) not in sys.path:
+        sys.path.insert(0, str(studio_server))
+    from importer_review_gate import assess_reviewer_gate, load_review_payload
+
+    gate = assess_reviewer_gate(load_review_payload(batch.get("review_ref")))
+    if not gate.get("requires_acknowledgement") or acknowledged:
+        return None
+    detail = " ".join(gate.get("messages") or [])
+    return (
+        "Reviewer gate must be acknowledged before --execute. "
+        f"{detail} Pass --acknowledge-reviewer-gate."
+    ).strip()
 
 
 def production_confirmation_error(config: dict[str, Any], confirm: str | None) -> str | None:
@@ -670,6 +700,16 @@ def parse_args() -> argparse.Namespace:
         default="",
         help="Type PRODUCTION when the mapping environment is production",
     )
+    parser.add_argument(
+        "--acknowledge-reviewer-gate",
+        action="store_true",
+        help="Acknowledge a missing or non-PASS Reviewer payload before --execute",
+    )
+    parser.add_argument(
+        "--acknowledge-existing-xray-keys",
+        action="store_true",
+        help="Create another Xray Test even when this draft already has a key",
+    )
     return parser.parse_args()
 
 
@@ -758,6 +798,20 @@ def main() -> int:
         for err in validation_errors:
             print(f"  - {err}", file=sys.stderr)
         return 1
+
+    epic_error = one_epic_violation(batch)
+    if epic_error:
+        print(f"Error: {epic_error}", file=sys.stderr)
+        return 2
+    if args.execute:
+        gate_error = reviewer_gate_execute_error(batch, args.acknowledge_reviewer_gate)
+        if gate_error:
+            print(f"Error: {gate_error}", file=sys.stderr)
+            return 2
+        duplicate_error = existing_xray_key_error(test, args.acknowledge_existing_xray_keys)
+        if duplicate_error:
+            print(f"Error: {duplicate_error}", file=sys.stderr)
+            return 2
 
     if not args.execute:
         report["action"] = "would_create"

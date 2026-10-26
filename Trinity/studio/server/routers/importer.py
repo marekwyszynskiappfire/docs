@@ -10,7 +10,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 
 from api_models import ImporterExecuteBody, ImporterPlanBody, ImporterRecordResultsBody
-from creator_export import build_importer_payload
+from creator_export import build_importer_payload, write_handoff_payload
 from creator_importer_config import importer_defaults_for_handoff
 from cursor_agent_runner import launch_agent
 from db import db
@@ -72,6 +72,21 @@ def importer_credentials() -> dict[str, Any]:
     }
 
 
+def _stamp_existing_xray_keys(handoff: dict[str, Any], plan: dict[str, Any]) -> None:
+    """Copy Studio's known Xray keys onto the payload the CLI will read."""
+    by_draft = {
+        entry.get("draft_id"): entry.get("existing_xray_test_key")
+        for entry in plan.get("tests") or []
+        if entry.get("draft_id") and entry.get("existing_xray_test_key")
+    }
+    if not by_draft:
+        return
+    for test in handoff.get("tests") or []:
+        key = by_draft.get(test.get("draft_id"))
+        if key:
+            test["existing_xray_test_key"] = key
+
+
 def _resolve_creator_run_id_param(raw: str | None) -> str | None:
     if not raw or not str(raw).strip():
         return None
@@ -85,7 +100,18 @@ def _resolve_creator_run_id_param(raw: str | None) -> str | None:
 
 
 def _resolve_importer_handoff(body: ImporterPlanBody) -> tuple[dict[str, Any], str | None]:
+    """Current approvals win over a saved importer-payload.json for a known Creator run."""
     creator_run_id = _resolve_creator_run_id_param(body.creator_run_id)
+    if creator_run_id:
+        with db() as conn:
+            try:
+                handoff = build_importer_payload(conn, creator_run_id)
+            except KeyError:
+                handoff = None
+        if handoff is not None:
+            if body.payload_path:
+                handoff["ignored_payload_path"] = body.payload_path
+            return handoff, creator_run_id
     if body.payload_path:
         path = Path(body.payload_path)
         if not path.is_absolute():
@@ -95,14 +121,7 @@ def _resolve_importer_handoff(body: ImporterPlanBody) -> tuple[dict[str, Any], s
             creator_run_id = handoff.get("creator_run_id")
         return handoff, creator_run_id
     if creator_run_id:
-        export_path = EXPORT_ROOT / "creator" / creator_run_id / "importer-payload.json"
-        if export_path.is_file():
-            return load_handoff_payload(export_path), creator_run_id
-        with db() as conn:
-            try:
-                return build_importer_payload(conn, creator_run_id), creator_run_id
-            except KeyError:
-                raise HTTPException(404, "Creator run not found") from None
+        raise HTTPException(404, "Creator run not found")
     raise HTTPException(400, "Provide payload_path or creator_run_id")
 
 
@@ -142,9 +161,13 @@ def _plan_with_credentials(
         plan["resolved_creator_run_id"] = creator_run_id
     with db() as conn:
         attach_existing_xray_keys(conn, creator_run_id, plan)
+    _stamp_existing_xray_keys(handoff, plan)
     finalize_import_plan_execute_readiness(
         plan, idempotency_acknowledged=body.idempotency_acknowledged
     )
+    if creator_run_id:
+        written = write_handoff_payload(handoff, creator_run_id, EXPORT_ROOT)
+        plan.setdefault("handoff", {})["payload_path"] = str(written)
     plan["cursor_prompt"] = build_importer_cursor_prompt(
         plan,
         payload_path=body.payload_path,
@@ -245,6 +268,7 @@ def _execute_with_credentials(
     )
     with db() as conn:
         attach_existing_xray_keys(conn, creator_run_id, plan)
+    _stamp_existing_xray_keys(handoff, plan)
     try:
         assert_execute_allowed(
             plan, idempotency_acknowledged=body.idempotency_acknowledged
@@ -252,10 +276,10 @@ def _execute_with_credentials(
     except ValueError as exc:
         raise HTTPException(400, str(exc)) from exc
     if not plan.get("credentials", {}).get("execute_ready"):
-        raise HTTPException(
-            400,
-            "Import plan is not execute-ready — fix validation, credentials, gate acknowledgement, or mapping conflict",
-        )
+        blockers = plan.get("execute_blockers") or [
+            "Import plan is not execute-ready — fix validation, credentials, gate acknowledgement, or mapping conflict"
+        ]
+        raise HTTPException(400, "; ".join(str(item) for item in blockers))
     map_path = body.mapping_path or plan["mapping"]["path"]
     if body.payload_path:
         batch_path = Path(body.payload_path)

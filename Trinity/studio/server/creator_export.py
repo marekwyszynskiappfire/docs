@@ -13,7 +13,7 @@ _TRINITY = Path(__file__).resolve().parents[2]
 _SHARED = _TRINITY / "shared"
 if str(_SHARED) not in sys.path:
     sys.path.insert(0, str(_SHARED))
-from validate_for_xray import export_preflight_warnings  # noqa: E402
+from validate_for_xray import export_preflight_warnings, issue_key_or_none  # noqa: E402
 
 
 def automation_candidate_flag(tc: dict[str, Any]) -> int:
@@ -84,10 +84,23 @@ def build_importer_payload(conn: Any, creator_run_id: str) -> dict[str, Any]:
             case["coverage_catalog_id"] = str(linked_ac[0]) if linked_ac else "TRINITY-IMPORT"
         tests.append(case)
 
+    epic_key = issue_key_or_none(creator_run_id)
+    if run["review_unit_id"]:
+        unit = conn.execute(
+            "SELECT jira_key FROM review_unit WHERE id = ?",
+            (run["review_unit_id"],),
+        ).fetchone()
+        if unit and unit["jira_key"]:
+            epic_key = str(unit["jira_key"])
+    for case in tests:
+        if epic_key and not case.get("epic_key"):
+            case["epic_key"] = epic_key
+
     payload = {
         "schema_version": "1.0",
         "export_kind": "creator_importer_handoff",
         "creator_run_id": creator_run_id,
+        "epic_key": epic_key,
         "exported_at": utc_now(),
         "source_batch_run_id": batch_meta.get("run_id"),
         "review_ref": batch_meta.get("review_ref"),
@@ -99,6 +112,17 @@ def build_importer_payload(conn: Any, creator_run_id: str) -> dict[str, Any]:
     }
     payload["export_preflight_warnings"] = export_preflight_warnings(payload)
     return payload
+
+
+def write_handoff_payload(handoff: dict[str, Any], creator_run_id: str, export_root: Path) -> Path:
+    """Replace the on-disk export with the payload just planned, so a later read cannot be stale."""
+    out_dir = export_root / "creator" / creator_run_id
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / "importer-payload.json"
+    body = dict(handoff)
+    body["creator_run_id"] = creator_run_id
+    out_path.write_text(json.dumps(body, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return out_path
 
 
 def write_importer_export(conn: Any, creator_run_id: str, export_root: Path) -> tuple[Path, list[str]]:

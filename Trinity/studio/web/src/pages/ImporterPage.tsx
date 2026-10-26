@@ -6,7 +6,6 @@ import ReviewerRunsTable from "../components/ReviewerRunsTable";
 import SortableDataTable from "../components/SortableDataTable";
 import CursorAgentControl from "../components/workspace/CursorAgentControl";
 
-const DEFAULT_JIRA_INSTANCE_ID = "appfire-production";
 const DEFAULT_FOLDER_PATH = "/Trinity imports";
 
 export default function ImporterPage() {
@@ -21,7 +20,7 @@ export default function ImporterPage() {
     { id: string; path: string; default_folder?: string; project_key?: string; jira_site?: string }[]
   >([]);
 
-  const [jiraInstanceId, setJiraInstanceId] = useState(DEFAULT_JIRA_INSTANCE_ID);
+  const [jiraInstanceId, setJiraInstanceId] = useState("");
   const [mappingPath, setMappingPath] = useState("");
   const [folderPath, setFolderPath] = useState(DEFAULT_FOLDER_PATH);
   const [createFolder, setCreateFolder] = useState(true);
@@ -71,9 +70,11 @@ export default function ImporterPage() {
         setInstances(inst.instances);
         setMappings(maps.mappings);
         if (inst.instances.length) {
-          setJiraInstanceId((prev) =>
-            inst.instances.some((i) => i.id === prev) ? prev : inst.instances[0].id
-          );
+          setJiraInstanceId((prev) => {
+            if (prev && inst.instances.some((i) => i.id === prev)) return prev;
+            const sandbox = inst.instances.find((i) => i.risk_tier !== "production");
+            return (sandbox ?? inst.instances[0]).id;
+          });
         }
       })
       .catch((e) => {

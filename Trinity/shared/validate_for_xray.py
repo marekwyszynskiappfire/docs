@@ -155,3 +155,44 @@ def export_preflight_warnings(payload: dict[str, Any]) -> list[str]:
     out.extend(deferrable_export_warnings(tests))
     out.extend(redaction_lint_payload(payload))
     return out
+
+
+_ISSUE_KEY_RE = re.compile(r"^[A-Z][A-Z0-9]+-\d+$")
+
+
+def issue_key_or_none(value: Any) -> str | None:
+    if isinstance(value, str) and _ISSUE_KEY_RE.match(value.strip()):
+        return value.strip()
+    return None
+
+
+def declared_epic_keys(payload: dict[str, Any]) -> list[str]:
+    """Epic keys this batch names. Child story keys in linked_requirement_keys are not epics."""
+    found: list[str] = []
+
+    def add(value: Any) -> None:
+        key = issue_key_or_none(value)
+        if key and key not in found:
+            found.append(key)
+
+    add(payload.get("epic_key"))
+    scope = payload.get("scope")
+    if isinstance(scope, dict):
+        add(scope.get("jira_key"))
+    add(payload.get("creator_run_id"))
+    for test in payload.get("tests") or []:
+        if isinstance(test, dict):
+            add(test.get("epic_key"))
+    return found
+
+
+def one_epic_violation(payload: dict[str, Any]) -> str | None:
+    """A write stays one Epic. Child stories under that Epic do not count as a second Epic."""
+    keys = declared_epic_keys(payload)
+    if len(keys) <= 1:
+        return None
+    return (
+        "This batch names more than one Epic ("
+        + ", ".join(keys)
+        + "). Write one Epic at a time."
+    )

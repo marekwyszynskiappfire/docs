@@ -12,6 +12,7 @@ from personas import docs_repo_root
 
 ACTIVE_RUNS: dict[str, Any] = {}
 ACTIVE_LOCK = threading.Lock()
+START_LOCK = threading.Lock()
 
 
 def sdk_status() -> dict[str, Any]:
@@ -170,14 +171,10 @@ def launch_agent(
     return get_agent_run(run_id)
 
 
-def _worker(run_id: str) -> None:
-    from cursor_sdk import Agent, CursorAgentError, LocalAgentOptions
-
-    current = get_agent_run(run_id)
-    model = current["model"]
+def _claim_queued_run(run_id: str) -> bool:
     now = utc_now()
     with db() as conn:
-        conn.execute(
+        updated = conn.execute(
             """
             UPDATE cursor_agent_run
             SET status = 'running', started_at = ?, updated_at = ?
@@ -185,45 +182,67 @@ def _worker(run_id: str) -> None:
             """,
             (now, now, run_id),
         )
+        return updated.rowcount == 1
+
+
+def _worker(run_id: str) -> None:
+    from cursor_sdk import Agent, CursorAgentError, LocalAgentOptions
+
+    current = get_agent_run(run_id)
+    model = current["model"]
+    prompt = current["prompt_text"]
+    stage = current["stage"]
+    agent_cm: Any = None
     try:
-        with Agent.create(
+        with START_LOCK:
+            if not _claim_queued_run(run_id):
+                return
+        if get_agent_run(run_id)["status"] != "running":
+            return
+        agent_cm = Agent.create(
             api_key=os.environ["CURSOR_API_KEY"].strip(),
             model=model,
             local=LocalAgentOptions(cwd=docs_repo_root(), setting_sources=["all"]),
-            name=f"Trinity {current['stage']}",
-        ) as agent:
-            sdk_run = agent.send(current["prompt_text"])
+            name=f"Trinity {stage}",
+        )
+        agent = agent_cm.__enter__()
+        with START_LOCK:
+            if get_agent_run(run_id)["status"] == "cancelled":
+                return
+            sdk_run = agent.send(prompt)
             with ACTIVE_LOCK:
                 ACTIVE_RUNS[run_id] = sdk_run
-            with db() as conn:
-                conn.execute(
-                    """
-                    UPDATE cursor_agent_run
-                    SET agent_id = ?, sdk_run_id = ?, updated_at = ?
-                    WHERE id = ?
-                    """,
-                    (agent.agent_id, sdk_run.run_id, utc_now(), run_id),
-                )
-            result = sdk_run.wait()
-            status_value = getattr(result.status, "value", str(result.status)).lower()
-            final_status = "finished" if status_value in {"finished", "success", "completed"} else "error"
-            error = None if final_status == "finished" else (
-                result.error_message or f"Cursor run ended with status {status_value}."
+        with db() as conn:
+            conn.execute(
+                """
+                UPDATE cursor_agent_run
+                SET agent_id = ?, sdk_run_id = ?, updated_at = ?
+                WHERE id = ?
+                """,
+                (agent.agent_id, sdk_run.run_id, utc_now(), run_id),
             )
-            with db() as conn:
-                conn.execute(
-                    """
-                    UPDATE cursor_agent_run
-                    SET status = ?, final_text = ?, error = ?, finished_at = ?, updated_at = ?
-                    WHERE id = ? AND status != 'cancelled'
-                    """,
-                    (final_status, result.result or "", error, utc_now(), utc_now(), run_id),
-                )
+        result = sdk_run.wait()
+        status_value = getattr(result.status, "value", str(result.status)).lower()
+        final_status = "finished" if status_value in {"finished", "success", "completed"} else "error"
+        error = None if final_status == "finished" else (
+            result.error_message or f"Cursor run ended with status {status_value}."
+        )
+        with db() as conn:
+            conn.execute(
+                """
+                UPDATE cursor_agent_run
+                SET status = ?, final_text = ?, error = ?, finished_at = ?, updated_at = ?
+                WHERE id = ? AND status != 'cancelled'
+                """,
+                (final_status, result.result or "", error, utc_now(), utc_now(), run_id),
+            )
     except CursorAgentError as exc:
         _save_error(run_id, f"{exc} (retryable: {getattr(exc, 'is_retryable', False)})")
     except Exception as exc:  # SDK failures must remain visible without killing Studio.
         _save_error(run_id, str(exc))
     finally:
+        if agent_cm is not None:
+            agent_cm.__exit__(None, None, None)
         with ACTIVE_LOCK:
             ACTIVE_RUNS.pop(run_id, None)
 
@@ -247,19 +266,20 @@ def cancel_agent_run(run_id: str) -> dict[str, Any]:
     current = get_agent_run(run_id)
     if current["status"] not in {"queued", "running"}:
         return current
-    with ACTIVE_LOCK:
-        sdk_run = ACTIVE_RUNS.get(run_id)
+    with START_LOCK:
+        with ACTIVE_LOCK:
+            sdk_run = ACTIVE_RUNS.get(run_id)
+        now = utc_now()
+        with db() as conn:
+            conn.execute(
+                """
+                UPDATE cursor_agent_run
+                SET status = 'cancelled', error = 'Cancelled by operator.',
+                    finished_at = ?, updated_at = ?
+                WHERE id = ? AND status IN ('queued', 'running')
+                """,
+                (now, now, run_id),
+            )
     if sdk_run is not None and sdk_run.supports("cancel"):
         sdk_run.cancel()
-    now = utc_now()
-    with db() as conn:
-        conn.execute(
-            """
-            UPDATE cursor_agent_run
-            SET status = 'cancelled', error = 'Cancelled by operator.',
-                finished_at = ?, updated_at = ?
-            WHERE id = ?
-            """,
-            (now, now, run_id),
-        )
     return get_agent_run(run_id)

@@ -14,6 +14,7 @@ if str(_SHARED) not in sys.path:
 
 from validate_for_xray import (  # noqa: E402
     enrich_test_for_xray_import,
+    one_epic_violation,
     test_type_xray_coercion,
     validate_test,
 )
@@ -179,6 +180,12 @@ def build_import_plan(
             "Reviewer gate: acknowledge the warning in Studio before execute (IQ-16 soft gate)."
         )
 
+    epic_error = one_epic_violation(handoff)
+    execute_blockers: list[str] = []
+    if epic_error:
+        execute_blockers.append(epic_error)
+        folder_plan.setdefault("warnings", []).append(epic_error)
+
     execute_ready = (
         valid > 0
         and invalid == 0
@@ -193,6 +200,7 @@ def build_import_plan(
         and not gate_blocks_execute
         and not project_resolution.get("mapping_conflict")
         and not site_mismatch
+        and not epic_error
     )
 
     importer_defaults = importer_defaults_for_handoff(handoff)
@@ -238,6 +246,7 @@ def build_import_plan(
         "export_preflight_warnings": export_warnings,
         "coverage_matrix_markdown": coverage_matrix_markdown,
         "tests": tests_out,
+        "execute_blockers": execute_blockers,
         "summary": {
             "total": len(tests_out),
             "valid": valid,

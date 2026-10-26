@@ -27,6 +27,15 @@ def _minimal_test(**overrides):
     return base
 
 
+def test_one_epic_violation_rejects_two_epics():
+    from validate_for_xray import one_epic_violation
+
+    single = {"epic_key": "DEMO-1", "tests": [{"epic_key": "DEMO-1", "linked_requirement_keys": ["DEMO-2"]}]}
+    assert one_epic_violation(single) is None
+    mixed = {"epic_key": "DEMO-1", "tests": [{"epic_key": "DEMO-9"}]}
+    assert "more than one Epic" in one_epic_violation(mixed)
+
+
 def test_enrich_adds_coverage_catalog_id():
     t = enrich_test_for_xray_import({"linked_ac_ids": ["42"]})
     assert t["coverage_catalog_id"] == "42"

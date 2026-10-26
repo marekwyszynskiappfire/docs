@@ -4,6 +4,7 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 
 ## Unreleased
 
+- Importer plans a known Creator run from current approvals, and a saved `importer-payload.json` cannot replace them. A batch that names more than one Epic cannot be written. Cancelling a queued Cursor agent does not start it. The Importer CLI requires the same Reviewer acknowledgement and existing-Xray-key acknowledgement as Studio. The full Importer page opens on the sandbox instance.
 - Production Xray credentials no longer stay in the Studio process after a production plan or project list.
 - A second Cursor agent for the same target is rejected while one is queued or running.
 - BigQuery flush runs on a background thread, so a slow ingest does not hold the Studio database during Reviewer, Creator, or Importer requests.

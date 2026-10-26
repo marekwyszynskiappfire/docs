@@ -61,6 +61,41 @@ def test_launch_rejects_duplicate_active_target(studio_db, monkeypatch):
         raise AssertionError("a second active Importer agent should be rejected")
 
 
+def test_cancelled_queued_run_does_not_start_agent(studio_db, monkeypatch):
+    import sys
+    import types
+
+    import cursor_agent_runner
+
+    monkeypatch.setenv("CURSOR_API_KEY", "cursor_test")
+    monkeypatch.setattr(cursor_agent_runner.threading, "Thread", _NoStartThread)
+    created = cursor_agent_runner.launch_agent(
+        stage="creator",
+        prompt_text="Run trinity-creator",
+        creator_run_id="DEMO-4500",
+        epic_key="DEMO-4500",
+    )
+    cursor_agent_runner.cancel_agent_run(created["id"])
+
+    started: list[str] = []
+
+    class _Agent:
+        @staticmethod
+        def create(**kwargs):  # noqa: ANN003
+            started.append("create")
+            raise RuntimeError("should not start")
+
+    fake = types.ModuleType("cursor_sdk")
+    fake.Agent = _Agent
+    fake.CursorAgentError = type("CursorAgentError", (Exception,), {})
+    fake.LocalAgentOptions = lambda **kwargs: None  # noqa: ARG005
+    monkeypatch.setitem(sys.modules, "cursor_sdk", fake)
+
+    cursor_agent_runner._worker(created["id"])
+    assert started == []
+    assert cursor_agent_runner.get_agent_run(created["id"])["status"] == "cancelled"
+
+
 def test_launch_rejects_missing_key(studio_db, monkeypatch):
     import cursor_agent_runner
 

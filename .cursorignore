@@ -1,0 +1,12 @@
+# Local agents run with this repository as their working directory.
+# Keep credentials out of agent context.
+Trinity/studio/.env
+Trinity/studio/.env.*
+!Trinity/studio/.env.example
+**/.env
+**/.env.*
+!**/.env.example
+**/*service-account*.json
+**/*-bigquery.json
+**/qa-coe-bigquery.json
+**/google-credentials.json

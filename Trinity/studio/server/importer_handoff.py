@@ -73,6 +73,13 @@ def build_importer_cursor_prompt(
         else "Folder must exist; `createTest` with `folderPath` only."
     )
 
+    ack_flags: list[str] = []
+    if plan.get("reviewer_gate_acknowledged"):
+        ack_flags.append("--acknowledge-reviewer-gate")
+    if (plan.get("idempotency") or {}).get("acknowledged"):
+        ack_flags.append("--acknowledge-existing-xray-keys")
+    ack_line = (" \\\n  ".join(ack_flags) + " \\\n  ") if ack_flags else ""
+
     pm_summary = plan.get("pm_safe_summary") or build_pm_safe_summary(plan)
     preflight = plan.get("export_preflight_warnings") or []
     preflight_block = ""
@@ -135,7 +142,7 @@ python3 Trinity/importer/scripts/xray_graphql_import.py \\
   --batch {payload_line} \\
   --draft-id TC-001 \\
   --folder "{target.get("folder_path")}" \\
-  {"--confirm-production PRODUCTION \\\n  " if inst.get("risk_tier") == "production" else ""}--execute
+  {"--confirm-production PRODUCTION \\\n  " if inst.get("risk_tier") == "production" else ""}{ack_line}--execute
 ```
 
 4. Link requirements via Jira unless `skip_requirement_link` is true.
