@@ -12,7 +12,7 @@
 | **Role** | QA engineer (P1), ~3 years on one product |
 | **Strong** | Jira Epics, Xray Test Repository, manual test design, sandbox projects |
 | **Weak** | Git beyond clone/pull, terminal, Cursor Agent, MCP, local `.env`, JSON schemas |
-| **Has** | Laptop (macOS or Windows), Appfire Jira + sandbox access, API token, Xray keys after asking P2 |
+| **Has** | macOS laptop, Appfire Jira + sandbox access, API token, Xray keys after asking P2 |
 | **Does not have** | Pre-made portfolio config, Importer mapping, or a buddy in the room |
 | **Goal** | One sandbox Epic on the workspace: verdict → Creator prompt → test review → Xray plan, without writing to production |
 | **Fear** | Wrong folder path, posting DEMO data to prod, “inventing” prompts and voiding checks |

@@ -4,7 +4,10 @@
 
 ## TL;DR
 
+Clone the repo, then run these from the repo root on macOS:
+
 ```bash
+git clone https://github.com/marekwyszynskiappfire/docs.git DOCS && cd DOCS
 ./Trinity/studio/scripts/start.sh          # terminal 1
 ./Trinity/studio/scripts/seed-demo.sh      # terminal 2
 ```

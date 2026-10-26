@@ -1,6 +1,6 @@
 # Trinity — path to v1.0
 
-**Current:** `0.2.0` (`trinity-v0.2.0`) — Mateusz pilot 1 closed; multi-product pilots planned.  
+**Current:** `0.3.0` — one-click **Run in Cursor**, BigQuery release gate, and the Mateusz pilot closed at `0.2.0`. Multi-product pilots are planned.  
 **Versioning rules:** [`VERSIONING.md`](VERSIONING.md)
 
 **v1.0** means: *any trained QA operator can run Reviewer → Creator → Studio → Importer on a supported product line with evidence, without ad-hoc Marek intervention, and leadership can read acceptance metrics from a standard export or org dashboard.*

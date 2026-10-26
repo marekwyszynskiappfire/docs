@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 import sys
 import threading
+import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
@@ -17,11 +18,24 @@ from fastapi.staticfiles import StaticFiles
 # Allow running as `python app.py` from server/
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from db import db, init_db
+from db import db, init_db, recover_orphan_agent_runs
 from routers import register_routers
 from studio_env import load_dotenv
 from studio_paths import STATIC_FALLBACK, WEB_DIST
 from trinity_release import trinity_git_revision, trinity_release_version
+
+
+def _flush_telemetry_loop() -> None:
+    while True:
+        time.sleep(5)
+        try:
+            from telemetry import flush_outbox
+
+            with db() as conn:
+                flush_outbox(conn)
+        except Exception:
+            # Telemetry must never prevent or stop Studio.
+            pass
 
 
 def _sync_telemetry_best_effort() -> None:
@@ -39,10 +53,16 @@ def _sync_telemetry_best_effort() -> None:
 async def _lifespan(_app: FastAPI):
     load_dotenv()
     init_db()
+    recover_orphan_agent_runs()
     threading.Thread(
         target=_sync_telemetry_best_effort,
         daemon=True,
         name="trinity-telemetry-startup-sync",
+    ).start()
+    threading.Thread(
+        target=_flush_telemetry_loop,
+        daemon=True,
+        name="trinity-telemetry-flush",
     ).start()
     yield
 

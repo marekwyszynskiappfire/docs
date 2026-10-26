@@ -36,6 +36,7 @@ export default function NextActionCard({ action, pipelineRunId, busy, note, onPr
           </button>
           {prompt && (
             <CursorAgentControl
+              key={prompt.handoff_id}
               launch={() => api.launchHandoffAgent(pipelineRunId, prompt.handoff_id)}
               onFinished={() => onCheckNow(prompt.handoff_id)}
             />
@@ -59,7 +60,8 @@ export default function NextActionCard({ action, pipelineRunId, busy, note, onPr
             Show the Cursor prompt (status: <code>{prompt.status}</code>)
           </summary>
           <p className="muted">
-            This is a Cursor <Term id="handoff">handoff</Term>. Paste the prompt into Cursor chat.
+            This is a Cursor <Term id="handoff">handoff</Term>. <strong>Run in Cursor</strong> is the
+            normal path. Copy this prompt only when that launch is unavailable.
           </p>
           <textarea readOnly value={prompt.text} rows={14} aria-label="Cursor prompt" />
         </details>

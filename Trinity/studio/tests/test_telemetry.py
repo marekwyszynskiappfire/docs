@@ -93,9 +93,10 @@ def test_flush_sends_batch(studio_db, monkeypatch):
         result = record_event(
             conn, "review_run_imported", "pipeline_run", "pr-x", "pr-x", {"units": 1}
         )
-        pending = conn.execute(
+        assert conn.execute(
             "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
-        ).fetchone()[0]
+        ).fetchone()[0] == 1
+        pending = flush_outbox(conn)["pending"]
     assert result["event_type"] == "review_run_imported"
     assert pending == 0
     assert calls
@@ -111,7 +112,8 @@ def test_flush_records_error(studio_db, monkeypatch):
     monkeypatch.setattr("telemetry.urllib.request.urlopen", fake_urlopen)
     with db() as conn:
         record_event(conn, "review_run_imported", "pipeline_run", "pr-y", "pr-y", {})
-        # URL is set so record_event already tried flush; pending should remain
+        flush_outbox(conn)
+        # A failed flush leaves the outbox row pending.
         pending = conn.execute(
             "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
         ).fetchone()[0]
@@ -142,6 +144,10 @@ def test_flush_retries_pending_event(studio_db, monkeypatch):
     monkeypatch.setattr("telemetry.urllib.request.urlopen", fail)
     with db() as conn:
         record_event(conn, "review_run_imported", "pipeline_run", "pr-retry", "pr-retry", {})
+        assert conn.execute(
+            "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
+        ).fetchone()[0] == 1
+        assert flush_outbox(conn)["failed"] == 1
         assert conn.execute(
             "SELECT COUNT(*) FROM telemetry_outbox WHERE sent_at IS NULL"
         ).fetchone()[0] == 1

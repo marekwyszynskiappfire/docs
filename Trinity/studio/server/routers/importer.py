@@ -24,7 +24,7 @@ from importer_plan import build_import_plan, load_handoff_payload
 from importer_registry import get_jira_instance, list_jira_instances, list_mapping_files
 from run_management import resolve_creator_run_id
 from personas import docs_repo_root
-from studio_env import apply_importer_credential_profile
+from studio_env import importer_credential_scope
 from studio_paths import EXPORT_ROOT
 from telemetry import record_event
 
@@ -47,12 +47,12 @@ def importer_jira_projects(
     mapping_path: str | None = None,
     query: str = "",
 ) -> dict[str, Any]:
-    apply_importer_credential_profile(jira_instance_id)
-    return list_jira_projects(
-        jira_instance_id,
-        mapping_path=mapping_path,
-        query=query,
-    )
+    with importer_credential_scope(jira_instance_id):
+        return list_jira_projects(
+            jira_instance_id,
+            mapping_path=mapping_path,
+            query=query,
+        )
 
 
 @router.get("/api/importer/credentials")
@@ -115,53 +115,59 @@ def importer_plan(body: ImporterPlanBody) -> dict[str, Any]:
     except FileNotFoundError as exc:
         raise HTTPException(404, str(exc)) from None
     try:
-        apply_importer_credential_profile(body.jira_instance_id)
-        plan = build_import_plan(
-            jira_instance_id=body.jira_instance_id,
-            mapping_path=body.mapping_path,
-            folder_path=body.folder_path,
-            create_folder_if_missing=body.create_folder_if_missing,
-            handoff=handoff,
-            project_key_override=body.project_key_override,
-            skip_requirement_link=body.skip_requirement_link,
-            reviewer_gate_acknowledged=body.reviewer_gate_acknowledged,
-            jira_instance_id_for_resolve=body.jira_instance_id,
-        )
-        plan["pm_safe_summary"] = build_pm_safe_summary(plan)
-        if creator_run_id:
-            plan["resolved_creator_run_id"] = creator_run_id
-        with db() as conn:
-            attach_existing_xray_keys(conn, creator_run_id, plan)
-        finalize_import_plan_execute_readiness(
-            plan, idempotency_acknowledged=body.idempotency_acknowledged
-        )
-        plan["cursor_prompt"] = build_importer_cursor_prompt(
-            plan,
-            payload_path=body.payload_path,
-            creator_run_id=creator_run_id,
-            mapping_path=body.mapping_path,
-            skip_requirement_link=body.skip_requirement_link,
-        )
-        with db() as conn:
-            record_event(
-                conn,
-                "importer_plan",
-                "creator_run",
-                creator_run_id,
-                None,
-                {
-                    "jira_instance_id": body.jira_instance_id,
-                    "valid_count": plan.get("valid_count"),
-                    "invalid_count": plan.get("invalid_count"),
-                    "project_key": plan.get("project_key"),
-                    "folder_path": body.folder_path,
-                },
-            )
-        return plan
+        with importer_credential_scope(body.jira_instance_id):
+            return _plan_with_credentials(body, handoff, creator_run_id)
     except KeyError as exc:
         raise HTTPException(400, str(exc)) from None
     except FileNotFoundError as exc:
         raise HTTPException(404, str(exc)) from None
+
+
+def _plan_with_credentials(
+    body: ImporterPlanBody, handoff: dict[str, Any], creator_run_id: str | None
+) -> dict[str, Any]:
+    plan = build_import_plan(
+        jira_instance_id=body.jira_instance_id,
+        mapping_path=body.mapping_path,
+        folder_path=body.folder_path,
+        create_folder_if_missing=body.create_folder_if_missing,
+        handoff=handoff,
+        project_key_override=body.project_key_override,
+        skip_requirement_link=body.skip_requirement_link,
+        reviewer_gate_acknowledged=body.reviewer_gate_acknowledged,
+        jira_instance_id_for_resolve=body.jira_instance_id,
+    )
+    plan["pm_safe_summary"] = build_pm_safe_summary(plan)
+    if creator_run_id:
+        plan["resolved_creator_run_id"] = creator_run_id
+    with db() as conn:
+        attach_existing_xray_keys(conn, creator_run_id, plan)
+    finalize_import_plan_execute_readiness(
+        plan, idempotency_acknowledged=body.idempotency_acknowledged
+    )
+    plan["cursor_prompt"] = build_importer_cursor_prompt(
+        plan,
+        payload_path=body.payload_path,
+        creator_run_id=creator_run_id,
+        mapping_path=body.mapping_path,
+        skip_requirement_link=body.skip_requirement_link,
+    )
+    with db() as conn:
+        record_event(
+            conn,
+            "importer_plan",
+            "creator_run",
+            creator_run_id,
+            None,
+            {
+                "jira_instance_id": body.jira_instance_id,
+                "valid_count": plan.get("valid_count"),
+                "invalid_count": plan.get("invalid_count"),
+                "project_key": plan.get("project_key"),
+                "folder_path": body.folder_path,
+            },
+        )
+    return plan
 
 
 def _assert_production_execute_confirm(jira_instance_id: str, production_confirm: str | None) -> None:
@@ -211,65 +217,8 @@ def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
         raise HTTPException(404, str(exc)) from None
 
     try:
-        apply_importer_credential_profile(body.jira_instance_id)
-        plan = build_import_plan(
-            jira_instance_id=body.jira_instance_id,
-            mapping_path=body.mapping_path,
-            folder_path=body.folder_path,
-            create_folder_if_missing=body.create_folder_if_missing,
-            handoff=handoff,
-            project_key_override=body.project_key_override,
-            skip_requirement_link=body.skip_requirement_link,
-            reviewer_gate_acknowledged=body.reviewer_gate_acknowledged,
-            jira_instance_id_for_resolve=body.jira_instance_id,
-        )
-        with db() as conn:
-            attach_existing_xray_keys(conn, creator_run_id, plan)
-        try:
-            assert_execute_allowed(
-                plan, idempotency_acknowledged=body.idempotency_acknowledged
-            )
-        except ValueError as exc:
-            raise HTTPException(400, str(exc)) from exc
-        if not plan.get("credentials", {}).get("execute_ready"):
-            raise HTTPException(
-                400,
-                "Import plan is not execute-ready — fix validation, credentials, gate acknowledgement, or mapping conflict",
-            )
-        map_path = body.mapping_path or plan["mapping"]["path"]
-        if body.payload_path:
-            batch_path = Path(body.payload_path)
-            if not batch_path.is_absolute():
-                batch_path = (docs_repo_root() / batch_path).resolve()
-        elif creator_run_id:
-            batch_path = EXPORT_ROOT / "creator" / creator_run_id / "importer-payload.json"
-        else:
-            raise HTTPException(400, "payload_path or creator_run_id required for execute")
-
-        summary = run_batch_execute(
-            plan=plan,
-            handoff=handoff,
-            batch_path=batch_path,
-            mapping_path=map_path,
-            skip_requirement_link=body.skip_requirement_link,
-        )
-        persist: dict[str, Any] | None = None
-        if creator_run_id and summary.get("report_dir"):
-            with db() as conn:
-                persist = apply_xray_reports(conn, creator_run_id, Path(summary["report_dir"]))
-                record_event(
-                    conn,
-                    "importer_execute",
-                    "creator_run",
-                    creator_run_id,
-                    None,
-                    {
-                        "created": summary.get("created"),
-                        "failed": summary.get("failed"),
-                        "report_dir": summary.get("report_dir"),
-                    },
-                )
-        return {**summary, "persist": persist, "plan_summary": plan.get("summary")}
+        with importer_credential_scope(body.jira_instance_id):
+            return _execute_with_credentials(body, handoff, creator_run_id)
     except KeyError as exc:
         raise HTTPException(400, str(exc)) from None
     except FileNotFoundError as exc:
@@ -278,6 +227,69 @@ def importer_execute(body: ImporterExecuteBody) -> dict[str, Any]:
         raise
     except Exception as exc:  # noqa: BLE001 — surface Xray/Jira errors to operator
         raise HTTPException(500, str(exc)) from exc
+
+
+def _execute_with_credentials(
+    body: ImporterExecuteBody, handoff: dict[str, Any], creator_run_id: str | None
+) -> dict[str, Any]:
+    plan = build_import_plan(
+        jira_instance_id=body.jira_instance_id,
+        mapping_path=body.mapping_path,
+        folder_path=body.folder_path,
+        create_folder_if_missing=body.create_folder_if_missing,
+        handoff=handoff,
+        project_key_override=body.project_key_override,
+        skip_requirement_link=body.skip_requirement_link,
+        reviewer_gate_acknowledged=body.reviewer_gate_acknowledged,
+        jira_instance_id_for_resolve=body.jira_instance_id,
+    )
+    with db() as conn:
+        attach_existing_xray_keys(conn, creator_run_id, plan)
+    try:
+        assert_execute_allowed(
+            plan, idempotency_acknowledged=body.idempotency_acknowledged
+        )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    if not plan.get("credentials", {}).get("execute_ready"):
+        raise HTTPException(
+            400,
+            "Import plan is not execute-ready — fix validation, credentials, gate acknowledgement, or mapping conflict",
+        )
+    map_path = body.mapping_path or plan["mapping"]["path"]
+    if body.payload_path:
+        batch_path = Path(body.payload_path)
+        if not batch_path.is_absolute():
+            batch_path = (docs_repo_root() / batch_path).resolve()
+    elif creator_run_id:
+        batch_path = EXPORT_ROOT / "creator" / creator_run_id / "importer-payload.json"
+    else:
+        raise HTTPException(400, "payload_path or creator_run_id required for execute")
+
+    summary = run_batch_execute(
+        plan=plan,
+        handoff=handoff,
+        batch_path=batch_path,
+        mapping_path=map_path,
+        skip_requirement_link=body.skip_requirement_link,
+    )
+    persist: dict[str, Any] | None = None
+    if creator_run_id and summary.get("report_dir"):
+        with db() as conn:
+            persist = apply_xray_reports(conn, creator_run_id, Path(summary["report_dir"]))
+            record_event(
+                conn,
+                "importer_execute",
+                "creator_run",
+                creator_run_id,
+                None,
+                {
+                    "created": summary.get("created"),
+                    "failed": summary.get("failed"),
+                    "report_dir": summary.get("report_dir"),
+                },
+            )
+    return {**summary, "persist": persist, "plan_summary": plan.get("summary")}
 
 
 @router.get("/api/importer/defaults")

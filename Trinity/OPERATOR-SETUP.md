@@ -228,7 +228,7 @@ On the workspace, **Next step → Plan Xray import**:
 
 **Write to Xray** stores keys when Studio writes them. After a Cursor write, expand **Record Xray keys** and point it at `xray-import-report.json`. The Xray plan also accepts a path to `importer-payload.json`.
 
-Full detail: [`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray) · [`MANUAL.md`](MANUAL.md) § Importer.
+Full detail: [`GUIDE.md` §6.3](GUIDE.md#63-studio-project-selector-detailed) · [`MANUAL.md` §10](MANUAL.md#10-importer--plan-gates-execute-persist).
 
 ---
 

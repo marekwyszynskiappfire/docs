@@ -150,9 +150,9 @@ export default function HomePage() {
           <div className="empty-callout">
             <h3>No Reviewer runs yet</h3>
             <p className="muted" style={{ margin: 0 }}>
-              Open <strong>New portfolio</strong>, save it, and copy the Reviewer prompt. After Cursor
-              writes the review folder, import it below. Or run <code>seed-demo.sh</code>, then choose{" "}
-              <strong>Open workspace</strong>.
+              Open <strong>New portfolio</strong>, save it, and choose <strong>Run Reviewer in Cursor</strong>.
+              Copy the prompt only if that launch is unavailable. After Cursor writes the review folder,
+              import it below. Or run <code>seed-demo.sh</code>, then choose <strong>Open workspace</strong>.
             </p>
           </div>
         )}

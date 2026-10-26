@@ -57,7 +57,7 @@ QA lead (P2) records that an operator completed the path **without live coaching
 | # | Topic | Pass |
 |---|--------|------|
 | 1 | Ready vs reservations vs not ready ([METRICS.md](METRICS.md)) | ☐ |
-| 2 | Where three prompts are copied ([PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md)) | ☐ |
+| 2 | Where the three agents launch, and where copy-prompt is the fallback ([PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md)) | ☐ |
 | 3 | Project key vs mapping ([GUIDE.md](GUIDE.md) / [FAQ](FAQ.md)) | ☐ |
 | 4 | Dual vs single MCP ([CURSOR-MCP-SETUP.md](CURSOR-MCP-SETUP.md)) | ☐ |
 

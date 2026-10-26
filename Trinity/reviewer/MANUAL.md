@@ -174,7 +174,7 @@ Nothing in `config/<product>.json` is required for site routing — the skill di
 | Role | What they get from The Reviewer |
 |---|---|
 | **QA engineer** (primary operator) | Runs the scan, triages findings, drives the clarification loop, decides when to hand off to The Creator |
-| **QA lead / manager** | Skims Tier 1 of *one* report at a time (readiness, testability, risk) without opening the detail. There's no multi-story rollup in v1 — checking several requirements still means opening each one's report in turn |
+| **QA lead / manager** | Skims Tier 1 of one Epic report (readiness, testability, risk) without opening the detail. That single-Epic report has no story rollup. A portfolio run of two or more Epics also builds `portfolio/index.html` (Profile B), which is the separate multi-Epic page |
 | **PM / BA** | Receives the clarification questions and the readiness label; never needs to open a findings table or a checklist to know what's being asked of them |
 | **UX designer** | Findings and questions carrying `owner_hint: UX` (design/Figma disagreements, copy/labelling) are tagged as theirs directly, in both the HTML and Markdown reports — instead of everything defaulting to the PM |
 | **Release / delivery manager** | Uses Epic mode's child inventory and status mix for release-readiness triage — see [`sample-report-epic.html`](sample-report-epic.html) |

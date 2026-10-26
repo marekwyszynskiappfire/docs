@@ -39,6 +39,28 @@ def test_launch_persists_and_cancel_marks_terminal(studio_db, monkeypatch):
     assert "operator" in cancelled["error"].lower()
 
 
+def test_launch_rejects_duplicate_active_target(studio_db, monkeypatch):
+    import cursor_agent_runner
+
+    monkeypatch.setenv("CURSOR_API_KEY", "cursor_test")
+    monkeypatch.setattr(cursor_agent_runner.threading, "Thread", _NoStartThread)
+    cursor_agent_runner.launch_agent(
+        stage="importer",
+        prompt_text="Import",
+        creator_run_id="DEMO-4500",
+    )
+    try:
+        cursor_agent_runner.launch_agent(
+            stage="importer",
+            prompt_text="Import again",
+            creator_run_id="DEMO-4500",
+        )
+    except RuntimeError as exc:
+        assert "already active" in str(exc)
+    else:
+        raise AssertionError("a second active Importer agent should be rejected")
+
+
 def test_launch_rejects_missing_key(studio_db, monkeypatch):
     import cursor_agent_runner
 

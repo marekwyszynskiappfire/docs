@@ -160,7 +160,12 @@ def build_import_plan(
         tests_out.append(entry)
 
     site_url = (config.get("jira") or {}).get("site_url") or instance.get("jira_site")
-    if site_url and instance.get("jira_site") and site_url.rstrip("/") != instance["jira_site"].rstrip("/"):
+    site_mismatch = bool(
+        site_url
+        and instance.get("jira_site")
+        and site_url.rstrip("/") != instance["jira_site"].rstrip("/")
+    )
+    if site_mismatch:
         folder_plan.setdefault("warnings", []).append(
             f"Mapping jira.site_url ({site_url}) does not match selected instance ({instance['jira_site']}). "
             "Pick a mapping file for this instance."
@@ -187,6 +192,7 @@ def build_import_plan(
         )
         and not gate_blocks_execute
         and not project_resolution.get("mapping_conflict")
+        and not site_mismatch
     )
 
     importer_defaults = importer_defaults_for_handoff(handoff)

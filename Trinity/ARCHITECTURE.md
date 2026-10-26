@@ -1,6 +1,6 @@
 # Trinity — architecture
 
-**Last reviewed:** 2026-10-14  
+**Last reviewed:** 2026-10-26  
 **Audience:** Operators, QA leads, and engineers onboarding to Trinity.  
 **Wiki:** [Architecture](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture) · [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here)  
 **Runbook:** [`FIRST-RUN.md`](FIRST-RUN.md) · **Reference:** [`MANUAL.md`](MANUAL.md) · **FAQ:** [`FAQ.md`](FAQ.md)
@@ -77,7 +77,7 @@ flowchart LR
   end
   subgraph rev [Reviewer]
     CFG[Reviewer config]
-    P1[Cursor prompt 1]
+    P1[Run Reviewer in Cursor]
     RUN[review-payload.json]
   end
   subgraph stu [Workspace]

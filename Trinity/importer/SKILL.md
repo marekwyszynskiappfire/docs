@@ -31,11 +31,11 @@ Switch env vars when switching instance; Studio shows which instance is selected
 ### Studio (recommended)
 
 1. Creator run → **Export for Importer**.
-2. **Importer** nav → pick instance, mapping, **Jira project for new Tests** (overrides mapping default — see [`GUIDE.md`](../GUIDE.md#6-importer-studio--xray)), folder, create-folder checkbox.
+2. **Importer** nav → pick instance, mapping, **Jira project for new Tests** (overrides mapping default — see [`GUIDE.md`](../GUIDE.md#63-studio-project-selector-detailed)), folder, create-folder checkbox.
 3. **Preview import plan** — shared validation ([`shared/validate_for_xray.py`](../shared/validate_for_xray.py)); resolves **project.id** from project key via Jira REST; Reviewer soft-gate acknowledgement when needed.
-4. **Production** — type `PRODUCTION` before preview or copy prompt.
-5. **Copy Cursor prompt** — PM-safe summary + Epic **coverage matrix**; paste into Cursor to run **trinity-importer** execute handoff.
-6. **Execute import batch** in Studio (or agent/CLI) — auto-persists Xray keys when `creator_run_id` is set; reports under `xray-import-run/`.
+4. **Production** — type `PRODUCTION` before preview, **Run Importer in Cursor**, or execute.
+5. **Run Importer in Cursor** — Studio launches the server-owned handoff. **Copy Cursor prompt** is the fallback. The handoff includes the PM-safe summary and Epic **coverage matrix**.
+6. **Execute import batch** in Studio (or the launched agent) — auto-persists Xray keys when `creator_run_id` is set; reports under `xray-import-run/`. A production CLI write also needs `--confirm-production PRODUCTION`.
 
 ### Analytics completion contract
 

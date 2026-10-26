@@ -59,6 +59,38 @@ def list_agent_runs(pipeline_run_id: str | None = None, limit: int = 30) -> list
     return [_public(row) for row in rows]
 
 
+def _active_run_id(
+    conn: Any,
+    *,
+    stage: str,
+    creator_run_id: str | None,
+    handoff_id: str | None,
+    epic_key: str | None,
+    portfolio_id: str | None,
+) -> str | None:
+    clauses = ["status IN ('queued', 'running')", "stage = ?"]
+    params: list[Any] = [stage]
+    if handoff_id:
+        clauses.append("handoff_id = ?")
+        params.append(handoff_id)
+    elif stage == "importer" and creator_run_id:
+        clauses.append("creator_run_id = ?")
+        params.append(creator_run_id)
+    elif stage == "reviewer" and portfolio_id:
+        clauses.append("portfolio_id = ?")
+        params.append(portfolio_id)
+    elif stage == "creator" and (epic_key or creator_run_id):
+        clauses.append("COALESCE(epic_key, creator_run_id) = ?")
+        params.append(epic_key or creator_run_id)
+    else:
+        return None
+    row = conn.execute(
+        f"SELECT id FROM cursor_agent_run WHERE {' AND '.join(clauses)} LIMIT 1",
+        params,
+    ).fetchone()
+    return str(row["id"]) if row else None
+
+
 def launch_agent(
     *,
     stage: str,
@@ -79,6 +111,20 @@ def launch_agent(
     run_id = f"car-{uuid.uuid4()}"
     now = utc_now()
     with db() as conn:
+        conn.execute("BEGIN IMMEDIATE")
+        active = _active_run_id(
+            conn,
+            stage=stage,
+            creator_run_id=creator_run_id,
+            handoff_id=handoff_id,
+            epic_key=epic_key,
+            portfolio_id=portfolio_id,
+        )
+        if active:
+            raise RuntimeError(
+                f"A Cursor {stage} agent is already active ({active}). "
+                "Wait for it to finish or cancel it before starting another."
+            )
         conn.execute(
             """
             INSERT INTO cursor_agent_run (

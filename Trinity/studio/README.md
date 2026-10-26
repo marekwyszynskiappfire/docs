@@ -80,6 +80,11 @@ Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
 | `GET /api/importer/instances`, `/mappings`, `/jira-projects`, `/credentials` | Importer setup (project list needs `JIRA_*` in `.env`) |
 | `POST /api/importer/plan` | Dry-run plan + `cursor_prompt` (`project_key_override` supported) |
 | `POST /api/importer/execute` | Batch Xray create + auto-persist keys (IQ-10) |
+| `GET /api/cursor-agents/status` | Whether the Cursor SDK and `CURSOR_API_KEY` are available |
+| `POST /api/cursor-agents/reviewer` | Launch a persisted Reviewer agent |
+| `POST /api/cursor-agents/handoff` | Launch a persisted Creator or Importer handoff agent |
+| `GET /api/cursor-agent-runs` | List persisted agent runs |
+| `POST /api/importer/launch-cursor` | Recompute the Importer plan, then launch its agent |
 | `POST /api/importer/record-results` | Persist `xray_test_key` from import report JSON (IQ-05) |
 | `GET /api/runs/{id}/statistics`, `/statistics/export` | Per-run E2E report ([`METRICS.md`](../METRICS.md)) |
 | `GET /api/statistics/compare?runs=id1,id2` | Compare 2–5 pipeline runs (TC readiness + metrics; first id = baseline) |

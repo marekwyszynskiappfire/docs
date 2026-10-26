@@ -232,7 +232,7 @@ Full checklist: [TESTING.md](TESTING.md).
 
 ### 5.3 Creator
 
-1. Set **Coverage depth** on the workspace. The copied Creator prompt carries that profile. Then run **trinity-creator** with `review_ref`, the Epic key, and `suite_mode: release_slice_e2e`.
+1. Set **Coverage depth** on the workspace, prepare the Creator handoff, then **Run in Cursor**. The server-owned prompt carries that profile, `review_ref`, the Epic key, and `suite_mode: release_slice_e2e`. **Copy prompt** is the fallback.
 2. Output: e.g. `Trinity/creator/artifacts/{EPIC}/suite-payload.json`. The workspace imports it.
 3. Approve or reject each test. Tick **Send to Xray**, or **Approve selected** for the tests you ticked. On the Epic, expand **Import a suite file** when the suite was written to a different path.
 4. Expand **Creator runs** for this workspace’s suites. **Export for Importer** writes `importer-payload.json` for the approved and marked tests.

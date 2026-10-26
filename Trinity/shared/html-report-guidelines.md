@@ -20,9 +20,9 @@ Canonical rules for **The Reviewer**, **The Creator**, and any future agent-buil
 | **A — Document** | Narrative review, test suite catalog, readiness handoff | Single self-contained `.html` **or** portable folder with one HTML + inline CSS | Optional light JS (e.g. decision export). Tiering via native `<details>`. |
 | **B — Interactive facet** | Tables, triage, analytics over many rows | **Portable folder** (required): `index.html`, `assets/styles.css`, `assets/app.js`, generated `data/report-data.js` | **Combinable AND filters**; facet counts **update** when selection changes (faceted search). |
 
-**The Reviewer** per-epic `review-report.html` is **Profile A** (renderer: `The Reviewer/scripts/render_report.py`, tier spec in `The Reviewer/reference.md`).
+**The Reviewer** per-epic `review-report.html` is **Profile A** (renderer: `Trinity/reviewer/scripts/render_report.py`, tier spec in `Trinity/reviewer/reference.md`).
 
-**The Reviewer** multi-Epic **`portfolio/`** bundle (≥2 epics in one run) is **Profile B** (builder: `The Reviewer/scripts/build_portfolio_report.py`, template: `The Reviewer/portfolio-report-template/`). Open `portfolio/index.html`; zip the whole `portfolio/` folder to share. Epic report links inside the portfolio use **relative** paths (`epics/{KEY}/review-report.html`). **Creator handoff:** toggles + exported `creator-handoff.json` (JQL + Jira search URL) for downstream test generation.
+**The Reviewer** multi-Epic **`portfolio/`** bundle (≥2 epics in one run) is **Profile B** (builder: `Trinity/reviewer/scripts/build_portfolio_report.py`, template: `Trinity/reviewer/portfolio-report-template/`). Open `portfolio/index.html`; zip the whole `portfolio/` folder to share. Epic report links inside the portfolio use **relative** paths (`epics/{KEY}/review-report.html`). **Creator handoff:** toggles + exported `creator-handoff.json` (JQL + Jira search URL) for downstream test generation.
 
 **Creator execution / bug / triage reports** (e.g. TC-6504) are **Profile B** unless explicitly documented otherwise.
 
@@ -120,6 +120,6 @@ Each shareable folder includes a **README.md** with: open instructions, regenera
 
 ## Related docs
 
-- The Reviewer HTML tier spec: [`The Reviewer/reference.md`](../The%20Reviewer/reference.md) (§ HTML report)
-- TC-6504 example: [`Creator/runs/TC-6504/report/README.md`](../Creator/runs/TC-6504/report/README.md)
-- Creator runs hub: [`Creator/README.md`](../Creator/README.md)
+- The Reviewer HTML tier spec: [`../reviewer/reference.md`](../reviewer/reference.md) (§ HTML report)
+- TC-6504 example: [`../creator/runs/TC-6504/report/README.md`](../creator/runs/TC-6504/report/README.md)
+- Creator runs hub: [`../creator/README.md`](../creator/README.md)

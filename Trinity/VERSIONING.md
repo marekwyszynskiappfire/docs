@@ -8,13 +8,13 @@ How we version the **operator distribution** (skills + Studio + shared scripts) 
 
 | Artifact | Location |
 |----------|----------|
-| **Canonical version** | [`VERSION`](VERSION) — one line, e.g. `0.2.0` |
+| **Canonical version** | [`VERSION`](VERSION) — one line, e.g. `0.3.0` |
 | **Studio API** | `GET /api/health` → `trinity_version`, `studio_version` (same value) |
 | **Telemetry** | `trinity_version` on each event envelope |
 | **Override** | `TRINITY_VERSION` in env (CI, local experiments only) |
 | **Git revision (optional)** | `TRINITY_GIT_REVISION` in env → health `git_revision` |
 
-**Release tags (Git):** `trinity-v<VERSION>` on `main` when a pilot or internal release is cut, e.g. `trinity-v0.2.0`.
+**Release tags (Git):** `trinity-v<VERSION>` on `main` when a pilot or internal release is cut, e.g. `trinity-v0.3.0`.
 
 ```bash
 git tag -a "trinity-v$(cat Trinity/VERSION)" -m "Trinity $(cat Trinity/VERSION)"

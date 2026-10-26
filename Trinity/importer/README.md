@@ -10,7 +10,7 @@ Approved Creator exports → Xray on **production** or **sandbox** Jira.
 2. Open **Importer** in Studio (`./Trinity/studio/scripts/start.sh` → http://127.0.0.1:5173/importer).
 3. Set **instance**, **mapping**, **Jira project key**, **folder** — see **[GUIDE.md § Getting Started](../GUIDE.md#getting-started)** (canonical project selector).
 4. **Preview import plan** → optional **Execute batch** (production requires typed confirmation).
-5. Or **Copy Cursor prompt** → **trinity-importer** / CLI.
+5. **Run Importer in Cursor**, or **Execute batch**. **Copy Cursor prompt** is the fallback. A production CLI write needs `--confirm-production PRODUCTION`.
 
 Operator depth: [GUIDE.md §6](../GUIDE.md#6-importer-why-tc-by-default-choosing-another-project) · [MANUAL.md §Importer](../MANUAL.md) · [SKILL.md](SKILL.md).
 

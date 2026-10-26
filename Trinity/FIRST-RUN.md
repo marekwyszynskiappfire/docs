@@ -1,6 +1,6 @@
 # Trinity — first run playbook
 
-**Audience:** Someone using Trinity for the **first time**. Follow the phases **in order**. You do not need to read the whole repo — only this page until Phase 2.
+**Audience:** Someone using Trinity for the **first time** on **macOS**. Follow the phases **in order**. You do not need to read the whole repo — only this page until Phase 2.
 
 **New operators (wiki):** [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [FAQ](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754164473/Trinity+FAQ)
 

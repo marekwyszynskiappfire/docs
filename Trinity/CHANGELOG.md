@@ -2,6 +2,16 @@
 
 Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged unless noted.
 
+## Unreleased
+
+- Production Xray credentials no longer stay in the Studio process after a production plan or project list.
+- A second Cursor agent for the same target is rejected while one is queued or running.
+- BigQuery flush runs on a background thread, so a slow ingest does not hold the Studio database during Reviewer, Creator, or Importer requests.
+- A missing Reviewer payload must be acknowledged before Importer execute. A mapping whose Jira site does not match the selected instance cannot execute.
+- The Importer CLI requires `--confirm-production PRODUCTION` before a production write or issue-link delete.
+- Operator docs and Studio empty-state copy use **Run in Cursor** as the primary path. This pilot is macOS.
+- Removed legacy trees: `The Reviewer/`, `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
+
 ## 0.3.0 — 2026-10-21
 
 - Studio launches persisted local Cursor SDK agents for Reviewer, Creator, and
@@ -26,10 +36,6 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 - Repo trimmed to runtime essentials; planning docs gitignored ([`.gitignore`](.gitignore)).
 - Studio: telemetry export, rejection reasons, Importer execute guards, React UI on 8765 when built.
 - Operator docs: FIRST-RUN, MANUAL, ARCHITECTURE; Confluence three-page tree.
-
-## Unreleased
-
-- Removed legacy trees: `The Reviewer/`, `The Creator/`, `TestCaseCreator/`, root `Creator/` (skills live under `Trinity/` only).
 
 ## Pre-0.2.0
 

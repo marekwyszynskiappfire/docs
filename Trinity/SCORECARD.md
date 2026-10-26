@@ -27,7 +27,7 @@ After Xray execute: workspace → **Record Xray keys** (or `POST /api/importer/r
 
 | Field | Value |
 |-------|--------|
-| **Trinity version** | e.g. `0.2.0` |
+| **Trinity version** | e.g. `0.3.0` |
 | **Use case** | |
 | **Product / solution** | Trinity (Reviewer + Creator + Studio + Importer); skills `trinity-reviewer`, `trinity-creator`, `trinity-importer` |
 | **Who used it** | Operator + reviewers (names) |

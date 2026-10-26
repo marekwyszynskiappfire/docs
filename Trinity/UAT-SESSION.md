@@ -12,7 +12,7 @@
 | Item | Value |
 |------|--------|
 | Date / operator | |
-| Machine | macOS / Windows |
+| Machine | macOS |
 | Trinity version | `cat Trinity/VERSION` |
 | Sandbox site | `appfire-sandbox-774.atlassian.net` (or org default) |
 | Epic key for Part C | |

@@ -13,7 +13,7 @@ Run once on a new machine before a portfolio review.
    `./Trinity/studio/scripts/start.sh` (installs Python deps from `Trinity/studio/requirements.txt`, including **jsonschema**).  
    UI http://127.0.0.1:5173 · `curl -sf http://127.0.0.1:8765/api/health` (check `features` includes `importer_execute`).  
    Smoke: open **Personas** and **Reviewer configs**; save should write under `Trinity/personas/` and `Trinity/reviewer/config/runs/`.  
-   Importer UI: [`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray) (project key selector, mapping, folder).
+   Importer UI: [`GUIDE.md` §6.3](GUIDE.md#63-studio-project-selector-detailed) (project key selector, mapping, folder).
 6. **Import** —  
    `./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-that-directly-contains-EPIC-KEY>` after a Reviewer portfolio scan (runs are gitignored).
 7. **Pipeline** — skim [`PIPELINE.md`](PIPELINE.md); hands-on walkthrough: [`TESTING.md`](TESTING.md).

@@ -135,7 +135,7 @@ python3 Trinity/importer/scripts/xray_graphql_import.py \\
   --batch {payload_line} \\
   --draft-id TC-001 \\
   --folder "{target.get("folder_path")}" \\
-  --execute
+  {"--confirm-production PRODUCTION \\\n  " if inst.get("risk_tier") == "production" else ""}--execute
 ```
 
 4. Link requirements via Jira unless `skip_requirement_link` is true.

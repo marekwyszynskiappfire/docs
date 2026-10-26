@@ -68,6 +68,18 @@ def normalize_folder_path(path: str) -> str:
     return raw.rstrip("/") or "/"
 
 
+def production_confirmation_error(config: dict[str, Any], confirm: str | None) -> str | None:
+    """Production mappings require an explicit confirmation before any write."""
+    if str(config.get("environment") or "").strip() != "production":
+        return None
+    if (confirm or "").strip() == "PRODUCTION":
+        return None
+    return (
+        "Production mapping: pass --confirm-production PRODUCTION before "
+        "--execute or --delete-issue-link."
+    )
+
+
 def credentials_status() -> dict[str, bool]:
     return {
         "xray_client_id": bool(os.environ.get("XRAY_CLIENT_ID")),
@@ -653,6 +665,11 @@ def parse_args() -> argparse.Namespace:
         "--delete-issue-link",
         help="Delete a Jira issue link by id (requires JIRA_EMAIL + JIRA_API_TOKEN)",
     )
+    parser.add_argument(
+        "--confirm-production",
+        default="",
+        help="Type PRODUCTION when the mapping environment is production",
+    )
     return parser.parse_args()
 
 
@@ -663,6 +680,11 @@ def main() -> int:
     started = datetime.now(timezone.utc).isoformat()
 
     config = load_config(args.config.resolve())
+    if args.delete_issue_link or args.execute:
+        confirm_error = production_confirmation_error(config, args.confirm_production)
+        if confirm_error:
+            print(f"Error: {confirm_error}", file=sys.stderr)
+            return 2
     if args.delete_issue_link:
         try:
             jira_delete_issue_link(config, args.delete_issue_link)

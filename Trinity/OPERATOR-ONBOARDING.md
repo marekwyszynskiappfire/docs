@@ -2,7 +2,7 @@
 
 **Wiki:** [Trinity — Operator onboarding](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3755311111/Trinity+Operator+onboarding) · **Hub:** [Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here)
 
-**Goal:** A new operator with **Jira + Xray access** can complete **demo → real Epics → Xray import** without a buddy, using this doc, the [FAQ](FAQ.md), and **Studio-generated prompts only**.
+**Goal:** A new operator with **Jira + Xray access** can complete **demo → real Epics → Xray import** without a buddy, using this doc, the [FAQ](FAQ.md), and Studio **Run in Cursor**. Prompts are server-owned. **Copy prompt** is the fallback. This pilot is **macOS**.
 
 **Time budget:** ~90 minutes first time (MCP auth and first portfolio scan dominate). Repeat runs: ~30–45 minutes per Epic batch.
 
@@ -11,7 +11,7 @@
 | Companion | Use when |
 |-----------|----------|
 | [FAQ](FAQ.md) | Quick answers — read before asking in chat |
-| [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md) | Every Studio **Copy prompt** |
+| [PROMPTS-AND-INPUTS.md](PROMPTS-AND-INPUTS.md) | **Run in Cursor** and the copy-prompt fallback |
 | [CURSOR-MCP-SETUP.md](CURSOR-MCP-SETUP.md) | MCP decision tree + `mcp.json` |
 | [PREFLIGHT.md](PREFLIGHT.md) | Short smoke list |
 | [MANUAL.md](MANUAL.md) | Deep reference in Studio |
@@ -77,11 +77,11 @@ Do this **before** MCP so you know where buttons live ([FIRST-RUN.md](FIRST-RUN.
 ./Trinity/studio/scripts/seed-demo.sh
 ```
 
-Dashboard → **DEMO-4500** → Creator → import `Trinity/creator/samples/demo-story.suite.json` → Importer preview.
+**Open workspace** on **DEMO-4500**. Optional recovery: **More → Creator** to import `Trinity/creator/samples/demo-story.suite.json`, then **More → Importer** to read the plan.
 
-**Gate 4:** Skim unit · import Creator batch · read Importer plan (execute not required).
+**Gate 4:** Skim the workspace · import the Creator sample if you use the recovery path · read the Importer plan (execute not required).
 
-Nav: `Dashboard → Run → Unit → Creator → Importer → Statistics`
+Nav: **Workspace**, **Personas**, **Statistics**. Dashboard, Creator, and Importer are under **More**.
 
 ---
 

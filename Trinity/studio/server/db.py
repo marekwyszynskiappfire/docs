@@ -26,9 +26,11 @@ def get_db_path() -> Path:
 def connect() -> sqlite3.Connection:
     path = get_db_path()
     path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path)
+    conn = sqlite3.connect(path, timeout=5)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
+    conn.execute("PRAGMA journal_mode = WAL")
+    conn.execute("PRAGMA busy_timeout = 5000")
     return conn
 
 
@@ -221,20 +223,6 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
               ON cursor_agent_run(pipeline_run_id, created_at DESC);
             """
         )
-    # The SDK runs inside the API process. A process restart cannot preserve a
-    # live local bridge, so never leave an orphan looking active.
-    now = utc_now()
-    conn.execute(
-        """
-        UPDATE cursor_agent_run
-        SET status = 'interrupted',
-            error = COALESCE(error, 'Studio restarted while this Cursor agent was running.'),
-            finished_at = COALESCE(finished_at, ?),
-            updated_at = ?
-        WHERE status IN ('queued', 'running')
-        """,
-        (now, now),
-    )
     persona_revision = conn.execute(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='persona_revision'"
     ).fetchone()
@@ -250,6 +238,27 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
             );
             CREATE INDEX IF NOT EXISTS idx_persona_revision_file ON persona_revision(filename, id DESC);
             """
+        )
+
+
+def recover_orphan_agent_runs() -> None:
+    """Mark queued or running agents interrupted. Call once at process start.
+
+    The SDK bridge lives in this process. Import paths also call init_db and
+    must not interrupt an agent that is still running.
+    """
+    now = utc_now()
+    with db() as conn:
+        conn.execute(
+            """
+            UPDATE cursor_agent_run
+            SET status = 'interrupted',
+                error = COALESCE(error, 'Studio restarted while this Cursor agent was running.'),
+                finished_at = COALESCE(finished_at, ?),
+                updated_at = ?
+            WHERE status IN ('queued', 'running')
+            """,
+            (now, now),
         )
 
 

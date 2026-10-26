@@ -318,9 +318,8 @@ def record_event(
 
             persist_pipeline_run_report(conn, pipeline_run_id)
         except Exception:
-            _try_flush_pending(conn, max_rows=200)
-    else:
-        _try_flush_pending(conn, max_rows=200)
+            # Report rebuild is best-effort. The outbox row is already stored.
+            pass
     return envelope
 
 
@@ -389,6 +388,9 @@ def flush_outbox(conn: Any, limit: int = 200) -> dict[str, Any]:
         events.append(event)
         row_ids.append(row["id"])
 
+    # Release any write lock before the network call. A slow ingest must not
+    # block Reviewer, Creator, or Importer writes.
+    conn.commit()
     body = json.dumps({"events": events}).encode("utf-8")
     headers = {"Content-Type": "application/json"}
     api_key = _telemetry_api_key()

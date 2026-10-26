@@ -4,7 +4,7 @@
 
 **Pilot feedback window:** **15 Oct – 29 Oct 2026** — report friction via [Trinity pilot feedback](https://github.com/marekwyszynskiappfire/docs/issues/new?template=trinity-pilot-feedback.yml) (label `trinity-support`) or your program channel. Share pack for leads: [PILOT-SHARE.md](PILOT-SHARE.md).
 
-**Version:** `Trinity/VERSION` (currently **0.2.x**). You can run **real work** on **onboarded product lines**; org-wide GA is [PATH-TO-1.0.md](PATH-TO-1.0.md).
+**Version:** `Trinity/VERSION` (currently **0.3.0**). You can run **real work** on **onboarded product lines**; org-wide GA is [PATH-TO-1.0.md](PATH-TO-1.0.md). This pilot runs on **macOS**.
 
 ---
 
@@ -30,7 +30,7 @@ You stay in control: approve in Studio; type **PRODUCTION** before live Xray exe
 | **Checklist** | [OPERATOR-SETUP.md](OPERATOR-SETUP.md) | reference |
 | **UAT with QA lead** | [UAT-SESSION.md](UAT-SESSION.md) + [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md) | ~90 min |
 | **Doc review (Sam)** | [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md) | maintainers |
-| **New operator, one document** | [MANUAL.md](MANUAL.md) — checkout, samples, credentials, the run, BigQuery | first day |
+| **Reference after the first Epic** | [MANUAL.md](MANUAL.md) — checkout, samples, credentials, the run, BigQuery | after FIRST-RUN |
 
 ---
 
@@ -57,7 +57,7 @@ All pages below sync from git via `python3 Trinity/scripts/sync_confluence_from_
 
 ---
 
-## Clone and five commands (first-day order)
+## Clone and first commands
 
 ```bash
 git clone https://github.com/marekwyszynskiappfire/docs.git DOCS && cd DOCS
@@ -65,10 +65,10 @@ git clone https://github.com/marekwyszynskiappfire/docs.git DOCS && cd DOCS
 ./Trinity/studio/scripts/seed-demo.sh      # Phase 1 — demo, no Jira
 ./Trinity/scripts/install-trinity-skills.sh # Phase 2 — then MCP per CURSOR-MCP-SETUP
 ./Trinity/scripts/pilot-preflight.sh
-./Trinity/studio/scripts/import-run.sh Trinity/reviewer/runs/<folder-with-epic-keys>
+# import-run.sh is Phase 3 fallback only — not part of the first five commands
 ```
 
-A finished Reviewer opens the workspace itself. `import-run.sh` is the fallback when that URL was not printed. Narrative: [FIRST-RUN.md](FIRST-RUN.md). Doc review (persona Sam): [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md).
+A finished Reviewer opens the workspace itself. `import-run.sh` is the fallback when that URL was not printed. Do not run it before a Reviewer folder exists. Narrative: [FIRST-RUN.md](FIRST-RUN.md). Doc review (persona Sam): [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md).
 
 ---
 

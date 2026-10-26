@@ -29,9 +29,11 @@ def assess_reviewer_gate(payload: dict[str, Any] | None) -> dict[str, Any]:
     if not payload:
         return {
             "linked": False,
-            "requires_acknowledgement": False,
-            "level": "none",
-            "messages": [],
+            "requires_acknowledgement": True,
+            "level": "warn",
+            "messages": [
+                "No Reviewer payload is linked. Acknowledge this before execute."
+            ],
             "gate_status": None,
             "readiness_value": None,
         }

@@ -8,4 +8,4 @@
 | `merge_jira_search_pages.py` | Merge Jira search page JSON into `issues.json` for export |
 | `sample_golden_references.py` | **CR-GOLDEN-01** — rank golden TCs by Epic theme; take up to 10 similar; random fill if &lt;5 |
 
-Copy and adapt from [`The Reviewer/scripts/render_report.py`](../../../../The%20Reviewer/scripts/render_report.py) when starting Phase 2.
+Copy and adapt from [`../../reviewer/scripts/render_report.py`](../../reviewer/scripts/render_report.py) when extending the suite renderer.

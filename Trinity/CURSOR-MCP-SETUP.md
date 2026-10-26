@@ -7,6 +7,8 @@
 
 Trinity **Reviewer gather** uses Atlassian MCP (Jira + Confluence). **Creator** and **Importer** use repo files and optional Jira REST from Studio `.env`; they do not require extra MCP servers beyond what you already configured.
 
+**Run in Cursor** is separate from MCP. Put `CURSOR_API_KEY` in `Trinity/studio/.env` (see [`studio/.env.example`](studio/.env.example) and [FIRST-RUN.md](FIRST-RUN.md)). MCP can be finished and **Run in Cursor** still fails until that key is set and Studio is restarted.
+
 **Stuck?** See [FAQ — MCP](FAQ.md#mcp-atlassian).
 
 ---

@@ -272,7 +272,7 @@ Run the Reviewer in Cursor. It writes one payload per Epic, starts Studio, and o
 | Stage | What you do |
 |-------|-------------|
 | Assess testability | Read the verdict and blocker questions. Approve the review when the verdict is right. |
-| Draft tests | Copy the Creator prompt into Cursor. Studio imports `suite-payload.json` when the file appears. |
+| Draft tests | Prepare the Creator handoff, then **Run in Cursor**. Studio imports `suite-payload.json` when the file appears. **Copy prompt** is the fallback. |
 | Review tests | Approve or reject each test in the Epic accordion. A rejection needs a reason. |
 | Import to Xray | Mark the approved tests, preview the plan on the same page, then write. Production asks you to type PRODUCTION. |
 
@@ -745,6 +745,6 @@ Pilot evidence: capture metrics export from Studio and attach to your program’
 
 ## 16. Version and publishing
 
-This manual describes Trinity release **0.2.x** operator flows (see [`VERSION`](VERSION), [`VERSIONING.md`](VERSIONING.md)) (Jira epic comments MVP, Importer execute guards, React UI). When behaviour changes, update this file and [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md), then re-publish [Operator manual (full)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual+full) under the [QA CoE Trinity tree](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide).
+This manual describes Trinity release **0.3.0** operator flows (see [`VERSION`](VERSION), [`VERSIONING.md`](VERSIONING.md)): one-click **Run in Cursor** agents, Importer execute guards, and the React UI. When behaviour changes, update this file and [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md), then re-publish [Operator manual (full)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual+full) under the [QA CoE Trinity tree](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide).
 
 Short sectional pages remain in [`confluence/`](confluence/) for wiki navigation; **this document is the canonical long-form manual.**

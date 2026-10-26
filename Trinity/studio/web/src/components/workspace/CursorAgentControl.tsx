@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api, type CursorAgentRun } from "../../api";
 
 type Props = {
@@ -9,6 +9,7 @@ type Props = {
 };
 
 const ACTIVE = new Set(["queued", "running"]);
+const MAX_POLL_FAILURES = 8;
 
 export default function CursorAgentControl({
   label = "Run in Cursor",
@@ -19,26 +20,43 @@ export default function CursorAgentControl({
   const [run, setRun] = useState<CursorAgentRun | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [pollFailures, setPollFailures] = useState(0);
+  const onFinishedRef = useRef(onFinished);
+  onFinishedRef.current = onFinished;
 
   useEffect(() => {
     if (!run || !ACTIVE.has(run.status)) return;
+    if (pollFailures >= MAX_POLL_FAILURES) return;
+    const delay = Math.min(1500 * 2 ** pollFailures, 15000);
     const timer = window.setTimeout(() => {
       api
         .cursorAgentRun(run.id)
         .then((next) => {
+          setPollFailures(0);
+          setError("");
           setRun(next);
-          if (!ACTIVE.has(next.status)) onFinished?.(next);
+          if (!ACTIVE.has(next.status)) onFinishedRef.current?.(next);
         })
-        .catch((reason) => setError(String(reason)));
-    }, 1500);
+        .catch((reason) => {
+          setPollFailures((count) => count + 1);
+          setError(
+            pollFailures + 1 >= MAX_POLL_FAILURES
+              ? `${String(reason).replace(/^Error:\s*/, "")} Status checks stopped. Use Run again after the agent finishes, or refresh the page.`
+              : "Reconnecting to the Cursor agent…"
+          );
+        });
+    }, delay);
     return () => window.clearTimeout(timer);
-  }, [run, onFinished]);
+  }, [run, pollFailures]);
 
   const start = async () => {
     setBusy(true);
     setError("");
+    setPollFailures(0);
     try {
-      setRun(await launch());
+      const next = await launch();
+      setRun(next);
+      if (!ACTIVE.has(next.status)) onFinishedRef.current?.(next);
     } catch (reason) {
       setError(String(reason).replace(/^Error:\s*/, ""));
     } finally {
@@ -51,7 +69,9 @@ export default function CursorAgentControl({
     setBusy(true);
     setError("");
     try {
-      setRun(await api.cancelCursorAgent(run.id));
+      const next = await api.cancelCursorAgent(run.id);
+      setRun(next);
+      if (!ACTIVE.has(next.status)) onFinishedRef.current?.(next);
     } catch (reason) {
       setError(String(reason).replace(/^Error:\s*/, ""));
     } finally {

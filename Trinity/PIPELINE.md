@@ -41,7 +41,7 @@ A finished Reviewer opens the workspace. `import-run.sh` is the fallback, then *
 
 ## 3. Human QA on reviews
 
-The workspace is the normal path: read the verdict, approve the review, copy the Creator prompt.
+The workspace is the normal path: read the verdict, approve the review, prepare the Creator handoff, then **Run in Cursor**.
 
 - **Run page** — toggle **In Creator** per epic; bulk exclude `not_fit`; copy **Creator JQL** and handoff JSON.
 - **Unit page** — edit `review-payload.json` fields, QA workflow, Jira epic comment. **Save draft** before a comment preview.
@@ -53,7 +53,7 @@ The workspace is the normal path: read the verdict, approve the review, copy the
 2. The local **trinity-creator** agent writes **3–5 e2e journey** scenarios per Epic (CR-EPIC-01); golden style from `Trinity/creator/config/<product>.json` → `golden_root`.
 3. The workspace imports `suite-payload.json` (**one file per Epic** — no merged portfolio file). Multi-epic programs write under `Trinity/creator/artifacts/{portfolio_id}/{EPIC_KEY}/suite-payload.json`; see [`creator/artifacts/README.md`](creator/artifacts/README.md). **More → Creator** is the fallback.
 4. Operator: edit → approve or reject; mark **Send to Xray**. **Approve selected** covers the tests you ticked. On the workspace, **Creator runs** → **Export for Importer** writes `studio/data/exports/creator/{run}/importer-payload.json`.
-5. On the workspace: instance, mapping, **[project key override](GUIDE.md#6-importer-studio--xray)** (default TC), folder → **Preview import plan** → **Write to Xray**. Several Epics can be previewed together; the write stays one Epic. The full Importer page remains for a Cursor prompt ([`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)).
+5. On the workspace: instance, mapping, **[project key override](GUIDE.md#63-studio-project-selector-detailed)** (default TC), folder → **Preview import plan** → **Write to Xray**. Several Epics can be previewed together; the write stays one Epic. The full Importer page is the recovery view, including **Run Importer in Cursor** ([`GUIDE.md` §6.3](GUIDE.md#63-studio-project-selector-detailed)).
 
 Each draft includes `automation_fit`, `automation_blockers`, and `persona_notes` (QA / architect / automation).
 

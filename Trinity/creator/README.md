@@ -13,8 +13,7 @@ Test suite generation skill for the Trinity pipeline: **Reviewer** → **Creator
 | Priority scoring | [`../shared/priority_score.py`](../shared/priority_score.py) — CR-SCORE-01; [`scripts/score_priority.py`](scripts/score_priority.py) |
 | Studio import | [`samples/demo-story.suite.json`](samples/demo-story.suite.json) · multi-epic: [`artifacts/README.md`](artifacts/README.md) |
 | Portfolio programs | [`config/portfolios/`](config/portfolios/) (e.g. Q4 backlog) |
-| Rule port | [`PORT-CHECKLIST.md`](PORT-CHECKLIST.md) (fill during Phase 1) |
-| Planning hub | [`../../The Creator/ACTION-PLAN.md`](../../The%20Creator/ACTION-PLAN.md) |
+| Contracts | [`reference.md`](reference.md), [`../PATH-TO-1.0.md`](../PATH-TO-1.0.md) |
 | Decisions | [`../reviewer/DECISIONS.md`](../reviewer/DECISIONS.md) § Creator Part 2 |
 
 ## Quick demo (Studio)
@@ -50,5 +49,4 @@ creator/
 
 ## Legacy paths
 
-- Root [`Creator/README.md`](../../Creator/README.md) — pointer after CR0 cutover.
-- Input skills and persona review: [`../../The Creator/`](../../The%20Creator/).
+The old `The Creator/` and root `Creator/` trees were removed. Skills, samples, and reports live in this folder.

@@ -125,7 +125,7 @@ After preparing the Creator handoff on the workspace:
 
 ## 4. Importer (Studio)
 
-Full steps: **[`GUIDE.md` §6](GUIDE.md#6-importer-studio--xray)** (instance, mapping, **project key override**, folder, `project.id` resolution, production confirm, Execute batch).
+Full steps: **[`GUIDE.md` §6.3](GUIDE.md#63-studio-project-selector-detailed)** (instance, mapping, **project key override**, folder, `project.id` resolution, production confirm, Execute batch).
 
 Quick check:
 

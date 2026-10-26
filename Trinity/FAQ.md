@@ -63,7 +63,7 @@ Jira read on Epics; Confluence read if Epics link docs; Xray permission to **cre
 
 ### What is Cursor’s role?
 
-**Agent mode** runs long tasks: Jira/Confluence gather, writing `review-payload.json`, generating tests, calling Xray APIs. Studio **copies the prompts** — you paste into chat.
+**Agent mode** runs long tasks: Jira/Confluence gather, writing `review-payload.json`, generating tests, calling Xray APIs. Studio **launches those agents** with **Run in Cursor** when `CURSOR_API_KEY` is set. **Copy prompt** is the fallback when that launch is unavailable.
 
 ### Do I write my own prompts?
 
