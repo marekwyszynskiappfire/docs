@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, CoverageProfile, CoverageProfileId, CreatorTestRow, WorkspaceEpic } from "../../api";
 import UnitReviewPanel from "../UnitReviewPanel";
+import CursorAgentControl from "./CursorAgentControl";
 import Term from "./Term";
 
 const VERDICT_LABEL: Record<WorkspaceEpic["verdict"], string> = {
@@ -78,6 +79,7 @@ export default function EpicAccordion({
             onChanged={onChanged}
             onError={onError}
           />
+          <EpicGenerate runId={runId} epic={epic} onChanged={onChanged} />
           {epic.creator_handoff && <HandoffLine epic={epic} />}
           {(epic.creator_handoff || epic.creator_run_id) && (
             <SuiteFileImport epic={epic} onChanged={onChanged} onError={onError} />
@@ -202,6 +204,55 @@ function EpicDepth({
         Using {effective.label}: {effective.summary}
       </span>
     </label>
+  );
+}
+
+function EpicGenerate({
+  runId,
+  epic,
+  onChanged,
+}: {
+  runId: string;
+  epic: WorkspaceEpic;
+  onChanged: () => void;
+}) {
+  const blocked = epic.verdict === "not_testable_yet";
+  const ready = epic.approved && !blocked;
+  const depth = epic.effective_coverage_profile;
+  const label = epic.tests.total > 0 ? "Generate tests again" : "Generate tests";
+  return (
+    <div className="ws-generate">
+      {ready ? (
+        <CursorAgentControl
+          label={label}
+          attach={
+            epic.creator_handoff
+              ? { pipelineRunId: runId, handoffId: epic.creator_handoff.id }
+              : undefined
+          }
+          launch={async () => {
+            const handoff = await api.prepareCreator(runId, epic.unit_id);
+            return api.launchHandoffAgent(runId, handoff.id);
+          }}
+          onFinished={() => onChanged()}
+        />
+      ) : (
+        <div className="btn-row">
+          <button type="button" disabled>
+            Generate tests
+          </button>
+          <span className="muted">
+            {blocked ? "This Epic is not testable yet." : "Approve this review first."}
+          </span>
+        </div>
+      )}
+      {ready && (
+        <p className="muted">
+          Uses {depth.label} ({depth.test_count_min}–{depth.test_count_max} journeys) for this Epic
+          only.
+        </p>
+      )}
+    </div>
   );
 }
 

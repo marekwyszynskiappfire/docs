@@ -813,6 +813,12 @@ select {
   font: inherit;
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  padding: 0;
+}
+
 textarea {
   min-height: 4rem;
   resize: vertical;
@@ -1662,6 +1668,10 @@ textarea.persona-editor {
   margin: 0.75rem 0;
 }
 
+.ws-generate {
+  margin: 0 0 0.75rem;
+}
+
 .ws-epic-depth select {
   max-width: 28rem;
 }
@@ -1674,10 +1684,12 @@ textarea.persona-editor {
 
 .ws-test-line .ws-accordion-trigger {
   flex: 1;
+  min-width: 0;
 }
 
 .ws-select {
   margin-left: 0.75rem;
+  flex: none;
 }
 
 .ws-next-eyebrow {
@@ -1744,10 +1756,12 @@ button.ws-accordion-trigger:focus-visible {
 .ws-epic-key {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .ws-epic-summary {
   flex: 1;
+  min-width: 0;
 }
 
 .ws-badge {

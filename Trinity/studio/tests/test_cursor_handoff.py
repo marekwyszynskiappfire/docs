@@ -182,6 +182,28 @@ def test_invalid_suite_then_fixed_is_imported(client, monkeypatch, tmp_path):
     assert good["status"] == "imported"
 
 
+def test_existing_suite_waits_for_a_new_file(client, monkeypatch, tmp_path):
+    _use_repo(monkeypatch, tmp_path)
+    _path, imported = _publish(tmp_path)
+    run_id = imported["pipeline_run_id"]
+    unit_id = f"{run_id}:DEMO-4500"
+    client.post(f"/api/units/{unit_id}/approve")
+    _write_suite(tmp_path, "DEMO-4500", [{"draft_id": "TC-OLD", "title": "Already on disk"}])
+
+    prepared = client.post(f"/api/workspace/{run_id}/units/{unit_id}/prepare-creator")
+    assert prepared.status_code == 200
+    handoff_id = prepared.json()["id"]
+    held = client.post(f"/api/workspace/{run_id}/handoffs/{handoff_id}/check").json()
+    assert held["status"] == "awaiting_cursor"
+
+    _write_suite(tmp_path, "DEMO-4500", [{"draft_id": "TC-NEW", "title": "Replacement"}])
+    done = client.post(f"/api/workspace/{run_id}/handoffs/{handoff_id}/check").json()
+    assert done["status"] == "imported"
+    body = client.get(f"/api/workspace/{run_id}").json()
+    assert body["epics"][0]["tests"]["total"] == 1
+    assert body["epics"][0]["creator_run_id"]
+
+
 def test_changed_suite_after_import_needs_confirmation(client, monkeypatch, tmp_path):
     _use_repo(monkeypatch, tmp_path)
     _path, imported = _publish(tmp_path)

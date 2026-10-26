@@ -461,13 +461,19 @@ def prepare_creator_handoff(conn: Any, unit_id: str) -> dict[str, Any]:
             raise KeyError(handoff_id)
         return handoff
     prompt, profile_id = _creator_prompt_text(conn, unit)
+    relative = suite_path_for(jira_key)
+    baseline: dict[str, str] = {}
+    existing_suite = resolve_repo_path(relative)
+    if existing_suite.is_file():
+        baseline[relative] = file_sha256(existing_suite)
     return create_handoff(
         conn,
         pipeline_run_id,
         stage="creator_draft",
         epic_key=jira_key,
         prompt_text=prompt,
-        expected_paths=[suite_path_for(jira_key)],
+        expected_paths=[relative],
+        expected_hashes=baseline or None,
         coverage_profile=profile_id,
     )
 
@@ -601,6 +607,8 @@ def ingest_creator_output(
         return save(status, error)
     digest = file_sha256(path)
     known = current["expected_hashes"].get(relative)
+    if current["status"] == "awaiting_cursor" and known and known == digest:
+        return save("awaiting_cursor", None)
     if current["status"] in {"imported", "stale_output"} and known == digest:
         return save("imported", None)
     if current["status"] in {"imported", "stale_output"} and not accept_changes:
