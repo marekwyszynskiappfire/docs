@@ -19,6 +19,7 @@ Related: [OPERATOR-ONBOARDING.md](OPERATOR-ONBOARDING.md) · [FIRST-RUN.md](FIRS
 | **Importer operator lens** | [`personas/importer-xray-operator.md`](personas/importer-xray-operator.md) |
 | **Whole-pipeline “who does what”** | [`MANUAL.md`](MANUAL.md) §11 |
 | **Reviewer report sections by role** | [`reviewer/MANUAL.md`](reviewer/MANUAL.md) §11 |
+
 **P2 (QA lead)** usually owns golden corpus choice (`creator/config`) and mapping JSON. **P5 (maintainer)** owns personas, checklist, and schema changes.
 
 ---
