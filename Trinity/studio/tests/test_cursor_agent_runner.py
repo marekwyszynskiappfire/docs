@@ -11,6 +11,26 @@ class _NoStartThread:
         pass
 
 
+def test_activity_line_names_the_step():
+    import cursor_agent_runner
+
+    class Message:
+        type = "tool_call"
+        name = "getJiraIssue"
+
+    class Event:
+        sdk_message = Message()
+        interaction_update = None
+
+    assert cursor_agent_runner.activity_line(Event()) == "Reading Jira"
+
+    class Thinking:
+        type = "thinking"
+
+    Event.sdk_message = Thinking()
+    assert cursor_agent_runner.activity_line(Event()) == "Thinking through the requirement"
+
+
 def test_status_requires_cursor_api_key(client, monkeypatch):
     monkeypatch.delenv("CURSOR_API_KEY", raising=False)
     response = client.get("/api/cursor-agents/status")

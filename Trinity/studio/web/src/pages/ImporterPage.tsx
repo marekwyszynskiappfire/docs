@@ -72,8 +72,8 @@ export default function ImporterPage() {
         if (inst.instances.length) {
           setJiraInstanceId((prev) => {
             if (prev && inst.instances.some((i) => i.id === prev)) return prev;
-            const sandbox = inst.instances.find((i) => i.risk_tier !== "production");
-            return (sandbox ?? inst.instances[0]).id;
+            const production = inst.instances.find((i) => i.risk_tier === "production");
+            return (production ?? inst.instances[0]).id;
           });
         }
       })

@@ -206,6 +206,7 @@ CREATE TABLE IF NOT EXISTS cursor_agent_run (
   model TEXT,
   final_text TEXT,
   error TEXT,
+  activity TEXT,
   started_at TEXT,
   finished_at TEXT,
   created_at TEXT NOT NULL,

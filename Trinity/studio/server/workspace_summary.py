@@ -199,7 +199,7 @@ def _action_for(epic: dict[str, Any], workspace_path: str) -> dict[str, Any]:
             "title": f"Review {pending} test case{'s' if pending != 1 else ''} for {key}",
             "reason": "Approve or reject each drafted test. Only approved tests can go to Xray.",
             "completion_signal": f"No pending tests remain for {key}.",
-            "primary": {"kind": "review_tests", "label": f"Open {key} tests"},
+            "primary": {"kind": "review_tests", "label": "Review the tests"},
         }
     if stage == "import":
         if epic["tests"]["marked"] == 0:
@@ -208,7 +208,7 @@ def _action_for(epic: dict[str, Any], workspace_path: str) -> dict[str, Any]:
                 "title": f"Choose which approved tests for {key} go to Xray",
                 "reason": "Tick Send to Xray on each approved test you want imported.",
                 "completion_signal": "At least one test is chosen.",
-                "primary": {"kind": "review_tests", "label": f"Open {key} tests"},
+                "primary": {"kind": "review_tests", "label": "Review the tests"},
             }
         return {
             **base,

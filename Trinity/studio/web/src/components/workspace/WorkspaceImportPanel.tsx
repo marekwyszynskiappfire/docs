@@ -69,7 +69,7 @@ export default function WorkspaceImportPanel({ epics, focusKey, previewAllKey = 
       .then(([inst, maps]) => {
         setInstances(inst.instances);
         setMappings(maps.mappings);
-        const preferred = inst.instances.find((item) => item.risk_tier !== "production") ?? inst.instances[0];
+        const preferred = inst.instances.find((item) => item.risk_tier === "production") ?? inst.instances[0];
         if (preferred) setJiraInstanceId((current) => current || preferred.id);
       })
       .catch((reason) => setError(String(reason)));

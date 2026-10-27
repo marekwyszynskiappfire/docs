@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import threading
+import time
 import uuid
 from typing import Any
 
@@ -171,6 +172,80 @@ def launch_agent(
     return get_agent_run(run_id)
 
 
+def activity_line(event: Any) -> str | None:
+    """One short sentence for the Studio status line. Empty events stay quiet."""
+    message = getattr(event, "sdk_message", None)
+    if message is not None:
+        kind = getattr(message, "type", "")
+        if kind == "tool_call":
+            return _tool_phrase(str(getattr(message, "name", "") or ""))
+        if kind == "status":
+            return _clip(str(getattr(message, "message", "") or ""))
+        if kind == "task":
+            return _clip(str(getattr(message, "text", "") or ""))
+        if kind == "thinking":
+            return "Thinking through the requirement"
+        if kind == "assistant":
+            return "Writing the result"
+        return None
+    update = getattr(event, "interaction_update", None)
+    if update is not None and getattr(update, "type", "") == "tool-call-started":
+        tool = getattr(update, "tool_call", None) or {}
+        name = ""
+        if isinstance(tool, dict):
+            name = str(tool.get("name") or tool.get("toolName") or "")
+        return _tool_phrase(name) if name else "Using a tool"
+    return None
+
+
+def _tool_phrase(name: str) -> str | None:
+    lowered = name.lower()
+    if not lowered:
+        return None
+    if "confluence" in lowered:
+        return "Reading a Confluence page"
+    if "jira" in lowered or "issue" in lowered:
+        return "Reading Jira"
+    if "figma" in lowered:
+        return "Reading the design"
+    if "grep" in lowered or "search" in lowered:
+        return "Searching the repository"
+    if lowered in {"read", "read_file"} or "read" in lowered:
+        return "Reading a file"
+    if "shell" in lowered or lowered in {"bash", "run_terminal_cmd"}:
+        return "Running a command"
+    readable = name.replace("_", " ").strip()
+    return _clip(f"Using {readable}")
+
+
+def _clip(text: str) -> str | None:
+    cleaned = " ".join(text.split())
+    if not cleaned:
+        return None
+    return cleaned[:160]
+
+
+def _note_activity(run_id: str, line: str, *, last: list[Any], force: bool = False) -> None:
+    """last is [written, pending, monotonic time of the last write]."""
+    last[1] = line
+    if line == last[0]:
+        return
+    now_mono = time.monotonic()
+    if not force and now_mono - float(last[2]) < 1.5:
+        return
+    last[0] = line
+    last[2] = now_mono
+    with db() as conn:
+        conn.execute(
+            """
+            UPDATE cursor_agent_run
+            SET activity = ?, updated_at = ?
+            WHERE id = ? AND status = 'running'
+            """,
+            (line, utc_now(), run_id),
+        )
+
+
 def _claim_queued_run(run_id: str) -> bool:
     now = utc_now()
     with db() as conn:
@@ -221,6 +296,16 @@ def _worker(run_id: str) -> None:
                 """,
                 (agent.agent_id, sdk_run.run_id, utc_now(), run_id),
             )
+        recent: list[Any] = ["", "", 0.0]
+        for event in sdk_run.events():
+            try:
+                line = activity_line(event)
+            except Exception:
+                line = None
+            if line:
+                _note_activity(run_id, line, last=recent)
+        if recent[1] and recent[1] != recent[0]:
+            _note_activity(run_id, str(recent[1]), last=recent, force=True)
         result = sdk_run.wait()
         status_value = getattr(result.status, "value", str(result.status)).lower()
         final_status = "finished" if status_value in {"finished", "success", "completed"} else "error"

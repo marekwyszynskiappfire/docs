@@ -18,6 +18,44 @@ type Props = {
 };
 
 const ACTIVE = new Set(["queued", "running"]);
+
+const STAGE_TITLE: Record<CursorAgentRun["stage"], string> = {
+  reviewer: "Reviewer is working",
+  creator: "Creator is drafting tests",
+  importer: "Importer is preparing the plan",
+};
+
+const STAGE_HINT: Record<CursorAgentRun["stage"], string> = {
+  reviewer:
+    "A full Epic review reads Jira, the child issues, and linked pages. Several minutes is normal.",
+  creator: "Drafting the suite for this Epic. Several minutes is normal.",
+  importer: "Building the Xray plan. This is usually quicker than a review.",
+};
+
+function stageTitle(stage: CursorAgentRun["stage"]): string {
+  return STAGE_TITLE[stage] ?? "Cursor is working";
+}
+
+function stageHint(stage: CursorAgentRun["stage"]): string {
+  return STAGE_HINT[stage] ?? "This can take several minutes.";
+}
+
+function elapsedLabel(run: CursorAgentRun, now: number): string {
+  const start = Date.parse(run.started_at || run.created_at);
+  if (!Number.isFinite(start)) return "running";
+  const seconds = Math.max(0, Math.floor((now - start) / 1000));
+  const minutes = Math.floor(seconds / 60);
+  const rest = seconds % 60;
+  if (minutes < 1) return `${rest}s`;
+  return `${minutes}m ${rest.toString().padStart(2, "0")}s`;
+}
+
+function checkLabel(checkedAt: number | null, now: number): string {
+  if (!checkedAt) return "Checking Cursor…";
+  const seconds = Math.max(0, Math.floor((now - checkedAt) / 1000));
+  if (seconds < 2) return "Studio checked Cursor just now";
+  return `Studio checked Cursor ${seconds}s ago`;
+}
 const MAX_POLL_FAILURES = 8;
 
 export default function CursorAgentControl({
@@ -32,6 +70,8 @@ export default function CursorAgentControl({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [pollFailures, setPollFailures] = useState(0);
+  const [checkedAt, setCheckedAt] = useState<number | null>(null);
+  const [now, setNow] = useState(() => Date.now());
   const onFinishedRef = useRef(onFinished);
   onFinishedRef.current = onFinished;
 
@@ -52,6 +92,7 @@ export default function CursorAgentControl({
         if (cancelled || !rows[0]) return;
         setRun((current) => current ?? rows[0]);
         setPollFailures(0);
+        setCheckedAt(Date.now());
       })
       .catch(() => {});
     return () => {
@@ -69,6 +110,7 @@ export default function CursorAgentControl({
         .then((next) => {
           setPollFailures(0);
           setError("");
+          setCheckedAt(Date.now());
           setRun(next);
           if (!ACTIVE.has(next.status)) onFinishedRef.current?.(next);
         })
@@ -83,6 +125,14 @@ export default function CursorAgentControl({
     }, delay);
     return () => window.clearTimeout(timer);
   }, [run, pollFailures]);
+
+  const active = !!(run && ACTIVE.has(run.status));
+
+  useEffect(() => {
+    if (!active) return;
+    const timer = window.setInterval(() => setNow(Date.now()), 1000);
+    return () => window.clearInterval(timer);
+  }, [active]);
 
   const start = async () => {
     setBusy(true);
@@ -125,13 +175,26 @@ export default function CursorAgentControl({
             Cancel
           </button>
         )}
-        {run && (
-          <span role="status">
+        {run && !active && (
+          <span>
             Cursor: <code>{run.status}</code>
-            {run.sdk_run_id ? ` · ${run.sdk_run_id}` : ""}
           </span>
         )}
       </div>
+      {active && run && (
+        <div className="cursor-agent-live">
+          <span className="cursor-agent-pulse" aria-hidden="true" />
+          <div>
+            <p className="cursor-agent-live-title">
+              {stageTitle(run.stage)} · {run.status === "queued" ? "starting" : elapsedLabel(run, now)}
+            </p>
+            <p className="muted" role="status">
+              {run.activity || stageHint(run.stage)}
+            </p>
+            <p className="muted cursor-agent-live-check">{checkLabel(checkedAt, now)}</p>
+          </div>
+        </div>
+      )}
       {run?.error && <p className="error">{run.error}</p>}
       {error && <p className="error">{error}</p>}
       {run?.final_text && (

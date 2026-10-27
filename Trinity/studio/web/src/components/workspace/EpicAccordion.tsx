@@ -32,6 +32,8 @@ type Props = {
   onToggle: () => void;
   onToggleTest: (testId: string) => void;
   onToggleSelected: (testId: string, creatorRunId: string, selected: boolean) => void;
+  onSetSelected: (creatorRunId: string, testIds: string[], selected: boolean) => void;
+  onApproveSelected: (creatorRunId: string, testIds: string[]) => void;
   onChanged: () => void;
   onError: (message: string) => void;
 };
@@ -48,6 +50,8 @@ export default function EpicAccordion({
   onToggle,
   onToggleTest,
   onToggleSelected,
+  onSetSelected,
+  onApproveSelected,
   onChanged,
   onError,
 }: Props) {
@@ -70,7 +74,24 @@ export default function EpicAccordion({
       </h3>
       {expanded && (
         <div id={regionId} role="region" aria-label={`${epic.jira_key} details`} className="ws-epic-body">
-          <EpicReview epic={epic} />
+          {epic.tests.total > 0 && epic.creator_run_id ? (
+            <EpicTests
+              creatorRunId={epic.creator_run_id}
+              returnTo={`/workspace/${encodeURIComponent(runId)}?epic=${encodeURIComponent(epic.jira_key)}`}
+              openTestId={openTestId}
+              rejectionReasons={rejectionReasons}
+              selectedTests={selectedTests}
+              refreshToken={`${epic.tests.pending}:${epic.tests.approved}`}
+              onToggleTest={onToggleTest}
+              onToggleSelected={onToggleSelected}
+              onSetSelected={onSetSelected}
+              onApproveSelected={onApproveSelected}
+              onChanged={onChanged}
+              onError={onError}
+            />
+          ) : (
+            <EpicReview epic={epic} />
+          )}
           <EpicDepth
             runId={runId}
             epic={epic}
@@ -84,17 +105,11 @@ export default function EpicAccordion({
           {(epic.creator_handoff || epic.creator_run_id) && (
             <SuiteFileImport epic={epic} onChanged={onChanged} onError={onError} />
           )}
-          {epic.creator_run_id && (
-            <EpicTests
-              creatorRunId={epic.creator_run_id}
-              openTestId={openTestId}
-              rejectionReasons={rejectionReasons}
-              selectedTests={selectedTests}
-              onToggleTest={onToggleTest}
-              onToggleSelected={onToggleSelected}
-              onChanged={onChanged}
-              onError={onError}
-            />
+          {epic.tests.total > 0 && (
+            <details className="ws-triage">
+              <summary>Review verdict and questions</summary>
+              <EpicReview epic={epic} />
+            </details>
           )}
           <EpicTriage unitId={epic.unit_id} onChanged={onChanged} />
         </div>
@@ -325,20 +340,28 @@ function HandoffLine({ epic }: { epic: WorkspaceEpic }) {
 
 function EpicTests({
   creatorRunId,
+  returnTo,
   openTestId,
   rejectionReasons,
   selectedTests,
+  refreshToken,
   onToggleTest,
   onToggleSelected,
+  onSetSelected,
+  onApproveSelected,
   onChanged,
   onError,
 }: {
   creatorRunId: string;
+  returnTo: string;
   openTestId: string | null;
   rejectionReasons: { id: string; label: string }[];
   selectedTests: Record<string, string>;
+  refreshToken: string;
   onToggleTest: (testId: string) => void;
   onToggleSelected: (testId: string, creatorRunId: string, selected: boolean) => void;
+  onSetSelected: (creatorRunId: string, testIds: string[], selected: boolean) => void;
+  onApproveSelected: (creatorRunId: string, testIds: string[]) => void;
   onChanged: () => void;
   onError: (message: string) => void;
 }) {
@@ -353,7 +376,7 @@ function EpicTests({
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [creatorRunId]);
+  }, [creatorRunId, refreshToken]);
 
   const patch = async (
     id: string,
@@ -369,13 +392,54 @@ function EpicTests({
   };
 
   if (!tests) return <p className="muted">Loading tests…</p>;
+  const pending = tests.filter(
+    (test) => test.human_review_status === "pending" || test.human_review_status === "edited"
+  );
+  const selectedPending = pending.filter((test) => selectedTests[test.id]);
+  const allPendingSelected = pending.length > 0 && selectedPending.length === pending.length;
   return (
     <div className="ws-tests">
-      <h4>Test cases ({tests.length})</h4>
+      <div className="ws-test-toolbar">
+        <h4>Test cases ({tests.length})</h4>
+        {pending.length > 0 && (
+          <label className="ws-check">
+            <input
+              type="checkbox"
+              checked={allPendingSelected}
+              ref={(node) => {
+                if (node) node.indeterminate = selectedPending.length > 0 && !allPendingSelected;
+              }}
+              aria-label={`Select ${pending.length} pending tests`}
+              onChange={() =>
+                onSetSelected(
+                  creatorRunId,
+                  pending.map((test) => test.id),
+                  !allPendingSelected
+                )
+              }
+            />
+            Select pending ({pending.length})
+          </label>
+        )}
+        {selectedPending.length > 0 && (
+          <button
+            type="button"
+            onClick={() =>
+              onApproveSelected(
+                creatorRunId,
+                selectedPending.map((test) => test.id)
+              )
+            }
+          >
+            Approve {selectedPending.length} selected
+          </button>
+        )}
+      </div>
       {tests.map((test) => (
         <TestAccordion
           key={test.id}
           test={test}
+          returnTo={returnTo}
           expanded={openTestId === test.id}
           selected={Boolean(selectedTests[test.id])}
           rejectionReasons={rejectionReasons}
@@ -392,6 +456,7 @@ type Step = { step?: string; expected_result?: string };
 
 function TestAccordion({
   test,
+  returnTo,
   expanded,
   selected,
   rejectionReasons,
@@ -400,6 +465,7 @@ function TestAccordion({
   onPatch,
 }: {
   test: CreatorTestRow;
+  returnTo: string;
   expanded: boolean;
   selected: boolean;
   rejectionReasons: { id: string; label: string }[];
@@ -511,7 +577,12 @@ function TestAccordion({
                 Send to Xray
               </label>
             )}
-            <Link to={`/tests/${encodeURIComponent(test.id)}`}>Edit test</Link>
+            <Link
+              to={`/tests/${encodeURIComponent(test.id)}`}
+              state={{ backTo: returnTo, backLabel: "Back to workspace" }}
+            >
+              Edit test
+            </Link>
           </div>
         </div>
       )}

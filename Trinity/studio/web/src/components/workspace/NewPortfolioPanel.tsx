@@ -32,7 +32,16 @@ const DEFAULT_CONFIG: ReviewerRunConfig = {
   notes: "",
 };
 
-export default function NewPortfolioPanel() {
+type Props = {
+  onReviewFolder?: (folder: string) => void;
+};
+
+function reviewFolder(config: ReviewerRunConfig): string {
+  const root = (config.artifacts_dir || "Trinity/reviewer/runs").replace(/\/$/, "");
+  return `${root}/${config.portfolio_id.trim()}`;
+}
+
+export default function NewPortfolioPanel({ onReviewFolder }: Props) {
   const [ready, setReady] = useState(false);
   const [form, setForm] = useState<ReviewerRunConfig>({ ...DEFAULT_CONFIG });
   const [personas, setPersonas] = useState<{ id: string }[]>([]);
@@ -171,6 +180,7 @@ export default function NewPortfolioPanel() {
 
   return (
     <details
+      id="new-portfolio"
       className="panel ws-new-portfolio"
       onToggle={(event) => {
         if (event.currentTarget.open) open();
@@ -212,13 +222,17 @@ export default function NewPortfolioPanel() {
                     : undefined
                 }
                 launch={() => api.launchReviewerAgent(form.portfolio_id.trim())}
-                onFinished={(run) =>
+                onFinished={(run) => {
+                  if (run.status !== "finished") {
+                    setMessage(`Reviewer agent ended with status ${run.status}.`);
+                    return;
+                  }
+                  const folder = reviewFolder(form);
+                  onReviewFolder?.(folder);
                   setMessage(
-                    run.status === "finished"
-                      ? "Reviewer agent finished. Import the review folder below."
-                      : `Reviewer agent ended with status ${run.status}.`
-                  )
-                }
+                    `Reviewer finished. Import folder ${folder} is filled in below. Open the workspace after import, approve the review, then generate tests on the Epic. Creator lists suites that already exist.`
+                  );
+                }}
               />
               <button type="button" className="secondary" onClick={copyPrompt} disabled={!form.portfolio_id.trim()}>
                 Copy Reviewer prompt

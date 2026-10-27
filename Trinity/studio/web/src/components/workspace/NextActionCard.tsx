@@ -32,7 +32,7 @@ export default function NextActionCard({ action, pipelineRunId, busy, note, onPr
       {action.primary.kind !== "none" && (
         <div className="btn-row">
           <button type="button" onClick={onPrimary} disabled={busy}>
-            {action.primary.label}
+            {action.primary.kind === "review_tests" ? "Review the tests" : action.primary.label}
           </button>
           {prompt && (
             <CursorAgentControl

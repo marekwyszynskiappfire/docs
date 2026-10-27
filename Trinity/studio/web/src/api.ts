@@ -65,6 +65,7 @@ export type CursorAgentRun = {
   model: string | null;
   final_text: string | null;
   error: string | null;
+  activity?: string | null;
   started_at: string | null;
   finished_at: string | null;
   created_at: string;
@@ -383,6 +384,8 @@ export type CreatorTestRow = {
   automation_candidate?: number | null;
   marked_for_xray_import?: number | null;
   creator_run_id?: string;
+  pipeline_run_id?: string | null;
+  jira_key?: string | null;
   xray_test_key?: string | null;
   import_status?: string | null;
 };

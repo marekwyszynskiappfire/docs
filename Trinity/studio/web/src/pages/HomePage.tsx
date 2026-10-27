@@ -1,21 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, PipelineRollup, PipelineRun, Stats } from "../api";
 import ImportFeedback from "../components/ImportFeedback";
 import NewPortfolioPanel from "../components/workspace/NewPortfolioPanel";
-import PipelineStrip from "../components/PipelineStrip";
+import PipelineStrip, { type HomePhase } from "../components/PipelineStrip";
 import ContextLoadedAlertsPanel from "../components/ContextLoadedAlertsPanel";
 import PortfolioRollupPanel from "../components/PortfolioRollupPanel";
 import RunListRowActions from "../components/RunListRowActions";
 import SortableDataTable from "../components/SortableDataTable";
 
+const DEMO_IMPORT = "Trinity/studio/fixtures/demo-reviewer-run";
+
+function reviewerFolder(sourcePath: string | null): string | null {
+  if (!sourcePath) return null;
+  const marker = "Trinity/reviewer/runs/";
+  const index = sourcePath.indexOf(marker);
+  if (index < 0) return null;
+  return sourcePath.slice(index).replace(/\/$/, "");
+}
+
 export default function HomePage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [rollup, setRollup] = useState<PortfolioRollup | null>(null);
   const [runs, setRuns] = useState<PipelineRun[]>([]);
-  const [importPath, setImportPath] = useState(
-    "Trinity/studio/fixtures/demo-reviewer-run"
-  );
+  const [importPath, setImportPath] = useState(DEMO_IMPORT);
+  const importTouched = useRef(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [highlightId, setHighlightId] = useState<string | null>(null);
@@ -35,6 +44,41 @@ export default function HomePage() {
   useEffect(() => {
     load();
   }, []);
+
+  useEffect(() => {
+    if (importTouched.current || importPath !== DEMO_IMPORT) return;
+    const folder = runs.map((run) => reviewerFolder(run.source_path)).find(Boolean);
+    if (folder) setImportPath(folder);
+  }, [runs, importPath]);
+
+  const onReviewFolder = (folder: string) => {
+    importTouched.current = true;
+    setImportPath(folder);
+    load();
+    window.setTimeout(() => {
+      document.getElementById("what-now")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 0);
+  };
+
+  const pendingReview = rollup?.runs.find((run) => run.units_approved < run.unit_count);
+  const awaitingTests = rollup?.runs.find((run) => run.units_approved > 0 && run.test_cases === 0);
+  const reviewingTests = rollup?.runs.find((run) => run.test_cases > run.test_cases_approved);
+  const readyForXray = (stats?.test_cases_ready_for_import ?? 0) > 0;
+  const focus = pendingReview ?? awaitingTests ?? reviewingTests ?? rollup?.runs[0] ?? null;
+  const phase: HomePhase = !stats
+    ? "start"
+    : pendingReview
+      ? "approve"
+      : awaitingTests
+        ? "generate"
+        : reviewingTests
+          ? "review_tests"
+          : readyForXray
+            ? "import_xray"
+            : stats.pipeline_runs === 0
+              ? "start"
+              : "caught_up";
+  const importAlreadyLoaded = runs.some((run) => reviewerFolder(run.source_path) === importPath);
 
   const onImport = async () => {
     setBusy(true);
@@ -69,7 +113,7 @@ export default function HomePage() {
         Local workbench for Epic review, test design, and Xray import. Operator guide:{" "}
         <code>Trinity/GUIDE.md</code>
       </p>
-      <PipelineStrip stats={stats} />
+      <PipelineStrip stats={stats} phase={phase} focus={focus} />
       {rollup && <PortfolioRollupPanel rollup={rollup} />}
       <ContextLoadedAlertsPanel />
       {stats && (
@@ -113,17 +157,21 @@ export default function HomePage() {
         </div>
       )}
 
-      <NewPortfolioPanel />
+      <NewPortfolioPanel onReviewFolder={onReviewFolder} />
 
-      <div className="panel">
+      <div className="panel" id="import-reviewer-run">
         <h2 style={{ marginTop: 0 }}>Import Reviewer run</h2>
         <p className="muted">
-          Path relative to DOCS repo root, or absolute. Imports all{" "}
-          <code>ONE-*/review-payload.json</code> into SQLite with revision history.
+          {importAlreadyLoaded
+            ? "This folder is already imported. The next step is in the Now card above."
+            : "Path relative to DOCS repo root, or absolute. Imports all ONE-*/review-payload.json into SQLite with revision history."}
         </p>
         <input
           value={importPath}
-          onChange={(e) => setImportPath(e.target.value)}
+          onChange={(e) => {
+            importTouched.current = true;
+            setImportPath(e.target.value);
+          }}
           aria-label="Reviewer run folder path"
         />
         <div className="btn-row">

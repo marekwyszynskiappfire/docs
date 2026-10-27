@@ -114,7 +114,20 @@ def get_test(test_id: str) -> dict[str, Any]:
             """,
             (test_id,),
         ).fetchone()
-    return {"test": row_to_dict(row), "case": json.loads(rev["case_json"]) if rev else None}
+        run = conn.execute(
+            """
+            SELECT cr.pipeline_run_id, ru.jira_key
+            FROM creator_run cr
+            LEFT JOIN review_unit ru ON ru.id = cr.review_unit_id
+            WHERE cr.id = ?
+            """,
+            (row["creator_run_id"],),
+        ).fetchone()
+    test = row_to_dict(row) or {}
+    if run:
+        test["pipeline_run_id"] = run["pipeline_run_id"]
+        test["jira_key"] = run["jira_key"]
+    return {"test": test, "case": json.loads(rev["case_json"]) if rev else None}
 
 
 def _emit_test_case_review(

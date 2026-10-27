@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { api } from "../api";
 import SortableDataTable from "../components/SortableDataTable";
 import {
@@ -18,6 +18,9 @@ type PersonaNotes = {
 
 export default function TestEditPage() {
   const { testId } = useParams<{ testId: string }>();
+  const location = useLocation();
+  const from = (location.state as { backTo?: string; backLabel?: string } | null) ?? {};
+  const [workspacePath, setWorkspacePath] = useState<string | null>(null);
   const [caseObj, setCaseObj] = useState<Record<string, unknown> | null>(null);
   const [title, setTitle] = useState("");
   const [creatorRunId, setCreatorRunId] = useState<string | null>(null);
@@ -35,6 +38,13 @@ export default function TestEditPage() {
         setCaseObj(d.case);
         setTitle(String(d.case?.title ?? ""));
         setCreatorRunId(d.test.creator_run_id ?? null);
+        const pipeline = d.test.pipeline_run_id;
+        const epic = d.test.jira_key;
+        setWorkspacePath(
+          pipeline
+            ? `/workspace/${encodeURIComponent(pipeline)}${epic ? `?epic=${encodeURIComponent(epic)}` : ""}`
+            : null
+        );
         setReviewStatus(d.test.human_review_status ?? "pending");
         setMarkedForImport(Boolean(d.test.marked_for_xray_import));
         const blockers = (d.case?.automation_blockers as string[]) ?? [];
@@ -162,8 +172,16 @@ export default function TestEditPage() {
     </label>
   );
 
+  const backTo = from.backTo || workspacePath;
+  const backLabel = from.backLabel || "Back to workspace";
+
   return (
     <>
+      {backTo && (
+        <p className="test-edit-back">
+          <Link to={backTo}>{`← ${backLabel}`}</Link>
+        </p>
+      )}
       <p>
         <Link to="/creator">Creator</Link>
         {creatorRunId && (

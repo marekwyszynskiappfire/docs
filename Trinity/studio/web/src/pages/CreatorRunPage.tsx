@@ -266,7 +266,17 @@ export default function CreatorRunPage() {
               id: "actions",
               header: "Actions",
               getValue: () => "",
-              render: (t) => <Link to={`/tests/${t.id}`}>Edit</Link>,
+              render: (t) => (
+                <Link
+                  to={`/tests/${t.id}`}
+                  state={{
+                    backTo: `/creator/${encodeURIComponent(runId)}`,
+                    backLabel: "Back to Creator run",
+                  }}
+                >
+                  Edit
+                </Link>
+              ),
             },
           ]}
         />

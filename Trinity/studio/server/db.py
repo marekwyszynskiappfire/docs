@@ -223,6 +223,9 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
               ON cursor_agent_run(pipeline_run_id, created_at DESC);
             """
         )
+    agent_cols = {row[1] for row in conn.execute("PRAGMA table_info(cursor_agent_run)")}
+    if agent_cols and "activity" not in agent_cols:
+        conn.execute("ALTER TABLE cursor_agent_run ADD COLUMN activity TEXT")
     persona_revision = conn.execute(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='persona_revision'"
     ).fetchone()

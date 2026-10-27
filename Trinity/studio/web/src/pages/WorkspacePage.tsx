@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { api, CoverageProfileId, WorkspaceSummary } from "../api";
 import EpicAccordion from "../components/workspace/EpicAccordion";
@@ -31,6 +31,7 @@ export default function WorkspacePage() {
   const openEpic = params.get("epic");
   const openTest = params.get("test");
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set(openEpic ? [openEpic] : []));
+  const openedFocus = useRef(Boolean(openEpic));
   const [selectedTests, setSelectedTests] = useState<Record<string, string>>({});
   const [portfolioRevision, setPortfolioRevision] = useState(0);
 
@@ -38,6 +39,13 @@ export default function WorkspacePage() {
     if (!openEpic) return;
     setExpanded((current) => (current.has(openEpic) ? current : new Set(current).add(openEpic)));
   }, [openEpic]);
+
+  useEffect(() => {
+    const key = workspace?.next_action.epic_key;
+    if (!key || openedFocus.current) return;
+    openedFocus.current = true;
+    setExpanded((current) => (current.has(key) ? current : new Set(current).add(key)));
+  }, [workspace]);
 
   const load = useCallback(
     () =>
@@ -242,33 +250,6 @@ export default function WorkspacePage() {
         </button>
       </div>
       <WorkspaceStepper stages={workspace.stages} />
-      <ReviewFolderImport runId={runId} onImported={load} onNote={setNote} />
-      <ContextLoadedAlertsPanel runId={runId} />
-      <CoverageDepthControl
-        profiles={workspace.coverage_profiles}
-        value={workspace.coverage_profile}
-        overrideCount={workspace.epics.filter((epic) => epic.coverage_profile).length}
-        disabled={busy}
-        onChange={(profile: CoverageProfileId) =>
-          run(async () => {
-            const result = await api.setCoverageProfile(runId, profile);
-            setNote(result.message);
-          })
-        }
-      />
-      <PortfolioConfigPanel
-        portfolioId={workspace.portfolio_id}
-        onSaved={() => setPortfolioRevision((current) => current + 1)}
-        onNote={setNote}
-      />
-      <ReviewerPromptPanel
-        portfolioId={workspace.portfolio_id}
-        pipelineRunId={workspace.pipeline_run_id}
-        workspacePath={workspace.workspace_path}
-        epicKeys={workspace.epics.map((epic) => epic.jira_key)}
-        reloadToken={portfolioRevision}
-        onCopied={setNote}
-      />
       <NextActionCard
         action={workspace.next_action}
         pipelineRunId={workspace.pipeline_run_id}
@@ -301,18 +282,6 @@ export default function WorkspacePage() {
           </button>
         </div>
       )}
-      <CreatorRunsPanel epics={workspace.epics} onNote={setNote} onImported={load} />
-      <WorkspaceImportPanel
-        epics={workspace.epics}
-        focusKey={workspace.next_action.epic_key}
-        previewAllKey={portfolioActions.some((action) => action.kind === "preview_import_plans")}
-        onImported={load}
-      />
-      <XrayKeyRecord
-        epics={workspace.epics}
-        focusKey={workspace.next_action.epic_key}
-        onRecorded={load}
-      />
       {error && <p className="error">{error}</p>}
       {tip && (
         <div className="ws-tip" role="note">
@@ -354,11 +323,76 @@ export default function WorkspacePage() {
                 return next;
               })
             }
+            onSetSelected={(creatorRunId, testIds, on) =>
+              setSelectedTests((current) => {
+                const next = { ...current };
+                for (const testId of testIds) {
+                  if (on) next[testId] = creatorRunId;
+                  else delete next[testId];
+                }
+                return next;
+              })
+            }
+            onApproveSelected={(creatorRunId, testIds) => {
+              if (testIds.length === 0) return;
+              run(async () => {
+                const result = await api.bulkTestReview(creatorRunId, testIds, {
+                  human_review_status: "approved",
+                });
+                setSelectedTests((current) => {
+                  const next = { ...current };
+                  for (const testId of testIds) delete next[testId];
+                  return next;
+                });
+                setNote(
+                  `Approved ${result.updated} selected test${result.updated === 1 ? "" : "s"}.`
+                );
+              });
+            }}
             onChanged={load}
             onError={setError}
           />
         ))}
       </div>
+      <ReviewFolderImport runId={runId} onImported={load} onNote={setNote} />
+      <ContextLoadedAlertsPanel runId={runId} />
+      <CoverageDepthControl
+        profiles={workspace.coverage_profiles}
+        value={workspace.coverage_profile}
+        overrideCount={workspace.epics.filter((epic) => epic.coverage_profile).length}
+        disabled={busy}
+        onChange={(profile: CoverageProfileId) =>
+          run(async () => {
+            const result = await api.setCoverageProfile(runId, profile);
+            setNote(result.message);
+          })
+        }
+      />
+      <PortfolioConfigPanel
+        portfolioId={workspace.portfolio_id}
+        onSaved={() => setPortfolioRevision((current) => current + 1)}
+        onNote={setNote}
+      />
+      <ReviewerPromptPanel
+        portfolioId={workspace.portfolio_id}
+        pipelineRunId={workspace.pipeline_run_id}
+        workspacePath={workspace.workspace_path}
+        epicKeys={workspace.epics.map((epic) => epic.jira_key)}
+        reloadToken={portfolioRevision}
+        onCopied={setNote}
+      />
+      <CreatorRunsPanel epics={workspace.epics} onNote={setNote} onImported={load} />
+      <WorkspaceImportPanel
+        epics={workspace.epics}
+        focusKey={workspace.next_action.epic_key}
+        previewAllKey={portfolioActions.some((action) => action.kind === "preview_import_plans")}
+        onImported={load}
+      />
+      <XrayKeyRecord
+        epics={workspace.epics}
+        focusKey={workspace.next_action.epic_key}
+        onRecorded={load}
+      />
       <ProcessHelp
         open={helpOpen}
         stages={workspace.stages}
