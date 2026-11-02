@@ -1,5 +1,8 @@
 # Trinity
 
+> **Canonical repository:** [`appfire-team/qa-coe/Trinity`](https://github.com/appfire-team/qa-coe/tree/main/Trinity)  
+> This copy under `marekwyszynskiappfire/docs` is **legacy** — use qa-coe for development, issues, and releases. It remains here temporarily for Confluence sync and Release Process co-location until follow-up cleanup.
+
 **Trinity** combines three Cursor Agent skills — **Reviewer**, **Creator**, and **Importer** — with **Trinity Studio**, the local workbench for human QA review, approvals, and handoff.
 
 ## Share with your team (Confluence)

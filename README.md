@@ -1,8 +1,8 @@
 # DOCS repository
 
-This repo holds **Trinity** (AI-assisted QA pipeline: Reviewer, Creator, Importer, Trinity Studio), the developing **BP QA–Development Cooperation Process**, the developing **Release Process**, and **agent/GitHub documentation** under `docs/` (ADRs, issue tracker, domain layout).
+This repo holds **agent/GitHub documentation** under `docs/`, the developing **BP QA–Development Cooperation Process**, the developing **Release Process**, and a **legacy mirror** of **Trinity** (canonical tree: [`appfire-team/qa-coe/Trinity`](https://github.com/appfire-team/qa-coe/tree/main/Trinity)).
 
-**→ New operators:** [Trinity — Start here (Confluence)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · [FAQ](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754164473/Trinity+FAQ) · Git: [Trinity/START-HERE.md](Trinity/START-HERE.md) · **Pilot feedback through 29 Oct 2026:** [PILOT-SHARE.md](Trinity/PILOT-SHARE.md)
+**→ New operators:** clone [`appfire-team/qa-coe`](https://github.com/appfire-team/qa-coe) and open [`Trinity/START-HERE.md`](https://github.com/appfire-team/qa-coe/blob/main/Trinity/START-HERE.md) · [Confluence — Start here](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here) · Legacy git copy: [Trinity/START-HERE.md](Trinity/START-HERE.md) in this repo
 
 **BP QA–Development cooperation:** [`BP QA/`](BP%20QA/README.md) — a fresh workstream for agreements, responsibilities, tooling, and open questions.
 

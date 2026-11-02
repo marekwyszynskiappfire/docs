@@ -18,7 +18,9 @@ When the user asks for a **review** of Jira epics/requirements, run **`trinity-r
 
 ### Shareable HTML reports
 
-**Trinity** (Reviewer, Creator, Importer, Studio) lives under [`Trinity/`](Trinity/README.md). HTML reports must follow [`Trinity/shared/html-report-guidelines.md`](Trinity/shared/html-report-guidelines.md) (Profile A/B).
+**Trinity** (Reviewer, Creator, Importer, Studio) **canonical repo:** [`appfire-team/qa-coe/Trinity`](https://github.com/appfire-team/qa-coe/tree/main/Trinity). A legacy copy remains under [`Trinity/`](Trinity/README.md) in this docs repo for Confluence sync until removed.
+
+HTML reports must follow [`Trinity/shared/html-report-guidelines.md`](Trinity/shared/html-report-guidelines.md) (Profile A/B) — same path in qa-coe.
 
 ### Trinity Creator (test suites)
 
