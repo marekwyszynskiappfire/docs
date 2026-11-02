@@ -24,7 +24,8 @@ Production test exports for Creator **depth / style** reference (`existing_xray_
 ## filter-17844-bigpicture-manual
 
 - **Source:** [Jira filter 17844](https://appfire.atlassian.net/issues/?filter=17844) — *BigPicture - Manual TestRun*
-- **Tests:** 245 · **Steps:** 2582 (2026-10-08)
+- **Base:** 245 tests · 2582 steps (2026-10-08)
+- **Cloud enrichment:** `project = "Big Picture QA" AND "Automated Platform[Select List (multiple choices)]" = "Atlassian Cloud"`; its run metadata is recorded in `manifest.json`.
 - **Point Creator at:** `filter-17844-bigpicture-manual/extraction.json` or `rag/chunks.jsonl`
 
 ## Re-export
@@ -44,3 +45,20 @@ python3 Trinity/creator/scripts/xray_graphql_export.py \
 Committed artifacts (`extraction.json`, `rag/`) are written with presigned S3 query strings stripped automatically. Re-run `redact_presigned_s3_urls.py` only if you paste exports from elsewhere.
 
 Refresh `issues.json` after filter changes: paginate `filter = 17844` in Jira, then `merge_jira_search_pages.py`.
+
+### Refresh the Atlassian Cloud enrichment
+
+The enrichment script uses Xray GraphQL directly, requires only `XRAY_CLIENT_ID`
+and `XRAY_CLIENT_SECRET`, and fetches pages concurrently. It preserves the base
+filter corpus, replaces selected tests with their current Xray definitions, and
+does not modify the corpus unless every page succeeds.
+
+```bash
+python3 Trinity/creator/scripts/enrich_bigpicture_cloud_golden.py \
+  --env-file Trinity/studio/.env.production \
+  --workers 6 --page-size 25
+```
+
+Use `--dry-run` to validate authentication, JQL, and selected count without
+writing files. Do not put credentials in a command line, committed config, or
+the corpus.

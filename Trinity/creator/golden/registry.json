@@ -1,16 +1,16 @@
 {
   "schema_version": "1.0",
-  "description": "Registered golden corpora for Creator (CR-GOLDEN-01). Paths are repo-relative from DOCS root.",
+  "description": "Registered golden corpora for Creator (CR-GOLDEN-01). Corpus directories are local-only; see golden/README.md.",
   "corpora": [
     {
       "id": "bigpicture-manual-17844",
       "path": "Trinity/creator/golden/v2/filter-17844-bigpicture-manual",
-      "title": "BigPicture manual (Jira filter 17844)",
+      "title": "BigPicture manual (filter 17844 + Atlassian Cloud)",
       "reference_jira_project": "TC",
       "product_lines": ["bigpicture"],
-      "test_count": 245,
+      "test_count": 781,
       "sampler": "extraction.md",
-      "notes": "Module-specific BP vocabulary (box, Gantt, Risk). Use for BigPicture Epics only."
+      "notes": "Module-specific BP vocabulary (box, Gantt, Risk) enriched with Jira tests selected for Atlassian Cloud. Use for BigPicture Epics only."
     },
     {
       "id": "neutral-manual-journeys",

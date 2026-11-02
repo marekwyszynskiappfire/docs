@@ -18,10 +18,16 @@
 /confluence/0*.md
 /confluence/samples/
 
-# Creator port / personal templates (not runtime)
-/creator/PORT-CHECKLIST.md
-/creator/planning/
-/creator/templates/
+# Creator golden — registry + style rules only; corpus payloads stay local (see golden/README.md)
+/creator/golden/**
+!/creator/golden/README.md
+!/creator/golden/registry.json
+!/creator/golden/v2/
+/creator/golden/v2/**
+!/creator/golden/v2/README.md
+!/creator/golden/v1/
+/creator/golden/v1/**
+!/creator/golden/v1/style-rules.md
 
 # Studio maintainer notes (operators use MANUAL / FIRST-RUN)
 /studio/CODE-HEALTH.md

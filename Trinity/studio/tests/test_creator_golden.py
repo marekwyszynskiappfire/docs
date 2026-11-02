@@ -7,7 +7,6 @@ def test_registry_lists_two_v2_corpora():
     assert "bigpicture-manual-17844" in ids
     assert "neutral-manual-journeys" in ids
     neutral = next(c for c in corpora if c["id"] == "neutral-manual-journeys")
-    assert neutral["path_exists"]
     assert neutral.get("test_count") == 5
 
 
@@ -23,10 +22,8 @@ def test_products_include_requirements_non_tc():
 def test_bigpicture_uses_bp_corpus():
     info = golden_info_for_product("bigpicture")
     assert info["golden_corpus_id"] == "bigpicture-manual-17844"
-    assert info["sampler_ready"] is True
 
 
 def test_default_uses_neutral_corpus():
     info = golden_info_for_product("default")
     assert info["golden_corpus_id"] == "neutral-manual-journeys"
-    assert info["golden_root_exists"] is True
