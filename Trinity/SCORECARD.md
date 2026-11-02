@@ -1,8 +1,8 @@
 # Test case generator — scorecard
 
-Mateusz §2 one-pager: pilot evidence for leadership (acceptance, rejection reasons, Xray traceability).
+Pilot evidence template: acceptance, rejection reasons, and Xray traceability for leadership readouts.
 
-**Traceability:** [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) · **Requirements (PL):** [`Mateusz.MD`](Mateusz.MD)
+**Related:** [`METRICS.md`](METRICS.md) (definitions) · program criteria live with **QA CoE** (Confluence / internal program docs — not in this git tree).
 
 ---
 
@@ -102,7 +102,7 @@ After Xray execute: workspace → **Record Xray keys** (or `POST /api/importer/r
 | **Trinity version** | **0.2.0** (`trinity-v0.2.0`) |
 | **Use case** | AI-assisted manual test cases for custom fields (part 2); import to Xray |
 | **Product / solution** | Trinity; mapping `appfire-production.json`; Importer GraphQL create |
-| **Who used it** | Marek Wyszyński (operator); QA review in Studio |
+| **Who used it** | Pilot operator; QA review in Studio |
 | **Input** | ONE-228469; Creator handoff from Reviewer-approved context |
 | **Output** | 5 tests → **TC-6704, TC-6705, TC-6706, TC-6707, TC-6708** |
 | **Human review** | Validation fixes (`coverage_catalog_id`, `Generic`→`Manual`, field mapping) before import |

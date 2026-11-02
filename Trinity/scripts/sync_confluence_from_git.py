@@ -100,10 +100,13 @@ def rewrite_links_for_wiki(markdown: str, pages: list[dict]) -> str:
     """Turn relative .md links into Confluence URLs where we have a mapped page."""
     by_name: dict[str, str] = {}
     for p in pages:
-        name = Path(p["git_path"]).name
+        gp = p.get("git_path")
+        if not gp:
+            continue
+        name = Path(gp).name
         by_name[name] = p["web_url"]
         # Trinity/foo.md style
-        rel = p["git_path"].replace("Trinity/", "")
+        rel = gp.replace("Trinity/", "")
         by_name[rel] = p["web_url"]
 
     def repl(match: re.Match[str]) -> str:
@@ -153,7 +156,12 @@ def main() -> None:
         title = entry["title"]
         if args.page and args.page.lower() not in title.lower():
             continue
+        if entry.get("sync_from_git") is False:
+            continue
         rel_path = entry["git_path"]
+        if not rel_path:
+            print(f"Skip {title}: no git_path", file=sys.stderr)
+            continue
         page_id = entry["content_id"]
         md_path = root / rel_path
         if not md_path.is_file():

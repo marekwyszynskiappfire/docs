@@ -73,6 +73,7 @@
     {
       "content_id": "3758587937",
       "git_path": "Trinity/NEWBIE-PERSONA-REVIEW.md",
+      "sync_from_git": false,
       "title": "Trinity — Newbie persona review",
       "web_url": "https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3758587937/Trinity+Newbie+persona+review"
     }

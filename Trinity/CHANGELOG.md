@@ -35,7 +35,7 @@ Distribution semver ([`VERSION`](VERSION)). JSON schema versions are unchanged u
 
 ## 0.2.0 — 2026-10-13 (`trinity-v0.2.0`)
 
-- Mateusz POC closure: [`SCORECARD.md`](SCORECARD.md), [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md), pilot 1 reveal.js deck.
+- POC closure (2026-10-13): [`SCORECARD.md`](SCORECARD.md) template, [`trinity-v0.2.0`](VERSION) tag, operator doc pack + Confluence tree.
 - Single release version via [`VERSION`](VERSION) + Studio `/api/health`.
 - Repo trimmed to runtime essentials; planning docs gitignored ([`.gitignore`](.gitignore)).
 - Studio: telemetry export, rejection reasons, Importer execute guards, React UI on 8765 when built.

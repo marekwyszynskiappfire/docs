@@ -1,7 +1,6 @@
 # Trinity
 
-> **Canonical repository:** [`appfire-team/qa-coe/Trinity`](https://github.com/appfire-team/qa-coe/tree/main/Trinity)  
-> This copy under `marekwyszynskiappfire/docs` is **legacy** — use qa-coe for development, issues, and releases. It remains here temporarily for Confluence sync and Release Process co-location until follow-up cleanup.
+> **Working copy:** clone [`appfire-team/qa-coe`](https://github.com/appfire-team/qa-coe) and work in `Trinity/`. Entry: [`START-HERE.md`](START-HERE.md).
 
 **Trinity** combines three Cursor Agent skills — **Reviewer**, **Creator**, and **Importer** — with **Trinity Studio**, the local workbench for human QA review, approvals, and handoff.
 
@@ -18,7 +17,7 @@ Git mirrors under `Trinity/`; republish with `python3 Trinity/scripts/sync_confl
 | | |
 |--|--|
 | **You can use Trinity for real Epics and Xray today** | On a **product line** that has portfolio config, Creator golden, and Importer mapping (QA lead owns onboarding). |
-| **Not yet “any team, any product”** | See [`PATH-TO-1.0.md`](PATH-TO-1.0.md) for org-wide GA gates (multiple operators, scorecards, hardening). |
+| **Not yet “any team, any product”** | See [`program hub (Confluence)`](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide) for org-wide GA gates (multiple operators, scorecards, hardening). |
 | **New operator path** | [`START-HERE.md`](START-HERE.md) → [`OPERATOR-ONBOARDING.md`](OPERATOR-ONBOARDING.md) → [`FAQ.md`](FAQ.md) |
 
 ---
@@ -36,7 +35,7 @@ Git mirrors under `Trinity/`; republish with `python3 Trinity/scripts/sync_confl
 | [`OPERATOR-SETUP.md`](OPERATOR-SETUP.md) | Linear checklist |
 | [`BIGQUERY.md`](BIGQUERY.md) | BigQuery ingest, env setup, backfill, and Looker Studio |
 
-**Release:** [`VERSION`](VERSION) · [`VERSIONING.md`](VERSIONING.md) · Mateusz POC: [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md)
+**Release:** [`VERSION`](VERSION) · [`VERSIONING.md`](VERSIONING.md) · [`SCORECARD.md`](SCORECARD.md) (pilot evidence template)
 
 ---
 

@@ -4,7 +4,7 @@
 
 **Wiki tree (QACoE parent):** [Trinity — AI-assisted QA pipeline](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide)
 
-Git source of truth: `marekwyszynskiappfire/docs` · Page IDs: [`page-map.json`](page-map.json)
+Git source of truth: [`appfire-team/qa-coe`](https://github.com/appfire-team/qa-coe) (`Trinity/`) · Page IDs: [`page-map.json`](page-map.json)
 
 ---
 
@@ -23,9 +23,9 @@ Git source of truth: `marekwyszynskiappfire/docs` · Page IDs: [`page-map.json`]
 | 8 | [`ARCHITECTURE.md`](../ARCHITECTURE.md) | [Architecture](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750920216/Trinity+Architecture) |
 | 9 | [`MANUAL.md`](../MANUAL.md) | [Operator manual](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750658179/Trinity+Operator+manual) |
 | 10 | [`BIGQUERY.md`](../BIGQUERY.md) | [BigQuery and Looker](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3779068614/Trinity+BigQuery+and+Looker) |
-| 11 | [`NEWBIE-PERSONA-REVIEW.md`](../NEWBIE-PERSONA-REVIEW.md) | [Newbie persona review](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3758587937/Trinity+Newbie+persona+review) |
+| 11 | Wiki only (`sync_from_git: false` in [`page-map.json`](page-map.json)) | [Newbie persona review](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3758587937/Trinity+Newbie+persona+review) |
 
-**Git-only (not synced):** [`PATH-TO-1.0.md`](../PATH-TO-1.0.md), [`TESTING.md`](../TESTING.md), [`PIPELINE.md`](../PIPELINE.md), [`OPERATOR-VALIDATION.md`](../OPERATOR-VALIDATION.md), [`UAT-SESSION.md`](../UAT-SESSION.md), scorecard/Mateusz artifacts. Screenshots: [`docs/screenshots/`](../docs/screenshots/) — attach to wiki manually.
+**Not in git (local / Confluence / program artifacts):** internal roadmap, [`TESTING.md`](../TESTING.md), [`PIPELINE.md`](../PIPELINE.md), pilot UAT notes, leadership scorecards. Screenshots: [`docs/screenshots/`](../docs/screenshots/) — attach to wiki manually.
 
 ---
 

@@ -18,7 +18,7 @@ How we version the **operator distribution** (skills + Studio + shared scripts) 
 
 ```bash
 git tag -a "trinity-v$(cat Trinity/VERSION)" -m "Trinity $(cat Trinity/VERSION)"
-git push docs "trinity-v$(cat Trinity/VERSION)"
+git push origin "trinity-v$(cat Trinity/VERSION)"
 ```
 
 **Not yet automated:** changelog file, GitHub Releases page, or npm publish (Studio web is `private`).
@@ -53,6 +53,6 @@ Breaking schema changes require a migration note in [`CONTRACTS.md`](CONTRACTS.m
 
 ---
 
-## Mateusz / pilot evidence
+## Pilot evidence (not semver)
 
-Pilot scorecards and slides are **not** versioned with semver; track evidence per run (`telemetry/export`, Confluence). Criteria closure: [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md).
+Pilot scorecards and slides are **not** versioned with semver. Track evidence per run (`telemetry/export`, [Usage Scorecard](SCORECARD.md), Confluence). Program acceptance criteria are maintained by **QA CoE** outside git.
