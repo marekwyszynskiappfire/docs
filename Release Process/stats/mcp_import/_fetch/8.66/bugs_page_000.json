@@ -1,0 +1,824 @@
+{
+  "data": {
+    "isLast": true,
+    "appliedContentFormat": "markdown",
+    "issues": [
+      {
+        "id": "1791519",
+        "key": "ONE-340260",
+        "fields": {
+          "summary": "[CP to DC 10&11] - Gantt - Basic tasks cannot be bulk converted to Jira issues",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-06-25T05:20:37.111-0400"
+        }
+      },
+      {
+        "id": "1488394",
+        "key": "ONE-208507",
+        "fields": {
+          "summary": "'NullPointerException: null' when reseting mapping to defaults (With no BPE installed)",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-08T08:26:31.845-0500"
+        }
+      },
+      {
+        "id": "1488490",
+        "key": "ONE-208512",
+        "fields": {
+          "summary": "JCMA error - incorrect format of the displayed message",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-08T10:33:48.649-0500"
+        }
+      },
+      {
+        "id": "1488569",
+        "key": "ONE-208514",
+        "fields": {
+          "summary": "Tempo - Individuals synchronization with Tempo does not work properly",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-08T12:33:43.610-0500"
+        }
+      },
+      {
+        "id": "1488888",
+        "key": "ONE-208520",
+        "fields": {
+          "summary": "Reports - Task report - JQL and Date filter fields are not working",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-09T04:55:14.821-0500"
+        }
+      },
+      {
+        "id": "1488976",
+        "key": "ONE-208604",
+        "fields": {
+          "summary": "Reports - Capacity - Error after changing Value field",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-09T05:08:24.098-0500"
+        }
+      },
+      {
+        "id": "1489588",
+        "key": "ONE-208961",
+        "fields": {
+          "summary": "The Assignee field is not sorted alphabetically",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-09T09:37:08.296-0500"
+        }
+      },
+      {
+        "id": "1489640",
+        "key": "ONE-208963",
+        "fields": {
+          "summary": "Import to Basic tasks - fix resource assignment (by email not by displayName)",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-09T10:33:54.420-0500"
+        }
+      },
+      {
+        "id": "1492847",
+        "key": "ONE-209959",
+        "fields": {
+          "summary": "Reports - Read more about reports link is not working",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-13T07:11:27.850-0500"
+        }
+      },
+      {
+        "id": "1492875",
+        "key": "ONE-209961",
+        "fields": {
+          "summary": "Gantt: lost values after update.",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-13T07:55:34.624-0500"
+        }
+      },
+      {
+        "id": "1494840",
+        "key": "ONE-210513",
+        "fields": {
+          "summary": "DataTypePriorityScoreCalculated event is not being sent to Kibana",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-15T04:50:45.621-0500"
+        }
+      },
+      {
+        "id": "1496163",
+        "key": "ONE-211039",
+        "fields": {
+          "summary": "Board - Error after clicking on 'Share' button ",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-16T06:40:05.597-0500"
+        }
+      },
+      {
+        "id": "1507806",
+        "key": "ONE-214980",
+        "fields": {
+          "summary": "[Rank: >300] Resources - Skills - User can add new skill using 'Labels' field",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-01-27T08:52:22.717-0500"
+        }
+      },
+      {
+        "id": "1902273",
+        "key": "ONE-370654",
+        "fields": {
+          "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T08:55:12.903-0400"
+        }
+      },
+      {
+        "id": "1902587",
+        "key": "ONE-370664",
+        "fields": {
+          "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:10:44.631-0400"
+        }
+      },
+      {
+        "id": "1902591",
+        "key": "ONE-370667",
+        "fields": {
+          "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:14:08.739-0400"
+        }
+      },
+      {
+        "id": "1484675",
+        "key": "ONE-208075",
+        "fields": {
+          "summary": "Inconsistent color styling between Objective and Key Result column values",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-07T09:13:33.397-0500"
+        }
+      },
+      {
+        "id": "1486183",
+        "key": "ONE-208082",
+        "fields": {
+          "summary": "Board - Tasks disappear after page refresh in boxes assigned to a timebox schedule (only Jira DC)",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-08T06:00:36.009-0500"
+        }
+      },
+      {
+        "id": "1488482",
+        "key": "ONE-208511",
+        "fields": {
+          "summary": "Priorities module - after updating/deleting metrics, new value is shown after refresh ",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-08T10:02:15.635-0500"
+        }
+      },
+      {
+        "id": "1488816",
+        "key": "ONE-208516",
+        "fields": {
+          "summary": "Financials: basic task name is clickable in the Work costs breakdown widget",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-09T02:22:03.469-0500"
+        }
+      },
+      {
+        "id": "1488880",
+        "key": "ONE-208518",
+        "fields": {
+          "summary": "Reports - Plan delays - Incorrect tasks icons ",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-09T04:38:38.156-0500"
+        }
+      },
+      {
+        "id": "1493912",
+        "key": "ONE-210491",
+        "fields": {
+          "summary": "Gantt: Resources are not sorted alphabetically in in-built Assignee field ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-14T06:06:06.381-0500"
+        }
+      },
+      {
+        "id": "1494288",
+        "key": "ONE-210500",
+        "fields": {
+          "summary": "Strategic areas - The currency does not change on the pie chart when hovering over it",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-14T08:44:24.430-0500"
+        }
+      },
+      {
+        "id": "1495678",
+        "key": "ONE-211014",
+        "fields": {
+          "summary": "Objective / Key Result is not opened after clicking the “Open in new tab” button",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-15T08:19:34.711-0500"
+        }
+      },
+      {
+        "id": "1495709",
+        "key": "ONE-211018",
+        "fields": {
+          "summary": "Board/Objectives - New marker dialog is moved when new navigation is turned ON",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-15T09:16:38.194-0500"
+        }
+      },
+      {
+        "id": "1495714",
+        "key": "ONE-211020",
+        "fields": {
+          "summary": "Resources Module - New task details dialog - Deleting task detail values/deleting task assignment are not possible in scenario mode",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-15T09:22:06.950-0500"
+        }
+      },
+      {
+        "id": "1496165",
+        "key": "ONE-211040",
+        "fields": {
+          "summary": "Board - Incorrect layout change when new navigation is turned ON",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-16T06:44:18.347-0500"
+        }
+      },
+      {
+        "id": "1496912",
+        "key": "ONE-211064",
+        "fields": {
+          "summary": "Scope definition: bugs to fix associated with the naming changes – project on the space",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-19T03:39:32.239-0500"
+        }
+      },
+      {
+        "id": "1504996",
+        "key": "ONE-213721",
+        "fields": {
+          "summary": "OKR - 401 errors occur during field synchronization if the user does not have BP Enterprise",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-26T05:10:31.834-0500"
+        }
+      },
+      {
+        "id": "1505632",
+        "key": "ONE-214302",
+        "fields": {
+          "summary": "New Navigation: no Priority option in View Tasks labels",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-26T06:09:59.433-0500"
+        }
+      },
+      {
+        "id": "1507858",
+        "key": "ONE-215011",
+        "fields": {
+          "summary": "Overview: adding new boxes from the Timeline on Hierarchy view doesn't work properly",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-01-27T10:02:29.230-0500"
+        }
+      },
+      {
+        "id": "1532578",
+        "key": "ONE-224662",
+        "fields": {
+          "summary": "Dashboard hub - Reports does not show changes in the module where it is first displayed after making changes",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-12T11:05:23.154-0500"
+        }
+      },
+      {
+        "id": "1791418",
+        "key": "ONE-340166",
+        "fields": {
+          "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-25T05:13:56.624-0400"
+        }
+      },
+      {
+        "id": "1892015",
+        "key": "ONE-368787",
+        "fields": {
+          "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-13T06:31:28.912-0400"
+        }
+      },
+      {
+        "id": "1898061",
+        "key": "ONE-369492",
+        "fields": {
+          "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-17T04:12:33.283-0400"
+        }
+      },
+      {
+        "id": "1902331",
+        "key": "ONE-370655",
+        "fields": {
+          "summary": "Main: no horizontal grid lines by default on Timeline view.",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T08:57:14.586-0400"
+        }
+      },
+      {
+        "id": "1902378",
+        "key": "ONE-370657",
+        "fields": {
+          "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+          "status": {
+            "name": "In Progress",
+            "statusCategory": {
+              "name": "In Progress"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T08:58:45.351-0400"
+        }
+      },
+      {
+        "id": "1902585",
+        "key": "ONE-370663",
+        "fields": {
+          "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+          "status": {
+            "name": "Waiting for Release",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T09:09:29.021-0400"
+        }
+      },
+      {
+        "id": "1902588",
+        "key": "ONE-370665",
+        "fields": {
+          "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T09:11:40.960-0400"
+        }
+      },
+      {
+        "id": "1486503",
+        "key": "ONE-208083",
+        "fields": {
+          "summary": "Overview module - The first subbox created under a childless box after a refresh with manual sorting enabled causes an error",
+          "status": {
+            "name": "Open",
+            "statusCategory": {
+              "name": "To Do"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-01-08T06:08:08.482-0500"
+        }
+      },
+      {
+        "id": "1488450",
+        "key": "ONE-208509",
+        "fields": {
+          "summary": "JCMA migration message dialogs have an incorrect font color",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-01-08T09:18:08.576-0500"
+        }
+      },
+      {
+        "id": "1488882",
+        "key": "ONE-208519",
+        "fields": {
+          "summary": "Dashboard hub - Incorrect background for empty state in infobar",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-01-09T04:43:49.561-0500"
+        }
+      },
+      {
+        "id": "1506146",
+        "key": "ONE-214308",
+        "fields": {
+          "summary": "Unselecting 'Show grouping field name' doesn't work on the Scope module ",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-01-26T09:51:07.516-0500"
+        }
+      },
+      {
+        "id": "1507368",
+        "key": "ONE-214960",
+        "fields": {
+          "summary": "Share your feedback dialog - Low readability in dark mode",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-01-27T06:47:47.911-0500"
+        }
+      },
+      {
+        "id": "1507766",
+        "key": "ONE-214963",
+        "fields": {
+          "summary": "Gantt: wrong style of objectives and KRs tags",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-01-27T07:55:21.901-0500"
+        }
+      },
+      {
+        "id": "1898070",
+        "key": "ONE-369497",
+        "fields": {
+          "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:18:25.544-0400"
+        }
+      },
+      {
+        "id": "1902562",
+        "key": "ONE-370661",
+        "fields": {
+          "summary": "[Not ready on Cloud] Performance fix for getting mapping type of scheduling task",
+          "status": {
+            "name": "In Progress",
+            "statusCategory": {
+              "name": "In Progress"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-18T09:05:57.766-0400"
+        }
+      },
+      {
+        "id": "1495718",
+        "key": "ONE-211021",
+        "fields": {
+          "summary": "Reports - Task report - Header section width is inconsistent with the bar chart width",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Lowest"
+          },
+          "created": "2026-01-15T09:26:20.174-0500"
+        }
+      }
+    ]
+  }
+}

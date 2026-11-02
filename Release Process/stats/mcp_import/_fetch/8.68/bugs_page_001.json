@@ -1,0 +1,1709 @@
+{
+  "data": {
+    "nextPageToken": "CnVwcmlvcml0eSZwcmlvcml0eSZPUkRFUl9ERVNDJWNyZWF0ZWQmY3JlYXRlZCZPUkRFUl9BU0MjRG91YmxlJk9TNHclTG9uZyZNVGMzTURrd05qSTNOelEyTWc9PSVTdHJpbmcmVDA1RiVJbnQmTWpJME5qVTEQyAEYuLzAmZg0In9pc3N1ZXR5cGUgPSBCdWcgQU5EIGFmZmVjdGVkVmVyc2lvbiA9ICJwcmVwcm9kLzIwMjYtMDItMTEvOC42OCIgQU5EIGNyZWF0ZWQgPj0gIjIwMjYtMDItMTEiIE9SREVSIEJZIHByaW9yaXR5IERFU0MsIGNyZWF0ZWQgQVNDKgJbXQ==",
+    "isLast": false,
+    "appliedContentFormat": "markdown",
+    "issues": [
+      {
+        "id": "1528177",
+        "key": "ONE-222707",
+        "fields": {
+          "summary": "RequestFailedForbiddenException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 403 and the following response body: {\"errors\":[{\"message\":\"The user is",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:08.576-0500"
+        }
+      },
+      {
+        "id": "1528178",
+        "key": "ONE-222708",
+        "fields": {
+          "summary": "RequestFailedForbiddenException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 403 and the following response body: {\"errors\":[{\"message\":\"The user is",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:12.816-0500"
+        }
+      },
+      {
+        "id": "1528179",
+        "key": "ONE-222709",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:16.915-0500"
+        }
+      },
+      {
+        "id": "1528180",
+        "key": "ONE-222710",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:21.348-0500"
+        }
+      },
+      {
+        "id": "1528181",
+        "key": "ONE-222711",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:25.351-0500"
+        }
+      },
+      {
+        "id": "1528182",
+        "key": "ONE-222712",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:29.065-0500"
+        }
+      },
+      {
+        "id": "1528183",
+        "key": "ONE-222713",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:32.937-0500"
+        }
+      },
+      {
+        "id": "1528184",
+        "key": "ONE-222714",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:37.178-0500"
+        }
+      },
+      {
+        "id": "1528185",
+        "key": "ONE-222715",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:41.672-0500"
+        }
+      },
+      {
+        "id": "1528186",
+        "key": "ONE-222716",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:45.888-0500"
+        }
+      },
+      {
+        "id": "1528187",
+        "key": "ONE-222717",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:18:49.894-0500"
+        }
+      },
+      {
+        "id": "1528188",
+        "key": "ONE-222718",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:19:15.275-0500"
+        }
+      },
+      {
+        "id": "1528195",
+        "key": "ONE-222724",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F13e181e7-b1b8-4f9f-9ed6-aed20a39c132",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:19:27.299-0500"
+        }
+      },
+      {
+        "id": "1528197",
+        "key": "ONE-222726",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F7a5cd22c-9631-49e6-8603-b155c3adc307",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:19:35.283-0500"
+        }
+      },
+      {
+        "id": "1528203",
+        "key": "ONE-222732",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:19:46.771-0500"
+        }
+      },
+      {
+        "id": "1528209",
+        "key": "ONE-222738",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F5f338870-50cf-4f33-bbac-2ccfc8fafae0",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:14.681-0500"
+        }
+      },
+      {
+        "id": "1528210",
+        "key": "ONE-222739",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:19.056-0500"
+        }
+      },
+      {
+        "id": "1528211",
+        "key": "ONE-222740",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:23.318-0500"
+        }
+      },
+      {
+        "id": "1528217",
+        "key": "ONE-222746",
+        "fields": {
+          "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:35.258-0500"
+        }
+      },
+      {
+        "id": "1528218",
+        "key": "ONE-222747",
+        "fields": {
+          "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:39.399-0500"
+        }
+      },
+      {
+        "id": "1528219",
+        "key": "ONE-222748",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F59620889-0032-4294-ad6e-9dba8d454114",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:44.318-0500"
+        }
+      },
+      {
+        "id": "1528220",
+        "key": "ONE-222749",
+        "fields": {
+          "summary": "RequestFailedInternalServerErrorException: HTTP: POST https://cloud.softwareplant.com/bigpicture/jiracloud/36/rest/environment/forge/migration/0199102?ignoreJCMASwitch=false failed returning",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:48.297-0500"
+        }
+      },
+      {
+        "id": "1528221",
+        "key": "ONE-222750",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:20:52.255-0500"
+        }
+      },
+      {
+        "id": "1528227",
+        "key": "ONE-222756",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F1020d474-0129-4c6f-82f2-d9f656695bf1",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:04.067-0500"
+        }
+      },
+      {
+        "id": "1528228",
+        "key": "ONE-222757",
+        "fields": {
+          "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:08.896-0500"
+        }
+      },
+      {
+        "id": "1528229",
+        "key": "ONE-222758",
+        "fields": {
+          "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:13.105-0500"
+        }
+      },
+      {
+        "id": "1528230",
+        "key": "ONE-222759",
+        "fields": {
+          "summary": "RequestFailedForbiddenException: HTTP: POST https://cloud.softwareplant.com/bigtemplate/jiracloud/26/rest/environment/forge/webtrigger/0195426 failed returning HTTP status: 403 and",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:17.088-0500"
+        }
+      },
+      {
+        "id": "1528231",
+        "key": "ONE-222760",
+        "fields": {
+          "summary": "RequestFailedUnauthorizedException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 401 and the following response body: {\"errors\":[{\"message\":\"Not",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:21.365-0500"
+        }
+      },
+      {
+        "id": "1528232",
+        "key": "ONE-222761",
+        "fields": {
+          "summary": "RequestFailedUnauthorizedException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 401 and the following response body: {\"errors\":[{\"message\":\"Not",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:25.367-0500"
+        }
+      },
+      {
+        "id": "1528233",
+        "key": "ONE-222762",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F52de2d28-7ed2-42fd-97bb-dad4cbe7e835",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:29.672-0500"
+        }
+      },
+      {
+        "id": "1528241",
+        "key": "ONE-222770",
+        "fields": {
+          "summary": "RequestFailedForbiddenException: HTTP: POST https://cloud.softwareplant.com/bigtemplate/jiracloud/14/rest/environment/forge/webtrigger/0195021 failed returning HTTP status: 403 and",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:49.966-0500"
+        }
+      },
+      {
+        "id": "1528242",
+        "key": "ONE-222771",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F85082cb8-e9b7-4092-9e17-fcba41899d26",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:21:53.820-0500"
+        }
+      },
+      {
+        "id": "1528244",
+        "key": "ONE-222773",
+        "fields": {
+          "summary": "RequestFailedException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:01.964-0500"
+        }
+      },
+      {
+        "id": "1528245",
+        "key": "ONE-222774",
+        "fields": {
+          "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:06.608-0500"
+        }
+      },
+      {
+        "id": "1528246",
+        "key": "ONE-222775",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:11.197-0500"
+        }
+      },
+      {
+        "id": "1528247",
+        "key": "ONE-222776",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:15.122-0500"
+        }
+      },
+      {
+        "id": "1528248",
+        "key": "ONE-222777",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F913eab9a-624a-419b-ac18-da76ac77db54",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:19.413-0500"
+        }
+      },
+      {
+        "id": "1528249",
+        "key": "ONE-222778",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:23.826-0500"
+        }
+      },
+      {
+        "id": "1528250",
+        "key": "ONE-222779",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:28.142-0500"
+        }
+      },
+      {
+        "id": "1528251",
+        "key": "ONE-222780",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:32.298-0500"
+        }
+      },
+      {
+        "id": "1528252",
+        "key": "ONE-222781",
+        "fields": {
+          "summary": "NoSuchElementException: Cannot find webTrigger URL",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:36.881-0500"
+        }
+      },
+      {
+        "id": "1528253",
+        "key": "ONE-222782",
+        "fields": {
+          "summary": "ActivatorException: SystemContext: 0197471, lifecycle: com.softwareplant.ppm.box.core.domain.boxtype.tenantactivators.BuiltInBoxTypesAdder, message: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:40.931-0500"
+        }
+      },
+      {
+        "id": "1528254",
+        "key": "ONE-222783",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F1ab63dbb-9f44-4b01-a79c-0a7234259d88",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:45.015-0500"
+        }
+      },
+      {
+        "id": "1528255",
+        "key": "ONE-222784",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F942819e9-9853-4e8e-8938-638a259086a1",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:22:49.262-0500"
+        }
+      },
+      {
+        "id": "1528261",
+        "key": "ONE-222790",
+        "fields": {
+          "summary": "LockTimeoutException: Can not acquire lock 'cloudmanager.JCMAWebhookLockService-TenantSystemNameId{tenantId=0198775, systemName=bigpicture}.local.write' for 5 MINUTES.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:23:00.646-0500"
+        }
+      },
+      {
+        "id": "1528262",
+        "key": "ONE-222791",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fc7fdd7ce-819d-4594-9870-a3f89f1ffb10",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:23:04.969-0500"
+        }
+      },
+      {
+        "id": "1528263",
+        "key": "ONE-222792",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:23:09.286-0500"
+        }
+      },
+      {
+        "id": "1528279",
+        "key": "ONE-222808",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F32211e8b-1627-4a7b-975d-cbb2586ecece",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:23:35.820-0500"
+        }
+      },
+      {
+        "id": "1528280",
+        "key": "ONE-222809",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:23:39.992-0500"
+        }
+      },
+      {
+        "id": "1528286",
+        "key": "ONE-222815",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa5231ef2-95f3-4388-9b77-b4107fca1042",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:23:51.089-0500"
+        }
+      },
+      {
+        "id": "1528287",
+        "key": "ONE-222816",
+        "fields": {
+          "summary": "NoTenantDataException: No tenant data found on server. TenantId 0176644",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:23:55.615-0500"
+        }
+      },
+      {
+        "id": "1528298",
+        "key": "ONE-222827",
+        "fields": {
+          "summary": "UnauthorizedException: null",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:13.637-0500"
+        }
+      },
+      {
+        "id": "1528299",
+        "key": "ONE-222828",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:17.827-0500"
+        }
+      },
+      {
+        "id": "1528300",
+        "key": "ONE-222829",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:22.198-0500"
+        }
+      },
+      {
+        "id": "1528301",
+        "key": "ONE-222830",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:26.127-0500"
+        }
+      },
+      {
+        "id": "1528302",
+        "key": "ONE-222831",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:30.281-0500"
+        }
+      },
+      {
+        "id": "1528308",
+        "key": "ONE-222837",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:41.321-0500"
+        }
+      },
+      {
+        "id": "1528309",
+        "key": "ONE-222838",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:45.410-0500"
+        }
+      },
+      {
+        "id": "1528310",
+        "key": "ONE-222839",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fbccf5afe-8e4c-4291-9283-e0e9511ecac0",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:49.446-0500"
+        }
+      },
+      {
+        "id": "1528311",
+        "key": "ONE-222840",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F80fcac6c-994f-482e-8cbb-72e95fe0a219",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:53.604-0500"
+        }
+      },
+      {
+        "id": "1528312",
+        "key": "ONE-222841",
+        "fields": {
+          "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fe3b5e875-d064-41ec-94bb-f6af8033f697",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:24:58.116-0500"
+        }
+      },
+      {
+        "id": "1528313",
+        "key": "ONE-222842",
+        "fields": {
+          "summary": "StaleStateException: Batch update returned unexpected row count from update [8]; actual row count: 0; expected: 1; statement executed: update \"R_RES_ABSENCE\" set",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:25:20.556-0500"
+        }
+      },
+      {
+        "id": "1528320",
+        "key": "ONE-222849",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F33bf323e-e4c7-4c61-9171-0df0839dc69a",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:25:50.662-0500"
+        }
+      },
+      {
+        "id": "1528326",
+        "key": "ONE-222855",
+        "fields": {
+          "summary": "Automatically generated issue for the token: cbe...f72",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:26:02.257-0500"
+        }
+      },
+      {
+        "id": "1528343",
+        "key": "ONE-222872",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://flextechs.atlassian.net/rest/api/3/field failed returning HTTP status: 503 and the following response body: <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:26:34.287-0500"
+        }
+      },
+      {
+        "id": "1528354",
+        "key": "ONE-222883",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F03a2f0d9-6235-4926-89b5-dfc5cee32d73",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:27:16.629-0500"
+        }
+      },
+      {
+        "id": "1528356",
+        "key": "ONE-222885",
+        "fields": {
+          "summary": "ApiException: Message: ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:27:24.588-0500"
+        }
+      },
+      {
+        "id": "1528365",
+        "key": "ONE-222894",
+        "fields": {
+          "summary": "RequestFailedBadRequestException: HTTP: GET https://paladindrones.atlassian.net/rest/api/3/field/eu.softwareplant.bigpicture__risk-consequence/option?maxResults=100&startAt=0 failed",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-11T05:27:49.183-0500"
+        }
+      },
+      {
+        "id": "1532522",
+        "key": "ONE-224656",
+        "fields": {
+          "summary": "Financials: sometimes dates are different when using Custom dates",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-12T09:42:25.992-0500"
+        }
+      },
+      {
+        "id": "1532536",
+        "key": "ONE-224658",
+        "fields": {
+          "summary": "Priorities module - After switching template for Boxes, old values are still displayed in Overview module",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-12T10:04:09.291-0500"
+        }
+      },
+      {
+        "id": "1535068",
+        "key": "ONE-225576",
+        "fields": {
+          "summary": "Teams Module - Unable to change the availability value for team members",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-13T11:44:47.077-0500"
+        }
+      },
+      {
+        "id": "1535079",
+        "key": "ONE-225578",
+        "fields": {
+          "summary": "Gantt/Scope/Board modules - Filter \"Type\" does not display values",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-13T12:29:11.130-0500"
+        }
+      },
+      {
+        "id": "1535894",
+        "key": "ONE-225588",
+        "fields": {
+          "summary": "New Navigation - Export is disabled in the Board Module",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-16T04:16:31.087-0500"
+        }
+      },
+      {
+        "id": "1538453",
+        "key": "ONE-226879",
+        "fields": {
+          "summary": "New Navigation - Filters don't work properly on the Board module",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-17T05:30:04.595-0500"
+        }
+      },
+      {
+        "id": "1902273",
+        "key": "ONE-370654",
+        "fields": {
+          "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T08:55:12.903-0400"
+        }
+      },
+      {
+        "id": "1902587",
+        "key": "ONE-370664",
+        "fields": {
+          "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:10:44.631-0400"
+        }
+      },
+      {
+        "id": "1902591",
+        "key": "ONE-370667",
+        "fields": {
+          "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:14:08.739-0400"
+        }
+      },
+      {
+        "id": "1528314",
+        "key": "ONE-222843",
+        "fields": {
+          "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:25:25.275-0500"
+        }
+      },
+      {
+        "id": "1528315",
+        "key": "ONE-222844",
+        "fields": {
+          "summary": "RequestFailedForbiddenException: HTTP: GET https://api.atlassian.com/ex/jira/81a8a9e8-aadc-49bc-a0bb-e72064b1a45a/rest/api/3/myself failed returning HTTP status: 403 and the following",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:25:29.674-0500"
+        }
+      },
+      {
+        "id": "1528316",
+        "key": "ONE-222845",
+        "fields": {
+          "summary": "WebApplicationException: HTTP 400 Bad Request",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:25:34.075-0500"
+        }
+      },
+      {
+        "id": "1528317",
+        "key": "ONE-222846",
+        "fields": {
+          "summary": "IllegalStateException: SPM integration is disabled for this app",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:25:38.308-0500"
+        }
+      },
+      {
+        "id": "1528318",
+        "key": "ONE-222847",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:25:42.715-0500"
+        }
+      },
+      {
+        "id": "1528319",
+        "key": "ONE-222848",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8fde0bef-28d4-4e32-a064-100da96537e3",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:25:46.533-0500"
+        }
+      },
+      {
+        "id": "1528342",
+        "key": "ONE-222871",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:26:30.078-0500"
+        }
+      },
+      {
+        "id": "1528349",
+        "key": "ONE-222878",
+        "fields": {
+          "summary": "RequestFailedException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:26:45.833-0500"
+        }
+      },
+      {
+        "id": "1528350",
+        "key": "ONE-222879",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F80fcac6c-994f-482e-8cbb-72e95fe0a219",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:26:57.407-0500"
+        }
+      },
+      {
+        "id": "1528351",
+        "key": "ONE-222880",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8fde0bef-28d4-4e32-a064-100da96537e3",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:27:04.316-0500"
+        }
+      },
+      {
+        "id": "1528352",
+        "key": "ONE-222881",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fece2e618-8551-41e9-a8b8-4e3215e0989e",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:27:08.132-0500"
+        }
+      },
+      {
+        "id": "1528353",
+        "key": "ONE-222882",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:27:12.659-0500"
+        }
+      },
+      {
+        "id": "1528355",
+        "key": "ONE-222884",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:27:20.834-0500"
+        }
+      },
+      {
+        "id": "1528357",
+        "key": "ONE-222886",
+        "fields": {
+          "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:27:28.544-0500"
+        }
+      },
+      {
+        "id": "1528358",
+        "key": "ONE-222887",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:27:32.757-0500"
+        }
+      },
+      {
+        "id": "1528364",
+        "key": "ONE-222893",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6029adaf-3fab-49f1-a954-25e24068d46f",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:27:44.980-0500"
+        }
+      },
+      {
+        "id": "1528379",
+        "key": "ONE-222908",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F1c6264d7-87b7-44b0-8ff7-802e83ae7be5",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:28:20.518-0500"
+        }
+      },
+      {
+        "id": "1528392",
+        "key": "ONE-222921",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://apptronik.atlassian.net/rest/api/3/issueLinkType failed returning HTTP status: 503 and the following response body: <!DOCTYPE html>",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:28:48.342-0500"
+        }
+      },
+      {
+        "id": "1528399",
+        "key": "ONE-222928",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://structure-genius-demo.atlassian.net/rest/api/3/configuration failed returning HTTP status: 503 and the following response body:",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:29:03.624-0500"
+        }
+      },
+      {
+        "id": "1528439",
+        "key": "ONE-222967",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F72361fd3-bd00-4425-9b0e-63c90629514d",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:30:56.099-0500"
+        }
+      },
+      {
+        "id": "1528451",
+        "key": "ONE-222978",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8b5a5440-7288-4129-8052-9b5fd84cb0af",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-11T05:31:43.231-0500"
+        }
+      },
+      {
+        "id": "1532403",
+        "key": "ONE-224654",
+        "fields": {
+          "summary": "New Navigation - Resources - Lack of \"Read more\" link",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-12T08:18:16.721-0500"
+        }
+      },
+      {
+        "id": "1532495",
+        "key": "ONE-224655",
+        "fields": {
+          "summary": "Priorities module - After deleting one of the metrics, it shows 0 instead of empty field ",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-12T09:24:37.462-0500"
+        }
+      }
+    ]
+  }
+}

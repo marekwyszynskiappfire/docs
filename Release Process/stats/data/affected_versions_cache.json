@@ -1,0 +1,188 @@
+{
+  "ONE-394649": [
+    "develop",
+    "preprod/2026-10-05/8.76"
+  ],
+  "ONE-392698": [
+    "develop",
+    "preprod/2026-10-05/8.76"
+  ],
+  "ONE-376068": [
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-370667": [
+    "bigpicture-dc-8.50.1",
+    "develop",
+    "bigtemplate-cloud-8.51.1.0",
+    "preprod/2026-01-07/8.66",
+    "preprod/2026-01-29/8.67",
+    "preprod/2026-02-11/8.68",
+    "preprod/2026-02-24/8.69",
+    "preprod-dc/2026-02-24/8.69",
+    "preprod/2026-03-16/8.70",
+    "preprod/2026-04-10/8.71",
+    "preprod/2026-05-18/8.72",
+    "preprod/2026-06-15/8.73",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-369492": [
+    "develop",
+    "bigpicture-dc-8.53.0",
+    "bigpicture-dc-8.64.2",
+    "bigpicture-cloud-8.65.0.2",
+    "preprod/2026-01-07/8.66",
+    "preprod/2026-02-11/8.68",
+    "preprod/2026-02-24/8.69",
+    "preprod-dc/2026-02-24/8.69",
+    "preprod/2026-03-16/8.70",
+    "preprod/2026-04-10/8.71",
+    "preprod/2026-05-18/8.72",
+    "preprod/2026-06-15/8.73",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75",
+    "preprod/2026-10-05/8.76"
+  ],
+  "ONE-364566": [
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-361713": [
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-361148": [
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-355397": [
+    "preprod/2026-07-14/8.74"
+  ],
+  "ONE-355356": [
+    "develop",
+    "preprod/2026-07-14/8.74",
+    "bigpicture-cloud-8.73.0.2"
+  ],
+  "ONE-355332": [
+    "develop",
+    "bigpicture-dc-8.70.1.2",
+    "bigpicture-dc-8.70.11.5",
+    "preprod/2026-07-14/8.74",
+    "bigpicture-cloud-8.73.0.2",
+    "preprod/2026-08-04/8.75",
+    "preprod/2026-10-05/8.76"
+  ],
+  "ONE-354546": [
+    "develop",
+    "bigpicture-cloud-8.73.0.1",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75",
+    "preprod/2026-10-05/8.76"
+  ],
+  "ONE-345053": [
+    "preprod/2026-06-15/8.73"
+  ],
+  "ONE-342434": [
+    "develop",
+    "preprod/2026-03-16/8.70",
+    "preprod/2026-04-10/8.71",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-342433": [
+    "develop",
+    "preprod/2026-02-24/8.69",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-340260": [
+    "preprod/2026-01-07/8.66"
+  ],
+  "ONE-340166": [
+    "develop",
+    "bigpicture-cloud-8.59.0.2",
+    "preprod/2026-01-07/8.66",
+    "preprod/2026-01-29/8.67",
+    "preprod/2026-02-11/8.68",
+    "preprod/2026-02-24/8.69",
+    "preprod-dc/2026-02-24/8.69",
+    "preprod/2026-03-16/8.70",
+    "preprod/2026-04-10/8.71",
+    "preprod/2026-05-18/8.72",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-324510": [
+    "develop",
+    "bigpictureenterprise-cloud-8.71.0.0",
+    "preprod/2026-05-18/8.72",
+    "preprod/2026-06-15/8.73",
+    "preprod/2026-07-14/8.74"
+  ],
+  "ONE-319941": [
+    "develop",
+    "bigpicture-cloud-8.71.0.0",
+    "preprod/2026-05-18/8.72",
+    "preprod/2026-06-15/8.73",
+    "preprod/2026-07-14/8.74"
+  ],
+  "ONE-317206": [
+    "bigpicture-cloud-8.71.0.0",
+    "preprod/2026-05-18/8.72"
+  ],
+  "ONE-301069": [
+    "develop",
+    "preprod/2026-04-10/8.71",
+    "bigpicture-cloud-8.71.0.1",
+    "preprod/2026-05-18/8.72",
+    "preprod/2026-06-15/8.73",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75",
+    "preprod/2026-10-05/8.76"
+  ],
+  "ONE-230357": [
+    "develop",
+    "preprod/2026-02-24/8.69"
+  ],
+  "ONE-226521": [
+    "develop",
+    "bigpicture-cloud-8.66.0.3",
+    "preprod/2026-02-11/8.68",
+    "preprod/2026-02-24/8.69",
+    "preprod-dc/2026-02-24/8.69"
+  ],
+  "ONE-226398": [
+    "preprod/2026-02-11/8.68"
+  ],
+  "ONE-221016": [
+    "develop",
+    "preprod/2026-01-29/8.67",
+    "bigpicture-cloud-8.67.0.1",
+    "preprod/2026-02-11/8.68"
+  ],
+  "ONE-214980": [
+    "develop",
+    "bigpicture-dc-8.53.0",
+    "bigpicture-dc-8.64.2",
+    "bigpicture-cloud-8.65.0.2",
+    "preprod/2026-01-07/8.66",
+    "preprod/2026-02-11/8.68",
+    "preprod/2026-02-24/8.69",
+    "preprod-dc/2026-02-24/8.69",
+    "preprod/2026-03-16/8.70",
+    "preprod/2026-04-10/8.71",
+    "preprod/2026-05-18/8.72",
+    "preprod/2026-06-15/8.73",
+    "preprod/2026-07-14/8.74",
+    "preprod/2026-08-04/8.75"
+  ],
+  "ONE-210491": [
+    "develop",
+    "bigpicture-cloud-8.65.0.2",
+    "preprod/2026-01-07/8.66",
+    "preprod/2026-01-29/8.67",
+    "preprod/2026-02-11/8.68",
+    "preprod/2026-02-24/8.69",
+    "preprod/2026-03-16/8.70"
+  ],
+  "ONE-165845": [
+    "bigpicture-cloud-8.61.0.4"
+  ]
+}

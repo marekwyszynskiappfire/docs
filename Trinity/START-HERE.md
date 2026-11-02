@@ -2,6 +2,8 @@
 
 **Share this link with your team:** [Trinity — Start here (Confluence)](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3754590489/Trinity+Start+here)
 
+**Repo:** [github.com/marekwyszynskiappfire/docs](https://github.com/marekwyszynskiappfire/docs)
+
 **Pilot feedback window:** **15 Oct – 29 Oct 2026** — report friction via [Trinity pilot feedback](https://github.com/marekwyszynskiappfire/docs/issues/new?template=trinity-pilot-feedback.yml) (label `trinity-support`) or your program channel. Share pack for leads: [PILOT-SHARE.md](PILOT-SHARE.md).
 
 **Version:** `Trinity/VERSION` (currently **0.3.0**). You can run **real work** on **onboarded product lines**; org-wide GA is [PATH-TO-1.0.md](PATH-TO-1.0.md). This pilot runs on **macOS**.
@@ -30,7 +32,7 @@ You stay in control: approve in Studio; type **PRODUCTION** before live Xray exe
 | **Checklist** | [OPERATOR-SETUP.md](OPERATOR-SETUP.md) | reference |
 | **UAT with QA lead** | [UAT-SESSION.md](UAT-SESSION.md) + [OPERATOR-VALIDATION.md](OPERATOR-VALIDATION.md) | ~90 min |
 | **Doc review (Sam)** | [NEWBIE-PERSONA-REVIEW.md](NEWBIE-PERSONA-REVIEW.md) | maintainers |
-| **Reference after the first Epic** | [MANUAL.md](MANUAL.md) — checkout, samples, credentials, the run, BigQuery | after FIRST-RUN |
+| **Reference after the first Epic** | [MANUAL.md](MANUAL.md) — checkout, samples, credentials, the run · **[Scorecard sheet](SCORECARD.md)** (interim; BQ optional) | after FIRST-RUN |
 
 ---
 

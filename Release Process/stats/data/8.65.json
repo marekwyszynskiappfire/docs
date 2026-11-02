@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "gathered_at": "2026-11-02T07:28:03+01:00",
+  "version": "8.65",
+  "site": "https://appfire.atlassian.net",
+  "cutoff": {
+    "id": "36368",
+    "name": "preprod/2025-12-08/8.65",
+    "cutoff_date": "2025-12-08",
+    "released": false
+  },
+  "preprod_versions": [
+    {
+      "id": "36368",
+      "name": "preprod/2025-12-08/8.65",
+      "cutoff_date": "2025-12-08",
+      "released": false
+    }
+  ],
+  "production": {
+    "product": "bigpicture-cloud",
+    "released": true,
+    "first_released": {
+      "id": "36942",
+      "name": "bigpicture-cloud-8.65.0.2",
+      "released": true,
+      "release_date": "2025-12-29",
+      "url": "https://appfire.atlassian.net/projects/ONE/versions/36942"
+    },
+    "versions": [
+      {
+        "id": "36370",
+        "name": "bigpicture-cloud-8.65.0.0",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/36370"
+      },
+      {
+        "id": "36841",
+        "name": "bigpicture-cloud-8.65.0.1",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/36841"
+      },
+      {
+        "id": "36942",
+        "name": "bigpicture-cloud-8.65.0.2",
+        "released": true,
+        "release_date": "2025-12-29",
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/36942"
+      }
+    ],
+    "release_signal": {
+      "released": true,
+      "release_date": "2025-12-29",
+      "release_date_last": "2025-12-29",
+      "trigger_issue": null,
+      "qualifying_events": [],
+      "rule": "Earliest date a test-run-linked bug reached status 'Done' while Fix Version included bigpicture-cloud-8.65.* (changelog replay; status name must be exactly Done).",
+      "fix_version_pattern": "^bigpicture-cloud-8\\.65\\.",
+      "release_date_source": "jira_first_released_cloud_fix"
+    }
+  },
+  "test_run": {
+    "key": "TC-5841",
+    "summary": "BigPicture 8.65 Major Release Test Run Jira Cloud Manual",
+    "status": "In Progress",
+    "created": "2025-12-08T04:08:59.550-0500",
+    "url": "https://appfire.atlassian.net/browse/TC-5841",
+    "defect_keys": [
+      "ONE-204996",
+      "ONE-205001",
+      "ONE-204991",
+      "ONE-206344",
+      "ONE-206354",
+      "ONE-206908"
+    ],
+    "stats": {
+      "total": 324,
+      "executed": 320,
+      "passed": 311,
+      "failed": 9,
+      "skipped": 0,
+      "todo": 4,
+      "executing": 0,
+      "other": 0,
+      "by_status": {
+        "FAILED": 9,
+        "PASSED": 311,
+        "TO DO": 4
+      },
+      "status_buckets": {
+        "passed": [
+          "OK",
+          "PASS",
+          "PASSED"
+        ],
+        "failed": [
+          "FAIL",
+          "FAILED"
+        ],
+        "skipped": [
+          "ABORTED",
+          "N/A",
+          "NA",
+          "NOT APPLICABLE",
+          "SKIPPED"
+        ],
+        "todo": [
+          "TO DO",
+          "TODO"
+        ],
+        "executing": [
+          "EXECUTING"
+        ],
+        "other": "any remaining status name"
+      },
+      "counts_source": "getTestExecution.testRuns latest status per test",
+      "qa_engineers": {
+        "count": 9,
+        "account_ids": [
+          "60dc59337d016900702ab00c",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "names": [
+          "60dc59337d016900702ab00c",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "source": "getTestExecution.testRuns executedById (distinct)"
+      },
+      "timing": {
+        "execution_created": "2025-12-08T04:08:59.550-0500",
+        "first_status_change": "2025-12-09T10:26:58.328000+00:00",
+        "last_status_change": "2025-12-12T08:55:57.895000+00:00",
+        "duration_days": 3,
+        "duration_kind": "weekdays",
+        "source": "xray_execution_test_runs",
+        "rule": "Weekdays only (Mon–Fri), from the first to the last status change on any test in this Test Execution (getTestExecution.testRuns activity, field status). Same calendar day counts as 0."
+      }
+    },
+    "failed_tests": [
+      {
+        "key": "TC-5405",
+        "summary": "SPM - OKR - Task structure - Changing parent to KR",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-5405#!page=test-run&testExecutionKey=TC-5841&testKey=TC-5405&testPlanId="
+      },
+      {
+        "key": "TC-5538",
+        "summary": "SPM - OKR - Webhooks - Parent Change for Key Result",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-5538#!page=test-run&testExecutionKey=TC-5841&testKey=TC-5538&testPlanId="
+      },
+      {
+        "key": "TC-5539",
+        "summary": "SPM - OKR - Gantt module - OKR Type column visibility",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-5539#!page=test-run&testExecutionKey=TC-5841&testKey=TC-5539&testPlanId="
+      },
+      {
+        "key": "TC-5727",
+        "summary": "SPM - Strategic areas  - Adding strategic theme by Create Strategic Theme button",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-5727#!page=test-run&testExecutionKey=TC-5841&testKey=TC-5727&testPlanId="
+      },
+      {
+        "key": "TC-5728",
+        "summary": "SPM - Strategic areas  - Adding strategic theme by Go to OKR module button ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-5728#!page=test-run&testExecutionKey=TC-5841&testKey=TC-5728&testPlanId="
+      },
+      {
+        "key": "TC-5776",
+        "summary": "SPM - Strategic areas  - Displaying Strategic Themes list",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-5776#!page=test-run&testExecutionKey=TC-5841&testKey=TC-5776&testPlanId="
+      },
+      {
+        "key": "TC-5777",
+        "summary": "SPM - Strategic areas  - Updating Strategic Themes ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-5777#!page=test-run&testExecutionKey=TC-5841&testKey=TC-5777&testPlanId="
+      },
+      {
+        "key": "TC-2674",
+        "summary": "Feature area - Exporting - Exporting Reports",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-2674#!page=test-run&testExecutionKey=TC-5841&testKey=TC-2674&testPlanId="
+      },
+      {
+        "key": "TC-4791",
+        "summary": "Feature area - Task Scheduling - Period movement - Moving operation on tasks imported from file",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5841&ac.testKey=TC-4791#!page=test-run&testExecutionKey=TC-5841&testKey=TC-4791&testPlanId="
+      }
+    ],
+    "failed_tests_source": "getTestExecution.testRuns latest status per test (FAILED/FAIL)"
+  },
+  "test_run_candidates": [],
+  "bugs": {
+    "jql": "issuetype = Bug AND affectedVersion = \"preprod/2025-12-08/8.65\" AND created >= \"2025-12-08\" ORDER BY priority DESC, created ASC",
+    "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2025-12-08/8.65%22%20AND%20created%20%3E%3D%20%222025-12-08%22%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC",
+    "rule": "Affected Version is the preprod version, created on or after the cut-off date.",
+    "by_priority": {},
+    "found_by_test_run": 6,
+    "test_run": {
+      "count": 6,
+      "jql": "issuetype = Bug AND issue in linkedIssues(\"TC-5841\")",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20issue%20in%20linkedIssues%28%22TC-5841%22%29",
+      "execution_key": "TC-5841"
+    },
+    "other": {
+      "count": 0,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2025-12-08/8.65\" AND created >= \"2025-12-08\" AND issue not in linkedIssues(\"TC-5841\") ORDER BY priority DESC, created ASC",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2025-12-08/8.65%22%20AND%20created%20%3E%3D%20%222025-12-08%22%20AND%20issue%20not%20in%20linkedIssues%28%22TC-5841%22%29%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC"
+    },
+    "issues": [
+      {
+        "key": "ONE-204996",
+        "summary": "Risk Management - If there are more than 50 issues in box, Risk register frameworks can't be saved with new values due to JQL error ",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-12-09",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-204996"
+      },
+      {
+        "key": "ONE-205001",
+        "summary": "Gantt - Imported tasks always have scheduling mode Auto basic regardless of the selected mode",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-12-09",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-205001"
+      },
+      {
+        "key": "ONE-204991",
+        "summary": "OKR Types and Periods are missing in Settings, cannot create Strategic Theme",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2025-12-09",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-204991"
+      },
+      {
+        "key": "ONE-206344",
+        "summary": "JC- Gantt- issue data not loading after project restore",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2025-12-10",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-206344"
+      },
+      {
+        "key": "ONE-206354",
+        "summary": "Resources module - Task details dialog - Changing a task assignment using the \"Find the perfect match\" option does not immediately appear in the modal dialog",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2025-12-10",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-206354"
+      },
+      {
+        "key": "ONE-206908",
+        "summary": "Reports - Team dependencies - Infinite loading state during export",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2025-12-11",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-206908"
+      }
+    ],
+    "customer_reported": {
+      "count": 0,
+      "affected_version": "preprod/2025-12-08/8.65",
+      "support_ticket_count": 0,
+      "jql": null,
+      "url": null,
+      "rule": "Bug with Affected Version \"preprod/2025-12-08/8.65\" and a Jira issue link to a SUPPORT-* ticket (includes Relates and Support Ticket link types).",
+      "issues": []
+    }
+  },
+  "metrics": {
+    "version": "8.65",
+    "cutoff_date": "2025-12-08",
+    "release_date": "2025-12-29",
+    "released": true,
+    "days_in_preprod": 21,
+    "tests_total": 324,
+    "tests_executed": 320,
+    "tests_passed": 311,
+    "tests_failed": 9,
+    "tests_skipped": 0,
+    "tests_todo": 4,
+    "test_run_duration_days": 3,
+    "test_run_first_status_change": "2025-12-09T10:26:58.328000+00:00",
+    "test_run_last_status_change": "2025-12-12T08:55:57.895000+00:00",
+    "qa_engineers_count": 9,
+    "bugs_total": 0,
+    "bugs_found_by_test_run": 6,
+    "bugs_other_since_cutoff": 0,
+    "bugs_by_priority": {},
+    "release_date_last": "2025-12-29",
+    "bugs_customer_reported": 0
+  },
+  "notes": [
+    "Cut-off bug query returned 0 issues in Jira for this preprod affectedVersion (only test-run-linked defects are in scope)."
+  ]
+}

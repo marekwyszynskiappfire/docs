@@ -97,6 +97,7 @@ def health() -> dict[str, Any]:
             "context_loaded_alerts",
             "jira_epic_comments",
             "pipeline_run_statistics",
+            "usage_scorecard_sheets",
             "pipeline_manifest",
             "cursor_handoff",
             "cursor_agent_launch",

@@ -1,0 +1,354 @@
+{
+  "ONE-190236": {
+    "key": "ONE-190236",
+    "summary": "Changes done from Jira are not automatically sycchronized with BP fields",
+    "status": "Canceled",
+    "priority": "High",
+    "created": "2025-11-20",
+    "url": "https://appfire.atlassian.net/browse/ONE-190236"
+  },
+  "ONE-188933": {
+    "key": "ONE-188933",
+    "summary": "OKR widget - rest/ppm/boxmodule/strategic-areas/okr-widget/configuration loads almost 2 minutes to display content ",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-11-20",
+    "url": "https://appfire.atlassian.net/browse/ONE-188933"
+  },
+  "ONE-188931": {
+    "key": "ONE-188931",
+    "summary": "Exporting is not performed correctly on the modules ",
+    "status": "Done",
+    "priority": "Highest",
+    "created": "2025-11-20",
+    "url": "https://appfire.atlassian.net/browse/ONE-188931"
+  },
+  "ONE-188926": {
+    "key": "ONE-188926",
+    "summary": "Resource panel - Changing units to percent causes the task list to appear in the Workload details dialog only after reopening the dialog",
+    "status": "Done",
+    "priority": "Medium",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-188926"
+  },
+  "ONE-188925": {
+    "key": "ONE-188925",
+    "summary": "Jira Team functionality needs to be hidden due to a lack of support for Forge level 3",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-188925"
+  },
+  "ONE-188922": {
+    "key": "ONE-188922",
+    "summary": "Gantt – Although Priority Scores are calculated, they do not appear in the Priority Score column",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-188922"
+  },
+  "ONE-188919": {
+    "key": "ONE-188919",
+    "summary": "Resources Module - export to PDF doesn't work properly ",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-188919"
+  },
+  "ONE-188911": {
+    "key": "ONE-188911",
+    "summary": "Strategic areas - Linked boxes are not displayed under Initatives tab",
+    "status": "Canceled",
+    "priority": "Highest",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-188911"
+  },
+  "ONE-188905": {
+    "key": "ONE-188905",
+    "summary": "Export to PDF doesn't work",
+    "status": "Canceled",
+    "priority": "Highest",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-188905"
+  },
+  "ONE-187629": {
+    "key": "ONE-187629",
+    "summary": "Gadget - Objectives gadget is not working",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-187629"
+  },
+  "ONE-174464": {
+    "key": "ONE-174464",
+    "summary": "Task cloning - The cloned project is added to the scope of the box from which the tasks originate",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2025-11-06",
+    "url": "https://appfire.atlassian.net/browse/ONE-174464"
+  },
+  "ONE-173221": {
+    "key": "ONE-173221",
+    "summary": "It is not possible to set the priority for basic tasks in a new instances (Jira Cloud only)",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-11-04",
+    "url": "https://appfire.atlassian.net/browse/ONE-173221"
+  },
+  "ONE-165845": {
+    "key": "ONE-165845",
+    "summary": "Strategic areas - For some users, the OKR Owner disappears a few seconds after selection",
+    "status": "Done",
+    "priority": "Highest",
+    "created": "2025-10-27",
+    "url": "https://appfire.atlassian.net/browse/ONE-165845"
+  },
+  "ONE-160322": {
+    "key": "ONE-160322",
+    "summary": "Skills widget in Jira issue page displays incorrectly after enabling 'Find the perfect match'",
+    "status": "Canceled",
+    "priority": "Lowest",
+    "created": "2025-10-23",
+    "url": "https://appfire.atlassian.net/browse/ONE-160322"
+  },
+  "ONE-160310": {
+    "key": "ONE-160310",
+    "summary": "Workday - Missing animation for Refreshing Workday absences button",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2025-10-22",
+    "url": "https://appfire.atlassian.net/browse/ONE-160310"
+  },
+  "ONE-158997": {
+    "key": "ONE-158997",
+    "summary": "New task details dialog - No error message when setting assignee to user without assignable permissions",
+    "status": "Done",
+    "priority": "Low",
+    "created": "2025-10-21",
+    "url": "https://appfire.atlassian.net/browse/ONE-158997"
+  },
+  "ONE-158993": {
+    "key": "ONE-158993",
+    "summary": "New task details dialog - 'Find the perfect match' option is active for tasks in read-only boxes",
+    "status": "Done",
+    "priority": "Medium",
+    "created": "2025-10-21",
+    "url": "https://appfire.atlassian.net/browse/ONE-158993"
+  },
+  "ONE-158983": {
+    "key": "ONE-158983",
+    "summary": "Risk Management - Read more directs to broken link",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-10-21",
+    "url": "https://appfire.atlassian.net/browse/ONE-158983"
+  },
+  "ONE-157948": {
+    "key": "ONE-157948",
+    "summary": "Updating task's start and end date causes an error (after restore, only team-managed projects)",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2025-10-21",
+    "url": "https://appfire.atlassian.net/browse/ONE-157948"
+  },
+  "ONE-119684": {
+    "key": "ONE-119684",
+    "summary": "currentUser() QF is not inherited despite correct inheritance mode",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2025-09-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-119684"
+  },
+  "ODEV-3172": {
+    "key": "ODEV-3172",
+    "summary": "Minified React error causes splashscreen \"Something went wrong\" when adding Strategic Theme as a parent on staging env",
+    "status": "Done",
+    "priority": "Major",
+    "created": "2026-01-08",
+    "url": "https://appfire.atlassian.net/browse/ODEV-3172"
+  },
+  "ODEV-3052": {
+    "key": "ODEV-3052",
+    "summary": "OKR module - Multiple confirmation messages after creating OKR item",
+    "status": "Canceled",
+    "priority": "High",
+    "created": "2025-10-21",
+    "url": "https://appfire.atlassian.net/browse/ODEV-3052"
+  },
+  "ONE-393993": {
+    "key": "ONE-393993",
+    "summary": "Creating timebox series based on the Jira Board is unavailable",
+    "status": "Ready to Start",
+    "priority": "Medium",
+    "created": "2026-10-13",
+    "url": "https://appfire.atlassian.net/browse/ONE-393993"
+  },
+  "ONE-380561": {
+    "key": "ONE-380561",
+    "summary": "[Priorities] Missing splash screen and incorrect link",
+    "status": "Done",
+    "priority": "Medium",
+    "created": "2026-09-12",
+    "url": "https://appfire.atlassian.net/browse/ONE-380561"
+  },
+  "ONE-354579": {
+    "key": "ONE-354579",
+    "summary": "Strategic areas - After navigating from the OKRs tab to the Initiatives tab and back, the corresponding OKR is no longer highlighted in the OKRs tab",
+    "status": "Open",
+    "priority": "Low",
+    "created": "2026-07-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-354579"
+  },
+  "ONE-354530": {
+    "key": "ONE-354530",
+    "summary": "White arrow displays when editing Priority score on Gantt module",
+    "status": "Open",
+    "priority": "Low",
+    "created": "2026-07-16",
+    "url": "https://appfire.atlassian.net/browse/ONE-354530"
+  },
+  "ONE-353103": {
+    "key": "ONE-353103",
+    "summary": "Assigning teams/labels on the overview causes reordering",
+    "status": "Done",
+    "priority": "Medium",
+    "created": "2026-07-10",
+    "url": "https://appfire.atlassian.net/browse/ONE-353103"
+  },
+  "ONE-349023": {
+    "key": "ONE-349023",
+    "summary": "Resource Grid - UI is not updated when perfect match is assigned to the task (team or individual)",
+    "status": "Done",
+    "priority": "Medium",
+    "created": "2026-07-03",
+    "url": "https://appfire.atlassian.net/browse/ONE-349023"
+  },
+  "ONE-315335": {
+    "key": "ONE-315335",
+    "summary": "Resources Module - After archiving the user and returning to the Resources module, the \"Archived\" label appears only after refreshing the page",
+    "status": "Open",
+    "priority": "Lowest",
+    "created": "2026-05-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-315335"
+  },
+  "ONE-257746": {
+    "key": "ONE-257746",
+    "summary": "An incorrect message appears if you assign a task to a user who does not have assignable permissions granted in Jira",
+    "status": "Open",
+    "priority": "Medium",
+    "created": "2026-04-15",
+    "url": "https://appfire.atlassian.net/browse/ONE-257746"
+  },
+  "ONE-230376": {
+    "key": "ONE-230376",
+    "summary": "Gantt module - Priority scores are not displayed immediately after selecting the Priorities view and require a refresh",
+    "status": "Done",
+    "priority": "Medium",
+    "created": "2026-02-25",
+    "url": "https://appfire.atlassian.net/browse/ONE-230376"
+  },
+  "ONE-230368": {
+    "key": "ONE-230368",
+    "summary": "Risk Management - Insufficient permission for the box viewer and box editor",
+    "status": "Canceled",
+    "priority": "High",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-230368"
+  },
+  "ONE-224662": {
+    "key": "ONE-224662",
+    "summary": "Dashboard hub - Reports does not show changes in the module where it is first displayed after making changes",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2026-02-12",
+    "url": "https://appfire.atlassian.net/browse/ONE-224662"
+  },
+  "ONE-222308": {
+    "key": "ONE-222308",
+    "summary": "Priorities - Infinite loading occurs when opening the Priority Score details dialog on Gantt module",
+    "status": "Done",
+    "priority": "Highest",
+    "created": "2025-11-04",
+    "url": "https://appfire.atlassian.net/browse/ONE-222308"
+  },
+  "ONE-214988": {
+    "key": "ONE-214988",
+    "summary": "OKR module - Sometimes after editing okrs and refreshing page, modal for creating strategic theme is displayed",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2025-11-19",
+    "url": "https://appfire.atlassian.net/browse/ONE-214988"
+  },
+  "ONE-212944": {
+    "key": "ONE-212944",
+    "summary": "Field OKR type/Assignee filters only by tasks, not OKRs",
+    "status": "Done",
+    "priority": "High",
+    "created": "2026-01-21",
+    "url": "https://appfire.atlassian.net/browse/ONE-212944"
+  },
+  "ONE-206908": {
+    "key": "ONE-206908",
+    "summary": "Reports - Team dependencies - Infinite loading state during export",
+    "status": "Done",
+    "priority": "Medium",
+    "created": "2025-12-11",
+    "url": "https://appfire.atlassian.net/browse/ONE-206908"
+  },
+  "ONE-206354": {
+    "key": "ONE-206354",
+    "summary": "Resources module - Task details dialog - Changing a task assignment using the \"Find the perfect match\" option does not immediately appear in the modal dialog",
+    "status": "Canceled",
+    "priority": "Low",
+    "created": "2025-12-10",
+    "url": "https://appfire.atlassian.net/browse/ONE-206354"
+  },
+  "ONE-206344": {
+    "key": "ONE-206344",
+    "summary": "JC- Gantt- issue data not loading after project restore",
+    "status": "Canceled",
+    "priority": "Medium",
+    "created": "2025-12-10",
+    "url": "https://appfire.atlassian.net/browse/ONE-206344"
+  },
+  "ONE-205001": {
+    "key": "ONE-205001",
+    "summary": "Gantt - Imported tasks always have scheduling mode Auto basic regardless of the selected mode",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-12-09",
+    "url": "https://appfire.atlassian.net/browse/ONE-205001"
+  },
+  "ONE-204996": {
+    "key": "ONE-204996",
+    "summary": "Risk Management - If there are more than 50 issues in box, Risk register frameworks can't be saved with new values due to JQL error ",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-12-09",
+    "url": "https://appfire.atlassian.net/browse/ONE-204996"
+  },
+  "ONE-204991": {
+    "key": "ONE-204991",
+    "summary": "OKR Types and Periods are missing in Settings, cannot create Strategic Theme",
+    "status": "Done",
+    "priority": "Highest",
+    "created": "2025-12-09",
+    "url": "https://appfire.atlassian.net/browse/ONE-204991"
+  },
+  "ONE-190240": {
+    "key": "ONE-190240",
+    "summary": "Strategic areas - OKRs  are not updating",
+    "status": "Canceled",
+    "priority": "High",
+    "created": "2025-11-20",
+    "url": "https://appfire.atlassian.net/browse/ONE-190240"
+  },
+  "ONE-190237": {
+    "key": "ONE-190237",
+    "summary": "New Homepage loads slowly ",
+    "status": "Done",
+    "priority": "High",
+    "created": "2025-11-20",
+    "url": "https://appfire.atlassian.net/browse/ONE-190237"
+  }
+}

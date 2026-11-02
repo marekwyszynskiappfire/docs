@@ -1,0 +1,1052 @@
+{
+  "schema_version": 1,
+  "gathered_at": "2026-11-02T07:37:06+01:00",
+  "version": "8.76",
+  "site": "https://appfire.atlassian.net",
+  "cutoff": {
+    "id": "55708",
+    "name": "preprod/2026-10-05/8.76",
+    "cutoff_date": "2026-10-05",
+    "released": false
+  },
+  "preprod_versions": [
+    {
+      "id": "55708",
+      "name": "preprod/2026-10-05/8.76",
+      "cutoff_date": "2026-10-05",
+      "released": false
+    }
+  ],
+  "production": {
+    "product": "bigpicture-cloud",
+    "released": false,
+    "first_released": null,
+    "versions": [
+      {
+        "id": "55986",
+        "name": "bigpicture-cloud-8.76.0.2",
+        "released": false,
+        "release_date": "2026-10-26",
+        "url": "https://appfire.atlassian.net/issues/?jql=fixVersion%20%3D%20%22bigpicture-cloud-8.76.0.2%22"
+      }
+    ],
+    "release_signal": {
+      "released": true,
+      "release_date": "2026-10-26",
+      "release_date_last": "2026-10-26",
+      "trigger_issue": "ONE-392073",
+      "trigger_url": "https://appfire.atlassian.net/browse/ONE-392073",
+      "trigger_fix_versions": [
+        "bigpicture-cloud-8.76.0.2"
+      ],
+      "latest_issue": "ONE-393942",
+      "latest_url": "https://appfire.atlassian.net/browse/ONE-393942",
+      "qualifying_events": [
+        {
+          "issue_key": "ONE-393942",
+          "done_at": "2026-10-26",
+          "done_at_iso": "2026-10-26T05:53:35.441-0400",
+          "fix_versions": [
+            "bigpicture-cloud-8.76.0.2"
+          ],
+          "url": "https://appfire.atlassian.net/browse/ONE-393942"
+        },
+        {
+          "issue_key": "ONE-392073",
+          "done_at": "2026-10-26",
+          "done_at_iso": "2026-10-26T05:50:29.408-0400",
+          "fix_versions": [
+            "bigpicture-cloud-8.76.0.2"
+          ],
+          "url": "https://appfire.atlassian.net/browse/ONE-392073"
+        }
+      ],
+      "rule": "Earliest date a test-run-linked bug reached status 'Done' while Fix Version included bigpicture-cloud-8.76.* (changelog replay; status name must be exactly Done).",
+      "fix_version_pattern": "^bigpicture-cloud-8\\.76\\."
+    }
+  },
+  "test_run": {
+    "key": "TC-6690",
+    "summary": "BigPicture 8.76 Major Release Test Run Jira Cloud Manual — Legion selection (filter 17844)",
+    "status": "Done",
+    "created": "2026-10-06T06:26:54.191-0400",
+    "url": "https://appfire.atlassian.net/browse/TC-6690",
+    "defect_keys": [
+      "ONE-393993",
+      "ONE-393942",
+      "ONE-392702",
+      "ONE-392701",
+      "ONE-392691",
+      "ONE-392073",
+      "ONE-392063",
+      "ONE-380561"
+    ],
+    "stats": {
+      "total": 149,
+      "executed": 149,
+      "passed": 138,
+      "failed": 11,
+      "skipped": 0,
+      "todo": 0,
+      "executing": 0,
+      "other": 0,
+      "by_status": {
+        "PASSED": 138,
+        "FAILED": 11
+      },
+      "status_buckets": {
+        "passed": [
+          "OK",
+          "PASS",
+          "PASSED"
+        ],
+        "failed": [
+          "FAIL",
+          "FAILED"
+        ],
+        "skipped": [
+          "ABORTED",
+          "N/A",
+          "NA",
+          "NOT APPLICABLE",
+          "SKIPPED"
+        ],
+        "todo": [
+          "TO DO",
+          "TODO"
+        ],
+        "executing": [
+          "EXECUTING"
+        ],
+        "other": "any remaining status name"
+      },
+      "counts_source": "getTestExecution.testRuns latest status per test",
+      "qa_engineers": {
+        "count": 4,
+        "account_ids": [
+          "60dc59337d016900702ab00c",
+          "60dc5b9f285656006a7f8c22",
+          "60dc5c290a1f6800702e7816",
+          "60dc5dab6d066300688fe866"
+        ],
+        "names": [
+          "60dc59337d016900702ab00c",
+          "60dc5b9f285656006a7f8c22",
+          "60dc5c290a1f6800702e7816",
+          "60dc5dab6d066300688fe866"
+        ],
+        "source": "getTestExecution.testRuns executedById (distinct)"
+      },
+      "timing": {
+        "execution_created": "2026-10-06T06:26:54.191-0400",
+        "first_status_change": "2026-10-06T11:30:51.001000+00:00",
+        "last_status_change": "2026-10-13T08:48:42.786000+00:00",
+        "duration_days": 5,
+        "duration_kind": "weekdays",
+        "source": "xray_execution_test_runs",
+        "rule": "Weekdays only (Mon–Fri), from the first to the last status change on any test in this Test Execution (getTestExecution.testRuns activity, field status). Same calendar day counts as 0."
+      }
+    },
+    "failed_tests": [
+      {
+        "key": "TC-1599",
+        "summary": "Feature area - Task - Workload contouring - Switching between contouring modes",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-1599#!page=test-run&testExecutionKey=TC-6690&testKey=TC-1599&testPlanId="
+      },
+      {
+        "key": "TC-3189",
+        "summary": "Feature area - Box - Creating - Creating timebox series based on the Jira Board",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-3189#!page=test-run&testExecutionKey=TC-6690&testKey=TC-3189&testPlanId="
+      },
+      {
+        "key": "TC-3337",
+        "summary": "Feature area - Box - Attributes displaying and editing - Changing Jira sprint name and status",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-3337#!page=test-run&testExecutionKey=TC-6690&testKey=TC-3337&testPlanId="
+      },
+      {
+        "key": "TC-4311",
+        "summary": "Box module - Resources - Resource Grid - Find Perfect match calculation basing on Remaining capacity when skills are not assigned to task and user",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-4311#!page=test-run&testExecutionKey=TC-6690&testKey=TC-4311&testPlanId="
+      },
+      {
+        "key": "TC-4322",
+        "summary": "new Box Module - Resources - Resource Grid - Find Perfect Match",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-4322#!page=test-run&testExecutionKey=TC-6690&testKey=TC-4322&testPlanId="
+      },
+      {
+        "key": "TC-4990",
+        "summary": "Feature area - Exporting - Preserving template configuration - Cloud",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-4990#!page=test-run&testExecutionKey=TC-6690&testKey=TC-4990&testPlanId="
+      },
+      {
+        "key": "TC-5326",
+        "summary": "SPM - Priorities - Prioritizing Boxes on Priorities module and displaying on Overview module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-5326#!page=test-run&testExecutionKey=TC-6690&testKey=TC-5326&testPlanId="
+      },
+      {
+        "key": "TC-5421",
+        "summary": "Box module - Financials - Cost Variation ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-5421#!page=test-run&testExecutionKey=TC-6690&testKey=TC-5421&testPlanId="
+      },
+      {
+        "key": "TC-5828",
+        "summary": "Sanity Financials Portfolio part 2",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-5828#!page=test-run&testExecutionKey=TC-6690&testKey=TC-5828&testPlanId="
+      },
+      {
+        "key": "TC-5876",
+        "summary": "SPM - Strategic areas  - Entering OKRs tab",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-5876#!page=test-run&testExecutionKey=TC-6690&testKey=TC-5876&testPlanId="
+      },
+      {
+        "key": "TC-5942",
+        "summary": "Box module - Financials - Hierarchal structure on the Work cost breakdown widget",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6690&ac.testKey=TC-5942#!page=test-run&testExecutionKey=TC-6690&testKey=TC-5942&testPlanId="
+      }
+    ],
+    "failed_tests_source": "getTestExecution.testRuns latest status per test (FAILED/FAIL)"
+  },
+  "test_run_candidates": [],
+  "bugs": {
+    "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-10-05/8.76\" AND created >= \"2026-10-05\" ORDER BY priority DESC, created ASC",
+    "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-10-05/8.76%22%20AND%20created%20%3E%3D%20%222026-10-05%22%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC",
+    "rule": "Affected Version is the preprod version, created on or after the cut-off date.",
+    "by_priority": {
+      "Highest": 4,
+      "High": 9,
+      "Medium": 22,
+      "Low": 1
+    },
+    "found_by_test_run": 6,
+    "issues": [
+      {
+        "key": "ONE-390879",
+        "summary": "SocketException: Connection reset",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-390879"
+      },
+      {
+        "key": "ONE-393942",
+        "summary": "\"ERROR: column fstwwh1_0.INDIVIDUAL_ASSIGNEE_KEY does not exist\"  while entering Cost variance module on Financials",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2026-10-12",
+        "found_by_test_run": true,
+        "found_by_runs": [
+          "TC-6690"
+        ],
+        "url": "https://appfire.atlassian.net/browse/ONE-393942"
+      },
+      {
+        "key": "ONE-396480",
+        "summary": "Financials on Portfolio error",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-10-19",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-396480"
+      },
+      {
+        "key": "ONE-399674",
+        "summary": "RUM events SLO Degradation on new version during Canary Release",
+        "priority": "Highest",
+        "status": "In Progress",
+        "created": "2026-10-27",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-399674"
+      },
+      {
+        "key": "ONE-390782",
+        "summary": "Error detected for autokr",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-390782"
+      },
+      {
+        "key": "ONE-390785",
+        "summary": "Assign task to timebox via D&D - modal does not stop dnd",
+        "priority": "High",
+        "status": "Waiting for Release",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-390785"
+      },
+      {
+        "key": "ONE-391216",
+        "summary": "WBS widget on Jira work item - Manage columns dialog is clipped by the widget frame after it grows (columns added / async render)",
+        "priority": "High",
+        "status": "Waiting for Release",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-391216"
+      },
+      {
+        "key": "ONE-392698",
+        "summary": "Box sync fails for all boxes when OKR plugin is enabled and any key result has null linkedIssueIds",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-10-08",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-392698"
+      },
+      {
+        "key": "ONE-392701",
+        "summary": "Renaming a sprint in Jira causes it to disappear from the Overview module and triggers an error in the Board module",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-10-08",
+        "found_by_test_run": true,
+        "found_by_runs": [
+          "TC-6690"
+        ],
+        "url": "https://appfire.atlassian.net/browse/ONE-392701"
+      },
+      {
+        "key": "ONE-393290",
+        "summary": "Shift+click range multi-select does not work in the Gantt task tree",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-10-09",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-393290"
+      },
+      {
+        "key": "ONE-395981",
+        "summary": "Scope definition - Automatic sprint-based timeboxes option doesn't work",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-10-15",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-395981"
+      },
+      {
+        "key": "ONE-398621",
+        "summary": "SPM - User without permissions can access OKR modules and gain admin privileges",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-10-22",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-398621"
+      },
+      {
+        "key": "ONE-398630",
+        "summary": "Security vulnerability- [BigPicture/OKR Module] User with global viewer permissions and \"Can edit\" restriction can add new users as editors",
+        "priority": "High",
+        "status": "Open",
+        "created": "2026-10-23",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-398630"
+      },
+      {
+        "key": "ONE-390780",
+        "summary": "Failed to synchronise team - 401 Unauthorized on GET request",
+        "priority": "Medium",
+        "status": "Open",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-390780"
+      },
+      {
+        "key": "ONE-390992",
+        "summary": "PeriodFieldException: Unsupported period configuration, valueClass Labels",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-390992"
+      },
+      {
+        "key": "ONE-391013",
+        "summary": "ClassCastException: class com.softwareplant.util.datatype.fieldtype.DateValue cannot be cast to class com.softwareplant.util.datatype.field.AgileSprints",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-391013"
+      },
+      {
+        "key": "ONE-391211",
+        "summary": "[FE] Add margin to rule description",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-391211"
+      },
+      {
+        "key": "ONE-392063",
+        "summary": "Teams Module - Members tab – Unnecessary empty space next to the Delete button",
+        "priority": "Medium",
+        "status": "Waiting for Release",
+        "created": "2026-10-07",
+        "found_by_test_run": true,
+        "found_by_runs": [
+          "TC-6690"
+        ],
+        "url": "https://appfire.atlassian.net/browse/ONE-392063"
+      },
+      {
+        "key": "ONE-392073",
+        "summary": "Jira issue page - Find the perfect match doesn't work in the Skill widget",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-10-07",
+        "found_by_test_run": true,
+        "found_by_runs": [
+          "TC-6690"
+        ],
+        "url": "https://appfire.atlassian.net/browse/ONE-392073"
+      },
+      {
+        "key": "ONE-392112",
+        "summary": "[Snyk] Security upgrade org.bouncycastle:*",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-10-08",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-392112"
+      },
+      {
+        "key": "ONE-392113",
+        "summary": "Access Denied when navigate to Strategic Areas",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-10-08",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-392113"
+      },
+      {
+        "key": "ONE-392691",
+        "summary": "BigTemplate displays \"Unable to access BigPicture\" permission banner",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-10-08",
+        "found_by_test_run": true,
+        "found_by_runs": [
+          "TC-6690"
+        ],
+        "url": "https://appfire.atlassian.net/browse/ONE-392691"
+      },
+      {
+        "key": "ONE-392702",
+        "summary": "Resources Module - Task details dialog - Changing the Contouring mode for the first time in a task does not refresh the Workload and Remaining Capacity values",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-10-08",
+        "found_by_test_run": true,
+        "found_by_runs": [
+          "TC-6690"
+        ],
+        "url": "https://appfire.atlassian.net/browse/ONE-392702"
+      },
+      {
+        "key": "ONE-393988",
+        "summary": "500 error after deleting not global template",
+        "priority": "Medium",
+        "status": "Waiting for Release",
+        "created": "2026-10-13",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-393988"
+      },
+      {
+        "key": "ONE-394649",
+        "summary": "Tempo Skill sync cannot finish when synced item is removed from Tempo",
+        "priority": "Medium",
+        "status": "Waiting for Release",
+        "created": "2026-10-14",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-394649"
+      },
+      {
+        "key": "ONE-395971",
+        "summary": "Excel like editing: pasting a few values does not carry over the context to the modal",
+        "priority": "Medium",
+        "status": "Open",
+        "created": "2026-10-15",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-395971"
+      },
+      {
+        "key": "ONE-396476",
+        "summary": "Gantt: sorting by Priority score does not keep a stable order for tasks with an empty score",
+        "priority": "Medium",
+        "status": "Open",
+        "created": "2026-10-19",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-396476"
+      },
+      {
+        "key": "ONE-396529",
+        "summary": "[Snyk] Security upgrade jjwt",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-10-19",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-396529"
+      },
+      {
+        "key": "ONE-397006",
+        "summary": "Board: Swimlanes by status show same status multiple times",
+        "priority": "Medium",
+        "status": "Ready to Start",
+        "created": "2026-10-19",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-397006"
+      },
+      {
+        "key": "ONE-397550",
+        "summary": "Resources Module - Incorrect lozenge colors in Summary in Skills mode with Yearly/Monthly aggregation",
+        "priority": "Medium",
+        "status": "Ready to Start",
+        "created": "2026-10-20",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-397550"
+      },
+      {
+        "key": "ONE-397558",
+        "summary": "Capacity % backfill drops a batch when an external task id is not numeric",
+        "priority": "Medium",
+        "status": "Waiting for Release",
+        "created": "2026-10-20",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-397558"
+      },
+      {
+        "key": "ONE-398089",
+        "summary": "Existing spaces are not displayed in the list",
+        "priority": "Medium",
+        "status": "Ready to Start",
+        "created": "2026-10-21",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-398089"
+      },
+      {
+        "key": "ONE-398627",
+        "summary": "Time-boxes Issues on ANN",
+        "priority": "Medium",
+        "status": "Ready to Start",
+        "created": "2026-10-23",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-398627"
+      },
+      {
+        "key": "ONE-399152",
+        "summary": "User with [App user/Box viewer] Permission is able to edit Backlog in Resources",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-10-23",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-399152"
+      },
+      {
+        "key": "ONE-400118",
+        "summary": "Jira Teams option is available in the Teams and Global Teams modules",
+        "priority": "Medium",
+        "status": "Open",
+        "created": "2026-10-27",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-400118"
+      },
+      {
+        "key": "ONE-391166",
+        "summary": "SyntheticLogException: Token:",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-10-05",
+        "found_by_test_run": false,
+        "found_by_runs": [],
+        "url": "https://appfire.atlassian.net/browse/ONE-391166"
+      },
+      {
+        "key": "ONE-393993",
+        "summary": "Creating timebox series based on the Jira Board is unavailable",
+        "priority": "Medium",
+        "status": "Ready to Start",
+        "created": "2026-10-13",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-393993"
+      },
+      {
+        "key": "ONE-380561",
+        "summary": "[Priorities] Missing splash screen and incorrect link",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-09-12",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-380561"
+      }
+    ],
+    "test_run": {
+      "count": 8,
+      "jql": "issuetype = Bug AND issue in linkedIssues(\"TC-6690\")",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20issue%20in%20linkedIssues%28%22TC-6690%22%29",
+      "execution_key": "TC-6690"
+    },
+    "other": {
+      "count": 30,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-10-05/8.76\" AND created >= \"2026-10-05\" AND issue not in linkedIssues(\"TC-6690\") ORDER BY priority DESC, created ASC",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-10-05/8.76%22%20AND%20created%20%3E%3D%20%222026-10-05%22%20AND%20issue%20not%20in%20linkedIssues%28%22TC-6690%22%29%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC"
+    },
+    "customer_reported": {
+      "count": 2,
+      "affected_version": "preprod/2026-10-05/8.76",
+      "support_ticket_count": 6,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-10-05/8.76\" AND key in (ONE-392698, ONE-394649)",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-10-05/8.76%22%20AND%20key%20in%20%28ONE-392698%2C%20ONE-394649%29",
+      "rule": "Bug with Affected Version \"preprod/2026-10-05/8.76\" and a Jira issue link to a SUPPORT-* ticket (includes Relates and Support Ticket link types).",
+      "issues": [
+        {
+          "key": "ONE-392698",
+          "summary": "Box sync fails for all boxes when OKR plugin is enabled and any key result has null linkedIssueIds",
+          "priority": "High",
+          "status": "Done",
+          "created": "2026-10-08",
+          "found_by_test_run": false,
+          "found_by_runs": [],
+          "url": "https://appfire.atlassian.net/browse/ONE-392698",
+          "support_tickets": [
+            "SUPPORT-274801",
+            "SUPPORT-274830",
+            "SUPPORT-274848",
+            "SUPPORT-274948",
+            "SUPPORT-275032"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-274801",
+            "https://appfire.atlassian.net/browse/SUPPORT-274830",
+            "https://appfire.atlassian.net/browse/SUPPORT-274848",
+            "https://appfire.atlassian.net/browse/SUPPORT-274948",
+            "https://appfire.atlassian.net/browse/SUPPORT-275032"
+          ]
+        },
+        {
+          "key": "ONE-394649",
+          "summary": "Tempo Skill sync cannot finish when synced item is removed from Tempo",
+          "priority": "Medium",
+          "status": "Waiting for Release",
+          "created": "2026-10-14",
+          "found_by_test_run": false,
+          "found_by_runs": [],
+          "url": "https://appfire.atlassian.net/browse/ONE-394649",
+          "support_tickets": [
+            "SUPPORT-273305"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-273305"
+          ]
+        }
+      ]
+    }
+  },
+  "known_issues": {
+    "name": "Known issues after release 8.76",
+    "jql": "project = ONE AND affectedVersion = \"preprod/2026-10-05/8.76\" AND status NOT IN (Done, Canceled) AND issuetype = Bug AND \"Bug Type[Dropdown]\" = Internal",
+    "url": "https://appfire.atlassian.net/issues/?jql=project%20%3D%20ONE%20AND%20affectedVersion%20%3D%20%22preprod%2F2026-10-05%2F8.76%22%20AND%20status%20NOT%20IN%20%28Done%2C%20Canceled%29%20AND%20issuetype%20%3D%20Bug%20AND%20%22Bug%20Type%5BDropdown%5D%22%20%3D%20Internal",
+    "rule": "Open internal bugs with Affected Version = train preprod (matches Jira saved-filter pattern for post-release known issues).",
+    "issue_count_verified": 30,
+    "breakdown": [
+      {
+        "id": "on_develop",
+        "title": "Fix on develop",
+        "description": "Merged fix commit is on AppfireBigPicture/ppm develop (not only a work/* branch).",
+        "git_branch": "develop",
+        "keys": [
+          "ONE-394649",
+          "ONE-392063",
+          "ONE-390785",
+          "ONE-390759",
+          "ONE-388391",
+          "ONE-388390"
+        ],
+        "count": 6,
+        "jql": "key in (ONE-388390, ONE-388391, ONE-390759, ONE-390785, ONE-392063, ONE-394649)",
+        "url": "https://appfire.atlassian.net/issues/?jql=key%20in%20%28ONE-388390%2C%20ONE-388391%2C%20ONE-390759%2C%20ONE-390785%2C%20ONE-392063%2C%20ONE-394649%29",
+        "issues": [
+          {
+            "key": "ONE-394649",
+            "summary": "Tempo Skill sync cannot finish when synced item is removed from Tempo",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-10-14",
+            "url": "https://appfire.atlassian.net/browse/ONE-394649"
+          },
+          {
+            "key": "ONE-392063",
+            "summary": "Teams Module - Members tab – Unnecessary empty space next to the Delete button",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-10-07",
+            "url": "https://appfire.atlassian.net/browse/ONE-392063"
+          },
+          {
+            "key": "ONE-390785",
+            "summary": "Assign task to timebox via D&D - modal does not stop dnd",
+            "priority": "High",
+            "status": "Waiting for Release",
+            "created": "2026-10-05",
+            "url": "https://appfire.atlassian.net/browse/ONE-390785"
+          },
+          {
+            "key": "ONE-390759",
+            "summary": "OKR Userless API not working",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-10-02",
+            "url": "https://appfire.atlassian.net/browse/ONE-390759"
+          },
+          {
+            "key": "ONE-388391",
+            "summary": "Roles - Resources Module - Unable to unassign a role by dragging and dropping it onto the 'Role unassigned' swimlane",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-09-29",
+            "url": "https://appfire.atlassian.net/browse/ONE-388391"
+          },
+          {
+            "key": "ONE-388390",
+            "summary": "Roles - Resources Module - Wrong confirmation messages when assigning a new role by drag and drop from sidebar",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-09-29",
+            "url": "https://appfire.atlassian.net/browse/ONE-388390"
+          }
+        ]
+      },
+      {
+        "id": "global_teams_work_branch",
+        "title": "Global Teams work branch (ONE-301061)",
+        "description": "Fix merged to the long-lived Global Teams integration branch; not on develop.",
+        "git_branch": "work/ONE-301061/global-teams-move-feature-branch",
+        "keys": [
+          "ONE-382854",
+          "ONE-382852",
+          "ONE-382326",
+          "ONE-382316",
+          "ONE-382315"
+        ],
+        "count": 5,
+        "jql": "key in (ONE-382315, ONE-382316, ONE-382326, ONE-382852, ONE-382854)",
+        "url": "https://appfire.atlassian.net/issues/?jql=key%20in%20%28ONE-382315%2C%20ONE-382316%2C%20ONE-382326%2C%20ONE-382852%2C%20ONE-382854%29",
+        "issues": [
+          {
+            "key": "ONE-382854",
+            "summary": "Global Teams - Resources module - Onboarding doesn't work if there is no teams and no tasks added to the box",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-09-17",
+            "url": "https://appfire.atlassian.net/browse/ONE-382854"
+          },
+          {
+            "key": "ONE-382852",
+            "summary": "Global Teams - Teams module for box doesn't work",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-09-17",
+            "url": "https://appfire.atlassian.net/browse/ONE-382852"
+          },
+          {
+            "key": "ONE-382326",
+            "summary": "Global Teams - Main/Box Configuration/Modules - New Global Teams redirection banner is missing",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-09-17",
+            "url": "https://appfire.atlassian.net/browse/ONE-382326"
+          },
+          {
+            "key": "ONE-382316",
+            "summary": "Global Teams - Box Configuration link on the Main/Global Teams splash screen doesn't work",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-09-16",
+            "url": "https://appfire.atlassian.net/browse/ONE-382316"
+          },
+          {
+            "key": "ONE-382315",
+            "summary": "Global Teams - App Resource Admin does not see the created global teams and cannot add new ones",
+            "priority": "Low",
+            "status": "Waiting for Release",
+            "created": "2026-09-16",
+            "url": "https://appfire.atlassian.net/browse/ONE-382315"
+          }
+        ]
+      },
+      {
+        "id": "ado_poc_work_branch",
+        "title": "Azure DevOps PoC work branch (ONE-336447)",
+        "description": "Fix merged to the ADO PoC integration branch; not on develop.",
+        "git_branch": "work/ONE-336447/azuredevops-poc",
+        "keys": [
+          "ONE-375432",
+          "ONE-374817",
+          "ONE-374290",
+          "ONE-374289",
+          "ONE-372720",
+          "ONE-372189",
+          "ONE-371665",
+          "ONE-371664",
+          "ONE-371168",
+          "ONE-370690",
+          "ONE-370078"
+        ],
+        "count": 11,
+        "jql": "key in (ONE-370078, ONE-370690, ONE-371168, ONE-371664, ONE-371665, ONE-372189, ONE-372720, ONE-374289, ONE-374290, ONE-374817, ONE-375432)",
+        "url": "https://appfire.atlassian.net/issues/?jql=key%20in%20%28ONE-370078%2C%20ONE-370690%2C%20ONE-371168%2C%20ONE-371664%2C%20ONE-371665%2C%20ONE-372189%2C%20ONE-372720%2C%20ONE-374289%2C%20ONE-374290%2C%20ONE-374817%2C%20ONE-375432%29",
+        "issues": [
+          {
+            "key": "ONE-375432",
+            "summary": "Content Security Policy (CSP) is blocking user avatar",
+            "priority": "High",
+            "status": "Waiting for Release",
+            "created": "2026-08-31",
+            "url": "https://appfire.atlassian.net/browse/ONE-375432"
+          },
+          {
+            "key": "ONE-374817",
+            "summary": "'Open Jira window' option should open work item on new tab",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-28",
+            "url": "https://appfire.atlassian.net/browse/ONE-374817"
+          },
+          {
+            "key": "ONE-374290",
+            "summary": "Show \"Box not found\" screen instead of \"Access denied\" when navigating to a non-existent box (410)",
+            "priority": "Low",
+            "status": "Waiting for Release",
+            "created": "2026-08-28",
+            "url": "https://appfire.atlassian.net/browse/ONE-374290"
+          },
+          {
+            "key": "ONE-374289",
+            "summary": "Hide OKR and Priorities app roles on Security screen",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-28",
+            "url": "https://appfire.atlassian.net/browse/ONE-374289"
+          },
+          {
+            "key": "ONE-372720",
+            "summary": "Default mapping- unneccessary tooltips",
+            "priority": "Low",
+            "status": "Waiting for Release",
+            "created": "2026-08-24",
+            "url": "https://appfire.atlassian.net/browse/ONE-372720"
+          },
+          {
+            "key": "ONE-372189",
+            "summary": "Custom field mapping- empty project list- refresh is the only possibility to return",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-21",
+            "url": "https://appfire.atlassian.net/browse/ONE-372189"
+          },
+          {
+            "key": "ONE-371665",
+            "summary": "Resources module- invalid link to user details",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-20",
+            "url": "https://appfire.atlassian.net/browse/ONE-371665"
+          },
+          {
+            "key": "ONE-371664",
+            "summary": "Functionality 'Teams based on ADO Group' should be blocked",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-20",
+            "url": "https://appfire.atlassian.net/browse/ONE-371664"
+          },
+          {
+            "key": "ONE-371168",
+            "summary": "Parent Area can be added multiple times when rapidly clicked after selecting its child Area",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-19",
+            "url": "https://appfire.atlassian.net/browse/ONE-371168"
+          },
+          {
+            "key": "ONE-370690",
+            "summary": "Adding new task via Gantt module- ADO option should be hidden",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-19",
+            "url": "https://appfire.atlassian.net/browse/ONE-370690"
+          },
+          {
+            "key": "ONE-370078",
+            "summary": "ADO issue type icons are not visible in Gantt module",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-18",
+            "url": "https://appfire.atlassian.net/browse/ONE-370078"
+          }
+        ]
+      },
+      {
+        "id": "in_flight",
+        "title": "In flight (not on develop)",
+        "description": "Open PR #11949: work/ONE-398089/filters → preprod/2026-10-05/8.76 (not merged yet).",
+        "git_branch": "work/ONE-398089/filters → preprod/2026-10-05/8.76",
+        "keys": [
+          "ONE-398089"
+        ],
+        "count": 1,
+        "jql": "key in (ONE-398089)",
+        "url": "https://appfire.atlassian.net/issues/?jql=key%20in%20%28ONE-398089%29",
+        "issues": [
+          {
+            "key": "ONE-398089",
+            "summary": "Existing spaces are not displayed in the list",
+            "priority": "Medium",
+            "status": "In Progress",
+            "created": "2026-10-21",
+            "url": "https://appfire.atlassian.net/browse/ONE-398089"
+          }
+        ]
+      },
+      {
+        "id": "no_github_fix",
+        "title": "No fix on any branch (GitHub)",
+        "description": "No merged PR / commit found by issue key in AppfireBigPicture/ppm (Oct 2026).",
+        "git_branch": null,
+        "keys": [
+          "ONE-399674",
+          "ONE-398627",
+          "ONE-395971",
+          "ONE-380025",
+          "ONE-372215",
+          "ONE-372214",
+          "ONE-371666"
+        ],
+        "count": 7,
+        "jql": "key in (ONE-371666, ONE-372214, ONE-372215, ONE-380025, ONE-395971, ONE-398627, ONE-399674)",
+        "url": "https://appfire.atlassian.net/issues/?jql=key%20in%20%28ONE-371666%2C%20ONE-372214%2C%20ONE-372215%2C%20ONE-380025%2C%20ONE-395971%2C%20ONE-398627%2C%20ONE-399674%29",
+        "issues": [
+          {
+            "key": "ONE-399674",
+            "summary": "RUM events SLO Degradation on new version during Canary Release",
+            "priority": "Highest",
+            "status": "In Progress",
+            "created": "2026-10-27",
+            "url": "https://appfire.atlassian.net/browse/ONE-399674"
+          },
+          {
+            "key": "ONE-398627",
+            "summary": "Time-boxes Issues on ANN",
+            "priority": "Medium",
+            "status": "Ready to Start",
+            "created": "2026-10-23",
+            "url": "https://appfire.atlassian.net/browse/ONE-398627"
+          },
+          {
+            "key": "ONE-395971",
+            "summary": "Excel like editing: pasting a few values does not carry over the context to the modal",
+            "priority": "Medium",
+            "status": "Open",
+            "created": "2026-10-15",
+            "url": "https://appfire.atlassian.net/browse/ONE-395971"
+          },
+          {
+            "key": "ONE-380025",
+            "summary": "[OKRQL] - filtering of number values does not work properly",
+            "priority": "Low",
+            "status": "Open",
+            "created": "2026-09-11",
+            "url": "https://appfire.atlassian.net/browse/ONE-380025"
+          },
+          {
+            "key": "ONE-372215",
+            "summary": "Skip Jira Cloud-only tenant activators and cache refresh when primary platform is Azure DevOps",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-24",
+            "url": "https://appfire.atlassian.net/browse/ONE-372215"
+          },
+          {
+            "key": "ONE-372214",
+            "summary": "Add box with scope from overview should show projects, not areas",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-24",
+            "url": "https://appfire.atlassian.net/browse/ONE-372214"
+          },
+          {
+            "key": "ONE-371666",
+            "summary": "Security - ExtGroupModuleConnector implementation missing for ADO - no groups returned",
+            "priority": "Medium",
+            "status": "Waiting for Release",
+            "created": "2026-08-20",
+            "url": "https://appfire.atlassian.net/browse/ONE-371666"
+          }
+        ]
+      }
+    ],
+    "breakdown_verified_at": "2026-10-29",
+    "breakdown_source": "Jira automation comments + GitHub AppfireBigPicture/ppm (develop ancestry, merged PR targets)"
+  },
+  "metrics": {
+    "version": "8.76",
+    "cutoff_date": "2026-10-05",
+    "release_date": "2026-10-26",
+    "released": true,
+    "days_in_preprod": 21,
+    "tests_total": 149,
+    "tests_executed": 149,
+    "tests_passed": 138,
+    "tests_failed": 11,
+    "tests_skipped": 0,
+    "tests_todo": 0,
+    "bugs_total": 36,
+    "bugs_found_by_test_run": 8,
+    "bugs_by_priority": {
+      "Highest": 4,
+      "High": 9,
+      "Medium": 22,
+      "Low": 1
+    },
+    "release_date_last": "2026-10-26",
+    "test_run_duration_days": 5,
+    "test_run_last_status_change": "2026-10-13T08:48:42.786000+00:00",
+    "test_run_first_status_change": "2026-10-06T11:30:51.001000+00:00",
+    "bugs_other_since_cutoff": 30,
+    "qa_engineers_count": 4,
+    "bugs_customer_reported": 2
+  },
+  "notes": []
+}

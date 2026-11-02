@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { api, PipelineRunStatistics } from "../api";
+import { api, PipelineRunStatistics, ScorecardConfig, ScorecardPreview, ScorecardPushResult } from "../api";
 import JiraKeyLink from "./JiraKeyLink";
 import SortableDataTable from "./SortableDataTable";
 import TcReadinessChart from "./TcReadinessChart";
@@ -31,6 +31,10 @@ export default function RunStatisticsPanel({ runId }: Props) {
   const [report, setReport] = useState<PipelineRunStatistics | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [scorecardConfig, setScorecardConfig] = useState<ScorecardConfig | null>(null);
+  const [scorecardPreview, setScorecardPreview] = useState<ScorecardPreview | null>(null);
+  const [scorecardPush, setScorecardPush] = useState<ScorecardPushResult | null>(null);
+  const [scorecardBusy, setScorecardBusy] = useState(false);
 
   const load = useCallback(() => {
     setLoading(true);
@@ -45,6 +49,35 @@ export default function RunStatisticsPanel({ runId }: Props) {
   useEffect(() => {
     load();
   }, [load]);
+
+  const loadScorecard = useCallback(() => {
+    api
+      .scorecardConfig()
+      .then(setScorecardConfig)
+      .catch(() => setScorecardConfig(null));
+    api
+      .scorecardPreview(runId)
+      .then(setScorecardPreview)
+      .catch(() => setScorecardPreview(null));
+  }, [runId]);
+
+  useEffect(() => {
+    loadScorecard();
+  }, [loadScorecard]);
+
+  const pushScorecard = async () => {
+    setScorecardBusy(true);
+    setError("");
+    try {
+      const result = await api.scorecardPush(runId);
+      setScorecardPush(result);
+      loadScorecard();
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setScorecardBusy(false);
+    }
+  };
 
   const downloadExport = async () => {
     try {
@@ -74,6 +107,57 @@ export default function RunStatisticsPanel({ runId }: Props) {
 
   return (
     <div className="panel run-statistics">
+      <div className="panel scorecard-push" style={{ marginBottom: "1rem" }}>
+        <h3 style={{ marginTop: 0 }}>Usage scorecard (Google Sheet)</h3>
+        <p className="muted" style={{ marginTop: 0 }}>
+          Interim pilot evidence store. Spreadsheet URL is fixed in Studio; push appends or updates your
+          product tab row from this run&apos;s statistics.
+        </p>
+        {scorecardConfig && (
+          <p>
+            <a href={scorecardConfig.spreadsheet_url} target="_blank" rel="noreferrer">
+              Open Trinity Usage Scorecard
+            </a>
+            {!scorecardConfig.configured && (
+              <span className="muted">
+                {" "}
+                · Set <code>TRINITY_SCORECARD_CREDENTIALS</code> (or{" "}
+                <code>GOOGLE_APPLICATION_CREDENTIALS</code>) to enable push.
+              </span>
+            )}
+          </p>
+        )}
+        {scorecardPreview && (
+          <p className="muted">
+            Tab <code>{scorecardPreview.tab}</code>
+            {scorecardPreview.proposed_run_id ? (
+              <>
+                {" "}
+                · next row id <code>{scorecardPreview.proposed_run_id}</code>
+              </>
+            ) : null}
+            {scorecardPush?.external_run_id ? (
+              <>
+                {" "}
+                · last pushed <code>{scorecardPush.external_run_id}</code> (row {scorecardPush.row_number})
+              </>
+            ) : null}
+          </p>
+        )}
+        <div className="btn-row">
+          <button
+            type="button"
+            onClick={pushScorecard}
+            disabled={scorecardBusy || !scorecardConfig?.configured}
+          >
+            {scorecardBusy ? "Pushing…" : "Push to scorecard"}
+          </button>
+          <button type="button" className="secondary" onClick={loadScorecard} disabled={scorecardBusy}>
+            Refresh preview
+          </button>
+        </div>
+      </div>
+
       <div className="btn-row" style={{ justifyContent: "space-between", alignItems: "center" }}>
         <p className="muted" style={{ margin: 0 }}>
           Snapshot computed {formatTs(report.computed_at)} · schema v{report.schema_version}

@@ -1,0 +1,3669 @@
+{
+  "schema_version": 1,
+  "gathered_at": "2026-11-02T07:29:41+01:00",
+  "version": "8.68",
+  "site": "https://appfire.atlassian.net",
+  "cutoff": {
+    "id": "41583",
+    "name": "preprod/2026-02-11/8.68",
+    "cutoff_date": "2026-02-11",
+    "released": false
+  },
+  "preprod_versions": [
+    {
+      "id": "41583",
+      "name": "preprod/2026-02-11/8.68",
+      "cutoff_date": "2026-02-11",
+      "released": false
+    }
+  ],
+  "production": {
+    "product": "bigpicture-cloud",
+    "released": false,
+    "first_released": null,
+    "versions": [
+      {
+        "id": "41650",
+        "name": "bigpicture-cloud-8.68.0.0",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/41650"
+      },
+      {
+        "id": "42820",
+        "name": "bigpicture-cloud-8.68.0.1",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/42820"
+      },
+      {
+        "id": "43029",
+        "name": "bigpicture-cloud-8.68.0.2",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/43029"
+      },
+      {
+        "id": "43066",
+        "name": "bigpicture-cloud-8.68.0.3",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/43066"
+      }
+    ],
+    "release_signal": {
+      "released": false,
+      "release_date": null,
+      "release_date_last": null,
+      "trigger_issue": null,
+      "qualifying_events": [],
+      "rule": "Earliest date a test-run-linked bug reached status 'Done' while Fix Version included bigpicture-cloud-8.68.* (changelog replay; status name must be exactly Done).",
+      "fix_version_pattern": "^bigpicture-cloud-8\\.68\\."
+    }
+  },
+  "test_run": {
+    "key": "TC-5984",
+    "summary": "BigPicture 8.68 Major Release Test Run Jira Cloud Manual",
+    "status": "To Do",
+    "created": "2026-02-11T10:14:01.743-0500",
+    "url": "https://appfire.atlassian.net/browse/TC-5984",
+    "defect_keys": [
+      "ONE-223862",
+      "ONE-224633",
+      "ONE-224654",
+      "ONE-224655",
+      "ONE-224658",
+      "ONE-224662",
+      "ONE-224672",
+      "ONE-225578",
+      "ONE-225588",
+      "ONE-225582",
+      "ONE-226390",
+      "ONE-226393",
+      "ONE-226401"
+    ],
+    "stats": {
+      "total": 384,
+      "executed": 376,
+      "passed": 366,
+      "failed": 10,
+      "skipped": 0,
+      "todo": 8,
+      "executing": 0,
+      "other": 0,
+      "by_status": {
+        "FAILED": 10,
+        "PASSED": 366,
+        "TO DO": 8
+      },
+      "status_buckets": {
+        "passed": [
+          "OK",
+          "PASS",
+          "PASSED"
+        ],
+        "failed": [
+          "FAIL",
+          "FAILED"
+        ],
+        "skipped": [
+          "ABORTED",
+          "N/A",
+          "NA",
+          "NOT APPLICABLE",
+          "SKIPPED"
+        ],
+        "todo": [
+          "TO DO",
+          "TODO"
+        ],
+        "executing": [
+          "EXECUTING"
+        ],
+        "other": "any remaining status name"
+      },
+      "counts_source": "getTestExecution.testRuns latest status per test",
+      "qa_engineers": {
+        "count": 9,
+        "account_ids": [
+          "60dc57227536500070aa4721",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "names": [
+          "60dc57227536500070aa4721",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "source": "getTestExecution.testRuns executedById (distinct)"
+      },
+      "timing": {
+        "execution_created": "2026-02-11T10:14:01.743-0500",
+        "first_status_change": "2026-02-11T15:18:36.372000+00:00",
+        "last_status_change": "2026-02-17T10:28:54.617000+00:00",
+        "duration_days": 4,
+        "duration_kind": "weekdays",
+        "source": "xray_execution_test_runs",
+        "rule": "Weekdays only (Mon–Fri), from the first to the last status change on any test in this Test Execution (getTestExecution.testRuns activity, field status). Same calendar day counts as 0."
+      }
+    },
+    "failed_tests": [
+      {
+        "key": "TC-5129",
+        "summary": "Box module - Financials - Edit calculations settings - Setting box hourly rates",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-5129#!page=test-run&testExecutionKey=TC-5984&testKey=TC-5129&testPlanId="
+      },
+      {
+        "key": "TC-5130",
+        "summary": "Box module - Financials - Edit calculation settings - Changing work effort",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-5130#!page=test-run&testExecutionKey=TC-5984&testKey=TC-5130&testPlanId="
+      },
+      {
+        "key": "TC-5181",
+        "summary": "SPM - Priorities - Changing Priority score details on Gantt",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-5181#!page=test-run&testExecutionKey=TC-5984&testKey=TC-5181&testPlanId="
+      },
+      {
+        "key": "TC-5880",
+        "summary": "Box module - Financials - Displaying module on the different levels ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-5880#!page=test-run&testExecutionKey=TC-5984&testKey=TC-5880&testPlanId="
+      },
+      {
+        "key": "TC-5964",
+        "summary": "SPM - Strategic areas - Filter by  Type in Gantt/Scope/Board module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-5964#!page=test-run&testExecutionKey=TC-5984&testKey=TC-5964&testPlanId="
+      },
+      {
+        "key": "TC-5974",
+        "summary": "SPM - Priorities - Changing template of prioritized Boxes on Overview module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-5974#!page=test-run&testExecutionKey=TC-5984&testKey=TC-5974&testPlanId="
+      },
+      {
+        "key": "TC-2865",
+        "summary": "Box Module - Board - Basic operations - Read only mode when box is archived",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-2865#!page=test-run&testExecutionKey=TC-5984&testKey=TC-2865&testPlanId="
+      },
+      {
+        "key": "TC-2674",
+        "summary": "Feature area - Exporting - Exporting Reports",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-2674#!page=test-run&testExecutionKey=TC-5984&testKey=TC-2674&testPlanId="
+      },
+      {
+        "key": "TC-4384",
+        "summary": "new Box Module - Resources - Resource Grid - Displaying effort modes in hours/percent/man-days/story points",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-4384#!page=test-run&testExecutionKey=TC-5984&testKey=TC-4384&testPlanId="
+      },
+      {
+        "key": "TC-4385",
+        "summary": "new Box Module - Resources - Resource Grid - Displaying Workload Details Dialog",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5984&ac.testKey=TC-4385#!page=test-run&testExecutionKey=TC-5984&testKey=TC-4385&testPlanId="
+      }
+    ],
+    "failed_tests_source": "getTestExecution.testRuns latest status per test (FAILED/FAIL)"
+  },
+  "test_run_candidates": [],
+  "bugs": {
+    "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-02-11/8.68\" AND created >= \"2026-02-11\" ORDER BY priority DESC, created ASC",
+    "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-02-11/8.68%22%20AND%20created%20%3E%3D%20%222026-02-11%22%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC",
+    "rule": "Affected Version is the preprod version, created on or after the cut-off date.",
+    "by_priority": {
+      "Highest": 97,
+      "High": 80,
+      "Medium": 41,
+      "Low": 149
+    },
+    "found_by_test_run": 13,
+    "test_run": {
+      "count": 13,
+      "jql": "issuetype = Bug AND issue in linkedIssues(\"TC-5984\")",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20issue%20in%20linkedIssues%28%22TC-5984%22%29",
+      "execution_key": "TC-5984"
+    },
+    "other": {
+      "count": 355,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-02-11/8.68\" AND created >= \"2026-02-11\" AND issue not in linkedIssues(\"TC-5984\") ORDER BY priority DESC, created ASC",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-02-11/8.68%22%20AND%20created%20%3E%3D%20%222026-02-11%22%20AND%20issue%20not%20in%20linkedIssues%28%22TC-5984%22%29%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC"
+    },
+    "issues": [
+      {
+        "key": "ONE-222534",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9ffe3c6b-07bb-439c-899a-ce6dd6228e89",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222534"
+      },
+      {
+        "key": "ONE-222535",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6623dd1e-6c30-460c-99a6-97a853969bf4",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222535"
+      },
+      {
+        "key": "ONE-222536",
+        "summary": "UnauthorizedException: null",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222536"
+      },
+      {
+        "key": "ONE-222537",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F5e3b3581-8002-4398-9fb6-a751bf9d37f3",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222537"
+      },
+      {
+        "key": "ONE-222538",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fcebfa9f5-1ad2-4aa2-8d25-7a54b6d71c18",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222538"
+      },
+      {
+        "key": "ONE-222539",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222539"
+      },
+      {
+        "key": "ONE-222540",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6d6d61db-99bb-448d-903c-ba108164b584",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222540"
+      },
+      {
+        "key": "ONE-222541",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F2417f1f6-9c13-40f7-b8f6-984e02066810",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222541"
+      },
+      {
+        "key": "ONE-222542",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222542"
+      },
+      {
+        "key": "ONE-222543",
+        "summary": "RejectedExecutionException: Task java.util.concurrent.CompletableFuture$AsyncSupply@11552a8a rejected from",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222543"
+      },
+      {
+        "key": "ONE-222549",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb353c65e-a138-43ba-9658-0f64e4414125",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222549"
+      },
+      {
+        "key": "ONE-222550",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9b685940-15af-47b9-953e-a04e6a74a563",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222550"
+      },
+      {
+        "key": "ONE-222551",
+        "summary": "RejectedExecutionException: Task java.util.concurrent.CompletableFuture$AsyncSupply@31946126 rejected from",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222551"
+      },
+      {
+        "key": "ONE-222552",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F46e15bcf-e48b-4f57-bf45-eda189861814",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222552"
+      },
+      {
+        "key": "ONE-222553",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F224ac898-1066-4130-a944-7fa29defc066",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222553"
+      },
+      {
+        "key": "ONE-222554",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6623dd1e-6c30-460c-99a6-97a853969bf4",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222554"
+      },
+      {
+        "key": "ONE-222555",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8930089d-6e8e-411d-990f-501fbfebe380",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222555"
+      },
+      {
+        "key": "ONE-222556",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222556"
+      },
+      {
+        "key": "ONE-222557",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8571f470-9ac3-4f8c-98e7-270fb52c982e",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222557"
+      },
+      {
+        "key": "ONE-222558",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fdffdcd3c-138c-4f49-bd2e-7fd8fdec1eda",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222558"
+      },
+      {
+        "key": "ONE-222559",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F14cfd3af-4464-475e-b16b-dd54130ca624",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222559"
+      },
+      {
+        "key": "ONE-222560",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fe08a1b33-0678-4531-a450-feec6d670c54",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222560"
+      },
+      {
+        "key": "ONE-222561",
+        "summary": "IllegalStateException: Duplicate key prod/snapshot_biggantt_0116198_0_367_ad2ac30c9732f69837d0f089ef9881d239a5d5e7_1691483538 (attempted merging values",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222561"
+      },
+      {
+        "key": "ONE-222562",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222562"
+      },
+      {
+        "key": "ONE-222563",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222563"
+      },
+      {
+        "key": "ONE-222564",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222564"
+      },
+      {
+        "key": "ONE-222565",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222565"
+      },
+      {
+        "key": "ONE-222566",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222566"
+      },
+      {
+        "key": "ONE-222567",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222567"
+      },
+      {
+        "key": "ONE-222568",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222568"
+      },
+      {
+        "key": "ONE-222569",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F34a75b4e-fffa-4bf7-a592-7a84e30ac46f",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222569"
+      },
+      {
+        "key": "ONE-222570",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222570"
+      },
+      {
+        "key": "ONE-222571",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9ffe3c6b-07bb-439c-899a-ce6dd6228e89",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222571"
+      },
+      {
+        "key": "ONE-222572",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6e0fe963-c349-4c7c-9de7-dc6ff2dcc097",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222572"
+      },
+      {
+        "key": "ONE-222573",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222573"
+      },
+      {
+        "key": "ONE-222574",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222574"
+      },
+      {
+        "key": "ONE-222580",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222580"
+      },
+      {
+        "key": "ONE-222581",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222581"
+      },
+      {
+        "key": "ONE-222582",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222582"
+      },
+      {
+        "key": "ONE-222583",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222583"
+      },
+      {
+        "key": "ONE-222589",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222589"
+      },
+      {
+        "key": "ONE-222590",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222590"
+      },
+      {
+        "key": "ONE-222596",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F13e181e7-b1b8-4f9f-9ed6-aed20a39c132",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222596"
+      },
+      {
+        "key": "ONE-222597",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222597"
+      },
+      {
+        "key": "ONE-222598",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fe41a240a-3658-463f-98b2-6f984da565ba",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222598"
+      },
+      {
+        "key": "ONE-222599",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222599"
+      },
+      {
+        "key": "ONE-222600",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6d6d61db-99bb-448d-903c-ba108164b584",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222600"
+      },
+      {
+        "key": "ONE-222601",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222601"
+      },
+      {
+        "key": "ONE-222602",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9b685940-15af-47b9-953e-a04e6a74a563",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222602"
+      },
+      {
+        "key": "ONE-222603",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa27e99bf-a54d-40cf-b071-bf50c28b8296",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222603"
+      },
+      {
+        "key": "ONE-222604",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa37dcefc-329a-4a3e-b80e-5cc9ed73ebcf",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222604"
+      },
+      {
+        "key": "ONE-222605",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F2fe47ba5-b7ff-45de-b694-f87b563f7168",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222605"
+      },
+      {
+        "key": "ONE-222606",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fe08a1b33-0678-4531-a450-feec6d670c54",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222606"
+      },
+      {
+        "key": "ONE-222607",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://one-atlas-cgqd.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 503 and the",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222607"
+      },
+      {
+        "key": "ONE-222608",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://one-atlas-cgqd.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 503 and the",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222608"
+      },
+      {
+        "key": "ONE-222609",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://one-atlas-cgqd.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 503 and the",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222609"
+      },
+      {
+        "key": "ONE-222610",
+        "summary": "RequestFailedForbiddenException: HTTP: GET https://mundolivredigital.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 403 and",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222610"
+      },
+      {
+        "key": "ONE-222611",
+        "summary": "RequestFailedForbiddenException: HTTP: GET https://mundolivredigital.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 403 and",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222611"
+      },
+      {
+        "key": "ONE-222612",
+        "summary": "RequestFailedForbiddenException: HTTP: GET https://mundolivredigital.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 403 and",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222612"
+      },
+      {
+        "key": "ONE-222613",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F85082cb8-e9b7-4092-9e17-fcba41899d26",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222613"
+      },
+      {
+        "key": "ONE-222634",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222634"
+      },
+      {
+        "key": "ONE-222640",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb584f092-ade7-4a9a-b0bc-e6eceb94f446",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222640"
+      },
+      {
+        "key": "ONE-222641",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222641"
+      },
+      {
+        "key": "ONE-222642",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222642"
+      },
+      {
+        "key": "ONE-222643",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222643"
+      },
+      {
+        "key": "ONE-222649",
+        "summary": "NoTenantDataException: No tenant data found on server. TenantId 0086883",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222649"
+      },
+      {
+        "key": "ONE-222650",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://one-atlas-ldho.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 503 and the",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222650"
+      },
+      {
+        "key": "ONE-222656",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://ecommercepartners.atlassian.net/rest/api/3/field/customfield_10006/context?maxResults=50&startAt=0 failed returning HTTP status: 503",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222656"
+      },
+      {
+        "key": "ONE-222667",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222667"
+      },
+      {
+        "key": "ONE-222673",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222673"
+      },
+      {
+        "key": "ONE-222674",
+        "summary": "ApiException: Message: ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222674"
+      },
+      {
+        "key": "ONE-222675",
+        "summary": "JiraCloudFieldNotFoundException: Cannot find Story Point estimate field for extPlatform =",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222675"
+      },
+      {
+        "key": "ONE-222676",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222676"
+      },
+      {
+        "key": "ONE-222677",
+        "summary": "RequestFailedInternalServerErrorException: HTTP: GET https://devtotalrenting.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 500 and the",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222677"
+      },
+      {
+        "key": "ONE-222678",
+        "summary": "RequestFailedInternalServerErrorException: HTTP: GET https://snd-devops.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 500 and the",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222678"
+      },
+      {
+        "key": "ONE-222679",
+        "summary": "RequestFailedInternalServerErrorException: HTTP: GET https://devtotalrenting.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 500 and the",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222679"
+      },
+      {
+        "key": "ONE-222680",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fcce71a6b-6812-4a6d-ae26-f124a8cdfab5",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222680"
+      },
+      {
+        "key": "ONE-222681",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222681"
+      },
+      {
+        "key": "ONE-222682",
+        "summary": "RequestFailedUnauthorizedException: HTTP: GET https://gameloft-sandbox-liberty2.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status:",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222682"
+      },
+      {
+        "key": "ONE-222683",
+        "summary": "RequestFailedUnauthorizedException: HTTP: GET https://gameloft-sandbox-liberty2.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status:",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222683"
+      },
+      {
+        "key": "ONE-222684",
+        "summary": "RequestFailedUnauthorizedException: HTTP: GET https://gameloft-sandbox-liberty2.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status:",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222684"
+      },
+      {
+        "key": "ONE-222685",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa4dd5463-52b4-415e-8df8-2940603f94a4",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222685"
+      },
+      {
+        "key": "ONE-222691",
+        "summary": "RequestFailedException: HTTP: GET",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222691"
+      },
+      {
+        "key": "ONE-222692",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa4dd5463-52b4-415e-8df8-2940603f94a4",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222692"
+      },
+      {
+        "key": "ONE-222693",
+        "summary": "Automatically generated issue for the token: 004...774",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222693"
+      },
+      {
+        "key": "ONE-222694",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9ffe3c6b-07bb-439c-899a-ce6dd6228e89",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222694"
+      },
+      {
+        "key": "ONE-222695",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9ffe3c6b-07bb-439c-899a-ce6dd6228e89",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222695"
+      },
+      {
+        "key": "ONE-222704",
+        "summary": "ApiException: Message: ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222704"
+      },
+      {
+        "key": "ONE-222705",
+        "summary": "ApiException: Message: ",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222705"
+      },
+      {
+        "key": "ONE-222725",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fcda7cdb2-a417-4ccc-bfbc-21b5620eafdc",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222725"
+      },
+      {
+        "key": "ONE-222768",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222768"
+      },
+      {
+        "key": "ONE-222769",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fdc1f21db-b377-4a14-a1ee-9e2a4dc519b3",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222769"
+      },
+      {
+        "key": "ONE-222772",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://flextechs.atlassian.net/rest/api/3/field/eu.softwareplant.bigpicture__mode/option?maxResults=100&startAt=0 failed returning HTTP",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222772"
+      },
+      {
+        "key": "ONE-223862",
+        "summary": "New navigation: missing Calculations and View buttons on the Initiative level ",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2026-02-12",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-223862"
+      },
+      {
+        "key": "ONE-224633",
+        "summary": "Resources module - Details of lozenges for Workload and Remaining capacity are not opening ",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2026-02-12",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-224633"
+      },
+      {
+        "key": "ONE-225501",
+        "summary": "Project health report - Lack of configuration button",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2026-02-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-225501"
+      },
+      {
+        "key": "ONE-227927",
+        "summary": "Gantt - BigPicture task (Basic task) bulk conversion is not working",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2026-02-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-227927"
+      },
+      {
+        "key": "ONE-222702",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fcda7cdb2-a417-4ccc-bfbc-21b5620eafdc",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222702"
+      },
+      {
+        "key": "ONE-222703",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa4dd5463-52b4-415e-8df8-2940603f94a4",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222703"
+      },
+      {
+        "key": "ONE-222706",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8296f08e-2c54-43ba-ba90-d956a6361f24",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222706"
+      },
+      {
+        "key": "ONE-222707",
+        "summary": "RequestFailedForbiddenException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 403 and the following response body: {\"errors\":[{\"message\":\"The user is",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222707"
+      },
+      {
+        "key": "ONE-222708",
+        "summary": "RequestFailedForbiddenException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 403 and the following response body: {\"errors\":[{\"message\":\"The user is",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222708"
+      },
+      {
+        "key": "ONE-222709",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222709"
+      },
+      {
+        "key": "ONE-222710",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222710"
+      },
+      {
+        "key": "ONE-222711",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222711"
+      },
+      {
+        "key": "ONE-222712",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222712"
+      },
+      {
+        "key": "ONE-222713",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222713"
+      },
+      {
+        "key": "ONE-222714",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222714"
+      },
+      {
+        "key": "ONE-222715",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222715"
+      },
+      {
+        "key": "ONE-222716",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222716"
+      },
+      {
+        "key": "ONE-222717",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222717"
+      },
+      {
+        "key": "ONE-222718",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222718"
+      },
+      {
+        "key": "ONE-222724",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F13e181e7-b1b8-4f9f-9ed6-aed20a39c132",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222724"
+      },
+      {
+        "key": "ONE-222726",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F7a5cd22c-9631-49e6-8603-b155c3adc307",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222726"
+      },
+      {
+        "key": "ONE-222732",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222732"
+      },
+      {
+        "key": "ONE-222738",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F5f338870-50cf-4f33-bbac-2ccfc8fafae0",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222738"
+      },
+      {
+        "key": "ONE-222739",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222739"
+      },
+      {
+        "key": "ONE-222740",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222740"
+      },
+      {
+        "key": "ONE-222746",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222746"
+      },
+      {
+        "key": "ONE-222747",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222747"
+      },
+      {
+        "key": "ONE-222748",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F59620889-0032-4294-ad6e-9dba8d454114",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222748"
+      },
+      {
+        "key": "ONE-222749",
+        "summary": "RequestFailedInternalServerErrorException: HTTP: POST https://cloud.softwareplant.com/bigpicture/jiracloud/36/rest/environment/forge/migration/0199102?ignoreJCMASwitch=false failed returning",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222749"
+      },
+      {
+        "key": "ONE-222750",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222750"
+      },
+      {
+        "key": "ONE-222756",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F1020d474-0129-4c6f-82f2-d9f656695bf1",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222756"
+      },
+      {
+        "key": "ONE-222757",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222757"
+      },
+      {
+        "key": "ONE-222758",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222758"
+      },
+      {
+        "key": "ONE-222759",
+        "summary": "RequestFailedForbiddenException: HTTP: POST https://cloud.softwareplant.com/bigtemplate/jiracloud/26/rest/environment/forge/webtrigger/0195426 failed returning HTTP status: 403 and",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222759"
+      },
+      {
+        "key": "ONE-222760",
+        "summary": "RequestFailedUnauthorizedException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 401 and the following response body: {\"errors\":[{\"message\":\"Not",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222760"
+      },
+      {
+        "key": "ONE-222761",
+        "summary": "RequestFailedUnauthorizedException: HTTP: POST https://api.monday.com/v2/ failed returning HTTP status: 401 and the following response body: {\"errors\":[{\"message\":\"Not",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222761"
+      },
+      {
+        "key": "ONE-222762",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F52de2d28-7ed2-42fd-97bb-dad4cbe7e835",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222762"
+      },
+      {
+        "key": "ONE-222770",
+        "summary": "RequestFailedForbiddenException: HTTP: POST https://cloud.softwareplant.com/bigtemplate/jiracloud/14/rest/environment/forge/webtrigger/0195021 failed returning HTTP status: 403 and",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222770"
+      },
+      {
+        "key": "ONE-222771",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F85082cb8-e9b7-4092-9e17-fcba41899d26",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222771"
+      },
+      {
+        "key": "ONE-222773",
+        "summary": "RequestFailedException: HTTP: GET",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222773"
+      },
+      {
+        "key": "ONE-222774",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222774"
+      },
+      {
+        "key": "ONE-222775",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222775"
+      },
+      {
+        "key": "ONE-222776",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222776"
+      },
+      {
+        "key": "ONE-222777",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F913eab9a-624a-419b-ac18-da76ac77db54",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222777"
+      },
+      {
+        "key": "ONE-222778",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222778"
+      },
+      {
+        "key": "ONE-222779",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222779"
+      },
+      {
+        "key": "ONE-222780",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222780"
+      },
+      {
+        "key": "ONE-222781",
+        "summary": "NoSuchElementException: Cannot find webTrigger URL",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222781"
+      },
+      {
+        "key": "ONE-222782",
+        "summary": "ActivatorException: SystemContext: 0197471, lifecycle: com.softwareplant.ppm.box.core.domain.boxtype.tenantactivators.BuiltInBoxTypesAdder, message: HTTP: GET",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222782"
+      },
+      {
+        "key": "ONE-222783",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F1ab63dbb-9f44-4b01-a79c-0a7234259d88",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222783"
+      },
+      {
+        "key": "ONE-222784",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F942819e9-9853-4e8e-8938-638a259086a1",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222784"
+      },
+      {
+        "key": "ONE-222790",
+        "summary": "LockTimeoutException: Can not acquire lock 'cloudmanager.JCMAWebhookLockService-TenantSystemNameId{tenantId=0198775, systemName=bigpicture}.local.write' for 5 MINUTES.",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222790"
+      },
+      {
+        "key": "ONE-222791",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fc7fdd7ce-819d-4594-9870-a3f89f1ffb10",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222791"
+      },
+      {
+        "key": "ONE-222792",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222792"
+      },
+      {
+        "key": "ONE-222808",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F32211e8b-1627-4a7b-975d-cbb2586ecece",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222808"
+      },
+      {
+        "key": "ONE-222809",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222809"
+      },
+      {
+        "key": "ONE-222815",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa5231ef2-95f3-4388-9b77-b4107fca1042",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222815"
+      },
+      {
+        "key": "ONE-222816",
+        "summary": "NoTenantDataException: No tenant data found on server. TenantId 0176644",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222816"
+      },
+      {
+        "key": "ONE-222827",
+        "summary": "UnauthorizedException: null",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222827"
+      },
+      {
+        "key": "ONE-222828",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222828"
+      },
+      {
+        "key": "ONE-222829",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222829"
+      },
+      {
+        "key": "ONE-222830",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222830"
+      },
+      {
+        "key": "ONE-222831",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222831"
+      },
+      {
+        "key": "ONE-222837",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222837"
+      },
+      {
+        "key": "ONE-222838",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222838"
+      },
+      {
+        "key": "ONE-222839",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fbccf5afe-8e4c-4291-9283-e0e9511ecac0",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222839"
+      },
+      {
+        "key": "ONE-222840",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F80fcac6c-994f-482e-8cbb-72e95fe0a219",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222840"
+      },
+      {
+        "key": "ONE-222841",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fe3b5e875-d064-41ec-94bb-f6af8033f697",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222841"
+      },
+      {
+        "key": "ONE-222842",
+        "summary": "StaleStateException: Batch update returned unexpected row count from update [8]; actual row count: 0; expected: 1; statement executed: update \"R_RES_ABSENCE\" set",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222842"
+      },
+      {
+        "key": "ONE-222849",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F33bf323e-e4c7-4c61-9171-0df0839dc69a",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222849"
+      },
+      {
+        "key": "ONE-222855",
+        "summary": "Automatically generated issue for the token: cbe...f72",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222855"
+      },
+      {
+        "key": "ONE-222872",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://flextechs.atlassian.net/rest/api/3/field failed returning HTTP status: 503 and the following response body: <!DOCTYPE html>",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222872"
+      },
+      {
+        "key": "ONE-222883",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F03a2f0d9-6235-4926-89b5-dfc5cee32d73",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222883"
+      },
+      {
+        "key": "ONE-222885",
+        "summary": "ApiException: Message: ",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222885"
+      },
+      {
+        "key": "ONE-222894",
+        "summary": "RequestFailedBadRequestException: HTTP: GET https://paladindrones.atlassian.net/rest/api/3/field/eu.softwareplant.bigpicture__risk-consequence/option?maxResults=100&startAt=0 failed",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222894"
+      },
+      {
+        "key": "ONE-224656",
+        "summary": "Financials: sometimes dates are different when using Custom dates",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-02-12",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-224656"
+      },
+      {
+        "key": "ONE-224658",
+        "summary": "Priorities module - After switching template for Boxes, old values are still displayed in Overview module",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-02-12",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-224658"
+      },
+      {
+        "key": "ONE-225576",
+        "summary": "Teams Module - Unable to change the availability value for team members",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-02-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-225576"
+      },
+      {
+        "key": "ONE-225578",
+        "summary": "Gantt/Scope/Board modules - Filter \"Type\" does not display values",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-13",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-225578"
+      },
+      {
+        "key": "ONE-225588",
+        "summary": "New Navigation - Export is disabled in the Board Module",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-02-16",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-225588"
+      },
+      {
+        "key": "ONE-226879",
+        "summary": "New Navigation - Filters don't work properly on the Board module",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-02-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-226879"
+      },
+      {
+        "key": "ONE-370654",
+        "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370654"
+      },
+      {
+        "key": "ONE-370664",
+        "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370664"
+      },
+      {
+        "key": "ONE-370667",
+        "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370667"
+      },
+      {
+        "key": "ONE-222843",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222843"
+      },
+      {
+        "key": "ONE-222844",
+        "summary": "RequestFailedForbiddenException: HTTP: GET https://api.atlassian.com/ex/jira/81a8a9e8-aadc-49bc-a0bb-e72064b1a45a/rest/api/3/myself failed returning HTTP status: 403 and the following",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222844"
+      },
+      {
+        "key": "ONE-222845",
+        "summary": "WebApplicationException: HTTP 400 Bad Request",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222845"
+      },
+      {
+        "key": "ONE-222846",
+        "summary": "IllegalStateException: SPM integration is disabled for this app",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222846"
+      },
+      {
+        "key": "ONE-222847",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222847"
+      },
+      {
+        "key": "ONE-222848",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8fde0bef-28d4-4e32-a064-100da96537e3",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222848"
+      },
+      {
+        "key": "ONE-222871",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222871"
+      },
+      {
+        "key": "ONE-222878",
+        "summary": "RequestFailedException: HTTP: GET",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222878"
+      },
+      {
+        "key": "ONE-222879",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F80fcac6c-994f-482e-8cbb-72e95fe0a219",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222879"
+      },
+      {
+        "key": "ONE-222880",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8fde0bef-28d4-4e32-a064-100da96537e3",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222880"
+      },
+      {
+        "key": "ONE-222881",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fece2e618-8551-41e9-a8b8-4e3215e0989e",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222881"
+      },
+      {
+        "key": "ONE-222882",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222882"
+      },
+      {
+        "key": "ONE-222884",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222884"
+      },
+      {
+        "key": "ONE-222886",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fb234ba7d-71a3-4ecf-a7c1-2136058cb3e9",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222886"
+      },
+      {
+        "key": "ONE-222887",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222887"
+      },
+      {
+        "key": "ONE-222893",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6029adaf-3fab-49f1-a954-25e24068d46f",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222893"
+      },
+      {
+        "key": "ONE-222908",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F1c6264d7-87b7-44b0-8ff7-802e83ae7be5",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222908"
+      },
+      {
+        "key": "ONE-222921",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://apptronik.atlassian.net/rest/api/3/issueLinkType failed returning HTTP status: 503 and the following response body: <!DOCTYPE html>",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222921"
+      },
+      {
+        "key": "ONE-222928",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://structure-genius-demo.atlassian.net/rest/api/3/configuration failed returning HTTP status: 503 and the following response body:",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222928"
+      },
+      {
+        "key": "ONE-222967",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F72361fd3-bd00-4425-9b0e-63c90629514d",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222967"
+      },
+      {
+        "key": "ONE-222978",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8b5a5440-7288-4129-8052-9b5fd84cb0af",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222978"
+      },
+      {
+        "key": "ONE-224654",
+        "summary": "New Navigation - Resources - Lack of \"Read more\" link",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-12",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-224654"
+      },
+      {
+        "key": "ONE-224655",
+        "summary": "Priorities module - After deleting one of the metrics, it shows 0 instead of empty field ",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-12",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-224655"
+      },
+      {
+        "key": "ONE-224672",
+        "summary": "Strategic areas - Numbers in Initiatives column on OKRs tab are disappearing after refreshing",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-13",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-224672"
+      },
+      {
+        "key": "ONE-225582",
+        "summary": "Board module - It is not possible to search for an assignee by typing",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-16",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-225582"
+      },
+      {
+        "key": "ONE-226390",
+        "summary": "New Navigation - Export button is disabled on some modules and has an incorrect tooltip on all modules in read-only boxes.",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-16",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-226390"
+      },
+      {
+        "key": "ONE-226393",
+        "summary": "New Navigation - Board module - 'Tasks' button is inactive in read-only boxes",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-16",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-226393"
+      },
+      {
+        "key": "ONE-226398",
+        "summary": "OKR task type available without SPM product for existing boxes",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-16",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-226398"
+      },
+      {
+        "key": "ONE-226401",
+        "summary": "Reports module - Export doesn't work on Tam dependencies report",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-16",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-226401"
+      },
+      {
+        "key": "ONE-226412",
+        "summary": "Financials: 1% of allocation in Cost distribution widget is too narrow",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-226412"
+      },
+      {
+        "key": "ONE-226521",
+        "summary": "Gantt: today marker is in wrong place",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-226521"
+      },
+      {
+        "key": "ONE-227205",
+        "summary": "Resources Module (old version) - Link on a username doesn't work",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-227205"
+      },
+      {
+        "key": "ONE-228462",
+        "summary": "New Navigation: it's possible to save dashboard as a new template without reports.",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-02-19",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-228462"
+      },
+      {
+        "key": "ONE-232935",
+        "summary": "Priorities module - After deleting one of the metrics no value is visible only after refresh",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-03-02",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-232935"
+      },
+      {
+        "key": "ONE-340166",
+        "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-06-25",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-340166"
+      },
+      {
+        "key": "ONE-368787",
+        "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-08-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-368787"
+      },
+      {
+        "key": "ONE-369492",
+        "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369492"
+      },
+      {
+        "key": "ONE-370655",
+        "summary": "Main: no horizontal grid lines by default on Timeline view.",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370655"
+      },
+      {
+        "key": "ONE-370657",
+        "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+        "priority": "Medium",
+        "status": "In Progress",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370657"
+      },
+      {
+        "key": "ONE-370663",
+        "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+        "priority": "Medium",
+        "status": "Waiting for Release",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370663"
+      },
+      {
+        "key": "ONE-370665",
+        "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370665"
+      },
+      {
+        "key": "ONE-222900",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fd1911db5-528b-4975-a10d-64c4f0b02cdd",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222900"
+      },
+      {
+        "key": "ONE-222901",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F0a93d53d-3bb5-4657-b56a-dd064451fe1d",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222901"
+      },
+      {
+        "key": "ONE-222902",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222902"
+      },
+      {
+        "key": "ONE-222909",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F7b7725f7-4968-490f-a168-8f6743108223",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222909"
+      },
+      {
+        "key": "ONE-222910",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fc7fdd7ce-819d-4594-9870-a3f89f1ffb10",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222910"
+      },
+      {
+        "key": "ONE-222922",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fe457b36e-1175-4210-9ac8-1f658804db82",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222922"
+      },
+      {
+        "key": "ONE-222934",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F942819e9-9853-4e8e-8938-638a259086a1",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222934"
+      },
+      {
+        "key": "ONE-222935",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fa80cb39a-168b-4318-b7a5-1d7a54e264b2",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222935"
+      },
+      {
+        "key": "ONE-222941",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://hagebau.atlassian.net/rest/api/3/issue/createmeta/15790/issuetypes?maxResults=200&startAt=0 failed returning HTTP status: 404 and",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222941"
+      },
+      {
+        "key": "ONE-222942",
+        "summary": "RequestFailedUnauthorizedException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222942"
+      },
+      {
+        "key": "ONE-222943",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222943"
+      },
+      {
+        "key": "ONE-222944",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8fa5a6c9-f06c-4a46-abe6-e5c0fad0d3de",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222944"
+      },
+      {
+        "key": "ONE-222945",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3b6e4e2c-0656-40c1-8ba5-be23fd6cd9d2",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222945"
+      },
+      {
+        "key": "ONE-222946",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222946"
+      },
+      {
+        "key": "ONE-222947",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F290d1e56-55af-4817-a208-231cc1f34949",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222947"
+      },
+      {
+        "key": "ONE-222948",
+        "summary": "RequestFailedInternalServerErrorException: HTTP: GET https://probanxsolutions.atlassian.net/rest/api/3/user?accountId=63ee22eeaf665dfde8916f0a&expand=groups%2CapplicationRoles failed returning",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222948"
+      },
+      {
+        "key": "ONE-222959",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://predell.atlassian.net/rest/api/3/group/member?groupId=1d4017ff-0561-4938-903b-d2500dcd9093&maxResults=50&startAt=0 failed returning",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222959"
+      },
+      {
+        "key": "ONE-222960",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222960"
+      },
+      {
+        "key": "ONE-222966",
+        "summary": "PSQLException: ERROR: value too long for type character varying(255)",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222966"
+      },
+      {
+        "key": "ONE-222968",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222968"
+      },
+      {
+        "key": "ONE-222969",
+        "summary": "RequestFailedInternalServerErrorException: HTTP: POST https://cloud.softwareplant.com/bigpicture/jiracloud/130/rest/environment/tenant/0188573/activate failed returning HTTP status: 500 and the",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222969"
+      },
+      {
+        "key": "ONE-222970",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F290d1e56-55af-4817-a208-231cc1f34949",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222970"
+      },
+      {
+        "key": "ONE-222971",
+        "summary": "RequestFailedBadGatewayException: HTTP: POST https://oauth-2-authorization-server.services.atlassian.com/oauth2/token failed returning HTTP status: 502 and the following response body:",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222971"
+      },
+      {
+        "key": "ONE-222977",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F32211e8b-1627-4a7b-975d-cbb2586ecece",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222977"
+      },
+      {
+        "key": "ONE-222979",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F81b13c13-4771-4308-a8ec-2a91baf20547",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222979"
+      },
+      {
+        "key": "ONE-222981",
+        "summary": "RequestFailedBadGatewayException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9ffe3c6b-07bb-439c-899a-ce6dd6228e89",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222981"
+      },
+      {
+        "key": "ONE-222982",
+        "summary": "IllegalStateException: null",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222982"
+      },
+      {
+        "key": "ONE-222983",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222983"
+      },
+      {
+        "key": "ONE-222984",
+        "summary": "RequestFailedBadGatewayException: HTTP: POST https://oauth-2-authorization-server.services.atlassian.com/oauth2/token failed returning HTTP status: 502 and the following response body:",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222984"
+      },
+      {
+        "key": "ONE-222985",
+        "summary": "RequestFailedForbiddenException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222985"
+      },
+      {
+        "key": "ONE-222986",
+        "summary": "IllegalArgumentException: Last unit does not have enough valid bits",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222986"
+      },
+      {
+        "key": "ONE-222987",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fbbd6570d-5dc6-4d82-a80c-ed05cf00db81",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222987"
+      },
+      {
+        "key": "ONE-222988",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F46e15bcf-e48b-4f57-bf45-eda189861814",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222988"
+      },
+      {
+        "key": "ONE-222989",
+        "summary": "PSQLException: ERROR: value too long for type character varying(255)",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222989"
+      },
+      {
+        "key": "ONE-222990",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://iwb-e.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 503 and the following",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222990"
+      },
+      {
+        "key": "ONE-222991",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F290d1e56-55af-4817-a208-231cc1f34949",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222991"
+      },
+      {
+        "key": "ONE-222992",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F46e15bcf-e48b-4f57-bf45-eda189861814",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222992"
+      },
+      {
+        "key": "ONE-222993",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F2349b9f7-f6ff-4031-bf5d-7ebc9d33267d",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222993"
+      },
+      {
+        "key": "ONE-222994",
+        "summary": "RequestFailedForbiddenException: HTTP: GET https://technologi.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 403 and the",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-222994"
+      },
+      {
+        "key": "ONE-223000",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fbbd6570d-5dc6-4d82-a80c-ed05cf00db81",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223000"
+      },
+      {
+        "key": "ONE-223001",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fe66056e2-93e0-4463-bc9f-aeb8c1bd55f5",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223001"
+      },
+      {
+        "key": "ONE-223002",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F9ffe3c6b-07bb-439c-899a-ce6dd6228e89",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223002"
+      },
+      {
+        "key": "ONE-223008",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8457efd7-0a2f-4554-8088-d534aa7c5651",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223008"
+      },
+      {
+        "key": "ONE-223019",
+        "summary": "RequestFailedUnauthorizedException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223019"
+      },
+      {
+        "key": "ONE-223020",
+        "summary": "RequestFailedForbiddenException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223020"
+      },
+      {
+        "key": "ONE-223021",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://one-atlas-cgqd.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 503 and the",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223021"
+      },
+      {
+        "key": "ONE-223022",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3bf0fd2f-d0ff-47e3-af15-6817455f438f",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223022"
+      },
+      {
+        "key": "ONE-223023",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F72361fd3-bd00-4425-9b0e-63c90629514d",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223023"
+      },
+      {
+        "key": "ONE-223024",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F0358f8a9-7274-4acb-a40c-38de49616033",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223024"
+      },
+      {
+        "key": "ONE-223025",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fd665c034-4c8b-4ffa-b41c-6c436d54fe1c",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223025"
+      },
+      {
+        "key": "ONE-223026",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4fbb414e-e980-4a4f-aba6-e4e64efb0fd0",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223026"
+      },
+      {
+        "key": "ONE-223037",
+        "summary": "RequestFailedForbiddenException: HTTP: GET https://cloud.softwareplant.com/bigpicture/jiracloud/32/rest/system/user/current/profile failed returning HTTP status: 403 and the following",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223037"
+      },
+      {
+        "key": "ONE-223038",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223038"
+      },
+      {
+        "key": "ONE-223039",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6e0fe963-c349-4c7c-9de7-dc6ff2dcc097",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223039"
+      },
+      {
+        "key": "ONE-223040",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8702322b-1d25-4709-b502-aba3e74d1f19",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223040"
+      },
+      {
+        "key": "ONE-223041",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4e629988-77a9-4ad7-9470-57a35e5c2300",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223041"
+      },
+      {
+        "key": "ONE-223042",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fef449e35-4ff9-4043-a5df-e3bff2271aa6",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223042"
+      },
+      {
+        "key": "ONE-223043",
+        "summary": "RequestFailedForbiddenException: HTTP: GET https://api.atlassian.com/ex/jira/3323d3f2-21f1-4a21-bb4c-5dcfa13c1bc9/rest/agile/1.0/sprint/105585/issue?maxResults=1000&startAt=0 failed",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223043"
+      },
+      {
+        "key": "ONE-223044",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6e0fe963-c349-4c7c-9de7-dc6ff2dcc097",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223044"
+      },
+      {
+        "key": "ONE-223045",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6e0fe963-c349-4c7c-9de7-dc6ff2dcc097",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223045"
+      },
+      {
+        "key": "ONE-223046",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F5e3b3581-8002-4398-9fb6-a751bf9d37f3",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223046"
+      },
+      {
+        "key": "ONE-223047",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223047"
+      },
+      {
+        "key": "ONE-223048",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fbbd6570d-5dc6-4d82-a80c-ed05cf00db81",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223048"
+      },
+      {
+        "key": "ONE-223049",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6e0fe963-c349-4c7c-9de7-dc6ff2dcc097",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223049"
+      },
+      {
+        "key": "ONE-223050",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223050"
+      },
+      {
+        "key": "ONE-223051",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223051"
+      },
+      {
+        "key": "ONE-223052",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Ffe8af3b1-24d9-4539-b961-30d2066141ca",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223052"
+      },
+      {
+        "key": "ONE-223053",
+        "summary": "ApiException: Message: ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223053"
+      },
+      {
+        "key": "ONE-223054",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3b6e4e2c-0656-40c1-8ba5-be23fd6cd9d2",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223054"
+      },
+      {
+        "key": "ONE-223055",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4b313ba5-cab6-4499-96e3-b4b73ad1dbc2",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223055"
+      },
+      {
+        "key": "ONE-223056",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223056"
+      },
+      {
+        "key": "ONE-223057",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fac050257-fc04-40f2-a532-1103f8b67a35",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223057"
+      },
+      {
+        "key": "ONE-223063",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223063"
+      },
+      {
+        "key": "ONE-223064",
+        "summary": "LockTimeoutException: Can not acquire lock 'biggantt.0188620.BoxHierarchyStorageImpl.local.write' for 15 SECONDS. Write lock is held by thread",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223064"
+      },
+      {
+        "key": "ONE-223065",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: POST https://cloud.softwareplant.com/bigpicture/jiracloud/123/rest/environment/tenant/0188536/activate failed returning HTTP status: 503 and the",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223065"
+      },
+      {
+        "key": "ONE-223066",
+        "summary": "RequestFailedBadGatewayException: HTTP: POST https://oauth-2-authorization-server.services.atlassian.com/oauth2/token failed returning HTTP status: 502 and the following response body:",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223066"
+      },
+      {
+        "key": "ONE-223067",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F54512b75-8fde-4698-b3cc-7dc23519767c",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223067"
+      },
+      {
+        "key": "ONE-223068",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://structure-genius-demo.atlassian.net/rest/api/3/status failed returning HTTP status: 503 and the following response body: <!DOCTYPE",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223068"
+      },
+      {
+        "key": "ONE-223069",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F38e1426a-c111-401d-b6f7-4defdb0cb8ea",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223069"
+      },
+      {
+        "key": "ONE-223070",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223070"
+      },
+      {
+        "key": "ONE-223071",
+        "summary": "RequestFailedException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223071"
+      },
+      {
+        "key": "ONE-223072",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223072"
+      },
+      {
+        "key": "ONE-223073",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F061803f6-d592-4f78-bdd6-929a87aed035",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223073"
+      },
+      {
+        "key": "ONE-223074",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223074"
+      },
+      {
+        "key": "ONE-223080",
+        "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223080"
+      },
+      {
+        "key": "ONE-223081",
+        "summary": "RequestFailedBadGatewayException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Ffa2edad8-b2b4-45fd-877b-1cd5e1e8234a",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223081"
+      },
+      {
+        "key": "ONE-223082",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F816470c2-7ecd-49c7-a085-e393e91ce667",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223082"
+      },
+      {
+        "key": "ONE-223083",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223083"
+      },
+      {
+        "key": "ONE-223084",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223084"
+      },
+      {
+        "key": "ONE-223085",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F6e0fe963-c349-4c7c-9de7-dc6ff2dcc097",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223085"
+      },
+      {
+        "key": "ONE-223086",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F061803f6-d592-4f78-bdd6-929a87aed035",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223086"
+      },
+      {
+        "key": "ONE-223092",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223092"
+      },
+      {
+        "key": "ONE-223093",
+        "summary": "ApiException: Message: ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223093"
+      },
+      {
+        "key": "ONE-223094",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223094"
+      },
+      {
+        "key": "ONE-223095",
+        "summary": "RequestFailedException: HTTP: GET",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223095"
+      },
+      {
+        "key": "ONE-223096",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223096"
+      },
+      {
+        "key": "ONE-223097",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223097"
+      },
+      {
+        "key": "ONE-223098",
+        "summary": "NoSuchElementException: Cannot find webTrigger URL",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223098"
+      },
+      {
+        "key": "ONE-223099",
+        "summary": "JiraProjectNotFoundException: Can't find JIRA Project with key = ExtTaskCatalogId(extPlatformId=2, extTaskCatalogKey=14641), something wrong here",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223099"
+      },
+      {
+        "key": "ONE-223100",
+        "summary": "RequestFailedInternalServerErrorException: HTTP: GET https://lucassustas.atlassian.net/rest/atlassian-connect/1/addons/eu.softwareplant.bigpicture failed returning HTTP status: 500 and the",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223100"
+      },
+      {
+        "key": "ONE-223101",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223101"
+      },
+      {
+        "key": "ONE-223102",
+        "summary": "SocketTimeoutException: timeout",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223102"
+      },
+      {
+        "key": "ONE-223103",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F48a2ad92-b621-4b03-a03f-9b4138def314",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223103"
+      },
+      {
+        "key": "ONE-223104",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F290d1e56-55af-4817-a208-231cc1f34949",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223104"
+      },
+      {
+        "key": "ONE-223105",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223105"
+      },
+      {
+        "key": "ONE-223106",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F8e550f9a-5201-4859-b577-9a62280edb0e",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223106"
+      },
+      {
+        "key": "ONE-223107",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F290d1e56-55af-4817-a208-231cc1f34949",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223107"
+      },
+      {
+        "key": "ONE-223108",
+        "summary": "IllegalArgumentException: ExtUserId cannot be created, because argument contains invalid count of ids. Argument: 712020:686a72d2-70d7-4e76-9bbc-46cfe4d9710b",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223108"
+      },
+      {
+        "key": "ONE-223109",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F38e1426a-c111-401d-b6f7-4defdb0cb8ea",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223109"
+      },
+      {
+        "key": "ONE-223110",
+        "summary": "RuntimeException: External Integration Error: OKR integration 403 ",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223110"
+      },
+      {
+        "key": "ONE-223111",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fc41993bf-c849-40b6-9170-47bf031e99c3",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223111"
+      },
+      {
+        "key": "ONE-223112",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F674e9fa7-860e-47f7-af75-70defc6e6624",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223112"
+      },
+      {
+        "key": "ONE-223113",
+        "summary": "JobContextException: java.lang.StackOverflowError",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223113"
+      },
+      {
+        "key": "ONE-223119",
+        "summary": "JiraProjectNotFoundException: Can't find JIRA Project with key = ExtTaskCatalogId(extPlatformId=2, extTaskCatalogKey=10349), something wrong here",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223119"
+      },
+      {
+        "key": "ONE-223120",
+        "summary": "RequestFailedBadGatewayException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fca3b2c28-8365-427b-adfd-633704d571ab",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223120"
+      },
+      {
+        "key": "ONE-223121",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fda06db06-1008-4a97-b8f4-a13240a911da",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223121"
+      },
+      {
+        "key": "ONE-223122",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F76454b26-85bc-4c28-841f-fa6df739997e",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223122"
+      },
+      {
+        "key": "ONE-223123",
+        "summary": "RuntimeException: External Integration Error: OKR integration 401 <!DOCTYPE html>",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223123"
+      },
+      {
+        "key": "ONE-223124",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F38e1426a-c111-401d-b6f7-4defdb0cb8ea",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223124"
+      },
+      {
+        "key": "ONE-223125",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223125"
+      },
+      {
+        "key": "ONE-223126",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F70fca2b4-0b68-42bd-8987-da2abdd1a8cf",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223126"
+      },
+      {
+        "key": "ONE-223127",
+        "summary": "RequestFailedException: The app is not found or has been deleted",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223127"
+      },
+      {
+        "key": "ONE-223128",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F03a2f0d9-6235-4926-89b5-dfc5cee32d73",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223128"
+      },
+      {
+        "key": "ONE-223129",
+        "summary": "SyntheticLogException: Synthetic stacktrace for ERROR log",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223129"
+      },
+      {
+        "key": "ONE-223130",
+        "summary": "LockTimeoutException: Can not acquire lock 'bigpicture.0154071.AEM_LOCK.local.read' for 5 MINUTES. Write lock is held by thread",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223130"
+      },
+      {
+        "key": "ONE-223136",
+        "summary": "NoSuchElementException: Cannot find webTrigger URL",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223136"
+      },
+      {
+        "key": "ONE-223137",
+        "summary": "NonUniqueResultException: query did not return a unique result: 2",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223137"
+      },
+      {
+        "key": "ONE-223143",
+        "summary": "InvalidBoxIdFormatException: Box id 215857 has invalid format",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223143"
+      },
+      {
+        "key": "ONE-223144",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F046d34d5-d290-4ac4-9c27-fa00b5c3ee7a",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223144"
+      },
+      {
+        "key": "ONE-223145",
+        "summary": "LockTimeoutException: Can not acquire lock 'biggantt.0188620.BoxHierarchyStorageImpl.local.write' for 15 SECONDS. Write lock is held by thread",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223145"
+      },
+      {
+        "key": "ONE-223146",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223146"
+      },
+      {
+        "key": "ONE-223147",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3cec59b6-4ca6-4cbe-95a4-544f76f381ec",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223147"
+      },
+      {
+        "key": "ONE-223148",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F024348f6-2277-4126-8760-eed15dbecb1f",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223148"
+      },
+      {
+        "key": "ONE-223149",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fdf0a5b60-05d7-48f9-97ac-07fa61811d42",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223149"
+      },
+      {
+        "key": "ONE-223150",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F923f12c2-6be9-4716-8b3c-99623b1de8ef",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223150"
+      },
+      {
+        "key": "ONE-223151",
+        "summary": "IllegalArgumentException: No ExtTaskQueryTypeConnector for ExtPlatformTypeId: @com.softwareplant.extplatform.api.core.ExtPlatformTypeId(value=\"Monday\") for",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223151"
+      },
+      {
+        "key": "ONE-223152",
+        "summary": "RequestFailedNotFoundException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F3161ad3d-6b20-4ab7-bfa7-cecb0e430ed5",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223152"
+      },
+      {
+        "key": "ONE-223153",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fbccf5afe-8e4c-4291-9283-e0e9511ecac0",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223153"
+      },
+      {
+        "key": "ONE-223154",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F046d34d5-d290-4ac4-9c27-fa00b5c3ee7a",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223154"
+      },
+      {
+        "key": "ONE-223155",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2Fd35c5f17-f39e-4ea4-84ef-6f71c883de6e",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223155"
+      },
+      {
+        "key": "ONE-223156",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F4f8aec06-f028-444e-ae33-05bf0a387ea5",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223156"
+      },
+      {
+        "key": "ONE-223157",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F046d34d5-d290-4ac4-9c27-fa00b5c3ee7a",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223157"
+      },
+      {
+        "key": "ONE-223158",
+        "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F046d34d5-d290-4ac4-9c27-fa00b5c3ee7a",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223158"
+      },
+      {
+        "key": "ONE-223160",
+        "summary": "Objectives: when user enters module for the first time, he is unable to add markers/milestones",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223160"
+      },
+      {
+        "key": "ONE-223167",
+        "summary": "New navigation: incorrect naming on the Risks module ",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-02-11",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-223167"
+      },
+      {
+        "key": "ONE-224661",
+        "summary": "Gantt: no poper caching on icons.",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-02-12",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-224661"
+      },
+      {
+        "key": "ONE-224664",
+        "summary": "Resources - Assign best-matching user - Remaining capacity labels are cut off",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-02-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-224664"
+      },
+      {
+        "key": "ONE-228448",
+        "summary": "Share feedback button is too far from module dropdown.",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-02-19",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-228448"
+      },
+      {
+        "key": "ONE-369497",
+        "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369497"
+      },
+      {
+        "key": "ONE-224662",
+        "summary": "Dashboard hub - Reports does not show changes in the module where it is first displayed after making changes",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-12",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-224662"
+      }
+    ],
+    "customer_reported": {
+      "count": 5,
+      "affected_version": "preprod/2026-02-11/8.68",
+      "support_ticket_count": 5,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-02-11/8.68\" AND key in (ONE-226398, ONE-226521, ONE-340166, ONE-369492, ONE-370667)",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-02-11/8.68%22%20AND%20key%20in%20%28ONE-226398%2C%20ONE-226521%2C%20ONE-340166%2C%20ONE-369492%2C%20ONE-370667%29",
+      "rule": "Bug with Affected Version \"preprod/2026-02-11/8.68\" and a Jira issue link to a SUPPORT-* ticket (includes Relates and Support Ticket link types).",
+      "issues": [
+        {
+          "key": "ONE-370667",
+          "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+          "priority": "High",
+          "status": "Done",
+          "created": "2026-08-18",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-370667",
+          "support_tickets": [
+            "SUPPORT-227921"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-227921"
+          ]
+        },
+        {
+          "key": "ONE-226398",
+          "summary": "OKR task type available without SPM product for existing boxes",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-02-16",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-226398",
+          "support_tickets": [
+            "SUPPORT-251929"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-251929"
+          ]
+        },
+        {
+          "key": "ONE-226521",
+          "summary": "Gantt: today marker is in wrong place",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-02-17",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-226521",
+          "support_tickets": [
+            "SUPPORT-250892"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-250892"
+          ]
+        },
+        {
+          "key": "ONE-340166",
+          "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-06-25",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-340166",
+          "support_tickets": [
+            "SUPPORT-249126"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-249126"
+          ]
+        },
+        {
+          "key": "ONE-369492",
+          "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-08-17",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-369492",
+          "support_tickets": [
+            "SUPPORT-251060"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-251060"
+          ]
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "version": "8.68",
+    "cutoff_date": "2026-02-11",
+    "release_date": null,
+    "released": false,
+    "days_in_preprod": null,
+    "tests_total": 384,
+    "tests_executed": 376,
+    "tests_passed": 366,
+    "tests_failed": 10,
+    "tests_skipped": 0,
+    "tests_todo": 8,
+    "test_run_duration_days": 4,
+    "test_run_first_status_change": "2026-02-11T15:18:36.372000+00:00",
+    "test_run_last_status_change": "2026-02-17T10:28:54.617000+00:00",
+    "qa_engineers_count": 9,
+    "bugs_total": 367,
+    "bugs_found_by_test_run": 13,
+    "bugs_other_since_cutoff": 355,
+    "bugs_by_priority": {
+      "Highest": 97,
+      "High": 80,
+      "Medium": 41,
+      "Low": 149
+    },
+    "release_date_last": null,
+    "bugs_customer_reported": 5
+  },
+  "notes": []
+}

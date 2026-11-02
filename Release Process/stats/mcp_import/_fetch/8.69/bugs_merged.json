@@ -1,0 +1,354 @@
+[
+  {
+    "key": "ONE-229589",
+    "summary": "Reports - Tabs - No options \"Save as template\" and \"Manage templates\" for old navigation",
+    "priority": "Highest",
+    "status": "Done",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-229589"
+  },
+  {
+    "key": "ONE-230957",
+    "summary": "Strategic areas - Columns: Period, OKR period, Date of last update, KR period are not returning values",
+    "priority": "Highest",
+    "status": "Canceled",
+    "created": "2026-02-25",
+    "url": "https://appfire.atlassian.net/browse/ONE-230957"
+  },
+  {
+    "key": "ONE-230961",
+    "summary": "Gantt Module/Resource panel - Enabling 'Show BigPicture tasks when using Jira filters' option does not show BigPicture tasks workload on the panel",
+    "priority": "Highest",
+    "status": "Done",
+    "created": "2026-02-25",
+    "url": "https://appfire.atlassian.net/browse/ONE-230961"
+  },
+  {
+    "key": "ONE-238228",
+    "summary": "Problem with permissions and expired license on forge lvl3",
+    "priority": "Highest",
+    "status": "Canceled",
+    "created": "2026-03-06",
+    "url": "https://appfire.atlassian.net/browse/ONE-238228"
+  },
+  {
+    "key": "ONE-230363",
+    "summary": "OKR Type column does not display “Key Result” type for KR items and Jira issues in Gantt module",
+    "priority": "High",
+    "status": "Canceled",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-230363"
+  },
+  {
+    "key": "ONE-230364",
+    "summary": "Financials: new custom dates are not set when this option is used before the entering the module ",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-230364"
+  },
+  {
+    "key": "ONE-230365",
+    "summary": "OKR details modal displays “We couldn't load your data” error in Gantt module",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-230365"
+  },
+  {
+    "key": "ONE-230958",
+    "summary": "New Homepage: button for adding new box is not visible sometimes",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-02-25",
+    "url": "https://appfire.atlassian.net/browse/ONE-230958"
+  },
+  {
+    "key": "ONE-236269",
+    "summary": "New Navigation - Resources Module - Missing headers options on the old version of the module",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-03-04",
+    "url": "https://appfire.atlassian.net/browse/ONE-236269"
+  },
+  {
+    "key": "ONE-236284",
+    "summary": "Reports - Tabs - No option \"Manage templates\" for old navigation",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-03-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-236284"
+  },
+  {
+    "key": "ONE-236289",
+    "summary": "New navigation: satisfaction survey is displayed on the exported Board, Calendar, Risks and Objectives",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-03-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-236289"
+  },
+  {
+    "key": "ONE-238873",
+    "summary": "Golas (Objectives) Module - export doesn't work",
+    "priority": "High",
+    "status": "Canceled",
+    "created": "2026-03-09",
+    "url": "https://appfire.atlassian.net/browse/ONE-238873"
+  },
+  {
+    "key": "ONE-342433",
+    "summary": "[CP to DC 10&11] - Board - Moved basic tasks remain visible in the Backlog",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-06-26",
+    "url": "https://appfire.atlassian.net/browse/ONE-342433"
+  },
+  {
+    "key": "ONE-370654",
+    "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+    "priority": "High",
+    "status": "Canceled",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370654"
+  },
+  {
+    "key": "ONE-370664",
+    "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370664"
+  },
+  {
+    "key": "ONE-370667",
+    "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370667"
+  },
+  {
+    "key": "ONE-230357",
+    "summary": "Board - Moved basic tasks remain visible in the Backlog",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-230357"
+  },
+  {
+    "key": "ONE-230369",
+    "summary": "Dashboards - BigPicture Gantt gadget - Resource panel is displayed incorrectly",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-230369"
+  },
+  {
+    "key": "ONE-230959",
+    "summary": "Board module  - Filtering by Strategic Themes/Objectives/Key results is not possible ",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-02-25",
+    "url": "https://appfire.atlassian.net/browse/ONE-230959"
+  },
+  {
+    "key": "ONE-231849",
+    "summary": "Gantt/Resources/Board/Calendar - Filtering via Custom field 'Team' not working properly",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-02-26",
+    "url": "https://appfire.atlassian.net/browse/ONE-231849"
+  },
+  {
+    "key": "ONE-232931",
+    "summary": "Homepage: some modules are not available in BP",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-02-27",
+    "url": "https://appfire.atlassian.net/browse/ONE-232931"
+  },
+  {
+    "key": "ONE-232935",
+    "summary": "Priorities module - After deleting one of the metrics no value is visible only after refresh",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-03-02",
+    "url": "https://appfire.atlassian.net/browse/ONE-232935"
+  },
+  {
+    "key": "ONE-234150",
+    "summary": "Dashboard Hub - Incorrect padding on the Overview module",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-03-02",
+    "url": "https://appfire.atlassian.net/browse/ONE-234150"
+  },
+  {
+    "key": "ONE-234556",
+    "summary": "Financials: custom expenses from dates different from the selected period are always visible on the widget",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-03-03",
+    "url": "https://appfire.atlassian.net/browse/ONE-234556"
+  },
+  {
+    "key": "ONE-235242",
+    "summary": "\"Create a team\" window is not auto-closing after redirection and user is redirected to a wrong tab [Multi-team estimations]",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-03-03",
+    "url": "https://appfire.atlassian.net/browse/ONE-235242"
+  },
+  {
+    "key": "ONE-236267",
+    "summary": "Gantt/Scope: unnecessary 'convert to jira issue' option on tasks.",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-03-04",
+    "url": "https://appfire.atlassian.net/browse/ONE-236267"
+  },
+  {
+    "key": "ONE-236270",
+    "summary": "New Navigation - Resources Module - Header displays incorrectly after switching from the beta version to old one",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-03-04",
+    "url": "https://appfire.atlassian.net/browse/ONE-236270"
+  },
+  {
+    "key": "ONE-236889",
+    "summary": "Resource panel - Workload is not displaying in Resources grid after clearing active filters",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-03-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-236889"
+  },
+  {
+    "key": "ONE-237264",
+    "summary": "New navigation, old resource grid: there is no 'Live/Scenario' button ",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-03-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-237264"
+  },
+  {
+    "key": "ONE-238889",
+    "summary": "Gantt: customs icon are invisible",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-03-10",
+    "url": "https://appfire.atlassian.net/browse/ONE-238889"
+  },
+  {
+    "key": "ONE-340166",
+    "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-06-25",
+    "url": "https://appfire.atlassian.net/browse/ONE-340166"
+  },
+  {
+    "key": "ONE-368787",
+    "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-08-13",
+    "url": "https://appfire.atlassian.net/browse/ONE-368787"
+  },
+  {
+    "key": "ONE-369492",
+    "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-08-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-369492"
+  },
+  {
+    "key": "ONE-369494",
+    "summary": "Resource panel - Workload is not displaying in Resources grid after clearing active filters",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-08-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-369494"
+  },
+  {
+    "key": "ONE-370655",
+    "summary": "Main: no horizontal grid lines by default on Timeline view.",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370655"
+  },
+  {
+    "key": "ONE-370657",
+    "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+    "priority": "Medium",
+    "status": "In Progress",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370657"
+  },
+  {
+    "key": "ONE-370663",
+    "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+    "priority": "Medium",
+    "status": "Waiting for Release",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370663"
+  },
+  {
+    "key": "ONE-370665",
+    "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370665"
+  },
+  {
+    "key": "ONE-230360",
+    "summary": "Administration - Resources - Individuals - \"Full name\" column is to narrow",
+    "priority": "Low",
+    "status": "Done",
+    "created": "2026-02-24",
+    "url": "https://appfire.atlassian.net/browse/ONE-230360"
+  },
+  {
+    "key": "ONE-235272",
+    "summary": "New Navigation - My settings - No image on splash screen if there is no token created in the API tokens tab",
+    "priority": "Low",
+    "status": "Done",
+    "created": "2026-03-03",
+    "url": "https://appfire.atlassian.net/browse/ONE-235272"
+  },
+  {
+    "key": "ONE-369491",
+    "summary": "[Cherry pick to J10/J11 and test from Cloud] [DC] Dashboard hub - Some reports are not responsive, scrolling appears when the screen is narrowed",
+    "priority": "Low",
+    "status": "Waiting for Release",
+    "created": "2026-08-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-369491"
+  },
+  {
+    "key": "ONE-369495",
+    "summary": "Reports - Errors in console after navigation from Reports module",
+    "priority": "Low",
+    "status": "Done",
+    "created": "2026-08-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-369495"
+  },
+  {
+    "key": "ONE-369496",
+    "summary": "Dashboard hub - Incorrect alignment for reports placed in Infobar",
+    "priority": "Low",
+    "status": "Done",
+    "created": "2026-08-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-369496"
+  },
+  {
+    "key": "ONE-369497",
+    "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+    "priority": "Low",
+    "status": "Canceled",
+    "created": "2026-08-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-369497"
+  }
+]

@@ -360,6 +360,34 @@ export type PipelineRunCompare = {
   }[];
 };
 
+export type ScorecardConfig = {
+  spreadsheet_id: string;
+  spreadsheet_url: string;
+  configured: boolean;
+  credentials_env: string[];
+};
+
+export type ScorecardPreview = {
+  spreadsheet_url: string;
+  configured: boolean;
+  tab: string;
+  run_prefix: string;
+  proposed_run_id: string | null;
+  preview_values: (string | number)[];
+  fields: Record<string, string | number | null | undefined>;
+};
+
+export type ScorecardPushResult = {
+  pipeline_run_id: string;
+  spreadsheet_url: string;
+  tab: string;
+  external_run_id: string;
+  row_number: number;
+  action: "appended" | "updated";
+  pushed_at: string;
+  fields: Record<string, string | number | null | undefined>;
+};
+
 export type Stats = {
   pipeline_runs: number;
   review_units: number;
@@ -497,6 +525,13 @@ export const api = {
     json<{ exported_at: string; export_kind: string; report: PipelineRunStatistics }>(
       `/api/runs/${encodeURIComponent(runId)}/statistics/export`
     ),
+  scorecardConfig: () => json<ScorecardConfig>("/api/scorecard/config"),
+  scorecardPreview: (runId: string) =>
+    json<ScorecardPreview>(`/api/runs/${encodeURIComponent(runId)}/scorecard/preview`),
+  scorecardPush: (runId: string) =>
+    json<ScorecardPushResult>(`/api/runs/${encodeURIComponent(runId)}/scorecard/push`, {
+      method: "POST",
+    }),
   compareStatistics: (runIds: string[]) =>
     json<PipelineRunCompare>(
       `/api/statistics/compare?runs=${runIds.map(encodeURIComponent).join(",")}`

@@ -1,0 +1,108 @@
+[
+  {
+    "version": "8.62",
+    "cutoff_date": "2025-10-20",
+    "preprod_id": "33476",
+    "preprod_name": "preprod/2025-10-20/8.62",
+    "execution_key": "TC-5779"
+  },
+  {
+    "version": "8.63",
+    "cutoff_date": "2025-10-30",
+    "preprod_id": "33735",
+    "preprod_name": "preprod/2025-10-30/8.63",
+    "execution_key": "TC-5808"
+  },
+  {
+    "version": "8.64",
+    "cutoff_date": "2025-11-17",
+    "preprod_id": "35222",
+    "preprod_name": "preprod/2025-11-17/8.64",
+    "execution_key": "TC-5818"
+  },
+  {
+    "version": "8.65",
+    "cutoff_date": "2025-12-08",
+    "preprod_id": "36368",
+    "preprod_name": "preprod/2025-12-08/8.65",
+    "execution_key": "TC-5841"
+  },
+  {
+    "version": "8.66",
+    "cutoff_date": "2026-01-07",
+    "preprod_id": "37589",
+    "preprod_name": "preprod/2026-01-07/8.66",
+    "execution_key": "TC-5907"
+  },
+  {
+    "version": "8.67",
+    "cutoff_date": "2026-01-29",
+    "preprod_id": "39492",
+    "preprod_name": "preprod/2026-01-29/8.67",
+    "execution_key": "TC-5960"
+  },
+  {
+    "version": "8.68",
+    "cutoff_date": "2026-02-11",
+    "preprod_id": "41583",
+    "preprod_name": "preprod/2026-02-11/8.68",
+    "execution_key": "TC-5984"
+  },
+  {
+    "version": "8.69",
+    "cutoff_date": "2026-02-24",
+    "preprod_id": "43558",
+    "preprod_name": "preprod/2026-02-24/8.69",
+    "execution_key": "TC-5987"
+  },
+  {
+    "version": "8.70",
+    "cutoff_date": "2026-03-16",
+    "preprod_id": "45759",
+    "preprod_name": "preprod/2026-03-16/8.70",
+    "execution_key": "TC-6028"
+  },
+  {
+    "version": "8.71",
+    "cutoff_date": "2026-04-10",
+    "preprod_id": "49681",
+    "preprod_name": "preprod/2026-04-10/8.71",
+    "execution_key": "TC-6045",
+    "execution_note": "No Jira Cloud Manual execution; using Automated TC-6045."
+  },
+  {
+    "version": "8.72",
+    "cutoff_date": "2026-05-18",
+    "preprod_id": "52486",
+    "preprod_name": "preprod/2026-05-18/8.72",
+    "execution_key": "TC-6177"
+  },
+  {
+    "version": "8.73",
+    "cutoff_date": "2026-06-15",
+    "preprod_id": "53277",
+    "preprod_name": "preprod/2026-06-15/8.73",
+    "execution_key": "TC-6300"
+  },
+  {
+    "version": "8.74",
+    "cutoff_date": "2026-07-14",
+    "preprod_id": "54731",
+    "preprod_name": "preprod/2026-07-14/8.74",
+    "execution_key": "TC-6437"
+  },
+  {
+    "version": "8.75",
+    "cutoff_date": "2026-08-04",
+    "preprod_id": "55051",
+    "preprod_name": "preprod/2026-08-04/8.75",
+    "execution_key": "TC-6504"
+  },
+  {
+    "version": "8.76",
+    "cutoff_date": "2026-10-05",
+    "preprod_id": "55708",
+    "preprod_name": "preprod/2026-10-05/8.76",
+    "execution_key": "TC-6690"
+  }
+]

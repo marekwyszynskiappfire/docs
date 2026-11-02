@@ -4,7 +4,57 @@ Mateusz §2 one-pager: pilot evidence for leadership (acceptance, rejection reas
 
 **Traceability:** [`MATEUSZ-CRITERIA.md`](MATEUSZ-CRITERIA.md) · **Requirements (PL):** [`Mateusz.MD`](Mateusz.MD)
 
-Copy the **Template** table for each new pilot. Keep **Example** as the reference prod run. Attach telemetry JSON when you share the scorecard (not committed — see below).
+---
+
+## Interim system of record (Google Sheet)
+
+**BigQuery / Looker are deferred for pilot evidence.** Until we turn BQ back on, record each completed Trinity run in the shared scorecard:
+
+**[Trinity Usage Scorecard](https://docs.google.com/spreadsheets/d/123L4BTTTrgghlLHni-vqCAEiJperj-pu1tDKuEyg6oo/edit?gid=0#gid=0)**
+
+| Tab | Use |
+|-----|-----|
+| **BigPicture** | One **row per BigPicture run** (canonical columns below) |
+| **Dashboard** | Rollups and Run A vs Run B comparison (driven by product tabs + `_Config`; do not hand-edit formulas unless you know the sheet) |
+| **Example** | Extra fields worth capturing in notes or a future column (input JQL/keys, epic rejections, comment/question counts) |
+
+**Run ID:** use the next free id on the product tab (e.g. `BP-106`). Keep ids stable once shared.
+
+### BigPicture row — what to enter
+
+| Sheet column | Store (per run) | Studio / local source |
+|--------------|-----------------|------------------------|
+| Run ID | `run_id` | Assign on sheet (e.g. `BP-106`) |
+| QA User | Operator display name | `TRINITY_OPERATOR_NAME` or pipeline run owner |
+| Product | `BigPicture` | Portfolio / handoff product |
+| Use Case | `create` \| `review` \| `modify` | How the run was executed (Reviewer-only vs full Creator path) |
+| Epics Rev. | Count | Statistics → epics reviewed |
+| Epics Appr. | Approved for Creator / generation | Statistics → epics selected / approved |
+| Epic Appr. % | Ratio | Sheet formula or `approved / reviewed` |
+| TC Gen. | Generated | Creator batch + Studio rows |
+| TC Appr. | Approved in Studio | `test_cases_approved` / statistics summary |
+| TC Rej. | Rejected | `test_cases_rejected` |
+| TC Appr. % | Ratio | `approved / (approved + rejected)` among decided |
+| Sent XRay | Imported count | After Importer + **Record Xray keys** |
+| TC Time (m) | Review phase minutes | Statistics phase timing (Creator review) |
+| Total Time (m) | End-to-end minutes | Statistics overall duration |
+| Coverage Depth | e.g. Comprehensive | Creator `suite_mode` / policy label |
+
+### How rows get onto the sheet (for now)
+
+**Default:** copy the **[Cursor prompt](pilot-scorecard-cursor-prompt.md)** into a new chat after each run. Studio supplies the numbers; Cursor (Google Drive) writes the sheet row.
+
+1. Studio → **Statistics** → **Download export JSON** (or copy summary from the page).
+2. Open [`pilot-scorecard-cursor-prompt.md`](pilot-scorecard-cursor-prompt.md), copy the fenced block, fill in `pipeline run` + **RUN DATA**, paste into Cursor.
+3. Agent appends one row on the product tab (usually **BigPicture**). Dashboard rollups update from the tab.
+
+Optional later: Studio **Push to scorecard** when `TRINITY_SCORECARD_CREDENTIALS` is configured — not part of the default workflow.
+
+BigQuery setup remains documented in [`BIGQUERY.md`](BIGQUERY.md) for later; it is **not** required to fill the scorecard today.
+
+---
+
+Copy the **Template** table below for Confluence one-offs or git notes. Attach telemetry JSON when you share evidence (not committed — see below).
 
 ---
 
@@ -37,6 +87,7 @@ After Xray execute: workspace → **Record Xray keys** (or `POST /api/importer/r
 | **Accepted** | Count or list exported to Importer |
 | **Rejected** | Count + top reasons from [`METRICS.md`](METRICS.md) enum |
 | **Impact** | Time vs manual; quality notes; optional [`CURSOR-COST.md`](CURSOR-COST.md) |
+| **Decision** | `Scale`, `Adjust`, or `Stop`. Do not infer it from volume |
 
 **Acceptance rate:** `approved / (approved + rejected)` after review (exclude pending).
 
@@ -58,6 +109,7 @@ After Xray execute: workspace → **Record Xray keys** (or `POST /api/importer/r
 | **Accepted** | 5/5 after plan corrections |
 | **Rejected** | N/A (validation caught issues before post-review reject) |
 | **Impact** | **Time:** ~4–8h manual test design → ~2–4h with Trinity (estimate). **Quality:** Reviewer findings + human approve in Studio before Xray. **Cost:** Cursor trackable in Studio; no formal baseline study in POC. |
+| **Decision** | **Adjust.** One accepted production import. A second product, a second operator, and a measured baseline are still open. |
 
 For runs that use Studio **bulk reject**, copy `rejection_reasons` from telemetry summary into **Rejected**.
 

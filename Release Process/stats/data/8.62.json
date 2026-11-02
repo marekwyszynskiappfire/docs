@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "gathered_at": "2026-11-02T07:26:23+01:00",
+  "version": "8.62",
+  "site": "https://appfire.atlassian.net",
+  "cutoff": {
+    "id": "33476",
+    "name": "preprod/2025-10-20/8.62",
+    "cutoff_date": "2025-10-20",
+    "released": false
+  },
+  "preprod_versions": [
+    {
+      "id": "33476",
+      "name": "preprod/2025-10-20/8.62",
+      "cutoff_date": "2025-10-20",
+      "released": false
+    }
+  ],
+  "production": {
+    "product": "bigpicture-cloud",
+    "released": true,
+    "first_released": {
+      "id": "33652",
+      "name": "bigpicture-cloud-8.62.0.2",
+      "released": true,
+      "release_date": "2025-10-30",
+      "url": "https://appfire.atlassian.net/projects/ONE/versions/33652"
+    },
+    "versions": [
+      {
+        "id": "33478",
+        "name": "bigpicture-cloud-8.62.0.0",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/33478"
+      },
+      {
+        "id": "33627",
+        "name": "bigpicture-cloud-8.62.0.1",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/33627"
+      },
+      {
+        "id": "33652",
+        "name": "bigpicture-cloud-8.62.0.2",
+        "released": true,
+        "release_date": "2025-10-30",
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/33652"
+      }
+    ],
+    "release_signal": {
+      "released": true,
+      "release_date": "2025-10-30",
+      "release_date_last": "2025-10-30",
+      "trigger_issue": null,
+      "qualifying_events": [],
+      "rule": "Earliest date a test-run-linked bug reached status 'Done' while Fix Version included bigpicture-cloud-8.62.* (changelog replay; status name must be exactly Done).",
+      "fix_version_pattern": "^bigpicture-cloud-8\\.62\\.",
+      "release_date_source": "jira_first_released_cloud_fix"
+    }
+  },
+  "test_run": {
+    "key": "TC-5779",
+    "summary": "BigPicture 8.62 Major Release Test Run Jira Cloud Manual",
+    "status": "Done",
+    "created": "2025-10-16T06:01:27.330-0400",
+    "url": "https://appfire.atlassian.net/browse/TC-5779",
+    "defect_keys": [
+      "ONE-157948",
+      "ONE-158983",
+      "ODEV-3052",
+      "ONE-158993",
+      "ONE-119684",
+      "ONE-158997",
+      "ONE-160310",
+      "ONE-160322"
+    ],
+    "stats": {
+      "total": 326,
+      "executed": 310,
+      "passed": 301,
+      "failed": 9,
+      "skipped": 0,
+      "todo": 16,
+      "executing": 0,
+      "other": 0,
+      "by_status": {
+        "PASSED": 301,
+        "TO DO": 16,
+        "FAILED": 9
+      },
+      "status_buckets": {
+        "passed": [
+          "OK",
+          "PASS",
+          "PASSED"
+        ],
+        "failed": [
+          "FAIL",
+          "FAILED"
+        ],
+        "skipped": [
+          "ABORTED",
+          "N/A",
+          "NA",
+          "NOT APPLICABLE",
+          "SKIPPED"
+        ],
+        "todo": [
+          "TO DO",
+          "TODO"
+        ],
+        "executing": [
+          "EXECUTING"
+        ],
+        "other": "any remaining status name"
+      },
+      "counts_source": "getTestExecution.testRuns latest status per test",
+      "qa_engineers": {
+        "count": 9,
+        "account_ids": [
+          "60dc57227536500070aa4721",
+          "60dc59337d016900702ab00c",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "names": [
+          "60dc57227536500070aa4721",
+          "60dc59337d016900702ab00c",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "source": "getTestExecution.testRuns executedById (distinct)"
+      },
+      "timing": {
+        "execution_created": "2025-10-16T06:01:27.330-0400",
+        "first_status_change": "2025-10-21T07:25:55.182000+00:00",
+        "last_status_change": "2025-10-23T11:37:50.872000+00:00",
+        "duration_days": 2,
+        "duration_kind": "weekdays",
+        "source": "xray_execution_test_runs",
+        "rule": "Weekdays only (Mon–Fri), from the first to the last status change on any test in this Test Execution (getTestExecution.testRuns activity, field status). Same calendar day counts as 0."
+      }
+    },
+    "failed_tests": [
+      {
+        "key": "TC-5564",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing of task on Calendar module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-5564#!page=test-run&testExecutionKey=TC-5779&testKey=TC-5564&testPlanId="
+      },
+      {
+        "key": "TC-1599",
+        "summary": "Feature area - Task - Workload contouring - Switching between contouring modes",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-1599#!page=test-run&testExecutionKey=TC-5779&testKey=TC-1599&testPlanId="
+      },
+      {
+        "key": "TC-3711",
+        "summary": "Feature area - Task - Quick Filters -  QF inherited from \"None\" scope box",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-3711#!page=test-run&testExecutionKey=TC-5779&testKey=TC-3711&testPlanId="
+      },
+      {
+        "key": "TC-4279",
+        "summary": "Feature area - Task - Attributes displaying and editing - Removing both dates from tasks on Calendar",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-4279#!page=test-run&testExecutionKey=TC-5779&testKey=TC-4279&testPlanId="
+      },
+      {
+        "key": "TC-4313",
+        "summary": "Box Module - Resources - Resource Grid - Move, resize and D&D on new Resource grid",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-4313#!page=test-run&testExecutionKey=TC-5779&testKey=TC-4313&testPlanId="
+      },
+      {
+        "key": "TC-4319",
+        "summary": "new Box Module - Resources - Resource Grid - Jira task creation",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-4319#!page=test-run&testExecutionKey=TC-5779&testKey=TC-4319&testPlanId="
+      },
+      {
+        "key": "TC-4384",
+        "summary": "new Box Module - Resources - Resource Grid - Displaying effort modes in hours/percent/man-days/story points",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-4384#!page=test-run&testExecutionKey=TC-5779&testKey=TC-4384&testPlanId="
+      },
+      {
+        "key": "TC-4619",
+        "summary": "Box Module - Resources - Resource Grid - grouping Individuals by Projects",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-4619#!page=test-run&testExecutionKey=TC-5779&testKey=TC-4619&testPlanId="
+      },
+      {
+        "key": "TC-4776",
+        "summary": "Box Module - Resources - Resource Grid - Setting skills via drag&drop",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5779&ac.testKey=TC-4776#!page=test-run&testExecutionKey=TC-5779&testKey=TC-4776&testPlanId="
+      }
+    ],
+    "failed_tests_source": "getTestExecution.testRuns latest status per test (FAILED/FAIL)"
+  },
+  "test_run_candidates": [],
+  "bugs": {
+    "jql": "issuetype = Bug AND affectedVersion = \"preprod/2025-10-20/8.62\" AND created >= \"2025-10-20\" ORDER BY priority DESC, created ASC",
+    "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2025-10-20/8.62%22%20AND%20created%20%3E%3D%20%222025-10-20%22%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC",
+    "rule": "Affected Version is the preprod version, created on or after the cut-off date.",
+    "by_priority": {},
+    "found_by_test_run": 8,
+    "test_run": {
+      "count": 8,
+      "jql": "issuetype = Bug AND issue in linkedIssues(\"TC-5779\")",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20issue%20in%20linkedIssues%28%22TC-5779%22%29",
+      "execution_key": "TC-5779"
+    },
+    "other": {
+      "count": 0,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2025-10-20/8.62\" AND created >= \"2025-10-20\" AND issue not in linkedIssues(\"TC-5779\") ORDER BY priority DESC, created ASC",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2025-10-20/8.62%22%20AND%20created%20%3E%3D%20%222025-10-20%22%20AND%20issue%20not%20in%20linkedIssues%28%22TC-5779%22%29%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC"
+    },
+    "issues": [
+      {
+        "key": "ONE-157948",
+        "summary": "Updating task's start and end date causes an error (after restore, only team-managed projects)",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2025-10-21",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-157948"
+      },
+      {
+        "key": "ONE-158983",
+        "summary": "Risk Management - Read more directs to broken link",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-10-21",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-158983"
+      },
+      {
+        "key": "ODEV-3052",
+        "summary": "OKR module - Multiple confirmation messages after creating OKR item",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2025-10-21",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ODEV-3052"
+      },
+      {
+        "key": "ONE-158993",
+        "summary": "New task details dialog - 'Find the perfect match' option is active for tasks in read-only boxes",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2025-10-21",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-158993"
+      },
+      {
+        "key": "ONE-119684",
+        "summary": "currentUser() QF is not inherited despite correct inheritance mode",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2025-09-05",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-119684"
+      },
+      {
+        "key": "ONE-158997",
+        "summary": "New task details dialog - No error message when setting assignee to user without assignable permissions",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2025-10-21",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-158997"
+      },
+      {
+        "key": "ONE-160310",
+        "summary": "Workday - Missing animation for Refreshing Workday absences button",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2025-10-22",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-160310"
+      },
+      {
+        "key": "ONE-160322",
+        "summary": "Skills widget in Jira issue page displays incorrectly after enabling 'Find the perfect match'",
+        "priority": "Lowest",
+        "status": "Canceled",
+        "created": "2025-10-23",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-160322"
+      }
+    ],
+    "customer_reported": {
+      "count": 0,
+      "affected_version": "preprod/2025-10-20/8.62",
+      "support_ticket_count": 0,
+      "jql": null,
+      "url": null,
+      "rule": "Bug with Affected Version \"preprod/2025-10-20/8.62\" and a Jira issue link to a SUPPORT-* ticket (includes Relates and Support Ticket link types).",
+      "issues": []
+    }
+  },
+  "metrics": {
+    "version": "8.62",
+    "cutoff_date": "2025-10-20",
+    "release_date": "2025-10-30",
+    "released": true,
+    "days_in_preprod": 10,
+    "tests_total": 326,
+    "tests_executed": 310,
+    "tests_passed": 301,
+    "tests_failed": 9,
+    "tests_skipped": 0,
+    "tests_todo": 16,
+    "test_run_duration_days": 2,
+    "test_run_first_status_change": "2025-10-21T07:25:55.182000+00:00",
+    "test_run_last_status_change": "2025-10-23T11:37:50.872000+00:00",
+    "qa_engineers_count": 9,
+    "bugs_total": 0,
+    "bugs_found_by_test_run": 8,
+    "bugs_other_since_cutoff": 0,
+    "bugs_by_priority": {},
+    "release_date_last": "2025-10-30",
+    "bugs_customer_reported": 0
+  },
+  "notes": [
+    "Cut-off bug query returned 0 issues in Jira for this preprod affectedVersion (only test-run-linked defects are in scope)."
+  ]
+}

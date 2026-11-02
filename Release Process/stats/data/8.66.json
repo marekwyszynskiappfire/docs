@@ -1,0 +1,835 @@
+{
+  "schema_version": 1,
+  "gathered_at": "2026-11-02T07:28:31+01:00",
+  "version": "8.66",
+  "site": "https://appfire.atlassian.net",
+  "cutoff": {
+    "id": "37589",
+    "name": "preprod/2026-01-07/8.66",
+    "cutoff_date": "2026-01-07",
+    "released": false
+  },
+  "preprod_versions": [
+    {
+      "id": "37589",
+      "name": "preprod/2026-01-07/8.66",
+      "cutoff_date": "2026-01-07",
+      "released": false
+    }
+  ],
+  "production": {
+    "product": "bigpicture-cloud",
+    "released": true,
+    "first_released": {
+      "id": "39250",
+      "name": "bigpicture-cloud-8.66.0.3",
+      "released": true,
+      "release_date": "2026-01-29",
+      "url": "https://appfire.atlassian.net/projects/ONE/versions/39250"
+    },
+    "versions": [
+      {
+        "id": "37590",
+        "name": "bigpicture-cloud-8.66.0.0",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/37590"
+      },
+      {
+        "id": "37640",
+        "name": "bigpicture-cloud-8.66.0.1",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/37640"
+      },
+      {
+        "id": "38204",
+        "name": "bigpicture-cloud-8.66.0.2",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/38204"
+      },
+      {
+        "id": "39250",
+        "name": "bigpicture-cloud-8.66.0.3",
+        "released": true,
+        "release_date": "2026-01-29",
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/39250"
+      }
+    ],
+    "release_signal": {
+      "released": true,
+      "release_date": "2026-01-29",
+      "release_date_last": "2026-01-29",
+      "trigger_issue": null,
+      "qualifying_events": [],
+      "rule": "Earliest date a test-run-linked bug reached status 'Done' while Fix Version included bigpicture-cloud-8.66.* (changelog replay; status name must be exactly Done).",
+      "fix_version_pattern": "^bigpicture-cloud-8\\.66\\.",
+      "release_date_source": "jira_first_released_cloud_fix"
+    }
+  },
+  "test_run": {
+    "key": "TC-5907",
+    "summary": "BigPicture 8.66 Major Release Test Run Jira Cloud Manual",
+    "status": "To Do",
+    "created": "2026-01-02T03:08:08.891-0500",
+    "url": "https://appfire.atlassian.net/browse/TC-5907",
+    "defect_keys": [
+      "ONE-208075",
+      "ONE-206354",
+      "ONE-208507",
+      "ONE-208083",
+      "ONE-208511",
+      "ODEV-3172",
+      "ONE-208509",
+      "ONE-208512",
+      "ONE-208514",
+      "ONE-208604",
+      "ONE-165845"
+    ],
+    "stats": {
+      "total": 380,
+      "executed": 371,
+      "passed": 362,
+      "failed": 9,
+      "skipped": 0,
+      "todo": 9,
+      "executing": 0,
+      "other": 0,
+      "by_status": {
+        "PASSED": 362,
+        "TO DO": 9,
+        "FAILED": 9
+      },
+      "status_buckets": {
+        "passed": [
+          "OK",
+          "PASS",
+          "PASSED"
+        ],
+        "failed": [
+          "FAIL",
+          "FAILED"
+        ],
+        "skipped": [
+          "ABORTED",
+          "N/A",
+          "NA",
+          "NOT APPLICABLE",
+          "SKIPPED"
+        ],
+        "todo": [
+          "TO DO",
+          "TODO"
+        ],
+        "executing": [
+          "EXECUTING"
+        ],
+        "other": "any remaining status name"
+      },
+      "counts_source": "getTestExecution.testRuns latest status per test",
+      "qa_engineers": {
+        "count": 9,
+        "account_ids": [
+          "60dc57227536500070aa4721",
+          "60dc59337d016900702ab00c",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "637efe419341d1f1360599a6"
+        ],
+        "names": [
+          "60dc57227536500070aa4721",
+          "60dc59337d016900702ab00c",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "637efe419341d1f1360599a6"
+        ],
+        "source": "getTestExecution.testRuns executedById (distinct)"
+      },
+      "timing": {
+        "execution_created": "2026-01-02T03:08:08.891-0500",
+        "first_status_change": "2026-01-07T13:52:26.709000+00:00",
+        "last_status_change": "2026-01-14T15:30:56.257000+00:00",
+        "duration_days": 5,
+        "duration_kind": "weekdays",
+        "source": "xray_execution_test_runs",
+        "rule": "Weekdays only (Mon–Fri), from the first to the last status change on any test in this Test Execution (getTestExecution.testRuns activity, field status). Same calendar day counts as 0."
+      }
+    },
+    "failed_tests": [
+      {
+        "key": "TC-5888",
+        "summary": "SPM - Strategic areas  - Filtering OKRs tab by owner",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-5888#!page=test-run&testExecutionKey=TC-5907&testKey=TC-5888&testPlanId="
+      },
+      {
+        "key": "TC-5914",
+        "summary": "SPM - Strategic areas  - Filtering Initatives tab by Owner",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-5914#!page=test-run&testExecutionKey=TC-5907&testKey=TC-5914&testPlanId="
+      },
+      {
+        "key": "TC-551",
+        "summary": "Global - Resources - Individuals - Resynchronize with Tempo",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-551#!page=test-run&testExecutionKey=TC-5907&testKey=TC-551&testPlanId="
+      },
+      {
+        "key": "TC-583",
+        "summary": "Feature area - Box - Box parent changing - Creating sequential Sub-box",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-583#!page=test-run&testExecutionKey=TC-5907&testKey=TC-583&testPlanId="
+      },
+      {
+        "key": "TC-3403",
+        "summary": "Box Module - Reports - Creating new Capacity report",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-3403#!page=test-run&testExecutionKey=TC-5907&testKey=TC-3403&testPlanId="
+      },
+      {
+        "key": "TC-2674",
+        "summary": "Feature area - Exporting - Exporting Reports",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-2674#!page=test-run&testExecutionKey=TC-5907&testKey=TC-2674&testPlanId="
+      },
+      {
+        "key": "TC-4257",
+        "summary": "Global - Application dumps migrating - JCMA BigTemplate",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-4257#!page=test-run&testExecutionKey=TC-5907&testKey=TC-4257&testPlanId="
+      },
+      {
+        "key": "TC-4258",
+        "summary": "Global - Application dumps migrating - JCMA BigGantt",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-4258#!page=test-run&testExecutionKey=TC-5907&testKey=TC-4258&testPlanId="
+      },
+      {
+        "key": "TC-4259",
+        "summary": "Global - Application dumps migrating - Disabling switcher 'Allow JCMA migration' to fail migration at 80%",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5907&ac.testKey=TC-4259#!page=test-run&testExecutionKey=TC-5907&testKey=TC-4259&testPlanId="
+      }
+    ],
+    "failed_tests_source": "getTestExecution.testRuns latest status per test (FAILED/FAIL)"
+  },
+  "test_run_candidates": [],
+  "bugs": {
+    "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-01-07/8.66\" AND created >= \"2026-01-07\" ORDER BY priority DESC, created ASC",
+    "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-01-07/8.66%22%20AND%20created%20%3E%3D%20%222026-01-07%22%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC",
+    "rule": "Affected Version is the preprod version, created on or after the cut-off date.",
+    "by_priority": {
+      "Highest": 1,
+      "High": 15,
+      "Medium": 23,
+      "Low": 8,
+      "Lowest": 1
+    },
+    "found_by_test_run": 11,
+    "test_run": {
+      "count": 11,
+      "jql": "issuetype = Bug AND issue in linkedIssues(\"TC-5907\")",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20issue%20in%20linkedIssues%28%22TC-5907%22%29",
+      "execution_key": "TC-5907"
+    },
+    "other": {
+      "count": 40,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-01-07/8.66\" AND created >= \"2026-01-07\" AND issue not in linkedIssues(\"TC-5907\") ORDER BY priority DESC, created ASC",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-01-07/8.66%22%20AND%20created%20%3E%3D%20%222026-01-07%22%20AND%20issue%20not%20in%20linkedIssues%28%22TC-5907%22%29%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC"
+    },
+    "issues": [
+      {
+        "key": "ONE-340260",
+        "summary": "[CP to DC 10&11] - Gantt - Basic tasks cannot be bulk converted to Jira issues",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2026-06-25",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-340260"
+      },
+      {
+        "key": "ONE-208507",
+        "summary": "'NullPointerException: null' when reseting mapping to defaults (With no BPE installed)",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-08",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208507"
+      },
+      {
+        "key": "ONE-208512",
+        "summary": "JCMA error - incorrect format of the displayed message",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-08",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208512"
+      },
+      {
+        "key": "ONE-208514",
+        "summary": "Tempo - Individuals synchronization with Tempo does not work properly",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-01-08",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208514"
+      },
+      {
+        "key": "ONE-208520",
+        "summary": "Reports - Task report - JQL and Date filter fields are not working",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-09",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-208520"
+      },
+      {
+        "key": "ONE-208604",
+        "summary": "Reports - Capacity - Error after changing Value field",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-09",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208604"
+      },
+      {
+        "key": "ONE-208961",
+        "summary": "The Assignee field is not sorted alphabetically",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-09",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-208961"
+      },
+      {
+        "key": "ONE-208963",
+        "summary": "Import to Basic tasks - fix resource assignment (by email not by displayName)",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-09",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-208963"
+      },
+      {
+        "key": "ONE-209959",
+        "summary": "Reports - Read more about reports link is not working",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-209959"
+      },
+      {
+        "key": "ONE-209961",
+        "summary": "Gantt: lost values after update.",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-209961"
+      },
+      {
+        "key": "ONE-210513",
+        "summary": "DataTypePriorityScoreCalculated event is not being sent to Kibana",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-210513"
+      },
+      {
+        "key": "ONE-211039",
+        "summary": "Board - Error after clicking on 'Share' button ",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-16",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-211039"
+      },
+      {
+        "key": "ONE-214980",
+        "summary": "[Rank: >300] Resources - Skills - User can add new skill using 'Labels' field",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-01-27",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-214980"
+      },
+      {
+        "key": "ONE-370654",
+        "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370654"
+      },
+      {
+        "key": "ONE-370664",
+        "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370664"
+      },
+      {
+        "key": "ONE-370667",
+        "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370667"
+      },
+      {
+        "key": "ONE-208075",
+        "summary": "Inconsistent color styling between Objective and Key Result column values",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-07",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208075"
+      },
+      {
+        "key": "ONE-208082",
+        "summary": "Board - Tasks disappear after page refresh in boxes assigned to a timebox schedule (only Jira DC)",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-08",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-208082"
+      },
+      {
+        "key": "ONE-208511",
+        "summary": "Priorities module - after updating/deleting metrics, new value is shown after refresh ",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-08",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208511"
+      },
+      {
+        "key": "ONE-208516",
+        "summary": "Financials: basic task name is clickable in the Work costs breakdown widget",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-09",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-208516"
+      },
+      {
+        "key": "ONE-208518",
+        "summary": "Reports - Plan delays - Incorrect tasks icons ",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-09",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-208518"
+      },
+      {
+        "key": "ONE-210491",
+        "summary": "Gantt: Resources are not sorted alphabetically in in-built Assignee field ",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-01-14",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-210491"
+      },
+      {
+        "key": "ONE-210500",
+        "summary": "Strategic areas - The currency does not change on the pie chart when hovering over it",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-14",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-210500"
+      },
+      {
+        "key": "ONE-211014",
+        "summary": "Objective / Key Result is not opened after clicking the “Open in new tab” button",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-01-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-211014"
+      },
+      {
+        "key": "ONE-211018",
+        "summary": "Board/Objectives - New marker dialog is moved when new navigation is turned ON",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-211018"
+      },
+      {
+        "key": "ONE-211020",
+        "summary": "Resources Module - New task details dialog - Deleting task detail values/deleting task assignment are not possible in scenario mode",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-211020"
+      },
+      {
+        "key": "ONE-211040",
+        "summary": "Board - Incorrect layout change when new navigation is turned ON",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-16",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-211040"
+      },
+      {
+        "key": "ONE-211064",
+        "summary": "Scope definition: bugs to fix associated with the naming changes – project on the space",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-19",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-211064"
+      },
+      {
+        "key": "ONE-213721",
+        "summary": "OKR - 401 errors occur during field synchronization if the user does not have BP Enterprise",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-26",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-213721"
+      },
+      {
+        "key": "ONE-214302",
+        "summary": "New Navigation: no Priority option in View Tasks labels",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-26",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-214302"
+      },
+      {
+        "key": "ONE-215011",
+        "summary": "Overview: adding new boxes from the Timeline on Hierarchy view doesn't work properly",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-01-27",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-215011"
+      },
+      {
+        "key": "ONE-224662",
+        "summary": "Dashboard hub - Reports does not show changes in the module where it is first displayed after making changes",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-02-12",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-224662"
+      },
+      {
+        "key": "ONE-340166",
+        "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-06-25",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-340166"
+      },
+      {
+        "key": "ONE-368787",
+        "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-08-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-368787"
+      },
+      {
+        "key": "ONE-369492",
+        "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369492"
+      },
+      {
+        "key": "ONE-370655",
+        "summary": "Main: no horizontal grid lines by default on Timeline view.",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370655"
+      },
+      {
+        "key": "ONE-370657",
+        "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+        "priority": "Medium",
+        "status": "In Progress",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370657"
+      },
+      {
+        "key": "ONE-370663",
+        "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+        "priority": "Medium",
+        "status": "Waiting for Release",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370663"
+      },
+      {
+        "key": "ONE-370665",
+        "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370665"
+      },
+      {
+        "key": "ONE-208083",
+        "summary": "Overview module - The first subbox created under a childless box after a refresh with manual sorting enabled causes an error",
+        "priority": "Low",
+        "status": "Open",
+        "created": "2026-01-08",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208083"
+      },
+      {
+        "key": "ONE-208509",
+        "summary": "JCMA migration message dialogs have an incorrect font color",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-01-08",
+        "found_by_test_run": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-208509"
+      },
+      {
+        "key": "ONE-208519",
+        "summary": "Dashboard hub - Incorrect background for empty state in infobar",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-01-09",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-208519"
+      },
+      {
+        "key": "ONE-214308",
+        "summary": "Unselecting 'Show grouping field name' doesn't work on the Scope module ",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-01-26",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-214308"
+      },
+      {
+        "key": "ONE-214960",
+        "summary": "Share your feedback dialog - Low readability in dark mode",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-01-27",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-214960"
+      },
+      {
+        "key": "ONE-214963",
+        "summary": "Gantt: wrong style of objectives and KRs tags",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-01-27",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-214963"
+      },
+      {
+        "key": "ONE-369497",
+        "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369497"
+      },
+      {
+        "key": "ONE-370661",
+        "summary": "[Not ready on Cloud] Performance fix for getting mapping type of scheduling task",
+        "priority": "Low",
+        "status": "In Progress",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370661"
+      },
+      {
+        "key": "ONE-211021",
+        "summary": "Reports - Task report - Header section width is inconsistent with the bar chart width",
+        "priority": "Lowest",
+        "status": "Done",
+        "created": "2026-01-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-211021"
+      },
+      {
+        "key": "ONE-206354",
+        "summary": "Resources module - Task details dialog - Changing a task assignment using the \"Find the perfect match\" option does not immediately appear in the modal dialog",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2025-12-10",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-206354"
+      },
+      {
+        "key": "ODEV-3172",
+        "summary": "Minified React error causes splashscreen \"Something went wrong\" when adding Strategic Theme as a parent on staging env",
+        "priority": "Major",
+        "status": "Done",
+        "created": "2026-01-08",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ODEV-3172"
+      },
+      {
+        "key": "ONE-165845",
+        "summary": "Strategic areas - For some users, the OKR Owner disappears a few seconds after selection",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2025-10-27",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-165845"
+      }
+    ],
+    "customer_reported": {
+      "count": 6,
+      "affected_version": "preprod/2026-01-07/8.66",
+      "support_ticket_count": 5,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-01-07/8.66\" AND key in (ONE-210491, ONE-214980, ONE-340166, ONE-340260, ONE-369492, ONE-370667)",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-01-07/8.66%22%20AND%20key%20in%20%28ONE-210491%2C%20ONE-214980%2C%20ONE-340166%2C%20ONE-340260%2C%20ONE-369492%2C%20ONE-370667%29",
+      "rule": "Bug with Affected Version \"preprod/2026-01-07/8.66\" and a Jira issue link to a SUPPORT-* ticket (includes Relates and Support Ticket link types).",
+      "issues": [
+        {
+          "key": "ONE-340260",
+          "summary": "[CP to DC 10&11] - Gantt - Basic tasks cannot be bulk converted to Jira issues",
+          "priority": "Highest",
+          "status": "Done",
+          "created": "2026-06-25",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-340260",
+          "support_tickets": [
+            "SUPPORT-263254"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-263254"
+          ]
+        },
+        {
+          "key": "ONE-214980",
+          "summary": "[Rank: >300] Resources - Skills - User can add new skill using 'Labels' field",
+          "priority": "High",
+          "status": "Done",
+          "created": "2026-01-27",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-214980",
+          "support_tickets": [
+            "SUPPORT-251060"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-251060"
+          ]
+        },
+        {
+          "key": "ONE-370667",
+          "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+          "priority": "High",
+          "status": "Done",
+          "created": "2026-08-18",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-370667",
+          "support_tickets": [
+            "SUPPORT-227921"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-227921"
+          ]
+        },
+        {
+          "key": "ONE-210491",
+          "summary": "Gantt: Resources are not sorted alphabetically in in-built Assignee field ",
+          "priority": "Medium",
+          "status": "Canceled",
+          "created": "2026-01-14",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-210491",
+          "support_tickets": [
+            "SUPPORT-249677"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-249677"
+          ]
+        },
+        {
+          "key": "ONE-340166",
+          "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-06-25",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-340166",
+          "support_tickets": [
+            "SUPPORT-249126"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-249126"
+          ]
+        },
+        {
+          "key": "ONE-369492",
+          "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-08-17",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-369492",
+          "support_tickets": [
+            "SUPPORT-251060"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-251060"
+          ]
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "version": "8.66",
+    "cutoff_date": "2026-01-07",
+    "release_date": "2026-01-29",
+    "released": true,
+    "days_in_preprod": 22,
+    "tests_total": 380,
+    "tests_executed": 371,
+    "tests_passed": 362,
+    "tests_failed": 9,
+    "tests_skipped": 0,
+    "tests_todo": 9,
+    "test_run_duration_days": 5,
+    "test_run_first_status_change": "2026-01-07T13:52:26.709000+00:00",
+    "test_run_last_status_change": "2026-01-14T15:30:56.257000+00:00",
+    "qa_engineers_count": 9,
+    "bugs_total": 48,
+    "bugs_found_by_test_run": 11,
+    "bugs_other_since_cutoff": 40,
+    "bugs_by_priority": {
+      "Highest": 1,
+      "High": 15,
+      "Medium": 23,
+      "Low": 8,
+      "Lowest": 1
+    },
+    "release_date_last": "2026-01-29",
+    "bugs_customer_reported": 6
+  },
+  "notes": []
+}

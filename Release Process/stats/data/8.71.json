@@ -1,0 +1,1112 @@
+{
+  "schema_version": 1,
+  "gathered_at": "2026-11-02T07:32:05+01:00",
+  "version": "8.71",
+  "site": "https://appfire.atlassian.net",
+  "cutoff": {
+    "id": "49681",
+    "name": "preprod/2026-04-10/8.71",
+    "cutoff_date": "2026-04-10",
+    "released": false
+  },
+  "preprod_versions": [
+    {
+      "id": "49681",
+      "name": "preprod/2026-04-10/8.71",
+      "cutoff_date": "2026-04-10",
+      "released": false
+    }
+  ],
+  "production": {
+    "product": "bigpicture-cloud",
+    "released": true,
+    "first_released": {
+      "id": "51120",
+      "name": "bigpicture-cloud-8.71.0.1",
+      "released": true,
+      "release_date": "2026-05-18",
+      "url": "https://appfire.atlassian.net/projects/ONE/versions/51120"
+    },
+    "versions": [
+      {
+        "id": "49714",
+        "name": "bigpicture-cloud-8.71.0.0",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/49714"
+      },
+      {
+        "id": "51120",
+        "name": "bigpicture-cloud-8.71.0.1",
+        "released": true,
+        "release_date": "2026-05-18",
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/51120"
+      }
+    ],
+    "release_signal": {
+      "released": true,
+      "release_date": "2026-05-18",
+      "release_date_last": "2026-05-18",
+      "trigger_issue": null,
+      "qualifying_events": [],
+      "rule": "Earliest date a test-run-linked bug reached status 'Done' while Fix Version included bigpicture-cloud-8.71.* (changelog replay; status name must be exactly Done).",
+      "fix_version_pattern": "^bigpicture-cloud-8\\.71\\.",
+      "release_date_source": "jira_first_released_cloud_fix"
+    }
+  },
+  "test_run": {
+    "key": "TC-6045",
+    "summary": "BigPicture 8.71 Major Release Test Run Automated",
+    "status": "To Do",
+    "created": "2026-04-10T09:04:29.193-0400",
+    "url": "https://appfire.atlassian.net/browse/TC-6045",
+    "defect_keys": [],
+    "stats": {
+      "total": 1480,
+      "executed": 1236,
+      "passed": 1151,
+      "failed": 85,
+      "skipped": 0,
+      "todo": 244,
+      "executing": 0,
+      "other": 0,
+      "by_status": {
+        "FAILED": 85,
+        "PASSED": 1151,
+        "TO DO": 244
+      },
+      "status_buckets": {
+        "passed": [
+          "OK",
+          "PASS",
+          "PASSED"
+        ],
+        "failed": [
+          "FAIL",
+          "FAILED"
+        ],
+        "skipped": [
+          "ABORTED",
+          "N/A",
+          "NA",
+          "NOT APPLICABLE",
+          "SKIPPED"
+        ],
+        "todo": [
+          "TO DO",
+          "TODO"
+        ],
+        "executing": [
+          "EXECUTING"
+        ],
+        "other": "any remaining status name"
+      },
+      "counts_source": "getTestExecution.testRuns latest status per test",
+      "qa_engineers": {
+        "count": 1,
+        "account_ids": [
+          "6332a24a140ba0bf651b58fa"
+        ],
+        "names": [
+          "6332a24a140ba0bf651b58fa"
+        ],
+        "source": "getTestExecution.testRuns executedById (distinct)"
+      },
+      "timing": {
+        "execution_created": "2026-04-10T09:04:29.193-0400",
+        "first_status_change": "2026-04-10T13:57:58.789000+00:00",
+        "last_status_change": "2026-04-10T13:58:09.694000+00:00",
+        "duration_days": 0,
+        "duration_kind": "weekdays",
+        "source": "xray_execution_test_runs",
+        "rule": "Weekdays only (Mon–Fri), from the first to the last status change on any test in this Test Execution (getTestExecution.testRuns activity, field status). Same calendar day counts as 0."
+      }
+    },
+    "failed_tests": [
+      {
+        "key": "TC-1020",
+        "summary": "Box Module - Scope - Column Views - Navigating to box configuration “Manage CV”",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1020#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1020&testPlanId="
+      },
+      {
+        "key": "TC-1075",
+        "summary": "Feature area - Task Dependencies - Editing dependency in Gantt module while grouping is activated",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1075#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1075&testPlanId="
+      },
+      {
+        "key": "TC-1088",
+        "summary": "Box Module - Gantt - Critical Path - Adding task to critical path by task period resize from Jira level",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1088#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1088&testPlanId="
+      },
+      {
+        "key": "TC-1116",
+        "summary": "Box Module - Gantt - Basic operations - Fit to scale",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1116#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1116&testPlanId="
+      },
+      {
+        "key": "TC-1138",
+        "summary": "Box Module - Gantt - Critical Path - Adding task to critical path by adding dependency",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1138#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1138&testPlanId="
+      },
+      {
+        "key": "TC-1212",
+        "summary": "Feature area - Resource - Workload - Workload cells coloring depending on workload values",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1212#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1212&testPlanId="
+      },
+      {
+        "key": "TC-1219",
+        "summary": "Box Module - Reports - Displaying column chart",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1219#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1219&testPlanId="
+      },
+      {
+        "key": "TC-129",
+        "summary": "Feature area - Box - Box Switcher - Switching between Boxes using the Box Switcher",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-129#!page=test-run&testExecutionKey=TC-6045&testKey=TC-129&testPlanId="
+      },
+      {
+        "key": "TC-131",
+        "summary": "Feature area - Box - Box Switcher - Adding and filtering Favorites",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-131#!page=test-run&testExecutionKey=TC-6045&testKey=TC-131&testPlanId="
+      },
+      {
+        "key": "TC-135",
+        "summary": "Feature area - Box - Box Switcher - Displaying boxes with long names",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-135#!page=test-run&testExecutionKey=TC-6045&testKey=TC-135&testPlanId="
+      },
+      {
+        "key": "TC-1376",
+        "summary": "Box Module - Overview - Add Box and sub-box to favorite in Kanban board mode",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1376#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1376&testPlanId="
+      },
+      {
+        "key": "TC-14",
+        "summary": "Box module - Gantt - Basic operations - Editor slider's menu options in Extra tasks",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-14#!page=test-run&testExecutionKey=TC-6045&testKey=TC-14&testPlanId="
+      },
+      {
+        "key": "TC-1465",
+        "summary": "Feature area - Box scope - Existing task(s) removing - Tasks from Own scope and Sub scope in Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1465#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1465&testPlanId="
+      },
+      {
+        "key": "TC-1499",
+        "summary": "Feature area - Task - Attributes displaying and editing - Board module - Displaying data on task card",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1499#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1499&testPlanId="
+      },
+      {
+        "key": "TC-1555",
+        "summary": "Feature area - Box scope - Existing task(s) removing - Tasks in parent-child relation and multiselect by right click on Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1555#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1555&testPlanId="
+      },
+      {
+        "key": "TC-160",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing extra tasks",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-160#!page=test-run&testExecutionKey=TC-6045&testKey=TC-160&testPlanId="
+      },
+      {
+        "key": "TC-1617",
+        "summary": "Box module - Configuration UI - General/Modules - Field validation",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1617#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1617&testPlanId="
+      },
+      {
+        "key": "TC-1682",
+        "summary": "Feature area - Resource - Filtering  - Displaying  \"Archived\" label next to resource's name",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1682#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1682&testPlanId="
+      },
+      {
+        "key": "TC-1695",
+        "summary": "Box Module - Risks - Basic operations - Checking buttons and tooltips in header",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1695#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1695&testPlanId="
+      },
+      {
+        "key": "TC-1746",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing - Summary - Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1746#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1746&testPlanId="
+      },
+      {
+        "key": "TC-1751",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing - Color - Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1751#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1751&testPlanId="
+      },
+      {
+        "key": "TC-1752",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing - Color - Scope module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1752#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1752&testPlanId="
+      },
+      {
+        "key": "TC-1753",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing - Color - Board module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1753#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1753&testPlanId="
+      },
+      {
+        "key": "TC-1766",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing - Number Data Type - Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1766#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1766&testPlanId="
+      },
+      {
+        "key": "TC-1769",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing - Number Data Type - Risks module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1769#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1769&testPlanId="
+      },
+      {
+        "key": "TC-1786",
+        "summary": "Feature area - Box - Modules - Changing the active modules settings",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1786#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1786&testPlanId="
+      },
+      {
+        "key": "TC-1803",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing - String Data Type - Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1803#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1803&testPlanId="
+      },
+      {
+        "key": "TC-1813",
+        "summary": "Feature area - Task - Attributes displaying and editing - Display - User Data Type - Board module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1813#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1813&testPlanId="
+      },
+      {
+        "key": "TC-1822",
+        "summary": "Feature area - Task - Attributes displaying and editing - Display - Number Data Type - Board module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1822#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1822&testPlanId="
+      },
+      {
+        "key": "TC-1830",
+        "summary": "Feature area - Task - Attributes displaying and editing - Display - Time Tracking Data Type - Board module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1830#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1830&testPlanId="
+      },
+      {
+        "key": "TC-1838",
+        "summary": "Box Module - Gantt - Basic operations - Shortcuts for Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1838#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1838&testPlanId="
+      },
+      {
+        "key": "TC-1957",
+        "summary": "Feature area - Box - Aggregations - Data synchronization in sub-box for tasks status categories",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-1957#!page=test-run&testExecutionKey=TC-6045&testKey=TC-1957&testPlanId="
+      },
+      {
+        "key": "TC-2045",
+        "summary": "Feature area - Task - Attributes displaying and editing - Display - Skills Data Type - Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2045#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2045&testPlanId="
+      },
+      {
+        "key": "TC-2123",
+        "summary": "Feature area - Box - Box Switcher - Breadcrumb's Home button",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2123#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2123&testPlanId="
+      },
+      {
+        "key": "TC-2177",
+        "summary": "Box Module - Overview - Displaying datatype tooltips, Hierarchy mode",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2177#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2177&testPlanId="
+      },
+      {
+        "key": "TC-2182",
+        "summary": "Global - Gadget - Calendar - Displaying view options",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2182#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2182&testPlanId="
+      },
+      {
+        "key": "TC-2468",
+        "summary": "Global - App entry - Jira Project - Banner informing in which context of the App the User is ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2468#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2468&testPlanId="
+      },
+      {
+        "key": "TC-2502",
+        "summary": "Feature area - Task - Attributes displaying and editing - Editing basic tasks",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2502#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2502&testPlanId="
+      },
+      {
+        "key": "TC-2511",
+        "summary": "Feature area - Box - Modules - Entering each module of a new Box for the first time (part 2)",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2511#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2511&testPlanId="
+      },
+      {
+        "key": "TC-2526",
+        "summary": "Feature area - Security - Users without access to the app can be added to security role in any box",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2526#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2526&testPlanId="
+      },
+      {
+        "key": "TC-2579",
+        "summary": "Box Module - Overview - Column Views - Hierarchy - Columns on ROOT can be added and deleted",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2579#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2579&testPlanId="
+      },
+      {
+        "key": "TC-2580",
+        "summary": "Box Module - Overview - Column Views - Timeline - Columns on ROOT can be added and deleted",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2580#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2580&testPlanId="
+      },
+      {
+        "key": "TC-2621",
+        "summary": "Feature area - Box scope - Existing tasks displaying - Searching for Jira issue gives first 50 results",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2621#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2621&testPlanId="
+      },
+      {
+        "key": "TC-2641",
+        "summary": "Feature area - Box - Attributes displaying and editing - Validation for inline editing of Box Attributes",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2641#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2641&testPlanId="
+      },
+      {
+        "key": "TC-2648",
+        "summary": "Feature area - Task - Quick Filters - Apply current filters to all modules option",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2648#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2648&testPlanId="
+      },
+      {
+        "key": "TC-2763",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing of aggregated columns - Number - Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2763#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2763&testPlanId="
+      },
+      {
+        "key": "TC-2766",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing of aggregated columns - Estimation - Gantt module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2766#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2766&testPlanId="
+      },
+      {
+        "key": "TC-2826",
+        "summary": "Global - Platform connection warnings- Displaying warning log after removing Jira task filtered by JQL in the box scope definition",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2826#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2826&testPlanId="
+      },
+      {
+        "key": "TC-289",
+        "summary": "Feature area - Box - Attributes displaying and editing - Validation of edited Sub-box attributes in Overview of Home",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-289#!page=test-run&testExecutionKey=TC-6045&testKey=TC-289&testPlanId="
+      },
+      {
+        "key": "TC-292",
+        "summary": "Feature area - Box - Creating - Duplicate Box configuration",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-292#!page=test-run&testExecutionKey=TC-6045&testKey=TC-292&testPlanId="
+      },
+      {
+        "key": "TC-2977",
+        "summary": "Feature area - Task structure - Basic operations - \"Move to top\" and \"Move to bottom\" tasks on Gantt module in the right-click menu",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-2977#!page=test-run&testExecutionKey=TC-6045&testKey=TC-2977&testPlanId="
+      },
+      {
+        "key": "TC-300",
+        "summary": "Feature area - Task - Quick Filters - Creating",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-300#!page=test-run&testExecutionKey=TC-6045&testKey=TC-300&testPlanId="
+      },
+      {
+        "key": "TC-3132",
+        "summary": "Feature area - Box - Creating - dialog for Sub-scope Boxes",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3132#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3132&testPlanId="
+      },
+      {
+        "key": "TC-3141",
+        "summary": "Feature area - Box - Creating - dialog for Lowest scope boxes",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3141#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3141&testPlanId="
+      },
+      {
+        "key": "TC-318",
+        "summary": "Box Module - Gantt - InfoBar - Basic operations",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-318#!page=test-run&testExecutionKey=TC-6045&testKey=TC-318&testPlanId="
+      },
+      {
+        "key": "TC-3180",
+        "summary": "Global - Task configuration - Send 'Issue Updated' notification after task changes is turned off by default",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3180#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3180&testPlanId="
+      },
+      {
+        "key": "TC-3204",
+        "summary": "Box Module - Overview - Updating Box status via Inline Editing",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3204#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3204&testPlanId="
+      },
+      {
+        "key": "TC-3254",
+        "summary": "Feature area -  Home Overview Wizard -hierarchy snipe to the newly created box ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3254#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3254&testPlanId="
+      },
+      {
+        "key": "TC-328",
+        "summary": "Box Module - Gantt - InfoBar - Critical path tab",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-328#!page=test-run&testExecutionKey=TC-6045&testKey=TC-328&testPlanId="
+      },
+      {
+        "key": "TC-3288",
+        "summary": " Feature area - Security - Tooltips on the access status lozenges",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3288#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3288&testPlanId="
+      },
+      {
+        "key": "TC-3377",
+        "summary": "Feature area -  Home Overview Wizard - Wizard visible only for Home box",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3377#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3377&testPlanId="
+      },
+      {
+        "key": "TC-3381",
+        "summary": "Feature area - Exporting - Downloading files in Scope",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3381#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3381&testPlanId="
+      },
+      {
+        "key": "TC-3464",
+        "summary": "Feature area -  Home Overview Wizard - Play with sample data tile creates sample boxes",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3464#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3464&testPlanId="
+      },
+      {
+        "key": "TC-3465",
+        "summary": "Feature area - Home Overview Wizard - Import Jira Projects tile creates one box with one or more Jira project(s)",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3465#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3465&testPlanId="
+      },
+      {
+        "key": "TC-3466",
+        "summary": "Feature area - Home Overview Wizard - Import Jira Projects tile Create a separate box for each Jira Project",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3466#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3466&testPlanId="
+      },
+      {
+        "key": "TC-348",
+        "summary": "Box Module - Gantt - Column Views - Deleting column views",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-348#!page=test-run&testExecutionKey=TC-6045&testKey=TC-348&testPlanId="
+      },
+      {
+        "key": "TC-349",
+        "summary": "Global - Box Type - CRUD operations - 05 Without BPE",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-349#!page=test-run&testExecutionKey=TC-6045&testKey=TC-349&testPlanId="
+      },
+      {
+        "key": "TC-3527",
+        "summary": "Feature area - Task Dependency - Creating dependencies for milestones as a points in time",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3527#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3527&testPlanId="
+      },
+      {
+        "key": "TC-3660",
+        "summary": "Feature area - Task - Attributes displaying and editing - Inline editing of Status when resolution is required",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3660#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3660&testPlanId="
+      },
+      {
+        "key": "TC-3664",
+        "summary": "Box module - Gantt - Basic operations - Task detail view for milestone",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3664#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3664&testPlanId="
+      },
+      {
+        "key": "TC-3735",
+        "summary": "Box Module - Overview - Header content for an archived Box",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-3735#!page=test-run&testExecutionKey=TC-6045&testKey=TC-3735&testPlanId="
+      },
+      {
+        "key": "TC-4289",
+        "summary": "Feature area - Task Dependency - Editing dependency via context menu",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-4289#!page=test-run&testExecutionKey=TC-6045&testKey=TC-4289&testPlanId="
+      },
+      {
+        "key": "TC-489",
+        "summary": "Box Module - Gantt - Baselines - Deleting baselines (single task)",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-489#!page=test-run&testExecutionKey=TC-6045&testKey=TC-489&testPlanId="
+      },
+      {
+        "key": "TC-492",
+        "summary": "Box Module - Gantt - Baselines - Creating baselines (all tasks)",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-492#!page=test-run&testExecutionKey=TC-6045&testKey=TC-492&testPlanId="
+      },
+      {
+        "key": "TC-5107",
+        "summary": "new Box Module - Resources - Resource Grid - Displaying Task Details Dialog",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-5107#!page=test-run&testExecutionKey=TC-6045&testKey=TC-5107&testPlanId="
+      },
+      {
+        "key": "TC-556",
+        "summary": "Box Module - Gantt - Basic operations - Baselines",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-556#!page=test-run&testExecutionKey=TC-6045&testKey=TC-556&testPlanId="
+      },
+      {
+        "key": "TC-557",
+        "summary": "Box Module - Gantt - Basic operations - Period warnings",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-557#!page=test-run&testExecutionKey=TC-6045&testKey=TC-557&testPlanId="
+      },
+      {
+        "key": "TC-563",
+        "summary": "Box Module - Gantt - Basic operations - Selecting tasks (WBS & Chart)",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-563#!page=test-run&testExecutionKey=TC-6045&testKey=TC-563&testPlanId="
+      },
+      {
+        "key": "TC-796",
+        "summary": "Box Module - Overview - Marking and unmarking favorites while the filter is active",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-796#!page=test-run&testExecutionKey=TC-6045&testKey=TC-796&testPlanId="
+      },
+      {
+        "key": "TC-81",
+        "summary": "Box Module - Overview - Right-click menu in Timeline mode",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-81#!page=test-run&testExecutionKey=TC-6045&testKey=TC-81&testPlanId="
+      },
+      {
+        "key": "TC-810",
+        "summary": "Global - Box Type - CRUD operations - Tooltips for grayed-out elements",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-810#!page=test-run&testExecutionKey=TC-6045&testKey=TC-810&testPlanId="
+      },
+      {
+        "key": "TC-82",
+        "summary": "Box Module - Overview - Right-click menu options in Hierarchy mode",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-82#!page=test-run&testExecutionKey=TC-6045&testKey=TC-82&testPlanId="
+      },
+      {
+        "key": "TC-823",
+        "summary": "Feature area - Box - Box scheduling - Period mode change warning",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-823#!page=test-run&testExecutionKey=TC-6045&testKey=TC-823&testPlanId="
+      },
+      {
+        "key": "TC-920",
+        "summary": "Feature area - Box - Modules - Module Switcher",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-920#!page=test-run&testExecutionKey=TC-6045&testKey=TC-920&testPlanId="
+      },
+      {
+        "key": "TC-976",
+        "summary": "Feature area - Box scope - New tasks adding from template - Creating and Removing Task Template in Box types configuration",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-6045&ac.testKey=TC-976#!page=test-run&testExecutionKey=TC-6045&testKey=TC-976&testPlanId="
+      }
+    ],
+    "failed_tests_source": "getTestExecution.testRuns latest status per test (FAILED/FAIL)"
+  },
+  "test_run_candidates": [],
+  "bugs": {
+    "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-04-10/8.71\" AND created >= \"2026-04-10\" ORDER BY priority DESC, created ASC",
+    "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-04-10/8.71%22%20AND%20created%20%3E%3D%20%222026-04-10%22%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC",
+    "rule": "Affected Version is the preprod version, created on or after the cut-off date.",
+    "by_priority": {
+      "Highest": 5,
+      "High": 14,
+      "Medium": 19,
+      "Low": 8
+    },
+    "found_by_test_run": 0,
+    "test_run": {
+      "count": 0,
+      "jql": "issuetype = Bug AND issue in linkedIssues(\"TC-6045\")",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20issue%20in%20linkedIssues%28%22TC-6045%22%29",
+      "execution_key": "TC-6045"
+    },
+    "other": {
+      "count": 46,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-04-10/8.71\" AND created >= \"2026-04-10\" AND issue not in linkedIssues(\"TC-6045\") ORDER BY priority DESC, created ASC",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-04-10/8.71%22%20AND%20created%20%3E%3D%20%222026-04-10%22%20AND%20issue%20not%20in%20linkedIssues%28%22TC-6045%22%29%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC"
+    },
+    "issues": [
+      {
+        "key": "ONE-257536",
+        "summary": "Timebox schedules: the details page is not displayed at all",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2026-04-10",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257536"
+      },
+      {
+        "key": "ONE-257742",
+        "summary": "Type filter is not displayed on Gantt/Scope/Board modules",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-04-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257742"
+      },
+      {
+        "key": "ONE-262334",
+        "summary": "App editions - Error in the console when clicking on Timebox schedule in BP Advanced",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-04-21",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-262334"
+      },
+      {
+        "key": "ONE-272243",
+        "summary": "jcma.forge.forgeEnvironmentName=development causes failure of JCMA migration",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-04-28",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-272243"
+      },
+      {
+        "key": "ONE-274474",
+        "summary": "Widgets - All Widgets are not working",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2026-04-29",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-274474"
+      },
+      {
+        "key": "ONE-257535",
+        "summary": "Holiday plan - Holiday change date when date in timezone is different than date in UTC",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-04-10",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257535"
+      },
+      {
+        "key": "ONE-257565",
+        "summary": "Resources Module - Capacity values in the Summary section are not showing the correct data on Jira Cloud",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-04-10",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257565"
+      },
+      {
+        "key": "ONE-257592",
+        "summary": "Risk management - names of boxes are displayed as undefined when creating new risk register in Main box",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-04-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257592"
+      },
+      {
+        "key": "ONE-257621",
+        "summary": "Financials: effort estimate is displayed incorrectly when tasks have added Story points ",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-04-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257621"
+      },
+      {
+        "key": "ONE-257678",
+        "summary": "Error appears and filter does not work when filtering OKR Type by \"Empty value\"",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-04-14",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257678"
+      },
+      {
+        "key": "ONE-257741",
+        "summary": "OKR by Type, Strategic Theme/Objectives/Key results and Status filtering results are visible only after refresh on Board module",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-04-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257741"
+      },
+      {
+        "key": "ONE-264265",
+        "summary": "App editions - OKR Widget: Opening OKR Key from OKR widget redirects to blank page",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-04-22",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-264265"
+      },
+      {
+        "key": "ONE-264271",
+        "summary": "Gantt: milestone is not located correctly in the year view",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-04-22",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-264271"
+      },
+      {
+        "key": "ONE-278506",
+        "summary": "Gantt: JQL filter does not work.",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-05-04",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-278506"
+      },
+      {
+        "key": "ONE-301069",
+        "summary": "Gantt: it's not possible to export data to XLSX file on Firefox.",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-05-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-301069"
+      },
+      {
+        "key": "ONE-342434",
+        "summary": "[CP to DC 10&11] - Board Module - Backlog - Planned parent tasks are not highlighted in green if they come from another sub-box at the same level",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-06-26",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-342434"
+      },
+      {
+        "key": "ONE-370654",
+        "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370654"
+      },
+      {
+        "key": "ONE-370664",
+        "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370664"
+      },
+      {
+        "key": "ONE-370667",
+        "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+        "priority": "High",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370667"
+      },
+      {
+        "key": "ONE-257537",
+        "summary": "Task limit enforcement may be bypassed due to an error",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-04-10",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257537"
+      },
+      {
+        "key": "ONE-257768",
+        "summary": "Board - Users from all teams assigned to used Timebox Schedule are visible regardless of Box settings",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-04-16",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257768"
+      },
+      {
+        "key": "ONE-257807",
+        "summary": "Calendar: export to PDF takes too long time.",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-04-16",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257807"
+      },
+      {
+        "key": "ONE-257866",
+        "summary": "BP Advanced - New navigation - Sometimes user is not directed to List View and Priority Matrix",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-04-20",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257866"
+      },
+      {
+        "key": "ONE-282493",
+        "summary": "Strategic areas - In SA overview there are visible names of restricted ST",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-05-05",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-282493"
+      },
+      {
+        "key": "ONE-293781",
+        "summary": "Dashboard Hub – Project Health Report - Missing \"Refresh\" button on New Home Page",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-05-12",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-293781"
+      },
+      {
+        "key": "ONE-293786",
+        "summary": "Dashboard Hub – Administration - Missing validation for report configuration fields",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-05-12",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-293786"
+      },
+      {
+        "key": "ONE-293787",
+        "summary": "Dashboard Hub – Project Health Report - Inconsistent metric tile colors in Initiatives dialog",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-05-12",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-293787"
+      },
+      {
+        "key": "ONE-296472",
+        "summary": "Goals – Reports view - Clicking \"Add the first one\" link fails to switch view to Swimlanes",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-05-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-296472"
+      },
+      {
+        "key": "ONE-301052",
+        "summary": "Dashboard Hub – Project Health Report - Inconsistent chart colors",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-05-14",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-301052"
+      },
+      {
+        "key": "ONE-301058",
+        "summary": "Gantt: cannot move task without start date",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-05-14",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-301058"
+      },
+      {
+        "key": "ONE-340166",
+        "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-06-25",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-340166"
+      },
+      {
+        "key": "ONE-368787",
+        "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-08-13",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-368787"
+      },
+      {
+        "key": "ONE-369492",
+        "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369492"
+      },
+      {
+        "key": "ONE-369494",
+        "summary": "Resource panel - Workload is not displaying in Resources grid after clearing active filters",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369494"
+      },
+      {
+        "key": "ONE-370655",
+        "summary": "Main: no horizontal grid lines by default on Timeline view.",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370655"
+      },
+      {
+        "key": "ONE-370657",
+        "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+        "priority": "Medium",
+        "status": "In Progress",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370657"
+      },
+      {
+        "key": "ONE-370663",
+        "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+        "priority": "Medium",
+        "status": "Waiting for Release",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370663"
+      },
+      {
+        "key": "ONE-370665",
+        "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370665"
+      },
+      {
+        "key": "ONE-257722",
+        "summary": "Security tab: clicking on user name doesn't work ",
+        "priority": "Low",
+        "status": "Open",
+        "created": "2026-04-15",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-257722"
+      },
+      {
+        "key": "ONE-284357",
+        "summary": "Gantt: excel inline editing does not work for date field",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-05-07",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-284357"
+      },
+      {
+        "key": "ONE-369491",
+        "summary": "[Cherry pick to J10/J11 and test from Cloud] [DC] Dashboard hub - Some reports are not responsive, scrolling appears when the screen is narrowed",
+        "priority": "Low",
+        "status": "Waiting for Release",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369491"
+      },
+      {
+        "key": "ONE-369493",
+        "summary": "Resources Module - Active user name search field has incorrect highlighted field length",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369493"
+      },
+      {
+        "key": "ONE-369495",
+        "summary": "Reports - Errors in console after navigation from Reports module",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369495"
+      },
+      {
+        "key": "ONE-369496",
+        "summary": "Dashboard hub - Incorrect alignment for reports placed in Infobar",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369496"
+      },
+      {
+        "key": "ONE-369497",
+        "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+        "priority": "Low",
+        "status": "Canceled",
+        "created": "2026-08-17",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-369497"
+      },
+      {
+        "key": "ONE-370653",
+        "summary": "Financials: text overlaps the rows in the Work cost breakdown widget",
+        "priority": "Low",
+        "status": "Done",
+        "created": "2026-08-18",
+        "found_by_test_run": false,
+        "url": "https://appfire.atlassian.net/browse/ONE-370653"
+      }
+    ],
+    "customer_reported": {
+      "count": 5,
+      "affected_version": "preprod/2026-04-10/8.71",
+      "support_ticket_count": 6,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2026-04-10/8.71\" AND key in (ONE-301069, ONE-340166, ONE-342434, ONE-369492, ONE-370667)",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2026-04-10/8.71%22%20AND%20key%20in%20%28ONE-301069%2C%20ONE-340166%2C%20ONE-342434%2C%20ONE-369492%2C%20ONE-370667%29",
+      "rule": "Bug with Affected Version \"preprod/2026-04-10/8.71\" and a Jira issue link to a SUPPORT-* ticket (includes Relates and Support Ticket link types).",
+      "issues": [
+        {
+          "key": "ONE-301069",
+          "summary": "Gantt: it's not possible to export data to XLSX file on Firefox.",
+          "priority": "High",
+          "status": "Done",
+          "created": "2026-05-15",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-301069",
+          "support_tickets": [
+            "SUPPORT-261254",
+            "SUPPORT-262784"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-261254",
+            "https://appfire.atlassian.net/browse/SUPPORT-262784"
+          ]
+        },
+        {
+          "key": "ONE-342434",
+          "summary": "[CP to DC 10&11] - Board Module - Backlog - Planned parent tasks are not highlighted in green if they come from another sub-box at the same level",
+          "priority": "High",
+          "status": "Done",
+          "created": "2026-06-26",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-342434",
+          "support_tickets": [
+            "SUPPORT-264835"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-264835"
+          ]
+        },
+        {
+          "key": "ONE-370667",
+          "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+          "priority": "High",
+          "status": "Done",
+          "created": "2026-08-18",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-370667",
+          "support_tickets": [
+            "SUPPORT-227921"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-227921"
+          ]
+        },
+        {
+          "key": "ONE-340166",
+          "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-06-25",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-340166",
+          "support_tickets": [
+            "SUPPORT-249126"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-249126"
+          ]
+        },
+        {
+          "key": "ONE-369492",
+          "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+          "priority": "Medium",
+          "status": "Done",
+          "created": "2026-08-17",
+          "found_by_test_run": false,
+          "url": "https://appfire.atlassian.net/browse/ONE-369492",
+          "support_tickets": [
+            "SUPPORT-251060"
+          ],
+          "support_ticket_urls": [
+            "https://appfire.atlassian.net/browse/SUPPORT-251060"
+          ]
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "version": "8.71",
+    "cutoff_date": "2026-04-10",
+    "release_date": "2026-05-18",
+    "released": true,
+    "days_in_preprod": 38,
+    "tests_total": 1480,
+    "tests_executed": 1236,
+    "tests_passed": 1151,
+    "tests_failed": 85,
+    "tests_skipped": 0,
+    "tests_todo": 244,
+    "test_run_duration_days": 0,
+    "test_run_first_status_change": "2026-04-10T13:57:58.789000+00:00",
+    "test_run_last_status_change": "2026-04-10T13:58:09.694000+00:00",
+    "qa_engineers_count": 1,
+    "bugs_total": 46,
+    "bugs_found_by_test_run": 0,
+    "bugs_other_since_cutoff": 46,
+    "bugs_by_priority": {
+      "Highest": 5,
+      "High": 14,
+      "Medium": 19,
+      "Low": 8
+    },
+    "release_date_last": "2026-05-18",
+    "bugs_customer_reported": 5
+  },
+  "notes": [
+    "No Jira Cloud Manual execution; using Automated TC-6045."
+  ]
+}

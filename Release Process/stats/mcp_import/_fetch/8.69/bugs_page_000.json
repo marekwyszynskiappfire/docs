@@ -1,0 +1,756 @@
+{
+  "data": {
+    "isLast": true,
+    "appliedContentFormat": "markdown",
+    "issues": [
+      {
+        "id": "1546854",
+        "key": "ONE-229589",
+        "fields": {
+          "summary": "Reports - Tabs - No options \"Save as template\" and \"Manage templates\" for old navigation",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-02-24T05:09:55.708-0500"
+        }
+      },
+      {
+        "id": "1549392",
+        "key": "ONE-230957",
+        "fields": {
+          "summary": "Strategic areas - Columns: Period, OKR period, Date of last update, KR period are not returning values",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-02-25T09:10:12.302-0500"
+        }
+      },
+      {
+        "id": "1549531",
+        "key": "ONE-230961",
+        "fields": {
+          "summary": "Gantt Module/Resource panel - Enabling 'Show BigPicture tasks when using Jira filters' option does not show BigPicture tasks workload on the panel",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-02-25T11:37:43.556-0500"
+        }
+      },
+      {
+        "id": "1564708",
+        "key": "ONE-238228",
+        "fields": {
+          "summary": "Problem with permissions and expired license on forge lvl3",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-03-06T08:19:24.291-0500"
+        }
+      },
+      {
+        "id": "1547903",
+        "key": "ONE-230363",
+        "fields": {
+          "summary": "OKR Type column does not display “Key Result” type for KR items and Jira issues in Gantt module",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-24T09:15:28.969-0500"
+        }
+      },
+      {
+        "id": "1547925",
+        "key": "ONE-230364",
+        "fields": {
+          "summary": "Financials: new custom dates are not set when this option is used before the entering the module ",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-24T09:46:12.016-0500"
+        }
+      },
+      {
+        "id": "1547948",
+        "key": "ONE-230365",
+        "fields": {
+          "summary": "OKR details modal displays “We couldn't load your data” error in Gantt module",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-24T10:07:09.018-0500"
+        }
+      },
+      {
+        "id": "1549438",
+        "key": "ONE-230958",
+        "fields": {
+          "summary": "New Homepage: button for adding new box is not visible sometimes",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-02-25T09:40:53.740-0500"
+        }
+      },
+      {
+        "id": "1561317",
+        "key": "ONE-236269",
+        "fields": {
+          "summary": "New Navigation - Resources Module - Missing headers options on the old version of the module",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-03-04T11:42:15.362-0500"
+        }
+      },
+      {
+        "id": "1561654",
+        "key": "ONE-236284",
+        "fields": {
+          "summary": "Reports - Tabs - No option \"Manage templates\" for old navigation",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-03-05T02:33:56.112-0500"
+        }
+      },
+      {
+        "id": "1561698",
+        "key": "ONE-236289",
+        "fields": {
+          "summary": "New navigation: satisfaction survey is displayed on the exported Board, Calendar, Risks and Objectives",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-03-05T03:29:17.837-0500"
+        }
+      },
+      {
+        "id": "1566837",
+        "key": "ONE-238873",
+        "fields": {
+          "summary": "Golas (Objectives) Module - export doesn't work",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-03-09T10:24:25.566-0400"
+        }
+      },
+      {
+        "id": "1796796",
+        "key": "ONE-342433",
+        "fields": {
+          "summary": "[CP to DC 10&11] - Board - Moved basic tasks remain visible in the Backlog",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-06-26T11:50:03.793-0400"
+        }
+      },
+      {
+        "id": "1902273",
+        "key": "ONE-370654",
+        "fields": {
+          "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T08:55:12.903-0400"
+        }
+      },
+      {
+        "id": "1902587",
+        "key": "ONE-370664",
+        "fields": {
+          "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:10:44.631-0400"
+        }
+      },
+      {
+        "id": "1902591",
+        "key": "ONE-370667",
+        "fields": {
+          "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:14:08.739-0400"
+        }
+      },
+      {
+        "id": "1547764",
+        "key": "ONE-230357",
+        "fields": {
+          "summary": "Board - Moved basic tasks remain visible in the Backlog",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-24T06:51:43.426-0500"
+        }
+      },
+      {
+        "id": "1548158",
+        "key": "ONE-230369",
+        "fields": {
+          "summary": "Dashboards - BigPicture Gantt gadget - Resource panel is displayed incorrectly",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-24T12:38:24.882-0500"
+        }
+      },
+      {
+        "id": "1549466",
+        "key": "ONE-230959",
+        "fields": {
+          "summary": "Board module  - Filtering by Strategic Themes/Objectives/Key results is not possible ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-25T10:14:53.004-0500"
+        }
+      },
+      {
+        "id": "1551404",
+        "key": "ONE-231849",
+        "fields": {
+          "summary": "Gantt/Resources/Board/Calendar - Filtering via Custom field 'Team' not working properly",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-26T06:56:06.366-0500"
+        }
+      },
+      {
+        "id": "1553479",
+        "key": "ONE-232931",
+        "fields": {
+          "summary": "Homepage: some modules are not available in BP",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-02-27T11:12:09.088-0500"
+        }
+      },
+      {
+        "id": "1554762",
+        "key": "ONE-232935",
+        "fields": {
+          "summary": "Priorities module - After deleting one of the metrics no value is visible only after refresh",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-02T02:46:10.852-0500"
+        }
+      },
+      {
+        "id": "1556332",
+        "key": "ONE-234150",
+        "fields": {
+          "summary": "Dashboard Hub - Incorrect padding on the Overview module",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-02T06:42:41.444-0500"
+        }
+      },
+      {
+        "id": "1558262",
+        "key": "ONE-234556",
+        "fields": {
+          "summary": "Financials: custom expenses from dates different from the selected period are always visible on the widget",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-03T05:29:05.557-0500"
+        }
+      },
+      {
+        "id": "1559090",
+        "key": "ONE-235242",
+        "fields": {
+          "summary": "\"Create a team\" window is not auto-closing after redirection and user is redirected to a wrong tab [Multi-team estimations]",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-03T06:59:33.582-0500"
+        }
+      },
+      {
+        "id": "1561234",
+        "key": "ONE-236267",
+        "fields": {
+          "summary": "Gantt/Scope: unnecessary 'convert to jira issue' option on tasks.",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-04T09:51:28.501-0500"
+        }
+      },
+      {
+        "id": "1561350",
+        "key": "ONE-236270",
+        "fields": {
+          "summary": "New Navigation - Resources Module - Header displays incorrectly after switching from the beta version to old one",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-04T12:25:06.052-0500"
+        }
+      },
+      {
+        "id": "1562427",
+        "key": "ONE-236889",
+        "fields": {
+          "summary": "Resource panel - Workload is not displaying in Resources grid after clearing active filters",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-05T05:44:27.506-0500"
+        }
+      },
+      {
+        "id": "1563122",
+        "key": "ONE-237264",
+        "fields": {
+          "summary": "New navigation, old resource grid: there is no 'Live/Scenario' button ",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-05T11:49:43.233-0500"
+        }
+      },
+      {
+        "id": "1567381",
+        "key": "ONE-238889",
+        "fields": {
+          "summary": "Gantt: customs icon are invisible",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-03-10T08:25:50.499-0400"
+        }
+      },
+      {
+        "id": "1791418",
+        "key": "ONE-340166",
+        "fields": {
+          "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-25T05:13:56.624-0400"
+        }
+      },
+      {
+        "id": "1892015",
+        "key": "ONE-368787",
+        "fields": {
+          "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-13T06:31:28.912-0400"
+        }
+      },
+      {
+        "id": "1898061",
+        "key": "ONE-369492",
+        "fields": {
+          "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-17T04:12:33.283-0400"
+        }
+      },
+      {
+        "id": "1898065",
+        "key": "ONE-369494",
+        "fields": {
+          "summary": "Resource panel - Workload is not displaying in Resources grid after clearing active filters",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-17T04:14:52.259-0400"
+        }
+      },
+      {
+        "id": "1902331",
+        "key": "ONE-370655",
+        "fields": {
+          "summary": "Main: no horizontal grid lines by default on Timeline view.",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T08:57:14.586-0400"
+        }
+      },
+      {
+        "id": "1902378",
+        "key": "ONE-370657",
+        "fields": {
+          "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+          "status": {
+            "name": "In Progress",
+            "statusCategory": {
+              "name": "In Progress"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T08:58:45.351-0400"
+        }
+      },
+      {
+        "id": "1902585",
+        "key": "ONE-370663",
+        "fields": {
+          "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+          "status": {
+            "name": "Waiting for Release",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T09:09:29.021-0400"
+        }
+      },
+      {
+        "id": "1902588",
+        "key": "ONE-370665",
+        "fields": {
+          "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T09:11:40.960-0400"
+        }
+      },
+      {
+        "id": "1547796",
+        "key": "ONE-230360",
+        "fields": {
+          "summary": "Administration - Resources - Individuals - \"Full name\" column is to narrow",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-02-24T07:16:30.690-0500"
+        }
+      },
+      {
+        "id": "1559282",
+        "key": "ONE-235272",
+        "fields": {
+          "summary": "New Navigation - My settings - No image on splash screen if there is no token created in the API tokens tab",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-03-03T09:52:32.675-0500"
+        }
+      },
+      {
+        "id": "1898054",
+        "key": "ONE-369491",
+        "fields": {
+          "summary": "[Cherry pick to J10/J11 and test from Cloud] [DC] Dashboard hub - Some reports are not responsive, scrolling appears when the screen is narrowed",
+          "status": {
+            "name": "Waiting for Release",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:10:14.405-0400"
+        }
+      },
+      {
+        "id": "1898067",
+        "key": "ONE-369495",
+        "fields": {
+          "summary": "Reports - Errors in console after navigation from Reports module",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:16:17.746-0400"
+        }
+      },
+      {
+        "id": "1898069",
+        "key": "ONE-369496",
+        "fields": {
+          "summary": "Dashboard hub - Incorrect alignment for reports placed in Infobar",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:17:21.379-0400"
+        }
+      },
+      {
+        "id": "1898070",
+        "key": "ONE-369497",
+        "fields": {
+          "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:18:25.544-0400"
+        }
+      }
+    ]
+  }
+}

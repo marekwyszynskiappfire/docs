@@ -1,0 +1,30 @@
+{
+  "data": {
+    "values": [
+      {
+        "id": "41650",
+        "name": "bigpicture-cloud-8.68.0.0",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "42820",
+        "name": "bigpicture-cloud-8.68.0.1",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "43029",
+        "name": "bigpicture-cloud-8.68.0.2",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "43066",
+        "name": "bigpicture-cloud-8.68.0.3",
+        "released": false,
+        "releaseDate": null
+      }
+    ]
+  }
+}

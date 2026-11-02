@@ -1,0 +1,393 @@
+{
+  "execution": {
+    "summary": "BigPicture 8.71 Major Release Test Run Automated",
+    "status": "To Do",
+    "created": "2026-04-10T09:04:29.193-0400",
+    "url": "https://appfire.atlassian.net/browse/TC-6045",
+    "defect_keys": []
+  },
+  "bugs": [
+    {
+      "key": "ONE-257536",
+      "summary": "Timebox schedules: the details page is not displayed at all",
+      "priority": "Highest",
+      "status": "Done",
+      "created": "2026-04-10",
+      "url": "https://appfire.atlassian.net/browse/ONE-257536"
+    },
+    {
+      "key": "ONE-257742",
+      "summary": "Type filter is not displayed on Gantt/Scope/Board modules",
+      "priority": "Highest",
+      "status": "Canceled",
+      "created": "2026-04-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-257742"
+    },
+    {
+      "key": "ONE-262334",
+      "summary": "App editions - Error in the console when clicking on Timebox schedule in BP Advanced",
+      "priority": "Highest",
+      "status": "Canceled",
+      "created": "2026-04-21",
+      "url": "https://appfire.atlassian.net/browse/ONE-262334"
+    },
+    {
+      "key": "ONE-272243",
+      "summary": "jcma.forge.forgeEnvironmentName=development causes failure of JCMA migration",
+      "priority": "Highest",
+      "status": "Canceled",
+      "created": "2026-04-28",
+      "url": "https://appfire.atlassian.net/browse/ONE-272243"
+    },
+    {
+      "key": "ONE-274474",
+      "summary": "Widgets - All Widgets are not working",
+      "priority": "Highest",
+      "status": "Canceled",
+      "created": "2026-04-29",
+      "url": "https://appfire.atlassian.net/browse/ONE-274474"
+    },
+    {
+      "key": "ONE-257535",
+      "summary": "Holiday plan - Holiday change date when date in timezone is different than date in UTC",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-04-10",
+      "url": "https://appfire.atlassian.net/browse/ONE-257535"
+    },
+    {
+      "key": "ONE-257565",
+      "summary": "Resources Module - Capacity values in the Summary section are not showing the correct data on Jira Cloud",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-04-10",
+      "url": "https://appfire.atlassian.net/browse/ONE-257565"
+    },
+    {
+      "key": "ONE-257592",
+      "summary": "Risk management - names of boxes are displayed as undefined when creating new risk register in Main box",
+      "priority": "High",
+      "status": "Canceled",
+      "created": "2026-04-13",
+      "url": "https://appfire.atlassian.net/browse/ONE-257592"
+    },
+    {
+      "key": "ONE-257621",
+      "summary": "Financials: effort estimate is displayed incorrectly when tasks have added Story points ",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-04-13",
+      "url": "https://appfire.atlassian.net/browse/ONE-257621"
+    },
+    {
+      "key": "ONE-257678",
+      "summary": "Error appears and filter does not work when filtering OKR Type by \"Empty value\"",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-04-14",
+      "url": "https://appfire.atlassian.net/browse/ONE-257678"
+    },
+    {
+      "key": "ONE-257741",
+      "summary": "OKR by Type, Strategic Theme/Objectives/Key results and Status filtering results are visible only after refresh on Board module",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-04-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-257741"
+    },
+    {
+      "key": "ONE-264265",
+      "summary": "App editions - OKR Widget: Opening OKR Key from OKR widget redirects to blank page",
+      "priority": "High",
+      "status": "Canceled",
+      "created": "2026-04-22",
+      "url": "https://appfire.atlassian.net/browse/ONE-264265"
+    },
+    {
+      "key": "ONE-264271",
+      "summary": "Gantt: milestone is not located correctly in the year view",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-04-22",
+      "url": "https://appfire.atlassian.net/browse/ONE-264271"
+    },
+    {
+      "key": "ONE-278506",
+      "summary": "Gantt: JQL filter does not work.",
+      "priority": "High",
+      "status": "Canceled",
+      "created": "2026-05-04",
+      "url": "https://appfire.atlassian.net/browse/ONE-278506"
+    },
+    {
+      "key": "ONE-301069",
+      "summary": "Gantt: it's not possible to export data to XLSX file on Firefox.",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-05-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-301069"
+    },
+    {
+      "key": "ONE-342434",
+      "summary": "[CP to DC 10&11] - Board Module - Backlog - Planned parent tasks are not highlighted in green if they come from another sub-box at the same level",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-06-26",
+      "url": "https://appfire.atlassian.net/browse/ONE-342434"
+    },
+    {
+      "key": "ONE-370654",
+      "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+      "priority": "High",
+      "status": "Canceled",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370654"
+    },
+    {
+      "key": "ONE-370664",
+      "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370664"
+    },
+    {
+      "key": "ONE-370667",
+      "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370667"
+    },
+    {
+      "key": "ONE-257537",
+      "summary": "Task limit enforcement may be bypassed due to an error",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-04-10",
+      "url": "https://appfire.atlassian.net/browse/ONE-257537"
+    },
+    {
+      "key": "ONE-257768",
+      "summary": "Board - Users from all teams assigned to used Timebox Schedule are visible regardless of Box settings",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-04-16",
+      "url": "https://appfire.atlassian.net/browse/ONE-257768"
+    },
+    {
+      "key": "ONE-257807",
+      "summary": "Calendar: export to PDF takes too long time.",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-04-16",
+      "url": "https://appfire.atlassian.net/browse/ONE-257807"
+    },
+    {
+      "key": "ONE-257866",
+      "summary": "BP Advanced - New navigation - Sometimes user is not directed to List View and Priority Matrix",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-04-20",
+      "url": "https://appfire.atlassian.net/browse/ONE-257866"
+    },
+    {
+      "key": "ONE-282493",
+      "summary": "Strategic areas - In SA overview there are visible names of restricted ST",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-05-05",
+      "url": "https://appfire.atlassian.net/browse/ONE-282493"
+    },
+    {
+      "key": "ONE-293781",
+      "summary": "Dashboard Hub – Project Health Report - Missing \"Refresh\" button on New Home Page",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-05-12",
+      "url": "https://appfire.atlassian.net/browse/ONE-293781"
+    },
+    {
+      "key": "ONE-293786",
+      "summary": "Dashboard Hub – Administration - Missing validation for report configuration fields",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-05-12",
+      "url": "https://appfire.atlassian.net/browse/ONE-293786"
+    },
+    {
+      "key": "ONE-293787",
+      "summary": "Dashboard Hub – Project Health Report - Inconsistent metric tile colors in Initiatives dialog",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-05-12",
+      "url": "https://appfire.atlassian.net/browse/ONE-293787"
+    },
+    {
+      "key": "ONE-296472",
+      "summary": "Goals – Reports view - Clicking \"Add the first one\" link fails to switch view to Swimlanes",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-05-13",
+      "url": "https://appfire.atlassian.net/browse/ONE-296472"
+    },
+    {
+      "key": "ONE-301052",
+      "summary": "Dashboard Hub – Project Health Report - Inconsistent chart colors",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-05-14",
+      "url": "https://appfire.atlassian.net/browse/ONE-301052"
+    },
+    {
+      "key": "ONE-301058",
+      "summary": "Gantt: cannot move task without start date",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-05-14",
+      "url": "https://appfire.atlassian.net/browse/ONE-301058"
+    },
+    {
+      "key": "ONE-340166",
+      "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-06-25",
+      "url": "https://appfire.atlassian.net/browse/ONE-340166"
+    },
+    {
+      "key": "ONE-368787",
+      "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-08-13",
+      "url": "https://appfire.atlassian.net/browse/ONE-368787"
+    },
+    {
+      "key": "ONE-369492",
+      "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369492"
+    },
+    {
+      "key": "ONE-369494",
+      "summary": "Resource panel - Workload is not displaying in Resources grid after clearing active filters",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369494"
+    },
+    {
+      "key": "ONE-370655",
+      "summary": "Main: no horizontal grid lines by default on Timeline view.",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370655"
+    },
+    {
+      "key": "ONE-370657",
+      "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+      "priority": "Medium",
+      "status": "In Progress",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370657"
+    },
+    {
+      "key": "ONE-370663",
+      "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+      "priority": "Medium",
+      "status": "Waiting for Release",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370663"
+    },
+    {
+      "key": "ONE-370665",
+      "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370665"
+    },
+    {
+      "key": "ONE-257722",
+      "summary": "Security tab: clicking on user name doesn't work ",
+      "priority": "Low",
+      "status": "Open",
+      "created": "2026-04-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-257722"
+    },
+    {
+      "key": "ONE-284357",
+      "summary": "Gantt: excel inline editing does not work for date field",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-05-07",
+      "url": "https://appfire.atlassian.net/browse/ONE-284357"
+    },
+    {
+      "key": "ONE-369491",
+      "summary": "[Cherry pick to J10/J11 and test from Cloud] [DC] Dashboard hub - Some reports are not responsive, scrolling appears when the screen is narrowed",
+      "priority": "Low",
+      "status": "Waiting for Release",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369491"
+    },
+    {
+      "key": "ONE-369493",
+      "summary": "Resources Module - Active user name search field has incorrect highlighted field length",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369493"
+    },
+    {
+      "key": "ONE-369495",
+      "summary": "Reports - Errors in console after navigation from Reports module",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369495"
+    },
+    {
+      "key": "ONE-369496",
+      "summary": "Dashboard hub - Incorrect alignment for reports placed in Infobar",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369496"
+    },
+    {
+      "key": "ONE-369497",
+      "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+      "priority": "Low",
+      "status": "Canceled",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369497"
+    },
+    {
+      "key": "ONE-370653",
+      "summary": "Financials: text overlaps the rows in the Work cost breakdown widget",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370653"
+    }
+  ],
+  "cloud_versions": [
+    {
+      "id": "49714",
+      "name": "bigpicture-cloud-8.71.0.0",
+      "released": false,
+      "release_date": null
+    },
+    {
+      "id": "51120",
+      "name": "bigpicture-cloud-8.71.0.1",
+      "released": true,
+      "release_date": "2026-05-18"
+    }
+  ]
+}

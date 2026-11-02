@@ -1,0 +1,60 @@
+{
+  "data": {
+    "values": [
+      {
+        "id": "45900",
+        "name": "bigpicture-cloud-8.70.0.0",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "46103",
+        "name": "bigpicture-cloud-8.70.0.1",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "46476",
+        "name": "bigpicture-cloud-8.70.0.2",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "46780",
+        "name": "bigpicture-cloud-8.70.0.3",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "46816",
+        "name": "bigpicture-cloud-8.70.0.4",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "46820",
+        "name": "bigpicture-cloud-8.70.0.5",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "46889",
+        "name": "bigpicture-cloud-8.70.0.6",
+        "released": false,
+        "releaseDate": null
+      },
+      {
+        "id": "46960",
+        "name": "bigpicture-cloud-8.70.0.7",
+        "released": true,
+        "releaseDate": "2026-05-18"
+      },
+      {
+        "id": "49154",
+        "name": "bigpicture-cloud-8.70.1.0",
+        "released": true,
+        "releaseDate": "2026-05-18"
+      }
+    ]
+  }
+}

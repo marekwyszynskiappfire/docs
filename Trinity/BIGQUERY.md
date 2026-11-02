@@ -1,5 +1,10 @@
 # Trinity → BigQuery → Looker Studio
 
+> **Pilot evidence (interim):** Leadership scorecards and run comparison use the
+> **[Trinity Usage Scorecard](https://docs.google.com/spreadsheets/d/123L4BTTTrgghlLHni-vqCAEiJperj-pu1tDKuEyg6oo/edit)** Google Sheet
+> ([`SCORECARD.md`](SCORECARD.md)). BigQuery / Looker in this doc are **optional
+> infrastructure** — not required until we re-enable org-wide analytics.
+
 Operator setup for saving Trinity pipeline telemetry in BigQuery and visualizing
 complete runs in Looker Studio (formerly Data Studio).
 
@@ -181,19 +186,28 @@ GOOGLE_APPLICATION_CREDENTIALS=/absolute/path/key.json \
 1. Open Looker Studio and select **Create → Report**.
 2. Add a **BigQuery** data source.
 3. Select project `qa-coe`, dataset `trinity`.
-4. Use `v_run_summary` for portfolio/run scorecards.
-5. Add `v_run_phases` for duration charts.
-6. Add `v_run_epics` for epic-level drill-down.
-7. Add `v_event_details` for funnel, acceptance, and rejection analysis.
-8. Add report controls for date, `product_name`, `operator_name`, and
-   `pipeline_run_id`.
+4. Use `v_evidence_scorecard` for the leadership evidence page.
+5. Add `v_run_summary` for portfolio totals.
+6. Add `v_run_phases` for duration charts.
+7. Add `v_run_epics` for epic-level drill-down.
+8. Add `v_event_details` for funnel, acceptance, and rejection analysis.
+9. Add report controls for date, `product`, `who_used`, and `use_case`.
 
-Recommended first page:
+The E2E report uses three BigQuery views in `qa-coe.trinity`. Do not use `v_evidence_scorecard` for this page. That view is one wide row per run, and Looker’s default template turns it into an unreadable chart.
 
-- Scorecards: runs, epics reviewed, tests drafted, tests imported to Xray
-- Filters: date, product, operator
-- Table: run label, operator, product, readiness, drafted/imported tests
-- Bar chart: overall duration by run
+| View | One row is | Chart |
+|------|------------|--------|
+| `v_e2e_funnel` | One process step for one run | Bar: `step_name` by sum of `item_count`, breakdown `use_case`, sort by `step_order`. Filter `evidence_class = product` |
+| `v_e2e_phases` | One phase duration | Bar: `phase_label` by `duration_minutes`. Filter `is_overall` is false and `evidence_class = product` |
+| `v_e2e_events` | One Studio action on the path | Table and time series. Snapshot events are already excluded |
+
+Steps in order: epics reviewed, findings, readiness, epics approved, epics selected, tests drafted, tests amended, tests sent to import, tests imported to Xray. Phases in order: Reviewer gather, human review in Studio, Jira feedback, Creator, test-case review, Importer to Xray.
+
+Create the report on the funnel, then add the other two views with **Resource → Manage added data sources → Add data**:
+
+```text
+https://lookerstudio.google.com/reporting/create?c.mode=edit&r.reportName=Trinity%20E2E%20process&ds.connector=bigQuery&ds.datasourceName=Trinity%20E2E%20funnel&ds.projectId=qa-coe&ds.type=TABLE&ds.datasetId=trinity&ds.tableId=v_e2e_funnel&ds.refreshFields=true
+```
 
 Looker viewers need permission to read the dataset, or the data source must use
 owner credentials according to Appfire policy.
@@ -204,6 +218,10 @@ owner credentials according to Appfire policy.
 - `v_run_phases`: one row per run phase
 - `v_run_epics`: one row per epic in a run
 - `v_event_details`: one row per recorded Studio action
+- `v_evidence_scorecard`: one wide row per run for the leadership fields. Not the E2E chart source
+- `v_e2e_funnel`: one row per run per process step, from epics reviewed through Xray import
+- `v_e2e_phases`: one row per run per phase, with duration in minutes
+- `v_e2e_events`: process actions only. Snapshot rows are excluded
 
 Connect Looker Studio to these views rather than parsing JSON directly.
 

@@ -88,6 +88,8 @@ Prune duplicate Reviewer folders, pytest creator runs, and orphan exports:
 | `POST /api/importer/record-results` | Persist `xray_test_key` from import report JSON (IQ-05) |
 | `GET /api/runs/{id}/statistics`, `/statistics/export` | Per-run E2E report ([`METRICS.md`](../METRICS.md)) |
 | `GET /api/statistics/compare?runs=id1,id2` | Compare 2–5 pipeline runs (TC readiness + metrics; first id = baseline) |
+| `GET /api/scorecard/config` | Baked [Usage Scorecard](https://docs.google.com/spreadsheets/d/123L4BTTTrgghlLHni-vqCAEiJperj-pu1tDKuEyg6oo/edit) URL + credentials status |
+| `GET /api/runs/{id}/scorecard/preview`, `POST …/push` | Map run statistics → product tab row ([`SCORECARD.md`](../SCORECARD.md)) |
 | `GET /api/telemetry/summary`, `/export`, `/events` | Local metrics ([`METRICS.md`](../METRICS.md)) |
 | `POST /api/telemetry/flush` | Flush pending events to configured ingest |
 | `POST /api/telemetry/sync` | Recompute all run reports and backfill BigQuery ([setup](../BIGQUERY.md)) |

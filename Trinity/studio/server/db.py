@@ -46,6 +46,10 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
         conn.execute(
             "ALTER TABLE pipeline_run ADD COLUMN coverage_profile TEXT NOT NULL DEFAULT 'balanced'"
         )
+    if pipeline_cols and "scorecard_external_run_id" not in pipeline_cols:
+        conn.execute("ALTER TABLE pipeline_run ADD COLUMN scorecard_external_run_id TEXT")
+    if pipeline_cols and "scorecard_pushed_at" not in pipeline_cols:
+        conn.execute("ALTER TABLE pipeline_run ADD COLUMN scorecard_pushed_at TEXT")
     unit_cols = {row[1] for row in conn.execute("PRAGMA table_info(review_unit)")}
     if unit_cols and "coverage_profile" not in unit_cols:
         conn.execute("ALTER TABLE review_unit ADD COLUMN coverage_profile TEXT")

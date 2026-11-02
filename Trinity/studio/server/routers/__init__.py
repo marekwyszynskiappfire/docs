@@ -13,6 +13,7 @@ from routers import (
     personas_config,
     review_runs,
     reviewer_insights,
+    scorecard,
     stats,
     telemetry,
     workspace,
@@ -23,6 +24,7 @@ def register_routers(app: FastAPI) -> None:
     for module in (
         review_runs,
         stats,
+        scorecard,
         creator,
         importer,
         reviewer_insights,

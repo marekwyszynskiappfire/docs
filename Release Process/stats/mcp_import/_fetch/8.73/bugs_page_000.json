@@ -1,0 +1,654 @@
+{
+  "data": {
+    "isLast": true,
+    "appliedContentFormat": "markdown",
+    "issues": [
+      {
+        "id": "1772317",
+        "key": "ONE-332990",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-06-15T05:17:57.583-0400"
+        }
+      },
+      {
+        "id": "1772320",
+        "key": "ONE-332993",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://api.atlassian.com/ex/jira/ab025e42-365b-4286-8049-6c3413cdb217/rest/api/3/field/customfield_10007/context?maxResults=50&startAt=0",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-06-15T05:18:08.818-0400"
+        }
+      },
+      {
+        "id": "1772325",
+        "key": "ONE-332998",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-06-15T05:18:28.110-0400"
+        }
+      },
+      {
+        "id": "1772441",
+        "key": "ONE-333108",
+        "fields": {
+          "summary": "RequestFailedServiceUnavailableException: HTTP: GET https://api.atlassian.com/ex/jira/bab608b2-bf02-4061-a13e-c8b9a0d584f0/rest/api/3/field/search?expand=key&maxResults=50&startAt=0 failed",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-06-15T05:25:36.377-0400"
+        }
+      },
+      {
+        "id": "1774473",
+        "key": "ONE-333868",
+        "fields": {
+          "summary": "Gadget - Goals - Goals are not displayed",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-06-16T05:19:25.620-0400"
+        }
+      },
+      {
+        "id": "1804492",
+        "key": "ONE-345053",
+        "fields": {
+          "summary": "Holiday plan - Holiday change date when date in timezone is different than date in UTC - floating holiday extra working days",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Highest"
+          },
+          "created": "2026-06-30T06:54:47.423-0400"
+        }
+      },
+      {
+        "id": "1775339",
+        "key": "ONE-334619",
+        "fields": {
+          "summary": "Overview module - Box type dropdown is displayed underneath the box creation modal",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-06-16T08:30:57.877-0400"
+        }
+      },
+      {
+        "id": "1778188",
+        "key": "ONE-335534",
+        "fields": {
+          "summary": "The Financials data limit warning is displayed incorrectly on Strategic Areas because the validation uses dates from all OKR periods in the instance, rather than the selected task period or the OKR period assigned to the Strategic Theme",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-06-17T09:29:38.740-0400"
+        }
+      },
+      {
+        "id": "1778900",
+        "key": "ONE-335558",
+        "fields": {
+          "summary": "OKR/WBS/Skills widgets are not displaying ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-06-18T03:50:14.145-0400"
+        }
+      },
+      {
+        "id": "1783595",
+        "key": "ONE-337425",
+        "fields": {
+          "summary": "WBS widget is not working",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-06-22T04:49:47.822-0400"
+        }
+      },
+      {
+        "id": "1801425",
+        "key": "ONE-343630",
+        "fields": {
+          "summary": "[BE] Error on large instance AI tool call (task list) result",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-06-30T03:44:40.760-0400"
+        }
+      },
+      {
+        "id": "1902273",
+        "key": "ONE-370654",
+        "fields": {
+          "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T08:55:12.903-0400"
+        }
+      },
+      {
+        "id": "1902587",
+        "key": "ONE-370664",
+        "fields": {
+          "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:10:44.631-0400"
+        }
+      },
+      {
+        "id": "1902591",
+        "key": "ONE-370667",
+        "fields": {
+          "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "High"
+          },
+          "created": "2026-08-18T09:14:08.739-0400"
+        }
+      },
+      {
+        "id": "1772473",
+        "key": "ONE-333139",
+        "fields": {
+          "summary": "Spotlight Stops Working",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-15T05:27:33.846-0400"
+        }
+      },
+      {
+        "id": "1773971",
+        "key": "ONE-333687",
+        "fields": {
+          "summary": "Administration - Some users can't be added as a Resource ",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-15T11:46:17.678-0400"
+        }
+      },
+      {
+        "id": "1774006",
+        "key": "ONE-333688",
+        "fields": {
+          "summary": "Spotlight fixes",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-15T14:02:02.518-0400"
+        }
+      },
+      {
+        "id": "1775284",
+        "key": "ONE-334609",
+        "fields": {
+          "summary": "Homepage: list of boxes is under the dialog.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-16T07:19:48.222-0400"
+        }
+      },
+      {
+        "id": "1780948",
+        "key": "ONE-336473",
+        "fields": {
+          "summary": "Administration - Security - rest/system/security/provider/embedded/global/role-scheme does not return displayName",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-18T11:25:54.171-0400"
+        }
+      },
+      {
+        "id": "1785735",
+        "key": "ONE-338339",
+        "fields": {
+          "summary": "Overview module - Timeline mode - \"Show archived boxes\" checkbox exists in 2 different places",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-06-22T09:57:58.646-0400"
+        }
+      },
+      {
+        "id": "1819730",
+        "key": "ONE-349030",
+        "fields": {
+          "summary": "Gantt: Pressing the Tab key does not start Excel-like editing on the last selected task",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-07-03T11:17:49.368-0400"
+        }
+      },
+      {
+        "id": "1822377",
+        "key": "ONE-350220",
+        "fields": {
+          "summary": "Gantt: move shortcuts are active on selected tasks",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-07-06T10:34:41.549-0400"
+        }
+      },
+      {
+        "id": "1828761",
+        "key": "ONE-352550",
+        "fields": {
+          "summary": "[FE] Gantt: tabbing mechanism not working when going back do Gantt container",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-07-09T07:48:57.280-0400"
+        }
+      },
+      {
+        "id": "1892015",
+        "key": "ONE-368787",
+        "fields": {
+          "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-13T06:31:28.912-0400"
+        }
+      },
+      {
+        "id": "1898061",
+        "key": "ONE-369492",
+        "fields": {
+          "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-17T04:12:33.283-0400"
+        }
+      },
+      {
+        "id": "1898065",
+        "key": "ONE-369494",
+        "fields": {
+          "summary": "Resource panel - Workload is not displaying in Resources grid after clearing active filters",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-17T04:14:52.259-0400"
+        }
+      },
+      {
+        "id": "1902331",
+        "key": "ONE-370655",
+        "fields": {
+          "summary": "Main: no horizontal grid lines by default on Timeline view.",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T08:57:14.586-0400"
+        }
+      },
+      {
+        "id": "1902378",
+        "key": "ONE-370657",
+        "fields": {
+          "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+          "status": {
+            "name": "In Progress",
+            "statusCategory": {
+              "name": "In Progress"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T08:58:45.351-0400"
+        }
+      },
+      {
+        "id": "1902585",
+        "key": "ONE-370663",
+        "fields": {
+          "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+          "status": {
+            "name": "Waiting for Release",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T09:09:29.021-0400"
+        }
+      },
+      {
+        "id": "1902588",
+        "key": "ONE-370665",
+        "fields": {
+          "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Medium"
+          },
+          "created": "2026-08-18T09:11:40.960-0400"
+        }
+      },
+      {
+        "id": "1773010",
+        "key": "ONE-333653",
+        "fields": {
+          "summary": "RequestFailedConflictException: HTTP: GET https://trs-prod.api.appfire.net/api/v1/tokens/installation/ari%3Acloud%3Aecosystem%3A%3Ainstallation%2F82c8ec0a-ce00-463c-a123-036de7d6252b",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-06-15T06:00:21.363-0400"
+        }
+      },
+      {
+        "id": "1782929",
+        "key": "ONE-337419",
+        "fields": {
+          "summary": "Calendar: it's not possible to export file to PDF.",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-06-19T09:42:36.351-0400"
+        }
+      },
+      {
+        "id": "1898054",
+        "key": "ONE-369491",
+        "fields": {
+          "summary": "[Cherry pick to J10/J11 and test from Cloud] [DC] Dashboard hub - Some reports are not responsive, scrolling appears when the screen is narrowed",
+          "status": {
+            "name": "Waiting for Release",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:10:14.405-0400"
+        }
+      },
+      {
+        "id": "1898062",
+        "key": "ONE-369493",
+        "fields": {
+          "summary": "Resources Module - Active user name search field has incorrect highlighted field length",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:13:39.554-0400"
+        }
+      },
+      {
+        "id": "1898067",
+        "key": "ONE-369495",
+        "fields": {
+          "summary": "Reports - Errors in console after navigation from Reports module",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:16:17.746-0400"
+        }
+      },
+      {
+        "id": "1898069",
+        "key": "ONE-369496",
+        "fields": {
+          "summary": "Dashboard hub - Incorrect alignment for reports placed in Infobar",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:17:21.379-0400"
+        }
+      },
+      {
+        "id": "1898070",
+        "key": "ONE-369497",
+        "fields": {
+          "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+          "status": {
+            "name": "Canceled",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-17T04:18:25.544-0400"
+        }
+      },
+      {
+        "id": "1902192",
+        "key": "ONE-370653",
+        "fields": {
+          "summary": "Financials: text overlaps the rows in the Work cost breakdown widget",
+          "status": {
+            "name": "Done",
+            "statusCategory": {
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "name": "Low"
+          },
+          "created": "2026-08-18T08:52:37.533-0400"
+        }
+      }
+    ]
+  }
+}

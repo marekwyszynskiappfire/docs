@@ -1,0 +1,39 @@
+{
+  "execution": {
+    "summary": "BigPicture 8.62 Major Release Test Run Jira Cloud Manual",
+    "status": "Done",
+    "created": "2025-10-16T06:01:27.330-0400",
+    "url": "https://appfire.atlassian.net/browse/TC-5779",
+    "defect_keys": [
+      "ONE-157948",
+      "ONE-158983",
+      "ODEV-3052",
+      "ONE-158993",
+      "ONE-119684",
+      "ONE-158997",
+      "ONE-160310",
+      "ONE-160322"
+    ]
+  },
+  "bugs": [],
+  "cloud_versions": [
+    {
+      "id": "33478",
+      "name": "bigpicture-cloud-8.62.0.0",
+      "released": false,
+      "release_date": null
+    },
+    {
+      "id": "33627",
+      "name": "bigpicture-cloud-8.62.0.1",
+      "released": false,
+      "release_date": null
+    },
+    {
+      "id": "33652",
+      "name": "bigpicture-cloud-8.62.0.2",
+      "released": true,
+      "release_date": "2025-10-30"
+    }
+  ]
+}

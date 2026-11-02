@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "gathered_at": "2026-11-02T07:27:25+01:00",
+  "version": "8.64",
+  "site": "https://appfire.atlassian.net",
+  "cutoff": {
+    "id": "35222",
+    "name": "preprod/2025-11-17/8.64",
+    "cutoff_date": "2025-11-17",
+    "released": false
+  },
+  "preprod_versions": [
+    {
+      "id": "35222",
+      "name": "preprod/2025-11-17/8.64",
+      "cutoff_date": "2025-11-17",
+      "released": false
+    }
+  ],
+  "production": {
+    "product": "bigpicture-cloud",
+    "released": true,
+    "first_released": {
+      "id": "36347",
+      "name": "bigpicture-cloud-8.64.0.7",
+      "released": true,
+      "release_date": "2025-12-08",
+      "url": "https://appfire.atlassian.net/projects/ONE/versions/36347"
+    },
+    "versions": [
+      {
+        "id": "36064",
+        "name": "bigpicture-cloud-8.64.0.5",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/36064"
+      },
+      {
+        "id": "36068",
+        "name": "bigpicture-cloud-8.64.0.6",
+        "released": false,
+        "release_date": null,
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/36068"
+      },
+      {
+        "id": "36347",
+        "name": "bigpicture-cloud-8.64.0.7",
+        "released": true,
+        "release_date": "2025-12-08",
+        "url": "https://appfire.atlassian.net/projects/ONE/versions/36347"
+      }
+    ],
+    "release_signal": {
+      "released": true,
+      "release_date": "2025-12-08",
+      "release_date_last": "2025-12-08",
+      "trigger_issue": null,
+      "qualifying_events": [],
+      "rule": "Earliest date a test-run-linked bug reached status 'Done' while Fix Version included bigpicture-cloud-8.64.* (changelog replay; status name must be exactly Done).",
+      "fix_version_pattern": "^bigpicture-cloud-8\\.64\\.",
+      "release_date_source": "jira_first_released_cloud_fix"
+    }
+  },
+  "test_run": {
+    "key": "TC-5818",
+    "summary": "BigPicture 8.64 Major Release Test Run Jira Cloud Manual",
+    "status": "Done",
+    "created": "2025-11-14T06:05:01.838-0500",
+    "url": "https://appfire.atlassian.net/browse/TC-5818",
+    "defect_keys": [
+      "ONE-187629",
+      "ONE-214988",
+      "ONE-188911",
+      "ONE-165845",
+      "ONE-188919",
+      "ONE-188922",
+      "ONE-188925",
+      "ONE-188926",
+      "ONE-188931",
+      "ONE-188933",
+      "ONE-190236",
+      "ONE-190237",
+      "ONE-190240",
+      "ONE-188905"
+    ],
+    "stats": {
+      "total": 324,
+      "executed": 303,
+      "passed": 289,
+      "failed": 14,
+      "skipped": 0,
+      "todo": 20,
+      "executing": 1,
+      "other": 0,
+      "by_status": {
+        "PASSED": 289,
+        "TO DO": 20,
+        "FAILED": 14,
+        "EXECUTING": 1
+      },
+      "status_buckets": {
+        "passed": [
+          "OK",
+          "PASS",
+          "PASSED"
+        ],
+        "failed": [
+          "FAIL",
+          "FAILED"
+        ],
+        "skipped": [
+          "ABORTED",
+          "N/A",
+          "NA",
+          "NOT APPLICABLE",
+          "SKIPPED"
+        ],
+        "todo": [
+          "TO DO",
+          "TODO"
+        ],
+        "executing": [
+          "EXECUTING"
+        ],
+        "other": "any remaining status name"
+      },
+      "counts_source": "getTestExecution.testRuns latest status per test",
+      "qa_engineers": {
+        "count": 10,
+        "account_ids": [
+          "60dc57227536500070aa4721",
+          "60dc59337d016900702ab00c",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "names": [
+          "60dc57227536500070aa4721",
+          "60dc59337d016900702ab00c",
+          "60dc5b127536500070aa76b5",
+          "60dc5c290a1f6800702e7816",
+          "60dc5c6b7536500070aa87a7",
+          "60dc5dab6d066300688fe866",
+          "617a700bb9c549006ffe8e2d",
+          "61a85ca56d002b006bea3fea",
+          "6294f085cd636500697b2fbe",
+          "637efe419341d1f1360599a6"
+        ],
+        "source": "getTestExecution.testRuns executedById (distinct)"
+      },
+      "timing": {
+        "execution_created": "2025-11-14T06:05:01.838-0500",
+        "first_status_change": "2025-11-19T09:20:07.500000+00:00",
+        "last_status_change": "2025-11-21T22:56:52.326000+00:00",
+        "duration_days": 2,
+        "duration_kind": "weekdays",
+        "source": "xray_execution_test_runs",
+        "rule": "Weekdays only (Mon–Fri), from the first to the last status change on any test in this Test Execution (getTestExecution.testRuns activity, field status). Same calendar day counts as 0."
+      }
+    },
+    "failed_tests": [
+      {
+        "key": "TC-5314",
+        "summary": "Jira Team - Global teams - Team creation, synchronization and re-synchronization",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-5314#!page=test-run&testExecutionKey=TC-5818&testKey=TC-5314&testPlanId="
+      },
+      {
+        "key": "TC-5326",
+        "summary": "SPM - Priorities - Prioritizing Boxes on Priorities module and displaying on Overview module",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-5326#!page=test-run&testExecutionKey=TC-5818&testKey=TC-5326&testPlanId="
+      },
+      {
+        "key": "TC-5392",
+        "summary": "SPM - OKR - Gantt module - Exporting OKR tasks ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-5392#!page=test-run&testExecutionKey=TC-5818&testKey=TC-5392&testPlanId="
+      },
+      {
+        "key": "TC-5409",
+        "summary": "SPM - Priorities - Changing aggregations and display on Gantt",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-5409#!page=test-run&testExecutionKey=TC-5818&testKey=TC-5409&testPlanId="
+      },
+      {
+        "key": "TC-5410",
+        "summary": "SPM - Priorities - Displaying values for different types  of templates",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-5410#!page=test-run&testExecutionKey=TC-5818&testKey=TC-5410&testPlanId="
+      },
+      {
+        "key": "TC-5777",
+        "summary": "SPM - Strategic areas  - Updating Strategic Themes ",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-5777#!page=test-run&testExecutionKey=TC-5818&testKey=TC-5777&testPlanId="
+      },
+      {
+        "key": "TC-1052",
+        "summary": "Feature area - Exporting - Exporting Risks",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-1052#!page=test-run&testExecutionKey=TC-5818&testKey=TC-1052&testPlanId="
+      },
+      {
+        "key": "TC-1656",
+        "summary": "Feature area - Exporting - Exporting Calendar",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-1656#!page=test-run&testExecutionKey=TC-5818&testKey=TC-1656&testPlanId="
+      },
+      {
+        "key": "TC-2115",
+        "summary": "Feature area - Exporting - Gantt - PDF exporting with date range filtering",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-2115#!page=test-run&testExecutionKey=TC-5818&testKey=TC-2115&testPlanId="
+      },
+      {
+        "key": "TC-1044",
+        "summary": "Feature area - Exporting - Gantt - Full scope exporting",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-1044#!page=test-run&testExecutionKey=TC-5818&testKey=TC-1044&testPlanId="
+      },
+      {
+        "key": "TC-1041",
+        "summary": "Feature area - Exporting - Uploading/Downloading templates (BT configuration)",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-1041#!page=test-run&testExecutionKey=TC-5818&testKey=TC-1041&testPlanId="
+      },
+      {
+        "key": "TC-1045",
+        "summary": "Feature area - Exporting - Exporting Scope",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-1045#!page=test-run&testExecutionKey=TC-5818&testKey=TC-1045&testPlanId="
+      },
+      {
+        "key": "TC-4304",
+        "summary": "Global - Gadget - Objectives - Editing objective's status and progress",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-4304#!page=test-run&testExecutionKey=TC-5818&testKey=TC-4304&testPlanId="
+      },
+      {
+        "key": "TC-4523",
+        "summary": "Feature area - Task Scheduling - Period creating - End date mapped to Original Estimate",
+        "url": "https://appfire.atlassian.net/projects/TC?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.xpandit.plugins.xray__testing-board&ac.testExecutionKey=TC-5818&ac.testKey=TC-4523#!page=test-run&testExecutionKey=TC-5818&testKey=TC-4523&testPlanId="
+      }
+    ],
+    "failed_tests_source": "getTestExecution.testRuns latest status per test (FAILED/FAIL)"
+  },
+  "test_run_candidates": [],
+  "bugs": {
+    "jql": "issuetype = Bug AND affectedVersion = \"preprod/2025-11-17/8.64\" AND created >= \"2025-11-17\" ORDER BY priority DESC, created ASC",
+    "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2025-11-17/8.64%22%20AND%20created%20%3E%3D%20%222025-11-17%22%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC",
+    "rule": "Affected Version is the preprod version, created on or after the cut-off date.",
+    "by_priority": {},
+    "found_by_test_run": 14,
+    "test_run": {
+      "count": 14,
+      "jql": "issuetype = Bug AND issue in linkedIssues(\"TC-5818\")",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20issue%20in%20linkedIssues%28%22TC-5818%22%29",
+      "execution_key": "TC-5818"
+    },
+    "other": {
+      "count": 0,
+      "jql": "issuetype = Bug AND affectedVersion = \"preprod/2025-11-17/8.64\" AND created >= \"2025-11-17\" AND issue not in linkedIssues(\"TC-5818\") ORDER BY priority DESC, created ASC",
+      "url": "https://appfire.atlassian.net/issues/?jql=issuetype%20%3D%20Bug%20AND%20affectedVersion%20%3D%20%22preprod/2025-11-17/8.64%22%20AND%20created%20%3E%3D%20%222025-11-17%22%20AND%20issue%20not%20in%20linkedIssues%28%22TC-5818%22%29%20ORDER%20BY%20priority%20DESC%2C%20created%20ASC"
+    },
+    "issues": [
+      {
+        "key": "ONE-187629",
+        "summary": "Gadget - Objectives gadget is not working",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-187629"
+      },
+      {
+        "key": "ONE-214988",
+        "summary": "OKR module - Sometimes after editing okrs and refreshing page, modal for creating strategic theme is displayed",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-214988"
+      },
+      {
+        "key": "ONE-188911",
+        "summary": "Strategic areas - Linked boxes are not displayed under Initatives tab",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188911"
+      },
+      {
+        "key": "ONE-165845",
+        "summary": "Strategic areas - For some users, the OKR Owner disappears a few seconds after selection",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2025-10-27",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-165845"
+      },
+      {
+        "key": "ONE-188919",
+        "summary": "Resources Module - export to PDF doesn't work properly ",
+        "priority": "Medium",
+        "status": "Canceled",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188919"
+      },
+      {
+        "key": "ONE-188922",
+        "summary": "Gantt – Although Priority Scores are calculated, they do not appear in the Priority Score column",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188922"
+      },
+      {
+        "key": "ONE-188925",
+        "summary": "Jira Team functionality needs to be hidden due to a lack of support for Forge level 3",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188925"
+      },
+      {
+        "key": "ONE-188926",
+        "summary": "Resource panel - Changing units to percent causes the task list to appear in the Workload details dialog only after reopening the dialog",
+        "priority": "Medium",
+        "status": "Done",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188926"
+      },
+      {
+        "key": "ONE-188931",
+        "summary": "Exporting is not performed correctly on the modules ",
+        "priority": "Highest",
+        "status": "Done",
+        "created": "2025-11-20",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188931"
+      },
+      {
+        "key": "ONE-188933",
+        "summary": "OKR widget - rest/ppm/boxmodule/strategic-areas/okr-widget/configuration loads almost 2 minutes to display content ",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-11-20",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188933"
+      },
+      {
+        "key": "ONE-190236",
+        "summary": "Changes done from Jira are not automatically sycchronized with BP fields",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2025-11-20",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-190236"
+      },
+      {
+        "key": "ONE-190237",
+        "summary": "New Homepage loads slowly ",
+        "priority": "High",
+        "status": "Done",
+        "created": "2025-11-20",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-190237"
+      },
+      {
+        "key": "ONE-190240",
+        "summary": "Strategic areas - OKRs  are not updating",
+        "priority": "High",
+        "status": "Canceled",
+        "created": "2025-11-20",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-190240"
+      },
+      {
+        "key": "ONE-188905",
+        "summary": "Export to PDF doesn't work",
+        "priority": "Highest",
+        "status": "Canceled",
+        "created": "2025-11-19",
+        "found_by_test_run": true,
+        "outside_cutoff_query": true,
+        "url": "https://appfire.atlassian.net/browse/ONE-188905"
+      }
+    ],
+    "customer_reported": {
+      "count": 0,
+      "affected_version": "preprod/2025-11-17/8.64",
+      "support_ticket_count": 0,
+      "jql": null,
+      "url": null,
+      "rule": "Bug with Affected Version \"preprod/2025-11-17/8.64\" and a Jira issue link to a SUPPORT-* ticket (includes Relates and Support Ticket link types).",
+      "issues": []
+    }
+  },
+  "metrics": {
+    "version": "8.64",
+    "cutoff_date": "2025-11-17",
+    "release_date": "2025-12-08",
+    "released": true,
+    "days_in_preprod": 21,
+    "tests_total": 324,
+    "tests_executed": 303,
+    "tests_passed": 289,
+    "tests_failed": 14,
+    "tests_skipped": 0,
+    "tests_todo": 20,
+    "test_run_duration_days": 2,
+    "test_run_first_status_change": "2025-11-19T09:20:07.500000+00:00",
+    "test_run_last_status_change": "2025-11-21T22:56:52.326000+00:00",
+    "qa_engineers_count": 10,
+    "bugs_total": 0,
+    "bugs_found_by_test_run": 14,
+    "bugs_other_since_cutoff": 0,
+    "bugs_by_priority": {},
+    "release_date_last": "2025-12-08",
+    "bugs_customer_reported": 0
+  },
+  "notes": [
+    "Cut-off bug query returned 0 issues in Jira for this preprod affectedVersion (only test-run-linked defects are in scope)."
+  ]
+}

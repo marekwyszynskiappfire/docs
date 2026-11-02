@@ -1,0 +1,186 @@
+[
+  {
+    "key": "ONE-221016",
+    "summary": "Bulk conversion to Jira issues not working",
+    "priority": "Highest",
+    "status": "Done",
+    "created": "2026-02-06",
+    "url": "https://appfire.atlassian.net/browse/ONE-221016"
+  },
+  {
+    "key": "ONE-216158",
+    "summary": "Dashboard hub - Project health report is not hidden via correct FF",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-01-29",
+    "url": "https://appfire.atlassian.net/browse/ONE-216158"
+  },
+  {
+    "key": "ONE-218550",
+    "summary": "Filtering OKRs by status is not working on Gantt/Scope/Board modules",
+    "priority": "High",
+    "status": "Canceled",
+    "created": "2026-02-03",
+    "url": "https://appfire.atlassian.net/browse/ONE-218550"
+  },
+  {
+    "key": "ONE-219837",
+    "summary": "Scope definition: newly added task types are not saved ",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-02-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-219837"
+  },
+  {
+    "key": "ONE-370654",
+    "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+    "priority": "High",
+    "status": "Canceled",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370654"
+  },
+  {
+    "key": "ONE-370664",
+    "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370664"
+  },
+  {
+    "key": "ONE-370667",
+    "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+    "priority": "High",
+    "status": "Done",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370667"
+  },
+  {
+    "key": "ONE-216596",
+    "summary": "Dashboard hub - UI issues",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-01-29",
+    "url": "https://appfire.atlassian.net/browse/ONE-216596"
+  },
+  {
+    "key": "ONE-216599",
+    "summary": "Risks: tasks added from Add risk -> Add new create new Jira issue are visible only after refreshing the page",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-01-29",
+    "url": "https://appfire.atlassian.net/browse/ONE-216599"
+  },
+  {
+    "key": "ONE-218214",
+    "summary": "Financials: inline editing of summary on the lower levels doesn't work",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-02-02",
+    "url": "https://appfire.atlassian.net/browse/ONE-218214"
+  },
+  {
+    "key": "ONE-220470",
+    "summary": "New Homepage: no share feedback button in header",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-02-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-220470"
+  },
+  {
+    "key": "ONE-220998",
+    "summary": "Priorities module - User is not directed to OKR module after clicking on Create Goal button in Goals tab ",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-02-06",
+    "url": "https://appfire.atlassian.net/browse/ONE-220998"
+  },
+  {
+    "key": "ONE-222126",
+    "summary": "Teams Module - There is no message informing about the impossibility of creating a team with code that already exists in the level above",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-02-10",
+    "url": "https://appfire.atlassian.net/browse/ONE-222126"
+  },
+  {
+    "key": "ONE-340166",
+    "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-06-25",
+    "url": "https://appfire.atlassian.net/browse/ONE-340166"
+  },
+  {
+    "key": "ONE-368787",
+    "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-08-13",
+    "url": "https://appfire.atlassian.net/browse/ONE-368787"
+  },
+  {
+    "key": "ONE-370655",
+    "summary": "Main: no horizontal grid lines by default on Timeline view.",
+    "priority": "Medium",
+    "status": "Done",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370655"
+  },
+  {
+    "key": "ONE-370657",
+    "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+    "priority": "Medium",
+    "status": "In Progress",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370657"
+  },
+  {
+    "key": "ONE-370663",
+    "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+    "priority": "Medium",
+    "status": "Waiting for Release",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370663"
+  },
+  {
+    "key": "ONE-370665",
+    "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+    "priority": "Medium",
+    "status": "Canceled",
+    "created": "2026-08-18",
+    "url": "https://appfire.atlassian.net/browse/ONE-370665"
+  },
+  {
+    "key": "ONE-216601",
+    "summary": "New Homepage: wrong sizing headers buttons of Boxes section",
+    "priority": "Low",
+    "status": "Done",
+    "created": "2026-01-29",
+    "url": "https://appfire.atlassian.net/browse/ONE-216601"
+  },
+  {
+    "key": "ONE-219808",
+    "summary": "New navigation: unnecessary scroll under the onboarding animation.",
+    "priority": "Low",
+    "status": "Canceled",
+    "created": "2026-02-04",
+    "url": "https://appfire.atlassian.net/browse/ONE-219808"
+  },
+  {
+    "key": "ONE-220485",
+    "summary": "New Homepage: My settings icon is too small.",
+    "priority": "Low",
+    "status": "Done",
+    "created": "2026-02-05",
+    "url": "https://appfire.atlassian.net/browse/ONE-220485"
+  },
+  {
+    "key": "ONE-369497",
+    "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+    "priority": "Low",
+    "status": "Canceled",
+    "created": "2026-08-17",
+    "url": "https://appfire.atlassian.net/browse/ONE-369497"
+  }
+]

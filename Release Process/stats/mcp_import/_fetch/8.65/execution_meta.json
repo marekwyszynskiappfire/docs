@@ -1,0 +1,14 @@
+{
+  "summary": "BigPicture 8.65 Major Release Test Run Jira Cloud Manual",
+  "status": "In Progress",
+  "created": "2025-12-08T04:08:59.550-0500",
+  "url": "https://appfire.atlassian.net/browse/TC-5841",
+  "defect_keys": [
+    "ONE-204996",
+    "ONE-205001",
+    "ONE-204991",
+    "ONE-206344",
+    "ONE-206354",
+    "ONE-206908"
+  ]
+}

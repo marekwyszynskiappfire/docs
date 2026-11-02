@@ -32,6 +32,14 @@ When documenting BP QA–Development cooperation, follow [`BP QA/SKILL.md`](BP%2
 
 When documenting the BigPicture release process, follow [`Release Process/SKILL.md`](Release%20Process/SKILL.md). Keep process in `process.md` and how-tos in Cloud/DC technical files. The PPM Release Checklist is a technical source, not current ownership. Do not publish Confluence until the markdown is reviewed.
 
+### Release stats canvas
+
+When the user asks for release statistics, a train section (e.g. 8.77), or `/release-stats`, follow [`.cursor/skills/release-stats/SKILL.md`](.cursor/skills/release-stats/SKILL.md): interactive run config; create or enrich `Release Process/stats/data/{version}.json` (full pipeline — comparison table, Xray, bugs, production date, customer-reported, optional known issues, **failed test links**); then `render_canvas.py`.
+
+### Trinity pilot scorecard (Google Sheet)
+
+When the user pastes the scorecard prompt, RUN DATA, or asks to update the **Usage Scorecard** / pilot spreadsheet after a Trinity run, follow [`.cursor/skills/trinity-scorecard/SKILL.md`](.cursor/skills/trinity-scorecard/SKILL.md). Default workflow: **Cursor + Google Drive** using [`Trinity/pilot-scorecard-cursor-prompt.md`](Trinity/pilot-scorecard-cursor-prompt.md) — not Studio Sheets API unless explicitly requested.
+
 ### Trinity Studio (edit + analytics)
 
 Human edits and pipeline stats live in [`Trinity/studio/`](Trinity/studio/README.md). Import Reviewer run folders after Agent gather; export approved `review-payload.json` for Creator.

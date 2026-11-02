@@ -1,0 +1,433 @@
+{
+  "execution": {
+    "summary": "BigPicture 8.66 Major Release Test Run Jira Cloud Manual",
+    "status": "To Do",
+    "created": "2026-01-02T03:08:08.891-0500",
+    "url": "https://appfire.atlassian.net/browse/TC-5907",
+    "defect_keys": [
+      "ONE-208075",
+      "ONE-206354",
+      "ONE-208507",
+      "ONE-208083",
+      "ONE-208511",
+      "ODEV-3172",
+      "ONE-208509",
+      "ONE-208512",
+      "ONE-208514",
+      "ONE-208604",
+      "ONE-165845"
+    ]
+  },
+  "bugs": [
+    {
+      "key": "ONE-340260",
+      "summary": "[CP to DC 10&11] - Gantt - Basic tasks cannot be bulk converted to Jira issues",
+      "priority": "Highest",
+      "status": "Done",
+      "created": "2026-06-25",
+      "url": "https://appfire.atlassian.net/browse/ONE-340260"
+    },
+    {
+      "key": "ONE-208507",
+      "summary": "'NullPointerException: null' when reseting mapping to defaults (With no BPE installed)",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-08",
+      "url": "https://appfire.atlassian.net/browse/ONE-208507"
+    },
+    {
+      "key": "ONE-208512",
+      "summary": "JCMA error - incorrect format of the displayed message",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-08",
+      "url": "https://appfire.atlassian.net/browse/ONE-208512"
+    },
+    {
+      "key": "ONE-208514",
+      "summary": "Tempo - Individuals synchronization with Tempo does not work properly",
+      "priority": "High",
+      "status": "Canceled",
+      "created": "2026-01-08",
+      "url": "https://appfire.atlassian.net/browse/ONE-208514"
+    },
+    {
+      "key": "ONE-208520",
+      "summary": "Reports - Task report - JQL and Date filter fields are not working",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-09",
+      "url": "https://appfire.atlassian.net/browse/ONE-208520"
+    },
+    {
+      "key": "ONE-208604",
+      "summary": "Reports - Capacity - Error after changing Value field",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-09",
+      "url": "https://appfire.atlassian.net/browse/ONE-208604"
+    },
+    {
+      "key": "ONE-208961",
+      "summary": "The Assignee field is not sorted alphabetically",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-09",
+      "url": "https://appfire.atlassian.net/browse/ONE-208961"
+    },
+    {
+      "key": "ONE-208963",
+      "summary": "Import to Basic tasks - fix resource assignment (by email not by displayName)",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-09",
+      "url": "https://appfire.atlassian.net/browse/ONE-208963"
+    },
+    {
+      "key": "ONE-209959",
+      "summary": "Reports - Read more about reports link is not working",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-13",
+      "url": "https://appfire.atlassian.net/browse/ONE-209959"
+    },
+    {
+      "key": "ONE-209961",
+      "summary": "Gantt: lost values after update.",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-13",
+      "url": "https://appfire.atlassian.net/browse/ONE-209961"
+    },
+    {
+      "key": "ONE-210513",
+      "summary": "DataTypePriorityScoreCalculated event is not being sent to Kibana",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-210513"
+    },
+    {
+      "key": "ONE-211039",
+      "summary": "Board - Error after clicking on 'Share' button ",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-16",
+      "url": "https://appfire.atlassian.net/browse/ONE-211039"
+    },
+    {
+      "key": "ONE-214980",
+      "summary": "[Rank: >300] Resources - Skills - User can add new skill using 'Labels' field",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-01-27",
+      "url": "https://appfire.atlassian.net/browse/ONE-214980"
+    },
+    {
+      "key": "ONE-370654",
+      "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+      "priority": "High",
+      "status": "Canceled",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370654"
+    },
+    {
+      "key": "ONE-370664",
+      "summary": "[Cherry pick and test from Cloud] Board - Adding new task in custom box type causes moving already planned tasks to \"Unknown team\"",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370664"
+    },
+    {
+      "key": "ONE-370667",
+      "summary": "[Rank: >300] Risks module - Trying to change the color of the task that is in the scope of another box that the user does not have access to causes a 403 error",
+      "priority": "High",
+      "status": "Done",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370667"
+    },
+    {
+      "key": "ONE-208075",
+      "summary": "Inconsistent color styling between Objective and Key Result column values",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-07",
+      "url": "https://appfire.atlassian.net/browse/ONE-208075"
+    },
+    {
+      "key": "ONE-208082",
+      "summary": "Board - Tasks disappear after page refresh in boxes assigned to a timebox schedule (only Jira DC)",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-08",
+      "url": "https://appfire.atlassian.net/browse/ONE-208082"
+    },
+    {
+      "key": "ONE-208511",
+      "summary": "Priorities module - after updating/deleting metrics, new value is shown after refresh ",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-08",
+      "url": "https://appfire.atlassian.net/browse/ONE-208511"
+    },
+    {
+      "key": "ONE-208516",
+      "summary": "Financials: basic task name is clickable in the Work costs breakdown widget",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-09",
+      "url": "https://appfire.atlassian.net/browse/ONE-208516"
+    },
+    {
+      "key": "ONE-208518",
+      "summary": "Reports - Plan delays - Incorrect tasks icons ",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-09",
+      "url": "https://appfire.atlassian.net/browse/ONE-208518"
+    },
+    {
+      "key": "ONE-210491",
+      "summary": "Gantt: Resources are not sorted alphabetically in in-built Assignee field ",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-01-14",
+      "url": "https://appfire.atlassian.net/browse/ONE-210491"
+    },
+    {
+      "key": "ONE-210500",
+      "summary": "Strategic areas - The currency does not change on the pie chart when hovering over it",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-14",
+      "url": "https://appfire.atlassian.net/browse/ONE-210500"
+    },
+    {
+      "key": "ONE-211014",
+      "summary": "Objective / Key Result is not opened after clicking the “Open in new tab” button",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-01-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-211014"
+    },
+    {
+      "key": "ONE-211018",
+      "summary": "Board/Objectives - New marker dialog is moved when new navigation is turned ON",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-211018"
+    },
+    {
+      "key": "ONE-211020",
+      "summary": "Resources Module - New task details dialog - Deleting task detail values/deleting task assignment are not possible in scenario mode",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-211020"
+    },
+    {
+      "key": "ONE-211040",
+      "summary": "Board - Incorrect layout change when new navigation is turned ON",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-16",
+      "url": "https://appfire.atlassian.net/browse/ONE-211040"
+    },
+    {
+      "key": "ONE-211064",
+      "summary": "Scope definition: bugs to fix associated with the naming changes – project on the space",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-19",
+      "url": "https://appfire.atlassian.net/browse/ONE-211064"
+    },
+    {
+      "key": "ONE-213721",
+      "summary": "OKR - 401 errors occur during field synchronization if the user does not have BP Enterprise",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-26",
+      "url": "https://appfire.atlassian.net/browse/ONE-213721"
+    },
+    {
+      "key": "ONE-214302",
+      "summary": "New Navigation: no Priority option in View Tasks labels",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-26",
+      "url": "https://appfire.atlassian.net/browse/ONE-214302"
+    },
+    {
+      "key": "ONE-215011",
+      "summary": "Overview: adding new boxes from the Timeline on Hierarchy view doesn't work properly",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-01-27",
+      "url": "https://appfire.atlassian.net/browse/ONE-215011"
+    },
+    {
+      "key": "ONE-224662",
+      "summary": "Dashboard hub - Reports does not show changes in the module where it is first displayed after making changes",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-02-12",
+      "url": "https://appfire.atlassian.net/browse/ONE-224662"
+    },
+    {
+      "key": "ONE-340166",
+      "summary": "[CP to DC-11 from DC-10] - Timebox schedule - Board - Tasks are not synchronised after editing timeboxes field mapping",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-06-25",
+      "url": "https://appfire.atlassian.net/browse/ONE-340166"
+    },
+    {
+      "key": "ONE-368787",
+      "summary": "New Navigation import: There is no progress bar and there is no information that the import/cloning has finished.",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-08-13",
+      "url": "https://appfire.atlassian.net/browse/ONE-368787"
+    },
+    {
+      "key": "ONE-369492",
+      "summary": "Resources - Skills - User can add new skill using 'Labels' field",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369492"
+    },
+    {
+      "key": "ONE-370655",
+      "summary": "Main: no horizontal grid lines by default on Timeline view.",
+      "priority": "Medium",
+      "status": "Done",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370655"
+    },
+    {
+      "key": "ONE-370657",
+      "summary": "[Not ready on Cloud] Timebox Schedule - Period alignment settings are not migrated to a timebox schedule",
+      "priority": "Medium",
+      "status": "In Progress",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370657"
+    },
+    {
+      "key": "ONE-370663",
+      "summary": "[FOR ANALYSIS] Resources - Capacity in New Resource Grid is different than the exported one",
+      "priority": "Medium",
+      "status": "Waiting for Release",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370663"
+    },
+    {
+      "key": "ONE-370665",
+      "summary": "Change log - Changes done from Jira are incorrectly displayed in exported file",
+      "priority": "Medium",
+      "status": "Canceled",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370665"
+    },
+    {
+      "key": "ONE-208083",
+      "summary": "Overview module - The first subbox created under a childless box after a refresh with manual sorting enabled causes an error",
+      "priority": "Low",
+      "status": "Open",
+      "created": "2026-01-08",
+      "url": "https://appfire.atlassian.net/browse/ONE-208083"
+    },
+    {
+      "key": "ONE-208509",
+      "summary": "JCMA migration message dialogs have an incorrect font color",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-01-08",
+      "url": "https://appfire.atlassian.net/browse/ONE-208509"
+    },
+    {
+      "key": "ONE-208519",
+      "summary": "Dashboard hub - Incorrect background for empty state in infobar",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-01-09",
+      "url": "https://appfire.atlassian.net/browse/ONE-208519"
+    },
+    {
+      "key": "ONE-214308",
+      "summary": "Unselecting 'Show grouping field name' doesn't work on the Scope module ",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-01-26",
+      "url": "https://appfire.atlassian.net/browse/ONE-214308"
+    },
+    {
+      "key": "ONE-214960",
+      "summary": "Share your feedback dialog - Low readability in dark mode",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-01-27",
+      "url": "https://appfire.atlassian.net/browse/ONE-214960"
+    },
+    {
+      "key": "ONE-214963",
+      "summary": "Gantt: wrong style of objectives and KRs tags",
+      "priority": "Low",
+      "status": "Done",
+      "created": "2026-01-27",
+      "url": "https://appfire.atlassian.net/browse/ONE-214963"
+    },
+    {
+      "key": "ONE-369497",
+      "summary": "Board - Dependencies tab - Dependency icon is changing position after hovering over ‘Create a new note’ button",
+      "priority": "Low",
+      "status": "Canceled",
+      "created": "2026-08-17",
+      "url": "https://appfire.atlassian.net/browse/ONE-369497"
+    },
+    {
+      "key": "ONE-370661",
+      "summary": "[Not ready on Cloud] Performance fix for getting mapping type of scheduling task",
+      "priority": "Low",
+      "status": "In Progress",
+      "created": "2026-08-18",
+      "url": "https://appfire.atlassian.net/browse/ONE-370661"
+    },
+    {
+      "key": "ONE-211021",
+      "summary": "Reports - Task report - Header section width is inconsistent with the bar chart width",
+      "priority": "Lowest",
+      "status": "Done",
+      "created": "2026-01-15",
+      "url": "https://appfire.atlassian.net/browse/ONE-211021"
+    }
+  ],
+  "cloud_versions": [
+    {
+      "id": "37590",
+      "name": "bigpicture-cloud-8.66.0.0",
+      "released": false,
+      "release_date": null
+    },
+    {
+      "id": "37640",
+      "name": "bigpicture-cloud-8.66.0.1",
+      "released": false,
+      "release_date": null
+    },
+    {
+      "id": "38204",
+      "name": "bigpicture-cloud-8.66.0.2",
+      "released": false,
+      "release_date": null
+    },
+    {
+      "id": "39250",
+      "name": "bigpicture-cloud-8.66.0.3",
+      "released": true,
+      "release_date": "2026-01-29"
+    }
+  ]
+}

@@ -50,9 +50,9 @@ Update the **Closure** checklist and **Pilot log** in [`SCORECARD.md`](SCORECARD
 | # rejected | **Done** | `test_cases_rejected` |
 | Acceptance rate | **Done** | `/api/telemetry/summary` |
 | Rejection reasons (full Mateusz list) | **Done** | [`METRICS.md`](METRICS.md) enum |
-| Time to generate + review | **Open** | Manual on scorecard; optional from `metric_event` timestamps |
+| Time to generate + review | **Partial** | Studio Statistics → **TC Time (m)** / **Total Time (m)** on scorecard sheet |
 | vs non-AI baseline | **Open** | Scorecard **Impact**; no automated study |
-| **BigQuery / Looker** dashboards | **Open** | Local SQLite + outbox; `TRINITY_TELEMETRY_URL` when creds exist |
+| **Org run comparison dashboard** | **Partial** | **[Trinity Usage Scorecard](https://docs.google.com/spreadsheets/d/123L4BTTTrgghlLHni-vqCAEiJperj-pu1tDKuEyg6oo/edit)** (interim); BigQuery / Looker deferred — [`SCORECARD.md`](SCORECARD.md) |
 
 ```bash
 curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
@@ -70,7 +70,7 @@ curl -s http://127.0.0.1:8765/api/telemetry/summary | jq .
 | QC, human review, granularity, limitations | **Done** | [`MANUAL.md`](MANUAL.md), [`FAQ.md`](FAQ.md), skills |
 | Confluence operator tree | **Done** | [QACoE Trinity guide](https://appfire.atlassian.net/wiki/spaces/QACoE/pages/3750559869/Trinity+AI-assisted+QA+pipeline+operator+guide) |
 | Scorecard published | **Done** | [`SCORECARD.md`](SCORECARD.md) + [`presentations/mateusz-pilot1-2026-10-13.html`](presentations/mateusz-pilot1-2026-10-13.html) |
-| Preconfigured **org** dashboards | **Partial** | Studio Dashboard + telemetry API; Looker **Open** |
+| Preconfigured **org** dashboards | **Partial** | **[Usage Scorecard sheet](https://docs.google.com/spreadsheets/d/123L4BTTTrgghlLHni-vqCAEiJperj-pu1tDKuEyg6oo/edit)** + Studio Statistics; Looker / BQ deferred |
 
 ---
 

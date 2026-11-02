@@ -2,6 +2,8 @@
 
 English operator reference for **local metrics** (always on in Studio) and **optional BigQuery** upload. Use with pilot scorecards and acceptance-rate evidence.
 
+**Pilot scorecard (interim):** **[Usage Scorecard](https://docs.google.com/spreadsheets/d/123L4BTTTrgghlLHni-vqCAEiJperj-pu1tDKuEyg6oo/edit)** Google Sheet. After each run, copy the prompt in [`pilot-scorecard-cursor-prompt.md`](pilot-scorecard-cursor-prompt.md) into Cursor with your Statistics export — see [`SCORECARD.md`](SCORECARD.md).
+
 Related: [BIGQUERY.md](BIGQUERY.md) · [FAQ.md](FAQ.md) · [ADR 0002](../docs/adr/0002-trinity-importer-telemetry-decisions.md)
 
 ---
